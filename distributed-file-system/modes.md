@@ -1,4 +1,4 @@
-IGFS is able to operate in 4 modes: `PRIMARY`, `PROXY`, `DUAL_SYNC` and `DUAL_ASYNC`. Mode can be configured either for the whole file system or for particular paths. Ьodes are defined in `IgfsMode` enumeration. By default file system operates in `DUAL_ASYNC` mode. 
+IGFS is able to operate in 4 modes: `PRIMARY`, `PROXY`, `DUAL_SYNC` and `DUAL_ASYNC`. Mode can be configured either for the whole file system or for particular paths. Modes are defined in `IgfsMode` enumeration. By default file system operates in `DUAL_ASYNC` mode. 
 
 If secondary file system is not configured, all paths configured as `DUAL_SYNC` or `DUAL_ASYNC` will fallback to `PRIMARY` mode. 
 [block:code]

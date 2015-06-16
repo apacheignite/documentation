@@ -15,7 +15,7 @@ Ignite data grid is lightning fast and is one of the fastest implementations of 
 {
   "type": "success",
   "title": "JCache (JSR 107)",
-  "body": "Ignite Data Grid implements [JCache](doc:jcache) (JSR 107) specification (currently undergoing JSR 107 TCK testing)"
+  "body": "Ignite Data Grid implements [JCache](doc:jcache) (JSR 107) specification."
 }
 [/block]
 
@@ -43,7 +43,7 @@ Ignite data grid is lightning fast and is one of the fastest implementations of 
   * Web Session Clustering
   * Hibernate L2 Cache Integration
   * Tiered Off-Heap Storage
-  * Distributed SQL Queries with support for Joins
+  * Distributed ANSI-99 SQL Queries with support for Joins
 [block:api-header]
 {
   "type": "basic",
@@ -60,9 +60,28 @@ You can obtain an instance of `IgniteCache` as follows:
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\n// Obtain instance of cache named \"myCache\".\n// Note that different caches may have different generics.\nIgniteCache<Integer, String> cache = ignite.jcache(\"myCache\");",
+      "code": "Ignite ignite = Ignition.ignite();\n\n// Obtain instance of cache named \"myCache\".\n// Note that different caches may have different generics.\nIgniteCache<Integer, String> cache = ignite.cache(\"myCache\");",
       "language": "java"
     }
   ]
+}
+[/block]
+You can also create an instance of the cache on the fly, in which case Ignite will create and deploy the cache across all server cluster members.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Ignite ignite = Ignition.ignite();\n\nCacheConfiguration cfg = new CacheConfiguration();\n\ncfg.setName(\"myCache\");\ncfg.setAtomicityMode(TRANSACTIONAL);\n\n// Create cache with given name, if it does not exist.\nIgniteCache<Integer, String> cache = ignite.getOrCreateCache(cfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "XML Configuration",
+  "body": "All caches defined in Ignite Spring XML configuration on any cluster member will also be automatically created and deployed on all the cluster servers (no need to specify the same configuration on each cluster member)."
 }
 [/block]

@@ -7,7 +7,7 @@ A code example like below would run on all remote nodes due to peer class loadin
 {
   "codes": [
     {
-      "code": "IgniteCluster cluster = ignite.cluster();\n\n// Compute instance over remote nodes.\nIgniteCompute compute = ignite.compute(cluster.forRemotes());\n\n// Print hello message on all remote nodes.\ncompute.broadcast(() -> System.out.println(\"Hello node: \" + cluster.localNode().id());",
+      "code": "IgniteCluster cluster = ignite.cluster();\n\n// Compute instance over remote nodes.\nIgniteCompute compute = ignite.compute(cluster.forRemotes());\n\n// Print hello message on all remote nodes.\ncompute.broadcast(() -> System.out.println(\"Hello node: \" + cluster.localNode().id()));",
       "language": "java"
     }
   ]
@@ -35,7 +35,7 @@ Peer class loading sequence works as follows:
 {
   "type": "warning",
   "title": "Development vs Production",
-  "body": "It is recommended that peer-class-loading is disabled in production. Generally you want to have a controlled production environment without any magic."
+  "body": "It is recommended that peer-class-loading is disabled in production. Generally you want to have a controlled production environment without any magic. To deploy your classes explicitly, you can copy them into Ignite `libs` folder or manually add them to the classpath on every node."
 }
 [/block]
 
@@ -51,6 +51,14 @@ Peer class loading sequence works as follows:
 {
   "type": "info",
   "title": "3rd Party Libraries",
-  "body": "When utilizing peer class loading, you should be aware of the libraries that get loaded from peer nodes vs. libraries that are already available locally in the class path. Our suggestion is to include all 3rd party libraries into class path of every node. This way you will not transfer megabytes of 3rd party classes to remote nodes every time you change a line of code."
+  "body": "When utilizing peer class loading, you should be aware of the libraries that get loaded from peer nodes vs. libraries that are already available locally in the class path. Our suggestion is to include all 3rd party libraries into class path of every node. This can be achieved by copying your JAR files into the Ignite `libs` folder. This way you will not transfer megabytes of 3rd party classes to remote nodes every time you change a line of code."
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Explicit Deployment"
+}
+[/block]
+To deploy your JAR files into Ignite explicitly, you should copy them into the `libs` folder on every Ignite cluster member. Ignite will automatically load all the JAR files from the `libs` folder on startup.

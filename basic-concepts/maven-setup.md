@@ -60,7 +60,7 @@ The following modules are available:
   * `ignite-hadoop2-integration` (Integration with HDFS 2.0)
   * `ignite-rest-http` (for HTTP REST messages)
   * `ignite-scalar` (for Ignite Scala API)
-  * `ignite-sl4j` (for SL4J logging)
+  * `ignite-slf4j` (for SLF4J logging)
   * `ignite-ssh` (for starting grid nodes on remote machines)
   * `ignite-urideploy` (for URI-based deployment)
   * `ignite-aws` (for seamless cluster discovery on AWS S3)

@@ -1,4 +1,4 @@
-Apache Ignite data grid is an implementation of JCache (JSR 107) specification (currently undergoing JSR107 TCK testing). JCache provides a very simple to use, but yet very powerful API for data access. However, the specification purposely omits any details about data distribution and consistency to allow vendors enough freedom in their own implementations. 
+Apache Ignite data grid is an implementation of JCache (JSR 107) specification. JCache provides a very simple to use, but yet very powerful API for data access. However, the specification purposely omits any details about data distribution and consistency to allow vendors enough freedom in their own implementations. 
 
 In addition to JCache, Ignite provides ACID transactions, data querying capabilities (including SQL), various memory models, queries, transactions, etc...
 [block:api-header]
@@ -14,7 +14,7 @@ You can get an instance of `IgniteCache` directly from `Ignite`:
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\nIgniteCache cache = ignite.jcache(\"mycache\");",
+      "code": "Ignite ignite = Ignition.ignite();\n\nIgniteCache cache = ignite.cache(\"mycache\");",
       "language": "java"
     }
   ]
@@ -58,7 +58,7 @@ Moreover, you can embed your own logic into `EntryProcessors`, for example, taki
 {
   "codes": [
     {
-      "code": "IgniteCache<String, Integer> cache = ignite.jcache(\"mycache\");\n\n// Increment cache value 10 times.\nfor (int i = 0; i < 10; i++)\n  cache.invoke(\"mykey\", (entry, args) -> {\n    Integer val = entry.getValue();\n\n    entry.setValue(val == null ? 1 : val + 1);\n\n    return null;\n  });",
+      "code": "IgniteCache<String, Integer> cache = ignite.cache(\"mycache\");\n\n// Increment cache value 10 times.\nfor (int i = 0; i < 10; i++)\n  cache.invoke(\"mykey\", (entry, args) -> {\n    Integer val = entry.getValue();\n\n    entry.setValue(val == null ? 1 : val + 1);\n\n    return null;\n  });",
       "language": "java",
       "name": "invoke"
     },
@@ -90,7 +90,7 @@ Just like all distributed APIs in Ignite, `IgniteCache` extends [IgniteAsynchron
 {
   "codes": [
     {
-      "code": "// Enable asynchronous mode.\nIgniteCache<String, Integer> asyncCache = ignite.jcache(\"mycache\").withAsync();\n\n// Asynhronously store value in cache.\nasyncCache.getAndPut(\"1\", 1);\n\n// Get future for the above invocation.\nIgniteFuture<Integer> fut = asyncCache.future();\n\n// Asynchronously listen for the operation to complete.\nfut.listenAsync(f -> System.out.println(\"Previous cache value: \" + f.get()));",
+      "code": "// Enable asynchronous mode.\nIgniteCache<String, Integer> asyncCache = ignite.cache(\"mycache\").withAsync();\n\n// Asynhronously store value in cache.\nasyncCache.getAndPut(\"1\", 1);\n\n// Get future for the above invocation.\nIgniteFuture<Integer> fut = asyncCache.future();\n\n// Asynchronously listen for the operation to complete.\nfut.listenAsync(f -> System.out.println(\"Previous cache value: \" + f.get()));",
       "language": "java",
       "name": "Async"
     }

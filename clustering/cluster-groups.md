@@ -43,7 +43,7 @@ Here are examples of some cluster groups available on `ClusterGroup` interface.
       "name": "Remote Nodes"
     },
     {
-      "code": "IgniteCluster cluster = ignite.cluster();\n\n// All nodes on wich cache with name \"myCache\" is deployed.\nClusterGroup cacheGroup = cluster.forCache(\"myCache\");",
+      "code": "IgniteCluster cluster = ignite.cluster();\n\n// All nodes on which cache with name \"myCache\" is deployed,\n// either in client or server mode.\nClusterGroup cacheGroup = cluster.forCache(\"myCache\");\n\n// All data nodes responsible for caching data for \"myCache\".\nClusterGroup dataGroup = cluster.forDataNodes(\"myCache\");\n\n// All client nodes that access \"myCache\".\nClusterGroup clientGroup = cluster.forClientNodes(\"myCache\");",
       "language": "java",
       "name": "Cache Nodes"
     },
@@ -71,6 +71,11 @@ Here are examples of some cluster groups available on `ClusterGroup` interface.
       "code": "IgniteCluster cluster = ignite.cluster();\n\n// Cluster group with only this (local) node in it.\nClusterGroup localGroup = cluster.forLocal();\n\n// Local node.\nClusterNode localNode = localGroup.node();",
       "language": "java",
       "name": "Local Node"
+    },
+    {
+      "code": "IgniteCluster cluster = ignite.cluster();\n\n// All client nodes.\nClusterGroup clientGroup = cluster.forClients();\n\n// All server nodes.\nClusterGroup serverGroup = cluster.forServers();",
+      "language": "java",
+      "name": "Clients & Servers"
     }
   ]
 }

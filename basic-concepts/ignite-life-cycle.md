@@ -49,7 +49,7 @@ Sometimes you need to perform certain actions before or after the Ignite node st
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.IgniteConfiguration\">\n    ...\n    <property name=\"lifecycleBeans\">\n        <list>\n            <bean class=\"com.mycompany.MyGridLifecycleBean\"/>\n        </list>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.IgniteConfiguration\">\n    ...\n    <property name=\"lifecycleBeans\">\n        <list>\n            <bean class=\"com.mycompany.MyLifecycleBean\"/>\n        </list>\n    </property>\n    ...\n</bean>",
       "language": "xml"
     }
   ]
@@ -60,7 +60,7 @@ Sometimes you need to perform certain actions before or after the Ignite node st
 {
   "codes": [
     {
-      "code": "// Create new configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Provide lifecycle bean to configuration.\ncfg.setLifecycleBeans(new MyGridLifecycleBean());\n \n// Start Ignite node with given configuration.\nIgnite ignite = GridGain.start(cfg)",
+      "code": "// Create new configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Provide lifecycle bean to configuration.\ncfg.setLifecycleBeans(new MyLifecycleBean());\n \n// Start Ignite node with given configuration.\nIgnite ignite = Ignition.start(cfg)",
       "language": "java"
     }
   ]
@@ -71,7 +71,7 @@ An implementation of `LifecycleBean` may look like the following:
 {
   "codes": [
     {
-      "code": "public class MyLifecycleBean implements LifecycleBean {\n    @Override public void onLifecycleEvent(LifecycleEventType evt) {\n        if (evt == LifecycleEventType.BEFORE_GRID_START) {\n            // Do something.\n            ...\n        }\n    }\n}",
+      "code": "public class MyLifecycleBean implements LifecycleBean {\n    @Override public void onLifecycleEvent(LifecycleEventType evt) {\n        if (evt == LifecycleEventType.BEFORE_NODE_START) {\n            // Do something.\n            ...\n        }\n    }\n}",
       "language": "java"
     }
   ]

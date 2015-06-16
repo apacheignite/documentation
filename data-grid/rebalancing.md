@@ -4,15 +4,15 @@ If the new node becomes a primary or backup for some partition, it will fetch da
 [block:api-header]
 {
   "type": "basic",
-  "title": "Preload Modes"
+  "title": "Rebalance Modes"
 }
 [/block]
-Following preload modes are defined in `CachePreloadMode` enum.
+Following rebalance modes are defined in `CacheRebalanceMode` enum.
 [block:parameters]
 {
   "data": {
     "0-0": "`SYNC`",
-    "h-0": "CachePreloadMode",
+    "h-0": "CacheRebalanceMode",
     "h-1": "Description",
     "0-1": "Synchronous rebalancing mode. Distributed caches will not start until all necessary data is loaded from other available grid nodes. This means that any call to cache public API will be blocked until rebalancing is finished.",
     "1-1": "Asynchronous rebalancing mode. Distributed caches will start immediately and will load all necessary data from other available grid nodes in the background.",
@@ -24,16 +24,16 @@ Following preload modes are defined in `CachePreloadMode` enum.
   "rows": 3
 }
 [/block]
-By default, `ASYNC` preload mode is enabled. To use another mode, you can set the `preloadMode` property of `CacheConfiguration`, like so:
+By default, `ASYNC` rebalance mode is enabled. To use another mode, you can set the `rebalanceMode` property of `CacheConfiguration`, like so:
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">          \t\t\n          \t<!-- Set synchronous preloading. -->\n    \t\t\t\t<property name=\"preloadMode\" value=\"SYNC\"/>\n            ... \n        </bean\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">          \t\t\n          \t<!-- Set synchronous rebalancing. -->\n    \t\t\t\t<property name=\"rebalanceMode\" value=\"SYNC\"/>\n            ... \n        </bean\n    </property>\n</bean>",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setPreloadMode(CachePreloadMode.SYNC);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setRebalanceMode(CacheRebalanceMode.SYNC);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
@@ -46,18 +46,18 @@ By default, `ASYNC` preload mode is enabled. To use another mode, you can set th
   "title": "Rebalance Message Throttling"
 }
 [/block]
-When re-balancer transfers data from one node to another, it splits the whole data set into batches and sends each batch in a separate message. If your data sets are large and there are a lot of messages to send, the CPU or network can get over-consumed. In this case it can be reasonable to wait between rebalance messages so that negative performance impact caused by preloading process is minimized. This time interval is controlled by `preloadThrottle` configuration property of  `CacheConfiguration`. Its default value is 0, which means that there will be no pauses between messages. Note that size of a single message can be also customized by `preloadBatchSize` configuration property (default size is 512K).
+When re-balancer transfers data from one node to another, it splits the whole data set into batches and sends each batch in a separate message. If your data sets are large and there are a lot of messages to send, the CPU or network can get over-consumed. In this case it can be reasonable to wait between rebalance messages so that negative performance impact caused by rebalancing process is minimized. This time interval is controlled by `rebalanceThrottle` configuration property of  `CacheConfiguration`. Its default value is 0, which means that there will be no pauses between messages. Note that size of a single message can be also customized by `rebalanceBatchSize` configuration property (default size is 512K).
 
-For example, if you want preloader to send 2MB of data per message with 100 ms throttle interval, you should provide the following configuration: 
+For example, if you want rebalancer to send 2MB of data per message with 100 ms throttle interval, you should provide the following configuration: 
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">          \t\t\n          \t<!-- Set batch size. -->\n    \t\t\t\t<property name=\"preloadBatchSize\" value=\"#{2 * 1024 * 1024}\"/>\n \n    \t\t\t\t<!-- Set throttle interval. -->\n    \t\t\t\t<property name=\"preloadThrottle\" value=\"100\"/>\n            ... \n        </bean\n    </property>\n</bean> ",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">          \t\t\n          \t<!-- Set batch size. -->\n    \t\t\t\t<property name=\"rebalanceBatchSize\" value=\"#{2 * 1024 * 1024}\"/>\n \n    \t\t\t\t<!-- Set throttle interval. -->\n    \t\t\t\t<property name=\"rebalanceThrottle\" value=\"100\"/>\n            ... \n        </bean\n    </property>\n</bean> ",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setPreloadBatchSize(2 * 1024 * 1024);\n            \ncacheCfg.setPreloadThrottle(100);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setRebalanceBatchSize(2 * 1024 * 1024);\n            \ncacheCfg.setRebalanceThrottle(100);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
@@ -70,27 +70,27 @@ For example, if you want preloader to send 2MB of data per message with 100 ms t
   "title": "Configuration"
 }
 [/block]
-Cache preloading behavior can be customized by optionally setting the following configuration properties:
+Cache rebalancing behavior can be customized by optionally setting the following configuration properties:
 [block:parameters]
 {
   "data": {
     "h-0": "Setter Method",
     "h-1": "Description",
     "h-2": "Default",
-    "0-0": "`setPreloadMode`",
-    "0-1": "Preload mode for distributed cache. See Preload Modes section for details.",
-    "1-0": "`setPreloadPartitionedDelay`",
-    "1-1": "Preloading delay in milliseconds. See Delayed And Manual Preloading section for details.",
-    "2-0": "`setPreloadBatchSize`",
-    "2-1": "Size (in bytes) to be loaded within a single preload message. Preloading algorithm will split total data set on every node into multiple batches prior to sending data.",
-    "3-0": "`setPreloadThreadPoolSize`",
-    "3-1": "Size of preloading thread pool. Note that size serves as a hint and implementation may create more threads for preloading than specified here (but never less threads).",
-    "4-0": "`setPreloadThrottle`",
-    "4-1": "Time in milliseconds to wait between preload messages to avoid overloading of CPU or network. When preloading large data sets, the CPU or network can get over-consumed with preloading messages, which consecutively may slow down the application performance. This parameter helps tune the amount of time to wait between preload messages to make sure that preloading process does not have any negative performance impact. Note that application will continue to work properly while preloading is still in progress.",
-    "5-0": "`setPreloadOrder`",
-    "6-0": "`setPreloadTimeout`",
-    "5-1": "Order in which preloading should be done. Preload order can be set to non-zero value for caches with SYNC or ASYNC preload modes only. Preloading for caches with smaller preload order will be completed first. By default, preloading is not ordered.",
-    "6-1": "Preload timeout (ms).",
+    "0-0": "`setRebalanceMode`",
+    "0-1": "Rebalance mode for distributed cache. See Rebalance Modes section for details.",
+    "1-0": "`setRebalancePartitionedDelay`",
+    "1-1": "Rebalancing delay in milliseconds. See Delayed And Manual Rebalancing section for details.",
+    "2-0": "`setRebalanceBatchSize`",
+    "2-1": "Size (in bytes) to be loaded within a single rebalance message. Rebalancing algorithm will split total data set on every node into multiple batches prior to sending data.",
+    "3-0": "`setRebalanceThreadPoolSize`",
+    "3-1": "Size of rebalancing thread pool. Note that size serves as a hint and implementation may create more threads for the rebalancing than specified here (but never less threads).",
+    "4-0": "`setRebalanceThrottle`",
+    "4-1": "Time in milliseconds to wait between rebalancing messages to avoid overloading of CPU or network. When rebalancing large data sets, the CPU or        network can get over-  consumed with rebalance messages, which consecutively may slow down the application performance. This parameter helps tune the amount of time to wait between rebalance messages to make sure that rebalancing process does not have any negative performance impact. Note that application will continue to work properly while rebalancing is still in progress.",
+    "5-0": "`setRebalanceOrder`",
+    "6-0": "`setRebalanceTimeout`",
+    "5-1": "Order in which rebalancing should be done. Rebalance order can be set to non-zero value for caches with SYNC or ASYNC rebalance modes only. Rebalancing for caches with smaller rebalance order will be completed first. By default, rebalancing is not ordered.",
+    "6-1": "Rebalance timeout (ms).",
     "0-2": "`ASYNC`",
     "1-2": "0 (no delay)",
     "2-2": "512K",

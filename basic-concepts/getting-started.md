@@ -34,6 +34,20 @@ Here is the quick summary on installation of Apache Ignite:
   * Download Apache Ignite as ZIP archive from https://ignite.incubator.apache.org/
   * Unzip ZIP archive into the installation folder in your system
   * Set `IGNITE_HOME` environment variable to point to the installation folder and make sure there is no trailing `/` in the path (this step is optional)
+
+##Building From Source
+If you downloaded the source package, you can build the binary using the following commands:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# Unpack the source package\n$ unzip -q apache-ignite-1.1.0-incubating-src.zip\n$ cd apache-ignite-1.1.0-incubating-src\n \n# Build In-Memory Data Fabric release (without LGPL dependencies)\n$ mvn clean package -DskipTests\n \n# Build In-Memory Data Fabric release (with LGPL dependencies)\n$ mvn clean package -DskipTests -Prelease,lgpl\n \n# Build In-Memory Hadoop Accelerator release\n# (optionally specify version of hadoop to use)\n$ mvn clean package -DskipTests -Dignite.edition=hadoop [-Dhadoop.version=X.X.X]",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
@@ -98,7 +112,7 @@ Another easy way to get started with Apache Ignite in your project is to use Mav
 
 Ignite requires only one `ignite-core` mandatory dependency. Usually you will also need to add `ignite-spring` for spring-based XML configuration and `ignite-indexing` for SQL querying.
 
-Replace `${ignite-version}` with actual Ignite version.
+Replace `${ignite-version}` with actual Ignite version. Latest version is **1.1.0-incubating**.
 [block:code]
 {
   "codes": [
@@ -129,12 +143,12 @@ Let's write our first grid application which will count a number of non-white-sp
 {
   "codes": [
     {
-      "code": "try (Ignite ignite = Ignition.start()) {\n  Collection<IgniteCallable<Integer>> calls = new ArrayList<>();\n\n  // Iterate through all the words in the sentence and create Callable jobs.\n  for (final String word : \"Count characters using callable\".split(\" \"))\n    calls.add(word::length);\n\n  // Execute collection of Callables on the grid.\n  Collection<Integer> res = ignite.compute().call(calls);\n\n  int sum = res.stream().mapToInt(Integer::intValue).sum();\n \n\tSystem.out.println(\"Total number of characters is '\" + sum + \"'.\");\n}",
+      "code": "try (Ignite ignite = Ignition.start(\"examples/config/example-ignite.xml\")) {\n  Collection<IgniteCallable<Integer>> calls = new ArrayList<>();\n\n  // Iterate through all the words in the sentence and create Callable jobs.\n  for (final String word : \"Count characters using callable\".split(\" \"))\n    calls.add(word::length);\n\n  // Execute collection of Callables on the grid.\n  Collection<Integer> res = ignite.compute().call(calls);\n\n  // Add up all the results.\n  int sum = res.stream().mapToInt(Integer::intValue).sum();\n \n\tSystem.out.println(\"Total number of characters is '\" + sum + \"'.\");\n}",
       "language": "java",
       "name": "compute"
     },
     {
-      "code": "try (Ignite ignite = Ignition.start()) {\n    Collection<IgniteCallable<Integer>> calls = new ArrayList<>();\n \n    // Iterate through all the words in the sentence and create Callable jobs.\n    for (final String word : \"Count characters using callable\".split(\" \")) {\n        calls.add(new IgniteCallable<Integer>() {\n            @Override public Integer call() throws Exception {\n                return word.length();\n            }\n        });\n    }\n \n    // Execute collection of Callables on the grid.\n    Collection<Integer> res = ignite.compute().call(calls);\n \n    int sum = 0;\n \n    // Add up individual word lengths received from remote nodes.\n    for (int len : res)\n        sum += len;\n \n    System.out.println(\">>> Total number of characters in the phrase is '\" + sum + \"'.\");\n}",
+      "code": "try (Ignite ignite = Ignition.start(\"examples/config/example-ignite.xml\")) {\n    Collection<IgniteCallable<Integer>> calls = new ArrayList<>();\n \n    // Iterate through all the words in the sentence and create Callable jobs.\n    for (final String word : \"Count characters using callable\".split(\" \")) {\n        calls.add(new IgniteCallable<Integer>() {\n            @Override public Integer call() throws Exception {\n                return word.length();\n            }\n        });\n    }\n \n    // Execute collection of Callables on the grid.\n    Collection<Integer> res = ignite.compute().call(calls);\n \n    int sum = 0;\n \n    // Add up individual word lengths received from remote nodes.\n    for (int len : res)\n        sum += len;\n \n    System.out.println(\">>> Total number of characters in the phrase is '\" + sum + \"'.\");\n}",
       "language": "java",
       "name": "java7 compute"
     }
@@ -174,7 +188,7 @@ Since we are using cache in this example, we should make sure that it is configu
 {
   "codes": [
     {
-      "code": "try (Ignite ignite = Ignition.start(\"examples/config/example-cache.xml\")) {\n    IgniteCache<Integer, String> cache = ignite.jcache(CACHE_NAME);\n \n    // Store keys in cache (values will end up on different cache nodes).\n    for (int i = 0; i < 10; i++)\n        cache.put(i, Integer.toString(i));\n \n    for (int i = 0; i < 10; i++)\n        System.out.println(\"Got [key=\" + i + \", val=\" + cache.get(i) + ']');\n}",
+      "code": "try (Ignite ignite = Ignition.start(\"examples/config/example-ignite.xml\")) {\n    IgniteCache<Integer, String> cache = ignite.getOrCreateCache(\"myCacheName\");\n \n    // Store keys in cache (values will end up on different cache nodes).\n    for (int i = 0; i < 10; i++)\n        cache.put(i, Integer.toString(i));\n \n    for (int i = 0; i < 10; i++)\n        System.out.println(\"Got [key=\" + i + \", val=\" + cache.get(i) + ']');\n}",
       "language": "java",
       "name": "Put and Get"
     },
