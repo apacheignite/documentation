@@ -118,7 +118,7 @@ First you need to properly declare store in configuration:
   ]
 }
 [/block]
-All operations defined in [Persistent Store](doc:persistent-store) are available in `CacheJdbcPojoStore`.
+Now all operations described in [Persistent Store](doc:persistent-store) available.
 
 `CacheJdbcPojoStore` can effectively load data. To load **all** data from database for all types registered in cache configuration - just call `IgniteCache.loadCache(null)` method. To load data with custom conditions you should pass key types and SQL queries to  `IgniteCache.loadCache()` method. For example:
 [block:code]

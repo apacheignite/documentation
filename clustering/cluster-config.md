@@ -76,24 +76,10 @@ You can use both, Multicast and Static IP based discovery together. In this case
 [block:api-header]
 {
   "type": "basic",
-  "title": "Apache jclouds Based Discovery"
-}
-[/block]
-Refer to [Generic Cloud Configuration](doc:generic-cloud-configuration) documentation.
-[block:api-header]
-{
-  "type": "basic",
   "title": "Amazon S3 Based Discovery"
 }
 [/block]
 Refer to [AWS Configuration](doc:aws-config) documentation.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Google Cloud Storage Based Discovery"
-}
-[/block]
-Refer to [Google Cloud Configuration](doc:gce-configuration) documentation.
 [block:api-header]
 {
   "type": "basic",

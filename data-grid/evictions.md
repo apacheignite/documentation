@@ -21,12 +21,12 @@ LRU eviction policy is based on [Least Recently Used (LRU)](http://en.wikipedia.
   "body": "LRU eviction policy nicely fits most of the use cases for caching. Use it whenever in doubt."
 }
 [/block]
-This eviction policy is implemented by `LruEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `CacheLruEvictionPolicy` and can be configured via `CacheConfiguration`.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- LRU eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.lru.LruEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- LRU eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.lru.CacheLruEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
       "language": "xml"
     },
     {
@@ -43,18 +43,18 @@ This eviction policy is implemented by `LruEvictionPolicy` and can be configured
   "title": "First In First Out (FIFO)"
 }
 [/block]
-FIFO eviction policy is based on [First-In-First-Out (FIFO)](https://en.wikipedia.org/wiki/FIFO) algorithm which ensures that entry that has been in cache the longest will be evicted first. It is different from `LruEvictionPolicy` because it ignores the access order of entries. 
+FIFO eviction policy is based on [First-In-First-Out (FIFO)](https://en.wikipedia.org/wiki/FIFO) algorithm which ensures that entry that has been in cache the longest will be evicted first. It is different from `CacheLruEvictionPolicy` because it ignores the access order of entries. 
 
-This eviction policy is implemented by `FifoEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `CacheFifoEvictionPolicy` and can be configured via `CacheConfiguration`.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- FIFO eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.fifo.FifoEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- FIFO eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.fifo.CacheFifoEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new FifoEvictionPolicy(1000000);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new CacheFifoEvictionPolicy(1000000);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
@@ -69,12 +69,12 @@ This eviction policy is implemented by `FifoEvictionPolicy` and can be configure
 [/block]
 Random eviction policy which randomly chooses entries to evict. This eviction policy is mainly used for debugging and benchmarking purposes.
 
-This eviction policy is implemented by `RandomEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `CacheRandomEvictionPolicy` and can be configured via `CacheConfiguration`.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- Random eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.random.RandomEvictionPolicy\">            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- Random eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.random.CacheRandomEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
       "language": "xml"
     },
     {

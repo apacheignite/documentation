@@ -2,17 +2,53 @@ Data loading usually has to do with initializing cache data on startup. Using st
 [block:api-header]
 {
   "type": "basic",
-  "title": "IgniteDataStreamer"
+  "title": "IgniteDataLoader"
 }
 [/block]
-Data streamers are defined by `IgniteDataStreamer` API and are built to inject large amounts of continuous data into Ignite caches. Data streamers are built in a scalable and fault-tolerant fashion and achieve high performance by batching entries together before they are sent to the corresponding cluster members.
-[block:callout]
+For fast loading of large amounts of data Ignite provides a utility interface, `IgniteDataLoader`, which internally will properly batch keys together and collocate those batches with nodes on which the data will be cached. 
+
+The high loading speed is achieved with the following techniques:
+  * Entries that are mapped to the same cluster member will be batched together in a buffer.
+  * Multiple buffers can coexist at the same time.
+  * To avoid running out of memory, data loader has a maximum number of buffers it can process concurrently.
+
+To add data to the data loader, you should call `IgniteDataLoader.addData(...)` method.
+[block:code]
 {
-  "type": "success",
-  "body": "Data streamers should be used to load large amount of data into caches at any time, including pre-loading on startup."
+  "codes": [
+    {
+      "code": "// Get the data loader reference and load data.\ntry (IgniteDataLoader<Integer, String> ldr = ignite.dataLoader(\"myCache\")) {    \n    // Load entries.\n    for (int i = 0; i < 100000; i++)\n        ldr.addData(i, Integer.toString(i));\n}",
+      "language": "java"
+    }
+  ]
 }
 [/block]
-See  [Data Streamers](doc:data-streamers) documentation for more information.
+## Allow Overwrite
+By default, the data loader will only support initial data loading, which means that if it will encounter an entry that is already in cache, it will skip it. This is the most efficient and performant mode, as the data loader does not have to worry about data versioning in the background.
+
+If you anticipate that the data may already be in the cache and you need to overwrite it, you should set `IgniteDataLoader.allowOverwrite(true)` parameter.
+
+## Using Updater
+For cases when you need to execute some custom logic instead of just adding new data, you can take advantage of `IgniteDataLoader.Updater` API. 
+
+In the example below, we  generate random numbers and store them as key. The number of times the same number is generated is stored as value. The `Updater` helps to increment the value by 1 each time we try to load that same key into the cache.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Closure that increments passed in value.\nfinal GridClosure<Long, Long> INC = new GridClosure<Long, Long>() {\n    @Override public Long apply(Long e) {\n        return e == null ? 1L : e + 1;\n    }\n};\n\n// Get the data loader reference and load data.\ntry (GridDataLoader<Integer, String> ldr = grid.dataLoader(\"myCache\")) {   \n    // Configure the updater.\n    ldr.updater((cache, entries) -> {\n      for (Map.Entry<Integer, Long> e : entries)\n        cache.invoke(e.getKey(), (entry, args) -> {\n          Integer val = entry.getValue();\n\n          entry.setValue(val == null ? 1 : val + 1);\n\n          return null;\n        });\n    });\n \n    for (int i = 0; i < CNT; i++)\n        ldr.addData(RAND.nextInt(100), 1L);\n}",
+      "language": "java",
+      "name": "updater"
+    },
+    {
+      "code": "// Closure that increments passed in value.\nfinal GridClosure<Long, Long> INC = new GridClosure<Long, Long>() {\n    @Override public Long apply(Long e) {\n        return e == null ? 1L : e + 1;\n    }\n};\n\n// Get the data loader reference and load data.\ntry (GridDataLoader<Integer, String> ldr = grid.dataLoader(\"myCache\")) {   \n    // Configure updater.\n    ldr.updater(new GridDataLoadCacheUpdater<Integer, Long>() {\n        @Override public void update(GridCache<Integer, Long> cache,\n            Collection<Map.Entry<Integer, Long>> entries) throws GridException {\n                for (Map.Entry<Integer, Long> e : entries)\n                    cache.transform(e.getKey(), INC);\n        }\n    });\n \n    for (int i = 0; i < CNT; i++)\n        ldr.addData(RAND.nextInt(100), 1L);\n}",
+      "language": "java",
+      "name": "java7 updater"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",

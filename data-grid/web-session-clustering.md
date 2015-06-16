@@ -160,7 +160,7 @@ Or, if you have a Maven based project, add the following to your application's p
 {
   "codes": [
     {
-      "code": "<dependency>\n      <groupId>org.apache.ignite</groupId>\n      <artifactId>ignite-core</artifactId>\n      <version> ${ignite.version}</version>\n</dependency>\n\n<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-web</artifactId>\n    <version> ${ignite.version}</version>\n</dependency>\n\n<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-log4j</artifactId>\n    <version>${ignite.version}</version>\n</dependency>\n\n<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-spring</artifactId>\n    <version>${ignite.version}</version>\n</dependency>",
+      "code": "<dependency>\n      <groupId>org.ignite</groupId>\n      <artifactId>ignite-fabric</artifactId>\n      <version> ${ignite.version}</version>\n      <type>pom</type>\n</dependency>\n\n<dependency>\n    <groupId>org.ignite</groupId>\n    <artifactId>ignite-web</artifactId>\n    <version> ${ignite.version}</version>\n</dependency>\n\n<dependency>\n    <groupId>org.ignite</groupId>\n    <artifactId>ignite-log4j</artifactId>\n    <version>${ignite.version}</version>\n</dependency>\n\n<dependency>\n    <groupId>org.ignite</groupId>\n    <artifactId>ignite-spring</artifactId>\n    <version>${ignite.version}</version>\n</dependency>",
       "language": "xml"
     }
   ]
@@ -175,7 +175,7 @@ Make sure to replace ${ignite.version} with actual Ignite version.
 {
   "codes": [
     {
-      "code": "...\n\n<listener>\n   <listener-class>org.apache.ignite.startup.servlet.ServletContextListenerStartup</listener-class>\n</listener>\n\n<filter>\n   <filter-name>IgniteWebSessionsFilter</filter-name>\n   <filter-class>org.apache.ignite.cache.websession.WebSessionFilter</filter-class>\n</filter>\n\n<!-- You can also specify a custom URL pattern. -->\n<filter-mapping>\n   <filter-name>IgniteWebSessionsFilter</filter-name>\n   <url-pattern>/*</url-pattern>\n</filter-mapping>\n\n<!-- Specify Ignite configuration (relative to META-INF folder or Ignite_HOME). -->\n<context-param>\n   <param-name>IgniteConfigurationFilePath</param-name>\n   <param-value>config/default-config.xml </param-value>\n</context-param>\n\n<!-- Specify the name of Ignite cache for web sessions. -->\n<context-param>\n   <param-name>IgniteWebSessionsCacheName</param-name>\n   <param-value>partitioned</param-value>\n</context-param>\n\n...",
+      "code": "...\n\n<listener>\n   <listener-class>org.apache.ignite.startup.servlet.IgniteServletContextListenerStartup</listener-class>\n</listener>\n\n<filter>\n   <filter-name>IgniteWebSessionsFilter</filter-name>\n   <filter-class>org.apache.ignite.cache.websession.IgniteWebSessionFilter</filter-class>\n</filter>\n\n<!-- You can also specify a custom URL pattern. -->\n<filter-mapping>\n   <filter-name>IgniteWebSessionsFilter</filter-name>\n   <url-pattern>/*</url-pattern>\n</filter-mapping>\n\n<!-- Specify Ignite configuration (relative to META-INF folder or Ignite_HOME). -->\n<context-param>\n   <param-name>IgniteConfigurationFilePath</param-name>\n   <param-value>config/default-config.xml </param-value>\n</context-param>\n\n<!-- Specify the name of Ignite cache for web sessions. -->\n<context-param>\n   <param-name>IgniteWebSessionsCacheName</param-name>\n   <param-value>partitioned</param-value>\n</context-param>\n\n...",
       "language": "xml"
     }
   ]
@@ -186,7 +186,7 @@ On application start, the listener will start a Ignite node within your applicat
 4\. **Set Eviction Policy (Optional)** - Set eviction policy for stale web sessions data lying in cache (See [example](#expiration-and-eviction) above).
 
 ##Configuration Parameters
-`ServletContextListenerStartup` has the following configuration parameters:
+`IgniteServletContextListenerStartup` has the following configuration parameters:
 [block:parameters]
 {
   "data": {
@@ -201,7 +201,7 @@ On application start, the listener will start a Ignite node within your applicat
   "rows": 1
 }
 [/block]
-`WebSessionFilter` has the following configuration parameters:
+`IgniteWebSessionFilter` has the following configuration parameters:
 [block:parameters]
 {
   "data": {

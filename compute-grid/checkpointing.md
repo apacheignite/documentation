@@ -10,7 +10,7 @@ Checkpoints are available through the following methods on `GridTaskSession` int
   "title": "Master Node Failure Protection"
 }
 [/block]
-One important use case for checkpoint that is not readily apparent is to guard against failure of the "master" node - the node that started the original execution. When master node fails, Ignite doesn’t have where to send the results of job execution to, and thus the result will be discarded.
+One important use case for checkpoint that is not readily apparent is to guard against failure of the "master" node - the node that started the original execution. When master node fails, Ignite doesn’t anywhere to send the results of job execution to, and thus the result will be discarded.
 
 To failover this scenario one can store the final result of the job execution as a checkpoint and have the logic re-run the entire task in case of a "master" node failure. In such case the task re-run will be much faster since all the jobs' can start from the saved checkpoints.
 [block:api-header]
