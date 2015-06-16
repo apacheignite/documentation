@@ -34,19 +34,6 @@ Ignite also provides support for custom indexing via `IndexingSpi` and `SpiQuery
 }
 [/block]
 Scan queries allow for querying cache in distributed form based on some user defined predicate. 
-
-##How it Works
-  * The requested predicate is sent to each node in the cluster. 
-  * Each node queries its own cache for entries that satisfy the given predicate.
-  * The predicate requester consolidates the results received from each node into a single set. 
-[block:callout]
-{
-  "type": "info",
-  "title": "Scalability",
-  "body": "Scan queries are highly scalable. In a partitioned cache, adding a node to the cluster reduces the number of data entries on each node and hence reduces the time spent by each node on iterating over its entries."
-}
-[/block]
-
 [block:code]
 {
   "codes": [
@@ -174,4 +161,4 @@ Indexes and fields also could be configured with `org.apache.ignite.cache.CacheT
 [/block]
 Note, annotations and `CacheTypeMetadata` are mutually exclusive.
 
-For full example see `CacheQueryExample`.
+For full example see `CacheQueryTypeMetadataExample`.

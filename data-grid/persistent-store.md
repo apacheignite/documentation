@@ -20,36 +20,6 @@ While Ignite allows you to configure the `CacheLoader` and `CacheWriter` separat
 [block:api-header]
 {
   "type": "basic",
-  "title": "Read-Through and Write-Through"
-}
-[/block]
-Providing proper cache store implementation is important whenever read-through or write-through behavior is desired. Read-through means that data will be read from persistent store whenever it’s not available in cache, and write-through means that data will be automatically persisted whenever it is updated in cache. All read-through and write-through operations will participate in overall cache transaction and will be committed or rolled back as a whole.
-
-To configure read-through and write-through, you need to implement `CacheStore` interface and set `cacheStoreFactory` as well as `readThrough` and `writeThrough` properties of `CacheConfiguration`, as shown in examples below.
-
-## Write-Behind Caching
-In a simple write-through mode each cache put and remove operation will involve a corresponding request to the persistent storage and therefore the overall duration of the cache update might be relatively long. Additionally, an intensive cache update rate can cause an extremely high storage load.
-
-For such cases, Ignite offers an option to perform an asynchronous persistent store update also known as **write-behind**. The key concept of this approach is to accumulate updates and then asynchronously flush them to persistent store as a bulk operation. The actual data persistence can be triggered by time-based events (the maximum time that data entry can reside in the queue is limited), by queue-size events (the queue is flushed when it’s size reaches some particular point), or by using both of them in combination in which case either event will trigger the flush.
-[block:callout]
-{
-  "type": "info",
-  "body": "With the write-behind approach only the last update to an entry will be written to the underlying storage. If cache entry with key key1 is sequentially updated with values value1, value2, and value3 respectively, then only single store request for (key1, value3) pair will be propagated to the persistent storage.",
-  "title": "Update Sequence"
-}
-[/block]
-
-[block:callout]
-{
-  "type": "info",
-  "title": "Update Performance",
-  "body": "Batch store operations are usually more efficient than a sequence of single store operations, so one can exploit this feature by enabling batch operations in write-behind mode. Update sequences of similar types (put or remove) can be grouped to a single batch. For example, sequential cache puts of (key1, value1), (key2, value2), (key3, value3) will be batched into a single `CacheStore.putAll(...)` operation."
-}
-[/block]
-Write-behind caching can be enabled via `CacheConfiguration.setWriteBehindEnabled(boolean)` configuration property. See [configuration](#configuration) section below for a full list of configuration properties that allow to customize the behavior of write-behind caching.
-[block:api-header]
-{
-  "type": "basic",
   "title": "CacheStore"
 }
 [/block]
@@ -96,7 +66,7 @@ In case of `ATOMIC` caches, method `sessionEnd()` is called after completion of 
 [/block]
 The main purpose of cache store session is to hold the context between multiple store invocations whenever `CacheStore` is used in a cache transaction. For example, if using JDBC, you can store the ongoing database connection via `CacheStoreSession.attach()` method. You can then commit this connection in the `CacheStore#sessionEnd(boolean)` method.
 
-`CacheStoreSession` can be injected into your cache store implementation via `@CacheStoreSessionResource` annotation.
+`CacheStoreSession` can be injected into your cache store implementation via `@GridCacheStoreSessionResource` annotation.
 [block:api-header]
 {
   "type": "basic",
@@ -132,39 +102,12 @@ Below are a couple of different possible cache store implementations. Note that 
   "title": "Configuration"
 }
 [/block]
-Following configuration parameters can be used to enable and configure write-behind caching via `CacheConfiguration`:
-[block:parameters]
-{
-  "data": {
-    "0-0": "`setWriteBehindEnabled(boolean)`",
-    "1-0": "`setWriteBehindFlushSize(int)`",
-    "2-0": "`setWriteBehindFlushFrequency(long)`",
-    "3-0": "`setWriteBehindFlushThreadCount(int)`",
-    "4-0": "`setWriteBehindBatchSize(int)`",
-    "0-1": "Sets flag indicating whether write-behind is enabled.",
-    "h-1": "Description",
-    "h-0": "Setter Method",
-    "1-1": "Maximum size of the write-behind cache. If cache size exceeds this value, all cached items are flushed to the cache store and write cache is cleared.  If this value is 0, then flush is performed according to the flush frequency interval. Note that you cannot set both, flush size and flush frequency, to 0.",
-    "2-1": "Frequency with which write-behind cache is flushed to the cache store in milliseconds. This value defines the maximum time interval between object insertion/deletion from the cache and the moment when corresponding operation is applied to the cache store. If this value is 0, then flush is performed according to the flush size. Note that you cannot set both, flush size and flush frequency, to 0.",
-    "3-1": "Number of threads that will perform cache flushing.",
-    "4-1": "Maximum batch size for write-behind cache store operations.",
-    "0-2": "false",
-    "1-2": "10240",
-    "2-2": "5000 milliseconds",
-    "3-2": "1",
-    "4-2": "512",
-    "h-2": "Default"
-  },
-  "cols": 3,
-  "rows": 5
-}
-[/block]
 `CacheStore` interface can be set on `IgniteConfiguration` via a `Factory` in much the same way like `CacheLoader` and `CacheWriter` are being set.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n    <property name=\"cacheConfiguration\">\n      <list>\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          ...\n          <property name=\"cacheStoreFactory\">\n            <bean class=\"javax.cache.configuration.FactoryBuilder$SingletonFactory\">\n              <constructor-arg>\n                <bean class=\"foo.bar.MyPersonStore\">\n    \t\t\t\t\t\t\t...\n    \t\t\t\t\t\t</bean>\n    \t\t\t\t\t</constructor-arg>\n    \t\t\t\t</bean>\n\t    \t\t</property>\n          \n          <property name=\"readThrough\" value=\"true\"/>\n          \n          <property name=\"writeThrough\" value=\"true\"/>\n    \t\t\t...\n    \t\t</bean>\n    \t</list>\n    </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n    <property name=\"cacheConfiguration\">\n      <list>\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          ...\n          <property name=\"cacheStoreFactory\">\n            <bean class=\"javax.cache.configuration.FactoryBuilder$SingletonFactory\">\n              <constructor-arg>\n                <bean class=\"foo.bar.MyPersonStore\">\n    \t\t\t\t\t\t\t...\n    \t\t\t\t\t\t</bean>\n    \t\t\t\t\t</constructor-arg>\n    \t\t\t\t</bean>\n\t    \t\t</property>\n    \t\t\t...\n    \t\t</bean>\n    \t</list>\n    </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {

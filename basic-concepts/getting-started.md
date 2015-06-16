@@ -41,7 +41,7 @@ If you downloaded the source package, you can build the binary using the followi
 {
   "codes": [
     {
-      "code": "# Unpack the source package\n$ unzip -q apache-ignite-1.1.0-incubating-src.zip\n$ cd apache-ignite-1.1.0-incubating-src\n \n# Build In-Memory Data Fabric release (without LGPL dependencies)\n$ mvn clean package -DskipTests\n \n# Build In-Memory Data Fabric release (with LGPL dependencies)\n$ mvn clean package -DskipTests -Prelease,lgpl\n \n# Build In-Memory Hadoop Accelerator release\n# (optionally specify version of hadoop to use)\n$ mvn clean package -DskipTests -Dignite.edition=hadoop [-Dhadoop.version=X.X.X]",
+      "code": "# Unpack the source package\n$ unzip -q incubator-ignite-1.0.0-src.zip\n$ cd incubator-ignite-1.0.0-src\n \n# Build In-Memory Data Fabric release (without LGPL dependencies)\n$ mvn clean package -DskipTests\n \n# Build In-Memory Data Fabric release (with LGPL dependencies)\n$ mvn clean package -DskipTests -Prelease,lgpl\n \n# Build In-Memory Hadoop Accelerator release\n# (optionally specify version of hadoop to use)\n$ mvn clean package -DskipTests -Dignite.edition=hadoop [-Dhadoop.version=X.X.X]",
       "language": "shell"
     }
   ]
@@ -112,7 +112,7 @@ Another easy way to get started with Apache Ignite in your project is to use Mav
 
 Ignite requires only one `ignite-core` mandatory dependency. Usually you will also need to add `ignite-spring` for spring-based XML configuration and `ignite-indexing` for SQL querying.
 
-Replace `${ignite-version}` with actual Ignite version. Latest version is **1.1.0-incubating**.
+Replace `${ignite-version}` with actual Ignite version.
 [block:code]
 {
   "codes": [
