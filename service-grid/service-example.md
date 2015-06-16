@@ -1,3 +1,8 @@
+--------------
+title: Service Example
+excerpt: Define and deploy your own service.
+--------------
+
 [block:api-header]
 {
   "type": "basic",

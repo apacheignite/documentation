@@ -1,3 +1,8 @@
+--------------
+title: MapReduce
+excerpt: High Performance Real Time Hadoop MapReduce Engine.
+--------------
+
 Ignite In-Memory MapReduce allows to effectively parallelize the processing data stored in any Hadoop file system. It eliminates the overhead associated with job tracker and task trackers in a standard Hadoop architecture while providing low-latency, HPC-style distributed processing.
 
 [block:image]

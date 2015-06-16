@@ -1,3 +1,8 @@
+--------------
+title: IGFS Secondary File System
+excerpt: Read from and write to any Hadoop FileSystem from IGFS.
+--------------
+
 Ignite Hadoop Accelerator contains implementation of `IGFS` secondary file system `IgniteHadoopIgfsSecondaryFileSystem` which allows read-through and write-through for any Hadoop `FileSystem` implementation.
 To use secondary file system set it in `IGFS` configuration:
 [block:code]

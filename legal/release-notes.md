@@ -1,3 +1,7 @@
+--------------
+title: Release Notes
+--------------
+
 ## Apache Ignite In-Memory Data Fabric 1.1
 * Added Google Compute Engine TCP discovery IP finder.
 * Added generic cloud TCP discovery IP finder (based on jclouds).

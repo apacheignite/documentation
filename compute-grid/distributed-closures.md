@@ -1,3 +1,8 @@
+--------------
+title: Distributed Closures
+excerpt: Broadcast and load-balance closure execution across cluster nodes.
+--------------
+
 Ignite compute grid allows to broadcast and load-balance any closure within the cluster or a cluster group, including plain Java `runnables` and `callables`.
 [block:api-header]
 {

@@ -1,3 +1,8 @@
+--------------
+title: Sliding Windows
+excerpt: Configure sliding windows into streaming data.
+--------------
+
 Sliding windows are configured as Ignite cache eviction policies, and can be time-based, size-based, or batch-based. You can configure one sliding-window per cache. However, you can easily define more than one cache if you need different sliding windows for the same data.
 [block:image]
 {

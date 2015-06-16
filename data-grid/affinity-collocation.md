@@ -1,3 +1,8 @@
+--------------
+title: Affinity Collocation
+excerpt: Collocate compute with data or data with data.
+--------------
+
 Given that the most common ways to cache data is in `PARTITIONED` caches, collocating compute with data or data with data can significantly improve performance and scalability of your application.
 [block:api-header]
 {

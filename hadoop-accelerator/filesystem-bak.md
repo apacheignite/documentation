@@ -1,3 +1,8 @@
+--------------
+title: FileSystem bak
+excerpt: Communicate with in-memory Ignite File System
+--------------
+
 Ignite Hadoop Accelerator ships with `FileSystem` implementation over `IGFS` called `IgniteHadoopFileSystem`. Thus, Hadoop can run over in-memory IGFS file system, what may significantly improve both latency and throughput.  
 [block:image]
 {

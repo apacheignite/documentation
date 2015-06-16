@@ -1,3 +1,8 @@
+--------------
+title: Secondary File System
+excerpt: Delegate operations to another file system.
+--------------
+
 IGFS is able to work with another file systems through `IgfsSecondaryFileSystem` interface.
 If particular file system path is configured to work in `DUAL_SYNC` or `DUAL_ASYNC` modes, IGFS will propagate all operations on this path or it's children to the secondary file system.
 

@@ -1,3 +1,8 @@
+--------------
+title: Hadoop Accelerator
+excerpt: In-Memory Plug-n-Play Hadoop Accelerator
+--------------
+
 Apache Ignite Hadoop Accelerator provides a set of components allowing for in-memory Hadoop job execution and file system operations. 
 [block:api-header]
 {

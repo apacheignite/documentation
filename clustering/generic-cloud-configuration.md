@@ -1,3 +1,8 @@
+--------------
+title: Generic Cloud Configuration
+excerpt: Cluster's nodes discovery on a generic cloud platform.
+--------------
+
 Nodes discovery on a cloud platform is usually proven to be more challenging because the most of of such virtual environments, has the following limitations:
 * Multicast is disabled;
 * TCP addresses change every time a new image is started.

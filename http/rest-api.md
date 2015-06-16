@@ -1,3 +1,8 @@
+--------------
+title: Rest API
+excerpt: Connect to Ignite over HTTP REST protocol.
+--------------
+
 Ignite provides HTTP REST client that gives you the ability to communicate with the grid over HTTP and HTTPS protocols using REST approach. REST APIs can be used to perform various operations like read/write from/to cache, execute tasks, get cache and node metrics  and more.
 
 * [Returned value](#returned-value)

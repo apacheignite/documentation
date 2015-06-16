@@ -1,3 +1,8 @@
+--------------
+title: Streaming & CEP
+excerpt: Easily stream large volumes of data into Ignite
+--------------
+
 Ignite streaming allows to process continuous never-ending streams of data in scalable and fault-tolerant fashion. The rates at which data can be injected into Ignite can be very high and easily exceed millions of events per second on a moderately sized cluster. 
 
 ##How it Works

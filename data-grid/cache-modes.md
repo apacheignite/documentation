@@ -1,3 +1,8 @@
+--------------
+title: Cache Modes
+excerpt: Setup different distribution models, backup copies, and near caches.
+--------------
+
 Ignite provides three different modes of cache operation: `LOCAL`, `REPLICATED`, and `PARTITIONED`. A cache mode is configured for each cache. Cache modes are defined in `CacheMode` enumeration. 
 [block:api-header]
 {

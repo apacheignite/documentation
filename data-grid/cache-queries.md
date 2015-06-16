@@ -1,3 +1,8 @@
+--------------
+title: Cache Queries
+excerpt: Query distributed caches using SQL, TEXT, or PREDICATE based queries.
+--------------
+
 Ignite supports distributed cache queries allowing you to retrieve data from cache based on some user defined criteria.
 
 ##How it Works

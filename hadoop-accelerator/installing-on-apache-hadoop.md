@@ -1,3 +1,7 @@
+--------------
+title: Installing on Apache Hadoop
+--------------
+
 This article explains how to install Apache Ignite Hadoop Accelerator on Apache Hadoop distribution.
 
 Please read the following articles first to get better understanding of product's architecture:

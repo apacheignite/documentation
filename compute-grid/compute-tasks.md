@@ -1,3 +1,8 @@
+--------------
+title: MapReduce & ForkJoin
+excerpt: Execute MapReduce and ForkJoin tasks in memory.
+--------------
+
 `ComputeTask` is the Ignite abstraction for the simplified in-memory MapReduce, which is also very close to ForkJoin paradigm. Pure MapReduce was never built for performance and only works well when dealing with off-line batch oriented processing (e.g. Hadoop MapReduce). However, when computing on data that resides in-memory, real-time low latencies and high throughput usually take the highest priority. Also, simplicity of the API becomes very important as well. With that in mind, Ignite introduced the `ComputeTask` API, which is a light-weight MapReduce (or ForkJoin) implementation.
 [block:callout]
 {

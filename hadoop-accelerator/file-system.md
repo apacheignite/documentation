@@ -1,3 +1,8 @@
+--------------
+title: IGFS - In-Memory FileSystem
+excerpt: In-Memory Distributed Hadoop-Compliant File System
+--------------
+
 Ignite Hadoop Accelerator ships with Hadoop-compliant `IGFS File System` implementation called `IgniteHadoopFileSystem`. Hadoop can run over this file system in plug-n-play fashion and significantly reduce I/O and improve both, latency and throughput.  
 [block:image]
 {

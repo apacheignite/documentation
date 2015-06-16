@@ -1,3 +1,8 @@
+--------------
+title: JDBC Driver
+excerpt: Connect to Ignite using standard JDBC driver.
+--------------
+
 Ignite is shipped with JDBC driver that allows you to retrieve distributed data from cache using standard SQL queries and JDBC API. 
 [block:api-header]
 {

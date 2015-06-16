@@ -1,3 +1,8 @@
+--------------
+title: Word Count Example
+excerpt: Stream text into Ignite and count occurrences of each words.
+--------------
+
 In this example we will stream text into Ignite and count each individual word. We will also issue periodic SQL queries into the stream to query top 10 most popular words. 
 
 The example will work as follows:

@@ -1,3 +1,8 @@
+--------------
+title: Data Grid
+excerpt: Replicate or partition your data in memory within the cluster.
+--------------
+
 Ignite in-memory data grid has been built from the ground up with a notion of horizontal scale and ability to add nodes on demand in real-time; it has been designed to linearly scale to hundreds of nodes with strong semantics for data locality and affinity data routing to reduce redundant data noise.
 
 Ignite data grid supports local, replicated, and partitioned data sets and allows to freely cross query between these data sets using standard SQL syntax. Ignite supports standard SQL for querying in-memory data including support for distributed SQL joins. 
