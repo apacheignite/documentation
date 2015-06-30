@@ -1,8 +1,7 @@
---------------
-title: Compute Grid
-excerpt: Distribute your computations across cluster nodes.
---------------
-
+---
+title: "Compute Grid"
+excerpt: "Distribute your computations across cluster nodes."
+---
 Distributed computations are performed in parallel fashion to gain **high performance**, **low latency**, and **linear scalability**. Ignite compute grid provides a set of simple APIs that allow users distribute computations and data processing across multiple computers in the cluster. Distributed parallel processing is based on the ability to take any computation and execute it on any set of cluster nodes and return the results back.
 [block:image]
 {

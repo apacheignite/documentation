@@ -1,7 +1,7 @@
---------------
-title: Off-Heap Memory
---------------
-
+---
+title: "Off-Heap Memory"
+excerpt: ""
+---
 Off-Heap memory allows your cache to overcome lengthy JVM Garbage Collection (GC) pauses when working with large heap sizes by caching data outside of main Java Heap space, but still in RAM.
 [block:image]
 {

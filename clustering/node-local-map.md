@@ -1,8 +1,7 @@
---------------
-title: Per-Node Shared State
-excerpt: Share state between jobs or services on a cluster node.
---------------
-
+---
+title: "Per-Node Shared State"
+excerpt: "Share state between jobs or services on a cluster node."
+---
 Often it is useful to share a state between different compute jobs or different deployed services. For this purpose Ignite provides a shared concurrent **node-local-map** available on each node.
 [block:code]
 {

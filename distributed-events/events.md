@@ -1,8 +1,7 @@
---------------
-title: Local and Remote Events
-excerpt: Get notified of any state change or event occurring cluster-wide.
---------------
-
+---
+title: "Local and Remote Events"
+excerpt: "Get notified of any state change or event occurring cluster-wide."
+---
 Ignite distributed events functionality allows applications to receive notifications when a variety of events occur in the distributed grid environment. You can automatically get notified for task executions, read, write or query operations occurring on local or remote nodes within the cluster.
 
 Distributed events functionality is provided via `IgniteEvents` interface. You can get an instance of `IgniteEvents` from Ignite as follows:

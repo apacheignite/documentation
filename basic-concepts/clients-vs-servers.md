@@ -1,8 +1,7 @@
---------------
-title: Clients vs. Servers
-excerpt: Automatically distinguish between client and server nodes.
---------------
-
+---
+title: "Clients vs. Servers"
+excerpt: "Automatically distinguish between client and server nodes."
+---
 Ignite has an optional notion of **client** and **server** nodes. By default, all Ignite nodes are started as *server* nodes, which means that they will automatically participate in distributed caches. 
 [block:api-header]
 {

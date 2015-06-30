@@ -1,8 +1,7 @@
---------------
-title: Google Cloud Configuration
-excerpt: Automatically discover cluster nodes on Google Compute Engine cluster.
---------------
-
+---
+title: "Google Cloud Configuration"
+excerpt: "Automatically discover cluster nodes on Google Compute Engine cluster."
+---
 Nodes discovery on Google Compute Engine is usually proven to be more challenging. Google Cloud, just like most of the other virtual environments, has the following limitations:
 * Multicast is disabled;
 * TCP addresses change every time a new image is started.

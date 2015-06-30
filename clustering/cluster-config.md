@@ -1,8 +1,7 @@
---------------
-title: Cluster Configuration
-excerpt: Deploy Ignite in any environment with pluggable automatic node discovery.
---------------
-
+---
+title: "Cluster Configuration"
+excerpt: "Deploy Ignite in any environment with pluggable automatic node discovery."
+---
 In Ignite, nodes can discover each other by using `DiscoverySpi`. Ignite provides `TcpDiscoverySpi` as a default implementation of `DiscoverySpi` that uses TCP/IP for node discovery. Discovery SPI can be configured for Multicast and Static IP based node discovery.
 [block:api-header]
 {

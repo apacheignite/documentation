@@ -1,8 +1,7 @@
---------------
-title: Getting Started
-excerpt: This page will help you get started with Apache Ignite. You'll be up and running in a jiffy!
---------------
-
+---
+title: "Getting Started"
+excerpt: "This page will help you get started with Apache Ignite. You'll be up and running in a jiffy!"
+---
 [block:api-header]
 {
   "type": "basic",

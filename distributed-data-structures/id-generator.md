@@ -1,8 +1,7 @@
---------------
-title: ID Generator
-excerpt: Sequentially generate unique Ids across the cluster.
---------------
-
+---
+title: "ID Generator"
+excerpt: "Sequentially generate unique Ids across the cluster."
+---
 Distributed atomic sequence provided by `IgniteCacheAtomicSequence`  interface is similar to distributed atomic long, but its value can only go up. It also supports reserving a range of values to avoid costly network trips or cache updates every time a sequence must provide a next value. That is, when you perform `incrementAndGet()` (or any other atomic operation) on an atomic sequence, the data structure reserves ahead a range of values, which are guaranteed to be unique across the cluster for this sequence instance. 
 
 Here is an example of how atomic sequence can be created:

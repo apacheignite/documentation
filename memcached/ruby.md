@@ -1,7 +1,7 @@
---------------
-title: Ruby
---------------
-
+---
+title: "Ruby"
+excerpt: ""
+---
 To connect to Ignite using Ruby client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
 
 1\. Start Ignite cluster with cache configured. For example:

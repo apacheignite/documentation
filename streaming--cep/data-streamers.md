@@ -1,8 +1,7 @@
---------------
-title: Data Streamers
-excerpt: Stream large amounts of data into Ignite caches.
---------------
-
+---
+title: "Data Streamers"
+excerpt: "Stream large amounts of data into Ignite caches."
+---
 Data streamers are defined by `IgniteDataStreamer` API and are built to inject large amounts of continuous streams of data into Ignite caches. Data streamers are built in a scalable and fault-tolerant fashion and provide **at-least-once-guarantee** semantics for all the data streamed into Ignite.
 [block:api-header]
 {

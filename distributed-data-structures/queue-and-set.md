@@ -1,8 +1,7 @@
---------------
-title: Queue and Set
-excerpt: Create and distribute Ignite queue and set entries across the cluster.
---------------
-
+---
+title: "Queue and Set"
+excerpt: "Create and distribute Ignite queue and set entries across the cluster."
+---
 Ignite In-Memory Data Fabric, in addition to providing standard key-value map-like storage, also provides an implementation of a fast Distributed Blocking Queue and Distributed Set.
 
 `IgniteQueue` and `IgniteSet`, an implementation of `java.util.concurrent.BlockingQueue` and `java.util.Set` interface respectively,  also support all operations from `java.util.Collection` interface. Both, queue and set can be created in either collocated or non-collocated mode.

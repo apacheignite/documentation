@@ -1,8 +1,7 @@
---------------
-title: Cluster Singletons
-excerpt: Define various guaranteed cluster singletons.
---------------
-
+---
+title: "Cluster Singletons"
+excerpt: "Define various guaranteed cluster singletons."
+---
 `IgniteServices` facade allows to deploy any number of services on any of the grid nodes. However, the most commonly used feature is to deploy singleton services on the cluster. Ignite will manage the singleton contract regardless of topology changes and node crashes.
 [block:callout]
 {

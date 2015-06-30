@@ -1,8 +1,7 @@
---------------
-title: Atomic Types
-excerpt: Atomics in Ignite can be read and updated from any node in the cluster.
---------------
-
+---
+title: "Atomic Types"
+excerpt: "Atomics in Ignite can be read and updated from any node in the cluster."
+---
 Ignite supports distributed ***atomic long*** and ***atomic reference*** , similar to `java.util.concurrent.atomic.AtomicLong` and `java.util.concurrent.atomic.AtomicReference` respectively. 
 
 Atomics in Ignite are distributed across the cluster, essentially enabling performing atomic operations (such as increment-and-get or compare-and-set) with the same globally-visible value. For example, you could update the value of an atomic long on one node and read it from another node.

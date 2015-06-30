@@ -1,8 +1,7 @@
---------------
-title: Continuous Queries
-excerpt: Continuously obtain real-time query results.
---------------
-
+---
+title: "Continuous Queries"
+excerpt: "Continuously obtain real-time query results."
+---
 Continuous queries are good for cases when you want to execute a query and then continue to get notified about the data changes that fall into your query filter.
 
 Continuous queries are supported via `ContinuousQuery` class, which supports the following:

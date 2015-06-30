@@ -1,8 +1,7 @@
---------------
-title: CountDownLatch
-excerpt: Synchronize jobs on all Ignite nodes.
---------------
-
+---
+title: "CountDownLatch"
+excerpt: "Synchronize jobs on all Ignite nodes."
+---
 If you are familiar with `java.util.concurrent.CountDownLatch` for synchronization between threads within a single JVM, Ignite provides `IgniteCountDownLatch` to allow similar behavior across cluster nodes. 
 
 A distributed CountDownLatch in Ignite can be created as follows:

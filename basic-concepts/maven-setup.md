@@ -1,8 +1,7 @@
---------------
-title: Maven Setup
-excerpt: Apache Ignite is composed of multiple maven modules.
---------------
-
+---
+title: "Maven Setup"
+excerpt: "Apache Ignite is composed of multiple maven modules."
+---
 If you are using Maven to manage dependencies of your project, you can import individual Ignite modules a la carte.
 [block:callout]
 {

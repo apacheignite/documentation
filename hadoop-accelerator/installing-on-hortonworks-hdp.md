@@ -1,7 +1,7 @@
---------------
-title: Installing on Hortonworks HDP
---------------
-
+---
+title: "Installing on Hortonworks HDP"
+excerpt: ""
+---
 This article explains how to install Apache Ignite Hadoop Accelerator on Hortonworks HDP distribution.
 
 Please read the following articles first to get better understanding of product's architecture:

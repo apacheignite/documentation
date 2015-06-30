@@ -1,8 +1,7 @@
---------------
-title: Configuration
-excerpt: Internally, Ignite uses Jetty server to provide HTTP server features. HTTP REST client is configured with **ConnectorConfiguration** bean.
---------------
-
+---
+title: "Configuration"
+excerpt: "Internally, Ignite uses Jetty server to provide HTTP server features. HTTP REST client is configured with **ConnectorConfiguration** bean."
+---
 [block:api-header]
 {
   "type": "basic",
