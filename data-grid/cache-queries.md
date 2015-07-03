@@ -1,12 +1,4 @@
-Ignite supports distributed cache queries allowing you to retrieve data from cache based on some user defined criteria.
-
-##How it Works
-  * The requested query is sent to each node in the cluster. 
-  * Each node queries its own cache for entries that satisfy the given condition.
-  * The query requester consolidates the results received from each node into a single set. 
-
-##Types of Queries
-Ignite provides a very elegant query API with support for
+Ignite supports a very elegant query API with support for
 
   * [Predicate-based Scan Queries](#scan-queries)
   * [SQL Queries](#sql-queries)

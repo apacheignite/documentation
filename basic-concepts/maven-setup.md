@@ -18,13 +18,7 @@ Ignite data fabric comes with one mandatory dependency on `ignite-core.jar`.
   "codes": [
     {
       "code": "<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-core</artifactId>\n    <version>${ignite.version}</version>\n</dependency>",
-      "language": "xml",
-      "name": "Maven"
-    },
-    {
-      "code": "@Grab ('org.apache.ignite:ignite-core:${ignite.version}')\n@Grab ('org.apache.ignite:ignite-spring:${ignite.version}')",
-      "language": "groovy",
-      "name": "Groovy/Grape"
+      "language": "xml"
     }
   ]
 }
@@ -39,13 +33,7 @@ Here are the most commonly used optional modules:
   "codes": [
     {
       "code": "<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-core</artifactId>\n    <version>${ignite.version}</version>\n</dependency>\n<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-spring</artifactId>\n    <version>${ignite.version}</version>\n</dependency>\n<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-indexing</artifactId>\n    <version>${ignite.version}</version>\n</dependency>",
-      "language": "xml",
-      "name": "Maven"
-    },
-    {
-      "code": "@Grab (\"org.apache.ignite:ignite-core:${ignite.version}\")\n@Grab (\"org.apache.ignite:ignite-spring:${ignite.version}\")\n@Grab (\"org.apache.ignite:ignite-indexing:${ignite.version}\")",
-      "language": "text",
-      "name": "Groovy/Grape"
+      "language": "xml"
     }
   ]
 }

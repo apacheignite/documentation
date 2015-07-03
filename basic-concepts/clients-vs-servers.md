@@ -74,3 +74,36 @@ By default `IgniteCompute` will execute jobs on all the cluster nodes. However, 
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Managing Slow Clients"
+}
+[/block]
+In many deployments client nodes are launched outside of the main cluster on slower machines with worse network. In these scenarios it is possible that servers will generate load (such as continuous queries notification, for example) that clients will not be able to handle, resulting in growing queue of outbound messages on servers. This may eventually cause either out-of-memory situation on server or blocking the whole cluster if back-pressure control is enabled. 
+
+To manage these situations you can configure the maximum number of allowed outgoing messages for client nodes. If the size of outbound queue exceeds this value, such a client node will be disconnected from the cluster preventing global slowdown.
+
+Examples below show how to configure slow client queue limit in code and XML configuration.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\n// Configure Ignite here.\n\nTcpCommunicationSpi commSpi = new TcpCommunicationSpi();\ncommSpi.setSlowClientQueueLimit(1000);\n\ncfg.setCommunicationSpi(commSpi);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean id=\"grid.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  <!-- Configure Ignite here. -->\n  \n  <property name=\"communicationSpi\">\n    <bean class=\"org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi\">\n      <property name=\"slowClientQueueLimit\" value=\"1000\"/>\n    </bean>\n  </property>\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
