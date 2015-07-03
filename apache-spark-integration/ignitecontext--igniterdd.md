@@ -4,6 +4,8 @@
   "title": "IgniteContext"
 }
 [/block]
+Test
+
 IgniteContext is the main entry point to Spark-Ignite integration. To create an instance of Ignite context, user must provide an instance of SparkContext and a closure creating `IgniteConfiguration` (configuration factory). Ignite context will make sure that server or client Ignite nodes exist in all involved job instances. 
 
 When creating an `IgniteContext` instance, an optional boolean `client` argument (defaulting to `true`) can be passed to context constructor. When `client` is set to `false`, context will operate in embedded mode and will start server nodes on all workers during the context construction.
