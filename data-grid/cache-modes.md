@@ -1,27 +1,4 @@
-Ignite provides three different modes of cache operation: `LOCAL`, `REPLICATED`, and `PARTITIONED`. A cache mode is configured for each cache. Cache modes are defined in `CacheMode` enumeration. 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Local Mode"
-}
-[/block]
-`LOCAL` mode is the most light weight mode of cache operation, as no data is distributed to other cache nodes. It is ideal for scenarios where data is either read-only, or can be periodically refreshed at some expiration frequency. It also works very well with `read-through` behavior where data is loaded from persistent storage on misses. Other than distribution, local caches still have all the features of a distributed cache, such as automatic data eviction, expiration, disk swapping, data querying, and transactions.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Replicated Mode"
-}
-[/block]
-In `REPLICATED` mode all data is replicated to every node in the cluster. This cache mode provides the utmost availability of data as it is available on every node. However, in this mode every data update must be propagated to all other nodes which can have an impact on performance and scalability. 
-
-As the same data is stored on all cluster nodes, the size of a replicated cache is limited by the amount of memory available on the node with the smallest amount of RAM. This mode is ideal for scenarios where cache reads are a lot more frequent than cache writes, and data sets are small. If your system does cache lookups over 80% of the time, then you should consider using `REPLICATED` cache mode.
-[block:callout]
-{
-  "type": "success",
-  "body": "Replicated caches should be used when data sets are small and updates are infrequent."
-}
-[/block]
-
+Ignite provides three different modes of cache operation:`PARTITIONED`,`REPLICATED`, and `LOCAL` . A cache mode is configured for each cache. Cache modes are defined in `CacheMode` enumeration. 
 [block:api-header]
 {
   "type": "basic",
@@ -46,11 +23,11 @@ The picture below illustrates a simple view of a partitioned cache. Essentially 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/7pGSgxCVR3OZSHqYLdJv",
-        "in_memory_data_grid.png",
+        "https://www.filepicker.io/api/file/7yOamnhiQsKpBn2vkFJY",
+        "partitioned_cache_3-copy.png",
         "500",
-        "338",
-        "#d64304",
+        "434",
+        "#266069",
         ""
       ]
     }
@@ -58,6 +35,44 @@ The picture below illustrates a simple view of a partitioned cache. Essentially 
 }
 [/block]
 See [configuration](#configuration) section below for an example on how to configure cache mode.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Replicated Mode"
+}
+[/block]
+In `REPLICATED` mode all data is replicated to every node in the cluster. This cache mode provides the utmost availability of data as it is available on every node. However, in this mode every data update must be propagated to all other nodes which can have an impact on performance and scalability. 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://www.filepicker.io/api/file/4CxpQdPQ9mB8j1LP8X0z",
+        "replicated_cache_5-copy.png",
+        "500",
+        "419",
+        "#369ea3",
+        ""
+      ]
+    }
+  ]
+}
+[/block]
+As the same data is stored on all cluster nodes, the size of a replicated cache is limited by the amount of memory available on the node with the smallest amount of RAM. This mode is ideal for scenarios where cache reads are a lot more frequent than cache writes, and data sets are small. If your system does cache lookups over 80% of the time, then you should consider using `REPLICATED` cache mode.
+[block:callout]
+{
+  "type": "success",
+  "body": "Replicated caches should be used when data sets are small and updates are infrequent."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Local Mode"
+}
+[/block]
+`LOCAL` mode is the most light weight mode of cache operation, as no data is distributed to other cache nodes. It is ideal for scenarios where data is either read-only, or can be periodically refreshed at some expiration frequency. It also works very well with `read-through` behavior where data is loaded from persistent storage on misses. Other than distribution, local caches still have all the features of a distributed cache, such as automatic data eviction, expiration, disk swapping, data querying, and transactions.
 [block:api-header]
 {
   "type": "basic",

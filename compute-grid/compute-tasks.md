@@ -88,16 +88,24 @@ Here is an example of `ComputeTask` and `ComputeJob` implementations.
   "title": "Distributed Task Session"
 }
 [/block]
-Distributed task session is created for every task execution. It is defined by `ComputeTaskSession interface. Task session is visible to the task and all the jobs spawned by it, so attributes set on a task or on a job can be accessed on other jobs.  Task session also allows to receive notifications when attributes are set or wait for an attribute to be set.
+Distributed task session is created for every task execution. It is defined by `ComputeTaskSession` interface. Task session is visible to the task and all the jobs spawned by it, so attributes set on a task or on a job can be accessed on other jobs.  Task session also allows to receive notifications when attributes are set or wait for an attribute to be set.
 
 The sequence in which session attributes are set is consistent across the task and all job siblings within it. There will never be a case when one job sees attribute A before attribute B, and another job sees attribute B before A.
 
 In the example below, we have all jobs synchronize on STEP1 before moving on to STEP2. 
+[block:callout]
+{
+  "type": "warning",
+  "body": "Note that distributed task session attributes are disabled by default for performance reasons. To enable them attach `@ComputeTaskSessionFullSupport` annotation to the task class.",
+  "title": "@ComputeTaskSessionFullSupport annotation"
+}
+[/block]
+
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCompute compute = ignite.commpute();\n\ncompute.execute(new ComputeTasSplitAdapter<Object, Object>() {\n  @Override \n  protected Collection<? extends GridJob> split(int gridSize, Object arg)  {\n    Collection<ComputeJob> jobs = new LinkedList<>();\n\n    // Generate jobs by number of nodes in the grid.\n    for (int i = 0; i < gridSize; i++) {\n      jobs.add(new ComputeJobAdapter(arg) {\n        // Auto-injected task session.\n        @TaskSessionResource\n        private ComputeTaskSession ses;\n        \n        // Auto-injected job context.\n        @JobContextResource\n        private ComputeJobContext jobCtx;\n\n        @Override \n        public Object execute() {\n          // Perform STEP1.\n          ...\n          \n          // Tell other jobs that STEP1 is complete.\n          ses.setAttribute(jobCtx.getJobId(), \"STEP1\");\n          \n          // Wait for other jobs to complete STEP1.\n          for (ComputeJobSibling sibling : ses.getJobSiblings())\n            ses.waitForAttribute(sibling.getJobId(), \"STEP1\", 0);\n          \n          // Move on to STEP2.\n          ...\n        }\n      }\n    }\n  }\n               \n  @Override \n  public Object reduce(List<ComputeJobResult> results) {\n    // No-op.\n    return null;\n  }\n}, null);\n",
+      "code": "IgniteCompute compute = ignite.commpute();\n\ncompute.execute(new TaskSessionAttributesTask(), null);\n\n/**\n * Task demonstrating distributed task session attributes.\n * Note that task session attributes are enabled only if\n * @ComputeTaskSessionFullSupport annotation is attached.\n */\n@ComputeTaskSessionFullSupport\nprivate static class TaskSessionAttributesTask extends ComputeTaskSplitAdapter<Object, Object>() {\n  @Override \n  protected Collection<? extends GridJob> split(int gridSize, Object arg)  {\n    Collection<ComputeJob> jobs = new LinkedList<>();\n\n    // Generate jobs by number of nodes in the grid.\n    for (int i = 0; i < gridSize; i++) {\n      jobs.add(new ComputeJobAdapter(arg) {\n        // Auto-injected task session.\n        @TaskSessionResource\n        private ComputeTaskSession ses;\n        \n        // Auto-injected job context.\n        @JobContextResource\n        private ComputeJobContext jobCtx;\n\n        @Override \n        public Object execute() {\n          // Perform STEP1.\n          ...\n          \n          // Tell other jobs that STEP1 is complete.\n          ses.setAttribute(jobCtx.getJobId(), \"STEP1\");\n          \n          // Wait for other jobs to complete STEP1.\n          for (ComputeJobSibling sibling : ses.getJobSiblings())\n            ses.waitForAttribute(sibling.getJobId(), \"STEP1\", 0);\n          \n          // Move on to STEP2.\n          ...\n        }\n      }\n    }\n  }\n               \n  @Override \n  public Object reduce(List<ComputeJobResult> results) {\n    // No-op.\n    return null;\n  }\n}",
       "language": "java"
     }
   ]

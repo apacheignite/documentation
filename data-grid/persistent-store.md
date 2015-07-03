@@ -26,8 +26,12 @@ While Ignite allows you to configure the `CacheLoader` and `CacheWriter` separat
 Providing proper cache store implementation is important whenever read-through or write-through behavior is desired. Read-through means that data will be read from persistent store whenever it’s not available in cache, and write-through means that data will be automatically persisted whenever it is updated in cache. All read-through and write-through operations will participate in overall cache transaction and will be committed or rolled back as a whole.
 
 To configure read-through and write-through, you need to implement `CacheStore` interface and set `cacheStoreFactory` as well as `readThrough` and `writeThrough` properties of `CacheConfiguration`, as shown in examples below.
-
-## Write-Behind Caching
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Write-Behind Caching"
+}
+[/block]
 In a simple write-through mode each cache put and remove operation will involve a corresponding request to the persistent storage and therefore the overall duration of the cache update might be relatively long. Additionally, an intensive cache update rate can cause an extremely high storage load.
 
 For such cases, Ignite offers an option to perform an asynchronous persistent store update also known as **write-behind**. The key concept of this approach is to accumulate updates and then asynchronously flush them to persistent store as a bulk operation. The actual data persistence can be triggered by time-based events (the maximum time that data entry can reside in the queue is limited), by queue-size events (the queue is flushed when it’s size reaches some particular point), or by using both of them in combination in which case either event will trigger the flush.
@@ -132,7 +136,7 @@ Below are a couple of different possible cache store implementations. Note that 
   "title": "Configuration"
 }
 [/block]
-Following configuration parameters can be used to enable and configure write-behind caching via `CacheConfiguration`:
+Following configuration parameters can be used to enable and configure **write-behind** caching via `CacheConfiguration`:
 [block:parameters]
 {
   "data": {
@@ -160,6 +164,13 @@ Following configuration parameters can be used to enable and configure write-beh
 }
 [/block]
 `CacheStore` interface can be set on `IgniteConfiguration` via a `Factory` in much the same way like `CacheLoader` and `CacheWriter` are being set.
+[block:callout]
+{
+  "type": "warning",
+  "body": "For distributed cache configuration `Factory` should be serializable."
+}
+[/block]
+
 [block:code]
 {
   "codes": [

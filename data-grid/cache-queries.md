@@ -70,6 +70,14 @@ Scan queries allow for querying cache in distributed form based on some user def
   "title": "SQL Queries"
 }
 [/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "title": "Enabling SQL Queries",
+  "body": "SQL queries require indexing module to be enbled. To enable indexing module when starting a standalone node, move `optional/ignite-indexing` folder to `libs` folder before running `ignite.{sh|bat}` script. The content of the module folder will be added to classpath in this case.\n\nIf you are using maven you can add dependency like this (replacing `${ignite.version}` with version number you are interested in):\n\n        <dependency>\n            <groupId>org.apache.ignite</groupId>\n            <artifactId>ignite-indexing</artifactId>\n            <version>${ignite.version}</version>\n        </dependency>"
+}
+[/block]
 Ignite supports free-form SQL queries virtually without any limitations. SQL syntax is ANSI-99 compliant. You can use any SQL function, any aggregation, any grouping and Ignite will figure out where to fetch the results from.
 
 ##SQL Joins

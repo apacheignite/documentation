@@ -4,6 +4,14 @@ Checkpoints are available through the following methods on `GridTaskSession` int
 * `ComputeTaskSession.loadCheckpoint(String)`
 * `ComputeTaskSession.removeCheckpoint(String)`
 * `ComputeTaskSession.saveCheckpoint(String, Object)`
+[block:callout]
+{
+  "type": "warning",
+  "title": "@ComputeTaskSessionFullSupport annotation",
+  "body": "Note that checkpointing is disabled by default for performance reasons. To enable it attach `@ComputeTaskSessionFullSupport` annotation to the task or closure class."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
@@ -26,7 +34,7 @@ If job did save a checkpoint, then upon beginning of its execution, it should ch
 {
   "codes": [
     {
-      "code": "IgniteCompute compute = ignite.compute();\n\ncompute.run(new IgniteRunnable() {\n  // Task session (injected on closure instantiation).\n  @TaskSessionResource\n  private ComputeTaskSession ses;\n\n  @Override \n  public Object applyx(Object arg) throws GridException {\n    // Try to retrieve step1 result.\n    Object res1 = ses.loadCheckpoint(\"STEP1\");\n\n    if (res1 == null) {\n      res1 = computeStep1(arg); // Do some computation.\n\n      // Save step1 result.\n      ses.saveCheckpoint(\"STEP1\", res1);\n    }\n\n    // Try to retrieve step2 result.\n    Object res2 = ses.loadCheckpoint(\"STEP2\");\n\n    if (res2 == null) {\n      res2 = computeStep2(res1); // Do some computation.\n\n      // Save step2 result.\n      ses.saveCheckpoint(\"STEP2\", res2);\n    }\n\n    ...\n  }\n}",
+      "code": "IgniteCompute compute = ignite.compute();\n\ncompute.run(new CheckpointsRunnable());\n  \n/**\n * Note that this class is annotated with @ComputeTaskSessionFullSupport\n * annotation to enable checkpointing.\n */\n@ComputeTaskSessionFullSupport\nprivate static class CheckpointsRunnable implements IgniteRunnable() {\n  // Task session (injected on closure instantiation).\n  @TaskSessionResource\n  private ComputeTaskSession ses;\n\n  @Override \n  public Object applyx(Object arg) throws GridException {\n    // Try to retrieve step1 result.\n    Object res1 = ses.loadCheckpoint(\"STEP1\");\n\n    if (res1 == null) {\n      res1 = computeStep1(arg); // Do some computation.\n\n      // Save step1 result.\n      ses.saveCheckpoint(\"STEP1\", res1);\n    }\n\n    // Try to retrieve step2 result.\n    Object res2 = ses.loadCheckpoint(\"STEP2\");\n\n    if (res2 == null) {\n      res2 = computeStep2(res1); // Do some computation.\n\n      // Save step2 result.\n      ses.saveCheckpoint(\"STEP2\", res2);\n    }\n\n    ...\n  }\n}",
       "language": "java"
     }
   ]

@@ -80,7 +80,7 @@ Cache rebalancing behavior can be customized by optionally setting the following
     "0-0": "`setRebalanceMode`",
     "0-1": "Rebalance mode for distributed cache. See Rebalance Modes section for details.",
     "1-0": "`setRebalancePartitionedDelay`",
-    "1-1": "Rebalancing delay in milliseconds. See Delayed And Manual Rebalancing section for details.",
+    "1-1": "Rebalancing delay in milliseconds.",
     "2-0": "`setRebalanceBatchSize`",
     "2-1": "Size (in bytes) to be loaded within a single rebalance message. Rebalancing algorithm will split total data set on every node into multiple batches prior to sending data.",
     "3-0": "`setRebalanceThreadPoolSize`",
