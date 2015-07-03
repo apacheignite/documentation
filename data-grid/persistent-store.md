@@ -66,7 +66,7 @@ In case of `ATOMIC` caches, method `sessionEnd()` is called after completion of 
 [/block]
 The main purpose of cache store session is to hold the context between multiple store invocations whenever `CacheStore` is used in a cache transaction. For example, if using JDBC, you can store the ongoing database connection via `CacheStoreSession.attach()` method. You can then commit this connection in the `CacheStore#sessionEnd(boolean)` method.
 
-`CacheStoreSession` can be injected into your cache store implementation via `@GridCacheStoreSessionResource` annotation.
+`CacheStoreSession` can be injected into your cache store implementation via `@CacheStoreSessionResource` annotation.
 [block:api-header]
 {
   "type": "basic",

@@ -719,7 +719,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-0": "cmd",
     "0-4": "",
     "0-1": "string",
-    "0-3": "Should be **rmvall** lowercase.",
+    "0-3": "Should be **rep** lowercase.",
     "1-0": "cacheName",
     "1-1": "string",
     "1-2": "Yes",
