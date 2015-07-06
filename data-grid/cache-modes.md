@@ -41,7 +41,7 @@ See [configuration](#configuration) section below for an example on how to confi
   "title": "Replicated Mode"
 }
 [/block]
-In `REPLICATED` mode all data is replicated to every node in the cluster. This cache mode provides the utmost availability of data as it is available on every node. However, in this mode every data update must be propagated to all other nodes which can have an impact on performance and scalability. 
+In `REPLICATED` mode, all the data is replicated to every node in the cluster. This cache mode provides the utmost availability of the data as it is available on every node. However, in this mode every data update must be propagated to all other nodes which can have an impact on performance and scalability. 
 [block:image]
 {
   "images": [
