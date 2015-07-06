@@ -123,7 +123,7 @@ Ignite also supports text-based queries based on Lucene indexing.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Query Configuration By Annotations"
+  "title": "Query Configuration by Annotations"
 }
 [/block]
 Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes(MyKey.class, MyValue.class)` method. Note that this method accepts only pairs of types, one for key class and another for value class.
@@ -141,7 +141,7 @@ Indexes can be configured from code by using `@QuerySqlField` annotations. To te
 [block:api-header]
 {
   "type": "basic",
-  "title": "Query Configuration By CacheTypeMetadata"
+  "title": "Query Configuration by CacheTypeMetadata"
 }
 [/block]
 Indexes and fields also could be configured with `org.apache.ignite.cache.CacheTypeMetadata`.
