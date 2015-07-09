@@ -1,8 +1,3 @@
-[block:html]
-{
-  "html": ""
-}
-[/block]
 Apache Ignite<sup>tm</sup> In-Memory Data Fabric is a high-performance, integrated and distributed in-memory platform for computing and transacting on large-scale data sets in real-time, orders of magnitude faster than possible with traditional disk-based or flash-based technologies.
 [block:image]
 {
