@@ -6,6 +6,7 @@ With JCache support you get the following:
   * Collocated Processing (EntryProcessor)
   * Events and Metrics
   * Pluggable Persistence
+
 In addition to JCache, Ignite provides ACID transactions, data querying capabilities (including SQL), various memory models, queries, transactions, etc...
 [block:api-header]
 {
