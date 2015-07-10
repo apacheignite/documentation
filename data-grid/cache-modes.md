@@ -23,11 +23,11 @@ The picture below illustrates a simple view of a partitioned cache. Essentially 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/7yOamnhiQsKpBn2vkFJY",
-        "partitioned_cache_3-copy.png",
+        "https://www.filepicker.io/api/file/E7AQOTzeS49Hfw6xO5T7",
+        "partitioned_catche_5_sm.png",
         "500",
-        "434",
-        "#266069",
+        "431",
+        "#244a57",
         ""
       ]
     }
@@ -47,11 +47,11 @@ In `REPLICATED` mode, all the data is replicated to every node in the cluster. T
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/4CxpQdPQ9mB8j1LP8X0z",
-        "replicated_cache_5-copy.png",
+        "https://www.filepicker.io/api/file/2cCMVFaYR6Cmw4wrf2pg",
+        "replicated_catche_8_sm.png",
         "500",
-        "419",
-        "#369ea3",
+        "408",
+        "#275e72",
         ""
       ]
     }
