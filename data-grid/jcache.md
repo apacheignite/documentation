@@ -1,8 +1,9 @@
 Apache Ignite data grid is an implementation of JCache (JSR 107) specification. JCache provides a very simple to use, but yet very powerful API for data access. However, the specification purposely omits any details about data distribution and consistency to allow vendors enough freedom in their own implementations. 
 
 With JCache support you get the following:
-  * [Basic Cache Operations (Concurrent Map APIs)](#basic-operations)
-  * [Collocated Processing (EntryProcessor)](#entryprocessor)
+  * Basic Cache Operations
+  * ConcurrentMap APIs
+  * Collocated Processing (EntryProcessor)
   * Events and Metrics
   * Pluggable Persistence
 
