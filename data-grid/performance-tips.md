@@ -91,7 +91,7 @@ Swap storage is disabled by default. However, in your configuration it might be 
   "codes": [
     {
       "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n            ...\n            <!-- Disable swap. -->\n            <property name=\"swapEnabled\" value=\"false\"/> \n            ...\n        </bean>\n    </property>\n</bean>",
-      "language": "text"
+      "language": "xml"
     }
   ]
 }
@@ -109,7 +109,7 @@ While peer class loading is very convenient in development, it does carry a cert
   "codes": [
     {
       "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n            ...\n            <!-- Explicitly disable peer class loading. -->\n            <property name=\"peerClassLoadingEnabled\" value=\"false\"/> \n            ...\n        </bean>\n    </property>\n</bean>",
-      "language": "text"
+      "language": "xml"
     }
   ]
 }
