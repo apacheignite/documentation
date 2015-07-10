@@ -17,7 +17,7 @@ In order to avoid extra data movement, it is important to always access the data
   "title": ""
 }
 [/block]
-The picture below illustrates a simple view of a partitioned cache. Essentially we have key K1 assigned to Node1, K2 assigned to Node2, and K3 assigned to Node3. 
+The picture below illustrates a simple view of a partitioned cache. Essentially we have key A assigned to a node running in JVM1, B assigned to a node running in JVM3, etc...
 [block:image]
 {
   "images": [
@@ -41,7 +41,9 @@ See [configuration](#configuration) section below for an example on how to confi
   "title": "Replicated Mode"
 }
 [/block]
-In `REPLICATED` mode, all the data is replicated to every node in the cluster. This cache mode provides the utmost availability of data as it is available on every node. However, in this mode every data update must be propagated to all other nodes which can have an impact on performance and scalability. 
+In `REPLICATED` mode, all the data is replicated to every node in the cluster. This cache mode provides the utmost availability of data as it is available on every node. However, in this mode every data updates must be propagated to all other nodes which can have an impact on performance and scalability. 
+
+In Ignite, *replicated caches* are implemented using *partitioned caches* where every key is backed up on all other nodes in the cluster. For example, in the diagram below, node running in JVM1 is a primary node for key A, but it also stores backup copies for all other keys as well (B, C, D).
 [block:image]
 {
   "images": [
