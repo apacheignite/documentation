@@ -47,7 +47,7 @@ If you use `PARTITIONED` cache, and the data loss is not critical for you (for e
   "codes": [
     {
       "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n            ...\n            <!-- Set cache mode. -->\n            <property name=\"cacheMode\" value=\"PARTITIONED\"/>\n            <!-- Set number of backups to 0-->\n            <property name=\"backups\" value=\"0\"/>\n            ...\n        </bean>\n    </property>\n</bean>",
-      "language": "text"
+      "language": "xml"
     }
   ]
 }
