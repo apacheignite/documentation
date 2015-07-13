@@ -11,7 +11,7 @@ Ignite streaming allows to process continuous never-ending streams of data in sc
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/LMqUYQmBRm6YvCpo6h0W",
+        "https://www.filepicker.io/api/file/JWb9VJReTWSUw2PSA2OE",
         "ignite-stream-query.png",
         "600",
         "316",
@@ -50,6 +50,6 @@ Sliding windows are configured as Ignite cache eviction policies, and can be tim
 [read more](doc:sliding-windows) 
 
 ##Querying Data
-You can use Ignite full set of Ignite data indexing capabilities, together with Ignite SQL, TEXT, and Predicate based cache queries, to query into the streaming data.
+You can use full set of Ignite data indexing capabilities, together with Ignite SQL, TEXT, and Predicate based cache queries, to query into the streaming data.
 
 [read more](doc:cache-queries)
