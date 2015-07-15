@@ -24,7 +24,7 @@ While L1 cache is always enabled and fully implemented by Hibernate internally, 
   * cache transactions, that make `TRANSACTIONA`L mode possible.
   * clustering, with 2 different replication modes: `REPLICATED` and `PARTITIONED`
 
-To start using GridGain as a Hibernate L2 cache, you need to perform 3 simple steps:
+To start using Ignite as a Hibernate L2 cache, you need to perform 3 simple steps:
   * Add Ignite libraries to your application's classpath.
   * Enable L2 cache and specify Ignite implementation class in L2 cache configuration.
   * Configure Ignite caches for L2 cache regions and start the embedded Ignite node (and, optionally, external Ignite nodes). 
