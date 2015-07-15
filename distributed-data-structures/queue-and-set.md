@@ -66,7 +66,7 @@ Here is an example of how a job could be send directly to the node on which a qu
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\nCollectionConfiguration colCfg = new CollectionConfiguration();\n\ncolCfg.setCollocated(true); \n\ncolCfg.setCacheName(\"cacheName\");\n\nfinal IgniteQueue<String> queue = ignite.queue(\"queueName\", 20, colCfg);\n \n// Add queue elements (queue is cached on some node).\nfor (int i = 0; i < 20; i++)\n    queue.add(\"Value \" + Integer.toString(i));\n \nIgniteRunnable queuePoller = new IgniteRunnable() {\n    @Override public void run() throws IgniteException {\n        // Poll is local operation due to collocation.\n        for (int i = 0; i < 20; i++)\n            System.out.println(\"Polled element: \" + queue.poll());\n    }\n};\n\n// Drain queue on the node where the queue is cached.\nignite.compute().affinityRun(\"cacheName\", \"queueName\", queuePoller);",
+      "code": "Ignite ignite = Ignition.ignite();\n\nCollectionConfiguration colCfg = new CollectionConfiguration();\n\ncolCfg.setCollocated(true); \n\nfinal IgniteQueue<String> queue = ignite.queue(\"queueName\", 20, colCfg);\n \n// Add queue elements (queue is cached on some node).\nfor (int i = 0; i < 20; i++)\n    queue.add(\"Value \" + Integer.toString(i));\n \nIgniteRunnable queuePoller = new IgniteRunnable() {\n    @Override public void run() throws IgniteException {\n        // Poll is local operation due to collocation.\n        for (int i = 0; i < 20; i++)\n            System.out.println(\"Polled element: \" + queue.poll());\n    }\n};\n\n// Drain queue on the node where the queue is cached.\nignite.compute().affinityRun(\"cacheName\", \"queueName\", queuePoller);",
       "language": "java",
       "name": "Queue"
     }
@@ -102,15 +102,12 @@ Ignite collections can be in configured in API via `CollectionConfiguration` (se
   "data": {
     "h-0": "Setter Method",
     "0-0": "`setCollocated(boolean)`",
-    "1-0": "`setCacheName(String)`",
     "h-1": "Description",
     "h-2": "Default",
     "0-2": "false",
-    "0-1": "Sets collocation mode.",
-    "1-1": "Set name of the cache to store this collection.",
-    "1-2": "null"
+    "0-1": "Sets collocation mode."
   },
   "cols": 3,
-  "rows": 2
+  "rows": 1
 }
 [/block]
