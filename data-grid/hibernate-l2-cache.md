@@ -6,11 +6,11 @@ Ignite In-Memory Data Fabric can be used as [Hibernate](http://hibernate.org) Se
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/D35hL3OuQ46YA4v3BLwJ",
+        "https://www.filepicker.io/api/file/XGVEC0DWTp209SD7Ejuf",
         "hibernate-L2-cache.png",
-        "600",
-        "478",
-        "#b7917a",
+        "3395",
+        "2705",
+        "#bd5d35",
         ""
       ]
     }
