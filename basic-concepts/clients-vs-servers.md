@@ -70,8 +70,14 @@ By default `IgniteCompute` will execute jobs on all the server nodes. However, y
 {
   "codes": [
     {
-      "code": "IgniteCompute compute = ignite.compute();\n\nClusterGroup clientGroup = ignite.cluster().forClients();\nIgniteCompute clientCompute = ignite.compute(clientGroup);\n\n// Execute computation on the server nodes.\ncompute.broadcast(() -> System.out.println(\"Hello Server\"));\n\n// Execute computation on the client nodes.\nclientCompute.broadcast(() -> System.out.println(\"Hello Client\"));",
-      "language": "java"
+      "code": "IgniteCompute compute = ignite.compute();\n\n// Execute computation on the server nodes.\ncompute.broadcast(() -> System.out.println(\"Hello Server\"));",
+      "language": "java",
+      "name": "Compute on Servers"
+    },
+    {
+      "code": "ClusterGroup clientGroup = ignite.cluster().forClients();\n\nIgniteCompute clientCompute = ignite.compute(clientGroup);\n\n// Execute computation on the client nodes.\nclientCompute.broadcast(() -> System.out.println(\"Hello Client\"));",
+      "language": "java",
+      "name": "Compute on Clients"
     }
   ]
 }
