@@ -70,7 +70,7 @@ By default `IgniteCompute` will execute jobs on all the server nodes. However, y
 {
   "codes": [
     {
-      "code": "IgniteCompute compute = ignite.compute();\n\n// Execute computation on the server nodes.\ncompute.broadcast(() -> System.out.println(\"Hello Server\"));",
+      "code": "IgniteCompute compute = ignite.compute();\n\n// Execute computation on the server nodes (default behavior).\ncompute.broadcast(() -> System.out.println(\"Hello Server\"));",
       "language": "java",
       "name": "Compute on Servers"
     },
