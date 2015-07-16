@@ -1,6 +1,4 @@
-Ignite has an optional notion of **client** and **server** nodes. Server nodes participate in caching, compute execution, stream processing, etc., while the native client nodes provide ability to connect to the servers remotely.
-
-`Ignite Native Clients` provide full functionality of Ignite In-Memory Data Fabric to the remote clients connecting to the data fabric. It allows to use the whole set of `Ignite APIs`, including Near Caching, transactions, compute, streaming, services, etc.
+Ignite has an optional notion of **client** and **server** nodes. Server nodes participate in caching, compute execution, stream processing, etc., while the native client nodes provide ability to connect to the servers remotely. Ignite native clients allow to use the whole set of `Ignite APIs`, including near caching, transactions, compute, streaming, services, etc. from the client side.
 
 By default, all Ignite nodes are started as *server* nodes, which means that they will automatically participate in distributed caches. 
 [block:api-header]
