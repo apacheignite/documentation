@@ -6,11 +6,11 @@ Ignite In-Memory Data Fabric can be used as [Hibernate](http://hibernate.org) Se
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/D35hL3OuQ46YA4v3BLwJ",
+        "https://www.filepicker.io/api/file/Pm3bb0xcRRytF7YQH5Aw",
         "hibernate-L2-cache.png",
-        "600",
-        "478",
-        "#b7917a",
+        "3395",
+        "2705",
+        "#bd5d35",
         ""
       ]
     }
@@ -39,14 +39,31 @@ In the section below we cover these steps in more detail.
 To configure Ignite In-Memory Data Fabric as a Hibernate L2 cache, without any changes required to the existing Hibernate code, you need to:
   * Configure Hibernate itself to use Ignite as L2 cache.
   * Configure Ignite cache appropriately. 
-
+[block:callout]
+{
+  "type": "info",
+  "title": "Maven Dependency",
+  "body": "In order to enable Ignite hibernate integration, you need to add **ignite-hibernate** dependency to your project, or when starting from command line, copy **ignite-hibernate** module from **libs/optional** to **libs** folder."
+}
+[/block]
+To add Ignite hibernate integration to your project, add the following dependency to your POM file:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<dependency>\n  <groupId>org.apache.ignite</groupId>\n  <artifactId>ignite-hibernate</artifactId>\n  <version>RELEASE</version>\n</dependency>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
 ##Hibernate Configuration Example
 A typical Hibernate configuration for L2 cache with Ignite would look like the one below:
 [block:code]
 {
   "codes": [
     {
-      "code": "<hibernate-configuration>\n    <session-factory>\n        ...\n        <!-- Enable L2 cache. -->\n        <property name=\"cache.use_second_level_cache\">true</property>\n        \n        <!-- Generate L2 cache statistics. -->\n        <property name=\"generate_statistics\">true</property>\n        \n        <!-- Specify GridGain as L2 cache provider. -->\n        <property name=\"cache.region.factory_class\">org.gridgain.grid.cache.hibernate.GridHibernateRegionFactory</property>\n        \n        <!-- Specify the name of the grid, that will be used for second level caching. -->\n        <property name=\"org.gridgain.hibernate.grid_name\">hibernate-grid</property>\n        \n        <!-- Set default L2 cache access type. -->\n        <property name=\"org.gridgain.hibernate.default_access_type\">READ_ONLY</property>\n        \n        <!-- Specify the entity classes for mapping. -->\n        <mapping class=\"com.mycompany.MyEntity1\"/>\n        <mapping class=\"com.mycompany.MyEntity2\"/>\n        \n        <!-- Per-class L2 cache settings. -->\n        <class-cache class=\"com.mycompany.MyEntity1\" usage=\"read-only\"/>\n        <class-cache class=\"com.mycompany.MyEntity2\" usage=\"read-only\"/>\n        <collection-cache collection=\"com.mycompany.MyEntity1.children\" usage=\"read-only\"/>\n        ...\n    </session-factory>\n</hibernate-configuration>",
+      "code": "<hibernate-configuration>\n    <session-factory>\n        ...\n        <!-- Enable L2 cache. -->\n        <property name=\"cache.use_second_level_cache\">true</property>\n        \n        <!-- Generate L2 cache statistics. -->\n        <property name=\"generate_statistics\">true</property>\n        \n        <!-- Specify GridGain as L2 cache provider. -->\n        <property name=\"cache.region.factory_class\">org.apache.ignite.cache.hibernate.HibernateRegionFactory</property>\n        \n        <!-- Specify the name of the grid, that will be used for second level caching. -->\n        <property name=\"org.apache.ignite.hibernate.grid_name\">hibernate-grid</property>\n        \n        <!-- Set default L2 cache access type. -->\n        <property name=\"org.apache.ignite.hibernate.default_access_type\">READ_ONLY</property>\n        \n        <!-- Specify the entity classes for mapping. -->\n        <mapping class=\"com.mycompany.MyEntity1\"/>\n        <mapping class=\"com.mycompany.MyEntity2\"/>\n        \n        <!-- Per-class L2 cache settings. -->\n        <class-cache class=\"com.mycompany.MyEntity1\" usage=\"read-only\"/>\n        <class-cache class=\"com.mycompany.MyEntity2\" usage=\"read-only\"/>\n        <collection-cache collection=\"com.mycompany.MyEntity1.children\" usage=\"read-only\"/>\n        ...\n    </session-factory>\n</hibernate-configuration>",
       "language": "xml"
     }
   ]
