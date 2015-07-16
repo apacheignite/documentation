@@ -1,4 +1,4 @@
-Ignite is [Memcached](http://memcached.org/) compliant. This allows you to store and retrieve distributed data from Ignite cache using any Memcached compatible client.
+Ignite is [Memcached](http://memcached.org/) compliant which enables users to store and retrieve distributed data from Ignite cache using any Memcached compatible client.
 [block:callout]
 {
   "type": "info",
