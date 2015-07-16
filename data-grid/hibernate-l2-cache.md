@@ -37,6 +37,7 @@ In the section below we cover these steps in more detail.
 }
 [/block]
 To configure Ignite In-Memory Data Fabric as a Hibernate L2 cache, without any changes required to the existing Hibernate code, you need to:
+  * Add dependency on *hibernate-ignite* module.
   * Configure Hibernate itself to use Ignite as L2 cache.
   * Configure Ignite cache appropriately. 
  
