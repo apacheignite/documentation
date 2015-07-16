@@ -65,12 +65,12 @@ Whenever creating caches in Ignite, either in XML or via any of the `Ignite.crea
   "title": "Computing on Clients or Servers"
 }
 [/block]
-By default `IgniteCompute` will execute jobs on all the cluster nodes. However, you can choose to execute jobs only on server nodes by creating a cluster group for the servers. You can also create a cluster group for all the client nodes as well.
+By default `IgniteCompute` will execute jobs on all the server nodes. However, you can choose to execute jobs only on server nodes or only on client nodes by creating a corresponding cluster group.
 [block:code]
 {
   "codes": [
     {
-      "code": "ClusterGroup serverGroup = ignite.cluster().forServers();\nClusterGroup clientGroup = ignite.cluster().forClients();\n\nIgniteCompute serverCompute = ignite.compute(serverGroup);\nIgniteCompute clientCompute = ignite.compute(clientGroup);\n\n// Execute computation on the server nodes.\nserverCompute.broadcast(() -> System.out.println(\"Hello Server\"));\n\n// Execute computation on the client nodes.\nclientCompute.broadcast(() -> System.out.println(\"Hello Client\"));",
+      "code": "IgniteCompute compute = ignite.compute();\n\nClusterGroup clientGroup = ignite.cluster().forClients();\nIgniteCompute clientCompute = ignite.compute(clientGroup);\n\n// Execute computation on the server nodes.\ncompute.broadcast(() -> System.out.println(\"Hello Server\"));\n\n// Execute computation on the client nodes.\nclientCompute.broadcast(() -> System.out.println(\"Hello Client\"));",
       "language": "java"
     }
   ]
