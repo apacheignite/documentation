@@ -1,8 +1,5 @@
-IGFS is able to work with another file systems through `IgfsSecondaryFileSystem` interface.
-If particular file system path is configured to work in `DUAL_SYNC` or `DUAL_ASYNC` modes, IGFS will propagate all operations on this path or it's children to the secondary file system.
-
-Ignite provides single secondary file system implementation over Hadoop 'FileSystem' called `IgniteHadoopIgfsSecondaryFileSystem`.
-
+Ignite Hadoop Accelerator contains implementation of `IGFS` secondary file system `IgniteHadoopIgfsSecondaryFileSystem` which allows read-through and write-through for any Hadoop `FileSystem` implementation.
+To use secondary file system set it in `IGFS` configuration:
 [block:code]
 {
   "codes": [
