@@ -23,11 +23,11 @@ The picture below illustrates a simple view of a partitioned cache. Essentially 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/AR3Xhc9BQqmmOvScHzOv",
-        "partitioned_catche_5_sm.png",
+        "https://www.filepicker.io/api/file/XmgCY69VTgO3qN88x8Of",
+        "partitioned_cache.png",
         "500",
         "431",
-        "#244a57",
+        "#244957",
         ""
       ]
     }
