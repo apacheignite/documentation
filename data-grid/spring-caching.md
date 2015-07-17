@@ -87,3 +87,36 @@ You can also utilize near caches on client side. To achieve this simply provide 
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example"
+}
+[/block]
+Once you added `SpringCacheManager` to you Spring application context, you can enable caching for any Java method by simply attaching `@Cacheable` annotation to it.
+
+Usually you would use caching for heavy operations, like database access. For example, let's assume you have a DAO class with `averageSalary(...)` method that calculates average salary of all employees in an organization. Here is how you will enable caching for this method:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "private JdbcTemplate jdbc;\n\n@Cacheable(\"averageSalary\")\npublic long averageSalary(int orgId) {\n    String sql =\n        \"SELECT AVG(e.salary) \" +\n        \"FROM Employee e, Organization o \" +\n        \"WHERE e.orgId = o.id \" +\n        \"AND o.id = ?\");\n\n    return jdbc.queryForObject(sql, Long.class, orgId);\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+When this method is called for the first time, `SpringCacheManager` will automatically create `averageSalary` cache. It will also lookup the pre-calculated average value by `orgId` in this cache and return it right away if it's there. If the average for this organization is not calculated yet, the method will be called and the result will be stored in cache. So next time you request average for this organization, you will not query the database.
+
+If you update one of the employees in the organization, you may want to remove the average value for this organization from cache. Otherwise you will get incorrect result if the salary of the updated employee was changed. This can be achieved with `@CacheEvict` annotation attached to a method that saves employee objects in database:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "private JdbcTemplate jdbc;\n\npublic void updateSalary(Employee e) {\n    String sql =\n        \"UPDATE Employee \" +\n        \"SET salary = ? \" +\n        \"WHERE id = ?\";\n  \n    jdbc.update(sql);\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
