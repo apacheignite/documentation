@@ -107,7 +107,7 @@ Usually you would use caching for heavy operations, like database access. For ex
   ]
 }
 [/block]
-When this method is called for the first time, `SpringCacheManager` will automatically create `averageSalary` cache. It will also lookup the pre-calculated average value by `organizationId` in this cache and return it right away if it's there. If the average for this organization is not calculated yet, the method will be called and the result will be stored in cache. So next time you request average for this organization, you will not query the database.
+When this method is called for the first time, `SpringCacheManager` will automatically create `averageSalary` cache. It will also lookup the pre-calculated average value in this cache and return it right away if it's there. If the average for this organization is not calculated yet, the method will be called and the result will be stored in cache. So next time you request average for this organization, you will not query the database.
 [block:callout]
 {
   "type": "info",
