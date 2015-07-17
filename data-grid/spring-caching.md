@@ -94,29 +94,43 @@ You can also utilize near caches on client side. To achieve this simply provide 
   "title": "Example"
 }
 [/block]
-Once you added `SpringCacheManager` to you Spring application context, you can enable caching for any Java method by simply attaching `@Cacheable` annotation to it.
+Once you added `SpringCacheManager` to you Spring application context, you can enable caching for any Java method by simply attaching annotation to it.
 
-Usually you would use caching for heavy operations, like database access. For example, let's assume you have a DAO class with `averageSalary(...)` method that calculates average salary of all employees in an organization. Here is how you will enable caching for this method:
+Usually you would use caching for heavy operations, like database access. For example, let's assume you have a DAO class with `averageSalary(...)` method that calculates average salary of all employees in an organization. You can use `@Cacheable` annotation to enable caching for this method:
 [block:code]
 {
   "codes": [
     {
-      "code": "private JdbcTemplate jdbc;\n\n@Cacheable(\"averageSalary\")\npublic long averageSalary(int orgId) {\n    String sql =\n        \"SELECT AVG(e.salary) \" +\n        \"FROM Employee e, Organization o \" +\n        \"WHERE e.orgId = o.id \" +\n        \"AND o.id = ?\");\n\n    return jdbc.queryForObject(sql, Long.class, orgId);\n}",
+      "code": "private JdbcTemplate jdbc;\n\n@Cacheable(\"averageSalary\")\npublic long averageSalary(int organizationId) {\n    String sql =\n        \"SELECT AVG(e.salary) \" +\n        \"FROM Employee e, Organization o \" +\n        \"WHERE e.organizationId = o.id \" +\n        \"AND o.id = ?\");\n\n    return jdbc.queryForObject(sql, Long.class, organizationId);\n}",
       "language": "java"
     }
   ]
 }
 [/block]
-When this method is called for the first time, `SpringCacheManager` will automatically create `averageSalary` cache. It will also lookup the pre-calculated average value by `orgId` in this cache and return it right away if it's there. If the average for this organization is not calculated yet, the method will be called and the result will be stored in cache. So next time you request average for this organization, you will not query the database.
-
-If you update one of the employees in the organization, you may want to remove the average value for this organization from cache. Otherwise you will get incorrect result if the salary of the updated employee was changed. This can be achieved with `@CacheEvict` annotation attached to a method that saves employee objects in database:
+When this method is called for the first time, `SpringCacheManager` will automatically create `averageSalary` cache. It will also lookup the pre-calculated average value by `organizationId` in this cache and return it right away if it's there. If the average for this organization is not calculated yet, the method will be called and the result will be stored in cache. So next time you request average for this organization, you will not query the database.
+[block:callout]
+{
+  "type": "info",
+  "body": "Since `organizationId` is the only method parameter, it will be automatically used as a cache key.",
+  "title": "Cache Key"
+}
+[/block]
+If the salary of one of the employees is changed, you may want to remove the average value for the organization this employee belongs to, because otherwise `averageSalary(...)` method will return obsolete cached result. This can be achieved with `@CacheEvict` annotation attached to a method that updates employee's salary:
 [block:code]
 {
   "codes": [
     {
-      "code": "private JdbcTemplate jdbc;\n\npublic void updateSalary(Employee e) {\n    String sql =\n        \"UPDATE Employee \" +\n        \"SET salary = ? \" +\n        \"WHERE id = ?\";\n  \n    jdbc.update(sql);\n}",
+      "code": "private JdbcTemplate jdbc;\n\n@CacheEvict(value = \"averageSalary\", key = \"#e.organizationId\")\npublic void updateSalary(Employee e) {\n    String sql =\n        \"UPDATE Employee \" +\n        \"SET salary = ? \" +\n        \"WHERE id = ?\";\n  \n    jdbc.update(sql, e.getSalary(), e.getId());\n}",
       "language": "java"
     }
   ]
+}
+[/block]
+After this method is called, average value for provided employee's organization will be evicted from `averageSalary` cache. This will force `averageSalary(...)` to recalculate the value next time it's called.
+[block:callout]
+{
+  "type": "info",
+  "title": "Spring Expression Language (SpEL)",
+  "body": "Note that this method gets employee as a parameter, while average values are saved in cache by organization ID. To explicitly specify the cache key, we used [http://docs.spring.io/spring/docs/current/spring-framework-reference/html/expressions.html](Spring Expression Language) here.\n\n`#e.organizationId` expression means that we want to use the value of `organizationId` property of `e` variable. Essentially, `getOrganizationId()` method will be called on provided employee object and the return value will be used as the cache key."
 }
 [/block]
