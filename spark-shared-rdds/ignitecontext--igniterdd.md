@@ -81,7 +81,7 @@ For example, assuming the "partitioned" cache is configured to index pairs of in
 {
   "codes": [
     {
-      "code": "val cache = igniteContext.fromCache(\"partitioned\")\nval result = cache.sql(\"select _val from Integer \" +\n    \" where val > ? and val < ?\", 10, 100)",
+      "code": "val cacheRdd = igniteContext.fromCache(\"partitioned\")\nval result = cacheRdd.sql(\"select _val from Integer \" +\n    \" where val > ? and val < ?\", 10, 100)",
       "language": "scala"
     }
   ]
