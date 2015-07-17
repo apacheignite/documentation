@@ -67,7 +67,7 @@ For example, the following code will store pairs of integers from 1 to 10000 int
 {
   "codes": [
     {
-      "code": "val cache = igniteContext.fromCache(\"partitioned\")\ncache.savePairs(sparkContext.parallelize(1 to 10000, 10).map(i => (i, i)))",
+      "code": "val cacheRdd = igniteContext.fromCache(\"partitioned\")\n\ncacheRdd.savePairs(sparkContext.parallelize(1 to 10000, 10).map(i => (i, i)))",
       "language": "scala"
     }
   ]
@@ -81,7 +81,7 @@ For example, assuming the "partitioned" cache is configured to index pairs of in
 {
   "codes": [
     {
-      "code": "val cacheRdd = igniteContext.fromCache(\"partitioned\")\nval result = cacheRdd.sql(\"select _val from Integer \" +\n    \" where val > ? and val < ?\", 10, 100)",
+      "code": "val cacheRdd = igniteContext.fromCache(\"partitioned\")\n\nval result = cacheRdd.sql(\"select _val from Integer \" +\n    \" where val > ? and val < ?\", 10, 100)",
       "language": "scala"
     }
   ]
