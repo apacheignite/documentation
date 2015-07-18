@@ -7,7 +7,7 @@ Ignite docker container can run it two modes:
   "title": "Start from User Git Repository"
 }
 [/block]
-The container is in this mode, if `GIT_REPO` parameter is configured. Docker container is building user's project which downloaded from git repository and will run the version of the Ignite that using in given repository. Artifacts which have built will be avalible for Ignite node. 
+Ignite docker container will start in this mode if  the `GIT_REPO` parameter is configured. In this case, the container will build user's project specified by the GIT repository and will start Ignite with user code deployed in it. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
 
 For running pulling docker container use the following command:
 
