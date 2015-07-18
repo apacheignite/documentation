@@ -9,11 +9,18 @@ Ignite docker container can run it two modes:
 [/block]
 Ignite docker container will start in this mode if  the `GIT_REPO` parameter is configured. In this case, the container will build user's project specified by the GIT repository and will start Ignite with user code deployed in it. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
 
-For running pulling docker container use the following command:
-
-   `sudo docker pull apacheignite/ignite-docker`
-
-All configuration is handled through environment variables in docker container. Following configuration parameters can be configured:
+To pull the Ignite docker container use the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": " sudo docker pull apacheignite/ignite-docker",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+The configuration parameters are passed through environment variables in docker container. The following configuration parameters are available:
 [block:parameters]
 {
   "data": {
@@ -25,9 +32,9 @@ All configuration is handled through environment variables in docker container. 
     "0-0": "`GIT_REPO`",
     "1-0": "`GIT_BRANCH`",
     "2-0": "`BUILD_CMD`",
-    "0-1": "The url to git repository which will be built.",
-    "1-1": "The branch which which will be built.",
-    "2-1": "The command which will be building project.",
+    "0-1": "URL to the GIT repository.",
+    "1-1": "GIT branch to build.",
+    "2-1": "Command which will be used to build the GIT project.",
     "0-2": "`false`",
     "1-2": "`true`",
     "2-2": "`true`",
@@ -39,15 +46,15 @@ All configuration is handled through environment variables in docker container. 
     "2-4": "`mvn clean package -DskipTests=true`",
     "3-2": "`true`",
     "3-0": "`IGNITE_CONFIG`",
-    "3-1": "The url to config file or relativity path by META-INF. Downloaded config file will be saved to ./ignite-config.xml",
+    "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
     "3-3": "`N/A`",
     "3-4": "`https://raw.githubusercontent.com/bob/master/ignite-cfg.xml`",
     "4-0": "`LIB_PATTERN`",
-    "4-1": "If it's set then will copy only files which match by pattern.",
+    "4-1": "If set then Ignite docker container will only copy the files which match this regex pattern.",
     "4-2": "`true`",
     "4-3": "`copy all jar files from target folder`",
     "5-0": "`OPTION_LIBS`",
-    "5-1": "Ignite optional libs which will be include in classpath.",
+    "5-1": "Ignite optional libs which will be included in the class path.",
     "5-2": "`true`",
     "5-3": "`ignite-log4j,ignite-spring,ignite-indexing`",
     "5-4": "`ignite-aws,ignite-aop`",
