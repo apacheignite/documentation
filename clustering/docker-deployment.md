@@ -71,11 +71,18 @@ The configuration parameters are passed through environment variables in docker 
   "title": "Example"
 }
 [/block]
-For running from git repository execute the following:
-
-  `sudo docker run -it -e "GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git" apacheignite/ignite-docker`
-
-Should see the following in logs:
+To run Ignite docker container from GIT repository, execute the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker run -it -e\n\"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\"\napacheignite/ignite-docker",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+ You should see the following print out in the logs:
 [block:image]
 {
   "images": [
@@ -99,13 +106,20 @@ Should see the following in logs:
   "title": "Start Bare Ignite Node"
 }
 [/block]
-If `GIT_REPO` parameter is not configured then Docker container will download an Ignite distributive. By default container is downloading latest version because it contains the last feature and bug fixes. 
+If `GIT_REPO` parameter is not configured, then Ignite docker container will download the specified or the latest Ignite distribution. By default the latest version is downloaded.
 
-For running pulling docker container use the following command:
-
-   `sudo docker pull apacheignite/ignite-docker`
-
-All configuration is handled through environment variables in docker container. Following configuration parameters can be optionally configured:
+To pull the Ignite docker container use the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker pull apacheignite/ignite-docker",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+The configuration parameters are passed through environment variables in docker container. The following configuration parameters are available:
 [block:parameters]
 {
   "data": {
@@ -116,9 +130,9 @@ All configuration is handled through environment variables in docker container. 
     "0-0": "`IGNITE_URL`",
     "1-0": "`IGNITE_VERSION`",
     "2-0": "`IGNITE_SOURCE`",
-    "0-1": "The url to Ignite distributive which will be run.",
-    "1-1": "The version ignite which will be run on nodes.",
-    "2-1": "The ignite edition which will be downloaded. This parameter ignored, if IGNITE_VERSION is set.",
+    "0-1": "URL to the Ignite distribuition.",
+    "1-1": "Ignite version.",
+    "2-1": "Ignite edition which will be downloaded. This parameter is ignored, if IGNITE_VERSION is set.",
     "0-2": "`N/A`",
     "1-2": "`latest`",
     "2-2": "`COMMUNITY`",
@@ -126,11 +140,11 @@ All configuration is handled through environment variables in docker container. 
     "1-3": "`1.1.4`",
     "2-3": "`APACHE`",
     "3-0": "`IGNITE_CONFIG`",
-    "3-1": "The url to config file or relativity path by META-INF. Downloaded config file will be saved to ./ignite-config.xml",
+    "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
     "3-2": "`N/A`",
     "3-3": "`https://raw.githubusercontent.com/bob/master/ignite-cfg.xml\n`",
     "4-0": "`OPTION_LIBS`",
-    "4-1": "Ignite optional libs which will be include in classpath.",
+    "4-1": "Ignite optional libs which will be included in the class path.",
     "4-2": "`ignite-log4j,ignite-spring,ignite-indexing`",
     "4-3": "`ignite-aws,ignite-aop`"
   },
@@ -145,10 +159,17 @@ All configuration is handled through environment variables in docker container. 
   "title": "Example"
 }
 [/block]
-For running from git repository execute the following:
-
-  `sudo docker run -it -e "IGNITE_VERSION=1.1.0" apacheignite/ignite-docker`
-
+To run Ignite docker container with bare Ignite node, use the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker run -it -e \"IGNITE_VERSION=1.1.0\" apacheignite/ignite-docker",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 Should see the following in logs:
 [block:image]
 {
