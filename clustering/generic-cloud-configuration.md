@@ -6,7 +6,7 @@ Although you can use TCP-based discovery in the absence of the Multicast, you st
 [block:api-header]
 {
   "type": "basic",
-  "title": "Apache jclouds Based Discovery"
+  "title": "Apache JClouds Based Discovery"
 }
 [/block]
 To mitigate constantly changing IP addresses problem, Ignite supports automatic node discovery by utilizing Apache jclouds multi-cloud toolkit via `TcpDiscoveryCloudIpFinder`. 
