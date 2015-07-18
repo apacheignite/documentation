@@ -131,6 +131,6 @@ After this method is called, average value for provided employee's organization 
 {
   "type": "info",
   "title": "Spring Expression Language (SpEL)",
-  "body": "Note that this method gets employee as a parameter, while average values are saved in cache by organization ID. To explicitly specify the cache key, we used [Spring Expression Language](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/expressions.html) here.\n\n`#e.organizationId` expression means that we want to use the value of `organizationId` property of `e` variable. Essentially, `getOrganizationId()` method will be called on provided employee object and the return value will be used as the cache key."
+  "body": "Note that this method receives employee as a parameter, while average values are saved in cache by organization ID. To explicitly specify what is used as a cache key, we used `key` parameter of the annotation and [Spring Expression Language](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/expressions.html).\n\n`#e.organizationId` expression means that we need to extract the value of `organizationId` property from `e` variable. Essentially, `getOrganizationId()` method will be called on provided employee object and the returned value will be used as the cache key."
 }
 [/block]
