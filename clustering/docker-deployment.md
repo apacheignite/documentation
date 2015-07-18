@@ -1,4 +1,4 @@
-[Docker](https://www.docker.com) packages Ignite with all of its dependencies into a standardized container. Docker automates downloading the Ignite release, deploying users' code into Ignite, and configuring nodes. 
+Docker packages Ignite with all of its dependencies into a standardized container. Docker automates downloading the Ignite release, deploying users' code into Ignite, and configuring nodes. 
 
 Ignite docker container can run it two modes:  
 [block:api-header]
