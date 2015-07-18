@@ -71,7 +71,7 @@ Following example shows how to get the nodes where "worker" attribute has been s
 {
   "codes": [
     {
-      "code": "ClusterGroup workers = ignite.cluster().forAttribute(\"ROLE\", \"worker\");\n\nCollection<GridNode> nodes = workers.nodes();",
+      "code": "ClusterGroup workers = ignite.cluster().forAttribute(\"ROLE\", \"worker\");\n\nCollection<ClusterNode> nodes = workers.nodes();",
       "language": "java"
     }
   ]
