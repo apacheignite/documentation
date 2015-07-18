@@ -1,4 +1,11 @@
-Docker to package Ignite with all of its dependencies into a standardized container. For information about Docker please refer to [www.docker.com](https://www.docker.com/). That allows to simplify downloading Ignite distibutive, deploing users' code and configure nodes. Ignite docker container can run it two modes:  
+Docker packages Ignite with all of its dependencies into a standardized container. That allows to simplify downloading Ignite distibutive, deploing users' code and configure nodes. Ignite docker container can run it two modes:  
+[block:callout]
+{
+  "type": "success",
+  "body": "For information about Docker refer to [www.docker.com](https://www.docker.com/"
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
