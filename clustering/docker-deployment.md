@@ -199,7 +199,7 @@ Should see the following in logs:
 {
   "codes": [
     {
-      "code": "gcloud compute images \ncreate <IMAGE_NAME> \n--source-uri gs://ignite-media/ignite-google-image-1.0.0.tar.gz",
+      "code": "gcloud compute images \n  create <IMAGE_NAME> \n  --source-uri gs://ignite-media/ignite-google-image-1.0.0.tar.gz",
       "language": "shell"
     }
   ]
