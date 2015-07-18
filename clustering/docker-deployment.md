@@ -246,7 +246,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
 [/block]
 7. Fill the required fields and run instances.
 8. Connect to the instances.
-9. To access the execution progress you need to know a `container id`. The following command will show the `container id`.
+9. To access the execution progress you need to know a `container id`. The following command will show the `container id`:
 [block:code]
 {
   "codes": [
@@ -325,7 +325,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
 5. On the Tag Instance, set the value for `Name` tag. For example `ignite-node`
 6. Review and run instances.
 7. Connect to the instances [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
-8. To access the execution progress, you need to know the `container id`. The following command will show it.
+8. To access the execution progress, you need to know the `container id`. Use the following command:
 [block:code]
 {
   "codes": [
