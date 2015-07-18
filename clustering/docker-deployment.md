@@ -194,10 +194,18 @@ Should see the following in logs:
   "title": "Google Compute Deployment"
 }
 [/block]
-1. Import [Ignite Image](https://storage.googleapis.com/ignite-media/ignite-google-image-1.0.0.tar.gz), for this run the following command:
-
-    `gcloud compute images create <IMAGE_NAME> --source-uri gs://ignite-media/ignite-google-image-1.0.0.tar.gz`
-     For information please refer to [cloud.google.com](https://cloud.google.com/compute/docs/images#import_an_image)
+1. To import the [Ignite Image](https://storage.googleapis.com/ignite-media/ignite-google-image-1.0.0.tar.gz), execute the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "gcloud compute images \ncreate <IMAGE_NAME> \n--source-uri gs://ignite-media/ignite-google-image-1.0.0.tar.gz",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+For information please refer to [cloud.google.com](https://cloud.google.com/compute/docs/images#import_an_image)
     
 2. Go to `google compute console`.
 3. Go to `Compute->Compute Engine->VM` instances and click on `New instance`.
