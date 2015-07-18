@@ -207,10 +207,10 @@ Should see the following in logs:
 [/block]
 For information please refer to [cloud.google.com](https://cloud.google.com/compute/docs/images#import_an_image)
     
-2. Go to `google compute console`.
+2. Go to `Google Compute Console`.
 3. Go to `Compute->Compute Engine->VM` instances and click on `New instance`.
-4. Click to `Change` button in section `Boot disk`.
-5. Go to `Your image` and choose imported image. On screenshot is image with `ignite-name` name.
+4. Click on `Change` button in section `Boot disk`.
+5. Go to `Your image` and choose imported image. On the screenshot the image is with `ignite-name` name.
 [block:image]
 {
   "images": [
@@ -227,7 +227,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
-6. Click on `Management, disk, networking, access & security options` and add parameters for docker container which describe above.
+6. Click on `Management, disk, networking, access & security options` and add configuration parameters for the Ignite docker container as listed above.
 [block:image]
 {
   "images": [
@@ -244,19 +244,42 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
-7. Fill required fields and run instances.
-8. Conect to instances.
-9. For accessing to execution progress need to know a `container id`. The following command will show it.
-
-    `sudo docker ps`
-    
+7. Fill the required fields and run instances.
+8. Connect to the instances.
+9. To access the execution progress you need to know a `container id`. The following command will show the `container id`.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker ps",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 10. Show logs.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker logs -f CONTAINER_ID",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+ 11. Enter the docker container.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker exec -it container_id /bin/bash",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 
-    `sudo docker logs -f CONTAINER_ID`
-    
-11. Enter to docker container.
-
-    `sudo docker exec -it container_id /bin/bash`
 [block:api-header]
 {
   "type": "basic",
