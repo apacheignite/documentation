@@ -227,7 +227,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
-6. Click on `Management, disk, networking, access & security options` and add configuration parameters for the Ignite docker container as listed above.
+6. Click on `Management, disk, networking, access & security options` and add any of the configuration parameters for the Ignite docker container.
 [block:image]
 {
   "images": [
@@ -257,7 +257,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
-10. Show logs.
+10. Show logs:
 [block:code]
 {
   "codes": [
@@ -268,7 +268,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
- 11. Enter the docker container.
+ 11. Enter the docker container:
 [block:code]
 {
   "codes": [
@@ -286,7 +286,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   "title": "Amazon EC2 Deployment"
 }
 [/block]
-1. Choose required region and click on link in table below.
+1. Choose the required region and click on link in table below.
 [block:parameters]
 {
   "data": {
@@ -305,7 +305,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
 [/block]
 2. Choose an `Instance Type`.
 3. Go to `Configure Instance` and expand `Advanced Details` section.
-4. Configure parameters for docker container which describe above.
+4. Add any of the configuration parameters for the Ignite docker container.
 [block:image]
 {
   "images": [
@@ -322,17 +322,39 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
-5. On the Tag Instance set value for Name tag. For example `ignite-node`
+5. On the Tag Instance, set the value for `Name` tag. For example `ignite-node`
 6. Review and run instances.
-7. Conect to instances [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
-8. For accessing to execution progress need to know a `container id`. The following command will show it.
-
-    `sudo docker ps`
-    
-9. Show logs.
-
-    `sudo docker logs -f CONTAINER_ID`
-    
-10. Enter to docker container.
-
-    `sudo docker exec -it container_id /bin/bash`
+7. Connect to the instances [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
+8. To access the execution progress, you need to know the `container id`. The following command will show it.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker ps",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+9. Show logs:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker logs -f CONTAINER_ID",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+10. Enter the docker container:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker exec -it container_id /bin/bash",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
