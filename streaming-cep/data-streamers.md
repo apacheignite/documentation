@@ -17,7 +17,7 @@ To add data to the data streamer, you should call `IgniteDataStreamer.addData(..
 {
   "codes": [
     {
-      "code": "// Get the data streamer reference and stream data.\ntry (IgniteDatastreamder<Integer, String> stmr = ignite.dataStreamer(\"myStreamCache\")) {    \n    // Stream entries.\n    for (int i = 0; i < 100000; i++)\n        stmr.addData(i, Integer.toString(i));\n}",
+      "code": "// Get the data streamer reference and stream data.\ntry (IgniteDataStreamer<Integer, String> stmr = ignite.dataStreamer(\"myStreamCache\")) {    \n    // Stream entries.\n    for (int i = 0; i < 100000; i++)\n        stmr.addData(i, Integer.toString(i));\n}",
       "language": "java"
     }
   ]
