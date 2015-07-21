@@ -115,3 +115,10 @@ Examples below show how to configure slow client queue limit in code and XML con
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Client Reconnect"
+}
+[/block]
