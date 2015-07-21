@@ -127,17 +127,17 @@ Client node can disconnect from cluster in several cases:
 * connection with server was broken for some time, client is able to re-establish connection with server, but server already dropped client node since server did not receive client heartbeats
 * slow clients can be disconnected by server
 
-When client determines that it disconnected from cluster it assigns to a local node new ID and tries to reconnect to cluster. Note: this has side effect and 'id' property of local ClusterNode will change in case of client reconnection.
+When client determines that it disconnected from cluster it assigns to a local node new ID and tries to reconnect to cluster. Note: this has side effect and 'id' property of local `ClusterNode` will change in case of client reconnection.
 
-While client is in disconnected state and attempt to reconnect is in progress all Ignite API throws special exception: IgniteClientDisconnectedException, this exception provides future which will be completed when client finish reconnect (IgniteCache API throws CacheException which has IgniteClientDisconnectedException as its cause). This future also can be obtained using method IgniteCluster.clientReconnectFuture().
+While client is in disconnected state and attempt to reconnect is in progress all Ignite API throws special exception: `IgniteClientDisconnectedException`, this exception provides future which will be completed when client finish reconnect (`IgniteCache` API throws `CacheException` which has `IgniteClientDisconnectedException` as its cause). This future also can be obtained using method `IgniteCluster.clientReconnectFuture()`.
 
 Also there are special events for client reconnect (these events are local, i.e. they are fired only on client node):
 * EventType.EVT_CLIENT_NODE_DISCONNECTED
 * EventType.EVT_CLIENT_NODE_RECONNECTED
 
-Automatic reconnect can be disabled using 'clientReconnectDisabled' property on TcpDiscoverySpi, if reconnect is disabled then client node is stopped when client determines that it disconnected from cluster.
+Automatic reconnect can be disabled using 'clientReconnectDisabled' property on `TcpDiscoverySpi`, if reconnect is disabled then client node is stopped when client determines that it disconnected from cluster.
 
-Below are examples showing work with IgniteClientDisconnectedException.
+Below are examples showing work with `IgniteClientDisconnectedException`.
 [block:code]
 {
   "codes": [
