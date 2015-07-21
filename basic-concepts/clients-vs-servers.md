@@ -135,8 +135,6 @@ Also there are special events for client reconnect (these events are local, i.e.
 * EventType.EVT_CLIENT_NODE_DISCONNECTED
 * EventType.EVT_CLIENT_NODE_RECONNECTED
 
-Automatic reconnect can be disabled using 'clientReconnectDisabled' property on `TcpDiscoverySpi`, if reconnect is disabled then client node is stopped when client determines that it disconnected from cluster.
-
 Below are examples showing work with `IgniteClientDisconnectedException`.
 [block:code]
 {
@@ -150,6 +148,19 @@ Below are examples showing work with `IgniteClientDisconnectedException`.
       "code": "IgniteCache cache = ignite.getOrCreateCache(new CacheConfiguration<>());\n\nwhile (true) {\n  try {\n    cache.put(key, val);\n  }\n  catch (CacheException e) {\n    if (e.getCause() instanceof IgniteClientDisconnectedException) {\n      IgniteClientDisconnectedException cause =\n        (IgniteClientDisconnectedException)e.getCause();\n\n      cause.reconnectFuture().get(); // Wait for reconnect.\n\n      // Can proceed and use the same IgniteCache instance.\n    }\n  }\n}\n",
       "language": "java",
       "name": "Cache"
+    }
+  ]
+}
+[/block]
+Automatic client reconnect can be disabled using 'clientReconnectDisabled' property on `TcpDiscoverySpi`, if reconnect is disabled then client node is stopped when client determines that it disconnected from cluster.
+
+Example below show how to disable client reconnect.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\n// Configure Ignite here.\n\nTcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();\ndiscoverySpi.setClientReconnectDisabled(true);\n\ncfg.setDiscoverySpi(discoverySpi);\n",
+      "language": "java"
     }
   ]
 }
