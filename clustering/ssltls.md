@@ -20,7 +20,7 @@ Ignite allows you to use SSL socket communication among all Ignite nodes. To use
   "title": "SSL and TLS"
 }
 [/block]
-Ignite allows to use different encryption. The following algorithms supported [http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext](http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext) and can be set by `.setProtocol` method. `TLS` encryption is default.
+Ignite allows to use different encryption. The following algorithms supported [http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext](http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext) and can be set by `setProtocol` method. `TLS` encryption is default.
 [block:code]
 {
   "codes": [
