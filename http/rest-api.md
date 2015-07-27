@@ -2803,7 +2803,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-0": "response",
     "0-1": "jsonObject",
     "0-2": "JSON object contains  result items for query, fields query metadata,  flag for last page and queryId for query fetching.",
-    "0-3": "{\n    \"fieldsMetadata\":[{\"fieldName\":\"FIRSTNAME\", \"fieldTypeName\":\"java.lang.String\", \"schemaName\":\"person\", \"typeName\":\"PERSON\"}],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n}"
+    "0-3": "{\n    \"fieldsMetadata\":[{\"fieldName\":\"FIRSTNAME\", \"fieldTypeName\":\"java.lang.String\", \"schemaName\":\"person\", \"typeName\":\"PERSON\"},...],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n}"
   },
   "cols": 4,
   "rows": 1
