@@ -1597,7 +1597,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "h-4": "example",
     "0-0": "cmd",
     "0-1": "string",
-    "0-3": "Should be **getput** lowercase.",
+    "0-3": "Should be **getputifabs** lowercase.",
     "1-0": "cacheName",
     "1-1": "string",
     "1-2": "Yes",
