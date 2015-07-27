@@ -1572,6 +1572,87 @@ HTTP REST request returns JSON object which has similar structure for each comma
 [block:api-header]
 {
   "type": "basic",
+  "title": "Put if absent"
+}
+[/block]
+**Put if absent** command stores given key-value pair in cache only if cache had no previous mapping for it. If cache previously contained value for the given key, then this value is returned.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=getputifabs&key=getKey&val=newVal&cacheName=partionedCache",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "description",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-1": "string",
+    "0-3": "Should be **getputifabs** lowercase.",
+    "1-0": "cacheName",
+    "1-1": "string",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "1-4": "partionedCache",
+    "2-0": "key",
+    "2-1": "string",
+    "2-3": "Key to be associated with value.",
+    "2-4": "name",
+    "3-0": "val",
+    "3-1": "string",
+    "3-3": "Value to be associated with key.",
+    "3-4": "Jack",
+    "4-0": "destId",
+    "4-1": "string",
+    "4-2": "Yes",
+    "4-3": "Node ID for which the metrics are to be returned.",
+    "4-4": "8daab5ea-af83-4d91-99b6-77ed2ca06647"
+  },
+  "cols": 5,
+  "rows": 5
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"affinityNodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n  \"error\": \"\",\n  \"response\": \"value\",\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-2": "Previous value for the given key.",
+    "0-3": "{\"name\": \"bob\"}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Get and put if absent"
 }
 [/block]
