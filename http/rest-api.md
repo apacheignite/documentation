@@ -18,7 +18,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Get all](#get-all)
 * [Get](#get)
 * [Contains key](#contains-key)
-* [Containes keys](#contains-keys)
+* [Contains keys](#contains-keys)
 * [Node](#node)
 * [Topology](#topology)
 * [Execute](#execute)
@@ -1412,7 +1412,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 [block:api-header]
 {
   "type": "basic",
-  "title": "Containes keys"
+  "title": "Contains keys"
 }
 [/block]
 **Contains keys** command determines if cache containes an entries for the specified keys.
