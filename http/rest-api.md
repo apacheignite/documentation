@@ -20,6 +20,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Contains key](#contains-key)
 * [Contains keys](#contains-keys)
 * [Get and put](#get-and-put)
+* [Put if absent](#put-if-absent)
 * [Get and put if absent](#get-and-put-if-absent)
 * [Node](#node)
 * [Topology](#topology)
