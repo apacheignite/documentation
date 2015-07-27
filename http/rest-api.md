@@ -26,6 +26,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Get and put](#get-and-put)
 * [Put if absent](#put-if-absent)
 * [Get and put if absent](#get-and-put-if-absent)
+* [Cache size](#cache-size)
 * [Node](#node)
 * [Topology](#topology)
 * [Execute](#execute)
@@ -2076,6 +2077,74 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "jsonObject",
     "0-2": "Previous value for the given key.",
     "0-3": "{\"name\": \"bob\"}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Cache size"
+}
+[/block]
+**Cache size** command gets the number of all entries cached across all nodes.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=size&cacheName=partionedCache",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "description",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-1": "string",
+    "0-3": "Should be **size** lowercase.",
+    "1-0": "cacheName",
+    "1-1": "string",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "1-4": "partionedCache"
+  },
+  "cols": 5,
+  "rows": 2
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"affinityNodeId\": \"\",\n  \"error\": \"\",\n  \"response\": 1,\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "0-0": "response",
+    "0-1": "number",
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-2": "Number of all entries cached across all nodes.",
+    "0-3": "5"
   },
   "cols": 4,
   "rows": 1
