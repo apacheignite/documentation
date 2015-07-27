@@ -33,6 +33,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Topology](#topology)
 * [Execute](#execute)
 * [Result](#result)
+* [Sql query execute](#sql-query-execute)
 
 [block:api-header]
 {
@@ -2570,8 +2571,6 @@ HTTP REST request returns JSON object which has similar structure for each comma
 }
 [/block]
 
-
-
 [block:api-header]
 {
   "type": "basic",
@@ -2635,6 +2634,93 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "jsonObject",
     "0-2": "JSON object contains message about error, ID of task, result of computation and status of computation.",
     "0-3": "{\n    \"error\": \"\",\n    \"finished\": true,\n    \"id\": \"~ee2d1688-2605-4613-8a57-6615a8cbcd1b\",\n    \"result\": 4\n}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Sql query execute"
+}
+[/block]
+**Sql query execute** command runs sql query over cache.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=qryexe&type=Person&pzs=10&cacheName=Person&arg1=1000&arg2=2000qry=salary+%3E+%3F+and+salary+%3C%3D+%3F",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "decription",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-4": "",
+    "0-1": "string",
+    "0-3": "Should be **qryexe** lowercase.",
+    "1-0": "type",
+    "1-1": "string",
+    "1-2": "",
+    "1-3": "Type for the query",
+    "1-4": "String",
+    "2-0": "psz",
+    "2-1": "number",
+    "2-2": "",
+    "2-3": "Page size for the query",
+    "2-4": "3",
+    "3-0": "cacheName",
+    "3-1": "string",
+    "3-2": "Yes",
+    "3-3": "Cache name. If not provided, default cache will be used.",
+    "3-4": "testCache",
+    "4-0": "arg1...argN",
+    "4-1": "string",
+    "4-3": "Qyery arguments",
+    "4-4": "1000,2000",
+    "5-0": "qry",
+    "5-1": "strings",
+    "5-3": "Encoding sql query",
+    "5-4": "salary+%3E+%3F+and+salary+%3C%3D+%3F"
+  },
+  "cols": 5,
+  "rows": 6
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[],\n    \"items\":[\n      {\"key\":3,\"value\":{\"name\":\"Jane\",\"id\":3,\"salary\":2000}},\n      {\"key\":0,\"value\":{\"name\":\"John\",\"id\":0,\"salary\":2000}}],\n    \"last\":true,\n    \"queryId\":0},\n  \"successStatus\":0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-2": "JSON object contains  result items for query, flag for last page and queryId for query fetching.",
+    "0-3": "{\n    \"fieldsMetadata\":[],\n    \"items\":[\n      {\"key\":3,\"value\":{\"name\":\"Jane\",\"id\":3,\"salary\":2000}},\n      {\"key\":0,\"value\":{\"name\":\"John\",\"id\":0,\"salary\":2000}}],\n    \"last\":true,\n    \"queryId\":0\n}"
   },
   "cols": 4,
   "rows": 1
