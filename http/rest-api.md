@@ -10,6 +10,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Prepend](#prepend)
 * [Append](#append)
 * [Replace](#replace)
+* [Get and replace](#get and replace)
 * [Remove all](#remove-all)
 * [Remove value](#remove-value)
 * [Remove](#remove) 
@@ -782,6 +783,90 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "boolean",
     "0-2": "True if replace happened, false otherwise.",
     "0-3": "true"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Get and replace"
+}
+[/block]
+**Get and replace** command stores a given key-value pair in cache only if there is a previous mapping for it.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=getrep&key=repKey&val=newValue&cacheName=partionedCache&destId=8daab5ea-af83-4d91-99b6-77ed2ca06647",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "decription",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-4": "",
+    "0-1": "string",
+    "0-3": "Should be **getrep** lowercase.",
+    "1-0": "cacheName",
+    "1-1": "string",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "1-4": "partionedCache",
+    "4-0": "destId",
+    "4-1": "string",
+    "4-3": "Node ID for which the metrics are to be returned.",
+    "4-4": "8daab5ea-af83-4d91-99b6-77ed2ca06647",
+    "4-2": "Yes",
+    "2-0": "key",
+    "3-0": "val",
+    "2-1": "string",
+    "3-1": "string",
+    "2-2": "",
+    "3-2": "",
+    "2-3": "Key to store in cache.",
+    "3-3": "Value associated with the given key.",
+    "2-4": "name",
+    "3-4": "Jack"
+  },
+  "cols": 5,
+  "rows": 5
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"affinityNodeId\": \"1bcbac4b-3517-43ee-98d0-874b103ecf30\",\n  \"error\": \"\",\n  \"response\": oldValue,\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-2": "The previous value associated with the specified key.",
+    "0-3": "{\"name\": \"Bob\"}"
   },
   "cols": 4,
   "rows": 1
