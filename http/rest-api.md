@@ -13,6 +13,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Remove all](#remove-all)
 * [Remove value](#remove-value)
 * [Remove](#remove) 
+* [Get and remove](#get-and-remove)
 * [Add](#add)
 * [Put all](#put-all)
 * [Put](#put) 
@@ -1013,6 +1014,85 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "boolean",
     "0-2": "True if replace happened, false otherwise.",
     "0-3": "true"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Get and remove"
+}
+[/block]
+**Get and remove** command removes the given key mapping from cache and returns previous value.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=getrmv&cacheName=partionedCache&destId=8daab5ea-af83-4d91-99b6-77ed2ca06647",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "decription",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-4": "",
+    "0-1": "string",
+    "0-3": "Should be **getrmv** lowercase.",
+    "1-0": "cacheName",
+    "1-1": "string",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "1-4": "partionedCache",
+    "3-0": "destId",
+    "3-1": "string",
+    "3-3": "Node ID for which the metrics are to be returned.",
+    "3-4": "8daab5ea-af83-4d91-99b6-77ed2ca06647",
+    "3-2": "Yes",
+    "2-0": "key",
+    "2-1": "string",
+    "2-2": "",
+    "2-3": "Key - for which the mapping is to be removed from cache.",
+    "2-4": "name"
+  },
+  "cols": 5,
+  "rows": 4
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"affinityNodeId\": \"1bcbac4b-3517-43ee-98d0-874b103ecf30\",\n  \"error\": \"\",\n  \"response\": value,\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-2": "Value for the key.",
+    "0-3": "{\"name\": \"bob\"}"
   },
   "cols": 4,
   "rows": 1
