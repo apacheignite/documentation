@@ -17,6 +17,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Put](#put) 
 * [Get all](#get-all)
 * [Get](#get)
+* [Contains key](#contains-key)
 * [Node](#node)
 * [Topology](#topology)
 * [Execute](#execute)
@@ -1324,6 +1325,83 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "jsonObject",
     "0-2": "Value for the given key.",
     "0-3": "{\"name\": \"bob\"}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Contains key"
+}
+[/block]
+**Contains key** command determines if cache containes an entry for the specified key.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=conkey&key=getKey&cacheName=partionedCache",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "description",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-1": "string",
+    "0-3": "Should be **conkey** lowercase.",
+    "1-0": "cacheName",
+    "1-1": "string",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "1-4": "partionedCache",
+    "2-0": "key",
+    "2-1": "string",
+    "2-3": "Key whose presence in this cache is to be tested.",
+    "2-4": "testKey",
+    "3-0": "destId",
+    "3-1": "string",
+    "3-2": "Yes",
+    "3-3": "Node ID for which the metrics are to be returned.",
+    "3-4": "8daab5ea-af83-4d91-99b6-77ed2ca06647"
+  },
+  "cols": 5,
+  "rows": 4
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"affinityNodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n  \"error\": \"\",\n  \"response\": true,\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "boolean",
+    "0-2": "True if this map contains a mapping for the specified key.",
+    "0-3": "true"
   },
   "cols": 4,
   "rows": 1
