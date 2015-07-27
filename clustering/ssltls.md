@@ -91,9 +91,12 @@ Following configuration parameters can be configured on `SslContextFactory`.
     "7-2": "`N/A`",
     "8-0": "`setTrustStoreType`",
     "8-1": "Sets trust store type used in context initialization.",
-    "8-2": "`JKS`"
+    "8-2": "`JKS`",
+    "9-0": "`setTrustManagers`",
+    "9-1": "Sets pre-configured trust managers.",
+    "9-2": "'N/A`"
   },
   "cols": 3,
-  "rows": 9
+  "rows": 10
 }
 [/block]
