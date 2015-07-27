@@ -35,6 +35,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Result](#result)
 * [Sql query execute](#sql-query-execute)
 * [Sql fields query execute](#sql-fields-query-execute)
+* [Sql query fetch](#sql-query-fetch)
 
 [block:api-header]
 {
@@ -2804,6 +2805,79 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "jsonObject",
     "0-2": "JSON object contains  result items for query, fields query metadata,  flag for last page and queryId for query fetching.",
     "0-3": "{\n    \"fieldsMetadata\":[{\"fieldName\":\"FIRSTNAME\", \"fieldTypeName\":\"java.lang.String\", \"schemaName\":\"person\", \"typeName\":\"PERSON\"},...],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Sql query fetch"
+}
+[/block]
+**Sql query fetch** command gets next page for the query.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=qryfetch&pzs=10&qryId=5",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "decription",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-4": "",
+    "0-1": "string",
+    "0-3": "Should be **qryfetch** lowercase.",
+    "1-0": "psz",
+    "1-1": "number",
+    "1-2": "",
+    "1-3": "Page size for the query.",
+    "1-4": "3",
+    "2-0": "qryId",
+    "2-1": "number",
+    "2-3": "Query id that is returned from Sql query execute, sql fields query execute or sql fetch commands.",
+    "2-4": "0"
+  },
+  "cols": 5,
+  "rows": 3
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-2": "JSON object contains  result items for query, flag for last page and queryId for query fetching.",
+    "0-3": "{\n    \"fieldsMetadata\":[],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n}"
   },
   "cols": 4,
   "rows": 1
