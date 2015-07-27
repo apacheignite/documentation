@@ -726,7 +726,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-0": "cmd",
     "0-4": "",
     "0-1": "string",
-    "0-3": "Should be **rmvall** lowercase.",
+    "0-3": "Should be **rep** lowercase.",
     "1-0": "cacheName",
     "1-1": "string",
     "1-2": "Yes",
@@ -741,13 +741,104 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "3-0": "val",
     "2-1": "string",
     "3-1": "string",
-    "2-2": "Key to store in cache.",
-    "3-2": "Value associated with the given key.",
-    "2-3": "name",
-    "3-3": "Jack"
+    "2-2": "",
+    "3-2": "",
+    "2-3": "Key to store in cache.",
+    "3-3": "Value associated with the given key.",
+    "2-4": "name",
+    "3-4": "Jack"
   },
   "cols": 5,
   "rows": 5
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"affinityNodeId\": \"1bcbac4b-3517-43ee-98d0-874b103ecf30\",\n  \"error\": \"\",\n  \"response\": true,\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "boolean",
+    "0-2": "True if replace happened, false otherwise.",
+    "0-3": "true"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Replace Value"
+}
+[/block]
+**Replace Value** command replaces the entry for a key only if currently mapped to a given value.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=repval&key=repKey&val=newValue&val2=oldVal&cacheName=partionedCache&destId=8daab5ea-af83-4d91-99b6-77ed2ca06647",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "decription",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-4": "",
+    "0-1": "string",
+    "0-3": "Should be **repval** lowercase.",
+    "1-0": "cacheName",
+    "1-1": "string",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "1-4": "partionedCache",
+    "4-0": "val2",
+    "4-1": "string",
+    "4-3": "Value expected to be associated with the specified key.",
+    "4-4": "oldValue",
+    "4-2": "",
+    "2-0": "key",
+    "3-0": "val",
+    "2-1": "string",
+    "3-1": "string",
+    "2-2": "",
+    "3-2": "",
+    "2-3": "Key to store in cache.",
+    "3-3": "Value associated with the given key.",
+    "5-0": "destId",
+    "5-1": "string",
+    "5-2": "Yes",
+    "5-3": "Node ID for which the metrics are to be returned.",
+    "5-4": "8daab5ea-af83-4d91-99b6-77ed2ca06647",
+    "2-4": "name",
+    "3-4": "Jack"
+  },
+  "cols": 5,
+  "rows": 6
 }
 [/block]
 ##Response example
