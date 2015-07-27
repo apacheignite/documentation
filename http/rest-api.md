@@ -28,6 +28,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Get and put if absent](#get-and-put-if-absent)
 * [Cache size](#cache-size)
 * [Get or create cache](#get-or-create-cache)
+* [Destroy cache](#destroy-cache)
 * [Node](#node)
 * [Topology](#topology)
 * [Execute](#execute)
@@ -2181,6 +2182,57 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-0": "cmd",
     "0-1": "string",
     "0-3": "Should be **getorcreate** lowercase.",
+    "1-0": "cacheName",
+    "1-1": "string",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "1-4": "partionedCache"
+  },
+  "cols": 5,
+  "rows": 2
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\": \"\",\n  \"response\": null,\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Destroy cache"
+}
+[/block]
+**Destroy cache** command destroys cache with given name.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=destcache&cacheName=partionedCache",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "description",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-1": "string",
+    "0-3": "Should be **destcache** lowercase.",
     "1-0": "cacheName",
     "1-1": "string",
     "1-2": "Yes",
