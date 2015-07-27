@@ -1575,12 +1575,12 @@ HTTP REST request returns JSON object which has similar structure for each comma
   "title": "Put if absent"
 }
 [/block]
-**Put if absent** command stores given key-value pair in cache only if cache had no previous mapping for it. If cache previously contained value for the given key, then this value is returned.
+**Put if absent** command stores given key-value pair in cache only if cache had no previous mapping for it. 
 [block:code]
 {
   "codes": [
     {
-      "code": "http://host:port/ignite?cmd=getputifabs&key=getKey&val=newVal&cacheName=partionedCache",
+      "code": "http://host:port/ignite?cmd=putifabs&key=getKey&val=newVal&cacheName=partionedCache",
       "language": "curl"
     }
   ]
@@ -1597,7 +1597,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "h-4": "example",
     "0-0": "cmd",
     "0-1": "string",
-    "0-3": "Should be **getputifabs** lowercase.",
+    "0-3": "Should be **putifabs** lowercase.",
     "1-0": "cacheName",
     "1-1": "string",
     "1-2": "Yes",
@@ -1626,7 +1626,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"affinityNodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n  \"error\": \"\",\n  \"response\": \"value\",\n  \"successStatus\": 0\n}",
+      "code": "{\n  \"affinityNodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n  \"error\": \"\",\n  \"response\": true,\n  \"successStatus\": 0\n}",
       "language": "json"
     }
   ]
@@ -1641,9 +1641,9 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "h-2": "description",
     "h-3": "example",
     "0-0": "response",
-    "0-1": "jsonObject",
-    "0-2": "Previous value for the given key.",
-    "0-3": "{\"name\": \"bob\"}"
+    "0-1": "boolean",
+    "0-2": "True if a value was set.",
+    "0-3": "true"
   },
   "cols": 4,
   "rows": 1
