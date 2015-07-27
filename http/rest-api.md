@@ -2569,3 +2569,74 @@ HTTP REST request returns JSON object which has similar structure for each comma
   "rows": 1
 }
 [/block]
+
+
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Result"
+}
+[/block]
+**Result** command returns computation result for the given task.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=res&id=8daab5ea-af83-4d91-99b6-77ed2ca06647",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "decription",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-4": "",
+    "0-1": "string",
+    "0-3": "Should be **res** lowercase.",
+    "1-0": "id",
+    "1-1": "string",
+    "1-2": "",
+    "1-3": "ID of the task whose result is to be returned.",
+    "1-4": "69ad0c48941-4689aae0-6b0e-4d52-8758-ce8fe26f497d~4689aae0-6b0e-4d52-8758-ce8fe26f497d"
+  },
+  "cols": 5,
+  "rows": 2
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\": \"\",\n  \"response\": {\n    \"error\": \"\",\n    \"finished\": true,\n    \"id\": \"69ad0c48941-4689aae0-6b0e-4d52-8758-ce8fe26f497d~4689aae0-6b0e-4d52-8758-ce8fe26f497d\",\n    \"result\": 4\n  },\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-2": "JSON object contains message about error, ID of task, result of computation and status of computation.",
+    "0-3": "{\n    \"error\": \"\",\n    \"finished\": true,\n    \"id\": \"~ee2d1688-2605-4613-8a57-6615a8cbcd1b\",\n    \"result\": 4\n}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
