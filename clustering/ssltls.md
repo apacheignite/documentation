@@ -40,13 +40,12 @@ Ignite allows to use different encryption. The following algorithms supported [h
 {
   "codes": [
     {
-      "code": "IgniteConfiguration igniteCfg = new IgniteConfiguration();\n\nSslContextFactory factory = new SslContextFactory();\n\n...\n  \nfactory.setProtocol(\"TLS\");\n\nigniteCfg.setSslContextFactory(factory);",
-      "language": "java",
-      "name": null
-    },
-    {
       "code": "<bean id=\"cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  <property name=\"sslContextFactory\">\n    <bean class=\"org.apache.ignite.ssl.SslContextFactory\">\n      <property name=\"setProtocol\" value=\"SSL\"/>\n      ...\n    </bean>\n  </property>\n  ...\n</bean>",
       "language": "xml"
+    },
+    {
+      "code": "IgniteConfiguration igniteCfg = new IgniteConfiguration();\n\nSslContextFactory factory = new SslContextFactory();\n\n...\n  \nfactory.setProtocol(\"TLS\");\n\nigniteCfg.setSslContextFactory(factory);",
+      "language": "java"
     }
   ]
 }
