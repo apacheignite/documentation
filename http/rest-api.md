@@ -493,12 +493,15 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "2-1": "string",
     "3-1": "string",
     "4-1": "string",
-    "2-2": "Key to store in cache.",
-    "3-2": "Value associated with the given key.",
-    "4-2": "Expected value.",
-    "2-3": "name",
-    "3-3": "Jack",
-    "4-3": "Bob"
+    "2-2": "",
+    "3-2": "",
+    "4-2": "",
+    "2-3": "Key to store in cache.",
+    "3-3": "Value associated with the given key.",
+    "4-3": "Expected value.",
+    "2-4": "name",
+    "3-4": "Jack",
+    "4-4": "Bob"
   },
   "cols": 5,
   "rows": 6
@@ -577,10 +580,12 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "3-0": "val",
     "2-1": "string",
     "3-1": "string",
-    "2-2": "Key to store in cache.",
-    "3-2": "Value to be prepended to the current value.",
-    "2-3": "name",
-    "3-3": "Name_"
+    "2-2": "",
+    "3-2": "",
+    "2-3": "Key to store in cache.",
+    "3-3": "Value to be prepended to the current value.",
+    "2-4": "name",
+    "3-4": "Name_"
   },
   "cols": 5,
   "rows": 5
@@ -659,10 +664,12 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "3-0": "val",
     "2-1": "string",
     "3-1": "string",
-    "2-2": "Key to store in cache.",
-    "3-2": "Value to be appended to the current value.",
-    "2-3": "name",
-    "3-3": "Jack"
+    "2-2": "",
+    "3-2": "",
+    "2-3": "Key to store in cache.",
+    "3-3": "Value to be appended to the current value.",
+    "2-4": "name",
+    "3-4": "Jack"
   },
   "cols": 5,
   "rows": 5
