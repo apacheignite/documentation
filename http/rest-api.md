@@ -34,6 +34,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Execute](#execute)
 * [Result](#result)
 * [Sql query execute](#sql-query-execute)
+* [Sql fields query execute](#sql-fields-query-execute)
 
 [block:api-header]
 {
@@ -2721,6 +2722,88 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "jsonObject",
     "0-2": "JSON object contains  result items for query, flag for last page and queryId for query fetching.",
     "0-3": "{\n    \"fieldsMetadata\":[],\n    \"items\":[\n      {\"key\":3,\"value\":{\"name\":\"Jane\",\"id\":3,\"salary\":2000}},\n      {\"key\":0,\"value\":{\"name\":\"John\",\"id\":0,\"salary\":2000}}],\n    \"last\":true,\n    \"queryId\":0\n}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Sql fields query execute"
+}
+[/block]
+**Sql fields query execute** command runs sql fields query over cache.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=qryfldexe&pzs=10&cacheName=Person&qry=select+firstName%2C+lastName+from+Person",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "decription",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-4": "",
+    "0-1": "string",
+    "0-3": "Should be **qryfldexe** lowercase.",
+    "1-0": "psz",
+    "1-1": "number",
+    "1-2": "",
+    "1-3": "Page size for the query",
+    "1-4": "3",
+    "2-0": "cacheName",
+    "2-1": "string",
+    "2-2": "Yes",
+    "2-3": "Cache name. If not provided, default cache will be used.",
+    "2-4": "testCache",
+    "3-0": "arg1...argN",
+    "3-1": "string",
+    "3-3": "Qyery arguments",
+    "3-4": "1000,2000",
+    "4-0": "qry",
+    "4-1": "strings",
+    "4-3": "Encoding sql fields query",
+    "4-4": "select+firstName%2C+lastName+from+Person"
+  },
+  "cols": 5,
+  "rows": 5
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[{\"fieldName\":\"FIRSTNAME\", \"fieldTypeName\":\"java.lang.String\", \"schemaName\":\"person\", \"typeName\":\"PERSON\"},{\"fieldName\":\"LASTNAME\",\"fieldTypeName\":\"java.lang.String\",\"schemaName\":\"person\",\"typeName\":\"PERSON\"}],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-2": "JSON object contains  result items for query, fields query metadata,  flag for last page and queryId for query fetching.",
+    "0-3": "{\n    \"fieldsMetadata\":[{\"fieldName\":\"FIRSTNAME\", \"fieldTypeName\":\"java.lang.String\", \"schemaName\":\"person\", \"typeName\":\"PERSON\"}],\n    \"items\":[\n      {\"key\":3,\"value\":{\"name\":\"Jane\",\"id\":3,\"salary\":2000}},\n      {\"key\":0,\"value\":{\"name\":\"John\",\"id\":0,\"salary\":2000}}],\n    \"last\":true,\n    \"queryId\":0\n}"
   },
   "cols": 4,
   "rows": 1
