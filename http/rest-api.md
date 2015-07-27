@@ -1446,7 +1446,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "2-0": "k1...kN",
     "2-1": "string",
     "2-3": "Key whose presence in this cache is to be tested.",
-    "2-4": "key1, key2, ...,, keyN",
+    "2-4": "key1, key2, ..., keyN",
     "3-0": "destId",
     "3-1": "string",
     "3-2": "Yes",
