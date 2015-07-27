@@ -13,6 +13,21 @@ Ignite allows you to use SSL socket communication among all Ignite nodes. To use
   ]
 }
 [/block]
+In some cases it is useful to disable certificate validation of client side (e.g. when connecting to a server with self-signed certificate). This can be achieved by setting a disabled trust manager to this factory, which can be obtained by `getDisabledTrustManager` method.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean id=\"cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  <property name=\"sslContextFactory\">\n    <bean class=\"org.apache.ignite.ssl.SslContextFactory\">\n      <property name=\"keyStoreFilePath\" value=\"keystore/server.jks\"/>\n      <property name=\"keyStorePassword\" value=\"123456\"/>\n      <property name=\"trustManagers\">\n        <bean class=\"org.apache.ignite.ssl.SslContextFactory\" factory-method=\"getDisabledTrustManager\"/>\n     </property>\n    </bean>\n  </property>\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "IgniteConfiguration igniteCfg = new IgniteConfiguration();\n\nSslContextFactory factory = new SslContextFactory();\n\nfactory.setKeyStoreFilePath(\"keystore/server.jks\");\nfactory.setKeyStorePassword(\"123456\".toCharArray());\nfactory.setTrustManagers(SslContextFactory.getDisabledTrustManager());\n\nigniteCfg.setSslContextFactory(factory);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
 
 [block:api-header]
 {
