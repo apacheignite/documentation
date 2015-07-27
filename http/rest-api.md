@@ -36,6 +36,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Sql query execute](#sql-query-execute)
 * [Sql fields query execute](#sql-fields-query-execute)
 * [Sql query fetch](#sql-query-fetch)
+* [Sql query close](#sql-query-close)
 
 [block:api-header]
 {
@@ -2878,6 +2879,74 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "jsonObject",
     "0-2": "JSON object contains  result items for query, flag for last page and queryId for query fetching.",
     "0-3": "{\n    \"fieldsMetadata\":[],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Sql query close"
+}
+[/block]
+**Sql query close** command closes query resources.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=qrycls&qryId=5",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "optional",
+    "h-3": "decription",
+    "h-4": "example",
+    "0-0": "cmd",
+    "0-4": "",
+    "0-1": "string",
+    "0-3": "Should be **qrycls** lowercase.",
+    "1-0": "qryId",
+    "1-1": "number",
+    "1-3": "Query id that is returned from Sql query execute, sql fields query execute or sql fetch commands.",
+    "1-4": "0"
+  },
+  "cols": 5,
+  "rows": 2
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\":\"\",\n  \"response\":true,\n  \"successStatus\":0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "boolean",
+    "0-2": "True if query closed successfully.",
+    "0-3": "true"
   },
   "cols": 4,
   "rows": 1
