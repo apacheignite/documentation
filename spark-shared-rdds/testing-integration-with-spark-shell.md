@@ -105,6 +105,17 @@ You should see something like
   ]
 }
 [/block]
+An alternative way to create an instance of IgniteContext is to use a configuration file. Note that if path to configuration is specified in a relative form, then the `IGNITE_HOME` environment variable should be globally set in the system as the path is resolved relative to `IGNITE_HOME`
+[block:code]
+{
+  "codes": [
+    {
+      "code": "import org.apache.ignite.spark._\nimport org.apache.ignite.configuration._\n\nval ic = new IgniteContext[Integer, Integer](sc, \n    \"config/default-config.txt\")",
+      "language": "scala"
+    }
+  ]
+}
+[/block]
 3. Let's now create an instance of `IgniteRDD` using "partitioned" cache in default configuration:
 [block:code]
 {
