@@ -28,6 +28,17 @@ In some cases it is useful to disable certificate validation of client side (e.g
   ]
 }
 [/block]
+If security is configured then in logs will be printed that `communication encrypted=on`
+[block:code]
+{
+  "codes": [
+    {
+      "code": "INFO: Security status [authentication=off, communication encrypted=on]",
+      "language": "text"
+    }
+  ]
+}
+[/block]
 
 [block:api-header]
 {
