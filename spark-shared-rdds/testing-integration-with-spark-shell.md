@@ -110,7 +110,7 @@ An alternative way to create an instance of IgniteContext is to use a configurat
 {
   "codes": [
     {
-      "code": "import org.apache.ignite.spark._\nimport org.apache.ignite.configuration._\n\nval ic = new IgniteContext[Integer, Integer](sc, \"config/default-config.txt\")",
+      "code": "import org.apache.ignite.spark._\nimport org.apache.ignite.configuration._\n\nval ic = new IgniteContext[Integer, Integer](sc, \"config/default-config.xml\")",
       "language": "scala"
     }
   ]
