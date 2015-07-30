@@ -15,7 +15,7 @@ You can also limit the job execution with some subset of nodes from your grid:
 {
   "codes": [
     {
-      "code": "// Cluster group for nodes where the attribute 'worker' is defined.\nClusterGroup workerGrp = ignite.cluster().forAttribute(\"ROLE\", \"worker\");\n\n// Get cluster-enabled executor service for the above cluster group.\nExecutorService exec = icnite.executorService(workerGrp);\n",
+      "code": "// Cluster group for nodes where the attribute 'worker' is defined.\nClusterGroup workerGrp = ignite.cluster().forAttribute(\"ROLE\", \"worker\");\n\n// Get cluster-enabled executor service for the above cluster group.\nExecutorService exec = ignite.executorService(workerGrp);\n",
       "language": "java"
     }
   ]
