@@ -1,6 +1,6 @@
 Install [Apache Hive](http://hive.apache.org/).
 
-We assume that Hadoop is already installed and configured to run over Ignite cluster.
+We assume that Hadoop is already installed and configured to run over Ignite, and Ignite node(s) providing `IGFS` file system and map-reduce job tracker functionality is up and running.
 
 To configure Hive to run over such Hadoop, we need the following.
 - Hive runs hadoop executable. So, to run over "ignited" Hadoop Hive should know where the correct `hadoop` executable is located. This can be done either with adding appropriate `hadoop` executable into `PATH` environment variable (this executable should anyway be located in a folder named `bin/`), or with specifying `HADOOP_HOME` environemnt variable, which overrides `hadoop` in the path.
