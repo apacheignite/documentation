@@ -6,8 +6,10 @@ To configure Hive to run over such Hadoop, we need the following.
 - Hive runs hadoop executable. So, to run over "ignited" Hadoop Hive should know where the correct `hadoop` executable is located. This can be done either with adding appropriate `hadoop` executable into `PATH` environment variable (this executable should anyway be located in a folder named `bin/`), or with specifying `HADOOP_HOME` environemnt variable, which overrides `hadoop` in the path.
  
 - We need to direct Hive to use specific Hadoop configuration. To do that you can have all the configuration files (typically they are `core-site.xml`, `hive-site.xml`, `mapred-site.xml`) in one directory, and specify it with `HIVE_CONF_DIR` environment variable. 
+
 - We recommend to use Hive template configuration file `<IGNITE_HOME>/config/hadoop/hive-site.ignite.xml` to get Ignite specific settings. 
-- We may also need to overcome possible [problem](http://stackoverflow.com/questions/28997441/hive-startup-error-terminal-initialization-failed-falling-back-to-unsupporte) related to different **jline** library versions in Hive and Hadoop: in our case this can be solved by setting `HADOOP_USER_CLASSPATH_FIRST=true`. 
+ 
+- We may also need to overcome possible [problem](http://stackoverflow.com/questions/28997441/hive-startup-error-terminal-initialization-failed-falling-back-to-unsupporte) related to different **jline** library versions in Hive and Hadoop: in our case this can be solved by setting `HADOOP_USER_CLASSPATH_FIRST=true`.
 
 Summing the above, we can write small Hive launcher script (e.g. `hive-ig`):
 [block:code]
