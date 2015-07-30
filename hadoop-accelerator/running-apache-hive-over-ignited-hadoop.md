@@ -44,7 +44,7 @@ After that we should be able to start Hive interactive console:
   ]
 }
 [/block]
-After that we can connect to Hive Server 2 with a [client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients) e.g. with `beeline`:
+After that we can connect to Hive Server 2 with a [client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients) e.g. with `beeline`. As a remote client, `beeline` can be run from any host, and it does not require any specific environment to work with "ignited" Hive.
 [block:code]
 {
   "codes": [
