@@ -3,7 +3,7 @@ Install [Apache Hive](http://hive.apache.org/).
 We assume that Hadoop is already installed and configured to run over Ignite cluster.
 
 To configure Hive to run over such Hadoop, we need the following.
-- Hive runs hadoop executable. So, to run over "ignited" Hadoop Hive should know where the correct `hadoop` executable is located. This can be done either with adding appropriate `hadoop` executable in PATH environment variable (this executable should anyway be located in a folder named `bin/`), or with specifying `HADOOP_HOME` environemnt variable, which overrides `hadoop` in the path.
+- Hive runs hadoop executable. So, to run over "ignited" Hadoop Hive should know where the correct `hadoop` executable is located. This can be done either with adding appropriate `hadoop` executable into `PATH` environment variable (this executable should anyway be located in a folder named `bin/`), or with specifying `HADOOP_HOME` environemnt variable, which overrides `hadoop` in the path.
  
 - We need to direct Hive to use specific Hadoop configuration. To do that you can have all the configuration files (typically they are `core-site.xml`, `hive-site.xml`, `mapred-site.xml`) in one directory, and specify it with `HIVE_CONF_DIR` environment variable. 
 - We recommend to use Hive template configuration file `<IGNITE_HOME>/config/hadoop/hive-site.ignite.xml` to get Ignite specific settings. 
