@@ -6,7 +6,7 @@
 [/block]
 We assume that Hadoop is already installed and configured to run over Ignite, and Ignite node(s) providing `IGFS` file system and map-reduce job tracker functionality is up and running.
 
-You also need to install Hive: [http://hive.apache.org/].
+You will also need to install Hive: http://hive.apache.org/.
 [block:api-header]
 {
   "type": "basic",
@@ -27,7 +27,7 @@ Here are the steps required to run Hive over "Ignited" Hadoop:
 [block:callout]
 {
   "type": "warning",
-  "body": "There is a potential [http://stackoverflow.com/questions/28997441/hive-startup-error-terminal-initialization-failed-falling-back-to-unsupporte](issue) related to different `jline` library versions in Hive and Hadoop. If you face it, it can be resolved by setting `HADOOP_USER_CLASSPATH_FIRST=true` environment variable."
+  "body": "There is a potential [issue](http://stackoverflow.com/questions/28997441/hive-startup-error-terminal-initialization-failed-falling-back-to-unsupporte) related to different `jline` library versions in Hive and Hadoop. It can be resolved by setting `HADOOP_USER_CLASSPATH_FIRST=true` environment variable."
 }
 [/block]
 For convenience you can create a simple script that will properly set all required variables and run Hive, like this:
@@ -35,7 +35,7 @@ For convenience you can create a simple script that will properly set all requir
 {
   "codes": [
     {
-      "code": "# Specify Hive home directory:\nexport HIVE_HOME=<Hive installation directory>\n\n# Define specific configuration location:\nexport HIVE_CONF_DIR=<Path to our configuration folder>\n\n# If we do not use hadoop executable in PATH, specify Hadoop home explicitly:\nexport HADOOP_HOME=<Hadoop installation folder>\n\n# Avoid problem with different 'jline' library in Hadoop, see \n# http://stackoverflow.com/questions/28997441/hive-startup-error-terminal-initialization-failed-falling-back-to-unsupporte : \nexport HADOOP_USER_CLASSPATH_FIRST=true\n\n${HIVE_HOME}/bin/hive \"${@}\"",
+      "code": "# Specify Hive home directory:\nexport HIVE_HOME=<Hive installation directory>\n\n# Specofy configuration files location:\nexport HIVE_CONF_DIR=<Path to our configuration folder>\n\n# If you did not set hadoop executable in PATH, specify Hadoop home explicitly:\nexport HADOOP_HOME=<Hadoop installation folder>\n\n# Avoid problem with different 'jline' library in Hadoop: \nexport HADOOP_USER_CLASSPATH_FIRST=true\n\n${HIVE_HOME}/bin/hive \"${@}\"",
       "language": "shell"
     }
   ]
