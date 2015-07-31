@@ -1,3 +1,4 @@
+This article explains how to properly configure and start Hive over Hadoop accelerated by Ignite. It also shows how to start HiveServer2 and a remote client with such configuration.
 [block:api-header]
 {
   "type": "basic",
