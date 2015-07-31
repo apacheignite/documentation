@@ -15,7 +15,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Remove all](#remove-all)
 * [Remove value](#remove-value)
 * [Remove](#remove) 
-* [Get and remove](#get-and-remove)
+* [Get and remove](#get-and-remove)ps
 * [Add](#add)
 * [Put all](#put-all)
 * [Put](#put) 
@@ -2678,7 +2678,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "1-2": "",
     "1-3": "Type for the query",
     "1-4": "String",
-    "2-0": "psz",
+    "2-0": "pageSize",
     "2-1": "number",
     "2-2": "",
     "2-3": "Page size for the query",
@@ -2760,7 +2760,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-4": "",
     "0-1": "string",
     "0-3": "Should be **qryfldexe** lowercase.",
-    "1-0": "psz",
+    "1-0": "pageSize",
     "1-1": "number",
     "1-2": "",
     "1-3": "Page size for the query",
@@ -2842,7 +2842,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-4": "",
     "0-1": "string",
     "0-3": "Should be **qryfetch** lowercase.",
-    "1-0": "psz",
+    "1-0": "pageSize",
     "1-1": "number",
     "1-2": "",
     "1-3": "Page size for the query.",
