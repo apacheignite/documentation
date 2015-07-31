@@ -1,17 +1,36 @@
-Install [Apache Hive](http://hive.apache.org/).
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Prerequisites"
+}
+[/block]
 We assume that Hadoop is already installed and configured to run over Ignite, and Ignite node(s) providing `IGFS` file system and map-reduce job tracker functionality is up and running.
 
-To configure Hive to run over such Hadoop, we need the following.
-- Hive runs hadoop executable. So, to run over "ignited" Hadoop Hive should know where the correct `hadoop` executable is located. This can be done either with adding appropriate `hadoop` executable into `PATH` environment variable (this executable should anyway be located in a folder named `bin/`), or with specifying `HADOOP_HOME` environemnt variable, which overrides `hadoop` in the path.
- 
-- We need to direct Hive to use specific Hadoop configuration. To do that you can have all the configuration files (typically they are `core-site.xml`, `hive-site.xml`, `mapred-site.xml`) in one directory, and specify it with `HIVE_CONF_DIR` environment variable. 
+You also need to install Hive: [http://hive.apache.org/].
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Starting Hive"
+}
+[/block]
+Here are the steps required to run Hive over "Ignited" Hadoop:
+* Provide the location of correct `hadoop` executable. This can be done either with adding path to the executable file into `PATH` environment variable (note that this executable should be located in a folder named `bin/` anyway), or by specifying `HADOOP_HOME` environment variable.
+* Provide the location of configuration files (`core-site.xml`, `hive-site.xml`, `mapred-site.xml`). To do this put all these files in a directory and specify the path to this directory as `HIVE_CONF_DIR` environment variable.
+[block:callout]
+{
+  "type": "success",
+  "body": "We recommend to use Hive template configuration file `<IGNITE_HOME>/config/hadoop/hive-site.ignite.xml` to get Ignite specific settings.",
+  "title": "Configuration Template"
+}
+[/block]
 
-- We recommend to use Hive template configuration file `<IGNITE_HOME>/config/hadoop/hive-site.ignite.xml` to get Ignite specific settings. 
- 
-- We may also need to overcome possible [problem](http://stackoverflow.com/questions/28997441/hive-startup-error-terminal-initialization-failed-falling-back-to-unsupporte) related to different **jline** library versions in Hive and Hadoop: in our case this can be solved by setting `HADOOP_USER_CLASSPATH_FIRST=true`.
-
-Summing the above, we can write small Hive launcher script (e.g. `hive-ig`):
+[block:callout]
+{
+  "type": "warning",
+  "body": "There is a potential [http://stackoverflow.com/questions/28997441/hive-startup-error-terminal-initialization-failed-falling-back-to-unsupporte](issue) related to different `jline` library versions in Hive and Hadoop. If you face it, it can be resolved by setting `HADOOP_USER_CLASSPATH_FIRST=true` environment variable."
+}
+[/block]
+For convenience you can create a simple script that will properly set all required variables and run Hive, like this:
 [block:code]
 {
   "codes": [
@@ -22,7 +41,7 @@ Summing the above, we can write small Hive launcher script (e.g. `hive-ig`):
   ]
 }
 [/block]
-After that we should be able to start Hive interactive console:
+This script can be used to start Hive interactive console:
 [block:code]
 {
   "codes": [
@@ -33,7 +52,14 @@ After that we should be able to start Hive interactive console:
   ]
 }
 [/block]
- We can also start [Hive Server 2](https://cwiki.apache.org/confluence/display/Hive/Setting+Up+HiveServer2) to have enhanced client features. To do that start our Hive launcher script as follows:
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Starting HiveServer2"
+}
+[/block]
+You may also want to use [HiveServer2](https://cwiki.apache.org/confluence/display/Hive/Setting+Up+HiveServer2) for enhanced client features. To start it you can also use the script created above:
 [block:code]
 {
   "codes": [
@@ -44,7 +70,7 @@ After that we should be able to start Hive interactive console:
   ]
 }
 [/block]
-After that we can connect to Hive Server 2 with a [client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients) e.g. with `beeline`. As a remote client, `beeline` can be run from any host, and it does not require any specific environment to work with "ignited" Hive.
+After the server is started, you can connect to it with any available [client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients) (e.g., `beeline`). As a remote client, `beeline` can be run from any host, and it does not require any specific environment to work with "Ignited" Hive. Here is the example:
 [block:code]
 {
   "codes": [
