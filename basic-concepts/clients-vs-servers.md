@@ -159,9 +159,37 @@ Example below show how to disable client reconnect.
 {
   "codes": [
     {
-      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\n// Configure Ignite here.\n\nTcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();\ndiscoverySpi.setClientReconnectDisabled(true);\n\ncfg.setDiscoverySpi(discoverySpi);\n",
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\n// Configure Ignite here.\n\nTcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();\n\ndiscoverySpi.setClientReconnectDisabled(true);\n\ncfg.setDiscoverySpi(discoverySpi);\n",
       "language": "java"
     }
   ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Forcing Server Mode On Client Nodes"
+}
+[/block]
+Client nodes will require alive server nodes in topology to start.
+
+If it is a requirement to be able to start client node disregarding of server node presence you can force server mode discovery on client nodes this way:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setClientMode(true);\n\n// Configure Ignite here.\n\nTcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();\n\ndiscoverySpi.setForceServerMode(true);\n\ncfg.setDiscoverySpi(discoverySpi);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+In this case discovery will happen as if all nodes in topology were server nodes.
+[block:callout]
+{
+  "type": "warning",
+  "title": "Importan Notice",
+  "body": "In this case all addresses discovery SPI uses on all nodes should be mutually reachable in order for discovery to work properly."
 }
 [/block]
