@@ -25,7 +25,7 @@ Hadoop Accelerator ships with an implementation of Hadoop `FileSystem` which sto
 [/block]
 Hadoop Accelerator ships with an implementation of `SecondaryFileSystem`. This implementation can be injected into existing IGFS allowing for read-through and write-through behavior over any other Hadoop `FileSystem` implementation (e.g. `HDFS`). Use it if you want your `IGFS` to become an in-memory caching layer over disk-based `HDFS` or any other Hadoop-compliant file system.
 
-[More Info](doc:igfs-secondary-file-system)
+[More Info](doc:secondary-file-system)
 [block:api-header]
 {
   "type": "basic",
