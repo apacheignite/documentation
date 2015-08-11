@@ -64,6 +64,32 @@ This eviction policy is implemented by `FifoEvictionPolicy` and can be configure
 [block:api-header]
 {
   "type": "basic",
+  "title": "Sorted"
+}
+[/block]
+Sorted eviction policy is similar to FIFO eviciton policy with the difference that entries order is defined by default or user defined comparator and ensures that the minimal entry (i.e. the entry that has integer key with smallest value) gets evicted first.
+
+Default comparator uses cache entries keys for comparison that imposes a requirement for keys to implement `Comparable` interface. User can provide own comparator implementation which can use keys, values or both for entries comparison.
+
+This eviction policy is implemented by `SortedEvictionPolicy` and can be configured via `CacheConfiguration`.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- Sorted eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.sorted.SortedEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000) and use default comparator. -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new SortedEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Random"
 }
 [/block]
