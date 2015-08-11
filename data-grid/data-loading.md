@@ -39,3 +39,32 @@ Here is an example of how `CacheStore.loadCache()` implementation. For a complet
   ]
 }
 [/block]
+## Partition-aware data loading
+
+In the scenario described above the same query query will be executed on all the nodes. Each node will iterate over the whole result set, skipping the keys that does not belong to the node, which is not very efficient with a high number of nodes. 
+
+The situation may be improved if partition ID is stored alongside with each record in the database. You can use `org.apache.ignite.cache.affinity.Affinity` interface to get partition ID for any key being stored into a cache.
+
+Below is an example code snippet that determines partition ID for each `Person` object being stored into the cache.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache cache = ignite.cache(cacheName);\nAffinity aff = ignite.affinity(cacheName);\n\nfor (int personId = 0; personId < PERSONS_CNT; personId++) {\n    // Get partition ID for the key under which person is stored in cache.\n    int partId = aff.partition(personId);\n  \n    Person person = new Person(personId);\n    person.setPartitionId(partId);\n    // Fill other fields.\n  \n    cache.put(personId, person);\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+When `Person` objects become partition-ID aware, each node can query only those partitions that belong to the node. In order to do that, you can inject an instance of Ignite into your cache store and use it to determine partitions that belong to the local node. These partition IDs can be used to improve load queries.
+Below is an example code snippet that demonstrates how to use `Affinity` to load only local partitions. Note that example code is single-threaded, however it can be very effectively parallelized by partition ID.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "public class CacheJdbcPersonStore extends CacheStoreAdapter<Long, Person> {\n  // Will be automatically injected.\n  @IgniteInstanceResource\n  private Ignite ignite;\n  \n\t...\n  // This mehtod is called whenever \"IgniteCache.loadCache()\" or\n  // \"IgniteCache.localLoadCache()\" methods are called.\n  @Override public void loadCache(IgniteBiInClosure<Long, Person> clo, Object... args) {\n    Affinity aff = ignite.affinity(cacheName);\n    ClusterNode locNode = ignite.cluster().localNode();\n    \n    try (Connection conn = connection()) {\n      for (int part : aff.primaryPartitions())\n        loadPartition(conn, part);\n      \n      for (int part : aff.backipPartitions())\n        loadPartition(conn, part);\n    }\n  }\n  \n  private void loadPartition(Connection conn, int part) {\n    try (PreparedStatement st = conn.prepareStatement(\"select * from PERSONS where partId=?\")) {\n      st.setInt(1, part);\n      \n      try (ResultSet rs = st.executeQuery()) {\n        while (cnt < entryCnt && rs.next()) {\n          Person person = new Person(rs.getLong(1), rs.getString(2), rs.getString(3));\n          \n          clo.apply(person.getId(), person);\n        }\n      }\n    }\n    catch (SQLException e) {\n      throw new CacheLoaderException(\"Failed to load values from cache store.\", e);\n    }\n  }\n  \n  ...\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
