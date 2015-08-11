@@ -30,7 +30,7 @@ This eviction policy is implemented by `LruEvictionPolicy` and can be configured
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new CacheLruEvictionPolicy(1000000);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new LruEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
@@ -54,7 +54,7 @@ This eviction policy is implemented by `FifoEvictionPolicy` and can be configure
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new FifoEvictionPolicy(1000000);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new FifoEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
@@ -78,7 +78,7 @@ This eviction policy is implemented by `RandomEvictionPolicy` and can be configu
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new CacheRandomEvictionPolicy(1000000);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new RandomEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
