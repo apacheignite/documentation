@@ -41,7 +41,7 @@ Here is an example of how `CacheStore.loadCache()` implementation. For a complet
 [/block]
 ## Partition-aware data loading
 
-In the scenario described above the same query query will be executed on all the nodes. Each node will iterate over the whole result set, skipping the keys that does not belong to the node, which is not very efficient with a high number of nodes. 
+In the scenario described above the same query will be executed on all the nodes. Each node will iterate over the whole result set, skipping the keys that do not belong to the node, which is not very efficient. 
 
 The situation may be improved if partition ID is stored alongside with each record in the database. You can use `org.apache.ignite.cache.affinity.Affinity` interface to get partition ID for any key being stored into a cache.
 
@@ -56,7 +56,8 @@ Below is an example code snippet that determines partition ID for each `Person` 
   ]
 }
 [/block]
-When `Person` objects become partition-ID aware, each node can query only those partitions that belong to the node. In order to do that, you can inject an instance of Ignite into your cache store and use it to determine partitions that belong to the local node. These partition IDs can be used to improve load queries.
+When `Person` objects become partition-ID aware, each node can query only those partitions that belong to the node. In order to do that, you can inject an instance of Ignite into your cache store and use it to determine partitions that belong to the local node. 
+
 Below is an example code snippet that demonstrates how to use `Affinity` to load only local partitions. Note that example code is single-threaded, however it can be very effectively parallelized by partition ID.
 [block:code]
 {
