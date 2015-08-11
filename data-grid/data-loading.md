@@ -72,6 +72,6 @@ Below is an example code snippet that demonstrates how to use `Affinity` to load
 [block:callout]
 {
   "type": "warning",
-  "body": "Note that key-to-partition mapping depends on the number of partitions configured in the affinity function (see `org.apache.ignite.cache.affinity.AffinityFunction`). If affinity function configuration changed, partition ID records in the database must be updated accordingly."
+  "body": "Note that key-to-partition mapping depends on the number of partitions configured in the affinity function (see `org.apache.ignite.cache.affinity.AffinityFunction`). If affinity function configuration changes, partition ID records in the database must be updated accordingly."
 }
 [/block]
