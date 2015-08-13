@@ -84,6 +84,26 @@ Ignite also supports the following isolation levels:
 [block:api-header]
 {
   "type": "basic",
+  "title": "Integration With JTA"
+}
+[/block]
+Ignite can be configured with a JTA transaction manager lookup class using `TransactionConfiguration#setTxManagerLookupClassName` method. Transaction manager lookup is basically a factory that provides Ignite with an instance of JTA transaction manager.
+When set, on each cache operation on a transactional cache Ignite will check if there is an ongoing JTA transaction. If JTA transaction is started, Ignite will also start a transaction and will enlist it into JTA transaction using it's own internal implementation of `XAResource`. Ignite transaction will be prepared, committed or rolledback altogether with corresponding JTA transaction.
+Below is an example of using JTA transaction manager together with Ignite.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Get an instance of JTA transaction manager.\nTMService tms = appCtx.getComponent(TMService.class);\n\n// Get an instance of Ignite cache.\nIgniteCache<String, Integer> cache = cache();\n\nUserTransaction jtaTx = tms.getUserTransaction();\n\n// Start JTA transaction.\njtaTx.begin();\n\ntry {\n    // Do some cache operations.\n    cache.put(\"key1\", 1);\n    cache.put(\"key2\", 2);\n\n    // Commit the transaction.\n    jtaTx.commit();\n}\nfinally {\n    // Rollback in a case of exception.\n    if (jtaTx.getStatus() == Status.STATUS_ACTIVE)\n        jtaTx.rollback();\n}\n",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Atomicity Mode"
 }
 [/block]
@@ -115,7 +135,7 @@ Default atomicity mode is `ATOMIC`.
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          \t<!-- Set a cache name. -->\n   \t\t\t\t\t<property name=\"name\" value=\"myCache\"/>\n\n            <!-- Set atomicity mode, can be ATOMIC or TRANSACTIONAL. -->\n    \t\t\t\t<property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n            ... \n        </bean\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          \t<!-- Set a cache name. -->\n   \t\t\t\t\t<property name=\"name\" value=\"myCache\"/>\n\n            <!-- Set atomicity mode, can be ATOMIC or TRANSACTIONAL. -->\n    \t\t\t\t<property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n            ... \n        </bean>\n    </property>\n          \n    <!-- Optional transaction configuration. -->\n    <property name=\"transactionConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.TransactionConfiguration\">\n            <!-- Configure TM lookup here. -->\n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     },
     {
