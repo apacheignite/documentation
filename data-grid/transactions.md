@@ -139,7 +139,7 @@ Default atomicity mode is `ATOMIC`.
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\ncacheCfg.setAtomicityMode(CacheAtomicityMode.ATOMIC);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Optional transaction configuration.\nTransactionConfiguration txCfg = new TransactionConfiguration();\n\n// Configure TM lookup here.\n\ncfg.setTransactionConfiguration(txCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\ncacheCfg.setAtomicityMode(CacheAtomicityMode.ATOMIC);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Optional transaction configuration. Configure TM lookup here.\nTransactionConfiguration txCfg = new TransactionConfiguration();\n\ncfg.setTransactionConfiguration(txCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
