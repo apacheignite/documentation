@@ -64,7 +64,7 @@ All `call(...)` and `run(...)` methods execute either individual jobs or collect
       "name": "async run"
     },
     {
-      "code": "Collection<IgniteCallable<Integer>> calls = new ArrayList<>();\n \n// Iterate through all words in the sentence and create callable jobs.\nfor (final String word : \"Count characters using callable\".split(\" \")) {\n    calls.add(new GridCallable<Integer>() {\n        @Override public Integer call() throws Exception {\n            return word.length(); // Return word length.\n        }\n    });\n}\n \n// Execute collection of callables on the cluster.\nCollection<Integer> res = ignite.compute().call(calls);\n\nint total = 0;\n\n// Total number of characters.\n// Looks much better in Java 8.\nfor (Integer i : res)\n  total += i;",
+      "code": "Collection<IgniteCallable<Integer>> calls = new ArrayList<>();\n \n// Iterate through all words in the sentence and create callable jobs.\nfor (final String word : \"Count characters using callable\".split(\" \")) {\n    calls.add(new IgniteCallable<Integer>() {\n        @Override public Integer call() throws Exception {\n            return word.length(); // Return word length.\n        }\n    });\n}\n \n// Execute collection of callables on the cluster.\nCollection<Integer> res = ignite.compute().call(calls);\n\nint total = 0;\n\n// Total number of characters.\n// Looks much better in Java 8.\nfor (Integer i : res)\n  total += i;",
       "language": "java",
       "name": "java7 call"
     },
