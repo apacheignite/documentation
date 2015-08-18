@@ -138,7 +138,7 @@ All operations defined in [Persistent Store](doc:persistent-store) are available
   "title": "Example"
 }
 [/block]
-Example `org.apache.ignite.examples.datagrid.store.CacheStoreExample` demonstrates usage of cache store.
+Example `org.apache.ignite.examples.datagrid.store.auto.CacheAutoStoreExample` demonstrates usage of cache store.
 
 In order to run example for automatic persistence you need to set `CacheNodeWithStoreStartup.STORE = AUTO`  and run `CacheStoreExample`.
 [block:api-header]
