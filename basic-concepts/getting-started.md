@@ -82,7 +82,7 @@ and you will see the output similar to this:
 By default `ignite.sh` starts Ignite node with the default configuration: `config/default-config.xml`.
 
 ##Passing Configuration File 
-To pass configuration file explicitly,  from command line, you can type ggstart.sh <path to configuration file> from within your Ignite installation folder. For example:
+To pass configuration file explicitly,  from command line, you can type ignite.sh <path to configuration file> from within your Ignite installation folder. For example:
 [block:code]
 {
   "codes": [
