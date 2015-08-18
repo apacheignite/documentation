@@ -36,7 +36,7 @@ You can query data from multiple caches. In this case, cache names act as schema
   ]
 }
 [/block]
-## Configuring SQL Indexes With Annotations
+## Configuring SQL Indexes by Annotations
 Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes(MyKey.class, MyValue.class)` method. Note that this method accepts only pairs of types, one for key class and another for value class. Primitives are passed as boxed types like `CacheConfiguration.setIndexedTypes(Long.class, MyValue.class, UUID.class, MyAnotherValue.class)` (here we have 2 key-value type pairs).
 
 In the example below we've created a simple class `Person` and annotated fields we want to  use in SQL queries with `@QuerySqlField`, fields we want to be indexed we annotated with `@QuerySqlField(index = true)` and fields we want to index as a group we annotated with `@QuerySqlField(orderedGroups={@QuerySqlField.Group(name = "age_salary_idx", order = 0)})`. 
@@ -50,6 +50,18 @@ For example of a group index in the class below we have field `age` which partic
     {
       "code": "public class Person implements Serializable {\n  /** Person ID (indexed). */\n  @QuerySqlField(index = true)\n  private long id;\n\n  /** Organization ID (indexed). */\n  @QuerySqlField(index = true)\n  private long orgId;\n\n  /** First name (invisible for SQL). */\n  private String firstName;\n\n  /** Last name (not indexed but visible in SQL). */\n  @QuerySqlField\n  private String lastName;\n\n  /** Age (indexed in a group index with \"salary\"). */\n  @QuerySqlField(orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 0, descending = true)})\n  private int age;\n\n  /** Salary (indexed separately and in a group index with \"age\"). */\n  @QuerySqlField(index = true, orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 3)})\n  private double salary;\n  \n  ...\n}",
       "language": "java"
+    }
+  ]
+}
+[/block]
+## Configuring SQL Indexes by CacheTypeMetadata
+Indexes and fields also could be configured with `org.apache.ignite.cache.CacheTypeMetadata` which is convenient for XML configuration with Spring. Please refer to javadoc for details, basically it is equivalent to `@QuerySqlField` annotation.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n...\n <!-- Cache configuration. -->\n <property name=\"cacheConfiguration\">\n  <list>\n   <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n\t  <property name=\"name\" value=\"my_cache\"/>\n    <property name =\"typeMetadata\">\n     <!-- Cache types metadata. -->\n     <list>\n      <bean class=\"org.apache.ignite.cache.CacheTypeMetadata\">\n        <!-- Type to query. -->\n        <property name=\"valueType\" value=\"org.apache.ignite.examples.datagrid.store.Person\"/>\n        <!-- Fields to be queried. -->\n        <property name=\"queryFields\">\n        <map>\n         <entry key=\"id\" value=\"java.util.UUID\"/>\n         <entry key=\"orgId\" value=\"java.util.UUID\"/>\n         <entry key=\"firstName\" value=\"java.lang.String\"/>\n         <entry key=\"lastName\" value=\"java.lang.String\"/>\n         <entry key=\"resume\" value=\"java.lang.String\"/>\n         <entry key=\"salary\" value=\"double\"/>\n        </map>\n       </property>\n        <!-- Fields to index in ascending order. -->\n       <property name=\"ascendingFields\">\n        <map>\n         <entry key=\"id\" value=\"java.util.UUID\"/>\n         <entry key=\"orgId\" value=\"java.util.UUID\"/>\n         <entry key=\"salary\" value=\"double\"/>\n        </map>\n       </property>\n      </bean>\n     </list>\n...\n  </list>\n </property>\n...\n</bean>",
+      "language": "xml"
     }
   ]
 }
