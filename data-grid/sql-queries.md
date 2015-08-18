@@ -6,7 +6,7 @@ Ignite supports distributed SQL joins. Moreover, if data resides in different ca
 Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. However, if you do a join between two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are **collocated**. 
 
 ##Field Queries
-Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose Ignite has a concept of `fields queries`.
+Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose Ignite has a concept of `fields queries`. Also it is useful when you want to execute some aggregate query.
 
 ##Cross-Cache Queries
 You can query data from multiple caches. In this case, cache names act as schema names in regular SQL. This means all caches can be referred by cache names in quotes. The cache on which the query was created acts as the default schema and does not need to be explicitly specified.
@@ -36,7 +36,11 @@ You can query data from multiple caches. In this case, cache names act as schema
   ]
 }
 [/block]
-## Configuring Indexes With Annotations
+## Configuring SQL Indexes With Annotations
+Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes(MyKey.class, MyValue.class)` method. Note that this method accepts only pairs of types, one for key class and another for value class.
+
+In the example below we've created a simple class `Person` and annotated fields we want to  use in SQL queries with `@QuerySqlField`, fields we want to be indexed we annotated with `@QuerySqlField(index = true)` and fields we want to index as group we annotated with `@QuerySqlField(orderedGroups={@QuerySqlField.Group(name = "age_salary_idx", order = 0`)})`. Note that it is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want the field to participate in more than one grup index. Also note that annotating a field with `@QuerySqlField.Group` outside of `@QuerySqlField(orderedGroups={...})` then this annotation will have no effect.
+
 [block:code]
 {
   "codes": [
