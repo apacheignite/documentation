@@ -37,7 +37,7 @@ You can query data from multiple caches. In this case, cache names act as schema
 }
 [/block]
 ## Configuring SQL Indexes With Annotations
-Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes(MyKey.class, MyValue.class)` method. Note that this method accepts only pairs of types, one for key class and another for value class.
+Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes(MyKey.class, MyValue.class)` method. Note that this method accepts only pairs of types, one for key class and another for value class. Primitives are passed as boxed types like `CacheConfiguration.setIndexedTypes(Long.class, MyValue.class, UUID.class, MyAnotherValue.class)` (here we have 2 key-value type pairs).
 
 In the example below we've created a simple class `Person` and annotated fields we want to  use in SQL queries with `@QuerySqlField`, fields we want to be indexed we annotated with `@QuerySqlField(index = true)` and fields we want to index as a group we annotated with `@QuerySqlField(orderedGroups={@QuerySqlField.Group(name = "age_salary_idx", order = 0)})`. 
 
