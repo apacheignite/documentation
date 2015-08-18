@@ -39,15 +39,16 @@ You can query data from multiple caches. In this case, cache names act as schema
 ## Configuring SQL Indexes With Annotations
 Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes(MyKey.class, MyValue.class)` method. Note that this method accepts only pairs of types, one for key class and another for value class.
 
-In the example below we've created a simple class `Person` and annotated fields we want to  use in SQL queries with `@QuerySqlField`, fields we want to be indexed we annotated with `@QuerySqlField(index = true)` and fields we want to index as group we annotated with `@QuerySqlField(orderedGroups={@QuerySqlField.Group(name = "age_salary_idx", order = 0)})`. 
+In the example below we've created a simple class `Person` and annotated fields we want to  use in SQL queries with `@QuerySqlField`, fields we want to be indexed we annotated with `@QuerySqlField(index = true)` and fields we want to index as a group we annotated with `@QuerySqlField(orderedGroups={@QuerySqlField.Group(name = "age_salary_idx", order = 0)})`. 
 
 Note that it is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want the field to participate in more than one group index. Also note that annotating a field with `@QuerySqlField.Group` outside of `@QuerySqlField(orderedGroups={...})` then this annotation will have no effect.
 
+For example in the class below we have field `age` which participates in a group index named `"age_salary_idx"` with group order 0 and descending sort order. Also in the same group index participates field `salary` with group order 3 and ascending sort order. On top of that field `salary` itself is indexed with separate index (we have `index = true` in addition to `orderedGroups` declaration).
 [block:code]
 {
   "codes": [
     {
-      "code": "public class Person implements Serializable {\n  /** Person ID (indexed). */\n  @QuerySqlField(index = true)\n  private long id;\n\n  /** Organization ID (indexed). */\n  @QuerySqlField(index = true)\n  private long orgId;\n\n  /** First name (invisible for SQL). */\n  private String firstName;\n\n  /** Last name (not indexed but visible in SQL). */\n  @QuerySqlField\n  private String lastName;\n\n  /** Age (indexed in a group index with \"salary\"). */\n  @QuerySqlField(orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 0, descending = true)})\n  private int age;\n\n  /** Salary (indexed separately and in a group index with \"age\"). */\n  @QuerySqlField(index = true, orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 1)})\n  private double salary;\n  \n  ...\n}",
+      "code": "public class Person implements Serializable {\n  /** Person ID (indexed). */\n  @QuerySqlField(index = true)\n  private long id;\n\n  /** Organization ID (indexed). */\n  @QuerySqlField(index = true)\n  private long orgId;\n\n  /** First name (invisible for SQL). */\n  private String firstName;\n\n  /** Last name (not indexed but visible in SQL). */\n  @QuerySqlField\n  private String lastName;\n\n  /** Age (indexed in a group index with \"salary\"). */\n  @QuerySqlField(orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 0, descending = true)})\n  private int age;\n\n  /** Salary (indexed separately and in a group index with \"age\"). */\n  @QuerySqlField(index = true, orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 3)})\n  private double salary;\n  \n  ...\n}",
       "language": "java"
     }
   ]
