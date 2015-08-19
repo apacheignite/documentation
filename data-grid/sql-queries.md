@@ -1,15 +1,36 @@
 Ignite supports free-form SQL queries virtually without any limitations. SQL syntax is ANSI-99 compliant. You can use any SQL function, any aggregation, any grouping and Ignite will figure out where to fetch the results from.
 
-##**SQL Joins**
+See example **SqlQuery** below.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "SQL Joins"
+}
+[/block]
 Ignite supports distributed SQL joins. Moreover, if data resides in different caches, Ignite allows for cross-cache joins as well. 
 
 Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. However, if you do a join between two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are **collocated**. 
 
-##Field Queries
+See examples **SqlQuery JOIN** below.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Fields Queries"
+}
+[/block]
 Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose Ignite has a concept of `fields queries`. Also it is useful when you want to execute some aggregate query.
 
-##Cross-Cache Queries
+See example **SqlFieldsQuery** below.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Cross-Cache Queries"
+}
+[/block]
+
 You can query data from multiple caches. In this case, cache names act as schema names in regular SQL. This means all caches can be referred by cache names in quotes. The cache on which the query was created acts as the default schema and does not need to be explicitly specified.
+
+
 [block:code]
 {
   "codes": [
