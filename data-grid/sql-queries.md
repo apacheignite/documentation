@@ -100,6 +100,24 @@ Indexes and fields also could be configured with `org.apache.ignite.cache.CacheT
 }
 [/block]
 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "How SQL Queries Work"
+}
+[/block]
+There are two main ways of how query can be processed in Ignite:
+
+1. If you execute the query against `REPLICATED` cache then Ignite assumes that all data available locally and run a simple local SQL query in H2 database engine. The same will happen for `LOCAL` caches.
+
+2. If you execute the query against `PARTITIONED` cache, it work the following way: the query will be parsed and split into multiple map queries and a single reduce query. Then all the map queries are executed on all data nodes of participating caches, providing results to reducing node, which will in turn run reduce query over these intermediate results.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Using EXPLAIN"
+}
+[/block]
+Ignite supports "EXPLAIN ..." syntax in SQL queries and reading execution plans is a main way to analyze query performance in Ignite. Note that plan cursor will contain multiple rows: the last one will contain query for reducing node, others are for map nodes.
 [block:callout]
 {
   "type": "info",
