@@ -64,21 +64,60 @@ See example **Cross-Cache SqlFieldsQuery**.
   "title": "Configuring SQL Indexes by Annotations"
 }
 [/block]
-Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes(MyKey.class, MyValue.class)` method. Note that this method accepts only pairs of types, one for key class and another for value class. Primitives are passed as boxed types like `CacheConfiguration.setIndexedTypes(Long.class, MyValue.class, UUID.class, MyAnotherValue.class)` (here we have 2 key-value type pairs).
-
-In the example below we've created a simple class `Person` and annotated fields we want to  use in SQL queries with `@QuerySqlField`, fields we want to be indexed we annotated with `@QuerySqlField(index = true)` and fields we want to index as a group we annotated with `@QuerySqlField(orderedGroups={@QuerySqlField.Group(name = "age_salary_idx", order = 0)})`. 
-
-Note that it is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want the field to participate in more than one group index. Also note that annotating a field with `@QuerySqlField.Group` outside of `@QuerySqlField(orderedGroups={...})` will have no effect.
+Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method like in example below. Note that this method accepts only pairs of types, one for key class and another for value class. Primitives are passed as boxed types.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "CacheConfiguration<Object,Object> ccfg = new CacheConfiguration<>();\n\n// Here we are setting 3 key-value type pairs to be indexed.\nccfg.setIndexedTypes(\n  MyKey.class, MyValue.class,\n\tLong.class, MyOtherValue.class,\n  UUID.class, String.class\n);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+## Making fields visible for SQL
+To make fields accessible for SQL queries you have to annotate them with `@QuerySqlField`. Field `age` will not be accessible from SQL. Note that none of these fields are indexed. 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "public class Person implements Serializable {\n  /** Will be visible in SQL. */\n\t@QuerySqlField\n  private long id;\n  \n  /** Will be visible in SQL. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will NOT be visible in SQL. */\n  private int age;\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+## Single Column Indexes
+To make fields not only accessible by SQL but also indexed with a single column index you can annotate it with `@QuerySqlField(index = true)`.  
+[block:code]
+{
+  "codes": [
+    {
+      "code": "public class Person implements Serializable {\n  /** Will be indexed in ascending order. */\n\t@QuerySqlField(index = true)\n  private long id;\n  \n  /** Will be visible in SQL. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will be indexed in descending order. */\n  @QuerySqlField(index = true, descending = true)\n  private int age;\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+## Group Indexes
+To have a multi-field index to speedup queries with complex conditions, you can use `@QuerySqlField.Group` annotation. It is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want the field to participate in more than one group index. 
 
 For example of a group index in the class below we have field `age` which participates in a group index named `"age_salary_idx"` with group order 0 and descending sort order. Also in the same group index participates field `salary` with group order 3 and ascending sort order. On top of that field `salary` itself is indexed with separate index (we have `index = true` in addition to `orderedGroups` declaration). Group `order` does not have to be any particular number, it is needed just to sort fields inside this group. 
 [block:code]
 {
   "codes": [
     {
-      "code": "public class Person implements Serializable {\n  /** Person ID (indexed). */\n  @QuerySqlField(index = true)\n  private long id;\n\n  /** Organization ID (indexed). */\n  @QuerySqlField(index = true)\n  private long orgId;\n\n  /** First name (invisible for SQL). */\n  private String firstName;\n\n  /** Last name (not indexed but visible in SQL). */\n  @QuerySqlField\n  private String lastName;\n\n  /** Age (indexed in a group index with \"salary\"). */\n  @QuerySqlField(orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 0, descending = true)})\n  private int age;\n\n  /** Salary (indexed separately and in a group index with \"age\"). */\n  @QuerySqlField(index = true, orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 3)})\n  private double salary;\n  \n  ...\n}",
+      "code": "public class Person implements Serializable {\n  /** Indexed in a group index with \"salary\". */\n  @QuerySqlField(orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 0, descending = true)})\n  private int age;\n\n  /** Indexed separately and in a group index with \"age\". */\n  @QuerySqlField(index = true, orderedGroups={@QuerySqlField.Group(\n    name = \"age_salary_idx\", order = 3)})\n  private double salary;\n}",
       "language": "java"
     }
   ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "danger",
+  "body": "Note that annotating a field with `@QuerySqlField.Group` outside of `@QuerySqlField(orderedGroups={...})` will have no effect."
 }
 [/block]
 
@@ -93,7 +132,7 @@ Indexes and fields also could be configured with `org.apache.ignite.cache.CacheT
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n...\n <!-- Cache configuration. -->\n <property name=\"cacheConfiguration\">\n  <list>\n   <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n\t  <property name=\"name\" value=\"my_cache\"/>\n    <property name =\"typeMetadata\">\n     <!-- Cache types metadata. -->\n     <list>\n      <bean class=\"org.apache.ignite.cache.CacheTypeMetadata\">\n        <!-- Type to query. -->\n        <property name=\"valueType\" value=\"org.apache.ignite.examples.datagrid.store.Person\"/>\n        <!-- Fields to be queried. -->\n        <property name=\"queryFields\">\n        <map>\n         <entry key=\"id\" value=\"java.util.UUID\"/>\n         <entry key=\"orgId\" value=\"java.util.UUID\"/>\n         <entry key=\"firstName\" value=\"java.lang.String\"/>\n         <entry key=\"lastName\" value=\"java.lang.String\"/>\n         <entry key=\"resume\" value=\"java.lang.String\"/>\n         <entry key=\"salary\" value=\"double\"/>\n        </map>\n       </property>\n        <!-- Fields to index in ascending order. -->\n       <property name=\"ascendingFields\">\n        <map>\n         <entry key=\"id\" value=\"java.util.UUID\"/>\n         <entry key=\"orgId\" value=\"java.util.UUID\"/>\n         <entry key=\"salary\" value=\"double\"/>\n        </map>\n       </property>\n      </bean>\n     </list>\n...\n  </list>\n </property>\n...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n...\n <!-- Cache configuration. -->\n <property name=\"cacheConfiguration\">\n  <list>\n   <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n\t  <property name=\"name\" value=\"my_cache\"/>\n    <property name =\"typeMetadata\">\n     <!-- Cache types metadata. -->\n     <list>\n      <bean class=\"org.apache.ignite.cache.CacheTypeMetadata\">\n        <!-- Type to query. -->\n        <property name=\"valueType\" value=\"org.apache.ignite.examples.datagrid.store.Person\"/>\n        <!-- Fields to be queried. -->\n        <property name=\"queryFields\">\n        <map>\n         <entry key=\"id\" value=\"java.lang.Long\"/>\n         <entry key=\"orgId\" value=\"java.util.UUID\"/>\n         <entry key=\"firstName\" value=\"java.lang.String\"/>\n         <entry key=\"lastName\" value=\"java.lang.String\"/>\n         <entry key=\"resume\" value=\"java.lang.String\"/>\n         <entry key=\"salary\" value=\"double\"/>\n        </map>\n       </property>\n        <!-- Fields to index in ascending order. -->\n       <property name=\"ascendingFields\">\n        <map>\n         <entry key=\"id\" value=\"java.util.UUID\"/>\n         <entry key=\"orgId\" value=\"java.util.UUID\"/>\n         <entry key=\"salary\" value=\"double\"/>\n        </map>\n       </property>\n      </bean>\n     </list>\n...\n  </list>\n </property>\n...\n</bean>",
       "language": "xml"
     }
   ]
