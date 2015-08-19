@@ -11,7 +11,7 @@ Ignite supports distributed SQL joins. Moreover, if data resides in different ca
 
 Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. However, if you do a join between two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are **collocated**. 
 
-See examples **SqlQuery JOIN** below.
+See example **SqlQuery JOIN** below.
 [block:api-header]
 {
   "type": "basic",
@@ -30,7 +30,7 @@ See example **SqlFieldsQuery** below.
 
 You can query data from multiple caches. In this case, cache names act as schema names in regular SQL. This means all caches can be referred by cache names in quotes. The cache on which the query was created acts as the default schema and does not need to be explicitly specified.
 
-
+See example **Cross-Cache SqlFieldsQuery**.
 [block:code]
 {
   "codes": [
@@ -52,12 +52,18 @@ You can query data from multiple caches. In this case, cache names act as schema
     {
       "code": "// In this example, suppose Person objects are stored in a \n// cache named 'personCache' and Organization objects \n// are stored in a cache named 'orgCache'.\n\nIgniteCache<Long, Person> personCache = ignite.cache(\"personCache\");\n\n// Select with join between Person and Organization to \n// get the names of all the employees of a specific organization.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n    \"select Person.name  \"\n        + \"from Person, \\\"orgCache\\\".Organization where \"\n        + \"Person.orgId = Organization.id \"\n        + \"and Organization.name = ?\");\n\n// Execute the query and obtain the query result cursor.\ntry (QueryCursor<List<?>> cursor =  personCache.query(sql.setArgs(\"Ignite\"))) {\n    for (List<?> row : cursor)\n        System.out.println(\"Person name=\" + row);\n}",
       "language": "java",
-      "name": "Cross-Cache SqlFieldsQuery"
+      "name": null
     }
   ]
 }
 [/block]
-## Configuring SQL Indexes by Annotations
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuring SQL Indexes by Annotations"
+}
+[/block]
 Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes(MyKey.class, MyValue.class)` method. Note that this method accepts only pairs of types, one for key class and another for value class. Primitives are passed as boxed types like `CacheConfiguration.setIndexedTypes(Long.class, MyValue.class, UUID.class, MyAnotherValue.class)` (here we have 2 key-value type pairs).
 
 In the example below we've created a simple class `Person` and annotated fields we want to  use in SQL queries with `@QuerySqlField`, fields we want to be indexed we annotated with `@QuerySqlField(index = true)` and fields we want to index as a group we annotated with `@QuerySqlField(orderedGroups={@QuerySqlField.Group(name = "age_salary_idx", order = 0)})`. 
@@ -75,8 +81,14 @@ For example of a group index in the class below we have field `age` which partic
   ]
 }
 [/block]
-## Configuring SQL Indexes by CacheTypeMetadata
-Indexes and fields also could be configured with `org.apache.ignite.cache.CacheTypeMetadata` which is convenient for XML configuration with Spring. Please refer to javadoc for details, basically it is equivalent to `@QuerySqlField` annotation.
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuring SQL Indexes by CacheTypeMetadata"
+}
+[/block]
+Indexes and fields also could be configured with `org.apache.ignite.cache.CacheTypeMetadata` which is convenient for XML configuration with Spring. Please refer to javadoc for details, basically it is equivalent to using `@QuerySqlField` annotation.
 [block:code]
 {
   "codes": [
