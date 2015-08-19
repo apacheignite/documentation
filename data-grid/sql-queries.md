@@ -131,7 +131,7 @@ When developing with Ignite sometimes it is useful to check if your tables and i
 [block:api-header]
 {
   "type": "basic",
-  "title": "Choosing Indexes for Performance"
+  "title": "Choosing Indexes"
 }
 [/block]
 There are multiple things you should consider when choosing indexes for your Ignite application. 
