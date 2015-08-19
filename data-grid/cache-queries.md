@@ -57,7 +57,7 @@ Scan queries allow for querying cache in distributed form based on some user def
   "title": "SQL Queries"
 }
 [/block]
-Ignite SQL queries are covered in a separate documentation [section](sql-queries).
+Ignite SQL queries are covered in a separate section [SQL Queries](doc:sql-queries).
 [block:api-header]
 {
   "type": "basic",
