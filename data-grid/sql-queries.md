@@ -75,7 +75,7 @@ Indexes can be configured from code by using `@QuerySqlField` annotations. To te
   ]
 }
 [/block]
-## Making fields visible for SQL
+## Making Fields Visible for SQL Queries
 To make fields accessible for SQL queries you have to annotate them with `@QuerySqlField`. Field `age` will not be accessible from SQL. Note that none of these fields are indexed. 
 [block:code]
 {
@@ -88,12 +88,12 @@ To make fields accessible for SQL queries you have to annotate them with `@Query
 }
 [/block]
 ## Single Column Indexes
-To make fields not only accessible by SQL but also indexed with a single column index you can annotate it with `@QuerySqlField(index = true)`.  
+To make fields not only accessible by SQL but also speedup queries you can index field values. To create a single column index you can annotate field with `@QuerySqlField(index = true)`.  
 [block:code]
 {
   "codes": [
     {
-      "code": "public class Person implements Serializable {\n  /** Will be indexed in ascending order. */\n\t@QuerySqlField(index = true)\n  private long id;\n  \n  /** Will be visible in SQL. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will be indexed in descending order. */\n  @QuerySqlField(index = true, descending = true)\n  private int age;\n}",
+      "code": "public class Person implements Serializable {\n  /** Will be indexed in ascending order. */\n\t@QuerySqlField(index = true)\n  private long id;\n  \n  /** Will be visible in SQL, but not indexed. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will be indexed in descending order. */\n  @QuerySqlField(index = true, descending = true)\n  private int age;\n}",
       "language": "java"
     }
   ]
@@ -102,7 +102,7 @@ To make fields not only accessible by SQL but also indexed with a single column 
 ## Group Indexes
 To have a multi-field index to speedup queries with complex conditions, you can use `@QuerySqlField.Group` annotation. It is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want the field to participate in more than one group index. 
 
-For example of a group index in the class below we have field `age` which participates in a group index named `"age_salary_idx"` with group order 0 and descending sort order. Also in the same group index participates field `salary` with group order 3 and ascending sort order. On top of that field `salary` itself is indexed with separate index (we have `index = true` in addition to `orderedGroups` declaration). Group `order` does not have to be any particular number, it is needed just to sort fields inside this group. 
+For example of a group index in the class below we have field `age` which participates in a group index named `"age_salary_idx"` with group order 0 and descending sort order. Also in the same group index participates field `salary` with group order 3 and ascending sort order. On top of that field `salary` itself is indexed with single column index (we have `index = true` in addition to `orderedGroups` declaration). Group `order` does not have to be any particular number, it is needed just to sort fields inside of this group. 
 [block:code]
 {
   "codes": [
