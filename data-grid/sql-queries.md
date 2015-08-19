@@ -141,9 +141,7 @@ There are multiple things you should consider when choosing indexes for your Ign
 
 2. Indexes are just sorted data structures. If you define an index on the fields (a,b,c) , the records are sorted first on a, then b, then c.
 
-Example:
 | A | B | C |
--------------
 | 1 | 2 | 3 |
 | 1 | 4 | 2 |
 | 1 | 4 | 4 |
@@ -161,10 +159,7 @@ The following conditions will be able to use the index:
 Condition `a = ? and c = ?` is no better than `a = ?` from the index point of view.
 Obviously half-bounded ranges like `a > ?` are supported as well.
 
-
-
-
-
+3. Indexes on a single fields are no better than group indexes on multiple fields starting with the same field (index on (a) is no better than on (a,b,c)). Thus it is preferable to use group indexes.
 [block:callout]
 {
   "type": "info",
