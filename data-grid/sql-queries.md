@@ -139,7 +139,32 @@ There are multiple things you should consider when choosing indexes for your Ign
 1. Indexes are not free. They consume memory, also each index needs to be updated separately, thus your cache update performance can be lower if you have more indexes. On top of that optimizer can do more mistakes choosing wrong index to run query. 
 **It is a bad strategy to index everything!**
 
-2.
+2. Indexes are just sorted data structures. If you define an index on the fields (a,b,c) , the records are sorted first on a, then b, then c.
+
+Example:
+| A | B | C |
+-------------
+| 1 | 2 | 3 |
+| 1 | 4 | 2 |
+| 1 | 4 | 4 |
+| 2 | 3 | 5 |
+| 2 | 4 | 4 |
+| 2 | 4 | 5 |
+
+Any condition like `a = 1 and b > 3` can be viewed as a bounded range, both bounds can be quickly looked up in index in **log(N)** time.
+
+The following conditions will be able to use the index:
+- `a = ?`
+- `a = ? and b = ?`
+- `a = ? and b = ? and c = ?`
+
+Condition `a = ? and c = ?` is no better than `a = ?` from the index point of view.
+Obviously half-bounded ranges like `a > ?` are supported as well.
+
+
+
+
+
 [block:callout]
 {
   "type": "info",
