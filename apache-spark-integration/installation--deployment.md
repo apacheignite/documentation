@@ -16,7 +16,7 @@ Spark application deployment model allows dynamic jar distribution during applic
 
 There is a way to alter default Spark classpath for each launched application (this should be done on each machine of the Spark cluster, including master, worker and driver nodes).
 
-1. Locate the `$SPARK_HOME/conf/spark-env.sh` file. If this file does not exist, create it from template using `$SPARK_HOMR/conf/spark-env.sh.template`
+1. Locate the `$SPARK_HOME/conf/spark-env.sh` file. If this file does not exist, create it from template using `$SPARK_HOME/conf/spark-env.sh.template`
 2. Add the following lines to the end of the `spark-env.sh` file (uncomment the line setting `IGNITE_HOME` in case if you do not have it globally set):
 [block:code]
 {
