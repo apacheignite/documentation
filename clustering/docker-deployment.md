@@ -48,7 +48,7 @@ The configuration parameters are passed through environment variables in docker 
     "3-0": "`IGNITE_CONFIG`",
     "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
     "3-3": "`N/A`",
-    "3-4": "`https://raw.githubusercontent.com/bob/master/ignite-cfg.xml`",
+    "3-4": "`https://raw.githubusercontent.com/`\n`bob/master/ignite-cfg.xml`",
     "4-0": "`LIB_PATTERN`",
     "4-1": "If set then Ignite docker container will only copy the files which match this regex pattern.",
     "4-2": "`true`",
@@ -76,7 +76,7 @@ To run Ignite docker container from GIT repository, execute the following comman
 {
   "codes": [
     {
-      "code": "sudo docker run -it -e \\\n\"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\" \\\napacheignite/ignite-docker ",
+      "code": "sudo docker run -it -e --net=host \\\n\"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\" \\\napacheignite/ignite-docker ",
       "language": "shell"
     }
   ]
@@ -136,13 +136,13 @@ The configuration parameters are passed through environment variables in docker 
     "0-2": "`N/A`",
     "1-2": "`latest`",
     "2-2": "`COMMUNITY`",
-    "0-3": "`http://apache-mirror.rbc.ru/pub/apache/incubator/ignite/1.1.0/\napache-ignite-fabric-1.1.0-incubating-bin.zip`",
+    "0-3": "`http://apache-mirror.rbc.ru/pub/apache/incubator/ignite/1.1.0/`\n`apache-ignite-fabric-1.1.0-incubating-bin.zip`",
     "1-3": "`1.1.4`",
     "2-3": "`APACHE`",
     "3-0": "`IGNITE_CONFIG`",
     "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
     "3-2": "`N/A`",
-    "3-3": "`https://raw.githubusercontent.com/bob/master/ignite-cfg.xml\n`",
+    "3-3": "`https://raw.githubusercontent.com/`\n`bob/master/ignite-cfg.xml`",
     "4-0": "`OPTION_LIBS`",
     "4-1": "Ignite optional libs which will be included in the class path.",
     "4-2": "`ignite-log4j,\nignite-spring,\nignite-indexing`",
