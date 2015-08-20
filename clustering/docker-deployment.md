@@ -56,7 +56,7 @@ The configuration parameters are passed through environment variables in docker 
     "5-0": "`OPTION_LIBS`",
     "5-1": "Ignite optional libs which will be included in the class path.",
     "5-2": "`true`",
-    "5-3": "`ignite-log4j, \\\nignite-spring, \\\nignite-indexing`",
+    "5-3": "`ignite-log4j,` \\\n`ignite-spring,` \\\n`ignite-indexing`",
     "5-4": "`ignite-aws,ignite-aop`",
     "4-4": "`libs/.*`"
   },
