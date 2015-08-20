@@ -43,7 +43,7 @@ The configuration parameters are passed through environment variables in docker 
     "2-3": "`mvn clean package`",
     "0-4": "`https://github.com/bob/ignite-pojo`",
     "1-4": "`sprint-1`",
-    "2-4": "`mvn clean package -DskipTests=true`",
+    "2-4": "`mvn clean package \\\n -DskipTests=true`",
     "3-2": "`true`",
     "3-0": "`IGNITE_CONFIG`",
     "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
@@ -56,7 +56,7 @@ The configuration parameters are passed through environment variables in docker 
     "5-0": "`OPTION_LIBS`",
     "5-1": "Ignite optional libs which will be included in the class path.",
     "5-2": "`true`",
-    "5-3": "`ignite-log4j,ignite-spring,ignite-indexing`",
+    "5-3": "`ignite-log4j, \\\nignite-spring, \\\nignite-indexing`",
     "5-4": "`ignite-aws,ignite-aop`",
     "4-4": "`libs/.*`"
   },
@@ -76,7 +76,7 @@ To run Ignite docker container from GIT repository, execute the following comman
 {
   "codes": [
     {
-      "code": "sudo docker run -it -e\n\"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\"\napacheignite/ignite-docker",
+      "code": "sudo docker run -it -e \\\n\"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\" \\\napacheignite/ignite-docker ",
       "language": "shell"
     }
   ]
