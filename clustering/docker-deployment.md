@@ -52,7 +52,7 @@ The configuration parameters are passed through environment variables in docker 
     "4-0": "`LIB_PATTERN`",
     "4-1": "If set then Ignite docker container will only copy the files which match this regex pattern.",
     "4-2": "`true`",
-    "4-3": "`copy all jar files from target folder`",
+    "4-3": "`copy all jar files`\n`from target folder`",
     "5-0": "`OPTION_LIBS`",
     "5-1": "Ignite optional libs which will be included in the class path.",
     "5-2": "`true`",
