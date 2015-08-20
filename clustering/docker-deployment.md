@@ -145,7 +145,7 @@ The configuration parameters are passed through environment variables in docker 
     "3-3": "`https://raw.githubusercontent.com/bob/master/ignite-cfg.xml\n`",
     "4-0": "`OPTION_LIBS`",
     "4-1": "Ignite optional libs which will be included in the class path.",
-    "4-2": "`ignite-log4j,ignite-spring,ignite-indexing`",
+    "4-2": "`ignite-log4j,\nignite-spring,\nignite-indexing`",
     "4-3": "`ignite-aws,ignite-aop`"
   },
   "cols": 4,
