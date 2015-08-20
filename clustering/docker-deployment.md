@@ -43,7 +43,7 @@ The configuration parameters are passed through environment variables in docker 
     "2-3": "`mvn clean package`",
     "0-4": "`https://github.com/bob/ignite-pojo`",
     "1-4": "`sprint-1`",
-    "2-4": "`mvn clean package \\\n -DskipTests=true`",
+    "2-4": "`mvn clean package` \\\n`-DskipTests=true`",
     "3-2": "`true`",
     "3-0": "`IGNITE_CONFIG`",
     "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
