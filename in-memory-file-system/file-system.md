@@ -41,7 +41,7 @@ Shared memory endpoint is the recommended approach if the code executing file sy
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.FileSystemConfiguration\">\n  ...\n  <property name=\"ipcEndpointConfiguration\">\n    <bean class=\"org.apache.ignite.igfs.IgfsIpcEndpointConfiguration\">\n      <property name=\"type\" value=\"SHMEM\"/>\n      <property name=\"port\" value=\"12345\"/>\n    </map>\n  </property>\n  ....\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.FileSystemConfiguration\">\n  ...\n  <property name=\"ipcEndpointConfiguration\">\n    <bean class=\"org.apache.ignite.igfs.IgfsIpcEndpointConfiguration\">\n      <property name=\"type\" value=\"SHMEM\"/>\n      <property name=\"port\" value=\"12345\"/>\n    </bean>\n  </property>\n  ....\n</bean>",
       "language": "xml"
     },
     {
@@ -56,7 +56,7 @@ TCP endpoint should be used when Ignite node is either located on another machin
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.FileSystemConfiguration\">\n  ...\n  <property name=\"ipcEndpointConfiguration\">\n    <bean class=\"org.apache.ignite.igfs.IgfsIpcEndpointConfiguration\">\n      <property name=\"type\" value=\"TCP\"/>\n      <property name=\"host\" value=\"myHost\"/>\n      <property name=\"port\" value=\"12345\"/>\n    </map>\n  </property>\n  ....\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.FileSystemConfiguration\">\n  ...\n  <property name=\"ipcEndpointConfiguration\">\n    <bean class=\"org.apache.ignite.igfs.IgfsIpcEndpointConfiguration\">\n      <property name=\"type\" value=\"TCP\"/>\n      <property name=\"host\" value=\"myHost\"/>\n      <property name=\"port\" value=\"12345\"/>\n    </bean>\n  </property>\n  ....\n</bean>",
       "language": "xml"
     },
     {
