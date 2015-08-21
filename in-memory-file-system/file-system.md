@@ -98,7 +98,7 @@ To run Hadoop job using Ignite job tracker three prerequisites must be satisfied
 
 1) `IGNITE_HOME` environment variable must be set and point to the root of Ignite installation directory.
 
-2) Hadoop must have Ignite JARS `${IGNITE_HOME}\libs\ignite-core-[version].jar` and `${IGNITE_HOME}\libs\hadoop\ignite-hadoop-[version].ja`" in CLASSPATH. 
+2) Hadoop must have Ignite JARS `${IGNITE_HOME}\libs\ignite-core-[version].jar` and `${IGNITE_HOME}\libs\hadoop\ignite-hadoop-[version].jar` in CLASSPATH. 
 
 This can be achieved in several ways.
   * Add these JARs to `HADOOP_CLASSPATH` environment variable.
