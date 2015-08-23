@@ -22,7 +22,7 @@ The embedded node can be started by `SpringCacheManager` itself. In this case yo
 {
   "codes": [
     {
-      "code": "<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xmlns:cache=\"http://www.springframework.org/schema/cache\"\n       xsi:schemaLocation=\"\n         http://www.springframework.org/schema/beans\n         http://www.springframework.org/schema/beans/spring-beans.xsd\n         http://www.springframework.org/schema/cache\n         http://www.springframework.org/schema/cache/spring-cache.xsd\">\n    <-- Provide configuration file path. -->\n    <bean id=\"cacheManager\" class=\"org.apache.ignite.cache.spring.SpringCacheManager\">\n        <property name=\"configurationPath\" value=\"examples/config/spring-cache.xml\"/>\n    </bean>\n\n    <-- Enable annotation-driven caching. -->\n    <cache:annotation-driven/>\n</beans>",
+      "code": "<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xmlns:cache=\"http://www.springframework.org/schema/cache\"\n       xsi:schemaLocation=\"\n         http://www.springframework.org/schema/beans\n         http://www.springframework.org/schema/beans/spring-beans.xsd\n         http://www.springframework.org/schema/cache\n         http://www.springframework.org/schema/cache/spring-cache.xsd\">\n    <!-- Provide configuration file path. -->\n    <bean id=\"cacheManager\" class=\"org.apache.ignite.cache.spring.SpringCacheManager\">\n        <property name=\"configurationPath\" value=\"examples/config/spring-cache.xml\"/>\n    </bean>\n\n    <!-- Enable annotation-driven caching. -->\n    <cache:annotation-driven/>\n</beans>",
       "language": "xml",
       "name": "Configuration path"
     },
@@ -39,7 +39,7 @@ It's possible that you already have an Ignite node running when the cache manage
 {
   "codes": [
     {
-      "code": "<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xmlns:cache=\"http://www.springframework.org/schema/cache\"\n       xsi:schemaLocation=\"\n         http://www.springframework.org/schema/beans\n         http://www.springframework.org/schema/beans/spring-beans.xsd\n         http://www.springframework.org/schema/cache\n         http://www.springframework.org/schema/cache/spring-cache.xsd\">\n    <-- Provide grid name. -->\n    <bean id=\"cacheManager\" class=\"org.apache.ignite.cache.spring.SpringCacheManager\">\n        <property name=\"gridName\" value=\"myGrid\"/>\n    </bean>\n\n    <-- Enable annotation-driven caching. -->\n    <cache:annotation-driven/>\n</beans>",
+      "code": "<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xmlns:cache=\"http://www.springframework.org/schema/cache\"\n       xsi:schemaLocation=\"\n         http://www.springframework.org/schema/beans\n         http://www.springframework.org/schema/beans/spring-beans.xsd\n         http://www.springframework.org/schema/cache\n         http://www.springframework.org/schema/cache/spring-cache.xsd\">\n    <!-- Provide grid name. -->\n    <bean id=\"cacheManager\" class=\"org.apache.ignite.cache.spring.SpringCacheManager\">\n        <property name=\"gridName\" value=\"myGrid\"/>\n    </bean>\n\n    <!-- Enable annotation-driven caching. -->\n    <cache:annotation-driven/>\n</beans>",
       "language": "xml",
       "name": "Using pre-started Ignite instance"
     }
@@ -101,7 +101,7 @@ Usually you would use caching for heavy operations, like database access. For ex
 {
   "codes": [
     {
-      "code": "private JdbcTemplate jdbc;\n\n@Cacheable(\"averageSalary\")\npublic long averageSalary(int organizationId) {\n    String sql =\n        \"SELECT AVG(e.salary) \" +\n        \"FROM Employee e, Organization o \" +\n        \"WHERE e.organizationId = o.id \" +\n        \"AND o.id = ?\");\n\n    return jdbc.queryForObject(sql, Long.class, organizationId);\n}",
+      "code": "private JdbcTemplate jdbc;\n\n@Cacheable(\"averageSalary\")\npublic long averageSalary(int organizationId) {\n    String sql =\n        \"SELECT AVG(e.salary) \" +\n        \"FROM Employee e \" +\n        \"WHERE e.organizationId = ?\";\n\n    return jdbc.queryForObject(sql, Long.class, organizationId);\n}",
       "language": "java"
     }
   ]
