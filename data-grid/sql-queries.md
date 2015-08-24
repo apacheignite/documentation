@@ -214,8 +214,13 @@ To improve performance of SQL queries with off-heap enabled, you can try to incr
 There are multiple things you should consider when choosing indexes for your Ignite application. 
 
 1. Indexes are not free. They consume memory, also each index needs to be updated separately, thus your cache update performance can be lower if you have more indexes. On top of that optimizer can do more mistakes choosing wrong index to run query. 
-**It is a bad strategy to index everything!**
-
+[block:callout]
+{
+  "type": "danger",
+  "title": "It is a bad strategy to index everything!",
+  "body": ""
+}
+[/block]
 2. Indexes are just sorted data structures. If you define an index on the fields (a,b,c) , the records are sorted first on a, then b, then c.
 [block:callout]
 {
