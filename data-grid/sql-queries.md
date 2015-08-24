@@ -205,6 +205,17 @@ Ignite supports placing index data to off-heap memory. This makes sense for very
 SQL Indexes will reside on heap when property `CacheConfiguration.setOffHeapMaxMemory` is set to `-1`, otherwise off-heap indexes are always used. Note that it is the only property to enable or disable off-heap indexing, while for example  `CacheConfiguration.setMemoryMode` does not have any effect on indexing.
 
 To improve performance of SQL queries with off-heap enabled, you can try to increase value of property `CacheConfiguration.setSqlOnheapRowCacheSize` which can be low by default (10 000).
+[block:code]
+{
+  "codes": [
+    {
+      "code": "CacheConfiguration<Object, Object> ccfg = new CacheConfiguration<>();\n\n// Set unlimited off-heap memory for cache and enable off-heap indexes.\nccfg.setOffHeapMaxMemory(0); \n\n// Cache entries will be placed on heap and can be evited to off-heap.\nccfg.setMemoryMode(ONHEAP_TIERED);\nccfg.setEvictionPolicy(new RandomEvictionPolicy(100_000));\n\n// Increase size of SQL on-heap row cache for off-heap indexes.\nccfg.setSqlOnheapRowCacheSize(100_000);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
