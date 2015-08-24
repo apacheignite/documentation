@@ -32,6 +32,13 @@ Ignite allows you to control how many instances of your service should be deploy
 }
 [/block]
 
+[block:callout]
+{
+  "type": "warning",
+  "body": "Note that it's required that all nodes have service classes deployed locally, otherwise Service Grid will not be fully-functional. Peer-deployment is not supported for services."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
