@@ -213,7 +213,7 @@ To improve performance of SQL queries with off-heap enabled, you can try to incr
 [/block]
 There are multiple things you should consider when choosing indexes for your Ignite application. 
 
-1. Indexes are not free. They consume memory, also each index needs to be updated separately, thus your cache update performance can be lower if you have more indexes. On top of that optimizer can do more mistakes choosing wrong index to run query. 
+- Indexes are not free. They consume memory, also each index needs to be updated separately, thus your cache update performance can be lower if you have more indexes. On top of that optimizer can do more mistakes choosing wrong index to run query. 
 [block:callout]
 {
   "type": "danger",
@@ -221,7 +221,7 @@ There are multiple things you should consider when choosing indexes for your Ign
   "body": ""
 }
 [/block]
-2. Indexes are just sorted data structures. If you define an index on the fields (a,b,c) , the records are sorted first on a, then b, then c.
+- Indexes are just sorted data structures. If you define an index on the fields (a,b,c) , the records are sorted first on a, then b, then c.
 [block:callout]
 {
   "type": "info",
@@ -229,7 +229,7 @@ There are multiple things you should consider when choosing indexes for your Ign
   "title": "Example of Sorted Index"
 }
 [/block]
-3. Indexes on a single fields are no better than group indexes on multiple fields starting with the same field (index on (a) is no better than (a,b,c)). Thus it is preferable to use group indexes.
+- Indexes on a single fields are no better than group indexes on multiple fields starting with the same field (index on (a) is no better than (a,b,c)). Thus it is preferable to use group indexes.
 [block:api-header]
 {
   "type": "basic",
