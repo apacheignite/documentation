@@ -176,6 +176,24 @@ http://www.h2database.com/html/performance.html#explain_plan
 }
 [/block]
 When developing with Ignite sometimes it is useful to check if your tables and indexes look  correctly or run some local queries against embedded in node H2 database. For that purpose Ignite has an ability to start H2 Console. To do that you can start a local node with `IGNITE_H2_DEBUG_CONSOLE` system property or environment variable set to `true`. The console will be opened in your browser. Probably you will need to click `Refresh` button on the Console because it can be opened before database objects initialized. 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://www.filepicker.io/api/file/X2drTdAyQBiOqjPYpbDg",
+        "Screen Shot 2015-08-24 at 7.06.36 PM.png",
+        "1394",
+        "1018",
+        "#945642",
+        ""
+      ],
+      "caption": ""
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
