@@ -31,7 +31,7 @@ Apache Ignite was officially tested on:
 }
 [/block]
 Here is the quick summary on installation of Apache Ignite:
-  * Download Apache Ignite as ZIP archive from https://ignite.incubator.apache.org/
+  * Download Apache Ignite as ZIP archive from https://ignite.apache.org/
   * Unzip ZIP archive into the installation folder in your system
   * Set `IGNITE_HOME` environment variable to point to the installation folder and make sure there is no trailing `/` in the path (this step is optional)
 
