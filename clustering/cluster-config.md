@@ -124,9 +124,9 @@ You can have your database be a common shared storage of initial IP addresses. I
 [/block]
 Failure detection timeout is used to determine how long a cluster node should wait before considering a remote connection with other node failed. This timeout is the easiest way to tune discovery SPI's failure detection feature depending on the network and hardware conditions of your cluster.
 
-The timeout automatically controls such configuration parameters of 'TcpDiscoverySpi' as socket timeout, message acknowledgment timeout and others. If any of these parameters is set explicitly, then the failure timeout setting will be ignored.
+The timeout automatically controls such configuration parameters of `TcpDiscoverySpi` as socket timeout, message acknowledgment timeout and others. If any of these parameters is set explicitly, then the failure timeout setting will be ignored.
 
-Failure detection timeout is configured with 'IgniteConfiguration.setFailureDetectionTimeout(long failureDetectionTimeout)' method. Default value, that is equal to 10 seconds, is chosen in a way to make it possible for discovery SPI to work reliably on most of hardware and virtual deployments, but this has made failure detection time worse. However, for stable low-latency networks the parameter may be set to ~200 milliseconds in order to detect and react on failures quicker.       
+Failure detection timeout is configured with `IgniteConfiguration.setFailureDetectionTimeout(long failureDetectionTimeout)` method. Default value, that is equal to 10 seconds, is chosen in a way to make it possible for discovery SPI to work reliably on most of hardware and virtual deployments, but this has made failure detection time worse. However, for stable low-latency networks the parameter may be set to ~200 milliseconds in order to detect and react on failures quicker.       
 [block:api-header]
 {
   "type": "basic",
