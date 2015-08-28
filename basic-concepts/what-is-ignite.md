@@ -29,3 +29,4 @@ You can view Ignite as a collection of independent, well-integrated, in-memory c
   * [Distributed Messaging](doc:messaging) 
   * [Distributed Events](doc:events) 
   * [Hadoop Accelerator](doc:hadoop-accelerator)
+  * [Spark Shared RDDs](doc:shared-rdd)
