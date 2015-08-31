@@ -130,6 +130,17 @@ To pull the Ignite docker container use the following command:
   ]
 }
 [/block]
+To run Ignite docker container using `docker run`:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker run -it --net=host \n-e \"IGNITE_VERSION=$IGNITE_VERSION\" \n[-e \"IGNITE_CONFIG=$IGNITE_CONFIG\"]\n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n...\napacheignite/ignite-docker ",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 The configuration parameters are passed through environment variables in docker container. The following configuration parameters are available:
 [block:parameters]
 {
@@ -175,7 +186,7 @@ To run Ignite docker container with bare Ignite node, use the following command:
 {
   "codes": [
     {
-      "code": "sudo docker run -it -e --net=host \"IGNITE_VERSION=1.1.0\" apacheignite/ignite-docker",
+      "code": "sudo docker run -it --net=host -e \"IGNITE_VERSION=1.1.0\" apacheignite/ignite-docker",
       "language": "shell"
     }
   ]
