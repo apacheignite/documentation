@@ -20,6 +20,17 @@ To pull the Ignite docker container use the following command:
   ]
 }
 [/block]
+To run Ignite docker container using `docker run`:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=$GIT_REPO\" \n[-e \"GIT_BRANCH=$GIT_BRANCH\"]\n[-e \"BUILD_CMD\"]\n...\napacheignite/ignite-docker ",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 The configuration parameters are passed through environment variables in docker container. The following configuration parameters are available:
 [block:parameters]
 {
@@ -76,7 +87,7 @@ To run Ignite docker container from GIT repository, execute the following comman
 {
   "codes": [
     {
-      "code": "sudo docker run -it -e --net=host \\\n\"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\" \\\napacheignite/ignite-docker ",
+      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\" \napacheignite/ignite-docker ",
       "language": "shell"
     }
   ]
