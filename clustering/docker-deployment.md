@@ -25,7 +25,7 @@ To run Ignite docker container using `docker run`:
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=$GIT_REPO\" \n[-e \"GIT_BRANCH=$GIT_BRANCH\"]\n[-e \"BUILD_CMD\"]\n...\napacheignite/ignite-docker ",
+      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=$GIT_REPO\" \n[-e \"GIT_BRANCH=$GIT_BRANCH\"]\n[-e \"BUILD_CMD=$BUILD_CMD\"]\n...\napacheignite/ignite-docker ",
       "language": "shell"
     }
   ]
