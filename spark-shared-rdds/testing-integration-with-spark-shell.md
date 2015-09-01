@@ -82,8 +82,17 @@ Now, after you have your cluster up and running, you can run `spark-shell` and c
 [/block]
 You should see Spark shell started up. 
 
-Note that if you are planning to use spring configuration loading, you will need to add the `ignite-spring` dependency as well.
-
+Note that if you are planning to use spring configuration loading, you will need to add the `ignite-spring` dependency as well:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "./bin/spark-shell \n\t--packages org.apache.ignite:ignite-spark:1.3.0,org.apache.ignite:ignite-spring:1.3.0\n  --master spark://master_host:master_port\n  --repositories http://www.gridgainsystems.com/nexus/content/repositories/external",
+      "language": "text"
+    }
+  ]
+}
+[/block]
 2. Let's create an instance of Ignite context using default configuration:
 [block:code]
 {
