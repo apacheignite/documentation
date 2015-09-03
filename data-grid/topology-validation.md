@@ -9,7 +9,7 @@ In case topology is not valid for specific cache all update operations on this c
 {
   "codes": [
     {
-      "code": "...\nfor (CacheConfiguration cCfg : iCfg.getCacheConfiguration()) {\n    if (cCfg.getName() != null) {\n        if (cCfg.getName().equals(CACHE_NAME_1))\n            cCfg.setTopologyValidator(new TopologyValidator() {\n                @Override public boolean validate(Collection<ClusterNode> nodes) {\n                    return nodes.size() == 2;\n                }\n                    });\n        else if (cCfg.getName().equals(CACHE_NAME_2))\n            cCfg.setTopologyValidator(new TopologyValidator() {\n                @Override public boolean validate(Collection<ClusterNode> nodes) {\n                    return nodes.size() >= 2;\n                }\n            });\n    }\n}\n...",
+      "code": "...\nfor (CacheConfiguration cCfg : iCfg.getCacheConfiguration()) {\n    if (cCfg.getName() != null) {\n        if (cCfg.getName().equals(CACHE_NAME_1))\n            cCfg.setTopologyValidator(new TopologyValidator() {\n                @Override public boolean validate(Collection<ClusterNode> nodes) {\n                    return nodes.size() == 2;\n                }\n            });\n        else if (cCfg.getName().equals(CACHE_NAME_2))\n            cCfg.setTopologyValidator(new TopologyValidator() {\n                @Override public boolean validate(Collection<ClusterNode> nodes) {\n                    return nodes.size() >= 2;\n                }\n            });\n    }\n}\n...",
       "language": "java",
       "name": "Setup example"
     }
