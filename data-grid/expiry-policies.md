@@ -34,7 +34,7 @@ Comparision of predefined implementations:
   "rows": 5
 }
 [/block]
-Custom `ExpiryPolicy` also allowed.
+Custom `ExpiryPolicy` implementations also allowed.
 
 Expiry Policy can be setup at `CacheConfiguration`. This policy will be used for all entries inside cache.
 [block:code]
