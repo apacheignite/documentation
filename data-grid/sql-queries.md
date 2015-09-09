@@ -89,12 +89,24 @@ To make fields accessible for SQL queries you have to annotate them with `@Query
 [/block]
 ## Single Column Indexes
 To make fields not only accessible by SQL but also speedup queries you can index field values. To create a single column index you can annotate field with `@QuerySqlField(index = true)`.  
+[block:callout]
+{
+  "type": "warning",
+  "title": "Using annotations in Scala classes.",
+  "body": "Note that in Scala `@QuerySqlField` annotation must be accompanied by the Scala `@field` annotation in order for a field to be visible for Ignite. Alternatively, you can use `@ScalarCacheQuerySqlField` from `ignite-scalar` module which is just a type alias for the `@(QuerySqlField @field)` annotation."
+}
+[/block]
+
 [block:code]
 {
   "codes": [
     {
       "code": "public class Person implements Serializable {\n  /** Will be indexed in ascending order. */\n\t@QuerySqlField(index = true)\n  private long id;\n  \n  /** Will be visible in SQL, but not indexed. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will be indexed in descending order. */\n  @QuerySqlField(index = true, descending = true)\n  private int age;\n}",
       "language": "java"
+    },
+    {
+      "code": "case class Person (\n  /** Will be indexed in ascending order. */\n  @(QuerySqlField @field)(index = true) id: Long,\n  /** Will be visible in SQL, but not indexed. */\n  @(QuerySqlField @field) name: String,\n  /** Will be indexed in descending order. */\n  @(QuerySqlField @field)(index = true, descending = true) age: Int\n) extends Serializable {\n}",
+      "language": "scala"
     }
   ]
 }
