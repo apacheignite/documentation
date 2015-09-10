@@ -1,7 +1,6 @@
 Expiry Policy specifies the amount of time that must pass before a cache entry is considered expired. Time can be counted from creation, last access or modification time.
 
-Expiry Policy can be setup using one of predefined implementations of `ExpiryPolicy`.
-Comparision of predefined implementations:
+Expiry Policy can be setup using any of the predefined implementations of `ExpiryPolicy`:
 [block:parameters]
 {
   "data": {
@@ -34,9 +33,9 @@ Comparision of predefined implementations:
   "rows": 5
 }
 [/block]
-Custom `ExpiryPolicy` implementations also allowed.
+Custom `ExpiryPolicy` implementations are also allowed.
 
-Expiry Policy can be setup at `CacheConfiguration`. This policy will be used for all entries inside cache.
+Expiry Policy can be setup in `CacheConfiguration`. This policy will be used for all entries inside cache.
 [block:code]
 {
   "codes": [
@@ -47,15 +46,15 @@ Expiry Policy can be setup at `CacheConfiguration`. This policy will be used for
   ]
 }
 [/block]
-Also, it is possible to change or set Expiry Policy for some operations on cache. 
+Also, it is possible to change or set Expiry Policy for individual operations on cache. 
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Object, Object> c = cache.withExpiryPolicy(\n\t\tnew CreatedExpiryPolicy(new Duration(TimeUnit.SECONDS, 5)));",
+      "code": "IgniteCache<Object, Object> cache = cache.withExpiryPolicy(\n\t\tnew CreatedExpiryPolicy(new Duration(TimeUnit.SECONDS, 5)));",
       "language": "java"
     }
   ]
 }
 [/block]
-This policy will be used for each operation invoked on the returned cache.
+This policy will be used for each operation invoked on the returned cache instance.
