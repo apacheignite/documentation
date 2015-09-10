@@ -92,7 +92,7 @@ To make fields not only accessible by SQL but also speedup queries you can index
 [block:callout]
 {
   "type": "warning",
-  "title": "Scala Annotations",
+  "title": "Scala Field Annotations",
   "body": "Note that in Scala `@QuerySqlField` annotation must be accompanied by the Scala `@field` annotation in order for a field to be visible for Ignite, like so:  `@(QuerySqlField @field)`. \n\nAlternatively, you can use `@ScalarCacheQuerySqlField` from `ignite-scalar` module which is just a type alias for the `@field` annotation."
 }
 [/block]
