@@ -87,6 +87,14 @@ To make fields accessible for SQL queries you have to annotate them with `@Query
   ]
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Scala Annotations",
+  "body": "In Scala classes, the `@QuerySqlField` annotation must be accompanied by the `@field` annotation in order for a field to be visible for Ignite, like so:  `@(QuerySqlField @field)`. \n\nAlternatively, you can also use the `@ScalarCacheQuerySqlField` annotation from the `ignite-scalar` module which is just a type alias for the `@field` annotation."
+}
+[/block]
 ## Single Column Indexes
 To make fields not only accessible by SQL but also speedup queries you can index field values. To create a single column index you can annotate field with `@QuerySqlField(index = true)`.  
 [block:code]
@@ -101,14 +109,6 @@ To make fields not only accessible by SQL but also speedup queries you can index
       "language": "scala"
     }
   ]
-}
-[/block]
-
-[block:callout]
-{
-  "type": "info",
-  "title": "Scala Field Annotations",
-  "body": "In Scala classes, the `@QuerySqlField` annotation must be accompanied by the `@field` annotation in order for a field to be visible for Ignite, like so:  `@(QuerySqlField @field)`. \n\n\nAlternatively, you can also use the `@ScalarCacheQuerySqlField` annotation from the `ignite-scalar` module which is just a type alias for the `@field` annotation."
 }
 [/block]
 ## Group Indexes
