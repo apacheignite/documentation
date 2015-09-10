@@ -116,6 +116,14 @@ To make fields not only accessible by SQL but also speedup queries you can index
   ]
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Scala Annotations",
+  "body": "In Scala classes, the indexed `@QuerySqlField` annotation should look like so: `@(QuerySqlField @field)(index = true)`."
+}
+[/block]
 ## Group Indexes
 To have a multi-field index to speedup queries with complex conditions, you can use `@QuerySqlField.Group` annotation. It is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want the field to participate in more than one group index. 
 
