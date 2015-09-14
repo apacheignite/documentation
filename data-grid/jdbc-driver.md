@@ -87,13 +87,8 @@ JDBC connection URL has the following pattern:
   * Hostname is required.
   * If port is not defined, `11211` is used (default for Ignite client).
   * Leave <cache_name> empty if you are connecting to a default cache. Note that the cache name is case sensitive.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Configuration"
-}
-[/block]
-Internally, JDBC driver is based on Ignite Java client. Therefore, all client configuration properties can be applied to JDBC connection. Client configuration properties can be defined in `Properties` object passed to `DriverManager.getConnection(String, Properties)` method. Possible properties are: 
+
+Since this JDBC connection implementation is based on Ignite Java client all client configuration properties can be applied to connection. Client configuration properties can be defined in `Properties` object passed to `DriverManager.getConnection(String, Properties)` method. Possible properties are: 
 [block:parameters]
 {
   "data": {
@@ -171,8 +166,14 @@ If you have instances of this class in cache, you can query individual fields (n
 {
   "codes": [
     {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is empty, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Query names of all people.\nResultSet rs = conn.createStatement().executeQuery(\"select name from Person\");\n \nwhile (rs.next()) {\n    String name = rs.getString(1);\n    ...\n}\n \n// Query people with specific age using prepared statement.\nPreparedStatement stmt = conn.prepareStatement(\"select name, age from Person where age = ?\");\n \nstmt.setInt(1, 30);\n \nResultSet rs = stmt.executeQuery();\n \nwhile (rs.next()) {\n    String name = rs.getString(\"name\");\n    int age = rs.getInt(\"age\");\n    ...\n}",
+      "language": "java",
+      "name": "Client node based connection"
+    },
+    {
       "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is empty, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite://localhost:11211/\");\n \n// Query names of all people.\nResultSet rs = conn.createStatement().executeQuery(\"select name from Person\");\n \nwhile (rs.next()) {\n    String name = rs.getString(1);\n    ...\n}\n \n// Query people with specific age using prepared statement.\nPreparedStatement stmt = conn.prepareStatement(\"select name, age from Person where age = ?\");\n \nstmt.setInt(1, 30);\n \nResultSet rs = stmt.executeQuery();\n \nwhile (rs.next()) {\n    String name = rs.getString(\"name\");\n    int age = rs.getInt(\"age\");\n    ...\n}",
-      "language": "java"
+      "language": "java",
+      "name": "Java client based connection"
     }
   ]
 }
