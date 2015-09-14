@@ -5,21 +5,9 @@ Ignite is shipped with JDBC driver that allows you to retrieve distributed data 
   "title": "JDBC Connection"
 }
 [/block]
-In Ignite, JDBC connection URL has the following pattern:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "jdbc:ignite://<hostname>:<port>/<cache_name>",
-      "language": "xml",
-      "name": "XML"
-    }
-  ]
-}
-[/block]
-  * Hostname is required.
-  * If port is not defined, `11211` is used (default for Ignite client).
-  * Leave <cache_name> empty if you are connecting to a default cache. Note that the cache name is case sensitive.
+JDBC driver provides two different types of connection: Ignite Java client based connection and Ignite client node based connection. Java client based connection is deprecated and left only for compatibility with previous version, so you should prefer using of Ignite client node based mode. It is also preferable because it has much better performance.
+
+The type of returned connection depends on provided JDBC connection URL. Both URL types have optional parameter that specifies name of cache for connection.
 [block:callout]
 {
   "type": "info",
@@ -44,6 +32,70 @@ In Ignite, JDBC connection URL has the following pattern:
 }
 [/block]
 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Ignite client node based JDBC connection"
+}
+[/block]
+JDBC connection URL has the following pattern:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "jdbc:ignite:cfg://[<params>@]<config_url>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+ *
+ * {@code <config_url>} represents any valid URL which points to Ignite configuration file. It is required.<br>
+ *
+ * {@code <params>} are optional and have the following format: {@code param1=value1:param2=value2:...:paramN=valueN}.<br>
+ *
+ * The following parameters are supported:
+ * <ul>
+ *     <li>{@code cache} - cache name. If it is not defined than default cache will be used.</li>
+ *     <li>
+ *         {@code nodeId} - ID of node where query will be executed.
+ *         It can be useful for querying through local caches.
+ *         If node with provided ID doesn't exist, exception is thrown.
+ *     </li>
+ *     <li>
+ *         {@code local} - query will be executed only on local node. Use this parameter with {@code nodeId} parameter.
+ *         Default value is {@code false}.
+ *     </li>
+ *     <li>
+ *          {@code collocated} - flag that used for optimization purposes. Whenever Ignite executes
+ *          a distributed query, it sends sub-queries to individual cluster members.
+ *          If you know in advance that the elements of your query selection are collocated
+ *          together on the same node, usually based on some <b>affinity-key</b>, Ignite
+ *          can make significant performance and network optimizations.
+ *          Default value is {@code false}.
+ *     </li>
+ * </ul>
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Ignite Java client based JDBC connection"
+}
+[/block]
+In Ignite, JDBC connection URL has the following pattern:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "jdbc:ignite://<hostname>:<port>/<cache_name>",
+      "language": "xml",
+      "name": "XML"
+    }
+  ]
+}
+[/block]
+  * Hostname is required.
+  * If port is not defined, `11211` is used (default for Ignite client).
+  * Leave <cache_name> empty if you are connecting to a default cache. Note that the cache name is case sensitive.
 [block:api-header]
 {
   "type": "basic",
