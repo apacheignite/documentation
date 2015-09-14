@@ -49,7 +49,7 @@ JDBC connection URL has the following pattern:
   ]
 }
 [/block]
-* `<config_url>` is required and represents any valid URL which points to Ignite configuration file.
+* `<config_url>` is required and represents any valid URL which points to Ignite configuration file. See [Clients and Servers](doc:clients-vs-servers)] section for details.
 * `<params>` is optional part and have the following format:
 [block:code]
 {
@@ -72,7 +72,7 @@ The following parameters are supported:
   "title": "Ignite Java client based JDBC connection"
 }
 [/block]
-In Ignite, JDBC connection URL has the following pattern:
+JDBC connection URL has the following pattern:
 [block:code]
 {
   "codes": [
