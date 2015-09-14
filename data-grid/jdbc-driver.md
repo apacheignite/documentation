@@ -49,32 +49,23 @@ JDBC connection URL has the following pattern:
   ]
 }
 [/block]
- *
- * {@code <config_url>} represents any valid URL which points to Ignite configuration file. It is required.<br>
- *
- * {@code <params>} are optional and have the following format: {@code param1=value1:param2=value2:...:paramN=valueN}.<br>
- *
- * The following parameters are supported:
- * <ul>
- *     <li>{@code cache} - cache name. If it is not defined than default cache will be used.</li>
- *     <li>
- *         {@code nodeId} - ID of node where query will be executed.
- *         It can be useful for querying through local caches.
- *         If node with provided ID doesn't exist, exception is thrown.
- *     </li>
- *     <li>
- *         {@code local} - query will be executed only on local node. Use this parameter with {@code nodeId} parameter.
- *         Default value is {@code false}.
- *     </li>
- *     <li>
- *          {@code collocated} - flag that used for optimization purposes. Whenever Ignite executes
- *          a distributed query, it sends sub-queries to individual cluster members.
- *          If you know in advance that the elements of your query selection are collocated
- *          together on the same node, usually based on some <b>affinity-key</b>, Ignite
- *          can make significant performance and network optimizations.
- *          Default value is {@code false}.
- *     </li>
- * </ul>
+* `<config_url>` is required and represents any valid URL which points to Ignite configuration file.
+* `<params>` is optional part and have the following format:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "param1=value1:param2=value2:...:paramN=valueN",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+The following parameters are supported:
+* `cache` - cache name. If it is not defined than default cache will be used. Note that the cache name is case sensitive.
+* `nodeId` - ID of node where query will be executed. It can be useful for querying through local caches.
+* `local` - query will be executed only on local node. Use this parameter with `nodeId` parameter in order to limit data set by specified node. Default value is `false`.
+* `collocated` - flag that used for optimization purposes. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node, Ignite can make significant performance and network optimizations. Default value is `false`.
 [block:api-header]
 {
   "type": "basic",
