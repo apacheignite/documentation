@@ -104,3 +104,22 @@ If you have instances of this class in cache, you can query individual fields (n
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Backward compatibility"
+}
+[/block]
+For previous versions of Ignite (less than 1.4) JDBC connection URL has the following pattern:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "jdbc:ignite://<hostname>:<port>/<cache_name>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+See corresponding [documentation](https://apacheignite.readme.io/v1.3/docs/jdbc-driver) for details.
