@@ -122,4 +122,4 @@ For previous versions of Ignite (less than 1.4) JDBC connection URL has the foll
   ]
 }
 [/block]
-See еру corresponding [documentation](https://apacheignite.readme.io/v1.3/docs/jdbc-driver) for details.
+See the corresponding [documentation](https://apacheignite.readme.io/v1.3/docs/jdbc-driver) for details.
