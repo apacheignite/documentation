@@ -5,7 +5,7 @@ Ignite is shipped with JDBC driver that allows you to retrieve distributed data 
   "title": "JDBC Connection"
 }
 [/block]
-JDBC driver provides two different types of connection: Ignite Java client based connection and Ignite client node based connection. Java client based connection is deprecated and left only for compatibility with previous version, so you should prefer using of Ignite client node based mode. It is also preferable because it has much better performance.
+JDBC driver provides two different types of connection: Ignite client node based connection and Ignite Java client based connection. Ignite client node based connection is preferable for most situations because it has much better performance. 
 
 The type of returned connection depends on provided JDBC connection URL. Both URL types have optional parameter that specifies name of cache for connection.
 [block:callout]
@@ -62,8 +62,6 @@ JDBC connection URL has the following pattern:
 }
 [/block]
 The following parameters are supported:
-
-
 [block:parameters]
 {
   "data": {
