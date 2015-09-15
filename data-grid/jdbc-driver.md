@@ -5,7 +5,7 @@ Ignite is shipped with JDBC driver that allows you to retrieve distributed data 
   "title": "JDBC Connection"
 }
 [/block]
-In Ignite, JDBC connection URL has the following pattern:
+In Ignite JDBC connection URL has the following pattern:
 [block:code]
 {
   "codes": [
@@ -81,7 +81,7 @@ The following parameters are supported:
   "title": "Example"
 }
 [/block]
-Ignite JDBC driver automatically gets only those fields that you actually need from objects stored in cache. For example, let's say you have Person class declared like this:
+Ignite JDBC driver automatically gets only those fields that you actually need from objects stored in cache. For example you have `Person` class declared like this:
 [block:code]
 {
   "codes": [
