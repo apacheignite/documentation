@@ -62,10 +62,30 @@ JDBC connection URL has the following pattern:
 }
 [/block]
 The following parameters are supported:
-* `cache` - cache name. If it is not defined than default cache will be used. Note that the cache name is case sensitive.
-* `nodeId` - ID of node where query will be executed. It can be useful for querying through local caches.
-* `local` - query will be executed only on local node. Use this parameter with `nodeId` parameter in order to limit data set by specified node. Default value is `false`.
-* `collocated` - flag that used for optimization purposes. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node, Ignite can make significant performance and network optimizations. Default value is `false`.
+
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Properties",
+    "h-1": "Description",
+    "h-2": "Default",
+    "0-0": "`cache`",
+    "1-0": "`nodeId`",
+    "2-0": "`local`",
+    "3-0": "`collocated`",
+    "0-1": "Cache name. If it is not defined than default cache will be used. Note that the cache name is case sensitive.",
+    "1-1": "ID of node where query will be executed. It can be useful for querying through local caches.",
+    "2-1": "Query will be executed only on local node. Use this parameter with `nodeId` parameter in order to limit data set by specified node.",
+    "2-2": "false",
+    "3-1": "Flag that used for optimization purposes. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node, Ignite can make significant performance and network optimizations.",
+    "3-2": "false"
+  },
+  "cols": 3,
+  "rows": 4
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
