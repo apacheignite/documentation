@@ -111,7 +111,7 @@ If you have instances of this class in cache, you can query individual fields (n
   "title": "Backward compatibility"
 }
 [/block]
-For previous versions of Ignite (less than 1.4) JDBC connection URL has the following pattern:
+For previous versions of Ignite (prior 1.4) JDBC connection URL has the following pattern:
 [block:code]
 {
   "codes": [
