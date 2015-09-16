@@ -2,7 +2,7 @@ Topology validator is used to verify that cluster topology is valid for further 
 
 The topology validator is invoked every time the cluster topology changes (either a new node joined or an existing node failed or left). If topology validator is not configured, then the cluster topology is always considered to be valid.
 
-Whenever the `TopologyValidator.validate(Collection)` method returns true, then the topology is considered valid for a certain cache and all operations on this cache will be allowed to proceed. Otherwise, all update operations on the cache are restricted with the following exceptions:
+Whenever the `TopologyValidator.validate(Collection)` method returns `true`, then the topology is considered valid for a certain cache and all operations on this cache will be allowed to proceed. Otherwise, all update operations on the cache are restricted with the following exceptions:
 - `CacheException` will be thrown for all update operations (put, remove, etc) attempt.
 - `IgniteException` will be thrown for the transaction commit attempt.
 
