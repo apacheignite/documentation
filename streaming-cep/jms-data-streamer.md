@@ -66,3 +66,14 @@ Here is the code:
   ]
 }
 [/block]
+To use this component, you must import the following module through your build system (Maven, Ivy, Gradle, sbt, etc.):
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-jms11</artifactId>\n    <version>${ignite.version}</version>\n</dependency>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
