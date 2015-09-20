@@ -44,12 +44,23 @@ To configure the JMS streamer, you will need to provide the following compulsory
   "title": "Example of usage"
 }
 [/block]
-Here's an example of usage:
+The example in this section populates a cache with `String` keys and `String` values, consuming `TextMessage`s with this format:
 [block:code]
 {
   "codes": [
     {
-      "code": "// create a data streamer\nIgniteDataStreamer<String, String> dataStreamer = ignite.dataStreamer(\"mycache\"));\n\n// create a JMS streamer and plug the data streamer into it\nJmsStreamer<ObjectMessage, String, String> jmsStreamer = new JmsStreamer<>();\njmsStreamer.setIgnite(ignite);\njmsStreamer.setStreamer(dataStreamer);\njmsStreamer.setConnectionFactory(connectionFactory);\njmsStreamer.setDestination(destination);\njmsStreamer.setTransacted(true);\njmsStreamer.start();\n\n// on application shutdown\njmsStreamer.stop();\ndataStreamer.close();",
+      "code": "raulk,Raul Kripalani\ndsetrakyan,Dmitriy Setrakyan\nsv,Sergi Vladykin\ngm,Gianfranco Murador",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+Here is the code:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// create a data streamer\nIgniteDataStreamer<String, String> dataStreamer = ignite.dataStreamer(\"mycache\"));\ndataStreamer.allowOverwrite(true);\n\n// create a JMS streamer and plug the data streamer into it\nJmsStreamer<TextMessage, String, String> jmsStreamer = new JmsStreamer<>();\njmsStreamer.setIgnite(ignite);\njmsStreamer.setStreamer(dataStreamer);\njmsStreamer.setConnectionFactory(connectionFactory);\njmsStreamer.setDestination(destination);\njmsStreamer.setTransacted(true);\njmsStreamer.setTransformer(new MessageTransformer<TextMessage, String, String>() {\n    @Override\n    public Map<String, String> apply(TextMessage message) {\n        final Map<String, String> answer = new HashMap<>();\n        String text;\n        try {\n            text = message.getText();\n        }\n        catch (JMSException e) {\n            LOG.warn(\"Could not parse message.\", e);\n            return Collections.emptyMap();\n        }\n        for (String s : text.split(\"\\n\")) {\n            String[] tokens = s.split(\",\");\n            answer.put(tokens[0], tokens[1]);\n        }\n        return answer;\n    }\n});\n\njmsStreamer.start();\n\n// on application shutdown\njmsStreamer.stop();\ndataStreamer.close();",
       "language": "java"
     }
   ]
