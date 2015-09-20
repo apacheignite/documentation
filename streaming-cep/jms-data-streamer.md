@@ -1,4 +1,11 @@
-Ignite offers a JMS Data Streamer to consume messages from JMS brokers, convert them into cache tuples and insert them in Ignite caches. It supports the following features:
+Ignite offers a JMS Data Streamer to consume messages from JMS brokers, convert them into cache tuples and insert them in Ignite caches. 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Features supported"
+}
+[/block]
+This data streamer supports the following features:
 
 * Consumes from queues or topics.
 * Supports durable subscriptions from topics.
@@ -14,7 +21,12 @@ Ignite offers a JMS Data Streamer to consume messages from JMS brokers, convert 
 * Supports specifying the destination with implementation-specific `Destination` objects or with names.
 
 We have tested our implementation against [Apache ActiveMQ](http://activemq.apache.org), but any JMS broker is supported as long as it client library implements the [JMS 1.1 specification](http://download.oracle.com/otndocs/jcp/7195-jms-1.1-fr-spec-oth-JSpec/).
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Instantiating a JMS Streamer"
+}
+[/block]
 When you instantiate the JMS Streamer, you will need to concretualize the following generic types:
 
 * `T extends Message` => the type of JMS `Message` this streamer will receive. If it can receive multiple, use the generic `Message` type.
@@ -26,7 +38,12 @@ To configure the JMS streamer, you will need to provide the following compulsory
 * `connectionFactory` => an instance of your `ConnectionFactory` duly configured as required by the broker. It can be a pooled `ConnectionFactory`.
 * `destination` or (`destinationName` and `destinationType`) => a `Destination` object (normally a broker-specific implementation of the JMS `Queue` or `Topic` interfaces), or the combination of a destination name (queue or topic name) and the type as a `Class` reference to either `Queue` or `Topic`. In the latter case, the streamer will use either `Session.createQueue(String)` or `Session.createTopic(String)` to get a hold of the destination.
 * `transformer` => an implementation of `MessageTransformer<T, K, V>` that digests a JMS message of type `T` and produces a `Map<K, V>` of cache entries to add. It can also return `null` or an empty `Map` to ignore the incoming message.
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example of usage"
+}
+[/block]
 Here's an example of usage:
 [block:code]
 {
