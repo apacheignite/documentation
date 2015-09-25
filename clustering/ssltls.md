@@ -1,4 +1,4 @@
-Ignite allows you to use SSL socket communication among all Ignite nodes. To use it, you need to set `Factory<SSLContext>` and configure the SSL section in Ignite configuration. Ignite provides a default SSL context factory, `org.apache.ignite.ssl.SslContextFactory`, which uses configured keystore to initialize SSL context. 
+Ignite allows you to use SSL socket communication among all Ignite nodes. To use it, you need to set `Factory<SSLContext>` and configure the SSL section in Ignite configuration. Ignite provides a default SSL context factory, `org.apache.ignite.ssl.SslContextFactory`, which uses configured keystore to initialize SSL context.
 [block:code]
 {
   "codes": [
@@ -93,20 +93,17 @@ Following configuration parameters can be configured on `SslContextFactory`.
     "5-0": "`setTrustStoreFilePath`",
     "5-1": "Sets path to the trust store file.",
     "5-2": "`N/A`",
-    "6-0": "`setTrustStoreFilePath`",
-    "6-1": "Sets path to the trust store file.",
+    "6-0": "`setTrustStorePassword`",
+    "6-1": "Sets trust store password.",
     "6-2": "`N/A`",
-    "7-0": "`setTrustStorePassword`",
-    "7-1": "Sets trust store password.",
-    "7-2": "`N/A`",
-    "8-0": "`setTrustStoreType`",
-    "8-1": "Sets trust store type used in context initialization.",
-    "8-2": "`JKS`",
-    "9-0": "`setTrustManagers`",
-    "9-1": "Sets pre-configured trust managers.",
-    "9-2": "'N/A`"
+    "7-0": "`setTrustStoreType`",
+    "7-1": "Sets trust store type used in context initialization.",
+    "7-2": "`JKS`",
+    "8-0": "`setTrustManagers`",
+    "8-1": "Sets pre-configured trust managers.",
+    "8-2": "'N/A`"
   },
   "cols": 3,
-  "rows": 10
+  "rows": 9
 }
 [/block]
