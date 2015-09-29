@@ -68,7 +68,7 @@ For this protocol SPI will scan folder specified by URI on file system and downl
 Following parameters are supported for FILE protocol:
 
 ### HTTP/HTTPS
-URI deployment scanner tries to read DOM of the html it points to and parses out href attributes of all <a>-tags - this becomes the URL collection (to GAR files) to deploy. It's important that only HTTP scanner uses URLConnection.getLastModified() method to check if there were any changes since last iteration for each GAR-file before redeploying. 
+URI deployment scanner tries to read DOM of the html it points to and parses out href attributes of all &lt;a&gt;-tags - this becomes the URL collection (to GAR files) to deploy. It's important that only HTTP scanner uses URLConnection.getLastModified() method to check if there were any changes since last iteration for each GAR-file before redeploying. 
 
 Following parameters are supported for FILE protocol:
 
