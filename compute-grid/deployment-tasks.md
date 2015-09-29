@@ -158,7 +158,7 @@ Next example demonstrate usage of deployment feature. It expects that you have g
 [block:api-header]
 {
   "type": "basic",
-  "title": "Local"
+  "title": "LocalDeploymentSpi"
 }
 [/block]
 Local deployment SPI that implements only within VM deployment on local node via `register(ClassLoader, Class)` method. This SPI requires no configuration.
