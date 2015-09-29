@@ -31,7 +31,7 @@ There are several deployable unit types supported:
   * Local disk folder with structure of unpacked GAR file.
   * Local disk folder containing only compiled Java classes.
 
-# GAR file
+## GAR file
 GAR file is a deployable unit. GAR file is based on ZLIB compression format like simple JAR file and its structure is similar to WAR archive. GAR file has '.gar' extension.
 GAR file structure (file or directory ending with '.gar'):
 [block:code]
