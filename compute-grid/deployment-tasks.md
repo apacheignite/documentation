@@ -113,6 +113,7 @@ The following example will scan `ignite/deployment` folder with on site `www.mys
 `http://username:password;freq=10000@www.mysite.com:110/ignite/deployment`.
 
 ## Code Example
+Next example demonstrate usage of deployment feature. It expects that you have gar-file at `home/username/ignite/work/my_deployment/file` folder which contains `myproject.HelloWorldTask` class which implements `ComputeTask`.
 [block:code]
 {
   "codes": [
@@ -125,7 +126,6 @@ The following example will scan `ignite/deployment` folder with on site `www.mys
 }
 [/block]
 ## Configuration
-
 [block:parameters]
 {
   "data": {
@@ -161,3 +161,8 @@ The following example will scan `ignite/deployment` folder with on site `www.mys
   "title": "Local"
 }
 [/block]
+Local deployment SPI that implements only within VM deployment on local node via `register(ClassLoader, Class)` method. This SPI requires no configuration.
+Note that if peer class loading is enabled (which is default behavior, see `IgniteConfiguration.isPeerClassLoadingEnabled())`, then it is enough to deploy a task only on one node and all other nodes will load required classes from the node that initiated task execution.
+
+## Configuration.
+This SPI requires no configuration.
