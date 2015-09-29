@@ -11,7 +11,7 @@ Class loaders that are in charge of loading task classes (and other classes) can
 If peer class loading is enabled (which is default behavior, see `IgniteConfiguration.isPeerClassLoadingEnabled()`), then it is usually enough to deploy class loader only on one grid node. Once a task starts executing on the grid, all other nodes will automatically load all task classes from the node that initiated the execution. Hot redeployment is also supported with peer class loading. Every time a task changes and gets redeployed on a node, all other nodes will detect it and will redeploy this task as well. Note that peer class loading comes into effect only if a task was not locally deployed, otherwise, preference will always be given to local deployment.
 
 Ignite provides the following GridDeploymentSpi implementations:
-  * LocalDeploymentSpi[](http://apacheignite.gridgain.org/v1.4/docs/deployment-tasks#urideploymentspi)
+  * LocalDeploymentSpi
   * UriDeploymentSpi
 
 NOTE: this SPI (i.e. methods in this interface) should never be used directly. SPIs provide internal view on the subsystem and is used internally by Ignite kernal. In rare use cases when access to a specific implementation of this SPI is required - an instance of this SPI can be obtained via Ignite.configuration() method to check its configuration properties or call other non-SPI methods. Note again that calling methods from this interface on the obtained instance can lead to undefined behavior and explicitly not supported.
@@ -19,6 +19,48 @@ NOTE: this SPI (i.e. methods in this interface) should never be used directly. S
 {
   "type": "basic",
   "title": "UriDeploymentSpi"
+}
+[/block]
+Implementation of `DeploymentSpi` which can deploy tasks from different sources like file system folders, email and HTTP. There are different ways to deploy tasks in grid and every deploy method depends on selected source protocol. This SPI is configured to work with a list of URI's. Every URI contains all data about protocol/transport plus configuration parameters like credentials, scan frequency, and others.
+When SPI establishes a connection with an URI, it downloads deployable units to the temporary directory in order to prevent it from any changes while scanning. Use method `setTemporaryDirectoryPath(String)`) to set custom temporary folder for downloaded deployment units. SPI will create folder under the path with name identical to local node ID.
+
+SPI tracks all changes of every given URI. This means that if any file is changed or deleted, SPI will re-deploy or delete corresponding tasks. Note that the very first apply to `findResource(String)` is blocked until SPI finishes scanning all URI's at least once.
+
+There are several deployable unit types supported:
+  * GAR file.
+  * Local disk folder with structure of unpacked GAR file.
+  * Local disk folder containing only compiled Java classes.
+
+# GAR file
+GAR file is a deployable unit. GAR file is based on ZLIB compression format like simple JAR file and its structure is similar to WAR archive. GAR file has '.gar' extension.
+GAR file structure (file or directory ending with '.gar'):
+[block:code]
+{
+  "codes": [
+    {
+      "code": "      META-INF/\n              |\n               - ignite.xml\n               - ...\n      lib/\n         |\n          -some-lib.jar\n          - ...\n      xyz.class\n      ...",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+  * META-INF/ entry may contain ignite.xml file which is a task descriptor file. The purpose of task descriptor XML file is to specify all tasks to be deployed. This file is a regular Spring XML definition file. META-INF/ entry may also contain any other file specified by JAR format.
+  * lib/ entry contains all library dependencies.
+  * Compiled Java classes must be placed in the root of a GAR file.
+
+GAR file may be deployed without descriptor file. If there is no descriptor file, SPI will scan all classes in archive and instantiate those that implement `ComputeTask` interface. In that case, all grid task classes must have a public no-argument constructor. Use `ComputeTaskAdapter` adapter for convenience when creating grid tasks.
+By default, all downloaded GAR files that have digital signature in META-INF folder will be verified and deployed only if signature is valid.
+
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\nDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n        deploymentSpi.setUriList(Arrays.asList(\"file://freq=5000@localhost/home/username/ignite/work/my_deployment/file\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\tignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}\n",
+      "language": "java",
+      "name": null
+    }
+  ]
 }
 [/block]
 
