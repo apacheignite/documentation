@@ -82,7 +82,7 @@ Following parameters are supported for FILE protocol:
   "rows": 1
 }
 [/block]
-*File Uri Example*
+#### File Uri Example
 The following example will scan `c:/Program files/ignite/deployment` folder on local box every '5000' milliseconds. Note that since path has spaces, `setEncodeUri(boolean)` parameter must be set to true (which is default behavior).
 
 'file://freq=5000@localhost/c:/Program files/ignite/deployment'
