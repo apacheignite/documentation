@@ -15,7 +15,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Remove all](#remove-all)
 * [Remove value](#remove-value)
 * [Remove](#remove) 
-* [Get and remove](#get-and-remove)ps
+* [Get and remove](#get-and-remove)
 * [Add](#add)
 * [Put all](#put-all)
 * [Put](#put) 
