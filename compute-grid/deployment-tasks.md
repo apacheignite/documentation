@@ -22,6 +22,7 @@ NOTE: this SPI (i.e. methods in this interface) should never be used directly. S
 }
 [/block]
 Implementation of `DeploymentSpi` which can deploy tasks from different sources like file system folders, email and HTTP. There are different ways to deploy tasks in grid and every deploy method depends on selected source protocol. This SPI is configured to work with a list of URI's. Every URI contains all data about protocol/transport plus configuration parameters like credentials, scan frequency, and others.
+
 When SPI establishes a connection with an URI, it downloads deployable units to the temporary directory in order to prevent it from any changes while scanning. Use method `setTemporaryDirectoryPath(String)`) to set custom temporary folder for downloaded deployment units. SPI will create folder under the path with name identical to local node ID.
 
 SPI tracks all changes of every given URI. This means that if any file is changed or deleted, SPI will re-deploy or delete corresponding tasks. Note that the very first apply to `findResource(String)` is blocked until SPI finishes scanning all URI's at least once.
@@ -33,6 +34,7 @@ There are several deployable unit types supported:
 
 ## GAR file
 GAR file is a deployable unit. GAR file is based on ZLIB compression format like simple JAR file and its structure is similar to WAR archive. GAR file has '.gar' extension.
+
 GAR file structure (file or directory ending with '.gar'):
 [block:code]
 {
@@ -49,6 +51,7 @@ GAR file structure (file or directory ending with '.gar'):
   * Compiled Java classes must be placed in the root of a GAR file.
 
 GAR file may be deployed without descriptor file. If there is no descriptor file, SPI will scan all classes in archive and instantiate those that implement `ComputeTask` interface. In that case, all grid task classes must have a public no-argument constructor. Use `ComputeTaskAdapter` adapter for convenience when creating grid tasks.
+
 By default, all downloaded GAR files that have digital signature in META-INF folder will be verified and deployed only if signature is valid.
 
 
