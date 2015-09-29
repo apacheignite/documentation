@@ -82,14 +82,14 @@ Following parameters are supported for FILE protocol:
   "rows": 1
 }
 [/block]
-#### File Uri Example
+### File Uri Example
 The following example will scan `c:/Program files/ignite/deployment` folder on local box every '5000' milliseconds. Note that since path has spaces, `setEncodeUri(boolean)` parameter must be set to true (which is default behavior).
 
-'file://freq=5000@localhost/c:/Program files/ignite/deployment'
+`file://freq=5000@localhost/c:/Program files/ignite/deployment`
 
 or just 
 
-'file:///c:/Program files/ignite/deployment'.
+`file:///c:/Program files/ignite/deployment`.
 
 ### HTTP/HTTPS
 URI deployment scanner tries to read DOM of the html it points to and parses out href attributes of all &lt;a&gt;-tags - this becomes the URL collection (to GAR files) to deploy. It's important that only HTTP scanner uses URLConnection.getLastModified() method to check if there were any changes since last iteration for each GAR-file before redeploying. 
@@ -107,6 +107,11 @@ Following parameters are supported for FILE protocol:
   "rows": 1
 }
 [/block]
+### Http Uri Example
+The following example will scan `ignite/deployment` folder with on site `www.mysite.com` using authentication 'username:password' every '10000' milliseconds.
+
+`http://username:password;freq=10000@www.mysite.com:110/ignite/deployment`.
+
 ## Code Example
 [block:code]
 {
