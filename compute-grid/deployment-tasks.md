@@ -66,12 +66,47 @@ In addition to SPI configuration parameters, all necessary configuration paramet
 For this protocol SPI will scan folder specified by URI on file system and download any GAR files or directories that end with .gar from source directory defined in URI. For file system URI must have scheme equal to file.
 
 Following parameters are supported for FILE protocol:
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter",
+    "h-1": "Description",
+    "h-2": "Optional",
+    "h-3": "Default",
+    "0-0": "freq",
+    "0-1": "File directory scan frequency in milliseconds.",
+    "0-2": "Yes",
+    "0-3": "5000 ms specified in `UriDeploymentFileScanner.DFLT_SCAN_FREQ`."
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+*File Uri Example*
+The following example will scan `c:/Program files/ignite/deployment` folder on local box every '5000' milliseconds. Note that since path has spaces, `setEncodeUri(boolean)` parameter must be set to true (which is default behavior).
+
+'file://freq=5000@localhost/c:/Program files/ignite/deployment'
+
+or just 
+
+'file:///c:/Program files/ignite/deployment'.
 
 ### HTTP/HTTPS
 URI deployment scanner tries to read DOM of the html it points to and parses out href attributes of all &lt;a&gt;-tags - this becomes the URL collection (to GAR files) to deploy. It's important that only HTTP scanner uses URLConnection.getLastModified() method to check if there were any changes since last iteration for each GAR-file before redeploying. 
 
 Following parameters are supported for FILE protocol:
-
+[block:parameters]
+{
+  "data": {
+    "0-0": "freq",
+    "0-1": "Scan frequency in milliseconds.",
+    "0-2": "Yes",
+    "0-3": "300000 ms specified in `UriDeploymentHttpScanner.DFLT_SCAN_FREQ`."
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
 ## Code Example
 [block:code]
 {
