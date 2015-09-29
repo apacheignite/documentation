@@ -54,7 +54,7 @@ GAR file may be deployed without descriptor file. If there is no descriptor file
 
 By default, all downloaded GAR files that have digital signature in META-INF folder will be verified and deployed only if signature is valid.
 
-
+## Code Example
 [block:code]
 {
   "codes": [
@@ -64,6 +64,24 @@ By default, all downloaded GAR files that have digital signature in META-INF fol
       "name": null
     }
   ]
+}
+[/block]
+## Configuration
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Property",
+    "0-0": "UriList",
+    "h-1": "Description",
+    "h-2": "Optional",
+    "h-3": "Default",
+    "0-1": "List of URI which point to GAR file and which should be scanned by SPI for the new tasks.",
+    "0-2": "Yes",
+    "0-3": "Element `file://${IGNITE_HOME}/work/deployment/file`. Note that system property IGNITE_HOME must be set. For unknown IGNITE_HOME list of URI must be provided explicitly."
+  },
+  "cols": 4,
+  "rows": 1
 }
 [/block]
 
