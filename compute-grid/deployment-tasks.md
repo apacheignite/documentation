@@ -82,7 +82,7 @@ By default, all downloaded GAR files that have digital signature in META-INF fol
     "1-0": "Scanners",
     "1-1": "Array of 'UriDeploymentScanner'-s which will be used to deploy resources.",
     "1-2": "Yes",
-    "1-3": "File-scanner and http(s)-scanner. See 'UriDeploymentFileScanner' and 'UriDeploymentHttpScanner'",
+    "1-3": "File-scanner and http(s)-scanner. See `UriDeploymentFileScanner` and `UriDeploymentHttpScanner`.",
     "2-0": "TemporaryDirectoryPath",
     "2-1": "Temporary directory path where scanned GAR files and directories are copied to.",
     "2-2": "Yes",
