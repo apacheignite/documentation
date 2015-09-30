@@ -65,8 +65,19 @@ The following example demonstrates how the deployment SPI can be used. It expect
 {
   "codes": [
     {
-      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\nDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"file:///home/username/ignite/work/my_deployment/file\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
-      "language": "java"
+      "code": "// It expects that you have a GAR file in `home/username/ignite/work/my_deployment/file` folder which contains `myproject.HelloWorldTask` class.\nIgniteConfiguration cfg = new IgniteConfiguration();\n\nDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"file:///home/username/ignite/work/my_deployment/file\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
+      "language": "java",
+      "name": "File Protocol"
+    },
+    {
+      "code": "// It expects that you have a GAR file in `home/username/ignite/work/my_deployment/file` folder which contains `myproject.HelloWorldTask` class.\nIgniteConfiguration cfg = new IgniteConfiguration();\n\nDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"file:///home/username/ignite/work/my_deployment/file\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
+      "language": "java",
+      "name": "Http Protocol"
+    },
+    {
+      "code": "",
+      "language": "text",
+      "name": "Spring Configuration"
     }
   ]
 }
