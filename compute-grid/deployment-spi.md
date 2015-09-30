@@ -178,7 +178,7 @@ Following parameters are supported:
 }
 [/block]
 ### Http Uri Example
-The following example will download the page `www.mysite.com/ignite/deployment`,parse it and download and deploy all GAR files specified by href attributes of &lt;a&gt; elements on the page using authentication `username:password` every '10000' milliseconds (only new/updated GAR-s).
+The following example will download the page `www.mysite.com/ignite/deployment`, parse it and download and deploy all GAR files specified by href attributes of &lt;a&gt; elements on the page using authentication `username:password` every '10000' milliseconds (only new/updated GAR-s).
 [block:code]
 {
   "codes": [
