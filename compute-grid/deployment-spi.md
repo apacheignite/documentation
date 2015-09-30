@@ -60,7 +60,7 @@ GAR file may be deployed without descriptor file. If there is no descriptor file
 By default, all downloaded GAR files that have digital signature in `META-INF` folder will be verified and deployed only if signature is valid.
 
 ## Code Example
-The following example demonstrates how the deployment SPI can be used. It expects that you have a GAR file in `home/username/ignite/work/my_deployment/file` folder which contains `myproject.HelloWorldTask` class.
+The following examples demonstrate how the deployment SPI can be used. Different protocols can be used together as well. 
 [block:code]
 {
   "codes": [
@@ -75,9 +75,9 @@ The following example demonstrates how the deployment SPI can be used. It expect
       "name": "Http Protocol"
     },
     {
-      "code": "",
-      "language": "text",
-      "name": "Spring Configuration"
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n  <property name=\"deploymentSpi\">\n    <bean class=\"org.apache.ignite.grid.spi.deployment.uri.UriDeploymentSpi\">\n      <property name=\"temporaryDirectoryPath\" value=\"c:/tmp/grid\"/>\n      <property name=\"uriList\">\n        <list>\n          <value>http://www.site.com/tasks</value>\n          <value>file://freq=20000@localhost/c:/Program files/gg-deployment</value>\n        </list>\n      </property>\n    </bean>\n  </property>\n</bean>",
+      "language": "xml",
+      "name": "XML Configuration"
     }
   ]
 }
