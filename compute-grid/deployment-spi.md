@@ -59,6 +59,47 @@ GAR file may be deployed without descriptor file. If there is no descriptor file
 
 By default, all downloaded GAR files that have digital signature in `META-INF` folder will be verified and deployed only if signature is valid.
 
+## Code Example
+The following example demonstrates how the deployment SPI can be used. It expects that you have a GAR file in `home/username/ignite/work/my_deployment/file` folder which contains `myproject.HelloWorldTask` class.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\nDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"file:///home/username/ignite/work/my_deployment/file\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+## Configuration
+[block:parameters]
+{
+  "data": {
+    "h-0": "Property",
+    "h-1": "Description",
+    "h-2": "Optional",
+    "h-3": "Default",
+    "0-0": "`uriList`",
+    "0-1": "List of URIs that should be scanned by SPI for the new tasks.",
+    "0-2": "Yes",
+    "0-3": "`file://${IGNITE_HOME}/work/deployment/file` (note that `IGNITE_HOME` must be set if you're using the default folder).",
+    "1-0": "`scanners`",
+    "1-1": "Array of `UriDeploymentScanner` implementations which will be used to deploy resources.",
+    "1-2": "Yes",
+    "1-3": "`UriDeploymentFileScanner` and `UriDeploymentHttpScanner`.",
+    "2-0": "`temporaryDirectoryPath`",
+    "2-1": "Temporary directory path where scanned GAR files and directories are copied to.",
+    "2-2": "Yes",
+    "2-3": "`java.io.tmpdir` system property value.",
+    "3-0": "`encodeUri`",
+    "3-1": "Flag to control encoding of the `path` portion of URI.",
+    "3-2": "Yes",
+    "3-3": "`true`"
+  },
+  "cols": 4,
+  "rows": 4
+}
+[/block]
 ## Protocols
 Following protocols are supported in SPI out of the box:
   * file:// - File protocol
@@ -135,47 +176,6 @@ The following example will scan `ignite/deployment` folder on site `www.mysite.c
       "language": "text"
     }
   ]
-}
-[/block]
-## Code Example
-The following example demonstrates how the deployment SPI can be used. It expects that you have a GAR file in `home/username/ignite/work/my_deployment/file` folder which contains `myproject.HelloWorldTask` class.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\nDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"file:///home/username/ignite/work/my_deployment/file\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-## Configuration
-[block:parameters]
-{
-  "data": {
-    "h-0": "Property",
-    "h-1": "Description",
-    "h-2": "Optional",
-    "h-3": "Default",
-    "0-0": "`uriList`",
-    "0-1": "List of URIs that should be scanned by SPI for the new tasks.",
-    "0-2": "Yes",
-    "0-3": "`file://${IGNITE_HOME}/work/deployment/file` (note that `IGNITE_HOME` must be set if you're using the default folder).",
-    "1-0": "`scanners`",
-    "1-1": "Array of `UriDeploymentScanner` implementations which will be used to deploy resources.",
-    "1-2": "Yes",
-    "1-3": "`UriDeploymentFileScanner` and `UriDeploymentHttpScanner`.",
-    "2-0": "`temporaryDirectoryPath`",
-    "2-1": "Temporary directory path where scanned GAR files and directories are copied to.",
-    "2-2": "Yes",
-    "2-3": "`java.io.tmpdir` system property value.",
-    "3-0": "`encodeUri`",
-    "3-1": "Flag to control encoding of the `path` portion of URI.",
-    "3-2": "Yes",
-    "3-3": "`true`"
-  },
-  "cols": 4,
-  "rows": 4
 }
 [/block]
 
