@@ -158,7 +158,7 @@ The following example will scan `c:/Program files/ignite/deployment` folder on l
 }
 [/block]
 ### HTTP/HTTPS
-URI deployment scanner tries to read the DOM of the HTML file it points to and parses out href attributes of all &lt;a&gt;-tags - this becomes the URL collection (to GAR files) to deploy. It's important that only HTTP scanner uses URLConnection.getLastModified() method to check if there were any changes since last iteration for each GAR-file before redeploying. 
+URI deployment scanner tries to read the DOM of the HTML file it points to and parses out href attributes of all &lt;a&gt;-tags - this becomes the URL collection (to GAR files) to deploy: each 'A' link should be an URL to a GAR file. It's important that only HTTP scanner uses URLConnection.getLastModified() method to check if there were any changes since last iteration for each GAR-file before redeploying. 
 
 Following parameters are supported:
 [block:parameters]
