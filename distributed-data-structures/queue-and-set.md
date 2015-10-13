@@ -32,13 +32,13 @@ A collocated queue and set can be created by setting the `collocated` property o
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\nCollectionConfiguration colCfg = new CollectionConfiguration();\n\ncolCfg.setCollocated(true); \n\n// Create collocated queue.\nIgniteQueue<String> queue = ignite.queue(\"queueName\", 0, colCfg);\n\n// Create collocated set.\nIgniteSet<String> set = ignite.set(\"setName\", colCfg);",
+      "code": "Ignite ignite = Ignition.ignite();\n\nCollectionConfiguration colCfg = new CollectionConfiguration();\n\ncolCfg.setCollocated(true); \n\n// Create collocated queue.\nIgniteQueue<String> queue = ignite.queue(\"queueName\", 0, colCfg);",
       "language": "java",
       "name": "Queue"
     },
     {
       "code": "Ignite ignite = Ignition.ignite();\n\nCollectionConfiguration colCfg = new CollectionConfiguration();\n\ncolCfg.setCollocated(true); \n\n// Create collocated set.\nIgniteSet<String> set = ignite.set(\"setName\", colCfg);",
-      "language": "text",
+      "language": "java",
       "name": "Set"
     }
   ]

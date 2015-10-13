@@ -311,7 +311,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "http://host:port/ignite?cmd=incr&cacheName=partionedCache&key=decrKey&init=15&delta=10",
+      "code": "http://host:port/ignite?cmd=incr&cacheName=partionedCache&key=incrKey&init=15&delta=10",
       "language": "curl"
     }
   ]
