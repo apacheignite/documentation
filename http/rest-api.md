@@ -27,6 +27,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Put if absent](#put-if-absent)
 * [Get and put if absent](#get-and-put-if-absent)
 * [Cache size](#cache-size)
+* [Cache metadata](#cache-metadata)
 * [Get or create cache](#get-or-create-cache)
 * [Destroy cache](#destroy-cache)
 * [Node](#node)
@@ -35,9 +36,9 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Result](#result)
 * [Sql query execute](#sql-query-execute)
 * [Sql fields query execute](#sql-fields-query-execute)
+* [Sql scan query execute](#sql-scan-query-execute)
 * [Sql query fetch](#sql-query-fetch)
 * [Sql query close](#sql-query-close)
-
 [block:api-header]
 {
   "type": "basic",
@@ -2809,6 +2810,55 @@ HTTP REST request returns JSON object which has similar structure for each comma
   },
   "cols": 4,
   "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Sql scan query execute"
+}
+[/block]
+**Sql scan query execute** command runs sql scan query over cache.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=qryscanexe&pzs=10&cacheName=Person&className=org.apache.ignite.schema.Person",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-1": "type",
+    "h-0": "name",
+    "h-2": "optional",
+    "h-3": "decription",
+    "0-0": "cmd",
+    "0-1": "String",
+    "0-3": "Should be **qryscanexe** lowercase.",
+    "h-4": "example",
+    "1-3": "Page size for the query",
+    "1-4": "3",
+    "1-0": "pageSize",
+    "1-1": "Number",
+    "2-1": "String",
+    "2-0": "cacheName",
+    "2-3": "Cache name. If not provided, default cache will be used.",
+    "2-2": "Yes",
+    "2-4": "testCache",
+    "3-0": "className",
+    "3-1": "String",
+    "3-2": "Yes",
+    "3-4": "org.apache.ignite.schema.Person",
+    "3-3": "Predicate class name for scan query."
+  },
+  "cols": 5,
+  "rows": 4
 }
 [/block]
 
