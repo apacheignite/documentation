@@ -2861,6 +2861,34 @@ HTTP REST request returns JSON object which has similar structure for each comma
   "rows": 4
 }
 [/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[{\"fieldName\":\"key\", \"fieldTypeName\":\"\", \"schemaName\":\"\", \"typeName\":\"\"},{\"fieldName\":\"value\",\"fieldTypeName\":\"\",\"schemaName\":\"\",\"typeName\":\"\"}],\n    \"items\":[{\"key\":1,\"value\":{\"firstName\":\"Jane\",\"id\":1,\"lastName\":\"Doe\",\"salary\":1000}},{\"key\":3,\"value\":{\"firstName\":\"Jane\",\"id\":3,\"lastName\":\"Smith\",\"salary\":2000}}],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "h-1": "type",
+    "h-0": "name",
+    "h-2": "description",
+    "0-2": "JSON object contains  result items for scan query, fields query metadata,  flag for last page and queryId for query fetching.",
+    "h-3": "example",
+    "0-3": "{\n    \"fieldsMetadata\":[{\"fieldName\":\"key\", \"fieldTypeName\":\"\", \"schemaName\":\"\", \"typeName\":\"\"},{\"fieldName\":\"value\",\"fieldTypeName\":\"\",\"schemaName\":\"\",\"typeName\":\"\"}],\n    \"items\":[{\"key\":1,\"value\":{\"firstName\":\"Jane\",\"id\":1,\"lastName\":\"Doe\",\"salary\":1000}},{\"key\":3,\"value\":{\"firstName\":\"Jane\",\"id\":3,\"lastName\":\"Smith\",\"salary\":2000}}],\n    \"last\":true,\n    \"queryId\":0\n  }"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
 
 [block:api-header]
 {
