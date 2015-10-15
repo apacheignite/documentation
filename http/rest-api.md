@@ -2215,7 +2215,11 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "h-0": "name",
     "h-1": "type",
     "h-2": "description",
-    "h-3": "example"
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-3": "{\n    \"cacheName\": \"partionedCache\",\n    \"types\": [\n      \"Person\"\n    ],\n    \"keyClasses\": {\n      \"Person\": \"java.lang.Integer\"\n    },\n    \"valClasses\": {\n      \"Person\": \"org.apache.ignite.Person\"\n    },\n    \"fields\": {\n      \"Person\": {\n        \"_KEY\": \"java.lang.Integer\",\n        \"_VAL\": \"org.apache.ignite.Person\",\n        \"ID\": \"java.lang.Integer\",\n        \"FIRSTNAME\": \"java.lang.String\",\n        \"LASTNAME\": \"java.lang.String\",\n        \"SALARY\": \"double\"\n      }\n    },\n    \"indexes\": {\n      \"Person\": [\n        {\n          \"name\": \"ID_IDX\",\n          \"fields\": [\n            \"id\"\n          ],\n          \"descendings\": [],\n          \"unique\": false\n        },\n        {\n          \"name\": \"SALARY_IDX\",\n          \"fields\": [\n            \"salary\"\n          ],\n          \"descendings\": [],\n          \"unique\": false\n        }\n      ]\n    }\n  }",
+    "0-2": "Metadata for Ignite cache."
   },
   "cols": 4,
   "rows": 1
