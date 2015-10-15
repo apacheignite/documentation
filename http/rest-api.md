@@ -2161,6 +2161,70 @@ HTTP REST request returns JSON object which has similar structure for each comma
 [block:api-header]
 {
   "type": "basic",
+  "title": "Cache metadata"
+}
+[/block]
+**Cache metadata** command gets metadata for Ignite cache.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "  http://host:port/ignite?cmd=metadata&cacheName=partionedCache",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-1": "type",
+    "h-0": "name",
+    "h-2": "optional",
+    "h-3": "description",
+    "h-4": "example",
+    "1-4": "partionedCache",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "0-3": "Should be **metadata** lowercase.",
+    "0-1": "String",
+    "1-1": "String",
+    "1-0": "cacheName",
+    "0-0": "cmd"
+  },
+  "cols": 5,
+  "rows": 2
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\": \"\",\n  \"response\": {\n    \"cacheName\": \"partionedCache\",\n    \"types\": [\n      \"Person\"\n    ],\n    \"keyClasses\": {\n      \"Person\": \"java.lang.Integer\"\n    },\n    \"valClasses\": {\n      \"Person\": \"org.apache.ignite.Person\"\n    },\n    \"fields\": {\n      \"Person\": {\n        \"_KEY\": \"java.lang.Integer\",\n        \"_VAL\": \"org.apache.ignite.Person\",\n        \"ID\": \"java.lang.Integer\",\n        \"FIRSTNAME\": \"java.lang.String\",\n        \"LASTNAME\": \"java.lang.String\",\n        \"SALARY\": \"double\"\n      }\n    },\n    \"indexes\": {\n      \"Person\": [\n        {\n          \"name\": \"ID_IDX\",\n          \"fields\": [\n            \"id\"\n          ],\n          \"descendings\": [],\n          \"unique\": false\n        },\n        {\n          \"name\": \"SALARY_IDX\",\n          \"fields\": [\n            \"salary\"\n          ],\n          \"descendings\": [],\n          \"unique\": false\n        }\n      ]\n    }\n  },\n  \"sessionToken\": \"\",\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Get or create cache"
 }
 [/block]
@@ -2789,7 +2853,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[{\"fieldName\":\"FIRSTNAME\", \"fieldTypeName\":\"java.lang.String\", \"schemaName\":\"person\", \"typeName\":\"PERSON\"},{\"fieldName\":\"LASTNAME\",\"fieldTypeName\":\"java.lang.String\",\"schemaName\":\"person\",\"typeName\":\"PERSON\"}],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0}",
+      "code": "{\n  \"error\": \"\",\n  \"response\": {\n    \"fieldsMetadata\": [\n      {\n        \"fieldName\": \"FIRSTNAME\",\n        \"fieldTypeName\": \"java.lang.String\",\n        \"schemaName\": \"person\",\n        \"typeName\": \"PERSON\"\n      },\n      {\n        \"fieldName\": \"LASTNAME\",\n        \"fieldTypeName\": \"java.lang.String\",\n        \"schemaName\": \"person\",\n        \"typeName\": \"PERSON\"\n      }\n    ],\n    \"items\": [[\"Jane\", \"Doe\" ], [\"John\", \"Doe\"]],\n    \"last\": true,\n    \"queryId\": 0\n  },\n  \"successStatus\": 0\n}",
       "language": "json"
     }
   ]
@@ -2866,7 +2930,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[{\"fieldName\":\"key\", \"fieldTypeName\":\"\", \"schemaName\":\"\", \"typeName\":\"\"},{\"fieldName\":\"value\",\"fieldTypeName\":\"\",\"schemaName\":\"\",\"typeName\":\"\"}],\n    \"items\":[{\"key\":1,\"value\":{\"firstName\":\"Jane\",\"id\":1,\"lastName\":\"Doe\",\"salary\":1000}},{\"key\":3,\"value\":{\"firstName\":\"Jane\",\"id\":3,\"lastName\":\"Smith\",\"salary\":2000}}],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0}",
+      "code": "{\n  \"error\": \"\",\n  \"response\": {\n    \"fieldsMetadata\": [\n      {\n        \"fieldName\": \"key\",\n        \"fieldTypeName\": \"\",\n        \"schemaName\": \"\",\n        \"typeName\": \"\"\n      },\n      {\n        \"fieldName\": \"value\",\n        \"fieldTypeName\": \"\",\n        \"schemaName\": \"\",\n        \"typeName\": \"\"\n      }\n    ],\n    \"items\": [\n      {\n        \"key\": 1,\n        \"value\": {\n          \"firstName\": \"Jane\",\n          \"id\": 1,\n          \"lastName\": \"Doe\",\n          \"salary\": 1000\n        }\n      },\n      {\n        \"key\": 3,\n        \"value\": {\n          \"firstName\": \"Jane\",\n          \"id\": 3,\n          \"lastName\": \"Smith\",\n          \"salary\": 2000\n        }\n      }\n    ],\n    \"last\": true,\n    \"queryId\": 0\n  },\n  \"successStatus\": 0\n}",
       "language": "json"
     }
   ]
@@ -2939,7 +3003,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0}",
+      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0\n}",
       "language": "json"
     }
   ]
