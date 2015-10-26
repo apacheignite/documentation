@@ -150,7 +150,7 @@ Stale sessions are cleaned up from cache automatically when they expire. However
 To enable web session caching in your application with Ignite, you need to:
 
 1\. **Add Ignite JARs** - Download Ignite and add the following jars to your application’s classpath (`WEB_INF/libs` folder):
-  * `ignite.jar`
+  * `ignite-core.jar`
   * `cache-api-1.0.0.jar`
   * `ignite-web.jar`
   * `ignite-log4j.jar`
