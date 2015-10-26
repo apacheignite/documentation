@@ -127,7 +127,7 @@ Stale sessions are cleaned up from cache automatically when they expire. However
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <!-- Cache name. -->\n    <property name=\"name\" value=\"session-cache\"/>\n \n    <!-- Set up LRU eviction policy with 10000 sessions limit. -->\n    <property name=\"evictionPolicy\">\n        <bean class=\"org.apache.ignite.cache.eviction.lru.CacheLruEvictionPolicy\">\n            <property name=\"maxSize\" value=\"10000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <!-- Cache name. -->\n    <property name=\"name\" value=\"session-cache\"/>\n \n    <!-- Set up LRU eviction policy with 10000 sessions limit. -->\n    <property name=\"evictionPolicy\">\n        <bean class=\"org.apache.ignite.cache.eviction.lru.LruEvictionPolicy\">\n            <property name=\"maxSize\" value=\"10000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
       "language": "xml"
     }
   ]
