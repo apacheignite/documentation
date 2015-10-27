@@ -56,7 +56,7 @@ In the example below, we use `StreamTransformer` to increment a counter for each
 {
   "codes": [
     {
-      "code": "CacheConfiguration cfg = new CacheConfiguration(\"wordCountCache\");\n\nIgniteCache<Integer, Long> stmCache = ignite.getOrCreateCache(cfg);\n\ntry (IgniteDataStreamer<String, Long> stmr = ignite.dataStreamer(stmCache.getName())) {\n  // Allow data updates.\n  stmr.allowOverwrite(true);\n\n  // Configure data transformation to count instances of the same word.\n  stmr.receiver(StreamTransformer.from((e, arg) -> {\n    // Get current count.\n    Long val = e.getValue();\n\n    // Increment count by 1.\n    e.setValue(val == null ? 1L : val + 1);\n\n    return null;\n  }));\n\n  // Stream words into the streamer cache.\n  for (String word : text)\n    stmr.addData(word, 1L);\n}",
+      "code": "CacheConfiguration cfg = new CacheConfiguration(\"wordCountCache\");\n\nIgniteCache<String, Long> stmCache = ignite.getOrCreateCache(cfg);\n\ntry (IgniteDataStreamer<String, Long> stmr = ignite.dataStreamer(stmCache.getName())) {\n  // Allow data updates.\n  stmr.allowOverwrite(true);\n\n  // Configure data transformation to count instances of the same word.\n  stmr.receiver(StreamTransformer.from((e, arg) -> {\n    // Get current count.\n    Long val = e.getValue();\n\n    // Increment count by 1.\n    e.setValue(val == null ? 1L : val + 1);\n\n    return null;\n  }));\n\n  // Stream words into the streamer cache.\n  for (String word : text)\n    stmr.addData(word, 1L);\n}",
       "language": "java",
       "name": "transformer"
     },
