@@ -74,7 +74,7 @@ Ignite also supports the following isolation levels:
 {
   "codes": [
     {
-      "code": "IgniteTransactions txs = ignite.transactions();\n\n// Start transaction in pessimistic mode with repeatable read isolation level.\nTransaction tx = txs.txStart(TransactionConcurrency.OPTIMISTIC, TransactionIsolation.REPEATABLE_READ);",
+      "code": "IgniteTransactions txs = ignite.transactions();\n\n// Start transaction in optimistic mode with repeatable read isolation level.\nTransaction tx = txs.txStart(TransactionConcurrency.OPTIMISTIC, TransactionIsolation.REPEATABLE_READ);",
       "language": "java"
     }
   ]
