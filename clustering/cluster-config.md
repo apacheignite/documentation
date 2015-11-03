@@ -54,7 +54,7 @@ Here is an example of how to configure this finder via Spring XML file or progra
 [block:callout]
 {
   "type": "warning",
-  "body": "By default 'TcpDiscoveryVmIpFinder' is used in non shared mode. In this mode the list of IP addresses should contain an address of a local node to let the node finish with its startup routine even in cases when all remote nodes from the list are not reachable or haven't been started yet."
+  "body": "By default the `TcpDiscoveryVmIpFinder` is used in `non-shared` mode. In this mode the list of IP addresses should also contain the address of the local node, so the node can become the 1st node in the cluster, in case if other remote nodes have not been started yet."
 }
 [/block]
 
