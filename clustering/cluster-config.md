@@ -27,7 +27,7 @@ In Ignite, nodes can discover each other by using `DiscoverySpi`. Ignite provide
   "title": "Static IP Based Discovery"
 }
 [/block]
-For cases when Multicast is disabled, `TcpDiscoveryVmIpFinder` should be used with pre-configured list of IP addresses. You are only required to provide at least one IP address, but usually it is advisable to provide 2 or 3 addresses of the grid nodes that you plan to start first for redundancy. Once a connection to any of the provided IP addresses is established, Ignite will automatically discover all other grid nodes.
+For cases when Multicast is disabled, `TcpDiscoveryVmIpFinder` should be used with pre-configured list of IP addresses. You are only required to provide at least one IP address of a remote node, but usually it is advisable to provide 2 or 3 addresses of the grid nodes that you plan to start first for redundancy. Once a connection to any of the provided IP addresses is established, Ignite will automatically discover all other grid nodes.
 [block:callout]
 {
   "type": "success",
@@ -48,6 +48,13 @@ Here is an example of how to configure this finder via Spring XML file or progra
       "language": "java"
     }
   ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "body": "By default 'TcpDiscoveryVmIpFinder' is used in non shared mode. In this mode the list of IP addresses should contain an address of a local node to let the node finish with its startup routine even in cases when all remote nodes from the list are not reachable or haven't been started yet."
 }
 [/block]
 
