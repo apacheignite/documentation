@@ -1,4 +1,4 @@
-Ignite allows you to use SSL socket communication among all Ignite nodes. To use it, you need to set `Factory<SSLContext>` and configure the SSL section in Ignite configuration. Ignite provides a default SSL context factory, `org.apache.ignite.ssl.SslContextFactory`, which uses configured keystore to initialize SSL context. 
+Ignite allows you to use SSL socket communication among all Ignite nodes. To use it, you need to set `Factory<SSLContext>` and configure the SSL section in the Ignite configuration. Ignite provides a default SSL context factory, `org.apache.ignite.ssl.SslContextFactory`, which uses configured keystore to initialize SSL context. 
 [block:code]
 {
   "codes": [
@@ -28,7 +28,7 @@ In some cases it is useful to disable certificate validation of client side (e.g
   ]
 }
 [/block]
-If security is configured then in logs will be printed that `communication encrypted=on`
+If security is configured then the logs will include `communication encrypted=on`
 [block:code]
 {
   "codes": [
