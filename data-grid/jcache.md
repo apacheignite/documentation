@@ -104,4 +104,3 @@ Just like all distributed APIs in Ignite, `IgniteCache` extends [IgniteAsynchron
   ]
 }
 [/block]
-you can use for different caching
