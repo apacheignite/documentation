@@ -13,7 +13,7 @@ Ignite allows you to use SSL socket communication among all Ignite nodes. To use
   ]
 }
 [/block]
-In some cases it is useful to disable certificate validation of client side (e.g. when connecting to a server with self-signed certificate). This can be achieved by setting a disabled trust manager to this factory, which can be obtained by `getDisabledTrustManager` method.
+In some cases it is useful to disable certificate validation of the client side (e.g. when connecting to a server with self-signed certificate). This can be achieved by setting a disabled trust manager to this factory, which can be obtained by `getDisabledTrustManager` method.
 [block:code]
 {
   "codes": [
