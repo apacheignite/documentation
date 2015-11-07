@@ -46,7 +46,7 @@ If security is configured then the logs will include `communication encrypted=on
   "title": "SSL and TLS"
 }
 [/block]
-Ignite allows to use different encryption. The following algorithms supported [http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext](http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext) and can be set by `setProtocol` method. `TLS` encryption is default.
+Ignite allows using different types of encryption. The following algorithms are supported [http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext](http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#SSLContext) and can be set by using the `setProtocol` method. `TLS` encryption is the default.
 [block:code]
 {
   "codes": [
