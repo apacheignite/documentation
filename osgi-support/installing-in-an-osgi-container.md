@@ -35,7 +35,7 @@ To start Apache Ignite, implement an OSGi Bundle Activator by extending the abst
 We support two different classloading strategies in OSGi:
 
 * `BUNDLE_DELEGATING`: Uses the classloader of the bundle containing the Activator as a first preference, falling back to the classloader of `ignite-core` in second instance.
-* `CONTAINER_SWEEP`: Same as `BUNDLE_DELEGATING`, but ultimately enquires all bundles if the class is still not found. Read below for more information.
+* `CONTAINER_SWEEP`: Same as `BUNDLE_DELEGATING`, but ultimately enquires all bundles if the class is still not found.
 [block:callout]
 {
   "type": "info",
@@ -44,7 +44,6 @@ We support two different classloading strategies in OSGi:
 }
 [/block]
 Make sure to add the `Bundle-Activator` OSGi Manifest header to your bundle, in order to instruct the OSGi container to call the Activator on bundle start:
-
 [block:code]
 {
   "codes": [
