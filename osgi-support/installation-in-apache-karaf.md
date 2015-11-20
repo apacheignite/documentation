@@ -75,7 +75,7 @@ Some modules are OSGi fragments rather than bundles. When installing them, you m
 {
   "type": "warning",
   "title": "Read this note carefully if using Pax Logging on Apache Karaf <= 4.0.3",
-  "body": "When installing the `ignite-log4j` feature, the Karaf shell may show the following message:\n    \n    Error executing command: Resource has no uri\n    \nThis is not a harmful error and has been reported to the Karaf community at [KARAF-4129](https://issues.apache.org/jira/browse/KARAF-4129): Installing a feature with a fragment that attaches to pax-logging-api fails."
+  "body": "When installing the `ignite-log4j` feature, the Karaf shell may show the following message:\n    \n    Error executing command: Resource has no uri\n    \nThis is not a harmful error and has been reported to the Karaf community at [KARAF-4129](https://issues.apache.org/jira/browse/KARAF-4129): Installing a feature with a fragment that attaches to pax-logging-api fails.\n\nApply the instructions below ignoring the error."
 }
 [/block]
 Apache Karaf comes bundled with [Pax Logging](https://ops4j1.jira.com/wiki/display/paxlogging/Pax+Logging), a framework that collects and unifies all log output from other bundles (emitted via different frameworks such as slf4j, log4j, JULI, commons-logging, etc.) and processes it according to a canonical log4j configuration.
