@@ -67,7 +67,7 @@ Some modules are OSGi fragments rather than bundles. When installing them, you m
 [block:api-header]
 {
   "type": "basic",
-  "title": "`ignite-log4j` and Pax Logging"
+  "title": "ignite-log4j and Pax Logging"
 }
 [/block]
 
