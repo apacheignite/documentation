@@ -10,15 +10,15 @@ To start Apache Ignite inside an OSGi container you must have at least installed
 * ignite-osgi
 * javax cache API
 
-If you are using Apache Karaf, you may take a shortcut by using the Ignite Feature Repository to install the `ignite-core` feature. See the "Installation on Apache Karaf" section for more information.
+When deploying in Apache Karaf, you may take a shortcut by using the Ignite Feature Repository to install the `ignite-core` feature. See the "Installation on Apache Karaf" section for more information.
 
-You can install additional Ignite modules to expand the platform's functionality as you would do by adding modules to the classpath in a standard environment.
+Feel free to install additional Ignite modules to expand the platform's functionality, as you would do by adding modules to the classpath in a standard environment.
 
 
 [block:api-header]
 {
   "type": "basic",
-  "title": "Implementing the Ignite Activator"
+  "title": "Implementing the Ignite Bundle Activator"
 }
 [/block]
 To start Apache Ignite, implement an OSGi Bundle Activator by extending the abstract class `org.apache.ignite.osgi.IgniteOsgiContextActivator`:
@@ -35,6 +35,43 @@ To start Apache Ignite, implement an OSGi Bundle Activator by extending the abst
 We support two different classloading strategies in OSGi:
 
 * `BUNDLE_DELEGATING`: Uses the classloader of the bundle containing the Activator as a first preference, falling back to the classloader of `ignite-core` in second instance.
-* `CONTAINER_SWEEP`: Same as `BUNDLE_DELEGATING`, but ultimately enquires all bundles if the class is still not found.
-
+* `CONTAINER_SWEEP`: Same as `BUNDLE_DELEGATING`, but ultimately enquires all bundles if the class is still not found. Read below for more information.
+[block:callout]
+{
+  "type": "info",
+  "title": "Future OSGi classloading strategies",
+  "body": "We may consider adding other classloading strategies in upcoming releases, such as using the Service Locator mechanism to locate bundles which voluntarily want to expose packages to Ignite's marshallers via a file similar to jaxb.index in the JAXB specification.\n\nReach out to us in the community (users@ignite.apache.org mailing list) if you'd like to see such options in the future."
+}
+[/block]
 Make sure to add the `Bundle-Activator` OSGi Manifest header to your bundle:
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Bundle-SymbolicName: test-bundle\nBundle-Activator: org.apache.ignite.osgi.examples.MyActivator\nImport-Packages: ...\n...",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+When building with Maven, we recommend the [`maven-bundle-plugin`](https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html) with a configuration similar to this:
+
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Adding the Bundle-Activator OSGi"
+}
+[/block]
