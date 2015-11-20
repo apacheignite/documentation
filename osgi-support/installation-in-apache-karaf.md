@@ -88,7 +88,8 @@ The `ignite-log4j` feature already installs this fragment, but you will need to 
   "codes": [
     {
       "code": "karaf@root()> feature:install ignite-log4j\nkaraf@root()> refresh org.ops4j.pax.logging.pax-logging-api\nkaraf@root()>\n        __ __                  ____\n       / //_/____ __________ _/ __/\n      / ,<  / __ `/ ___/ __ `/ /_\n     / /| |/ /_/ / /  / /_/ / __/\n    /_/ |_|\\__,_/_/   \\__,_/_/\n\n  Apache Karaf (4.0.2)\n\nHit '<tab>' for a list of available commands\nand '[cmd] --help' for help on a specific command.\nHit '<ctrl-d>' or type 'system:shutdown' or 'logout' to shutdown Karaf.\n\nkaraf@root()> la | grep ignite-osgi-paxlogging\n75 | Resolved  |   8 | 1.5.0.SNAPSHOT                            | ignite-osgi-paxlogging, Hosts: 1\nkaraf@root()> ",
-      "language": "text"
+      "language": "text",
+      "name": "Installing `ignite-log4j` in Karaf"
     }
   ]
 }
