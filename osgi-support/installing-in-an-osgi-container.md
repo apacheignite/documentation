@@ -43,35 +43,27 @@ We support two different classloading strategies in OSGi:
   "body": "We may consider adding other classloading strategies in upcoming releases, such as using the Service Locator mechanism to locate bundles which voluntarily want to expose packages to Ignite's marshallers via a file similar to jaxb.index in the JAXB specification.\n\nReach out to us in the community (users@ignite.apache.org mailing list) if you'd like to see such options in the future."
 }
 [/block]
-Make sure to add the `Bundle-Activator` OSGi Manifest header to your bundle:
+Make sure to add the `Bundle-Activator` OSGi Manifest header to your bundle, in order to instruct the OSGi container to call the Activator on bundle start:
 
 [block:code]
 {
   "codes": [
     {
-      "code": "Bundle-SymbolicName: test-bundle\nBundle-Activator: org.apache.ignite.osgi.examples.MyActivator\nImport-Packages: ...\n...",
+      "code": "Bundle-SymbolicName: test-bundle\nBundle-Activator: org.apache.ignite.osgi.examples.MyActivator\nImport-Packages: ...\n[...]",
       "language": "text"
     }
   ]
 }
 [/block]
-When building with Maven, we recommend the [`maven-bundle-plugin`](https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html) with a configuration similar to this:
-
+To generate the bundle, including the `Bundle-Activator` OSGi header, we recommend adding the [`maven-bundle-plugin`](https://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html) to your Maven build, with the appropriate configuration instructions:
 
 [block:code]
 {
   "codes": [
     {
-      "code": "",
-      "language": "text"
+      "code": "<plugin>\n  <groupId>org.apache.felix</groupId>\n  <artifactId>maven-bundle-plugin</artifactId>\n  <version>${maven.bundle.plugin.version}</version>\n  <configuration>\n    <Bundle-SymbolicName>...</Bundle-SymbolicName>\n    <Bundle-Activator>org.apache.ignite.osgi.examples.MyActivator</Bundle-Activator>\n    [...]\n  </configuration>\n</plugin>",
+      "language": "xml"
     }
   ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Adding the Bundle-Activator OSGi"
 }
 [/block]
