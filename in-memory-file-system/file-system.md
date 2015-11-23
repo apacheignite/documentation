@@ -4,11 +4,11 @@ Ignite Hadoop Accelerator ships with Hadoop-compliant `IGFS File System` impleme
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/qsXmrVXhSluPGib17yZT",
+        "https://www.filepicker.io/api/file/bwMT0bOuTcmm0hnelkWB",
         "ignite_filesystem.png",
         "1848",
         "1278",
-        "#f88c35",
+        "#fa8c0c",
         ""
       ]
     }
