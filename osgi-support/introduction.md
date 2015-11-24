@@ -3,6 +3,8 @@ The following modules have been OSGi-fied:
 * ignite-core
 * ignite-aop
 * ignite-aws
+* ignite-camel
+* ignite-flume
 * ignite-indexing
 * ignite-hibernate
 * ignite-jcl
@@ -14,8 +16,11 @@ The following modules have been OSGi-fied:
 * ignite-rest-http
 * ignite-scalar-2.11
 * ignite-scalar-2.10
+* ignite-schedule
+* ignite-slf4j
 * ignite-spring
 * ignite-ssh
+* ignite-twitter
 * ignite-urideploy
 * ignite-web
 * ignite-zookeeper
