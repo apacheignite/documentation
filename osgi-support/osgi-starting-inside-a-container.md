@@ -19,12 +19,12 @@ Feel free to install additional Ignite modules to expand the platform's function
   "title": "Implementing the Ignite Bundle Activator"
 }
 [/block]
-To start Apache Ignite, implement an OSGi Bundle Activator by extending the abstract class `org.apache.ignite.osgi.IgniteOsgiContextActivator`:
+To start Apache Ignite, implement an OSGi Bundle Activator by extending the abstract class `org.apache.ignite.osgi.IgniteAbstractOsgiContextActivator`:
 [block:code]
 {
   "codes": [
     {
-      "code": "package org.apache.ignite.osgi.examples;\n\nimport org.apache.ignite.configuration.IgniteConfiguration;\nimport org.apache.ignite.osgi.IgniteOsgiContextActivator;\nimport org.apache.ignite.osgi.classloaders.OsgiClassLoadingStrategyType;\n\npublic class MyActivator extends IgniteOsgiContextActivator {\n\n    /**\n     * Configure your Ignite instance as you would normally do, \n     * and return it.\n     */\n    @Override public IgniteConfiguration igniteConfiguration() {\n        IgniteConfiguration config = new IgniteConfiguration();\n        config.setGridName(\"testGrid\");\n      \n        // ...\n\n        return config;\n    }\n\n    /**\n     * Choose the classloading strategy for Ignite to use.\n     */\n    @Override public OsgiClassLoadingStrategyType classLoadingStrategy() {\n        return OsgiClassLoadingStrategyType.BUNDLE_DELEGATING;\n    }\n}",
+      "code": "package org.apache.ignite.osgi.examples;\n\nimport org.apache.ignite.configuration.IgniteConfiguration;\nimport org.apache.ignite.osgi.IgniteAbstractOsgiContextActivator;\nimport org.apache.ignite.osgi.classloaders.OsgiClassLoadingStrategyType;\n\npublic class MyActivator extends IgniteAbstractOsgiContextActivator {\n\n    /**\n     * Configure your Ignite instance as you would normally do, \n     * and return it.\n     */\n    @Override public IgniteConfiguration igniteConfiguration() {\n        IgniteConfiguration config = new IgniteConfiguration();\n        config.setGridName(\"testGrid\");\n      \n        // ...\n\n        return config;\n    }\n\n    /**\n     * Choose the classloading strategy for Ignite to use.\n     */\n    @Override public OsgiClassLoadingStrategyType classLoadingStrategy() {\n        return OsgiClassLoadingStrategyType.BUNDLE_DELEGATING;\n    }\n}",
       "language": "java",
       "name": "A simple Ignite Activator"
     }
