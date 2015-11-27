@@ -86,7 +86,7 @@ CacheConfiguration
     "2-0": "`setRebalanceBatchSize`",
     "2-1": "Size (in bytes) to be loaded within a single rebalance message. Rebalancing algorithm will split total data set on every node into multiple batches prior to sending data.",
     "3-0": "`setRebalanceThrottle`",
-    "3-1": "Time in milliseconds to wait between rebalancing messages to avoid overloading of CPU or network. When rebalancing large data sets, the CPU or        network can get over-  consumed with rebalance messages, which consecutively may slow down the application performance. This parameter helps tune the amount of time to wait between rebalance messages to make sure that rebalancing process does not have any negative performance impact. Note that application will continue to work properly while rebalancing is still in progress.",
+    "3-1": "Not recomended.\n\nTime in milliseconds to wait between rebalancing messages to avoid overloading of CPU or network. When rebalancing large data sets, the CPU or        network can get over-  consumed with rebalance messages, which consecutively may slow down the application performance. This parameter helps tune the amount of time to wait between rebalance messages to make sure that rebalancing process does not have any negative performance impact. Note that application will continue to work properly while rebalancing is still in progress.",
     "4-0": "`setRebalanceOrder`",
     "5-0": "`setRebalanceTimeout`",
     "4-1": "Order in which rebalancing should be done. Rebalance order can be set to non-zero value for caches with SYNC or ASYNC rebalance modes only. Rebalancing for caches with smaller rebalance order will be completed first. By default, rebalancing is not ordered.",
