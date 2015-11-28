@@ -43,7 +43,7 @@ Scan queries allow for querying cache in distributed form based on some user def
       "name": "scan"
     },
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// Find only persons earning more than 1,000.\nIgniteBiPredicate<Long, Person> filter = new IgniteByPredicate<>() {\n  @Override public boolean apply(Long key, Perons p) {\n  \treturn p.getSalary() > 1000;\n\t}\n};\n\ntry (QueryCursor cursor = cache.query(new ScanQuery(filter)) {\n  for (Person p : cursor)\n    System.out.println(p.toString());\n}",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// Find only persons earning more than 1,000.\nIgniteBiPredicate<Long, Person> filter = new IgniteByPredicate<>() {\n  @Override public boolean apply(Long key, Person p) {\n  \treturn p.getSalary() > 1000;\n\t}\n};\n\ntry (QueryCursor cursor = cache.query(new ScanQuery(filter)) {\n  for (Person p : cursor)\n    System.out.println(p.toString());\n}",
       "language": "java",
       "name": "java7 scan"
     }
@@ -69,7 +69,7 @@ Ignite also supports text-based queries based on Lucene indexing.
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// Query for all people with \"Master Degree\" in their resumes.\nTextQuery txt = new TextQuery(Person.class, \"Master Degree\");\n\ntry (QueryCursor<Entry<Long, Person>> masters = cache.query(txt)) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// Query for all people with \"Master Degree\" in their resumes.\nTextQuery txt = new TextQuery(Person.class, \"Master Degree\");\n\ntry (QueryCursor<Entry<Long, Person>> masters = cache.query(txt)) {\n  for (Entry<Long, Person> e : masters)\n    System.out.println(e.getValue().toString());\n}",
       "language": "java",
       "name": "text query"
     }
