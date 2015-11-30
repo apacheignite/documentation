@@ -70,6 +70,7 @@ You can obtain an instance of `IgniteCache` as follows:
   ]
 }
 [/block]
+##Dynamic Cache
 You can also create an instance of the cache on the fly, in which case Ignite will create and deploy the cache across all server cluster members.
 [block:code]
 {
