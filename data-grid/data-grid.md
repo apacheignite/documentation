@@ -71,7 +71,7 @@ You can obtain an instance of `IgniteCache` as follows:
 }
 [/block]
 ##Dynamic Cache
-You can also create the cache on the fly, in which case Ignite will create and deploy the cache across the server nodes in the cluster. Similarly, you can also destroy the cache dynamically across all the server nodes within the cluster.
+You can also create the cache on the fly, in which case Ignite will create and deploy the cache on all the server nodes in the cluster. Similarly, you can also destroy the cache dynamically across the server nodes within the cluster.
 [block:code]
 {
   "codes": [
