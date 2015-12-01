@@ -76,7 +76,7 @@ You can also create the cache on the fly, in which case Ignite will create and d
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\nCacheConfiguration cfg = new CacheConfiguration();\n\ncfg.setName(\"myCache\");\ncfg.setAtomicityMode(TRANSACTIONAL);\n\n// Create cache with the given name, if it does not exist.\nIgniteCache<Integer, String> cache = ignite.getOrCreateCache(cfg);\n\n// Destroy cache with the given name.\nignite.destroyCache(\"myCache\");",
+      "code": "Ignite ignite = Ignition.ignite();\n\nCacheConfiguration cfg = new CacheConfiguration();\n\ncfg.setName(\"myCache\");\ncfg.setAtomicityMode(TRANSACTIONAL);\n\n// Create the cache with given name, if it does not exist.\nIgniteCache<Integer, String> cache = ignite.getOrCreateCache(cfg);\n\n// Destroy the cache with given name.\nignite.destroyCache(\"myCache\");",
       "language": "java",
       "name": "Java"
     }
