@@ -27,6 +27,7 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Put if absent](#put-if-absent)
 * [Get and put if absent](#get-and-put-if-absent)
 * [Cache size](#cache-size)
+* [Cache metadata](#cache-metadata)
 * [Get or create cache](#get-or-create-cache)
 * [Destroy cache](#destroy-cache)
 * [Node](#node)
@@ -35,9 +36,9 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 * [Result](#result)
 * [Sql query execute](#sql-query-execute)
 * [Sql fields query execute](#sql-fields-query-execute)
+* [Sql scan query execute](#sql-scan-query-execute)
 * [Sql query fetch](#sql-query-fetch)
 * [Sql query close](#sql-query-close)
-
 [block:api-header]
 {
   "type": "basic",
@@ -2160,6 +2161,74 @@ HTTP REST request returns JSON object which has similar structure for each comma
 [block:api-header]
 {
   "type": "basic",
+  "title": "Cache metadata"
+}
+[/block]
+**Cache metadata** command gets metadata for Ignite cache.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "  http://host:port/ignite?cmd=metadata&cacheName=partionedCache",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-1": "type",
+    "h-0": "name",
+    "h-2": "optional",
+    "h-3": "description",
+    "h-4": "example",
+    "1-4": "partionedCache",
+    "1-2": "Yes",
+    "1-3": "Cache name. If not provided, default cache will be used.",
+    "0-3": "Should be **metadata** lowercase.",
+    "0-1": "String",
+    "1-1": "String",
+    "1-0": "cacheName",
+    "0-0": "cmd"
+  },
+  "cols": 5,
+  "rows": 2
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\": \"\",\n  \"response\": {\n    \"cacheName\": \"partionedCache\",\n    \"types\": [\n      \"Person\"\n    ],\n    \"keyClasses\": {\n      \"Person\": \"java.lang.Integer\"\n    },\n    \"valClasses\": {\n      \"Person\": \"org.apache.ignite.Person\"\n    },\n    \"fields\": {\n      \"Person\": {\n        \"_KEY\": \"java.lang.Integer\",\n        \"_VAL\": \"org.apache.ignite.Person\",\n        \"ID\": \"java.lang.Integer\",\n        \"FIRSTNAME\": \"java.lang.String\",\n        \"LASTNAME\": \"java.lang.String\",\n        \"SALARY\": \"double\"\n      }\n    },\n    \"indexes\": {\n      \"Person\": [\n        {\n          \"name\": \"ID_IDX\",\n          \"fields\": [\n            \"id\"\n          ],\n          \"descendings\": [],\n          \"unique\": false\n        },\n        {\n          \"name\": \"SALARY_IDX\",\n          \"fields\": [\n            \"salary\"\n          ],\n          \"descendings\": [],\n          \"unique\": false\n        }\n      ]\n    }\n  },\n  \"sessionToken\": \"\",\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "name",
+    "h-1": "type",
+    "h-2": "description",
+    "h-3": "example",
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "0-3": "{\n    \"cacheName\": \"partionedCache\",\n    \"types\": [\n      \"Person\"\n    ],\n    \"keyClasses\": {\n      \"Person\": \"java.lang.Integer\"\n    },\n    \"valClasses\": {\n      \"Person\": \"org.apache.ignite.Person\"\n    },\n    \"fields\": {\n      \"Person\": {\n        \"_KEY\": \"java.lang.Integer\",\n        \"_VAL\": \"org.apache.ignite.Person\",\n        \"ID\": \"java.lang.Integer\",\n        \"FIRSTNAME\": \"java.lang.String\",\n        \"LASTNAME\": \"java.lang.String\",\n        \"SALARY\": \"double\"\n      }\n    },\n    \"indexes\": {\n      \"Person\": [\n        {\n          \"name\": \"ID_IDX\",\n          \"fields\": [\n            \"id\"\n          ],\n          \"descendings\": [],\n          \"unique\": false\n        },\n        {\n          \"name\": \"SALARY_IDX\",\n          \"fields\": [\n            \"salary\"\n          ],\n          \"descendings\": [],\n          \"unique\": false\n        }\n      ]\n    }\n  }",
+    "0-2": "Metadata for Ignite cache."
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Get or create cache"
 }
 [/block]
@@ -2402,7 +2471,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"error\": \"\",\n  \"response\": [\n    {\n      \"attributes\": {\n        ...\n      },\n      \"caches\": {},\n      \"consistentId\": \"127.0.0.1:47500\",\n      \"defaultCacheMode\": \"REPLICATED\",\n      \"metrics\": {\n        ...\n      },\n      \"nodeId\": \"96baebd6-dedc-4a68-84fd-f804ee1ed995\",\n      \"replicaCount\": 128,\n      \"tcpAddresses\": [\"127.0.0.1\"],\n      \"tcpHostNames\": [\"\"],\n      \"tcpPort\": 11211\n   },\n   {\n     \"attributes\": {\n       ...\n     },\n     \"caches\": {},\n      \"consistentId\": \"127.0.0.1:47501\",\n      \"defaultCacheMode\": \"REPLICATED\",\n      \"metrics\": {\n        ...\n      },\n      \"nodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n      \"replicaCount\": 128,\n      \"tcpAddresses\": [\"127.0.0.1\"],\n      \"tcpHostNames\": [\"\"],\n      \"tcpPort\": 11212\n   }\n  ],\n  \"successStatus\": 0\n}",
+      "code": "{\n  \"error\": \"\",\n  \"response\": [\n    {\n      \"attributes\": {\n        ...\n      },\n      \"caches\": {\n        \"partionedCache\": \"PARTITIONED\"\n      },\n      \"consistentId\": \"127.0.0.1:47500\",\n      \"defaultCacheMode\": \"REPLICATED\",\n      \"metrics\": {\n        ...\n      },\n      \"nodeId\": \"96baebd6-dedc-4a68-84fd-f804ee1ed995\",\n      \"replicaCount\": 128,\n      \"tcpAddresses\": [\"127.0.0.1\"],\n      \"tcpHostNames\": [\"\"],\n      \"tcpPort\": 11211\n   },\n   {\n     \"attributes\": {\n       ...\n     },\n     \"caches\": {},\n      \"consistentId\": \"127.0.0.1:47501\",\n      \"defaultCacheMode\": \"REPLICATED\",\n      \"metrics\": {\n        ...\n      },\n      \"nodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n      \"replicaCount\": 128,\n      \"tcpAddresses\": [\"127.0.0.1\"],\n      \"tcpHostNames\": [\"\"],\n      \"tcpPort\": 11212\n   }\n  ],\n  \"successStatus\": 0\n}",
       "language": "json"
     }
   ]
@@ -2419,7 +2488,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-0": "response",
     "0-1": "jsonObject",
     "0-2": "Information about grid topology.",
-    "0-3": "[\n{\n\"attributes\": {\n...\n},\n\"caches\": {},\n\"consistentId\": \"127.0.0.1:47500\",\n\"defaultCacheMode\": \"REPLICATED\",\n\"metrics\": {\n...\n},\n\"nodeId\": \"96baebd6-dedc-4a68-84fd-f804ee1ed995\",\n...\n\"tcpPort\": 11211\n},\n{\n\"attributes\": {\n...\n},\n\"caches\": {},\n\"consistentId\": \"127.0.0.1:47501\",\n\"defaultCacheMode\": \"REPLICATED\",\n\"metrics\": {\n...\n},\n\"nodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n...\n\"tcpPort\": 11212\n}\n]"
+    "0-3": "[\n{\n\"attributes\": {\n...\n},\n\"caches\": {\n\"partionedCache\": \"PARTITIONED\"\n},\n\"consistentId\": \"127.0.0.1:47500\",\n\"defaultCacheMode\": \"REPLICATED\",\n\"metrics\": {\n...\n},\n\"nodeId\": \"96baebd6-dedc-4a68-84fd-f804ee1ed995\",\n...\n\"tcpPort\": 11211\n},\n{\n\"attributes\": {\n...\n},\n\"caches\": {},\n\"consistentId\": \"127.0.0.1:47501\",\n\"defaultCacheMode\": \"REPLICATED\",\n\"metrics\": {\n...\n},\n\"nodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n...\n\"tcpPort\": 11212\n}\n]"
   },
   "cols": 4,
   "rows": 1
@@ -2788,7 +2857,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[{\"fieldName\":\"FIRSTNAME\", \"fieldTypeName\":\"java.lang.String\", \"schemaName\":\"person\", \"typeName\":\"PERSON\"},{\"fieldName\":\"LASTNAME\",\"fieldTypeName\":\"java.lang.String\",\"schemaName\":\"person\",\"typeName\":\"PERSON\"}],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0}",
+      "code": "{\n  \"error\": \"\",\n  \"response\": {\n    \"fieldsMetadata\": [\n      {\n        \"fieldName\": \"FIRSTNAME\",\n        \"fieldTypeName\": \"java.lang.String\",\n        \"schemaName\": \"person\",\n        \"typeName\": \"PERSON\"\n      },\n      {\n        \"fieldName\": \"LASTNAME\",\n        \"fieldTypeName\": \"java.lang.String\",\n        \"schemaName\": \"person\",\n        \"typeName\": \"PERSON\"\n      }\n    ],\n    \"items\": [[\"Jane\", \"Doe\" ], [\"John\", \"Doe\"]],\n    \"last\": true,\n    \"queryId\": 0\n  },\n  \"successStatus\": 0\n}",
       "language": "json"
     }
   ]
@@ -2806,6 +2875,83 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-1": "jsonObject",
     "0-2": "JSON object contains  result items for query, fields query metadata,  flag for last page and queryId for query fetching.",
     "0-3": "{\n    \"fieldsMetadata\":[{\"fieldName\":\"FIRSTNAME\", \"fieldTypeName\":\"java.lang.String\", \"schemaName\":\"person\", \"typeName\":\"PERSON\"},...],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n}"
+  },
+  "cols": 4,
+  "rows": 1
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Sql scan query execute"
+}
+[/block]
+**Sql scan query execute** command runs sql scan query over cache.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "http://host:port/ignite?cmd=qryscanexe&pzs=10&cacheName=Person&className=org.apache.ignite.schema.Person",
+      "language": "curl"
+    }
+  ]
+}
+[/block]
+##Request parameters
+[block:parameters]
+{
+  "data": {
+    "h-1": "type",
+    "h-0": "name",
+    "h-2": "optional",
+    "h-3": "decription",
+    "0-0": "cmd",
+    "0-1": "String",
+    "0-3": "Should be **qryscanexe** lowercase.",
+    "h-4": "example",
+    "1-3": "Page size for the query",
+    "1-4": "3",
+    "1-0": "pageSize",
+    "1-1": "Number",
+    "2-1": "String",
+    "2-0": "cacheName",
+    "2-3": "Cache name. If not provided, default cache will be used.",
+    "2-2": "Yes",
+    "2-4": "testCache",
+    "3-0": "className",
+    "3-1": "String",
+    "3-2": "Yes",
+    "3-4": "org.apache.ignite.schema.Person",
+    "3-3": "Predicate class name for scan query."
+  },
+  "cols": 5,
+  "rows": 4
+}
+[/block]
+##Response example
+[block:code]
+{
+  "codes": [
+    {
+      "code": "{\n  \"error\": \"\",\n  \"response\": {\n    \"fieldsMetadata\": [\n      {\n        \"fieldName\": \"key\",\n        \"fieldTypeName\": \"\",\n        \"schemaName\": \"\",\n        \"typeName\": \"\"\n      },\n      {\n        \"fieldName\": \"value\",\n        \"fieldTypeName\": \"\",\n        \"schemaName\": \"\",\n        \"typeName\": \"\"\n      }\n    ],\n    \"items\": [\n      {\n        \"key\": 1,\n        \"value\": {\n          \"firstName\": \"Jane\",\n          \"id\": 1,\n          \"lastName\": \"Doe\",\n          \"salary\": 1000\n        }\n      },\n      {\n        \"key\": 3,\n        \"value\": {\n          \"firstName\": \"Jane\",\n          \"id\": 3,\n          \"lastName\": \"Smith\",\n          \"salary\": 2000\n        }\n      }\n    ],\n    \"last\": true,\n    \"queryId\": 0\n  },\n  \"successStatus\": 0\n}",
+      "language": "json"
+    }
+  ]
+}
+[/block]
+
+[block:parameters]
+{
+  "data": {
+    "0-0": "response",
+    "0-1": "jsonObject",
+    "h-1": "type",
+    "h-0": "name",
+    "h-2": "description",
+    "0-2": "JSON object contains  result items for scan query, fields query metadata,  flag for last page and queryId for query fetching.",
+    "h-3": "example",
+    "0-3": "{\n    \"fieldsMetadata\":[{\"fieldName\":\"key\", \"fieldTypeName\":\"\", \"schemaName\":\"\", \"typeName\":\"\"},{\"fieldName\":\"value\",\"fieldTypeName\":\"\",\"schemaName\":\"\",\"typeName\":\"\"}],\n    \"items\":[{\"key\":1,\"value\":{\"firstName\":\"Jane\",\"id\":1,\"lastName\":\"Doe\",\"salary\":1000}},{\"key\":3,\"value\":{\"firstName\":\"Jane\",\"id\":3,\"lastName\":\"Smith\",\"salary\":2000}}],\n    \"last\":true,\n    \"queryId\":0\n  }"
   },
   "cols": 4,
   "rows": 1
@@ -2861,7 +3007,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0}",
+      "code": "{\n  \"error\":\"\",\n  \"response\":{\n    \"fieldsMetadata\":[],\n    \"items\":[[\"Jane\",\"Doe\"],[\"John\",\"Doe\"]],\n    \"last\":true,\n    \"queryId\":0\n  },\n  \"successStatus\":0\n}",
       "language": "json"
     }
   ]

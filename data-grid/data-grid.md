@@ -70,15 +70,13 @@ You can obtain an instance of `IgniteCache` as follows:
   ]
 }
 [/block]
-##Dynamic Cache
-You can also create the cache on the fly, in which case Ignite will create and deploy the cache on all the server nodes in the cluster. Similarly, you can also destroy the cache dynamically across the server nodes within the cluster.
+You can also create an instance of the cache on the fly, in which case Ignite will create and deploy the cache across all server cluster members.
 [block:code]
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\nCacheConfiguration cfg = new CacheConfiguration();\n\ncfg.setName(\"myCache\");\ncfg.setAtomicityMode(TRANSACTIONAL);\n\n// Create the cache with given name, if it does not exist.\nIgniteCache<Integer, String> cache = ignite.getOrCreateCache(cfg);\n\n// Destroy the cache with given name.\nignite.destroyCache(\"myCache\");",
-      "language": "java",
-      "name": "Java"
+      "code": "Ignite ignite = Ignition.ignite();\n\nCacheConfiguration cfg = new CacheConfiguration();\n\ncfg.setName(\"myCache\");\ncfg.setAtomicityMode(TRANSACTIONAL);\n\n// Create cache with given name, if it does not exist.\nIgniteCache<Integer, String> cache = ignite.getOrCreateCache(cfg);",
+      "language": "java"
     }
   ]
 }
