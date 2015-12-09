@@ -87,7 +87,7 @@ Ignite also supports the following isolation levels:
   "title": "Integration With JTA"
 }
 [/block]
-Ignite can be configured with a JTA transaction manager lookup class using `TransactionConfiguration#setTxManagerLookupClassName` method. Transaction manager lookup is basically a factory that provides Ignite with an instance of JTA transaction manager.
+Ignite can be configured with a JTA transaction manager lookup class using `TransactionConfiguration#setTxManagerFactory` method. Transaction manager factory is a factory that provides Ignite with an instance of JTA transaction manager.
 When set, on each cache operation on a transactional cache Ignite will check if there is an ongoing JTA transaction. If JTA transaction is started, Ignite will also start a transaction and will enlist it into JTA transaction using it's own internal implementation of `XAResource`. Ignite transaction will be prepared, committed or rolledback altogether with corresponding JTA transaction.
 Below is an example of using JTA transaction manager together with Ignite.
 [block:code]
