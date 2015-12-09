@@ -104,7 +104,7 @@ If you have instances of this class in cache, you can query individual fields (n
   ]
 }
 [/block]
-Minimalistic version of `ignite-jdbc.xml` configration file can look like:
+Minimalistic version of `ignite-jdbc.xml` configuration file can look like:
 [block:code]
 {
   "codes": [
