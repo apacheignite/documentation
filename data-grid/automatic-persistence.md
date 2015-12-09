@@ -206,7 +206,7 @@ H2 Console will be started in your default browser.
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/KU9EDmkqTU6YZzFiTraO",
+        "https://www.filepicker.io/api/file/jETV9RqjRDqEb968Mkv6",
         "ignite-schema-import-demo-connect.png",
         "650",
         "650",
