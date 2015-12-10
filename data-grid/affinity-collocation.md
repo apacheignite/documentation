@@ -7,7 +7,9 @@ Given that the most common ways to cache data is in `PARTITIONED` caches, colloc
 [/block]
 In many cases it is beneficial to collocate different cache keys together if they will be accessed together. Quite often your business logic will require access to more than one cache key. By collocating them together you can make sure that all keys with the same `affinityKey` will be cached on the same processing node, hence avoiding costly network trips to fetch data from remote nodes.
 
-For example, let's say you have `Person` and `Company` objects and you want to collocate `Person` objects with `Company` objects for which this person works. To achieve that, cache key used to cache `Person` objects should have a field or method annotated with `@AffinityKeyMapped` annotation, which will provide the value of the company key for collocation. For convenience, you can also optionally use `AffinityKey` class
+For example, let's say you have `Person` and `Company` objects and you want to collocate `Person` objects with `Company` objects for which this person works. There are two ways to declare affinity key for a key type.
+
+First, cache key used to cache `Person` objects may have a field or method annotated with `@AffinityKeyMapped` annotation, which will provide the value of the company key for collocation. For convenience, you can also optionally use `AffinityKey` class
 [block:code]
 {
   "codes": [
@@ -20,6 +22,17 @@ For example, let's say you have `Person` and `Company` objects and you want to c
       "code": "Object personKey1 = new AffinityKey(\"myPersonId1\", \"myCompanyId\");\nObject personKey2 = new AffinityKey(\"myPersonId2\", \"myCompanyId\");\n \nPerson p1 = new Person(personKey1, ...);\nPerson p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncache.put(\"myCompanyId\", new Company(..));\ncache.put(personKey1, p1);\ncache.put(personKey2, p2);",
       "language": "java",
       "name": "using AffinityKey"
+    }
+  ]
+}
+[/block]
+Second, cache key configuration may be declared in IgniteConfiguration object specifying which field should be used as an affinity key field.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "    <bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n        <property name=\"cacheKeyConfiguration\">\n            <bean class=\"org.apache.ignite.cache.CacheKeyConfiguration\">\n                <property name=\"typeName\" value=\"org.apache.ignite.examples.PersonKey\"/>\n                <property name=\"affinityKeyFieldName\" value=\"companyId\"/>\n            </bean>\n        </property>\n...",
+      "language": "xml"
     }
   ]
 }
