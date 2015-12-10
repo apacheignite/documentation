@@ -32,7 +32,8 @@ Second, cache key configuration may be declared in IgniteConfiguration object sp
   "codes": [
     {
       "code": "    <bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n        <property name=\"cacheKeyConfiguration\">\n            <bean class=\"org.apache.ignite.cache.CacheKeyConfiguration\">\n                <property name=\"typeName\" value=\"org.apache.ignite.examples.PersonKey\"/>\n                <property name=\"affinityKeyFieldName\" value=\"companyId\"/>\n            </bean>\n        </property>\n...",
-      "language": "xml"
+      "language": "xml",
+      "name": "Using CacheKeyConfiguration"
     }
   ]
 }
