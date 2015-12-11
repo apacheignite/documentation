@@ -72,10 +72,24 @@ By default Ignite works with deserialized values as it is the most common use-ca
 `BinaryObject` instances are immutable. An instance of `BinaryObjectBuilder`must be used in order to update fields and create a new `BinaryObject`.
 
 An instance of `BinaryObjectBuilder` can be obtained from `IgniteBinary` facade. The builder may be created using a type name, in this case returned builder will contain no fields, or it may be created using an existing `BinaryObject`, in this case the returned builder will copy all the fields from the given `BinaryObject`.
+
+Another way to get an instance of `BinaryObjectBuilder` is to call `toBuilder()` on an existing instance of a `BinaryObject`. This will also copy all data from the `BinaryObject` to the created builder.
 [block:callout]
 {
   "type": "danger",
   "title": "BinaryObject And Hash Code",
   "body": "Note that it is important that a proper hash code be set to `PortableBuilder` if constructed `BinaryObject` will be used as a cache key, because builder does not calculate hash code automatically and returned `BinaryObject` will have zero hash code otherwise."
+}
+[/block]
+Below is an example of using `BinaryObject` API to process data on server nodes without having user classes deployed on servers and without actual data deserialization.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "cache.withKeepBinary().invoke(\n    new CacheEntryProcessor<Integer, BinaryObject, Void>() {\n        @Override Void process(\n            MutableEntry<Integer, BinaryObject> entry, Object... args) {\n            // Create builder from the old value, update the field and set\n            // new value to the entry.\n            entry.setValue(entry.getValue().toBuilder()\n                .setField(\"name\", \"Ignite\").build());\n                \n            return null;\n        }\n    });",
+      "language": "text",
+      "name": "BinaryObject Inside EntryProcessor"
+    }
+  ]
 }
 [/block]
