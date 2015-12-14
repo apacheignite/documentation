@@ -115,7 +115,7 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
   "title": "BinaryObject and CacheStore"
 }
 [/block]
-Setting `withKeepBinary()` on the cache API does not affect the way user objects are passed to a `CacheStore`. This is done on purpose because in most cases a single `CacheStore` implementation works either with deserialized classes, or with `BinaryObject` representation. To control the way objects are passed to the store, the `storeKeepBinary` flag on `CacheConfiguration` should be used. When this flag is set to `false`, deserialized values will be passed to the store, otherwise `BinaryObject`s will be used.
+Setting `withKeepBinary()` on the cache API does not affect the way user objects are passed to a `CacheStore`. This is done on purpose because in most cases a single `CacheStore` implementation works either with deserialized classes, or with `BinaryObject` representation. To control the way objects are passed to the store, the `storeKeepBinary` flag on `CacheConfiguration` should be used. When this flag is set to `false`, deserialized values will be passed to the store, otherwise `BinaryObject` representation will be used.
 
 Below is an example pseudo-code implementation of a store working with `BinaryObject`.
 [block:code]
