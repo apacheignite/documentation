@@ -112,6 +112,27 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
 [block:api-header]
 {
   "type": "basic",
+  "title": "BinaryObject Type Metadata"
+}
+[/block]
+As it was mentioned above, binary object structure may be changed at runtime, so it also may be useful to get information about a particular type that is stored in a cache, such as field names, field type names, affinity field name. Ignite facilitates this requirement via `BinaryType` interface. 
+
+This interface also introduces a faster version of field getter called `BinaryField`. The concept is analogous to java reflection and allows to cache certain information about the field being read in the `BinaryField` instance, which is useful when reading the same field from a large collection of binary objects.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Collection<BinaryObject> persons = getPersons();\n\nBinaryField salary = null;\n\ndouble total = 0;\nint cnt = 0;\n\nfor (BinaryObject person : persons) {\n    if (salary == null)\n        salary = person.type().field(\"salary\");\n\n    total += salary.value(person);\n    cnt++;\n}\n\ndouble avg = total / cnt;",
+      "language": "java",
+      "name": "BinaryField Example"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "BinaryObject and CacheStore"
 }
 [/block]
