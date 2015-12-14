@@ -55,7 +55,7 @@ At this point Ignite node is ready to be started:
 
 2) Stop all Hadoop services.
 
-3) Set Ignite JARs `${IGNITE_HOME}\libs\ignite-core-[version].jar` and `${GNITE_HOME}/libs/hadoop/ignite-hadoop-[version].jar`" to Hadoop CLASSPATH.
+3) Set Ignite JARs `${IGNITE_HOME}/libs/ignite-core-[version].jar` and `${GNITE_HOME}/libs/hadoop/ignite-hadoop-[version].jar`" to Hadoop CLASSPATH.
 You can either copy (or symlink) these JARs directly to Hadoop installation (e.g. to `${HADOOP_HOME}/share/hadoop/common/lib`) 
 [block:code]
 {
