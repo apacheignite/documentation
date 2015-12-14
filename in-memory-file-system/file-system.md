@@ -29,7 +29,7 @@ Apache Ignite Hadoop Accelerator performs file system operations within Ignite c
 2) Each cluster node must have Hadoop jars in CLASSPATH. 
 See respective Ignite installation guide for your Hadoop distribution for details.
 
-3) `IGFS` must be configured on the cluster node. See http://apacheignite.readme.io/v1.0/docs/igfs for details on how to do that.
+3) `IGFS` must be configured on the cluster node. See http://apacheignite.readme.io/docs/igfs for details on how to do that.
 
 4) To let `IGFS` accept requests from Hadoop, an endpoint should be configured (default configuration file is `${IGNITE_HOME}/config/default-config.xml`).
 Ignite offers two endpoint types:
