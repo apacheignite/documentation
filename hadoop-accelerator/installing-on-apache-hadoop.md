@@ -1,9 +1,9 @@
 This article explains how to install Apache Ignite Hadoop Accelerator on Apache Hadoop distribution.
 
 Please read the following articles first to get better understanding of product's architecture:
-* http://apacheignite.readme.io/v1.0/docs/overview
-* http://apacheignite.readme.io/v1.0/docs/map-reduce
-* http://apacheignite.readme.io/v1.0/docs/file-system
+* http://apacheignite.readme.io/docs/overview
+* http://apacheignite.readme.io/docs/map-reduce
+* http://apacheignite.readme.io/docs/file-system
 [block:api-header]
 {
   "type": "basic",
@@ -28,10 +28,10 @@ Please read the following articles first to get better understanding of product'
 }
 [/block]
 IGFS with this configuration will listen for incoming file system requests with default endpoint bound to `127.0.0.1:10500`. 
-If you want to override it, provide alternate `ipcEndpointConfiguration`  (see http://apacheignite.readme.io/v1.0/docs/file-system).
+If you want to override it, provide alternate `ipcEndpointConfiguration`  (see http://apacheignite.readme.io/docs/file-system).
 
 5) If you are going to use Ignite map-reduce engine for your jobs, no additional configuration is required, as node will listen for job execution requests with default endpoint bound to `127.0.0.1:11211`. 
-If you want to override it, provide alternate 'ConnectorConfiguration' (see http://apacheignite.readme.io/v1.0/docs/map-reduce).
+If you want to override it, provide alternate 'ConnectorConfiguration' (see http://apacheignite.readme.io/docs/map-reduce).
 
 At this point Ignite node is ready to be started:
 [block:code]
@@ -55,7 +55,7 @@ At this point Ignite node is ready to be started:
 
 2) Stop all Hadoop services.
 
-3) Set Ignite JARs `${IGNITE_HOME}\libs\ignite-core-[version].jar` and `${GNITE_HOME}\libs\hadoop\ignite-hadoop-[version].ja`" to Hadoop CLASSPATH.
+3) Set Ignite JARs `${IGNITE_HOME}\libs\ignite-core-[version].jar` and `${GNITE_HOME}/libs/hadoop/ignite-hadoop-[version].jar`" to Hadoop CLASSPATH.
 You can either copy (or symlink) these JARs directly to Hadoop installation (e.g. to `${HADOOP_HOME}/share/hadoop/common/lib`) 
 [block:code]
 {
