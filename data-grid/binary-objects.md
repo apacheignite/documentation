@@ -19,6 +19,21 @@ The `IgniteBinary` facade, which can be obtained from an instance of Ignite, con
 [block:api-header]
 {
   "type": "basic",
+  "title": "BinaryObject Equality"
+}
+[/block]
+When an object is translated to the binary format, Ignite captures it's hash code and stores it alongside with the binary object fields. This way a proper and consistent hash code can be provided on all nodes in a cluster for any object. For the `equals` comparison, Ignite relies on binary representation of the serialized object.
+[block:callout]
+{
+  "type": "warning",
+  "title": "Binary Equals",
+  "body": "Note that since `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Configuring Binary Objects"
 }
 [/block]
@@ -86,7 +101,7 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
 {
   "codes": [
     {
-      "code": "cache.withKeepBinary().invoke(\n    new CacheEntryProcessor<Integer, BinaryObject, Void>() {\n        @Override Void process(\n            MutableEntry<Integer, BinaryObject> entry, Object... args) {\n            // Create builder from the old value, update the field and set\n            // new value to the entry.\n            entry.setValue(entry.getValue().toBuilder()\n                .setField(\"name\", \"Ignite\").build());\n                \n            return null;\n        }\n    });",
+      "code": "cache.withKeepBinary().invoke(\n    new CacheEntryProcessor<Integer, BinaryObject, Void>() {\n        @Override Void process(\n            MutableEntry<Integer, BinaryObject> entry, Object... args) {\n            // Create builder from the old value.\n            BinaryObjectBuilder bldr = entry.getValue().toBuilder();\n            \n            //Update the field in the builder.\n            bldr.setField(\"name\", \"Ignite\");\n            \n            // Set new value to the entry.\n            entry.setValue(bldr.build());\n                \n            return null;\n        }\n    });",
       "language": "text",
       "name": "BinaryObject Inside EntryProcessor"
     }
