@@ -62,7 +62,7 @@ By default Ignite works with deserialized values as it is the most common use-ca
 {
   "type": "info",
   "title": "Platform Types",
-  "body": "Note that not all types will be represented as `BinaryObject` when `withKeepBinary()` flag is enabled. There is a set of 'platform' types that includes primitive types, String, UUID, Date, Timestamp, BigDecimal, Collections, Maps and arrays of thereof that will never be represented as a `BinaryObject`."
+  "body": "Note that not all types will be represented as `BinaryObject` when `withKeepBinary()` flag is enabled. There is a set of 'platform' types that includes primitive types, String, UUID, Date, Timestamp, BigDecimal, Collections, Maps and arrays of thereof that will never be represented as a `BinaryObject`.\n\nNote that in the example below key type `Integer` does not change because it is a platform type."
 }
 [/block]
 
@@ -116,3 +116,16 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
 }
 [/block]
 Setting `withKeepBinary()` on the cache API does not affect the way user objects are passed to a `CacheStore`. This is done on purpose because in most cases a single `CacheStore` implementation works either with deserialized classes, or with `BinaryObject` representation. To control the way objects are passed to the store, the `storeKeepBinary` flag on `CacheConfiguration` should be used. When this flag is set to `false`, deserialized values will be passed to the store, otherwise `BinaryObject`s will be used.
+
+Below is an example pseudo-code implementation of a store working with `BinaryObject`.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "protected static class CacheExampleBinaryStore extends CacheStoreAdapter<Integer, BinaryObject> {\n    @IgniteInstanceResource\n    private Ignite ignite;\n\n    /** {@inheritDoc} */\n    @Override public BinaryObject load(Integer key) throws CacheLoaderException {\n        IgniteBinary binary = ignite.binary();\n\n        List<?> rs = loadRow(key);\n\n        BinaryObjectBuilder bldr = binary.builder(\"Person\");\n\n        for (int i = 0; i < rs.size(); i++)\n            bldr.setField(name(i), rs.get(i));\n\n        return bldr.build();\n    }\n\n    /** {@inheritDoc} */\n    @Override public void write(Cache.Entry<? extends Integer, ? extends BinaryObject> entry) throws CacheWriterException {\n        BinaryObject obj = entry.getValue();\n\n        BinaryType type = obj.type();\n\n        Collection<String> fields = type.fieldNames();\n        \n        List<Object> row = new ArrayList<>(fields.size());\n\n        for (String fieldName : fields)\n            row.add(obj.field(fieldName));\n        \n        saveRow(entry.getKey(), row);\n    }\n}",
+      "language": "java",
+      "name": "Binary CacheStore Implementation"
+    }
+  ]
+}
+[/block]
