@@ -27,7 +27,7 @@ Please read the following articles first to get better understanding of product'
   ]
 }
 [/block]
-IGFS with this configuration will listen for incoming file system requests with default endpoint bound to `127.0.0.1:10500`.  If you want to override it, provide alternate `ipcEndpointConfiguration`  (see [File System](docs:file-system) documentation).
+IGFS with this configuration will listen for incoming file system requests with default endpoint bound to `127.0.0.1:10500`.  If you want to override it, provide alternate `ipcEndpointConfiguration`  (see [File System](doc:file-system) documentation).
 
  5. If you are going to use Ignite map-reduce engine for your jobs, no additional configuration is required, as node will listen for job execution requests with default endpoint bound to `127.0.0.1:11211`. 
 If you want to override it, provide alternate 'ConnectorConfiguration' (see http://apacheignite.readme.io/docs/map-reduce).
