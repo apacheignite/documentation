@@ -75,11 +75,11 @@ If the automatic configuration doesn't work for you by some reason refer to the 
   "title": "Manual Hadoop Configuration"
 }
 [/block]
-1) Ensure that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
+ 1. Ensure that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
 
-2) Stop all Hadoop services.
+ 2. Stop all Hadoop services.
 
-3) Set Ignite JARs `${IGNITE_HOME}/libs/ignite-core-[version].jar` and `${GNITE_HOME}/libs/hadoop/ignite-hadoop-[version].jar`" to Hadoop CLASSPATH.
+ 3. Set Ignite JARs `${IGNITE_HOME}/libs/ignite-core-[version].jar` and `${GNITE_HOME}/libs/hadoop/ignite-hadoop-[version].jar`" to Hadoop CLASSPATH.
 You can either copy (or symlink) these JARs directly to Hadoop installation (e.g. to `${HADOOP_HOME}/share/hadoop/common/lib`) 
 [block:code]
 {
@@ -102,7 +102,7 @@ or set them to `HADOOP_CLASSPATH` environment variable:
   ]
 }
 [/block]
-4) If you want to use Ignite `FileSystem`, configure it either in the separate `core-site.xml` file, or in default `core-site.xml` located in `${HADOOP_HOME}/etc/hadoop`:
+ 4. If you want to use Ignite `FileSystem`, configure it either in the separate `core-site.xml` file, or in default `core-site.xml` located in `${HADOOP_HOME}/etc/hadoop`:
 [block:code]
 {
   "codes": [
@@ -120,7 +120,7 @@ or set them to `HADOOP_CLASSPATH` environment variable:
   "body": "Note that if you change `fs.default.name` to use Ignite FIleSystem in default `core-site.xml`, Hadoop will not be able to work with `HDFS` anymore. If you want to use both Ignite `FileSystem` and `HDFS` at the same time, consider creating separate configuration file."
 }
 [/block]
-5) If you want to use Ignite `MapReduce` job tracker, configure it either in the separate `mapred-site.xml` file, or in default `mapred-site.xml` located in `${HADOOP_HOME}/etc/hadoop`:
+ 5. If you want to use Ignite `MapReduce` job tracker, configure it either in the separate `mapred-site.xml` file, or in default `mapred-site.xml` located in `${HADOOP_HOME}/etc/hadoop`:
 [block:code]
 {
   "codes": [
@@ -131,7 +131,7 @@ or set them to `HADOOP_CLASSPATH` environment variable:
   ]
 }
 [/block]
-6) Start Hadoop.
+ 6. Start Hadoop.
 [block:api-header]
 {
   "type": "basic",
