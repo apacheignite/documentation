@@ -48,10 +48,33 @@ At this point Ignite node is ready to be started:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Hadoop"
+  "title": "Automatic Hadoop Configuration"
 }
 [/block]
-1) Enusre that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
+1) Ensure that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
+
+2) Make sure that  `HADOOP_HOME` environment variable points to the installation directory of Apache Hadoop.
+
+2) Stop all Hadoop services.
+
+3) The Accelerator comes with command line setup tool `${IGNITE_HOME}/bin/setup-hadoop.sh` (`${IGNITE_HOME}/bin/setup-hadoop.bat` on Windows) that will guide you through all the needed setup steps (note that the setup tool will require write permissions to the Apache Hadoop installation directory). Run the script and follow instructions.
+
+The script will symlink all required Apache Ignite Hadoop Accelerator JARs directly to Hadoop installation directory.
+In addition the script can replace the content of `core-site.xml` and `mapred-site.xml` that will let you use Ignite File System as a default one for Hadoop and enable Ignite 'MapReduce' job tracker.
+[block:callout]
+{
+  "type": "warning",
+  "body": "If allow the script to replace default `core-site.xml`, Hadoop will not be able to work with `HDFS` anymore. If you want to use both Ignite `FileSystem` and `HDFS` at the same time, consider creating separate configuration file."
+}
+[/block]
+If the automatic configuration doesn't work for you by some reason refer to the manual configuration guide below.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Manual Hadoop Configuration"
+}
+[/block]
+1) Ensure that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
 
 2) Stop all Hadoop services.
 
@@ -89,8 +112,13 @@ or set them to `HADOOP_CLASSPATH` environment variable:
   ]
 }
 [/block]
-Note that if you change `fs.default.name` to use Ignite FIleSystem in default `core-site.xml`, Hadoop will not be able to work with `HDFS` anymore. If you want to use both Ignite `FileSystem` and `HDFS` at the same time, consider creating separate configuration file.
 
+[block:callout]
+{
+  "type": "warning",
+  "body": "Note that if you change `fs.default.name` to use Ignite FIleSystem in default `core-site.xml`, Hadoop will not be able to work with `HDFS` anymore. If you want to use both Ignite `FileSystem` and `HDFS` at the same time, consider creating separate configuration file."
+}
+[/block]
 5) If you want to use Ignite `MapReduce` job tracker, configure it either in the separate `mapred-site.xml` file, or in default `mapred-site.xml` located in `${HADOOP_HOME}/etc/hadoop`:
 [block:code]
 {
@@ -102,9 +130,15 @@ Note that if you change `fs.default.name` to use Ignite FIleSystem in default `c
   ]
 }
 [/block]
-6) Start Hadoop.
 
-7) At this point installation is finished and you can start running jobs. 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Hadoop Start-up"
+}
+[/block]
+At this point installation is finished and you can start running jobs. 
+
 Run a job with separate `core-site.xml` and/or `mapred-site.xml` configuration files:
 [block:code]
 {
