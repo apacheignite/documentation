@@ -32,7 +32,7 @@ See respective Ignite installation guide for your Hadoop distribution for detail
   * [Installing on Apache Hadoop](doc:installing-on-apache-hadoop)
   * [Installing on Cloudera CDH](doc:installing-on-cloudera-cdh)
   * [Installing on Hortonworks HDP](doc:installing-on-hortonworks-hdp)
-
+  
 3) `IGFS` must be configured on the cluster node. See http://apacheignite.readme.io/docs/igfs for details on how to do that.
 
 4) To let `IGFS` accept requests from Hadoop, an endpoint should be configured (default configuration file is `${IGNITE_HOME}/config/default-config.xml`).
@@ -98,17 +98,21 @@ When Ignite node is configured start it:
   "title": "Configure Hadoop"
 }
 [/block]
-To run Hadoop job using Ignite job tracker three prerequisites must be satisfied:
+To run Hadoop job using Ignite job tracker the following prerequisites must be satisfied:
 
 1) `IGNITE_HOME` environment variable must be set and point to the root of Ignite installation directory.
 
-2) Hadoop must have Ignite JARS `${IGNITE_HOME}\libs\ignite-core-[version].jar` and `${IGNITE_HOME}\libs\hadoop\ignite-hadoop-[version].jar` in CLASSPATH. 
+2) Hadoop must have Ignite JARS `${IGNITE_HOME}\libs\ignite-core-[version].jar` and `${IGNITE_HOME}\libs\ignite-hadoop\ignite-hadoop-[version].jar` in CLASSPATH. 
 
 This can be achieved in several ways.
   * Add these JARs to `HADOOP_CLASSPATH` environment variable.
   * Copy or symlink these JARs to the folder where your Hadoop installation stores shared libraries.
+  
 See respective Ignite installation guide for your Hadoop distribution for details.
-
+  * [Installing on Apache Hadoop](doc:installing-on-apache-hadoop)
+  * [Installing on Cloudera CDH](doc:installing-on-cloudera-cdh)
+  * [Installing on Hortonworks HDP](doc:installing-on-hortonworks-hdp)
+  
 3) Ignite Hadoop Accelerator file system must be configured for the action your are going to perform.
 At the very least you must provide fully qualified file system class name:
 [block:code]
