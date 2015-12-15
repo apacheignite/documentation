@@ -200,9 +200,9 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
     "0-0": "`US-WEST`",
     "1-0": "`US-EAST`",
     "2-0": "`EU-CENTRAL`",
-    "0-1": "[ami-5b53a41f](https://console.aws.amazon.com/ec2/home?region=us-west-1#launchAmi=ami-5b53a41f)",
-    "1-1": "[ami-3fa45e54](https://console.aws.amazon.com/ec2/home?region=us-east-1#launchAmi=ami-3fa45e54)",
-    "2-1": "[ami-9c5f6481](https://console.aws.amazon.com/ec2/home?region=eu-central-1#launchAmi=ami-9c5f6481)",
+    "0-1": "[ami-9cdbb3fc](https://console.aws.amazon.com/ec2/home?region=us-west-1#launchAmi=ami-9cdbb3fc)",
+    "1-1": "[ami-ce82caa4](https://console.aws.amazon.com/ec2/home?region=us-east-1#launchAmi=ami-ce82caa4)",
+    "2-1": "[ami-191b0775](https://console.aws.amazon.com/ec2/home?region=eu-central-1#launchAmi=ami-191b0775)",
     "h-1": "Image"
   },
   "cols": 2,
