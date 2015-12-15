@@ -46,6 +46,32 @@ At this point Ignite node is ready to be started:
 [block:api-header]
 {
   "type": "basic",
+  "title": "Automatic CDH Configuration"
+}
+[/block]
+1) Ensure that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
+
+2) Make sure that  `HADOOP_HOME` environment variable points to the installation directory of Cloudera CDH.
+
+3) Go to **Cloudera Manager** and stop all CDH services except of **Cloudera Management Services**.
+
+4) The Accelerator comes with command line setup tool `${IGNITE_HOME}/bin/setup-hadoop.sh` (`${IGNITE_HOME}/bin/setup-hadoop.bat` on Windows) that will guide you through all the needed setup steps (note that the setup tool will require write permissions to CDH installation directory). Run the script and follow instructions.
+
+The script will symlink all required Apache Ignite Hadoop Accelerator JARs directly to CDH installation directory.
+In addition the script can replace the content of `core-site.xml` and `mapred-site.xml` that will let you use Ignite File System as a default one for Hadoop and enable Ignite 'MapReduce' job tracker.
+[block:callout]
+{
+  "type": "warning",
+  "title": "",
+  "body": "If you allow the script to replace default `core-site.xml` CDH will not be able to work with `HDFS` anymore. If you want to use both Ignite `FileSystem` and `HDFS` at the same time, consider creating separate configuration file."
+}
+[/block]
+5) If you made any changes to default configuration(s), save them and re-deploy.
+
+6) Start CDH services
+[block:api-header]
+{
+  "type": "basic",
   "title": "CDH"
 }
 [/block]
@@ -76,8 +102,12 @@ At this point Ignite node is ready to be started:
 }
 [/block]
 Alternatively you can configure these properties in default CDH `core-site.xml`: **Cloudera Manager** -> **YARN (MR2 Included)** -> **Configuration** -> **Service Wide** -> **Advanced **-> **YARN Service Advanced Configuration Snippet (Safety Valve) for core-site.xml**.
-Note that if you change `fs.default.name` to use Ignite FileSystem in default `core-site.xml`, CDH will not be able to work with `HDFS` anymore. If you want to use both Ignite `FileSystem` and `HDFS` at the same time, consider creating separate configuration file.
-
+[block:callout]
+{
+  "type": "warning",
+  "body": "Note that if you change `fs.default.name` to use Ignite FileSystem in default `core-site.xml`, CDH will not be able to work with `HDFS` anymore. If you want to use both Ignite `FileSystem` and `HDFS` at the same time, consider creating separate configuration file."
+}
+[/block]
 5) If you want to use Ignite `MapReduce` job tracker, configure it in a separate `mapred-site.xml` file:
 [block:code]
 {
@@ -94,8 +124,14 @@ Alternatively you can configure these properties in default CDH `mapred-site.xml
 6) If you made any changes to default configuration(s), save them and re-deploy.
 
 7) Start CDH services
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Apache Ignite Hadoop Accelerator Usage"
+}
+[/block]
+At this point installation is finished and you can start running jobs. 
 
-8) At this point installation is finished and you can start running jobs. 
 Run a job with separate `core-site.xml` and/or `mapred-site.xml` configuration files:
 [block:code]
 {
