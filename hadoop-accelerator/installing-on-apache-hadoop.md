@@ -68,6 +68,8 @@ In addition the script can replace the content of `core-site.xml` and `mapred-si
 }
 [/block]
 If the automatic configuration doesn't work for you by some reason refer to the manual configuration guide below.
+
+5) Start Hadoop.
 [block:api-header]
 {
   "type": "basic",
@@ -130,11 +132,11 @@ or set them to `HADOOP_CLASSPATH` environment variable:
   ]
 }
 [/block]
-
+6) Start Hadoop.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Hadoop Start-up"
+  "title": "Apache Ignite Hadoop Accelerator Usage"
 }
 [/block]
 At this point installation is finished and you can start running jobs. 
