@@ -72,7 +72,7 @@ In addition the script can replace the content of `core-site.xml` and `mapred-si
 [block:api-header]
 {
   "type": "basic",
-  "title": "CDH"
+  "title": "Manual CDH Configuration"
 }
 [/block]
 1) Enusre that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
