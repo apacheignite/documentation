@@ -27,7 +27,11 @@ Apache Ignite Hadoop Accelerator performs file system operations within Ignite c
 1) `IGNITE_HOME` environment variable must be set and point to the root of Ignite installation directory.
 
 2) Each cluster node must have Hadoop jars in CLASSPATH. 
+
 See respective Ignite installation guide for your Hadoop distribution for details.
+  * [Installing on Apache Hadoop](doc:installing-on-apache-hadoop)
+  * [Installing on Cloudera CDH](doc:installing-on-cloudera-cdh)
+  * [Installing on Hortonworks HDP](doc:installing-on-hortonworks-hdp)
 
 3) `IGFS` must be configured on the cluster node. See http://apacheignite.readme.io/docs/igfs for details on how to do that.
 
