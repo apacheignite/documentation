@@ -50,13 +50,13 @@ At this point Ignite node is ready to be started:
   "title": "Automatic Hadoop Configuration"
 }
 [/block]
-1) Ensure that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
+ 1. Ensure that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
 
-2) Make sure that  `HADOOP_HOME` environment variable points to the installation directory of Apache Hadoop.
+ 2. Make sure that  `HADOOP_HOME` environment variable points to the installation directory of Apache Hadoop.
 
-3) Stop all Hadoop services.
+ 3. Stop all Hadoop services.
 
-4) The Accelerator comes with command line setup tool `${IGNITE_HOME}/bin/setup-hadoop.sh` (`${IGNITE_HOME}/bin/setup-hadoop.bat` on Windows) that will guide you through all the needed setup steps (note that the setup tool will require write permissions to the Apache Hadoop installation directory). Run the script and follow instructions.
+ 4. The Accelerator comes with command line setup tool `${IGNITE_HOME}/bin/setup-hadoop.sh` (`${IGNITE_HOME}/bin/setup-hadoop.bat` on Windows) that will guide you through all the needed setup steps (note that the setup tool will require write permissions to the Apache Hadoop installation directory). Run the script and follow instructions.
 
 The script will symlink all required Apache Ignite Hadoop Accelerator JARs directly to Hadoop installation directory.
 In addition the script can replace the content of `core-site.xml` and `mapred-site.xml` that will let you use Ignite File System as a default one for Hadoop and enable Ignite 'MapReduce' job tracker.
@@ -68,7 +68,7 @@ In addition the script can replace the content of `core-site.xml` and `mapred-si
 [/block]
 If the automatic configuration doesn't work for you by some reason refer to the manual configuration guide below.
 
-5) Start Hadoop.
+ 5. Start Hadoop.
 [block:api-header]
 {
   "type": "basic",
