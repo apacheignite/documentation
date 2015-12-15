@@ -46,31 +46,7 @@ At this point Ignite node is ready to be started:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Automatic CDH Configuration"
-}
-[/block]
-1) Ensure that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
-
-2) Go to **Cloudera Manager** and stop all CDH services except of **Cloudera Management Services**.
-
-3) The Accelerator comes with command line setup tool `${IGNITE_HOME}/bin/setup-hadoop.sh` (`${IGNITE_HOME}/bin/setup-hadoop.bat` on Windows) that will guide you through all the needed setup steps (note that the setup tool will require write permissions to CDH installation directory). Run the script and follow instructions.
-
-The script will symlink all required Apache Ignite Hadoop Accelerator JARs directly to CDH installation directory.
-In addition the script can replace the content of `core-site.xml` and `mapred-site.xml` that will let you use Ignite File System as a default one for Hadoop and enable Ignite 'MapReduce' job tracker.
-[block:callout]
-{
-  "type": "warning",
-  "title": "",
-  "body": "If you allow the script to replace default `core-site.xml` CDH will not be able to work with `HDFS` anymore. If you want to use both Ignite `FileSystem` and `HDFS` at the same time, consider creating separate configuration file."
-}
-[/block]
-4) If you made any changes to default configuration(s), save them and re-deploy.
-
-5) Start CDH services
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Manual CDH Configuration"
+  "title": "CDH"
 }
 [/block]
 1) Enusre that `IGNITE_HOME` environment variable is set and points to the directory where you unpacked Apache Ignite Hadoop Accelerator.
@@ -122,14 +98,8 @@ Alternatively you can configure these properties in default CDH `mapred-site.xml
 6) If you made any changes to default configuration(s), save them and re-deploy.
 
 7) Start CDH services
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Apache Ignite Hadoop Accelerator Usage"
-}
-[/block]
-At this point installation is finished and you can start running jobs. 
 
+8) At this point installation is finished and you can start running jobs. 
 Run a job with separate `core-site.xml` and/or `mapred-site.xml` configuration files:
 [block:code]
 {
