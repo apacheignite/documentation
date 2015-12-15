@@ -10,13 +10,13 @@ Please read the following articles first to get better understanding of product'
   "title": "Ignite"
 }
 [/block]
-1) Download the latest version of Apache Ignite Hadoop Accelerator and unpack it somewhere.
+ 1. Download the latest version of Apache Ignite Hadoop Accelerator and unpack it somewhere.
 
-2) Set `IGNITE_HOME` variable to the directory where you unpacked Apache Ignite Hadoop Accelerator.
+ 2. Set `IGNITE_HOME` variable to the directory where you unpacked Apache Ignite Hadoop Accelerator.
 
-3) Ensure that `HADOOP_HOME` environment variable is set and valid. This is required for Ignite to find necessary Hadoop classes.
+ 3. Ensure that `HADOOP_HOME` environment variable is set and valid. This is required for Ignite to find necessary Hadoop classes.
 
-4) If you are going to use Ignite `FileSystem` implementation, configure `IGFS` in XML configuration (default configuration is `${IGNITE_HOME}/config/default-config.xml`):
+ 4. If you are going to use Ignite `FileSystem` implementation, configure `IGFS` in XML configuration (default configuration is `${IGNITE_HOME}/config/default-config.xml`):
 [block:code]
 {
   "codes": [
@@ -30,7 +30,7 @@ Please read the following articles first to get better understanding of product'
 IGFS with this configuration will listen for incoming file system requests with default endpoint bound to `127.0.0.1:10500`. 
 If you want to override it, provide alternate `ipcEndpointConfiguration`  (see http://apacheignite.readme.io/docs/file-system).
 
-5) If you are going to use Ignite map-reduce engine for your jobs, no additional configuration is required, as node will listen for job execution requests with default endpoint bound to `127.0.0.1:11211`. 
+ 5. If you are going to use Ignite map-reduce engine for your jobs, no additional configuration is required, as node will listen for job execution requests with default endpoint bound to `127.0.0.1:11211`. 
 If you want to override it, provide alternate 'ConnectorConfiguration' (see http://apacheignite.readme.io/docs/map-reduce).
 
 At this point Ignite node is ready to be started:
