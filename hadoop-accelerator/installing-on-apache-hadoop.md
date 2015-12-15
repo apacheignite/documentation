@@ -58,8 +58,7 @@ At this point Ignite node is ready to be started:
 
  4. The Accelerator comes with command line setup tool `${IGNITE_HOME}/bin/setup-hadoop.sh` (`${IGNITE_HOME}/bin/setup-hadoop.bat` on Windows) that will guide you through all the needed setup steps (note that the setup tool will require write permissions to the Apache Hadoop installation directory). Run the script and follow instructions.
 
-The script will symlink all required Apache Ignite Hadoop Accelerator JARs directly to Hadoop installation directory.
-In addition the script can replace the content of `core-site.xml` and `mapred-site.xml` that will let you use Ignite File System as a default one for Hadoop and enable Ignite 'MapReduce' job tracker.
+The script will symlink all required Apache Ignite Hadoop Accelerator JARs directly to Hadoop installation directory. In addition the script can replace the content of `core-site.xml` and `mapred-site.xml` that will let you use Ignite File System as a default one for Hadoop and enable Ignite 'MapReduce' job tracker.
 [block:callout]
 {
   "type": "warning",
