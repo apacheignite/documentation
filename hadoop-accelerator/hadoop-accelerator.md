@@ -37,4 +37,3 @@ See the following installation guides for more information:
   * [Installing on Apache Hadoop](doc:installing-on-apache-hadoop)
   * [Installing on Cloudera CDH](doc:installing-on-cloudera-cdh)
   * [Installing on Hortonworks HDP](doc:installing-on-hortonworks-hdp)
-  * [Installing on Apache BigTop](doc:installing-on-apache-bigtop)
