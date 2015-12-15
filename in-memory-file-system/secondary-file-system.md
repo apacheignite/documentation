@@ -21,6 +21,12 @@ Note that by default Apache Ignite will not have Hadoop libraries in the classpa
 
 2) Set HADOOP_HOME environment variable before starting an Apache Ignite node if you're using Apache Hadoop distribution. If you use some other Hadoop distribution (HDP, Cloudera, BigTop, etc.) make sure that `/etc/default/hadoop` file exists and has appropriate content.
 
+See respective Ignite installation guide for your Hadoop distribution for details.
+  * [Installing on Apache Hadoop](doc:installing-on-apache-hadoop)
+  * [Installing on Cloudera CDH](doc:installing-on-cloudera-cdh)
+  * [Installing on Hortonworks HDP](doc:installing-on-hortonworks-hdp)
+
+
 Alternatively, you can manually add necessary Hadoop dependencies to Ignite node classpath: these are dependencies of groupId "org.apache.hadoop" listed in file `modules/hadoop/pom.xml`. Currently they are the following:
 
 hadoop-annotations
