@@ -102,7 +102,7 @@ To run Hadoop job using Ignite job tracker the following prerequisites must be s
 
 1) `IGNITE_HOME` environment variable must be set and point to the root of Ignite installation directory.
 
-2) Hadoop must have Ignite JARS `${IGNITE_HOME}\libs\ignite-core-[version].jar` and `${IGNITE_HOME}\libs\ignite-hadoop\ignite-hadoop-[version].jar` in CLASSPATH. 
+2) Hadoop must have Ignite libraries `${IGNITE_HOME}/libs/ignite-core-[version].jar`,  `${IGNITE_HOME}/libs/ignite-hadoop/ignite-hadoop-[version].jar`, and `${IGNITE_HOME}/libs/ignite-shmem-1.0.0.jar` in CLASSPATH.
 
 This can be achieved in several ways.
   * Add these JARs to `HADOOP_CLASSPATH` environment variable.
@@ -172,17 +172,19 @@ If you created separate `core-site.xml`:
   ]
 }
 [/block]
-If you modified default `core-site.xml`, then `--config` option is not necessary:
+Note that a separate Hadoop config directory and Ignite libraries may be easily referenced using custom Hadoop launcher script, e.g. `hadoop-ignited`:
 [block:code]
 {
   "codes": [
     {
-      "code": "hadoop [arguments]",
+      "code": "export IGNITE_HOME=.....\n\n# Add necessary Ignite libraries to the Hadoop client classpath:\nVERSION=[version]\nexport HADOOP_CLASSPATH=${IGNITE_HOME}/libs/ignite-core-${VERSION}.jar:${IGNITE_HOME}/libs/ignite-hadoop/ignite-hadoop-${VERSION}.jar:${IGNITE_HOME}/libs/ignite-shmem-1.0.0.jar\n\nhadoop --config [path_to_config] \"${@}\"",
       "language": "shell"
     }
   ]
 }
 [/block]
+This way to run a Hadoop job using IGFS, you may run command `hadoop-ignited ...`, while to run the same job on default Hadoop you can run `hadoop ...` with the same arguments.
+
 If you start the job programmatically, then submit it:
 [block:code]
 {
