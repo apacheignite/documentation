@@ -183,7 +183,7 @@ Note that a separate Hadoop config directory and Ignite libraries may be easily 
   ]
 }
 [/block]
-This way to run a Hadoop job using IGFS, you may run command `hadoop-ignited ...`, while to run the same job on default Hadoop you can run `hadoop ...` with the same arguments.
+This way to run a Hadoop job using IGFS, you may run command `hadoop-ignited ...`, while to run the same job on default Hadoop you can run just `hadoop ...` with the same arguments.
 
 If you start the job programmatically, then submit it:
 [block:code]
