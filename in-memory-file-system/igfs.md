@@ -1,5 +1,5 @@
 Ignite File System (IGFS) is an in-memory file system allowing work with files and directories over existing cache infrastructure. 
-IGFS can either work as purely in-memory file system, or delegate to another file system (e.g. various Hadoop file system implementations) acting as a [caching layer](https://apacheignite.readme.io/docs/secondary-file-system).
+IGFS can either work as purely in-memory file system, or delegate to another file system (e.g. various Hadoop file system implementations) acting as a caching layer (see https://apacheignite.readme.io/docs/secondary-file-system for more detail).
 In addition IGFS provides API to execute map-reduce tasks over file system data.
 [block:api-header]
 {
