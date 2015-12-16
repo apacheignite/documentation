@@ -177,7 +177,7 @@ Note that a separate Hadoop config directory and Ignite libraries may be easily 
 {
   "codes": [
     {
-      "code": "export IGNITE_HOME=.....\n\n# Add necessary Ignite libraries to the Hadoop client classpath:\nVERSION=[version]\nexport HADOOP_CLASSPATH=${IGNITE_HOME}/libs/ignite-core-${VERSION}.jar:${IGNITE_HOME}/libs/ignite-hadoop/ignite-hadoop-${VERSION}.jar:${IGNITE_HOME}/libs/ignite-shmem-1.0.0.jar\n\nhadoop --config [path_to_config] \"${@}\"",
+      "code": "export IGNITE_HOME=[path_to_ignite]\n\n# Add necessary Ignite libraries to the Hadoop client classpath:\nVERSION=[ignite_version_identifier]\nexport HADOOP_CLASSPATH=${IGNITE_HOME}/libs/ignite-core-${VERSION}.jar:${IGNITE_HOME}/libs/ignite-hadoop/ignite-hadoop-${VERSION}.jar:${IGNITE_HOME}/libs/ignite-shmem-1.0.0.jar\n\nhadoop --config [path_to_config_directory] \"${@}\"",
       "language": "shell"
     }
   ]
