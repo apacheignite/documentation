@@ -66,8 +66,6 @@ The script will symlink all required Apache Ignite Hadoop Accelerator JARs direc
 }
 [/block]
 If the automatic configuration doesn't work for you by some reason refer to the manual configuration guide below.
-
- 5. Start Hadoop.
 [block:api-header]
 {
   "type": "basic",
