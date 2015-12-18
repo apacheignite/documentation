@@ -1,7 +1,7 @@
 [block:api-header]
 {
   "type": "basic",
-  "title": "Basic Concept"
+  "title": "Basic Concepts"
 }
 [/block]
 Starting from v1.5 Ignite introduced a new concept of storing data in caches named BinaryObjects. There are several advantages provided by the new serialization format:
