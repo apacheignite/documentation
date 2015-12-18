@@ -4,7 +4,7 @@
   "title": "Basic Concepts"
 }
 [/block]
-Starting from v1.5 Ignite introduced a new concept of storing data in caches named BinaryObjects. There are several advantages provided by the new serialization format:
+Starting from v1.5 Ignite introduced a new concept of storing data in caches named `BinaryObjects`. There are several advantages provided by the new serialization format:
  * It allows to read an arbitrary field from an object's serialized form without full object deserialization. This ability completely removes the requirement to have cache key and value classes deployed to the server nodes classpath. 
  * It allows to add and remove fields to the objects of the same type. Given that server nodes do not have model classes definitions, this ability allows dynamic object structure change, and even allows multiple clients with different versions of class definitions to co-exist.
  * It allows to construct new objects based on a type name without having class definitions at all, which basically allows dynamic type creation.
