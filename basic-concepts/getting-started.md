@@ -48,6 +48,14 @@ If you downloaded the source package, you can build the binary using the followi
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "body": "`Doxygen` is required to generate .NET documentation. If you don't have it installed, you can skip it by specifying `-DskipClientDocs` property.",
+  "title": "Build Notes"
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
