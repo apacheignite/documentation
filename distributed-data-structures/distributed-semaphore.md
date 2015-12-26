@@ -11,3 +11,14 @@ To start using a distributed semaphore it has to be created in a way as in the e
   ]
 }
 [/block]
+Once the semaphore is created it can be concurrently used by multiple nodes of the cluster in order to implement some distributed logic or restrict access to a distributed resource like in the following example:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Ignite ignite = Ignition.ignite();\n\nIgniteSemaphore semaphore = ignite.semaphore(\n    \"semName\", // Distributed semaphore name.\n    20,        // Number of permits.\n    true,      // Release acquired permits if node, that owned them, left topology.\n    true       // Create if it doesn't exist.\n);\n\n// Acquires a permit, blocking until it's available.\nsemaphore.acquire();\n\ntry {\n    // Semaphore permit is acquired. Execute a distributed task.\n    ignite.compute().run(() -> {\n        System.out.println(\"Executed on:\" + ignite.cluster().localNode().id());\n  \n        // Additional logic.\n    });\n}\nfinally {\n    // Releases a permit, returning it to the semaphore.\n    semaphore.release();\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
