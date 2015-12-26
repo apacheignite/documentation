@@ -11,7 +11,7 @@ To start using a distributed semaphore it should be created in a way as in the e
   ]
 }
 [/block]
-Once the semaphore is created it can be concurrently used by multiple nodes of the cluster in order to implement some distributed logic or restrict access to a distributed resource like in the following example:
+Once the semaphore is created it can be concurrently used by multiple cluster nodes in order to implement some distributed logic or restrict access to a distributed resource like in the following example:
 [block:code]
 {
   "codes": [
