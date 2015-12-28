@@ -47,7 +47,7 @@ If you downloaded the source package, you can build the binary using the followi
   ]
 }
 [/block]
-
+To build Apache Ignite.NET, see corresponding site: https://apacheignite-net.readme.io/
 [block:callout]
 {
   "type": "info",
