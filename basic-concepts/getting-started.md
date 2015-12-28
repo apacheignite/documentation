@@ -51,7 +51,7 @@ To build Apache Ignite.NET, see corresponding site: https://apacheignite-net.rea
 [block:callout]
 {
   "type": "info",
-  "body": "`Doxygen` is required to generate .NET documentation. You have to install it before using -DclientDocs flag.",
+  "body": "`Doxygen` is required to generate .NET documentation. You have to install it before building Ignite with Ignite.NET.",
   "title": "Build Notes"
 }
 [/block]
