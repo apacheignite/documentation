@@ -23,7 +23,7 @@ To run Ignite docker container using `docker run`:
 {
   "codes": [
     {
-      "code": "# Run latest version.\nsudo docker run -it --net=host \n-e \"IGNITE_CONFIG=$IGNITE_VERSION\" \n[-e \"OPTION_LIBS=$IGNITE_CONFIG\"]\n[-e \"JVM_OPTS=$OPTION_LIBS\"]\n...\napacheignite/ignite \n\n# Run ignite version 1.4.0\nsudo docker run -it --net=host \n-e \"IGNITE_CONFIG=$IGNITE_VERSION\" \n[-e \"OPTION_LIBS=$IGNITE_CONFIG\"]\n[-e \"JVM_OPTS=$OPTION_LIBS\"]\n...\napacheignite/ignite ",
+      "code": "# Run latest version.\nsudo docker run -it --net=host \n-e \"IGNITE_CONFIG=$IGNITE_CONFIG\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite \n\n# Run ignite version 1.4.0\nsudo docker run -it --net=host \n-e \"IGNITE_CONFIG=$IGNITE_CONFIG\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite ",
       "language": "shell"
     }
   ]
