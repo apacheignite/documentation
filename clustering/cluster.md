@@ -1,3 +1,26 @@
+Ignite nodes can automatically discover each other. This helps to scale the cluster when needed, without having to restart the whole cluster. Developers can also leverage Ignite’s hybrid cloud support that allows establishing connection between private and public clouds such as Amazon Web Services, providing them with the best of both worlds. 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://www.filepicker.io/api/file/Q8pkHPHRSTKhjIglsdu0",
+        "ignite_cluster.png",
+        "500",
+        "270",
+        "#5d8486",
+        ""
+      ]
+    }
+  ]
+}
+[/block]
+##Features
+  * Pluggable Design via `IgniteDiscoverySpi`
+  * Dynamic topology management
+  * Automatic discovery on LAN, WAN, and AWS
+  * On-demand and direct deployment
+  * Support for virtual clusters and node groupings
 [block:api-header]
 {
   "type": "basic",
