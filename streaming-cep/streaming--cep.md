@@ -53,3 +53,18 @@ Sliding windows are configured as Ignite cache eviction policies, and can be tim
 You can use full set of Ignite data indexing capabilities, together with Ignite SQL, TEXT, and Predicate based cache queries, to query into the streaming data.
 
 [read more](doc:cache-queries)
+
+##Word Count Example
+In this example we will stream text into Ignite and count each individual word. We will also issue periodic SQL queries into the stream to query top 10 most popular words.
+
+[Read More](doc:streaming-example)
+
+##JMS Data Streamer
+Ignite offers a JMS Data Streamer to consume messages from JMS brokers, convert them into cache tuples and insert them in Ignite caches.
+
+[Read More](doc:jms-data-streamer)
+
+## Flume Data Streamer
+IgniteSink is a Flume sink that extracts Events from an associated Flume channel and injects into an Ignite cache. Flume 1.6.0 is supported.
+
+[Read More](doc:flume-data-streamer)

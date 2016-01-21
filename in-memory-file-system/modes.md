@@ -5,7 +5,7 @@ If secondary file system is not configured, all paths configured as `DUAL_SYNC` 
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.FileSystemConfiguration\">\n  ...\n  <!-- Set default mode. -->\n  <property name=\"defaultMode\" value=\"DUAL_SYNC\" />     \n  <!-- Configure '/tmp' and all child paths to work in PRIMARY mode. -->\n  <property name=\"pathModes\">\n    <map>\n      <entry key=\"/tmp/.*\" value=\"PRIMARY\"/>      \n    </map>\n  </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.FileSystemConfiguration\">\n  ...\n  <!-- Set default mode. -->\n  <property name=\"defaultMode\" value=\"DUAL_SYNC\" />     \n  <!-- Configure '/tmp' and all child paths to work in PRIMARY mode. -->\n  <property name=\"pathModes\">\n    <map>\n      <entry key=\"/tmp\" value=\"PRIMARY\"/>      \n    </map>\n  </property>\n</bean>",
       "language": "xml"
     },
     {

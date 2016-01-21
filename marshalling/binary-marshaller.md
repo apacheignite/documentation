@@ -4,15 +4,15 @@
   "title": "Basic Concepts"
 }
 [/block]
-Starting from v1.5 Ignite introduced a new concept of storing data in caches named `BinaryObjects`. There are several advantages provided by the new serialization format:
- * It allows to read an arbitrary field from an object's serialized form without full object deserialization. This ability completely removes the requirement to have cache key and value classes deployed to the server nodes classpath. 
- * It allows to add and remove fields to the objects of the same type. Given that server nodes do not have model classes definitions, this ability allows dynamic object structure change, and even allows multiple clients with different versions of class definitions to co-exist.
- * It allows to construct new objects based on a type name without having class definitions at all, which basically allows dynamic type creation.
+Starting from v1.5 Ignite introduced a new concept of storing data in caches called `BinaryObjects`. There are several advantages that the new serialization format provides:
+ * It enables you to read an arbitrary field from an object's serialized form without full object deserialization. This ability completely removes the requirement to have the cache key and value classes deployed on the server node's classpath. 
+ * It enables you to add and remove fields from objects of the same type. Given that server nodes do not have model classes definitions, this ability allows dynamic change to an objects structure, and even allows multiple clients with different versions of class definitions to co-exist.
+ * It enables you to construct new objects based on a type name without having class definitions at all, hence allowing dynamic type creation.
 [block:callout]
 {
   "type": "info",
   "title": "Restrictions",
-  "body": "There are several restrictions that are implied by the `BinaryObject` format implementation.\n * Internally Ignite does not write field and type names, but uses lower-case name hash to identify a field or a type. This means that fields or types with the same name hash are not allowed. Even though serialization will not work out-of-the box in the case of hash collision, Ignite provides a way to resolve this collision at the configuration level.\n * For the same reason `BinaryObject` format does not allow same field names on different levels of a class hierarchy.\n * `Externalizable` interface is ignored by default. If `BinaryObject` format is used, `Externalizable` classes will be written the same way as if they were `Serializable`, without `writeExternal()` and `readExternal()` methods. If for some reason this does not work for you, you should implement `Binarylizable` interface for your classes, plug in custom `BinarySerializer` or switch to the `OptimizedMarshaller`"
+  "body": "There are several restrictions that are implied by the `BinaryObject` format implementation:\n * Internally Ignite does not write field and type names, but uses a lower-case name hash to identify a field or a type. This means that fields or types with the same name hash are not allowed. Even though serialization will not work out-of-the box in the case of hash collision, Ignite provides a way to resolve this collision at the configuration level.\n * For the same reason `BinaryObject` format does not allow same field names on different levels of a class hierarchy.\n * `Externalizable` interface is ignored by default. If `BinaryObject` format is used, `Externalizable` classes will be written the same way as if they were `Serializable`, without `writeExternal()` and `readExternal()` methods. If for some reason this does not work for you, you should implement `Binarylizable` interface for your classes, plug in a custom `BinarySerializer` or switch to the `OptimizedMarshaller`"
 }
 [/block]
 The `IgniteBinary` facade, which can be obtained from an instance of Ignite, contains all necessary methods to work with binary objects.
@@ -86,7 +86,7 @@ By default Ignite works with deserialized values as it is the most common use-ca
 [/block]
 `BinaryObject` instances are immutable. An instance of `BinaryObjectBuilder`must be used in order to update fields and create a new `BinaryObject`.
 
-An instance of `BinaryObjectBuilder` can be obtained from `IgniteBinary` facade. The builder may be created using a type name, in this case returned builder will contain no fields, or it may be created using an existing `BinaryObject`, in this case the returned builder will copy all the fields from the given `BinaryObject`.
+An instance of `BinaryObjectBuilder` can be obtained from `IgniteBinary` facade. The builder may be created using a type name, in this case the returned builder will contain no fields, or it may be created using an existing `BinaryObject`, in this case the returned builder will copy all the fields from the given `BinaryObject`.
 
 Another way to get an instance of `BinaryObjectBuilder` is to call `toBuilder()` on an existing instance of a `BinaryObject`. This will also copy all data from the `BinaryObject` to the created builder.
 [block:callout]
@@ -102,7 +102,7 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
   "codes": [
     {
       "code": "cache.withKeepBinary().invoke(\n    new CacheEntryProcessor<Integer, BinaryObject, Void>() {\n        @Override Void process(\n            MutableEntry<Integer, BinaryObject> entry, Object... args) {\n            // Create builder from the old value.\n            BinaryObjectBuilder bldr = entry.getValue().toBuilder();\n            \n            //Update the field in the builder.\n            bldr.setField(\"name\", \"Ignite\");\n            \n            // Set new value to the entry.\n            entry.setValue(bldr.build());\n                \n            return null;\n        }\n    });",
-      "language": "text",
+      "language": "java",
       "name": "BinaryObject Inside EntryProcessor"
     }
   ]
@@ -115,7 +115,7 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
   "title": "BinaryObject Type Metadata"
 }
 [/block]
-As it was mentioned above, binary object structure may be changed at runtime, so it also may be useful to get information about a particular type that is stored in a cache, such as field names, field type names, affinity field name. Ignite facilitates this requirement via `BinaryType` interface. 
+As it was mentioned above, binary object structure may be changed at runtime hence it may also be useful to get information about a particular type that is stored in a cache such as field names, field type names & affinity field name. Ignite facilitates this requirement via the `BinaryType` interface. 
 
 This interface also introduces a faster version of field getter called `BinaryField`. The concept is analogous to java reflection and allows to cache certain information about the field being read in the `BinaryField` instance, which is useful when reading the same field from a large collection of binary objects.
 [block:code]
@@ -136,9 +136,9 @@ This interface also introduces a faster version of field getter called `BinaryFi
   "title": "BinaryObject and CacheStore"
 }
 [/block]
-Setting `withKeepBinary()` on the cache API does not affect the way user objects are passed to a `CacheStore`. This is done on purpose because in most cases a single `CacheStore` implementation works either with deserialized classes, or with `BinaryObject` representation. To control the way objects are passed to the store, the `storeKeepBinary` flag on `CacheConfiguration` should be used. When this flag is set to `false`, deserialized values will be passed to the store, otherwise `BinaryObject` representation will be used.
+Setting `withKeepBinary()` on the cache API does not affect the way user objects are passed to a `CacheStore`. This is intentional because in most cases a single `CacheStore` implementation works either with deserialized classes, or with `BinaryObject` representations. To control the way objects are passed to the store then the `storeKeepBinary` flag on `CacheConfiguration` should be used. When this flag is set to `false`, deserialized values will be passed to the store, otherwise `BinaryObject` representations will be used.
 
-Below is an example pseudo-code implementation of a store working with `BinaryObject`.
+Below is an example pseudo-code implementation of a store working with `BinaryObject`:
 [block:code]
 {
   "codes": [

@@ -98,15 +98,15 @@ Indexes can be configured from code by using `@QuerySqlField` annotations. To te
 [block:api-header]
 {
   "type": "basic",
-  "title": "Query Configuration by CacheTypeMetadata"
+  "title": "Query Configuration using QueryEntity"
 }
 [/block]
-Indexes and fields also could be configured with `org.apache.ignite.cache.CacheTypeMetadata`.
+Indexes and fields also could be configured with `org.apache.ignite.cache.QueryEntity` which is convenient for XML configuration with Spring. Please refer to javadoc for details. It is equivalent to using `@QuerySqlField` annotation because class annotations are converted to query entities internally.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n...\n <!-- Cache configuration. -->\n <property name=\"cacheConfiguration\">\n  <list>\n   <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n\t  <property name=\"name\" value=\"my_cache\"/>\n...\n     <!-- Cache types metadata. -->\n     <list>\n      <bean class=\"org.apache.ignite.cache.CacheTypeMetadata\">\n        <!-- Type to query. -->\n        <property name=\"valueType\" value=\"org.apache.ignite.examples.datagrid.store.Person\"/>\n        <!-- Fields to be queried. -->\n        <property name=\"queryFields\">\n        <map>\n         <entry key=\"id\" value=\"java.util.UUID\"/>\n         <entry key=\"orgId\" value=\"java.util.UUID\"/>\n         <entry key=\"firstName\" value=\"java.lang.String\"/>\n         <entry key=\"lastName\" value=\"java.lang.String\"/>\n         <entry key=\"resume\" value=\"java.lang.String\"/>\n         <entry key=\"salary\" value=\"double\"/>\n        </map>\n       </property>\n        <!-- Fields to index in ascending order. -->\n       <property name=\"ascendingFields\">\n        <map>\n         <entry key=\"id\" value=\"java.util.UUID\"/>\n         <entry key=\"orgId\" value=\"java.util.UUID\"/>\n         <entry key=\"salary\" value=\"double\"/>\n        </map>\n       </property>\n       <-- Fields to index as text. -->\n       <property name=\"textFields\">\n        <list>\n         <value>resume</value>\n        </list>\n      </bean>\n     </list>\n...\n  </list>\n </property>\n...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <property name=\"name\" value=\"mycache\"/>\n    <!-- Configure query entities -->\n    <property name=\"queryEntities\">\n        <list>\n            <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                <property name=\"keyType\" value=\"java.lang.Long\"/>\n                <property name=\"valueType\" value=\"org.apache.ignite.examples.Person\"/>\n\n                <property name=\"fields\">\n                    <map>\n                        <entry key=\"id\" value=\"java.lang.Long\"/>\n                        <entry key=\"orgId\" value=\"java.lang.Long\"/>\n                        <entry key=\"firstName\" value=\"java.lang.String\"/>\n                        <entry key=\"lastName\" value=\"java.lang.String\"/>\n                        <entry key=\"resume\" value=\"java.lang.String\"/>\n                        <entry key=\"salary\" value=\"java.lang.Double\"/>\n                    </map>\n                </property>\n\n                <property name=\"indexes\">\n                    <list>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"id\"/>\n                        </bean>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"orgId\"/>\n                        </bean>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"salary\"/>\n                        </bean>\n                    </list>\n                </property>\n            </bean>\n        </list>\n    </property>\n</bean>",
       "language": "xml"
     },
     {
@@ -116,6 +116,3 @@ Indexes and fields also could be configured with `org.apache.ignite.cache.CacheT
   ]
 }
 [/block]
-Note, annotations and `CacheTypeMetadata` are mutually exclusive.
-
-For full example see `CacheQueryTypeMetadataExample`.

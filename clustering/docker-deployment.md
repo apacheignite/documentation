@@ -23,7 +23,7 @@ To run Ignite docker container using `docker run`:
 {
   "codes": [
     {
-      "code": "# Run latest version.\nsudo docker run -it --net=host \n-e \"IGNITE_CONFIG=$IGNITE_CONFIG\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite \n\n# Run ignite version 1.4.0\nsudo docker run -it --net=host \n-e \"IGNITE_CONFIG=$IGNITE_CONFIG\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite ",
+      "code": "# Run latest version.\nsudo docker run -it --net=host \n-e \"CONFIG_URI=$CONFIG_URI\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite \n\n# Run ignite version 1.4.0\nsudo docker run -it --net=host \n-e \"CONFIG_URI=$CONFIG_URI\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite ",
       "language": "shell"
     }
   ]
@@ -37,7 +37,7 @@ The configuration parameters are passed through environment variables in docker 
     "h-1": "Description",
     "h-2": "Default",
     "h-3": "Example",
-    "0-0": "`IGNITE_CONFIG`",
+    "0-0": "`CONFIG_URI`",
     "0-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
     "0-2": "`N/A`",
     "0-3": "`https://raw.githubusercontent.com/`\n`bob/master/ignite-cfg.xml`",

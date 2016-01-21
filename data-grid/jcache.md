@@ -14,6 +14,8 @@ In addition to JCache, Ignite provides ACID transactions, data querying capabili
   "title": "IgniteCache"
 }
 [/block]
+`IgniteCache` interface is a gateway into Ignite cache implementation and provides methods for storing and retrieving data, executing queries, including SQL, iterating and scanning, etc.
+
 `IgniteCache` is based on **JCache (JSR 107)**, so at the very basic level the APIs can be reduced to `javax.cache.Cache` interface. However, `IgniteCache` API also provides functionality that facilitates features outside of JCache spec, like data loading, querying, asynchronous mode, etc.
 
 You can get an instance of `IgniteCache` directly from `Ignite`:
@@ -21,10 +23,30 @@ You can get an instance of `IgniteCache` directly from `Ignite`:
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\nIgniteCache cache = ignite.cache(\"mycache\");",
+      "code": "Ignite ignite = Ignition.ignite();\n\n// Obtain instance of cache named \"myCache\".\n// Note that different caches may have different generics.\nIgniteCache<Integer, String> cache = ignite.cache(\"myCache\");",
       "language": "java"
     }
   ]
+}
+[/block]
+## Dynamic Caches
+You can also create an instance of the cache on the fly, in which case Ignite will create and deploy the cache across all server cluster members.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Ignite ignite = Ignition.ignite();\n\nCacheConfiguration cfg = new CacheConfiguration();\n\ncfg.setName(\"myCache\");\ncfg.setAtomicityMode(TRANSACTIONAL);\n\n// Create cache with given name, if it does not exist.\nIgniteCache<Integer, String> cache = ignite.getOrCreateCache(cfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "All caches defined in Ignite Spring XML configuration on any cluster member will also be automatically created and deployed on all the cluster servers (no need to specify the same configuration on each cluster member).",
+  "title": "XML Configuration"
 }
 [/block]
 

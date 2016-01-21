@@ -19,18 +19,20 @@ Distributed computations are performed in parallel fashion to gain **high perfor
   * [Distributed Closure Execution](doc:distributed-closures)
   * [MapReduce & ForkJoin Processing](doc:compute-tasks)
   * [Clustered Executor Service](doc:executor-service)
+  * [Per-Node Shared State](doc:node-local-map) 
   * [Collocation of Compute and Data](doc:collocate-compute-and-data) 
   * [Load Balancing](doc:load-balancing) 
   * [Fault Tolerance](doc:fault-tolerance)
   * [Job State Checkpointing](doc:checkpointing) 
   * [Job Scheduling](doc:job-scheduling) 
+  * [Task Deployment](doc:deployment-spi) 
 [block:api-header]
 {
   "type": "basic",
   "title": "IgniteCompute"
 }
 [/block]
-`IgniteCompute` interface provides methods for running many types of computations over nodes in a cluster or a cluster group. These methods can be used to execute Tasks or Closures in distributed fashion.
+`IgniteCompute` interface provides methods for running many types of computations over nodes in a cluster or a cluster group. These methods can be used to execute Tasks or Closures in a distributed fashion.
 
 All jobs and closures are [guaranteed to be executed](doc:fault-tolerance) as long as there is at least one node standing. If a job execution is rejected due to lack of resources, a failover mechanism is provided. In case of failover, the load balancer picks the next available node to execute the job. Here is how you can get an `IgniteCompute` instance:
 [block:code]
