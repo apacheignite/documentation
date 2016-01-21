@@ -40,24 +40,53 @@ Ignite data grid is lightning fast and is one of the fastest implementations of 
 }
 [/block]
 ##Features
-* [JCache and Beyond](doc:jcache) 
-* [Cache Modes](doc:cache-modes) 
-* [Primary & Backup Copies](doc:primary-and-backup-copies) 
-* [Near Caches](doc:near-caches) 
-* [Cache Queries](doc:cache-queries) 
-* [SQL Queries](doc:sql-queries) 
-* [Continuous Queries](doc:continuous-queries) 
-* [ ACID Transactions](doc:transactions) 
-* [Off-Heap Memory](doc:off-heap-memory) 
-* [Affinity Collocation](doc:affinity-collocation) 
-* [Persistent Store](doc:persistent-store) 
-* [Automatic Persistence](doc:automatic-persistence) 
-* [Data Loading](doc:data-loading) 
-* [Eviction Policies](doc:evictions) 
-* [Expiry Policies](doc:expiry-policies) 
-* [Data Rebalancing](doc:rebalancing) 
-* [Web Session Clustering](doc:web-session-clustering) 
-* [Hibernate L2 Cache](doc:hibernate-l2-cache) 
-* [JDBC Driver](doc:jdbc-driver) 
-* [Spring Caching](doc:spring-caching) 
-* [Topology Validation](doc:topology-validation)
+  * Distributed In-Memory Caching
+  * Lightning Fast Performance
+  * Elastic Scalability
+  * Distributed In-Memory Transactions
+  * Web Session Clustering
+  * Hibernate L2 Cache Integration
+  * Tiered Off-Heap Storage
+  * Distributed ANSI-99 SQL Queries with support for Joins
+[block:api-header]
+{
+  "type": "basic",
+  "title": "IgniteCache"
+}
+[/block]
+`IgniteCache` interface is a gateway into Ignite cache implementation and provides methods for storing and retrieving data, executing queries, including SQL, iterating and scanning, etc.
+
+##JCache
+`IgniteCache` interface extends `javax.cache.Cache` interface from JCache specification and adds additional functionality to it, mainly having to do with local vs. distributed operations, queries, metrics, etc.
+
+You can obtain an instance of `IgniteCache` as follows:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Ignite ignite = Ignition.ignite();\n\n// Obtain instance of cache named \"myCache\".\n// Note that different caches may have different generics.\nIgniteCache<Integer, String> cache = ignite.cache(\"myCache\");",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+##Dynamic Cache
+You can also create the cache on the fly, in which case Ignite will create and deploy the cache on all the server nodes in the cluster. Similarly, you can also destroy the cache dynamically across the server nodes within the cluster.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Ignite ignite = Ignition.ignite();\n\nCacheConfiguration cfg = new CacheConfiguration();\n\ncfg.setName(\"myCache\");\ncfg.setAtomicityMode(TRANSACTIONAL);\n\n// Create the cache with given name, if it does not exist.\nIgniteCache<Integer, String> cache = ignite.getOrCreateCache(cfg);\n\n// Destroy the cache with given name.\nignite.destroyCache(\"myCache\");",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "All caches defined in Ignite Spring XML configuration on any cluster member will also be automatically created and deployed on all the cluster servers (no need to specify the same configuration on each cluster member).",
+  "title": "XML Configuration"
+}
+[/block]
