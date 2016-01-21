@@ -19,13 +19,11 @@ Distributed computations are performed in parallel fashion to gain **high perfor
   * [Distributed Closure Execution](doc:distributed-closures)
   * [MapReduce & ForkJoin Processing](doc:compute-tasks)
   * [Clustered Executor Service](doc:executor-service)
-  * [Per-Node Shared State](doc:node-local-map) 
   * [Collocation of Compute and Data](doc:collocate-compute-and-data) 
   * [Load Balancing](doc:load-balancing) 
   * [Fault Tolerance](doc:fault-tolerance)
   * [Job State Checkpointing](doc:checkpointing) 
   * [Job Scheduling](doc:job-scheduling) 
-  * [Task Deployment](doc:deployment-spi) 
 [block:api-header]
 {
   "type": "basic",
