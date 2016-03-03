@@ -37,8 +37,8 @@ Write synchronization mode can be set in one of following 3 modes:
     "1-0": "`FULL_ASYNC`",
     "2-0": "`PRIMARY_SYNC`",
     "0-1": "Client node will wait for write or commit to complete on all participating remote nodes (primary and backup).",
-    "1-1": "This is the default value. In this mode, client node does not wait for responses from participating nodes, in which case remote nodes may get their state updated slightly after any of the cache write methods complete or after `Transaction.commit()` method completes.",
-    "2-1": "Client node will wait for write or commit to complete on primary node, but will not wait for backups to be updated."
+    "1-1": "In this mode, client node does not wait for responses from participating nodes, in which case remote nodes may get their state updated slightly after any of the cache write methods complete or after `Transaction.commit()` method completes.",
+    "2-1": "This is the **default** value. Client node will wait for write or commit to complete on primary node, but will not wait for backups to be updated."
   },
   "cols": 2,
   "rows": 3

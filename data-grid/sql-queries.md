@@ -96,6 +96,14 @@ To make fields accessible for SQL queries you have to annotate them with `@Query
 [block:callout]
 {
   "type": "info",
+  "title": "Predefined Fields",
+  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for example, when one of them is a primitive and you want to filter by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`."
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
   "title": "Scala Annotations",
   "body": "In Scala classes, the `@QuerySqlField` annotation must be accompanied by the `@field` annotation in order for a field to be visible for Ignite, like so:  `@(QuerySqlField @field)`. \n\nAlternatively, you can also use the `@ScalarCacheQuerySqlField` annotation from the `ignite-scalar` module which is just a type alias for the `@field` annotation."
 }
@@ -157,7 +165,7 @@ Indexes and fields also could be configured with `org.apache.ignite.cache.QueryE
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <property name=\"name\" value=\"my_cache\"/>\n    <!-- Configure query entities -->\n    <property name=\"queryEntities\">\n        <list>\n            <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                <property name=\"keyType\" value=\"java.lang.Long\"/>\n                <property name=\"valueType\" value=\"org.apache.ignite.examples.Person\"/>\n\n                <property name=\"fields\">\n                    <map>\n                        <entry key=\"id\" value=\"java.lang.Long\"/>\n                        <entry key=\"orgId\" value=\"java.util.UUID\"/>\n                        <entry key=\"firstName\" value=\"java.lang.String\"/>\n                        <entry key=\"lastName\" value=\"java.lang.String\"/>\n                        <entry key=\"resume\" value=\"java.lang.String\"/>\n                        <entry key=\"salary\" value=\"double\"/>\n                    </map>\n                </property>\n\n                <property name=\"indexes\">\n                    <list>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"id\"/>\n                        </bean>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"orgId\"/>\n                        </bean>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"salary\"/>\n                        </bean>\n                    </list>\n                </property>\n            </bean>\n        </list>\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <property name=\"name\" value=\"mycache\"/>\n    <!-- Configure query entities -->\n    <property name=\"queryEntities\">\n        <list>\n            <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                <property name=\"keyType\" value=\"java.lang.Long\"/>\n                <property name=\"valueType\" value=\"org.apache.ignite.examples.Person\"/>\n\n                <property name=\"fields\">\n                    <map>\n                        <entry key=\"id\" value=\"java.lang.Long\"/>\n                        <entry key=\"name\" value=\"java.lang.String\"/>\n                        <entry key=\"age\" value=\"java.lang.Integer\"/>\n                    </map>\n                </property>\n\n                <property name=\"indexes\">\n                    <list>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"id\"/>\n                        </bean>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"age\"/>\n                        </bean>\n                    </list>\n                </property>\n            </bean>\n        </list>\n    </property>\n</bean>",
       "language": "xml"
     }
   ]
@@ -175,6 +183,14 @@ There are two main ways of how query can be processed in Ignite:
 1. If you execute the query against `REPLICATED` cache then Ignite assumes that all data available locally and run a simple local SQL query in H2 database engine. The same will happen for `LOCAL` caches.
 
 2. If you execute the query against `PARTITIONED` cache, it work the following way: the query will be parsed and split into multiple map queries and a single reduce query. Then all the map queries are executed on all data nodes of participating caches, providing results to reducing node, which will in turn run reduce query over these intermediate results.
+[block:callout]
+{
+  "type": "warning",
+  "title": "",
+  "body": "Note that Ignite queries work only with data that is already loaded to a cache and do not trigger read-through from the CacheStore. You need to preload the cache with data before running a query against it."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
@@ -238,6 +254,13 @@ To improve performance of SQL queries with off-heap enabled, you can try to incr
       "language": "java"
     }
   ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "danger",
+  "body": "Note that SQL queries are not supported if cache memory mode is set to OFFHEAP_VALUES."
 }
 [/block]
 

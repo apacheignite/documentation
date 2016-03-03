@@ -12,7 +12,7 @@ Below is an example of how to create a distributed queue and set.
       "name": "Queue"
     },
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\nIgniteSet<String> set = ignite.set(\n    \"setName\", // Queue name.\n    null       // Collection configuration.\n);",
+      "code": "Ignite ignite = Ignition.ignite();\n\nIgniteSet<String> set = ignite.set(\n    \"setName\", // Set name.\n    null       // Collection configuration.\n);",
       "language": "java",
       "name": "Set"
     }
@@ -56,34 +56,6 @@ A collocated queue and set can be created by setting the `collocated` property o
 [block:api-header]
 {
   "type": "basic",
-  "title": "Bounded Queues"
-}
-[/block]
-Bounded queues allow users to have many queues with maximum size which gives a better control over the overall cache capacity. They can be either *collocated* or *non-collocated*. When bounded queues are relatively small and used in collocated mode, all queue operations become extremely fast. Moreover, when used in combination with compute grid, users can collocate their compute jobs with cluster nodes on which queues are located to make sure that all operations are local and there is none (or minimal) data distribution. 
-
-Here is an example of how a job could be send directly to the node on which a queue resides:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "Ignite ignite = Ignition.ignite();\n\nCollectionConfiguration colCfg = new CollectionConfiguration();\n\ncolCfg.setCollocated(true); \n\nfinal IgniteQueue<String> queue = ignite.queue(\"queueName\", 20, colCfg);\n \n// Add queue elements (queue is cached on some node).\nfor (int i = 0; i < 20; i++)\n    queue.add(\"Value \" + Integer.toString(i));\n \nIgniteRunnable queuePoller = new IgniteRunnable() {\n    @Override public void run() throws IgniteException {\n        // Poll is local operation due to collocation.\n        for (int i = 0; i < 20; i++)\n            System.out.println(\"Polled element: \" + queue.poll());\n    }\n};\n\n// Drain queue on the node where the queue is cached.\nignite.compute().affinityRun(\"cacheName\", \"queueName\", queuePoller);",
-      "language": "java",
-      "name": "Queue"
-    }
-  ]
-}
-[/block]
-
-[block:callout]
-{
-  "type": "success",
-  "body": "Refer to [Collocate Compute and Data](doc:collocate-compute-and-data) section for more information on collocating computations with data."
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
   "title": "Cache Queues and Load Balancing"
 }
 [/block]
@@ -104,10 +76,27 @@ Ignite collections can be in configured in API via `CollectionConfiguration` (se
     "0-0": "`setCollocated(boolean)`",
     "h-1": "Description",
     "h-2": "Default",
-    "0-2": "false",
-    "0-1": "Sets collocation mode."
+    "0-2": "`false`",
+    "0-1": "Sets collocation mode.",
+    "1-0": "`setCacheMode(CacheMode)`",
+    "2-0": "`setAtomicityMode(CacheAtomicityMode)`",
+    "3-0": "`setMemoryMode(CacheMemoryMode)`",
+    "4-0": "`setOffHeapMaxMemory(long)`",
+    "5-0": "`setBackups(int)`",
+    "6-0": "`setNodeFilter(IgnitePredicate<ClusterNode>)`",
+    "1-1": "Sets underlying cache mode (`PARTITIONED`, `REPLICATED` or `LOCAL`).",
+    "2-1": "Sets underlying cache atomicity mode (`ATOMIC` or `TRANSACTIONAL`).",
+    "3-1": "Sets underlying cache memory mode (`ONHEAP_TIERED`, `OFFHEAP_TIERED` or `OFFHEAP_VALUES`).",
+    "4-1": "Sets offheap maximum memory size.",
+    "5-1": "Sets number of backups.",
+    "6-1": "Sets optional predicate specifying on which nodes entries should be stored.",
+    "1-2": "`PARTITIONED`",
+    "2-2": "`ATOMIC`",
+    "3-2": "`ONHEAP_TIERED`",
+    "4-2": "`0` (unlimited)",
+    "5-2": "`0`"
   },
   "cols": 3,
-  "rows": 1
+  "rows": 7
 }
 [/block]

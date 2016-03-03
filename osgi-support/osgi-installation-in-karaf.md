@@ -10,6 +10,28 @@ In order to facilitate the deployment of the different Ignite modules – along 
 [block:api-header]
 {
   "type": "basic",
+  "title": "Preparatory steps"
+}
+[/block]
+First off, Ignite uses the low-level Oracle/Sun JRE package `sun.nio.ch` (which is also available on OpenJDK).
+
+Since this is a proprietary package (not part of the standard Java specs), Apache Karaf does not export it by default from the [System Bundle](http://wiki.osgi.org/wiki/System_Bundle) (bundle 0). You must instruct Karaf to export it by [modifying the `${KARAF_BASE}/etc/jre.properties` file](https://karaf.apache.org/manual/latest-2.2.x/users-guide/jre-tuning.html).
+
+Locate the `jre-1.x` property for the version of the JRE you're on, and append the package at the end. For example:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "jre-1.8= \\\n javax.accessibility, \\\n javax.activation;version=\"1.1\", \\\n ...\n org.xml.sax.helpers, \\\n sun.nio.ch",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Installing the Ignite features repository"
 }
 [/block]

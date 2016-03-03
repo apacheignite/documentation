@@ -30,7 +30,7 @@ Apache Ignite was officially tested on:
   "title": "Installation"
 }
 [/block]
-Here is the quick summary on installation of Apache Ignite:
+Here is a quick step-guide for the installation of Apache Ignite:
   * Download Apache Ignite as ZIP archive from https://ignite.apache.org/
   * Unzip ZIP archive into the installation folder in your system
   * Set `IGNITE_HOME` environment variable to point to the installation folder and make sure there is no trailing `/` in the path (this step is optional)
@@ -62,10 +62,10 @@ To build Apache Ignite.NET, see corresponding site: https://apacheignite-net.rea
   "title": "Start From Command Line"
 }
 [/block]
-An Ignite node can be started from command line either with default configuration or by passing a configuration file. You can start as many nodes as you like and they will all automatically discover each other. 
+An Ignite node can be started from command line by using either the default configuration or by passing an external configuration file. You can start as many nodes as you like and they will all automatically discover each other. 
 
 ##With Default Configuration
-To start a grid node with default configuration, open the command shell and, assuming you are in `IGNITE_HOME` (Ignite installation folder), just type this:
+To start a grid node with the default configuration, open the command shell and assuming you are in `IGNITE_HOME` (Ignite installation folder), just type the following:
 [block:code]
 {
   "codes": [
@@ -76,7 +76,7 @@ To start a grid node with default configuration, open the command shell and, ass
   ]
 }
 [/block]
-and you will see the output similar to this:
+and you will see the output is something similar to this:
 [block:code]
 {
   "codes": [
@@ -87,10 +87,10 @@ and you will see the output similar to this:
   ]
 }
 [/block]
-By default `ignite.sh` starts Ignite node with the default configuration: `config/default-config.xml`.
+By default `ignite.sh` starts the Ignite node with the default configuration: `config/default-config.xml`.
 
 ##Passing Configuration File 
-To pass configuration file explicitly,  from command line, you can type ignite.sh <path to configuration file> from within your Ignite installation folder. For example:
+To pass a configuration file explicitly from the command line you can just type ignite.sh <path to configuration file> from within your Ignite installation folder. For example:
 [block:code]
 {
   "codes": [
@@ -101,7 +101,7 @@ To pass configuration file explicitly,  from command line, you can type ignite.s
   ]
 }
 [/block]
-Path to configuration file can be absolute, or relative to either `IGNITE_HOME` (Ignite installation folder) or `META-INF` folder in your classpath. 
+The path to the configuration file can be absolute or relative to either `IGNITE_HOME` (Ignite installation folder) or `META-INF` folder in your classpath. 
 [block:callout]
 {
   "type": "success",
@@ -118,9 +118,9 @@ Path to configuration file can be absolute, or relative to either `IGNITE_HOME` 
 [/block]
 Another easy way to get started with Apache Ignite in your project is to use Maven 2 dependency management.
 
-Ignite requires only one `ignite-core` mandatory dependency. Usually you will also need to add `ignite-spring` for spring-based XML configuration and `ignite-indexing` for SQL querying.
+Ignite requires only one `ignite-core` mandatory dependency. Usually you might also need to add `ignite-spring` for spring-based XML configuration and `ignite-indexing` for SQL querying.
 
-Replace `${ignite-version}` with actual Ignite version.
+Remember to replace `${ignite-version}` with the actual Ignite version you want to work with.
 [block:code]
 {
   "codes": [
@@ -146,7 +146,7 @@ Replace `${ignite-version}` with actual Ignite version.
   "title": "First Ignite Compute Application"
 }
 [/block]
-Let's write our first grid application which will count a number of non-white-space characters in a sentence. As an example, we will take a sentence, split it into multiple words, and have every compute job count number of characters in each individual word. At the end we simply add up results received from individual jobs to get our total count.
+Let's write our first grid application which will count a number of non-white-space characters in a sentence. As an example, we will take a sentence,split it into multiple words, and have every compute job count number of characters in each individual word. At the end we will simply add up the results received from individual jobs to get our total count.
 [block:code]
 {
   "codes": [
@@ -167,7 +167,7 @@ Let's write our first grid application which will count a number of non-white-sp
 [block:callout]
 {
   "type": "success",
-  "body": "Note that because of  [Zero Deployment](doc:zero-deployment) feature, when running the above application from your IDE, remote nodes will execute received jobs without explicit deployment.",
+  "body": "Note that because of the [Zero Deployment](doc:zero-deployment) feature, when running the above application from your IDE, remote nodes will execute received jobs without explicit deployment.",
   "title": "Zero Deployment"
 }
 [/block]

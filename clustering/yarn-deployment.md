@@ -119,7 +119,7 @@ All configuration is handled through environment variables or property file. Fol
     "3-2": "N/A",
     "3-3": "/opt/libs/",
     "4-0": "IGNITE_MEMORY_PER_NODE",
-    "4-1": "The number of Megabytes of RAM for each Apache Ignite node.",
+    "4-1": "The number of Megabytes of RAM for each Apache Ignite node. This is the size of the Java heap.",
     "4-2": "2048",
     "4-3": "1024",
     "5-0": "IGNITE_HOSTNAME_CONSTRAINT",
