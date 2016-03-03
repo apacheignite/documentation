@@ -199,5 +199,3 @@ The following example will download the page `www.mysite.com/ignite/deployment`,
 Local deployment SPI that implements only within VM deployment on local node via `register(ClassLoader, Class)` method. This SPI requires no configuration.
 
 There is no point to explicitly configure `LocalDeploymentSpi` as it is used by default and has no configuration parameters.
-
-(Test commit)
