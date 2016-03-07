@@ -70,7 +70,7 @@ The following examples demonstrate how the deployment SPI can be used. Different
       "name": "File Protocol"
     },
     {
-      "code": "// The example expects that you have a HTMP under\n// 'www.mysite.com:110/ignite/deployment'page which contains a link\n// on GAR file which contains `myproject.HelloWorldTask` class.\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\nDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"http://username:password;freq=10000@www.mysite.com:110/ignite/deployment\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
+      "code": "// The example expects that you have a HTMP under\n// 'www.mysite.com:110/ignite/deployment'page which contains a link\n// on GAR file which contains `myproject.HelloWorldTask` class.\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\nUriDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"http://username:password;freq=10000@www.mysite.com:110/ignite/deployment\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
       "language": "java",
       "name": "Http Protocol"
     },
