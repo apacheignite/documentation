@@ -177,13 +177,6 @@ By default, Ignite has it's main thread pool size set to the 2 times the availab
 [block:api-header]
 {
   "type": "basic",
-  "title": "Use Externalizable Whenever Possible"
-}
-[/block]
-It is a very good practice to have every object that is transferred over network implement `java.io.Externalizable`. These may be cache keys or values, jobs, job arguments, or anything else that will be sent across network to other grid nodes. Implementing `Externalizable` may sometimes result in over 10x performance boost over standard serialization.
-[block:api-header]
-{
-  "type": "basic",
   "title": "Use Collocated Computations"
 }
 [/block]

@@ -1,0 +1,1 @@
+This documentation has been moved to https://apacheignite-fs.readme.io/docs/igfs.

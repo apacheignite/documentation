@@ -10,7 +10,7 @@ Backups can be configured by setting `backups()` property of `CacheConfiguration
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n          \n          \t<!-- Set cache mode. -->\n    \t\t\t\t<property name=\"cacheMode\" value=\"PARTITIONED\"/>\n          \t\n          \t<!-- Number of backup nodes. -->\n    \t\t\t\t<property name=\"backups\" value=\"1\"/>\n    \t\t\t\t... \n        </bean\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n          \n          \t<!-- Set cache mode. -->\n    \t\t\t\t<property name=\"cacheMode\" value=\"PARTITIONED\"/>\n          \t\n          \t<!-- Number of backup nodes. -->\n    \t\t\t\t<property name=\"backups\" value=\"1\"/>\n    \t\t\t\t... \n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     },
     {
@@ -37,8 +37,8 @@ Write synchronization mode can be set in one of following 3 modes:
     "1-0": "`FULL_ASYNC`",
     "2-0": "`PRIMARY_SYNC`",
     "0-1": "Client node will wait for write or commit to complete on all participating remote nodes (primary and backup).",
-    "1-1": "This is the default value. In this mode, client node does not wait for responses from participating nodes, in which case remote nodes may get their state updated slightly after any of the cache write methods complete or after `Transaction.commit()` method completes.",
-    "2-1": "Client node will wait for write or commit to complete on primary node, but will not wait for backups to be updated."
+    "1-1": "In this mode, client node does not wait for responses from participating nodes, in which case remote nodes may get their state updated slightly after any of the cache write methods complete or after `Transaction.commit()` method completes.",
+    "2-1": "This is the **default** mode. Client node will wait for write or commit to complete on primary node, but will not wait for backups to be updated."
   },
   "cols": 2,
   "rows": 3
@@ -57,7 +57,7 @@ Write synchronization mode may be configured by setting `writeSynchronizationMod
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n          \n          \t<!-- Set write synchronization mode. -->\n    \t\t\t\t<property name=\"writeSynchronizationMode\" value=\"FULL_SYNC\"/>      \t\n    \t\t\t\t... \n        </bean\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n          \n          \t<!-- Set write synchronization mode. -->\n    \t\t\t\t<property name=\"writeSynchronizationMode\" value=\"FULL_SYNC\"/>      \t\n    \t\t\t\t... \n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     },
     {

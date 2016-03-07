@@ -18,7 +18,7 @@ However, there are cases when it is simply impossible to send computations to re
 {
   "type": "info",
   "title": "Near Caches on Server Nodes",
-  "body": "In rare cases, whenever accessing data from `PARTITIONED` caches on the server side in non-collocated fashion, you may need to configure near-caches on the server nodes as well via `CacheConfiguration.setNearConfiguration(...)` property."
+  "body": "Whenever accessing data from `PARTITIONED` caches on the server side in a non-collocated fashion, you may need to configure near-caches on the server nodes via `CacheConfiguration.setNearConfiguration(...)` property."
 }
 [/block]
 

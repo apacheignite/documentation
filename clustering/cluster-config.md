@@ -27,20 +27,22 @@ In Ignite, nodes can discover each other by using `DiscoverySpi`. Ignite provide
   "title": "Static IP Based Discovery"
 }
 [/block]
-For cases when Multicast is disabled, `TcpDiscoveryVmIpFinder` should be used with pre-configured list of IP addresses. You are only required to provide at least one IP address of a remote node, but usually it is advisable to provide 2 or 3 addresses of the grid nodes that you plan to start first for redundancy. Once a connection to any of the provided IP addresses is established, Ignite will automatically discover all other grid nodes.
+For cases when Multicast is disabled, `TcpDiscoveryVmIpFinder` should be used with pre-configured list of IP addresses.
+
+You are only required to provide at least one IP address of a remote node, but usually it is advisable to provide 2 or 3 addresses of grid nodes that you plan to start at some point of time in the future. Once a connection to any of the provided IP addresses is established, Ignite will automatically discover all other grid nodes.
+
 [block:callout]
 {
-  "type": "success",
-  "body": "You do not need to specify IP addresses for all Ignite nodes, only for a couple of nodes you plan to start first."
+  "type": "warning",
+  "body": "By default the `TcpDiscoveryVmIpFinder` is used in `non-shared` mode. If you plan to start a server node then in this mode the list of IP addresses should contain an address of the local node as well. It will let the node not to wait while other nodes join the cluster but rather become the first cluster node and operate normally."
 }
 [/block]
-
 Here is an example of how to configure this finder via Spring XML file or programmatically from Java:
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n  <property name=\"discoverySpi\">\n    <bean class=\"org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi\">\n      <property name=\"ipFinder\">\n        <bean class=\"org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder\">\n          <property name=\"addresses\">\n            <list>\n              <value>1.2.3.4</value>\n              \n              <!-- \n                  IP Address and optional port range.\n                  You can also optionally specify an individual port.\n              -->\n              <value>1.2.3.5:47500..47509</value>\n            </list>\n          </property>\n        </bean>\n      </property>\n    </bean>\n  </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n  <property name=\"discoverySpi\">\n    <bean class=\"org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi\">\n      <property name=\"ipFinder\">\n        <bean class=\"org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder\">\n          <property name=\"addresses\">\n            <list>\n              <!--\n \t\t\t\t\t\t\t\t\tExplicitly specifying address of a local node to let it start\n \t\t\t\t\t\t\t\t  and operate normally even if there is no more nodes in the cluster.\n\t\t\t\t\t\t\t\t\tYou can also optionally specify an individual port or port range.\n \t\t\t\t\t\t  -->\n              <value>1.2.3.4</value>\n              \n              <!-- \n                  IP Address and optional port range of a remote node.\n                  You can also optionally specify an individual port and don't set\n\t\t\t\t\t\t\t\t\tthe port range at all.\n              -->\n              <value>1.2.3.5:47500..47509</value>\n            </list>\n          </property>\n        </bean>\n      </property>\n    </bean>\n  </property>\n</bean>",
       "language": "xml"
     },
     {
@@ -48,13 +50,6 @@ Here is an example of how to configure this finder via Spring XML file or progra
       "language": "java"
     }
   ]
-}
-[/block]
-
-[block:callout]
-{
-  "type": "warning",
-  "body": "By default the `TcpDiscoveryVmIpFinder` is used in `non-shared` mode. In this mode the list of IP addresses should also contain the address of the local node, so the node can become the 1st node in the cluster, in case if other remote nodes have not been started yet."
 }
 [/block]
 
@@ -77,6 +72,55 @@ You can use both, Multicast and Static IP based discovery together. In this case
       "language": "java"
     }
   ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Isolated Ignite Clusters on the Same Set of Machines"
+}
+[/block]
+There can be a case when you need to start two isolated Ignite clusters on the same set of machines due to testing purposes or by some other reason.
+
+In Ignite this task is achievable if nodes from different clusters will use non intersecting local port ranges for `TcpDiscoverySpi` and `TcpCommunicationSpi`.
+
+Let's say that you need to start two isolated clusters on a single machine for testing purposes.
+Then for the nodes from the first cluster you should use the following `TcpDiscoverySpi` and `TcpCommunicationSpi` configurations
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <!--\n \t\t\t\tExplicitly configure TCP discovery SPI to provide list of \n\t\t\t\tinitial nodes from the first cluster.\n \t  -->\n    <property name=\"discoverySpi\">\n        <bean class=\"org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi\">\n            <!-- Initial local port to listen to. -->\n            <property name=\"localPort\" value=\"48500\"/>\n\n            <!-- Changing local port range. This is an optional action. -->\n            <property name=\"localPortRange\" value=\"20\"/>\n\n            <!-- Setting up IP finder for this cluster -->\n            <property name=\"ipFinder\">\n                <bean class=\"org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder\">\n                    <property name=\"addresses\">\n                        <list>\n                            <!--\n                                Addresses and port range of the nodes from the first\n \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcluster.\n                                127.0.0.1 can be replaced with actual IP addresses or\n \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\thost names. Port range is optional.\n                            -->\n                            <value>127.0.0.1:48500..48520</value>\n                        </list>\n                    </property>\n                </bean>\n            </property>\n        </bean>\n    </property>\n\n    <!--\n        Explicitly configure TCP communication SPI changing local\n \t\t\t\tport number for the nodes from the first cluster.\n    -->\n    <property name=\"communicationSpi\">\n        <bean class=\"org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi\">\n            <property name=\"localPort\" value=\"48100\"/>\n        </bean>\n    </property>\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "IgniteConfiguration cfg=new IgniteConfiguration();\n\n// Explicitly configure TCP discovery SPI to provide list of initial nodes\n// from the first cluster.\nTcpDiscoverySpi discoverySpi=new TcpDiscoverySpi();\n\n// Initial local port to listen to.\ndiscoverySpi.setLocalPort(48500);\n\n// Changing local port range. This is an optional action.\ndiscoverySpi.setLocalPortRange(20);\n\nTcpDiscoveryVmIpFinder ipFinder=new TcpDiscoveryVmIpFinder();\n\n// Addresses and port range of the nodes from the first cluster.\n// 127.0.0.1 can be replaced with actual IP addresses or host names.\n// The port range is optional.\nipFinder.setAddresses(Arrays.asList(\"127.0.0.1:48500..48520\"));\n\n// Overriding IP finder.\ndiscoverySpi.setIpFinder(ipFinder);\n\n// Explicitly configure TCP communication SPI by changing local port number for\n// the nodes from the first cluster.\nTcpCommunicationSpi commSpi=new TcpCommunicationSpi();\n\ncommSpi.setLocalPort(48100);\n\n// Overriding discovery SPI.\ncfg.setDiscoverySpi(discoverySpi);\n\n// Overriding communication SPI.\ncfg.setCommunicationSpi(commSpi);\n\n// Starting a node.\nIgnition.start(cfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+While for the nodes from the second cluster the configuration can look like this way
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!--\n        Explicitly configure TCP discovery SPI to provide list of initial\n         nodes from the second cluster.\n    -->\n    <property name=\"discoverySpi\">\n        <bean class=\"org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi\">\n            <!-- Initial local port to listen to. -->\n            <property name=\"localPort\" value=\"49500\"/>\n\n            <!-- Changing local port range. This is an optional action. -->\n            <property name=\"localPortRange\" value=\"20\"/>\n\n            <!-- Setting up IP finder for this cluster -->\n            <property name=\"ipFinder\">\n                <bean class=\"org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder\">\n                    <property name=\"addresses\">\n                        <list>\n                            <!--\n                                Addresses and port range of the nodes from the second\n \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcluster.\n                                127.0.0.1 can be replaced with actual IP addresses or\n \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\thost names. Port range is optional.\n                            -->\n                            <value>127.0.0.1:49500..49520</value>\n                        </list>\n                    </property>\n                </bean>\n            </property>\n        </bean>\n    </property>\n\n    <!--\n        Explicitly configure TCP communication SPI changing local port number \n        for the nodes from the second cluster.\n    -->\n    <property name=\"communicationSpi\">\n        <bean class=\"org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi\">\n            <property name=\"localPort\" value=\"49100\"/>\n        </bean>\n    </property>\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "IgniteConfiguration cfg=new IgniteConfiguration();\n\n// Explicitly configure TCP discovery SPI to provide list of initial nodes\n// from the second cluster.\nTcpDiscoverySpi discoverySpi=new TcpDiscoverySpi();\n\n// Initial local port to listen to.\ndiscoverySpi.setLocalPort(49500);\n\n// Changing local port range. This is an optional action.\ndiscoverySpi.setLocalPortRange(20);\n\nTcpDiscoveryVmIpFinder ipFinder=new TcpDiscoveryVmIpFinder();\n\n// Addresses and port range of the nodes from the second cluster.\n// 127.0.0.1 can be replaced with actual IP addresses or host names.\n// The port range is optional.\nipFinder.setAddresses(Arrays.asList(\"127.0.0.1:49500..49520\"));\n\n// Overriding IP finder.\ndiscoverySpi.setIpFinder(ipFinder);\n\n// Explicitly configure TCP communication SPI by changing local port number for\n// the nodes from the second cluster.\nTcpCommunicationSpi commSpi=new TcpCommunicationSpi();\n\ncommSpi.setLocalPort(49100);\n\n// Overriding discovery SPI.\ncfg.setDiscoverySpi(discoverySpi);\n\n// Overriding communication SPI.\ncfg.setCommunicationSpi(commSpi);\n\n// Starting a node.\nIgnition.start(cfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+As you see from the configurations the difference between them is minor - only port numbers for SPIs and IP finder vary.
+[block:callout]
+{
+  "type": "info",
+  "body": "If you want the nodes from different clusters are able to look for each other using multicast protocol then replace `TcpDiscoveryVmIpFinder` with `TcpDiscoveryMulticastIpFinder` and set unique `TcpDiscoveryMulticastIpFinder.multicastGroups` in each configuration above."
 }
 [/block]
 

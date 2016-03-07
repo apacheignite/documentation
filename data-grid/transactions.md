@@ -64,12 +64,20 @@ For more information on how Ignite 2PC works, you can check out these blogs:
   "title": "Optimistic and Pessimistic"
 }
 [/block]
-Whenever `TRANSACTIONAL` atomicity mode is configured, Ignite supports `OPTIMISTIC` and `PESSIMISTIC` concurrency modes for transactions. The main difference is that in `PESSIMISTIC` mode locks are acquired at the time of access, while in `OPTIMISTIC` mode locks are acquired during the `commit` phase.
-
+Whenever `TRANSACTIONAL` atomicity mode is configured, Ignite supports `OPTIMISTIC` and `PESSIMISTIC` concurrency modes for transactions. Locking prevents concurrent access to an object. For example, when you attempt to update a ToDo list item with pessimistic locking, the server places a lock on the object until you either commit or rollback the transaction so that no other transaction or operation is allowed to update the same entry. `OPTIMISTIC` locking is an application-side check on whether the timestamp/version of a record has changed between fetching and attempting to update it. This is locking configuration is regardless of transaction isolation level.
+[block:callout]
+{
+  "type": "info",
+  "body": "The main difference is that in `PESSIMISTIC` mode locks are acquired at the time of access, while in `OPTIMISTIC` mode locks are acquired during the `commit` phase.",
+  "title": "Optimistic and Pessimistic Locking"
+}
+[/block]
 Ignite also supports the following isolation levels:
-  * `READ_COMMITED` - data is always fetched from the primary node, even if it already has been accessed within the transaction.
-  * `REPEATABLE_READ` - data is fetched form the primary node only once on first access and stored in the local transactional map. All consecutive access to the same data is local.
-  * `SERIALIZABLE` - when combined with `OPTIMISTIC` concurrency, transactions may throw `TransactionOptimisticException` in case of concurrent updates. 
+  * `READ_COMMITED` - data is always fetched from the primary node, even if it already has been accessed within the transaction. In this isolation you can have so-called Non-Repeatable Reads because someone else can change the data when you are reading the data twice in your transaction. This means the lock is only held at the time of access and released soon after. This cannot guarantee that the data is same in every consecutive read even within the same transaction.
+  
+  * `REPEATABLE_READ` - data is fetched form the primary node only once on first access and stored in the local transactional map. All consecutive access to the same data is local. In this case the Server holds the lock until you end your transaction with a COMMIT or ROLLBACK. This means nobody else can make changes to your read data, and you are getting Repeatable Reads for your transaction.
+  
+  * `SERIALIZABLE` - Using this isolation level Ignite uses an internal process by which it detects if there is a specific sequence by which transactions can be executed successfully without any exceptions. Transactions may throw `TransactionOptimisticException` in case of concurrent updates.
 [block:code]
 {
   "codes": [
@@ -78,6 +86,15 @@ Ignite also supports the following isolation levels:
       "language": "java"
     }
   ]
+}
+[/block]
+`OPTIMISTIC` transactions will fail at the commit stage if the Ignite engine detects that at least one of the entries used as part of the initiated transaction has been modified. This is achieved by internally checking the version of an entry used in a transaction to the one actually in the grid at the time of commit. In short this means that if Ignite detects that there is a conflict at the commit stage of a transaction we fail such a transaction throwing TransactionOptimisticException & rolling back any changes made. By handling this exception you may then implement retry mechanisms or any other logic required.
+
+Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)) since the value of the entry could be important to the logic within the initiated transaction.
+[block:callout]
+{
+  "type": "info",
+  "body": "In a highly concurrent environment, optimistic locking might lead to a high transaction failure rate but pessimistic locking, like any other queuing mechanism, might accommodate more transactions when giving a sufficient lock acquisition time interval."
 }
 [/block]
 
