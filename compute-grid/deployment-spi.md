@@ -65,7 +65,7 @@ The following examples demonstrate how the deployment SPI can be used. Different
 {
   "codes": [
     {
-      "code": "// The example expects that you have a GAR file in\n// `home/username/ignite/work/my_deployment/file` folder \n// which contains `myproject.HelloWorldTask` class.\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\nDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"file:///home/username/ignite/work/my_deployment/file\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
+      "code": "// The example expects that you have a GAR file in\n// `home/username/ignite/work/my_deployment/file` folder \n// which contains `myproject.HelloWorldTask` class.\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\nUriDeploymentSpi deploymentSpi = new UriDeploymentSpi();\n\ndeploymentSpi.setUriList(Arrays.asList(\"file:///home/username/ignite/work/my_deployment/file\"));\n\ncfg.setDeploymentSpi(deploymentSpi);\n\ntry(Ignite ignite = Ignition.start(cfg)) {\n\t  ignite.compute().execute(\"myproject.HelloWorldTask\", \"my args\");\n}",
       "language": "java",
       "name": "File Protocol"
     },
