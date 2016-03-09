@@ -99,7 +99,7 @@ Another important point to note here is that a transaction will still fail even 
 [block:callout]
 {
   "type": "info",
-  "body": "In a highly concurrent environment, optimistic locking might lead to a high transaction failure rate but pessimistic locking can lead to deadlock if locks are acquired in a different order by transactions.",
+  "body": "In a highly concurrent environment, optimistic locking might lead to a high transaction failure rate but pessimistic locking can lead to deadlocks if locks are acquired in a different order by transactions.",
   "title": ""
 }
 [/block]
