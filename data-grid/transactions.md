@@ -73,28 +73,33 @@ Whenever `TRANSACTIONAL` atomicity mode is configured, Ignite supports `OPTIMIST
 }
 [/block]
 Ignite also supports the following isolation levels:
-  * `READ_COMMITED` - data is always fetched from the primary node, even if it already has been accessed within the transaction. In this isolation you can have so-called Non-Repeatable Reads because someone else can change the data when you are reading the data twice in your transaction. This means the lock is only held at the time of access and released soon after. This cannot guarantee that the data is same in every consecutive read even within the same transaction.
+  * `READ_COMMITED` - data is always fetched from the primary node, even if it already has been accessed within the transaction. In this isolation you can have so-called Non-Repeatable Reads because someone else can change the data when you are reading the data twice in your transaction. In `PESSIMISTIC` mode it means that the lock is only held at the time of access and released soon after. This cannot guarantee that the data is same in every consecutive read even within the same transaction. As for `OPTIMISTIC` mode use this isolation level only if you're sure that there won't be two concurrent transactions that work with intersecting sets of keys, otherwise the result of a transaction is undefined. 
 
-  * `REPEATABLE_READ` - data is fetched form the primary node only once on first access and stored in the local transactional map. All consecutive access to the same data is local. In this case the Server holds the lock until you end your transaction with a COMMIT or ROLLBACK. This means nobody else can make changes to your read data, and you are getting Repeatable Reads for your transaction.
+  * `REPEATABLE_READ` - data is fetched form the primary node only once on first access and stored in the local transactional map. All consecutive access to the same data is local. In `PESSIMISTIC` mode the Server holds the lock until you end your transaction with a COMMIT or ROLLBACK. This means nobody else can make changes to your read data, and you are getting Repeatable Reads for your transaction. As for `OPTIMISTIC` mode use this isolation level only if you're sure that there won't be two concurrent transactions that work with intersecting sets of keys, otherwise the result of a transaction is undefined.
 
-  * `SERIALIZABLE` - Using this isolation level Ignite uses an internal process by which it detects if there is a specific sequence by which transactions can be executed successfully without any exceptions. Transactions may throw `TransactionOptimisticException` in case of concurrent updates.
+  * `SERIALIZABLE` - in `PESSIMISTIC` mode this isolation level works the same way as with `REPEATABLE_READ`. This is a primary isolation level that has to be used with `OPTIMISTIC` mode. Using this isolation level and `OPTIMISTIC` mode Ignite enables an algorithm that detects possible concurrent updates at `commit` phase of a transaction and may throw `TransactionOptimisticException` in case if a concurrent update happened from the other transaction.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Deadlock-free Transactions"
+}
+[/block]
+`OPTIMISTIC` `SERIALIZABLE` transactions provide you with an ability to work with deadlock-free transactions. This is feasible since Ignite will fail a transaction at the commit stage if the Ignite engine detects that at least one of the entries used as  part of the initiated transaction has been modified. This is achieved by internally checking the version of an entry used in a transaction to the one actually in the grid at the time of commit. In short this means that if Ignite detects that there is a conflict at the commit stage of a transaction we fail such a transaction throwing `TransactionOptimisticException` & rolling back any changes made. By handling this exception you may then implement retry mechanisms or any other logic required
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteTransactions txs = ignite.transactions();\n\n// Start transaction in optimistic mode with repeatable read isolation level.\nTransaction tx = txs.txStart(TransactionConcurrency.OPTIMISTIC, TransactionIsolation.REPEATABLE_READ);",
+      "code": "IgniteTransactions txs = ignite.transactions();\n\n// Start transaction in optimistic mode with serializable isolation level.\nwhile (true) {\n    try (Transaction tx =  \n         ignite.transactions().txStart(TransactionConcurrency.OPTIMISTIC,\n                                       TransactionIsolation.SERIALIZABLE)) {\n\t \t\t\t// Modify cache entires as part of this transcation.\n  \t\t\t....\n        \n  \t\t\t// commit transaction.  \n  \t\t\ttx.commit();\n\n      \t// Transaction succeeded. Leave the while loop.\n      \tbreak;\n    }\n    catch (TransactionOptimisticException e) {\n    \t\t// Transaction has failed. Retry.\n    }\n}",
       "language": "java"
     }
   ]
 }
 [/block]
-`OPTIMISTIC` transactions will fail at the commit stage if the Ignite engine detects that at least one of the entries used as part of the initiated transaction has been modified. This is achieved by internally checking the version of an entry used in a transaction to the one actually in the grid at the time of commit. In short this means that if Ignite detects that there is a conflict at the commit stage of a transaction we fail such a transaction throwing TransactionOptimisticException & rolling back any changes made. By handling this exception you may then implement retry mechanisms or any other logic required.
-
 Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)) since the value of the entry could be important to the logic within the initiated transaction.
 [block:callout]
 {
   "type": "info",
-  "body": "In a highly concurrent environment, optimistic locking might lead to a high transaction failure rate but pessimistic locking, like any other queuing mechanism, might accommodate more transactions when giving a sufficient lock acquisition time interval.",
+  "body": "In a highly concurrent environment, optimistic locking might lead to a high transaction failure rate but pessimistic locking can lead to deadlock if locks are acquired in a different order by transactions.",
   "title": ""
 }
 [/block]
