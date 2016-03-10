@@ -123,6 +123,14 @@ Below is an example of using JTA transaction manager together with Ignite.
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "body": "Instead of creating a separate XA resource for each cache transaction, there is an option to enlist into JTA using lightweight synchronization callback (`javax.transaction.Synchronization`). In some cases this can give performance improvement, but keep in mind that most of the transaction managers do not allow to add more that one callback to a single transaction.\n\nTo enable this mode set `TransactionConfiguration#setUseJtaSynchronization` configuration flag to `true`.",
+  "title": "Use javax.transaction.Synchronization"
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
