@@ -61,7 +61,7 @@ See example **Cross-Cache SqlFieldsQuery**.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuring SQL Indexes using Annotations"
+  "title": "Configuring SQL Indexes by Annotations"
 }
 [/block]
 Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method like in example below. Note that this method accepts only pairs of types, one for key class and another for value class. Primitives are passed as boxed types.
@@ -183,14 +183,6 @@ There are two main ways of how query can be processed in Ignite:
 1. If you execute the query against `REPLICATED` cache then Ignite assumes that all data available locally and run a simple local SQL query in H2 database engine. The same will happen for `LOCAL` caches.
 
 2. If you execute the query against `PARTITIONED` cache, it work the following way: the query will be parsed and split into multiple map queries and a single reduce query. Then all the map queries are executed on all data nodes of participating caches, providing results to reducing node, which will in turn run reduce query over these intermediate results.
-[block:callout]
-{
-  "type": "warning",
-  "title": "",
-  "body": "Note that Ignite queries work only with data that is already loaded to a cache and do not trigger read-through from the CacheStore. You need to preload the cache with data before running a query against it."
-}
-[/block]
-
 [block:api-header]
 {
   "type": "basic",
@@ -254,13 +246,6 @@ To improve performance of SQL queries with off-heap enabled, you can try to incr
       "language": "java"
     }
   ]
-}
-[/block]
-
-[block:callout]
-{
-  "type": "danger",
-  "body": "Note that SQL queries are not supported if cache memory mode is set to OFFHEAP_VALUES."
 }
 [/block]
 

@@ -46,7 +46,7 @@ Here is an example of how to configure this finder via Spring XML file or progra
       "language": "xml"
     },
     {
-      "code": "TcpDiscoverySpi spi = new TcpDiscoverySpi();\n \nTcpDiscoveryVmIpFinder ipFinder = new TcpDiscoveryVmIpFinder();\n \n// Set initial IP addresses.\n// The first address is considered to be the address of the local node because\n// we want it to start and operate normally even if it's the only one node in the\n// cluster. The second address is an address of a remote node.\n// Note that you can optionally specify a port or a port range.\nipFinder.setAddresses(Arrays.asList(\"1.2.3.4\", \"1.2.3.5:47500..47509\"));\n \nspi.setIpFinder(ipFinder);\n \nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Override default discovery SPI.\ncfg.setDiscoverySpi(spi);\n \n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "TcpDiscoverySpi spi = new TcpDiscoverySpi();\n \nTcpDiscoveryVmIpFinder ipFinder = new TcpDiscoveryVmIpFinder();\n \n// Set initial IP addresses.\n// Note that you can optionally specify a port or a port range.\nipFinder.setAddresses(Arrays.asList(\"1.2.3.4\", \"1.2.3.5:47500..47509\"));\n \nspi.setIpFinder(ipFinder);\n \nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Override default discovery SPI.\ncfg.setDiscoverySpi(spi);\n \n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]

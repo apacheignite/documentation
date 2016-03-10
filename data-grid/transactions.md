@@ -99,8 +99,7 @@ Another important point to note here is that a transaction will still fail even 
 [block:callout]
 {
   "type": "info",
-  "body": "In a highly concurrent environment, optimistic locking might lead to a high transaction failure rate but pessimistic locking can lead to deadlocks if locks are acquired in a different order by transactions.",
-  "title": ""
+  "body": "In a highly concurrent environment, optimistic locking might lead to a high transaction failure rate but pessimistic locking can lead to deadlocks if locks are acquired in a different order by transactions."
 }
 [/block]
 
@@ -110,10 +109,7 @@ Another important point to note here is that a transaction will still fail even 
   "title": "Integration With JTA"
 }
 [/block]
-Ignite can be configured with a JTA transaction manager lookup class using `TransactionConfiguration#setTxManagerFactory` method. Transaction manager factory is a factory that provides Ignite with an instance of JTA transaction manager.
-
-Ignite provides `CacheJndiTmFactory` factory.  It's out-of-the-box transaction manager factory implementation that is using JNDI names to find TM.
-
+Ignite can be configured with a JTA transaction manager lookup class using `TransactionConfiguration#setTxManagerLookupClassName` method. Transaction manager lookup is basically a factory that provides Ignite with an instance of JTA transaction manager.
 When set, on each cache operation on a transactional cache Ignite will check if there is an ongoing JTA transaction. If JTA transaction is started, Ignite will also start a transaction and will enlist it into JTA transaction using it's own internal implementation of `XAResource`. Ignite transaction will be prepared, committed or rolledback altogether with corresponding JTA transaction.
 Below is an example of using JTA transaction manager together with Ignite.
 [block:code]
@@ -124,6 +120,14 @@ Below is an example of using JTA transaction manager together with Ignite.
       "language": "java"
     }
   ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "Instead of creating a separate XA resource for each cache transaction, there is an option to enlist into JTA using lightweight synchronization callback (`javax.transaction.Synchronization`). In some cases this can give performance improvement, but keep in mind that most of the transaction managers do not allow to add more that one callback to a single transaction.\n\nTo enable this mode set `TransactionConfiguration#setUseJtaSynchronization` configuration flag to `true`.",
+  "title": "Use javax.transaction.Synchronization"
 }
 [/block]
 

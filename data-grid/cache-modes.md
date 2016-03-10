@@ -86,7 +86,7 @@ Cache modes are configured for each cache by setting the `cacheMode` property of
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n            \n          \t<!-- Set cache mode. -->\n    \t\t\t\t<property name=\"cacheMode\" value=\"PARTITIONED\"/>\n    \t\t\t\t... \n        </bean\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n            \n          \t<!-- Set cache mode. -->\n    \t\t\t\t<property name=\"cacheMode\" value=\"PARTITIONED\"/>\n    \t\t\t\t... \n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     },
     {
@@ -114,7 +114,7 @@ Atomic write order mode can be configured via `atomicWriteOrderMode` property of
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n          \t\n          \t<!-- Atomic write order mode. -->\n    \t\t\t\t<property name=\"atomicWriteOrderMode\" value=\"PRIMARY\"/>\n    \t\t\t\t... \n        </bean\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n          \t\n          \t<!-- Atomic write order mode. -->\n    \t\t\t\t<property name=\"atomicWriteOrderMode\" value=\"PRIMARY\"/>\n    \t\t\t\t... \n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     },
     {
@@ -136,7 +136,7 @@ Atomic write order mode can be configured via `atomicWriteOrderMode` property of
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n          \n          \t<!-- Set cache mode. -->\n    \t\t\t\t<property name=\"cacheMode\" value=\"PARTITIONED\"/>\n          \t\n          \t<!-- Number of backup nodes. -->\n    \t\t\t\t<property name=\"backups\" value=\"1\"/>\n    \t\t\t\t... \n        </bean\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  \t...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n           \t<!-- Set a cache name. -->\n           \t<property name=\"name\" value=\"cacheName\"/>\n          \n          \t<!-- Set cache mode. -->\n    \t\t\t\t<property name=\"cacheMode\" value=\"PARTITIONED\"/>\n          \t\n          \t<!-- Number of backup nodes. -->\n    \t\t\t\t<property name=\"backups\" value=\"1\"/>\n    \t\t\t\t... \n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     },
     {

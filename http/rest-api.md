@@ -114,7 +114,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "2-0": "path",
     "2-1": "string",
     "2-2": "Yes",
-    "2-3": "The path to log file. If not provided then default one will be used.",
+    "2-3": "The path to log file. If not provided the a default one is used.",
     "2-4": "/log/cache_server.log",
     "3-0": "to",
     "3-1": "integer",
@@ -2471,7 +2471,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"error\": \"\",\n  \"response\": [\n    {\n      \"attributes\": {\n        ...\n      },\n      \"caches\": [\n        {\n          name: \"\",\n          mode: \"PARTITIONED\"\n        },\n        {\n          name: \"partionedCache\",\n          mode: \"PARTITIONED\",\n          sqlSchema: \"partionedCache\"\n        }\n      ],\n      \"consistentId\": \"127.0.0.1:47500\",\n      \"metrics\": {\n        ...\n      },\n      \"nodeId\": \"96baebd6-dedc-4a68-84fd-f804ee1ed995\",\n      \"replicaCount\": 128,\n      \"tcpAddresses\": [\"127.0.0.1\"],\n      \"tcpHostNames\": [\"\"],\n      \"tcpPort\": 11211\n   },\n   {\n     \"attributes\": {\n       ...\n     },\n     \"caches\": [\n       {\n         name: \"\",\n         mode: \"REPLICATED\"\n       }\n     ],\n     \"consistentId\": \"127.0.0.1:47501\",\n     \"metrics\": {\n       ...\n     },\n     \"nodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n     \"replicaCount\": 128,\n     \"tcpAddresses\": [\"127.0.0.1\"],\n     \"tcpHostNames\": [\"\"],\n     \"tcpPort\": 11212\n   }\n  ],\n  \"successStatus\": 0\n}",
+      "code": "{\n  \"error\": \"\",\n  \"response\": [\n    {\n      \"attributes\": {\n        ...\n      },\n      \"caches\": [\n        {\n          name: \"\",\n          mode: \"PARTITIONED\"\n        },\n        {\n          name: \"partionedCache\",\n          mode: \"PARTITIONED\",\n          sqlSchema: \"partionedCache\"\n        }\n      ],\n      \"consistentId\": \"127.0.0.1:47500\",\n      \"metrics\": {\n        ...\n      },\n      \"nodeId\": \"96baebd6-dedc-4a68-84fd-f804ee1ed995\",\n      \"replicaCount\": 128,\n      \"tcpAddresses\": [\"127.0.0.1\"],\n      \"tcpHostNames\": [\"\"],\n      \"tcpPort\": 11211\n   },\n   {\n     \"attributes\": {\n       ...\n     },\n\t\t \"caches\": [\n       {\n         name: \"\",\n         mode: \"REPLICATED\"\n       }\n     ],\n     \"consistentId\": \"127.0.0.1:47501\",\n     \"metrics\": {\n       ...\n     },\n     \"nodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n     \"replicaCount\": 128,\n     \"tcpAddresses\": [\"127.0.0.1\"],\n     \"tcpHostNames\": [\"\"],\n     \"tcpPort\": 11212\n   }\n  ],\n  \"successStatus\": 0\n}",
       "language": "json"
     }
   ]
@@ -2488,7 +2488,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
     "0-0": "response",
     "0-1": "jsonObject",
     "0-2": "Information about grid topology.",
-    "0-3": "[\n{\n\"attributes\": {\n...\n},\n\"caches\": [\n        {\n          name: \"\",\n          mode: \"PARTITIONED\"\n        },\n        {\n          name: \"partionedCache\",\n          mode: \"PARTITIONED\",\n          sqlSchema: \"partionedCache\"\n        }\n      ],\n\"consistentId\": \"127.0.0.1:47500\",\n\"metrics\": {\n...\n},\n\"nodeId\": \"96baebd6-dedc-4a68-84fd-f804ee1ed995\",\n...\n\"tcpPort\": 11211\n},\n{\n\"attributes\": {\n...\n},\n\"caches\": [\n       {\n         name: \"\",\n         mode: \"REPLICATED\"\n       }\n     ],\n\"consistentId\": \"127.0.0.1:47501\",\n\"metrics\": {\n...\n},\n\"nodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n...\n\"tcpPort\": 11212\n}\n]"
+    "0-3": "[\n{\n\"attributes\": {\n...\n},\n\"caches\": [\n        {\n          name: \"\",\n          mode: \"PARTITIONED\"\n        },\n        {\n          name: \"partionedCache\",\n          mode: \"PARTITIONED\",\n          sqlSchema: \"partionedCache\"\n        }\n      ],\n\"consistentId\": \"127.0.0.1:47500\",\n\"REPLICATED\",\n\"metrics\": {\n...\n},\n\"nodeId\": \"96baebd6-dedc-4a68-84fd-f804ee1ed995\",\n...\n\"tcpPort\": 11211\n},\n{\n\"attributes\": {\n...\n},\n\"caches\": [\n       {\n         name: \"\",\n         mode: \"REPLICATED\"\n       }\n     ],\n\"consistentId\": \"127.0.0.1:47501\",\n\"metrics\": {\n...\n},\n\"nodeId\": \"2bd7b049-3fa0-4c44-9a6d-b5c7a597ce37\",\n...\n\"tcpPort\": 11212\n}\n]"
   },
   "cols": 4,
   "rows": 1

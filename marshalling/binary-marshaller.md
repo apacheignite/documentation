@@ -11,8 +11,8 @@ Starting from v1.5 Ignite introduced a new concept of storing data in caches cal
 [block:callout]
 {
   "type": "info",
-  "title": "Restrictions",
-  "body": "There are several restrictions that are implied by the `BinaryObject` format implementation:\n * Internally Ignite does not write field and type names, but uses a lower-case name hash to identify a field or a type. This means that fields or types with the same name hash are not allowed. Even though serialization will not work out-of-the box in the case of hash collision, Ignite provides a way to resolve this collision at the configuration level.\n * For the same reason `BinaryObject` format does not allow same field names on different levels of a class hierarchy.\n * `Externalizable` interface is ignored by default. If `BinaryObject` format is used, `Externalizable` classes will be written the same way as if they were `Serializable`, without `writeExternal()` and `readExternal()` methods. If for some reason this does not work for you, you should implement `Binarylizable` interface for your classes, plug in a custom `BinarySerializer` or switch to the `OptimizedMarshaller`"
+  "body": "There are several restrictions that are implied by the `BinaryObject` format implementation:\n * Internally Ignite does not write field and type names, but uses a lower-case name hash to identify a field or a type. This means that fields or types with the same name hash are not allowed. Even though serialization will not work out-of-the box in the case of hash collision, Ignite provides a way to resolve this collision at the configuration level.\n * For the same reason `BinaryObject` format does not allow same field names on different levels of a class hierarchy.\n * `Externalizable` interface is ignored by default. If `BinaryObject` format is used, `Externalizable` classes will be written the same way as if they were `Serializable`, without `writeExternal()` and `readExternal()` methods. If for some reason this does not work for you, you should implement `Binarylizable` interface for your classes, plug in a custom `BinarySerializer` or switch to the `OptimizedMarshaller`",
+  "title": "Restrictions"
 }
 [/block]
 The `IgniteBinary` facade, which can be obtained from an instance of Ignite, contains all necessary methods to work with binary objects.
@@ -26,8 +26,8 @@ When an object is translated to the binary format, Ignite captures it's hash cod
 [block:callout]
 {
   "type": "warning",
-  "title": "Binary Equals",
-  "body": "Note that since `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized"
+  "body": "Note that since `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized",
+  "title": "Binary Equals"
 }
 [/block]
 
@@ -38,13 +38,13 @@ When an object is translated to the binary format, Ignite captures it's hash cod
 }
 [/block]
 In the vast majority of use-cases there is no need to additionally configure binary objects. `BinaryObject` marshaller is enabled by default when no other marshaller is set to IgniteConfiguration.
-In a case when you need to override default type and field IDs calculation or to plug in `BinarySerializer`, a `BinaryConfiguration` object should be set to `IgniteConfiguration`. This object allows to specify a global ID mapper and a global binary serializer as well as specify per-type mappers and serializers. Wildcards are supported for per-type configuration, in this case provided configuration will be applied to all types matching type name template.
+In a case when you need to override default type and field IDs calculation or to plug in `BinarySerializer`, a `BinaryConfiguration` object should be set to `IgniteConfiguration`. This object allows to specify a global name mapper, a global ID mapper and a global binary serializer as well as specify per-type mappers and serializers. Wildcards are supported for per-type configuration, in this case provided configuration will be applied to all types matching type name template.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <property name=\"binaryConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.BinaryConfiguration\">\n            <property name=\"idMapper\" ref=\"globalIdMapper\"/>\n\n            <property name=\"typeConfigurations\">\n                <list>\n                    <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n                        <property name=\"typeName\" value=\"org.apache.ignite.examples.*\"/>\n                        <property name=\"serializer\" ref=\"exampleSerializer\"/>\n                    </bean>\n                </list>\n            </property>\n        </bean>\n    </property>\n...",
-      "language": "xml",
+      "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <property name=\"binaryConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.BinaryConfiguration\">\n            <property name=\"nameMapper\" ref=\"globalNameMapper\"/>\n          \n            <property name=\"idMapper\" ref=\"globalIdMapper\"/>\n\n            <property name=\"typeConfigurations\">\n                <list>\n                    <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n                        <property name=\"typeName\" value=\"org.apache.ignite.examples.*\"/>\n                        <property name=\"serializer\" ref=\"exampleSerializer\"/>\n                    </bean>\n                </list>\n            </property>\n        </bean>\n    </property>\n...",
+      "language": "java",
       "name": "Configuring Binary Types"
     }
   ]
@@ -61,8 +61,8 @@ By default Ignite works with deserialized values as it is the most common use-ca
 [block:callout]
 {
   "type": "info",
-  "title": "Platform Types",
-  "body": "Note that not all types will be represented as `BinaryObject` when `withKeepBinary()` flag is enabled. There is a set of 'platform' types that includes primitive types, String, UUID, Date, Timestamp, BigDecimal, Collections, Maps and arrays of thereof that will never be represented as a `BinaryObject`.\n\nNote that in the example below key type `Integer` does not change because it is a platform type."
+  "body": "Note that not all types will be represented as `BinaryObject` when `withKeepBinary()` flag is enabled. There is a set of 'platform' types that includes primitive types, String, UUID, Date, Timestamp, BigDecimal, Collections, Maps and arrays of thereof that will never be represented as a `BinaryObject`.\n\nNote that in the example below key type `Integer` does not change because it is a platform type.",
+  "title": "Platform Types"
 }
 [/block]
 
@@ -92,8 +92,8 @@ Another way to get an instance of `BinaryObjectBuilder` is to call `toBuilder()`
 [block:callout]
 {
   "type": "danger",
-  "title": "BinaryObjectBuilder and Hash Code",
-  "body": "Note that it is important that a proper hash code be set to `PortableBuilder` if constructed `BinaryObject` will be used as a cache key, because builder does not calculate hash code automatically and returned `BinaryObject` will have zero hash code otherwise."
+  "body": "Note that it is important that a proper hash code be set to `BinaryBuilder` if constructed `BinaryObject` will be used as a cache key, because builder does not calculate hash code automatically and returned `BinaryObject` will have zero hash code otherwise.",
+  "title": "BinaryObjectBuilder and Hash Code"
 }
 [/block]
 Below is an example of using `BinaryObject` API to process data on server nodes without having user classes deployed on servers and without actual data deserialization.
@@ -150,3 +150,24 @@ Below is an example pseudo-code implementation of a store working with `BinaryOb
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Binary Name Mapper and Binary ID Mapper"
+}
+[/block]
+Internally, Ignite never writes full strings for field or type names. Instead, for performance reasons, Ignite writes integer hash codes for type and field names. It has been tested that  hash code conflicts for the type names or the field names within the same type are virtually non-existent and, to gain performance, it is safe to work with hash codes. For the cases when hash codes for different types or fields actually do collide, `BinaryNameMapper` and `BinaryIdMapper` allow to override the automatically generated hash code IDs for the type and field names.
+
+`BinaryNameMapper` - maps type/class and field names to different names.
+`BinaryIdMapper` - maps given from `BinaryNameMapper` type and filed name to ID that will be used by Ignite in internals.
+
+Ignite provides the following out-of-the-box mappers implementation:
+* `BinaryBasicNameMapper` - a basic implementation of `BinaryNameMapper` that returns a full or a simple name of given class depending on used `setSimpleName(boolean useSimpleName)` property.
+* `BinaryBasicIdMapper` - a basic implementation of `BinaryIdMapper`. It has `setLowerCase(boolean isLowerCase)` configuration property. If the property is set to `false` then a hash code of given type or field name will be returned. If the property is set to `true` then a hash code of given type or field name in lower case will be returned.
+
+If you are using solely Java client and do not specify mappers in `BinaryConfiguration` then Ignite will use `BinaryBasicNameMapper` and `simpleName` property will be set to `false`, and `BinaryBasicIdMapper` and `lowerCase` property will be set to `true`.
+
+If you are using .Net or C++ client and do not specify mappers in `BinaryConfiguration` then Ignite will use `BinaryBasicNameMapper` and `simpleName` property will be set to `true`, and `BinaryBasicIdMapper` and `lowerCase` property will be set to `true`. 
+
+By default there is no need to configure anything if you uses solely Java, .NET or C++. Mappers need to be configured if there is a tricky name conversion when platform interoperability is needed.
