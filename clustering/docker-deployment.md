@@ -70,7 +70,7 @@ To run Ignite docker container with bare Ignite node, use the following command:
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host -e \"IGNITE_CONFIG=https://raw.githubusercontent.com/bob/master/ignite-cfg.xml\" apacheignite/ignite-docker:1.1.0-incubating",
+      "code": "sudo docker run -it --net=host -e \"IGNITE_CONFIG=https://raw.githubusercontent.com/bob/master/ignite-cfg.xml\" apacheignite/ignite:1.4.0",
       "language": "shell"
     }
   ]
