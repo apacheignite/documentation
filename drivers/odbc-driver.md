@@ -9,7 +9,7 @@ For more info on ODBC please refer to [ODBC Programmer's Reference](https://msdn
 [/block]
 ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several Interface conformance levels. In this section you can find which features are supported by the Ignite Apache ODBC driver.
 
-###Core Interface conformance
+####Core Interface conformance
 [block:parameters]
 {
   "data": {
