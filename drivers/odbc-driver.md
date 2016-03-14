@@ -4,6 +4,6 @@ For more info on ODBC please refer to [ODBC Programmer's Reference](https://msdn
 [block:api-header]
 {
   "type": "basic",
-  "title": "Supported features"
+  "title": "ODBC Core Interface Conformance"
 }
 [/block]
