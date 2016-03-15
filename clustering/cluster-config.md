@@ -86,7 +86,7 @@ There can be a case when you need to start two isolated Ignite clusters on the s
 In Ignite this task is achievable if nodes from different clusters will use non intersecting local port ranges for `TcpDiscoverySpi` and `TcpCommunicationSpi`.
 
 Let's say that you need to start two isolated clusters on a single machine for testing purposes.
-Then for the nodes from the first cluster you should use the following `TcpDiscoverySpi` and `TcpCommunicationSpi` configurations
+Then for the nodes from the first cluster, you should use the following `TcpDiscoverySpi` and `TcpCommunicationSpi` configurations:
 [block:code]
 {
   "codes": [
