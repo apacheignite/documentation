@@ -34,16 +34,8 @@ Peer class loading sequence works as follows:
 [block:callout]
 {
   "type": "warning",
-  "title": "Development vs Production",
-  "body": "It is recommended that peer-class-loading is disabled in production. Generally you want to have a controlled production environment without any magic. To deploy your classes explicitly, you can copy them into Ignite `libs` folder or manually add them to the classpath on every node."
-}
-[/block]
-
-[block:callout]
-{
-  "type": "warning",
   "title": "Auto-Clearing Caches for Hot Redeployment",
-  "body": "Whenever you change class definitions for the data stored in cache, Ignite will automatically clear the caches for previous class definitions before peer-deploying the new data to avoid class-loading conflicts."
+  "body": "Use BinaryMarshaller (default) with hot redeployment. If you don't use BinaryMarshaller, that is set by default, then whenever you change class definitions for the data stored in cache, Ignite will automatically clear the caches for previous class definitions before peer-deploying the new data to avoid class-loading conflicts."
 }
 [/block]
 
