@@ -101,7 +101,7 @@ Then for the nodes from the first cluster you should use the following `TcpDisco
   ]
 }
 [/block]
-While for the nodes from the second cluster the configuration can look like this way
+While for the nodes from the second cluster, the configuration can look like this:
 [block:code]
 {
   "codes": [
