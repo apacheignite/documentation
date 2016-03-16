@@ -50,7 +50,7 @@ arguments:
   "rows": 3
 }
 [/block]
-All parameter names are case-insensitive so "SERVER", "Server" and "server" all are
+All parameter names are case-insensitive so `SERVER`, `Server` and `server` all are
 valid parameter names and mean the same parameter.
 [block:callout]
 {
