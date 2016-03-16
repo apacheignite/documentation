@@ -51,7 +51,7 @@ arguments:
 }
 [/block]
 All parameter names are case-insensitive so `SERVER`, `Server` and `server` all are
-valid parameter names and would set the same parameter.
+valid parameter names and refer to the same parameter.
 [block:callout]
 {
   "type": "info",
