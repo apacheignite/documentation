@@ -48,7 +48,7 @@ ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several I
     "4-1": "Yes",
     "5-0": "Use the data-at-execution dialog, involving calls to SQLParamData and SQLPutData",
     "5-1": "No",
-    "5-2": "Cannot be impemented: Ignite does not currently support statement preparing. But as it mainly used for INSERT and UPDATE queries, there is not much sense in implementing anyway.",
+    "5-2": "Mainly used for INSERT and UPDATE queries, which are not supported by Apache Ignite.",
     "6-0": "Manage cursors and cursor names, by calling SQLCloseCursor, SQLGetCursorName, and SQLSetCursorName.",
     "6-1": "Partially",
     "6-2": "SQLCloseCursor is implemented. Named cursors are not supported by Apache Ignite.",
