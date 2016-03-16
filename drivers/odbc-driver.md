@@ -75,7 +75,13 @@ ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several I
     "h-0": "Function",
     "h-1": "Supported in Apache Ignite",
     "h-2": "Conformance level",
-    "0-0": "SQLAllocHandle"
+    "0-0": "SQLAllocHandle\nSQLBindCol\nSQLBindParameter\nSQLBrowseConnect\nSQLBulkOperations\nSQLCancel\nSQLCloseCursor\nSQLColAttribute\nSQLColumnPrivileges\nSQLColumns\nSQLConnect\nSQLCopyDesc\nSQLDataSources\nSQLDescribeCol\nSQLDescribeParam\nSQLDisconnect\nSQLDriverConnect\nSQLDrivers\nSQLEndTran\nSQLExecDirect\nSQLExecute\nSQLFetch\nSQLFetchScroll\nSQLForeignKeys\nSQLFreeHandle\nSQLFreeStmt\nSQLGetConnectAttr\nSQLGetCursorName\nSQLGetData\nSQLGetDescField\nSQLGetDescRec\nSQLGetDiagField\nSQLGetDiagRec\nSQLGetEnvAttr",
+    "0-1": "YES",
+    "1-1": "YES",
+    "1-0": "",
+    "59-0": "SQLTables",
+    "58-0": "SQLTablePrivileges",
+    "57-0": "SQLGetFunctions\nSQLGetInfo\nSQLGetStmtAttr\nSQLGetTypeInfo\nSQLMoreResults\nSQLNativeSql\nSQLNumParams\nSQLNumResultCols\nSQLParamData\nSQLPrepare\nSQLPrimaryKeys\nSQLProcedureColumns\nSQLProcedures\nSQLPutData\nSQLRowCount\nSQLSetConnectAttr\nSQLSetCursorName\nSQLSetDescField\nSQLSetDescRec\nSQLSetEnvAttr\nSQLSetPos\nSQLSetStmtAttr\nSQLSpecialColumns\nSQLStatistics"
   },
   "cols": 3,
   "rows": 60
