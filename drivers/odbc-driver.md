@@ -254,7 +254,15 @@ ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several I
     "55-2": "Core",
     "56-2": "Core",
     "57-2": "Core",
-    "58-2": "Level 2"
+    "58-2": "Level 2",
+    "h-3": "Comments",
+    "12-3": "Driver Manager function.",
+    "17-3": "Driver Manager function.",
+    "23-3": "Implemented but returns empty data.",
+    "36-3": "Not all attributes are supported. See Statement Attribute Conformance below.",
+    "55-3": "",
+    "38-3": "Implemented for basic case.",
+    "39-3": "Currently returns unchanged input data."
   },
   "cols": 3,
   "rows": 60
