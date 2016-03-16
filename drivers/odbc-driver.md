@@ -1,6 +1,28 @@
 Ignite now includes ODBC driver that allows you to retrieve distributed data from cache using standard SQL queries and native ODBC API.
 
-For more info on ODBC please refer to [ODBC Programmer's Reference](https://msdn.microsoft.com/en-us/library/ms714177.aspx)
+For detailed info on ODBC please refer to [ODBC Programmer's Reference](https://msdn.microsoft.com/en-us/library/ms714177.aspx)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Prerequisites"
+}
+[/block]
+Apache Ignite ODBC Driver was officially tested on:
+[block:parameters]
+{
+  "data": {
+    "0-0": "OS",
+    "0-1": "Windows (XP and up), \nWindows Server (2008 and up)\nUbuntu (14.x and 15.x)",
+    "1-0": "C++ compiler",
+    "1-1": "MS Visual C++ (10.0 and up), g++ (4.4.0 and up)",
+    "2-0": "Visual Studio",
+    "2-1": "2010 and above"
+  },
+  "cols": 2,
+  "rows": 3
+}
+[/block]
+It can be built and used for both 64-bit and 32-bit platforms.
 [block:api-header]
 {
   "type": "basic",
