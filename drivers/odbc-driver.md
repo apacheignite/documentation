@@ -68,3 +68,16 @@ ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several I
   "rows": 20
 }
 [/block]
+##Function support
+[block:parameters]
+{
+  "data": {
+    "h-0": "Function",
+    "h-1": "Supported in Apache Ignite",
+    "h-2": "Conformance level",
+    "0-0": "SQLAllocHandle"
+  },
+  "cols": 3,
+  "rows": 60
+}
+[/block]
