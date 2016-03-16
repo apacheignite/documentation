@@ -160,7 +160,7 @@ For example of a group index in the class below we have field `age` which partic
   "title": "Configuring SQL Indexes using QueryEntity"
 }
 [/block]
-Indexes and fields also could be configured with `org.apache.ignite.cache.QueryEntity` which is convenient for XML configuration with Spring. Please refer to javadoc for details. It is equivalent to using `@QuerySqlField` annotation because class annotations are converted to query entities internally.
+Indexes and fields can also be configured with `org.apache.ignite.cache.QueryEntity` which is convenient for XML configuration with Spring. Please refer to javadoc for details. It is equivalent to using `@QuerySqlField` annotation because class annotations are converted to query entities internally.
 [block:code]
 {
   "codes": [
