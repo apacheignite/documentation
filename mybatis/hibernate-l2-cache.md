@@ -46,7 +46,7 @@ To configure Ignite In-Memory Data Fabric as a Hibernate L2 cache, without any c
 {
   "type": "info",
   "title": "Maven Dependency",
-  "body": "In order to enable Ignite hibernate integration, you need to add **ignite-hibernate** dependency to your project, or when starting from command line, copy **ignite-hibernate** module from **libs/optional** to **libs** folder."
+  "body": "In order to enable Ignite Hibernate integration, you need to add **ignite-hibernate** dependency to your project, or when starting from command line, copy **ignite-hibernate** module from **libs/optional** to **libs** folder."
 }
 [/block]
 To add Ignite hibernate integration to your project, add the following dependency to your POM file:
