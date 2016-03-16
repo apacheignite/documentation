@@ -64,7 +64,7 @@ See example **Cross-Cache SqlFieldsQuery**.
   "title": "Configuring SQL Indexes by Annotations"
 }
 [/block]
-Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method like in example below. Note that this method accepts only pairs of types, one for key class and another for value class. Primitives are passed as boxed types.
+Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method, as shown in the example below. Note that this method accepts only pairs of types- one for key class and another for value class. Primitives are passed as boxed types.
 [block:code]
 {
   "codes": [
@@ -160,7 +160,7 @@ For example of a group index in the class below we have field `age` which partic
   "title": "Configuring SQL Indexes using QueryEntity"
 }
 [/block]
-Indexes and fields also could be configured with `org.apache.ignite.cache.QueryEntity` which is convenient for XML configuration with Spring. Please refer to javadoc for details. It is equivalent to using `@QuerySqlField` annotation because class annotations are converted to query entities internally.
+Indexes and fields can also be configured with `org.apache.ignite.cache.QueryEntity` which is convenient for XML configuration with Spring. Please refer to javadoc for details. It is equivalent to using `@QuerySqlField` annotation because class annotations are converted to query entities internally.
 [block:code]
 {
   "codes": [
