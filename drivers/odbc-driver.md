@@ -31,18 +31,27 @@ Apache Ignite ODBC Driver was officially tested on:
 [/block]
 Apache Ignite ODBC driver supports and uses following connection string/DSN
 arguments:
-
-* Address of the node to connect to:
-  SERVER=<host_name_or_IP_address>;
-   
-* Port on which OdbcProcessor of the node is listening:
-  PORT=<TCP_port>;
-   
-* Datagrid cache to connect to:
-  CACHE=<cache_name>;
-   
-All arguments are case-insensitive so "SERVER", "Server" and "server" all are
-valid server address arguments.
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter",
+    "h-1": "Description",
+    "h-2": "Default value",
+    "0-0": "SERVER",
+    "1-0": "PORT",
+    "2-0": "CACHE",
+    "2-1": "Cache name. If it is not defined than default cache will be used. Note that the cache name is case sensitive.",
+    "1-1": "Port on which OdbcProcessor of the node is listening.",
+    "0-1": "Address of the node to connect to.",
+    "0-2": "lacalhost",
+    "1-2": "11443"
+  },
+  "cols": 3,
+  "rows": 3
+}
+[/block]
+All parameter names are case-insensitive so "SERVER", "Server" and "server" all are
+valid parameter names and mean the same parameter.
 [block:api-header]
 {
   "type": "basic",
