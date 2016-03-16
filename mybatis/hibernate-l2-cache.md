@@ -21,7 +21,7 @@ All work with Hibernate database-mapped objects is done within a session, usuall
 
 While L1 cache is always enabled and fully implemented by Hibernate internally, L2 cache is optional and can have multiple pluggable implementaions. Ignite can be easily plugged-in as an L2 cache implementation, and can be used in all access modes (`READ_ONLY`, `READ_WRITE`, `NONSTRICT_READ_WRITE`, and `TRANSACTIONAL`), supporting a wide range of related features:
   * caching to memory and disk, as well as off-heap memory.
-  * cache transactions, that make `TRANSACTIONA`L mode possible.
+  * cache transactions, that make `TRANSACTIONAL` mode possible.
   * clustering, with 2 different replication modes: `REPLICATED` and `PARTITIONED`
 
 To start using GridGain as a Hibernate L2 cache, you need to perform 3 simple steps:
