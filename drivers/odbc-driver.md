@@ -290,3 +290,24 @@ ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several I
   "rows": 60
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Connection string and DSN arguments"
+}
+[/block]
+Apache Ignite ODBC driver supports and uses following connection string/DSN
+arguments:
+
+* Address of the node to connect to:
+  SERVER=<host_name_or_IP_address>;
+   
+* Port on which OdbcProcessor of the node is listening:
+  PORT=<TCP_port>;
+   
+* Datagrid cache to connect to:
+  CACHE=<cache_name>;
+   
+All arguments are case-insensitive so "SERVER", "Server" and "server" all are
+valid server address arguments.
