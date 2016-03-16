@@ -12,7 +12,7 @@ Apache Ignite ODBC Driver was officially tested on:
 {
   "data": {
     "0-0": "OS",
-    "0-1": "Windows (XP and up), \nWindows Server (2008 and up)\nUbuntu (14.x and 15.x)",
+    "0-1": "Windows (XP and up, both 32-bit and 64-bit), \nWindows Server (2008 and up both 32-bit and 64-bit)\nUbuntu (14.x and 15.x 64-bit)",
     "1-0": "C++ compiler",
     "1-1": "MS Visual C++ (10.0 and up), g++ (4.4.0 and up)",
     "2-0": "Visual Studio",
@@ -22,7 +22,7 @@ Apache Ignite ODBC Driver was officially tested on:
   "rows": 3
 }
 [/block]
-It can be built and used for both 64-bit and 32-bit platforms.
+
 [block:api-header]
 {
   "type": "basic",
