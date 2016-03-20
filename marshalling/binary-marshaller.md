@@ -92,7 +92,7 @@ Another way to get an instance of `BinaryObjectBuilder` is to call `toBuilder()`
 [block:callout]
 {
   "type": "danger",
-  "body": "Note that it is important that a proper hash code be set to `BinaryBuilder` if constructed `BinaryObject` will be used as a cache key, because builder does not calculate hash code automatically and returned `BinaryObject` will have zero hash code otherwise.",
+  "body": "Note that it is important that a proper hash code be set to `BinaryObjectBuilder` if constructed `BinaryObject` will be used as a cache key, because builder does not calculate hash code automatically and returned `BinaryObject` will have zero hash code otherwise.",
   "title": "BinaryObjectBuilder and Hash Code"
 }
 [/block]
