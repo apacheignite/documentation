@@ -93,7 +93,7 @@ Another way to get an instance of `BinaryObjectBuilder` is to call `toBuilder()`
 {
   "type": "danger",
   "title": "BinaryObjectBuilder and Hash Code",
-  "body": "Note that it is important that a proper hash code be set to `PortableBuilder` if constructed `BinaryObject` will be used as a cache key, because builder does not calculate hash code automatically and returned `BinaryObject` will have zero hash code otherwise."
+  "body": "Note that it is important that a proper hash code be set to `BinaryObjectBuilder` if constructed `BinaryObject` will be used as a cache key, because builder does not calculate hash code automatically and returned `BinaryObject` will have zero hash code otherwise."
 }
 [/block]
 Below is an example of using `BinaryObject` API to process data on server nodes without having user classes deployed on servers and without actual data deserialization.
