@@ -1,9 +1,30 @@
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Connection string format"
+}
+[/block]
+Apache Ignite ODBC Driver supports standard connection string format. Here is the formal syntax:
+
+connection-string ::= empty-string[;] | attribute[;] | attribute; connection-string
+empty-string ::=
+attribute ::= attribute-keyword=attribute-value | DRIVER=[{]attribute-value[}]
+attribute-keyword ::= identifier
+attribute-value ::= character-string
+
+You can find connection string samples below.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Supported arguments"
+}
+[/block]
 Apache Ignite ODBC driver supports and uses following connection string/DSN
 arguments:
 [block:parameters]
 {
   "data": {
-    "h-0": "Parameter",
+    "h-0": "Attribute keyword",
     "h-1": "Description",
     "h-2": "Default value",
     "0-0": "SERVER",
@@ -21,30 +42,12 @@ arguments:
 [/block]
 All parameter names are case-insensitive so `SERVER`, `Server` and `server` all are
 valid parameter names and refer to the same parameter.
-[block:callout]
+[block:api-header]
 {
-  "type": "info",
-  "body": "Cache that the driver is connected to is treated as the default schema. To query across multiple caches, [Cross-Cache Query](/docs/cache-queries#cross-cache-queries) functionality can be used.",
-  "title": "Cross-Cache Queries"
+  "type": "basic",
+  "title": "Connection string samples"
 }
 [/block]
-
-[block:callout]
-{
-  "type": "info",
-  "body": "Just like with [Cache SQL Queries](doc:cache-queries) used from `IgniteCache` API, joins on `PARTITIONED` caches will work correctly only if joined objects are stored in collocated mode. Refer to [Affinity Collocation](/docs/affinity-collocation#collocate-data-with-data) for more details.",
-  "title": "Joins and Collocation"
-}
-[/block]
-
-[block:callout]
-{
-  "type": "info",
-  "title": "Replicated vs Partitioned Caches",
-  "body": "Queries on `REPLICATED` caches will run directly only on one node, while queries on `PARTITIONED` caches are distributed across all cache nodes."
-}
-[/block]
-## Connection string samples
 You can find samples of the connection string below. These strings can be used with `SQLDriverConnect` ODBC call to establish connection with an Apache Ignite node.
 [block:code]
 {
