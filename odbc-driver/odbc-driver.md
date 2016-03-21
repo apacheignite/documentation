@@ -50,7 +50,7 @@ Below you can see an example of two classes that can be queried by the ODBC Driv
 {
   "codes": [
     {
-      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person {\n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  public Long orgId;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private int age;\n}",
+      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person {\n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  public Long orgId;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private int age;\n  \n  public Organization(String name) {\n    id = ID_GEN.incrementAndGet();\n\n    this.name = name;\n  }\n}",
       "language": "java",
       "name": "Person"
     },
