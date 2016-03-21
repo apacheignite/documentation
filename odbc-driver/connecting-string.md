@@ -44,8 +44,8 @@ valid parameter names and refer to the same parameter.
   "body": "Queries on `REPLICATED` caches will run directly only on one node, while queries on `PARTITIONED` caches are distributed across all cache nodes."
 }
 [/block]
-## Connecting string samples
-You can find samples of the connecting string below. These strings can be used with `SQLDriverConnect` ODBC call to establish connection with an Apache Ignite node.
+## Connection string samples
+You can find samples of the connection string below. These strings can be used with `SQLDriverConnect` ODBC call to establish connection with an Apache Ignite node.
 [block:code]
 {
   "codes": [
