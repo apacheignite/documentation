@@ -128,7 +128,7 @@ Finally, we can use ODBC API to run SQL query upon our data grid just as upon or
   "codes": [
     {
       "code": "",
-      "language": "text"
+      "language": "cplusplus"
     }
   ]
 }
