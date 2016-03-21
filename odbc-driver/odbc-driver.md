@@ -75,7 +75,7 @@ Now, lets try running a little example that will use ODBC to query some data fro
 {
   "codes": [
     {
-      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person {\n  private static final AtomicLong ID_GEN = new AtomicLong();\n  \n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  public Long orgId;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private int age;\n  \n  public Person(Organization org, String firstName,\n                String lastName, double salary, String resume) {\n    id = ID_GEN.incrementAndGet();\n\n    orgId = org.id();\n\n    this.firstName = firstName;\n    this.lastName = lastName;\n    this.salary = salary;\n    this.resume = resume;\n  }\n}",
+      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person {\n  private static final AtomicLong ID_GEN = new AtomicLong();\n  \n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  public Long orgId;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private int age;\n  \n  public Person(Organization org, String name, int age) {\n    id = ID_GEN.incrementAndGet();\n\n    orgId = org.id();\n\n    this.firstName = firstName;\n    this.lastName = lastName;\n    this.salary = salary;\n    this.resume = resume;\n  }\n}",
       "language": "java",
       "name": "Person"
     },
