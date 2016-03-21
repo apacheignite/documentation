@@ -44,7 +44,7 @@ valid parameter names and refer to the same parameter.
   "body": "Queries on `REPLICATED` caches will run directly only on one node, while queries on `PARTITIONED` caches are distributed across all cache nodes."
 }
 [/block]
-## Connecting string examples 
+## Connecting string examples
 [block:code]
 {
   "codes": [
