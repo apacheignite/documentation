@@ -51,12 +51,17 @@ valid parameter names and refer to the same parameter.
     {
       "code": "Driver={Apache Ignite};Server=localhost;Port=11443;Cache=MyCache",
       "language": "text",
-      "name": "Connecting string"
+      "name": "Specific cache"
     },
     {
-      "code": "Server=localhost;\nPort=11443;\nCache=MyCache;",
+      "code": "Driver={Apache Ignite};Server=localhost;Port=11443",
       "language": "text",
-      "name": "DSN"
+      "name": "Default cache"
+    },
+    {
+      "code": "Driver={Apache Ignite}",
+      "language": "text",
+      "name": "All defaults"
     }
   ]
 }
