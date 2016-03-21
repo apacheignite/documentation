@@ -50,8 +50,14 @@ Below you can see an example of two classes that can be queried by the ODBC Driv
 {
   "codes": [
     {
-      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person implements Serializable {\n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  public Long orgId;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private int age;\n}",
-      "language": "java"
+      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person {\n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  public Long orgId;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private int age;\n}",
+      "language": "java",
+      "name": "Person"
+    },
+    {
+      "code": "public class Organization {\n    /** Organization ID (indexed). */\n    @QuerySqlField(index = true)\n    private Long id;\n\n    /** Organization name (indexed). */\n    @QuerySqlField(index = true)\n    private String name;\n}",
+      "language": "java",
+      "name": "Organization"
     }
   ]
 }
