@@ -12,7 +12,7 @@ attribute ::= attribute-keyword=attribute-value | DRIVER=[{]attribute-value[}]
 attribute-keyword ::= identifier
 attribute-value ::= character-string
 
-You can find connection string samples below.
+To put it simple connection string is just list of the key=value entries separated by semicolon. You can find connection string samples below.
 [block:api-header]
 {
   "type": "basic",
