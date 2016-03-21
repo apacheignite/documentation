@@ -45,7 +45,7 @@ Apache Ignite ODBC Driver was officially tested on:
 [/block]
 ODBC Driver internally uses Fields queries to retrieve data from the Apache Ignite cache. This means that by ODBC you can only access those fields that are [accessible for SQL queries](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
 
-Below you can see an example of the class that can be queried by the ODBC Driver:
+Below you can see an example of two classes that can be queried by the ODBC Driver:
 [block:code]
 {
   "codes": [
@@ -54,6 +54,14 @@ Below you can see an example of the class that can be queried by the ODBC Driver
       "language": "java"
     }
   ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Predefined Fields",
+  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for example, when one of them is a primitive and you want to filter by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`."
 }
 [/block]
 
