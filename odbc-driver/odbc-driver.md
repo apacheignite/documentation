@@ -50,7 +50,7 @@ Below you can see an example of the class that can be queried by the ODBC Driver
 {
   "codes": [
     {
-      "code": "public class Person implements Serializable {\n  /** Will be visible in SQL. */\n\t@QuerySqlField\n  private long id;\n  \n  /** Will be visible in SQL. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will NOT be visible in SQL. */\n  private int age;\n}",
+      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person implements Serializable {\n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private int age;\n}",
       "language": "java"
     }
   ]
