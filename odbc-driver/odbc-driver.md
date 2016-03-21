@@ -43,7 +43,7 @@ Apache Ignite ODBC Driver was officially tested on:
   "title": "Quering data"
 }
 [/block]
-
+ODBC Driver internally uses Fields queries to retrieve data from the Apache Ignite cache. This means that by ODBC you can only access those fields that are [accessible for SQL queries](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
 [block:callout]
 {
   "type": "info",
