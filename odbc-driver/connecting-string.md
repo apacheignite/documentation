@@ -45,6 +45,7 @@ valid parameter names and refer to the same parameter.
 }
 [/block]
 ## Connecting string samples
+You can find samples of the connecting string below.
 [block:code]
 {
   "codes": [
