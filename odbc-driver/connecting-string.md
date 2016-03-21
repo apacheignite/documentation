@@ -44,22 +44,22 @@ valid parameter names and refer to the same parameter.
   "body": "Queries on `REPLICATED` caches will run directly only on one node, while queries on `PARTITIONED` caches are distributed across all cache nodes."
 }
 [/block]
-## Connecting string examples
+## Connecting string samples
 [block:code]
 {
   "codes": [
     {
-      "code": "Driver={Apache Ignite};Server=localhost;Port=11443;Cache=MyCache",
+      "code": "DRIVER={Apache Ignite};SERVER=localhost;PORT=11443;CACHE=MyCache",
       "language": "text",
       "name": "Specific cache"
     },
     {
-      "code": "Driver={Apache Ignite};Server=localhost;Port=11443",
+      "code": "DRIVER={Apache Ignite};SERVER=localhost;PORT=11443",
       "language": "text",
       "name": "Default cache"
     },
     {
-      "code": "Driver={Apache Ignite}",
+      "code": "DRIVER={Apache Ignite}",
       "language": "text",
       "name": "All defaults"
     }
