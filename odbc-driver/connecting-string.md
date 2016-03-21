@@ -6,11 +6,13 @@
 [/block]
 Apache Ignite ODBC Driver supports standard connection string format. Here is the formal syntax:
 
+```
 connection-string ::= empty-string[;] | attribute[;] | attribute; connection-string
 empty-string ::=
 attribute ::= attribute-keyword=attribute-value | DRIVER=[{]attribute-value[}]
 attribute-keyword ::= identifier
 attribute-value ::= character-string
+```
 
 To put it simple connection string is just list of the key=value entries separated by semicolon. You can find connection string samples below.
 [block:api-header]
