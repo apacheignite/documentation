@@ -55,7 +55,7 @@ Below you can see an example of two classes that can be queried by the ODBC Driv
       "name": "Person"
     },
     {
-      "code": "public class Organization {\n    /** Organization ID (indexed). */\n    @QuerySqlField(index = true)\n    private Long id;\n\n    /** Organization name (indexed). */\n    @QuerySqlField(index = true)\n    private String name;\n}",
+      "code": "public class Organization {\n  @QuerySqlField\n  private Long id;\n\n  @QuerySqlField\n  private String name;\n}",
       "language": "java",
       "name": "Organization"
     }
