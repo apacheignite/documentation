@@ -63,6 +63,14 @@ Below you can see an example of two classes that can be queried by the ODBC Driv
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "title": "Predefined Fields",
+  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for example, when one of them is a primitive and you want to filter by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`."
+}
+[/block]
+Now, lets try running a little example that will use ODBC to query some data from the Apache Ignite. First we need to modify our classes a little so we could use them in our example:
 [block:code]
 {
   "codes": [
@@ -79,12 +87,15 @@ Below you can see an example of two classes that can be queried by the ODBC Driv
   ]
 }
 [/block]
-
-[block:callout]
+Next we need to properly create and initialize caches upon which we are going to run queries:
+[block:code]
 {
-  "type": "info",
-  "title": "Predefined Fields",
-  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for example, when one of them is a primitive and you want to filter by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`."
+  "codes": [
+    {
+      "code": "CacheConfiguration<Long, Organization> orgCacheCfg = new CacheConfiguration<>(\"Organization\");\n\norgCacheCfg.setCacheMode(CacheMode.PARTITIONED); // Default.\nogCacheCfg.setIndexedTypes(Long.class, Organization.class);\n\nCacheConfiguration<AffinityKey<Long>, Person> personCacheCfg = new CacheConfiguration<>(\"Person\");\n\npersonCacheCfg.setCacheMode(CacheMode.PARTITIONED); // Default.\npersonCacheCfg.setIndexedTypes(AffinityKey.class, Person.class);\n",
+      "language": "java"
+    }
+  ]
 }
 [/block]
 
