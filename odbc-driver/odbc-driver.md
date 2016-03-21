@@ -43,3 +43,27 @@ Apache Ignite ODBC Driver was officially tested on:
   "title": "Quering data"
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Cross-Cache Queries",
+  "body": "Cache that the driver is connected to is treated as the default schema. To query across multiple caches, [Cross-Cache Query](/docs/cache-queries#cross-cache-queries) functionality can be used."
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Joins and Collocation",
+  "body": "Just like with [Cache SQL Queries](doc:cache-queries) used from `IgniteCache` API, joins on `PARTITIONED` caches will work correctly only if joined objects are stored in collocated mode. Refer to [Affinity Collocation](/docs/affinity-collocation#collocate-data-with-data) for more details."
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Replicated vs Partitioned Caches",
+  "body": "Queries on `REPLICATED` caches will run directly only on one node, while queries on `PARTITIONED` caches are distributed across all cache nodes."
+}
+[/block]
