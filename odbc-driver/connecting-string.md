@@ -45,7 +45,7 @@ valid parameter names and refer to the same parameter.
 }
 [/block]
 ## Connecting string samples
-You can find samples of the connecting string below. These strings can be used with `SQLDriverConnect` ODBC call.
+You can find samples of the connecting string below. These strings can be used with `SQLDriverConnect` ODBC call to establish connection with an Apache Ignite node.
 [block:code]
 {
   "codes": [
