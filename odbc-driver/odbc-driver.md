@@ -1,12 +1,7 @@
 Ignite now includes ODBC driver that allows you to retrieve distributed data from cache using standard SQL queries and native ODBC API.
 
 For detailed info on ODBC please refer to [ODBC Programmer's Reference](https://msdn.microsoft.com/en-us/library/ms714177.aspx).
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Overview"
-}
-[/block]
+
 Apache Ignite ODBC driver implements version 3.0 of the ODBC API.
 [block:api-header]
 {
