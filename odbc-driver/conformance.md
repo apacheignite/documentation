@@ -64,7 +64,14 @@ ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several I
   "rows": 20
 }
 [/block]
-##Function support
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Function support"
+}
+[/block]
+
 [block:parameters]
 {
   "data": {
