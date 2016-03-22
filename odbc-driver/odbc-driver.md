@@ -41,7 +41,7 @@ You need MS Visual Studio 2010 or later to be able to build ODBC driver on Windo
 Once the build process is over you can find `odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release`.
 
 ## Building on Linux
-On a Linux-based operation system you will need to install ODBC Driver Manager of your choice manually to be able to build and use Ignite ODBC Driver. Apache Ignite ODBC Driver has been tested with UnixODBC.
+On a Linux-based operation system you will need to install ODBC Driver Manager of your choice manually to be able to build and use Ignite ODBC Driver. Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
 
 Also you will need `GCC`, `G++`, `autotools`, `automake`, and `libtool` to build the driver and its dependencies.
 
@@ -79,6 +79,75 @@ Once the build process is over you can find out where is your ODBC driver has be
 }
 [/block]
 The path will be most likely `/usr/local/lib/libignite-odbc.so`
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Installing ODBC driver"
+}
+[/block]
+In order to use ODBC driver you need to register it in your system so your ODBC Driver Manager will be able to locate it.
+
+## Installing on Windows
+For 32-bit Windows you should use 32-bit version of the driver while for the
+64-bit Windows you can use 64-bit driver as well as 32-bit.
+
+To install driver on Windows you should first choose a directory on your
+file system where your driver or drivers will be located. Once you have
+chosen a place you should put your driver there and ensure that all driver
+dependencies can be resolved i.e. they can be found either in the %PATH% or
+in the same directory as the driver.
+
+After that you should use one of the install scripts from the directory 
+`%IGNITE_HOME%/platforms/cpp/odbc/install`:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "install_x86 <absolute_path_to_32_bit_driver>",
+      "language": "shell",
+      "name": "x86"
+    },
+    {
+      "code": "install_amd64 <absolute_path_to_64_bit_driver> [<absolute_path_to_32_bit_driver>]",
+      "language": "shell",
+      "name": "amd64"
+    }
+  ]
+}
+[/block]
+Most likely you will need OS administrator privileges to execute these scripts.
+
+Thats it. Your driver/drivers are installed.
+
+## Installing on Linux
+
+Once you have built and performed "make install" command the Ignite ODBC Driver i.e. `libignite-odbc.so` is going to be most likely placed to `/usr/local/lib`. To install it as an ODBC driver in your Driver Manager and be able to use it you should perform the following steps:
+
+* Ensure linker is able to locate all dependencies of the ODBC driver. You can check it using `ldd` command like this (assuming ODBC driver is located under `/usr/local/lib`):
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ldd /usr/local/lib/libignite-odbc.so",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+  * Edit file `$IGNITE_HOME/platforms/cpp/odbc/install/ignite-odbc-install.ini` and ensure that `Driver` parameter of the `Apache Ignite` section points to the right location where `libignite-odbc.so` is located.
+   
+* To install Apache Ignite ODBC driver use the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "odbcinst -i -d -f $IGNITE_HOME/platforms/cpp/odbc/install/ignite-odbc-install.ini",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+To perform this command you most likely will need root privileges.
 [block:api-header]
 {
   "type": "basic",
