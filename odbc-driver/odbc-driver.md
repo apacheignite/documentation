@@ -121,7 +121,8 @@ Most likely you will need OS administrator privileges to execute these scripts.
 
 Once you have built and performed "make install" command the Ignite ODBC Driver i.e. `libignite-odbc.so` is going to be most likely placed to `/usr/local/lib`. To install it as an ODBC driver in your Driver Manager and be able to use it you should perform the following steps:
 
-* Ensure linker is able to locate all dependencies of the ODBC driver. You can check it using `ldd` command like this (assuming ODBC driver is located under `/usr/local/lib`): ```ldd /usr/local/lib/libignite-odbc.so```
+* Ensure linker is able to locate all dependencies of the ODBC driver. You can check it using `ldd` command like this (assuming ODBC driver is located under `/usr/local/lib`):
+  ```ldd /usr/local/lib/libignite-odbc.so```
 [block:code]
 {
   "codes": [
