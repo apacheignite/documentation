@@ -67,7 +67,18 @@ After dependencies are built you can finally build ODBC driver itself:
   ]
 }
 [/block]
-
+Once the build process is over you can find out where is your ODBC driver has been placed running the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "whereis libignite-odbc",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+The path will be most likely `/usr/local/lib/libignite-odbc.so`
 [block:api-header]
 {
   "type": "basic",
