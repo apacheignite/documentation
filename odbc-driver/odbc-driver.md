@@ -89,7 +89,7 @@ In order to use ODBC driver you need to register it in your system so your ODBC 
 
 ## Installing on Windows
 For 32-bit Windows you should use 32-bit version of the driver while for the
-64-bit Windows you can use 64-bit driver as well as 32-bit.
+64-bit Windows you can use 64-bit driver as well as 32-bit. You may want to install both 32-bit and 64-bit drivers on 64-bit Windows to be able to use your driver from both 32-bit and 64-bit applications.
 
 To install driver on Windows you should first choose a directory on your
 file system where your driver or drivers will be located. Once you have
@@ -116,8 +116,6 @@ After that you should use one of the install scripts from the directory
 }
 [/block]
 Most likely you will need OS administrator privileges to execute these scripts.
-
-Thats it. Your driver/drivers are installed.
 
 ## Installing on Linux
 
@@ -148,6 +146,12 @@ Once you have built and performed "make install" command the Ignite ODBC Driver 
 }
 [/block]
 To perform this command you most likely will need root privileges.
+
+##After the installation
+
+Thats it. Your driver is installed.
+
+Now Apache Ignite ODBC driver is installed and ready for use. You can connect to it and use it just like any other ODBC driver.
 [block:api-header]
 {
   "type": "basic",
