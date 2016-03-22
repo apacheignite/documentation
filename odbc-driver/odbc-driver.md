@@ -117,12 +117,12 @@ Next we need to properly create and initialize caches upon which we are going to
   "body": "Queries on `REPLICATED` caches will run directly only on one node, while queries on `PARTITIONED` caches are distributed across all cache nodes."
 }
 [/block]
-Finally, we can use ODBC API to run SQL query upon our data grid just as upon ordinary database:
+Finally, we can use ODBC API to run SQL query upon our data grid just like if it was ordinary database:
 [block:code]
 {
   "codes": [
     {
-      "code": "",
+      "code": "SQLHENV env;\n\n// Allocate an environment handle\nSQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);\n\n// We want ODBC 3 support\nSQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, reinterpret_cast<void*>(SQL_OV_ODBC3), 0);\n\nSQLHDBC dbc;\n\n// Allocate a connection handle\nSQLAllocHandle(SQL_HANDLE_DBC, env, &dbc);\n\n// Connection string\nSQLCHAR connectStr[] = \"DRIVER={Apache Ignite};SERVER=localhost;PORT=11443;CACHE=Person;\";\nSQLSMALLINT connectStrLen = static_cast<SQLSMALLINT>(sizeof(connectStr));\n\nSQLCHAR outStr[ODBC_BUFFER_SIZE];\nSQLSMALLINT outStrLen = static_cast<SQLSMALLINT>(sizeof(outStr));;\n\n// Connecting to ODBC server.\nSQLRETURN ret = SQLDriverConnect(dbc, NULL, connectStr, connectStrLen, outStr, outStrLen, &outStrLen, SQL_DRIVER_COMPLETE);\n\nif (!SQL_SUCCEEDED(ret))\n{\n  std::cerr << \"Failed to connect: \" << GetOdbcErrorMessage(SQL_HANDLE_DBC, dbc) << std::endl;\n\n  return;\n}\n\nSQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nstd::vector<SQLCHAR> buf(query.begin(), query.end());\n\nret = SQLExecDirect(stmt, &buf[0], static_cast<SQLSMALLINT>(buf.size()));\n\nif (SQL_SUCCEEDED(ret))\n  PrintOdbcResultSet(stmt);\nelse\n  std::cerr << \"Failed to execute query: \" << GetOdbcErrorMessage(SQL_HANDLE_STMT, stmt) << std::endl;\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);\n\n// Disconneting from the server.\nSQLDisconnect(dbc);\n\n// Releasing allocated handles.\nSQLFreeHandle(SQL_HANDLE_DBC, dbc);\nSQLFreeHandle(SQL_HANDLE_ENV, env);",
       "language": "cplusplus"
     }
   ]
