@@ -31,7 +31,7 @@ Apache Ignite ODBC Driver was officially tested on:
   "title": "Building ODBC driver"
 }
 [/block]
-Ignite ODBC Driver shipped in sources. It means that you need to build it before you are going to be able to use it.
+Ignite ODBC Driver shipped in sources as a part of Apache Ignite package. It means that you need to build it before you are going to be able to use it. For instructions on how to acquire and set up Apache Ignite itself please refer to [Getting Started](doc:getting-started) page.
 
 As ODBC Driver is written in C++ it is shipped as as part of the Apache Ignite C++ and depends on some of the C++ libraries. More specifically it depends on utils and binary Ignite libraries. It means you will need to build them prior to building ODBC driver itself.
 
