@@ -128,8 +128,7 @@ Once you have built and performed "make install" command the Ignite ODBC Driver 
    
 * To install Apache Ignite ODBC driver use the following command:
   ```odbcinst -i -d -f $IGNITE_HOME/platforms/cpp/odbc/install/ignite-odbc-install.ini```
-
-To perform this command you most likely will need root privileges.
+  To perform this command you most likely will need root privileges.
 
 ##After the installation
 
