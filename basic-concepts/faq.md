@@ -28,3 +28,13 @@ Yes, Apache Ignite is shipped with JDBC driver that allows you to retrieve distr
 - **Does Apache Ignite guarantee ordering of messages?**
 Yes, `sendOrdered(...)` method can be used if you want to receive messages in the order they were sent. A timeout parameter is passed to specify how long a message will stay in the queue to wait for messages that are supposed to be sent before this message. If the timeout expires, then all the messages that have not yet arrived for a given topic on that node will be ignored.
 [Read more](https://apacheignite.readme.io/docs/messaging)
+
+- **Can I run Java and .NET closures? How does that work?**
+Java closures (compute jobs) can be executed only on Java Ignite nodes while .Net closures on .Net nodes only. So, if you decide to execute closures over server nodes then all the server nodes must be either Java nodes or .Net nodes depending on what kind of closures you're sending.
+
+- **How do closures get shipped around?**
+Every closure is an object of a particular class. When the closure is being sent it gets serialized to a binary form, send over the wire to a remote node and desirialised there.
+The remote node should have the closure's class in its classpath or enable peerClassLoading in order to load the class from the sender side.
+
+- **Are SQL queries load balanced?**
+SQL queries are always broadcasted to every node that keeps data for caches used in a query. The exception is local SQL queries (query.setLocal(true) that are executed on a local node only.
