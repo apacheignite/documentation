@@ -30,7 +30,7 @@ Yes, `sendOrdered(...)` method can be used if you want to receive messages in th
 [Read more](https://apacheignite.readme.io/docs/messaging)
 
 - **Can I run Java and .NET closures? How does that work?**
-.NET nodes can execute both Java and .NET closures whereas standard Java node can execute Java closures only. When you start ApacheIgnite.exe this will start CLR and JVM together under the same process using a script located under "IGNITE_HOME/dotnet/bin" and .NET closures are handed to the CLR for execution.
+.NET nodes can execute both Java and .NET closures whereas standard Java node can execute Java closures only. When you start ApacheIgnite.exe this will start CLR and JVM together under the same process using a script located under "IGNITE_HOME/platforms/dotnet/bin" and .NET closures are handed to the CLR for execution.
 
 - **What is the cost of conversion between Java and .NET?**
 The only minimal possible overhead is an additional array copy + JNI call. This overhead might degrade performance in local benchmarks, but is negligible in real distributed loads. 
