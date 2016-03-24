@@ -16,7 +16,7 @@ To connect to Ignite using Java client for Memcached, you need to [download Igni
 {
   "codes": [
     {
-      "code": "MemcachedClient client = null;\n\ntry {\n    client = new MemcachedClient(new BinaryConnectionFactory(),\n            AddrUtil.getAddresses(\"localhost:11211\"));\n} catch (IOException e) {\n    e.printStackTrace();\n}\n\nclient.set(\"key\", 0, \"val\");\n\nSystem.out.println(\"Value for 'key': \" + c.get(\"key\"));",
+      "code": "MemcachedClient client = null;\n\ntry {\n    client = new MemcachedClient(new BinaryConnectionFactory(),\n            AddrUtil.getAddresses(\"localhost:11211\"));\n} catch (IOException e) {\n    e.printStackTrace();\n}\n\nclient.set(\"key\", 0, \"val\");\n\nSystem.out.println(\"Value for 'key': \" + client.get(\"key\"));",
       "language": "java"
     }
   ]
