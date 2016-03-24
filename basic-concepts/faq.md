@@ -30,11 +30,10 @@ Yes, `sendOrdered(...)` method can be used if you want to receive messages in th
 [Read more](https://apacheignite.readme.io/docs/messaging)
 
 - **Can I run Java and .NET closures? How does that work?**
-Java closures (compute jobs) can be executed only on Java Ignite nodes while .Net closures on .Net nodes only. So, if you decide to execute closures over server nodes then all the server nodes must be either Java nodes or .Net nodes depending on what kind of closures you're sending.
+.NET nodes can execute both Java and .NET closures whereas standard Java node can execute Java closures only.
 
 - **How do closures get shipped around?**
-Every closure is an object of a particular class. When the closure is being sent it gets serialized to a binary form, send over the wire to a remote node and desirialised there.
-The remote node should have the closure's class in its classpath or enable peerClassLoading in order to load the class from the sender side.
+Every closure is an object of a particular class. When the closure is being sent it gets serialized to a binary form, send over the wire to a remote node and desirialised there. The remote node should have the closure's class in its classpath or enable peerClassLoading in order to load the class from the sender side.
 
 - **Are SQL queries load balanced?**
-SQL queries are always broadcasted to every node that keeps data for caches used in a query. The exception is local SQL queries (query.setLocal(true) that are executed on a local node only.
+SQL queries are always broadcasted to every node that keeps data for caches used in a query. The exception is local SQL queries (query.setLocal(true)) that are executed on a local node only.
