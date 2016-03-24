@@ -30,13 +30,13 @@ Yes, `sendOrdered(...)` method can be used if you want to receive messages in th
 [Read more](https://apacheignite.readme.io/docs/messaging)
 
 - **Can I run Java and .NET closures? How does that work?**
-.NET nodes can execute both Java and .NET closures whereas standard Java node can execute Java closures only. When you start ApacheIgnite.exe this will start CLR and JVM together under the same process using a script located under "IGNITE_HOME/platforms/dotnet/bin" and .NET closures are handed to the CLR for execution.
+.NET nodes can execute both Java and .NET closures whereas standard Java node can execute Java closures only. When you start ApacheIgnite.exe this will start CLR and JVM together under the same process using a script located under `IGNITE_HOME/platforms/dotnet/bin` and .NET closures are handed to the CLR for execution.
 
 - **What is the cost of conversion between Java and .NET?**
 The only minimal possible overhead is an additional array copy + JNI call. This overhead might degrade performance in local benchmarks, but is negligible in real distributed loads. 
 
 - **How do closures get shipped around?**
-Every closure is an object of a particular class. When the closure is being sent it gets serialized to a binary form, send over the wire to a remote node and desirialised there. The remote node should have the closure's class in its classpath or enable peerClassLoading in order to load the class from the sender side.
+Every closure is an object of a particular class. When the closure is being sent it gets serialised to a binary form, send over the wire to a remote node and deserialised there. The remote node should have the closure's class in its classpath or enable peerClassLoading in order to load the class from the sender side.
 
 - **Are SQL queries load balanced?**
 SQL queries are always broadcasted to every node that keeps data for caches used in a query. The exception is local SQL queries (query.setLocal(true)) that are executed on a local node only.
