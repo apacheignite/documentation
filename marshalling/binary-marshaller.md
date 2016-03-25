@@ -101,7 +101,7 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
 {
   "codes": [
     {
-      "code": "cache.withKeepBinary().invoke(\n    new CacheEntryProcessor<Integer, BinaryObject, Void>() {\n        @Override Void process(\n            MutableEntry<Integer, BinaryObject> entry, Object... args) {\n            // Create builder from the old value.\n            BinaryObjectBuilder bldr = entry.getValue().toBuilder();\n            \n            //Update the field in the builder.\n            bldr.setField(\"name\", \"Ignite\");\n            \n            // Set new value to the entry.\n            entry.setValue(bldr.build());\n                \n            return null;\n        }\n    });",
+      "code": "cache.<Integer, BinaryObject>withKeepBinary().invoke(\n    new CacheEntryProcessor<Integer, BinaryObject, Void>() {\n        @Override Void process(\n            MutableEntry<Integer, BinaryObject> entry, Object... args) {\n            // Create builder from the old value.\n            BinaryObjectBuilder bldr = entry.getValue().toBuilder();\n            \n            //Update the field in the builder.\n            bldr.setField(\"name\", \"Ignite\");\n            \n            // Set new value to the entry.\n            entry.setValue(bldr.build());\n                \n            return null;\n        }\n    });",
       "language": "java",
       "name": "BinaryObject Inside EntryProcessor"
     }
