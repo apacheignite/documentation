@@ -24,7 +24,7 @@ You can view Ignite as a collection of independent, well-integrated, in-memory c
   * [Streaming & CEP](doc:streaming--cep) 
   * [Compute Grid](doc:compute-grid) 
   * [Service Grid](doc:service-grid)
-  * [Ignite File System](https://apacheignite-fs.readme.io/docs/igfs)
+  * [Ignite File System](https://apacheignite-fs.readme.io/docs/in-memory-file-system)
   * [Distributed Data Structures](doc:queue-and-set) 
   * [Distributed Messaging](doc:messaging) 
   * [Distributed Events](doc:events) 
