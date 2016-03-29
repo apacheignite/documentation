@@ -63,7 +63,22 @@ The following commands are available in Visor. To get full information on a comm
     "11-0": "log",
     "11-2": "Starts or stops grid-wide events logging.",
     "12-0": "mclear",
-    "12-2": "Clears visor console memory variables."
+    "12-2": "Clears visor console memory variables.",
+    "13-0": "mget",
+    "13-2": "Gets Visor console memory variables.",
+    "14-0": "mlist",
+    "14-2": "Prints Visor console memory variables.",
+    "15-0": "node",
+    "15-2": "Prints node statistics.",
+    "16-0": "open",
+    "16-2": "Connects visor console to the grid.",
+    "17-0": "ping",
+    "17-2": "Pings node.",
+    "18-0": "quit",
+    "18-1": "exit",
+    "18-2": "Quit from Visor console.",
+    "19-0": "start",
+    "19-2": "Starts or restarts nodes from remote hosts."
   },
   "cols": 3,
   "rows": 25
