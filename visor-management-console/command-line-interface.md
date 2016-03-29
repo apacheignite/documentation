@@ -78,7 +78,16 @@ The following commands are available in Visor. To get full information on a comm
     "18-1": "exit",
     "18-2": "Quit from Visor console.",
     "19-0": "start",
-    "19-2": "Starts or restarts nodes from remote hosts."
+    "19-2": "Starts or restarts nodes from remote hosts.",
+    "20-0": "status",
+    "20-1": "!",
+    "20-2": "Prints Visor console status.",
+    "21-0": "tasks",
+    "21-2": "Prints tasks execution statistics.",
+    "22-0": "top",
+    "22-2": "Prints current topology.",
+    "23-0": "vvm",
+    "23-2": "Opens VisualVM for nodes in topology."
   },
   "cols": 3,
   "rows": 25
