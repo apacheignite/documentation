@@ -31,3 +31,41 @@ To get help and get started, type `help` or `?` commands. To connect visor to th
 }
 [/block]
 The following commands are available in Visor. To get full information on a command, type `help "cmd"` or `? "cmd"`.
+[block:parameters]
+{
+  "data": {
+    "h-0": "Command",
+    "h-1": "Alias",
+    "h-2": "Description",
+    "0-0": "`ack`",
+    "0-2": "Acks arguments on all remote nodes.",
+    "1-0": "`alert`",
+    "1-2": "Alerts for user-defined events.",
+    "2-0": "cache",
+    "2-2": "Prints cache statistics, clears cache, prints list of all entries from cache.",
+    "3-0": "close",
+    "3-2": "Disconnects Visor console from the grid.",
+    "4-2": "Prints node configuration.",
+    "4-0": "config",
+    "5-0": "deploy",
+    "5-2": "Copies file or folder to remote host.",
+    "6-2": "Prints topology change log.",
+    "6-0": "disco",
+    "7-2": "Print events from a node.",
+    "7-0": "events",
+    "8-0": "gc",
+    "8-2": "Runs GC on remote nodes.",
+    "9-0": "help",
+    "9-1": "?",
+    "9-2": "Prints Visor console help.",
+    "10-0": "kill",
+    "10-2": "Kills or restarts node.",
+    "11-0": "log",
+    "11-2": "Starts or stops grid-wide events logging.",
+    "12-0": "mclear",
+    "12-2": "Clears visor console memory variables."
+  },
+  "cols": 3,
+  "rows": 25
+}
+[/block]
