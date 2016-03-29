@@ -1,4 +1,4 @@
-Visor Command Line Interface (CLI) provides scriptable monitoring capabilities for GridGain. It can be used to get statistics about nodes, caches and tasks in the grid. General details about the topology showing various metrics and node configuration properties can also be viewed here. CLI also allows you to start and stop remote nodes.
+Visor Command Line Interface (CLI) provides scriptable monitoring capabilities for Ignite. It can be used to get statistics about nodes, caches and tasks in the grid. General details about the topology showing various metrics and node configuration properties can also be viewed here. CLI also allows you to start and stop remote nodes.
 [block:image]
 {
   "images": [
