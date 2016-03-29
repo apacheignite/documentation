@@ -24,3 +24,10 @@ Visor Command Line Interface (CLI) provides scriptable monitoring capabilities f
 [/block]
 Ignite ships with `IGNITE_HOME/bin/ignitevisorcmd.{sh|bat}` script that starts command line management interface.
 To get help and get started, type `help` or `?` commands. To connect visor to the grid, type `open` command.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Commands"
+}
+[/block]
+The following commands are available in Visor. To get full information on a command, type `help "cmd"` or `? "cmd"`.
