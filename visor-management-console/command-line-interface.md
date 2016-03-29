@@ -76,7 +76,7 @@ The following commands are available in Visor. To get full information on a comm
     "17-0": "`ping`",
     "17-2": "Pings node.",
     "18-0": "`quit`",
-    "18-1": "exit",
+    "18-1": "",
     "18-2": "Quit from Visor console.",
     "19-0": "`start`",
     "19-2": "Starts or restarts nodes from remote hosts.",
