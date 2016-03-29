@@ -90,6 +90,6 @@ The following commands are available in Visor. To get full information on a comm
     "23-2": "Opens VisualVM for nodes in topology."
   },
   "cols": 3,
-  "rows": 25
+  "rows": 24
 }
 [/block]
