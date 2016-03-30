@@ -34,7 +34,7 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
 [/block]
 3. Run the application.
 
-`hadoop java jar ignite-yarn-<ignite-version>.jar ./ignite-yarn-<ignite-version>.jar cluster.properties`
+`hadoop jar ignite-yarn-<ignite-version>.jar ./ignite-yarn-<ignite-version>.jar cluster.properties`
 
 4. In order to make sure that Application deployed correctly, do the following. Open YARN console at http://<hostname>:8088/cluster. If everything works OK then application with `Ignition` name.
 [block:image]
@@ -137,9 +137,13 @@ All configuration is handled through environment variables or property file. Fol
     "8-0": "IGNITE_VERSION",
     "8-1": "The version ignite which will be run on nodes.",
     "8-2": "latest",
-    "8-3": "1.0.5"
+    "8-3": "1.0.5",
+    "9-0": "IGNITE_URL",
+    "9-2": "latest",
+    "9-3": "http://apache-mirror.rbc.ru/pub/apache//ignite/1.5.0.final/apache-ignite-fabric-1.5.0.final-bin.zip",
+    "9-1": "The version ignite binaries which will be downloaded"
   },
   "cols": 4,
-  "rows": 9
+  "rows": 10
 }
 [/block]
