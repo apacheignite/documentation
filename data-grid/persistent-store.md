@@ -25,7 +25,7 @@ While Ignite allows you to configure the `CacheLoader` and `CacheWriter` separat
 [/block]
 Providing proper cache store implementation is important whenever read-through or write-through behavior is desired. Read-through means that data will be read from persistent store whenever it’s not available in cache, and write-through means that data will be automatically persisted whenever it is updated in cache. All read-through and write-through operations will participate in overall cache transaction and will be committed or rolled back as a whole.
 
-To configure read-through and write-through, you need to implement `CacheStore` interface and set `cacheStoreFactory` as well as `readThrough` and `writeThrough` properties of `CacheConfiguration`, as shown in examples below.
+To configure read-through and write-through, you need to implement `CacheStore` interface and set `cacheStoreFactory` as well as `readThrough` and `writeThrough` properties of `CacheConfiguration`, as shown in the examples below.
 [block:api-header]
 {
   "type": "basic",
