@@ -43,25 +43,14 @@ Once the build process is over you can find `odbc.dll` in `%IGNITE_HOME%\platfor
 ## Building on Linux
 On a Linux-based operation system you will need to install ODBC Driver Manager of your choice manually to be able to build and use Ignite ODBC Driver. Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
 
-Also you will need `GCC`, `G++`, `autotools`, `automake`, and `libtool` to build the driver and its dependencies.
+Also you will need `GCC`, `G++`, and `Make` to build the driver and its dependencies.
 
-Once all is installed you need to build ODBC driver dependencies:
+Once all is installed you can build Ignite ODBC driver:
 [block:code]
 {
   "codes": [
     {
-      "code": "cd $IGNITE_HOME/platforms/cpp/utils\nlibtoolize && aclocal && autoheader && automake --add-missing && autoreconf && ./configure && make\n#make install will require root privileges\nmake install\n\ncd $IGNITE_HOME/platforms/cpp/binary\nlibtoolize && aclocal && autoheader && automake --add-missing && autoreconf && ./configure && make\n#make install will require root privileges\nmake install",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
-After dependencies are built you can finally build ODBC driver itself:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "cd $IGNITE_HOME/platforms/cpp/odbc\nlibtoolize && aclocal && autoheader && automake --add-missing && autoreconf && ./configure && make\n#make install will require root privileges\nmake install",
+      "code": "cd $IGNITE_HOME/platforms/cpp\n./configure --enable-odbc --disable-node --disable-core\nmake\n\n#The following step will most probably require root privileges:\nmake install",
       "language": "shell"
     }
   ]
