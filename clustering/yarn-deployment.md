@@ -135,13 +135,13 @@ All configuration is handled through environment variables or property file. Fol
     "7-2": "2",
     "7-3": "4",
     "8-0": "IGNITE_VERSION",
-    "8-1": "The version ignite which will be run on nodes.",
+    "8-1": "Apache Ignite version to run on nodes.",
     "8-2": "latest",
     "8-3": "1.0.5",
     "9-0": "IGNITE_URL",
     "9-2": "latest",
     "9-3": "http://apache-mirror.rbc.ru/pub/apache//ignite/1.5.0.final/apache-ignite-fabric-1.5.0.final-bin.zip",
-    "9-1": "The version ignite binaries which will be downloaded"
+    "9-1": "Apache Ignite version to download"
   },
   "cols": 4,
   "rows": 10
