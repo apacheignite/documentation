@@ -139,7 +139,7 @@ All configuration is handled through environment variables or property file. Fol
     "8-2": "latest",
     "8-3": "1.0.5",
     "9-0": "IGNITE_URL",
-    "9-2": "latest",
+    "9-2": "N/A",
     "9-3": "http://apache-mirror.rbc.ru/pub/apache//ignite/1.5.0.final/apache-ignite-fabric-1.5.0.final-bin.zip",
     "9-1": "Apache Ignite version to download"
   },
