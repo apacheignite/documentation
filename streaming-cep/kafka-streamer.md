@@ -38,7 +38,7 @@ Connector can be found in 'optional/ignite-kafka.' It and its dependencies have 
 {
   "codes": [
     {
-      "code": "# connector\nname=my-ignite-connector\nconnector.class=IgniteSinkConnector\ntasks.max=2\ntopics=someTopic1,someTopic2\n\n# cache\ncacheName=myCache\ncacheAllowOverwrite=true\nigniteCfg=/some-path/ignite.xml",
+      "code": "# connector\nname=my-ignite-connector\nconnector.class=org.apache.ignite.stream.kafka.connect.IgniteSinkConnector\ntasks.max=2\ntopics=someTopic1,someTopic2\n\n# cache\ncacheName=myCache\ncacheAllowOverwrite=true\nigniteCfg=/some-path/ignite.xml",
       "language": "text"
     }
   ]
