@@ -30,7 +30,7 @@ In order to start using Ignite interpreters you should install Zeppelin in two s
 [block:callout]
 {
   "type": "info",
-  "body": "By default Ignite and Ignite SQL interpreters are already configured in Zeppelin. Otherwise you should add the following interpreters class names to the corresponding configuration file or environment variable (see \"Configure\" section of [Zeppelin installation guide](https://zeppelin.incubator.apache.org/docs/0.5.5-incubating/install/install.html))): \n  * `org.apache.zeppelin.ignite.IgniteInterpreter`    \n  * `org.apache.zeppelin.ignite.IgniteSqlInterpreter`\n\n**Note:** First interpreter become a default.",
+  "body": "By default Ignite and Ignite SQL interpreters are already configured in Zeppelin. Otherwise you should add the following interpreters class names to the corresponding configuration file or environment variable (see \"Configure\" section of [Zeppelin installation guide](https://zeppelin.incubator.apache.org/docs/0.5.5-incubating/install/install.html)): \n  * `org.apache.zeppelin.ignite.IgniteInterpreter`    \n  * `org.apache.zeppelin.ignite.IgniteSqlInterpreter`\n\n**Note:** First interpreter become a default.",
   "title": "Adding Ignite Interpreters"
 }
 [/block]
