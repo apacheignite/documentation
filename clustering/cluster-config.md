@@ -170,6 +170,28 @@ You can have your database be a common shared storage of initial IP addresses. I
 [block:api-header]
 {
   "type": "basic",
+  "title": "ZooKeeper Based Discovery"
+}
+[/block]
+If you're using [ZooKeeper](https://zookeeper.apache.org/) to coordinate your distributed environment, you can utilize it for Ignite nodes discovery as well. This is done via `TcpDiscoveryZookeeperIpFinder` (note that `ignite-zookeeper` module has to be enabled).
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"discoverySpi\">\n        <bean class=\"org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi\">\n            <property name=\"ipFinder\">\n                <bean class=\"org.apache.ignite.spi.discovery.tcp.ipfinder.zk.TcpDiscoveryZookeeperIpFinder\">\n                    <property name=\"zkConnectionString\" value=\"127.0.0.1:2181\"/>\n                </bean>\n            </property>\n        </bean>\n    </property>\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "TcpDiscoverySpi spi = new TcpDiscoverySpi();\n\nTcpDiscoveryZookeeperIpFinder ipFinder = new TcpDiscoveryZookeeperIpFinder();\n\n// Specify ZooKeeper connection string.\nipFinder.setZkConnectionString(\"127.0.0.1:2181\");\n\nspi.setIpFinder(ipFinder);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Override default discovery SPI.\ncfg.setDiscoverySpi(spi);\n \n// Start Ignite node.\nIgnition.start(cfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Failure Detection Timeout"
 }
 [/block]
