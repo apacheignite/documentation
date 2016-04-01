@@ -54,7 +54,7 @@ In Ignite, checkpointing functionality is provided by `CheckpointSpi` which has 
     "h-0": "Class",
     "h-1": "Description",
     "h-2": "Default",
-    "0-0": "[SharedFsCheckpointSpi](#file-system-checkpoint-configuration)\n(default)",
+    "0-0": "[SharedFsCheckpointSpi](#file-system-checkpoint-configuration)",
     "0-1": "This implementation uses a shared file system to store checkpoints.",
     "0-2": "Yes",
     "1-0": "[CacheCheckpointSpi](#cache-checkpoint-configuration)",
@@ -68,7 +68,7 @@ In Ignite, checkpointing functionality is provided by `CheckpointSpi` which has 
   "rows": 4
 }
 [/block]
-`CheckpointSpi` is provided in `IgniteConfiguration` and passed into Ignition class at startup. 
+`CheckpointSpi` is provided in `IgniteConfiguration` and passed into Ignition class at startup. By default no-op checkpoint SPI is used.
 [block:api-header]
 {
   "type": "basic",
