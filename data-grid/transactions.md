@@ -61,11 +61,11 @@ For more information on how Ignite 2PC works, you can check out these blogs:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Concurrency And Isolation Levels"
+  "title": "Concurrency Modes and Isolation Levels"
 }
 [/block]
-Whenever `TRANSACTIONAL` atomicity mode is configured, Ignite supports `OPTIMISTIC` and `PESSIMISTIC` concurrency modes for transactions. Concurrency level determines the moment when entry-level transaction lock is placed on a cache entry. Locking prevents concurrent access to an object. For example, when you attempt to update a ToDo list item with pessimistic locking, the server places a lock on the object until you either commit or rollback the transaction so that no other transaction or operation is allowed to update the same entry. Regardless of the concurrency level used in a transaction, there exists a moment in time when all entries enlisted in the transaction are locked before the commit.
-Isolation level defines how concurrent transactions will 'see' and handle operations on the same keys. Ignite supports `READ_COMMITTED`, `REPEATABLE_READ` and `SERIALIZABLE` isolation levels. 
+Whenever `TRANSACTIONAL` atomicity mode is configured, Ignite supports `OPTIMISTIC` and `PESSIMISTIC` **concurrency modes** for transactions. Concurrency level determines when an entry-level transaction lock should be acquired - at the time of data access or during the `prepare` phase. Locking prevents concurrent access to an object. For example, when you attempt to update a *ToDo* list item with pessimistic locking, the server places a lock on the object until you either commit or rollback the transaction so that no other transaction or operation is allowed to update the same entry. Regardless of the concurrency level used in a transaction, there exists a moment in time when all entries enlisted in the transaction are locked before the commit.
+**Isolation level** defines how concurrent transactions will 'see' and handle operations on the same keys. Ignite supports `READ_COMMITTED`, `REPEATABLE_READ` and `SERIALIZABLE` isolation levels. 
 All combinations of concurrency and isolation levels can be used simultaneously. Below is the description of Ignite behavior and guarantees provided by each concurrency-isolation combination.
 [block:api-header]
 {
@@ -73,19 +73,19 @@ All combinations of concurrency and isolation levels can be used simultaneously.
   "title": "Pessimistic Transactions"
 }
 [/block]
-In `PESSIMISTIC` transactions locks are acquired during the first read or write access (depending on the isolation level) and held by the transaction until it is committed or rolled back.
-  * In a `PESSIMISTIC` `READ_COMMITED` transaction data is read without a lock and is never cached in the transaction itself. The data may be read from a backup node if this is allowed in the cache configuration. In this isolation you can have so-called Non-Repeatable Reads because a concurrent transaction can change the data when you are reading the data twice in your transaction. The lock is only acquired at the time of first write access (this includes `EntryProcessor` invocation). This means that an entry that have been read during the transaction may have a different value by the time the transaction is committed. No exception will be thrown in this case. 
+In `PESSIMISTIC` transactions, locks are acquired during the first read or write access (depending on the isolation level) and held by the transaction until it is committed or rolled back. The following isolation levels can be configured with `PESSIMISTIC` concurrency mode:
+  * `READ_COMMITED`  - Data is read without a lock and is never cached in the transaction itself. The data may be read from a backup node if this is allowed in the cache configuration. In this isolation you can have the so-called Non-Repeatable Reads because a concurrent transaction can change the data when you are reading the data twice in your transaction. The lock is only acquired at the time of first write access (this includes `EntryProcessor` invocation). This means that an entry that have been read during the transaction may have a different value by the time the transaction is committed. No exception will be thrown in this case. 
 
-  * In a `PESSIMISTIC` `REPEATABLE_READ` transaction an entry lock is acquired and data is fetched form the primary node on the first read or write access and stored in the local transactional map. All consecutive access to the same data is local and will return the last read or updated transaction value. This means no other concurrent transactions can make changes to the locked data, and you are getting Repeatable Reads for your transaction.
+  * `REPEATABLE_READ`  - Entry lock is acquired and data is fetched from the primary node on the first read or write access and stored in the local transactional map. All consecutive access to the same data is local and will return the last read or updated transaction value. This means no other concurrent transactions can make changes to the locked data, and you are getting Repeatable Reads for your transaction.
 
-  * `SERIALIZABLE` - in `PESSIMISTIC` mode this isolation level works the same way as with `REPEATABLE_READ`. 
+  * `SERIALIZABLE` - In `PESSIMISTIC` mode this isolation level works the same way as `REPEATABLE_READ`. 
 
 Note that in `PESSIMISTIC` mode the order of locking is important. Moreover, Ignite will acquire locks sequentially and exactly in the order provided by a user.
 [block:callout]
 {
   "type": "warning",
   "title": "Performance Considerations",
-  "body": "Imagine you have 3 nodes in your topology (A, B, C) and in your transaction you are going to access keys [1, 2, 3, 4, 5, 6]. Suppose also that these keys are mapped to nodes in the following fashion: {A: 1, 4}, {B: 2, 5}, {C: 3, 6}. Since Ignite cannot re-arrange the lock acquisition order in `PESSIMISTIC` mode, it will have to make 6 sequential network round-trips: [A, B, C, A, B, C]. In a case when key locking order is not important for the semantics of a transaction, it is advisable to group keys by partition and lock keys within the same partition together. This may significantly reduce the number of network messages in a large transaction."
+  "body": "Imagine that you have 3 nodes in your topology (A, B, C) and in your transaction you are going to access keys [1, 2, 3, 4, 5, 6]. Suppose these keys are mapped to nodes in the following fashion: {A: 1, 4}, {B: 2, 5}, {C: 3, 6}. Since Ignite cannot re-arrange the lock acquisition order in `PESSIMISTIC` mode, it will have to make 6 sequential network round-trips: [A, B, C, A, B, C]. In a case when the key locking order is not important for the semantics of a transaction, it is advisable to group keys by partition and lock keys within the same partition together. This may significantly reduce the number of network messages in a large transaction."
 }
 [/block]
 
@@ -93,7 +93,7 @@ Note that in `PESSIMISTIC` mode the order of locking is important. Moreover, Ign
 {
   "type": "danger",
   "title": "Topology Change Restrictions",
-  "body": "Note that if at least one PESSIMISTIC transaction lock is acquired, it will be impossible to change cache topology until the transaction is committed or rolled back. It is not recommended to hold transaction locks for a long period of time."
+  "body": "Note that if at least one PESSIMISTIC transaction lock is acquired, it will be impossible to change the cache topology until the transaction is committed or rolled back. Therefore, it is not recommended to hold transaction locks for a long period of time."
 }
 [/block]
 
@@ -103,11 +103,13 @@ Note that in `PESSIMISTIC` mode the order of locking is important. Moreover, Ign
   "title": "Optimistic Transactions"
 }
 [/block]
-In `OPTIMISTIC` transactions entry locks are acquired during the `prepare` step and released once the transaction is committed. The locks are never acquired if the transaction is rolled back.
+In `OPTIMISTIC` transactions, entry locks are acquired during the `prepare` step and released once the transaction is committed. The locks are never acquired if the transaction is rolled back. The following isolation levels can be configured with `OPTIMISTIC` concurrency mode:
 
- * In an `OPTIMISTIC` `READ_COMMITTED` transaction changes that should be applied to the cache are collected on the originating node and applied upon the transaction commit. Transaction data is read without a lock and is never cached in the transaction. The data may be read from a backup node if this is allowed in the cache configuration. In this isolation you can have so-called Non-Repeatable Reads because a concurrent transaction can change the data when you are reading the data twice in your transaction. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
- * `OPTIMISTIC` `REPEATABLE_READ` transactions work similar to `OPTIMISTIC` `READ_COMMITTED` transactions with the only difference that read values are cached on the originating node and all subsequent reads are guaranteed to be local. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
- * `OPTIMISTIC` `SERIALIZABLE` transactions stores an entry version upon first read access. Ignite will fail a transaction at the commit stage if the Ignite engine detects that at least one of the entries used as  part of the initiated transaction has been modified. This is achieved by internally checking the version of an entry remembered in a transaction to the one actually in the grid at the time of commit. In short this means that if Ignite detects that there is a conflict at the commit stage of a transaction we fail such a transaction throwing `TransactionOptimisticException` & rolling back any changes made. User should handle this exception and retry the transaction.
+ * `READ_COMMITTED` -  Changes that should be applied to the cache are collected on the originating node and applied upon the transaction commit. Transaction data is read without a lock and is never cached in the transaction. The data may be read from a backup node if this is allowed in the cache configuration. In this isolation you can have so-called Non-Repeatable Reads because a concurrent transaction can change the data when you are reading the data twice in your transaction. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
+ 
+ * `REPEATABLE_READ`  - Transactions at this isolation level work similar to `OPTIMISTIC` `READ_COMMITTED` transactions with only one difference - read values are cached on the originating node and all subsequent reads are guaranteed to be local. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
+ 
+ * `SERIALIZABLE`  - Stores an entry version upon first read access. Ignite will fail a transaction at the commit stage if the Ignite engine detects that at least one of the entries used as  part of the initiated transaction has been modified. This is achieved by internally checking the version of an entry remembered in a transaction to the one actually in the grid at the time of commit. In short, this means that if Ignite detects that there is a conflict at the commit stage of a transaction, we fail such a transaction throwing `TransactionOptimisticException` & rolling back any changes made. User should handle this exception and retry the transaction.
 [block:code]
 {
   "codes": [
@@ -120,14 +122,14 @@ In `OPTIMISTIC` transactions entry locks are acquired during the `prepare` step 
 [/block]
 Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)) since the value of the entry could be important to the logic within the initiated transaction.
 
-Note that key order is important for `READ_COMMITTED` and `REPEATABLE_READ` transactions since the locks are still acquired sequentially in these modes.
+Note that the key order is important for `READ_COMMITTED` and `REPEATABLE_READ` transactions since the locks are still acquired sequentially in these modes.
 [block:api-header]
 {
   "type": "basic",
   "title": "Deadlock-Free Transactions"
 }
 [/block]
-For `OPTIMISTIC` `SERIALIZABLE` transactions this is not the case. In this mode keys can be accessed in any order because transaction locks are acquired in parallel with an additional check allowing Ignite to avoid deadlocks. An `OPTIMISTIC` `SERIALIZABLE` transaction will also fail with a `TransactionOptimisticException` if:
+For `OPTIMISTIC` `SERIALIZABLE` transactions locks are not acquired sequentially. In this mode keys can be accessed in any order because transaction locks are acquired in parallel with an additional check allowing Ignite to avoid deadlocks. An `OPTIMISTIC` `SERIALIZABLE` transaction will also fail with a `TransactionOptimisticException` if:
  * There is an ongoing `PESSIMISTIC` or non-serializable `OPTIMISTIC` transaction holding a lock on an entry of the `SERIALIZABLE` transaction.
  * There is an ongoing `OPTIMISTIC` `SERIALIZABLE` transaction with a bigger version holding a lock on an entry of the `SERIALIZABLE` transaction. 
 [block:callout]
