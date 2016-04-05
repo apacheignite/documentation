@@ -80,7 +80,7 @@ In `PESSIMISTIC` transactions, locks are acquired during the first read or write
 
   * `SERIALIZABLE` - In `PESSIMISTIC` mode, this isolation level works the same way as `REPEATABLE_READ`. 
 
-Note that in `PESSIMISTIC` mode the order of locking is important. Moreover, Ignite will acquire locks sequentially and exactly in the order provided by a user.
+Note that in `PESSIMISTIC` mode, the order of locking is important. Moreover, Ignite will acquire locks sequentially and exactly in the order provided by a user.
 [block:callout]
 {
   "type": "warning",
