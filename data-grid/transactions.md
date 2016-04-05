@@ -78,14 +78,14 @@ In `PESSIMISTIC` transactions, locks are acquired during the first read or write
 
   * `REPEATABLE_READ`  - Entry lock is acquired and data is fetched from the primary node on the first read or write access and stored in the local transactional map. All consecutive access to the same data is local and will return the last read or updated transaction value. This means no other concurrent transactions can make changes to the locked data, and you are getting Repeatable Reads for your transaction.
 
-  * `SERIALIZABLE` - In `PESSIMISTIC` mode this isolation level works the same way as `REPEATABLE_READ`. 
+  * `SERIALIZABLE` - In `PESSIMISTIC` mode, this isolation level works the same way as `REPEATABLE_READ`. 
 
 Note that in `PESSIMISTIC` mode the order of locking is important. Moreover, Ignite will acquire locks sequentially and exactly in the order provided by a user.
 [block:callout]
 {
   "type": "warning",
   "title": "Performance Considerations",
-  "body": "Imagine that you have 3 nodes in your topology (A, B, C) and in your transaction you are going to access keys [1, 2, 3, 4, 5, 6]. Suppose these keys are mapped to nodes in the following fashion: {A: 1, 4}, {B: 2, 5}, {C: 3, 6}. Since Ignite cannot re-arrange the lock acquisition order in `PESSIMISTIC` mode, it will have to make 6 sequential network round-trips: [A, B, C, A, B, C]. In a case when the key locking order is not important for the semantics of a transaction, it is advisable to group keys by partition and lock keys within the same partition together. This may significantly reduce the number of network messages in a large transaction."
+  "body": "Imagine that you have 3 nodes in your topology (A, B, C) and in your transaction you are going to access keys [1, 2, 3, 4, 5, 6]. Suppose that these keys are mapped to nodes in the following fashion: {A: 1, 4}, {B: 2, 5}, {C: 3, 6}. Since Ignite cannot re-arrange the lock acquisition order in `PESSIMISTIC` mode, it will have to make 6 sequential network round-trips: [A, B, C, A, B, C]. In a case when the key locking order is not important for the semantics of a transaction, it is advisable to group keys by partition and lock keys within the same partition together. This may significantly reduce the number of network messages in a large transaction."
 }
 [/block]
 
