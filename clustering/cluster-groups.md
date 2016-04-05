@@ -162,7 +162,7 @@ Here is an example of a cluster group over nodes that have less than 50% CPU uti
   "title": "Combining Cluster Groups"
 }
 [/block]
-You can combine cluster groups by nesting them within each other. For example, the following code snippet shows how to get a random remote node by combing remote group with random group.
+You can combine cluster groups by nesting them within each other. For example, the following code snippet shows how to get the oldest remote node by combing remote group with the oldest group.
 [block:code]
 {
   "codes": [
