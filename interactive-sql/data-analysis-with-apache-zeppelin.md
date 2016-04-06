@@ -54,7 +54,7 @@ and open start page in your browser (default start page URL is [http://localhost
   ]
 }
 [/block]
-See also [Zeppelin installation documentation](http://zeppelin.incubator.apache.org/docs/install/install.html).
+See also [Zeppelin installation documentation](https://zeppelin.incubator.apache.org/docs/0.5.5-incubating/install/install.html).
 [block:api-header]
 {
   "type": "basic",
