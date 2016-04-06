@@ -103,7 +103,7 @@ Note that in `PESSIMISTIC` mode, the order of locking is important. Moreover, Ig
   "title": "Optimistic Transactions"
 }
 [/block]
-In `OPTIMISTIC` transactions, entry locks are acquired on primary nods during the `prepare` step, then promoted to backup nodes and released once the transaction is committed. The locks are never acquired if the transaction is rolled back by user and no commit attempt was made. The following isolation levels can be configured with `OPTIMISTIC` concurrency mode:
+In `OPTIMISTIC` transactions, entry locks are acquired on primary nodes during the `prepare` step, then promoted to backup nodes and released once the transaction is committed. The locks are never acquired if the transaction is rolled back by user and no commit attempt was made. The following isolation levels can be configured with `OPTIMISTIC` concurrency mode:
 
  * `READ_COMMITTED` -  Changes that should be applied to the cache are collected on the originating node and applied upon the transaction commit. Transaction data is read without a lock and is never cached in the transaction. The data may be read from a backup node if this is allowed in the cache configuration. In this isolation you can have so-called Non-Repeatable Reads because a concurrent transaction can change the data when you are reading the data twice in your transaction. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
  
