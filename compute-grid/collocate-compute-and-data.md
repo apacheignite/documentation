@@ -5,7 +5,7 @@ Collocation of computations with data allow for minimizing data serialization wi
   "title": "Affinity Call and Run Methods"
 }
 [/block]
-`affinityCall(...)`  and `affinityRun(...)` methods co-locate jobs with nodes on which data is cached. In other words, given a cache name and affinity key these methods try to locate the node on which the key resides on Ignite the specified Ignite cache, and then execute the job there. 
+`affinityCall(...)`  and `affinityRun(...)` methods co-locate jobs with nodes on which data is cached. In other words, given a cache name and affinity key these methods try to locate the node on which the key resides on Ignite in the specified Ignite cache, and then execute the job there. 
 [block:code]
 {
   "codes": [
