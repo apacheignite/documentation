@@ -64,11 +64,22 @@ Following configuration parameters for peer class loading can be optionally conf
     "4-0": "`setPeerClassLoadingMissedResourcesCacheSize(int)`",
     "4-1": "Size of missed resources cache. Set 0 to avoid missed resources caching.",
     "4-2": "100",
-    "5-0": "`setDeploymentMode(GridDeploymentMode)`",
+    "5-0": "`setDeploymentMode(DeploymentMode)`",
     "5-1": "Sets deployment mode for deploying tasks and classes.",
     "5-2": "`SHARED`"
   },
   "cols": 3,
   "rows": 6
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "\n<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!--\n        Explicitly enable peer class loading. Set to false\n        to disable the feature.\n    -->\n    <property name=\"peerClassLoadingEnabled\" value=\"true\"/>\n     \n    <!--\n        Set deployment mode.\n    -->\n    <property name=\"deploymentMode\" value=\"CONTINUOUS\"/>\n \n    <!--\n        Disable missed resources caching.\n    -->\n    <property name=\"peerClassLoadingMissedResourcesCacheSize\" value=\"0\"/>\n \n    <!--\n        Exclude force peer class loading of a class,\n        even if exists locally.\n    -->\n    <property name=\"peerClassLoadingLocalClassPathExclude\">\n        <list>\n            <value>com.mycompany.MyChangingClass</value>\n        </list>\n    </property>\n</bean>",
+      "language": "xml"
+    }
+  ]
 }
 [/block]
