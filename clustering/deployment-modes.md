@@ -42,7 +42,7 @@ By default, all Ignite startup scripts (ignite.sh or ignite.bat) pick up user ve
   "title": "Configuration"
 }
 [/block]
-Following configuration parameters for peer class loading can be optionally configured in 'IgniteConfiguration`:
+Following configuration parameters for peer class loading can be optionally configured in `IgniteConfiguration`:
 [block:parameters]
 {
   "data": {
