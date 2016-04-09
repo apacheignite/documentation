@@ -79,6 +79,10 @@ Following configuration parameters for peer class loading can be optionally conf
     {
       "code": "\n<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!--\n        Explicitly enable peer class loading. Set to false\n        to disable the feature.\n    -->\n    <property name=\"peerClassLoadingEnabled\" value=\"true\"/>\n     \n    <!--\n        Set deployment mode.\n    -->\n    <property name=\"deploymentMode\" value=\"CONTINUOUS\"/>\n \n    <!--\n        Disable missed resources caching.\n    -->\n    <property name=\"peerClassLoadingMissedResourcesCacheSize\" value=\"0\"/>\n \n    <!--\n        Exclude force peer class loading of a class,\n        even if exists locally.\n    -->\n    <property name=\"peerClassLoadingLocalClassPathExclude\">\n        <list>\n            <value>com.mycompany.MyChangingClass</value>\n        </list>\n    </property>\n</bean>",
       "language": "xml"
+    },
+    {
+      "code": "IgniteConfiguration cfg=new IgniteConfiguration();\n\n// Explicitly enable peer class loading.\ncfg.setPeerClassLoadingEnabled(true);\n\n// Set deployment mode.\ncfg.setDeploymentMode(DeploymentMode.CONTINUOUS);\n\n// Disable missed resource caching.\ncfg.setPeerClassLoadingMissedResourcesCacheSize(0);\n\n// Exclude force peer class loading of a class, \n// even if it exists locally.\ncfg.setPeerClassLoadingLocalClassPathExclude(\"com.mcompany.MyChangingClass\");\n\n// Start a node.\nIgnition.start(cfg);",
+      "language": "java"
     }
   ]
 }
