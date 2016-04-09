@@ -24,7 +24,7 @@ In `CONTINUOUS` mode, the classes are not un-deployed when master nodes leave gr
 [/block]
 The class definitions, obtained with peer class loading, have their own lifecycle. On certain events (when master node leaves or user version changes, depending on deployment mode), the class information is un-deployed from the grid: the class definition is erased from all nodes in the grid and the user resources, linked with that class definition, are also optionally erased (again, depending on deployment mode). For In-Memory Data Grid, it also means that all cache entries of an un-deployed class are removed from cache.
 User version comes into play whenever you would like to redeploy classes deployed in `SHARED` or `CONTINUOUS` modes. By default, Ignite will automatically detect if class-loader has changed or a node is restarted. However, if you would like to change and redeploy code on a subset of nodes, or in case of CONTINUOUS mode,  kill every living deployment, you should change the user version.
-User version is specified in META-INF/ignite.xml file of your class path as follows:
+User version is specified in `META-INF/ignite.xml` file of your class path as follows:
 [block:code]
 {
   "codes": [
