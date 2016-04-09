@@ -58,7 +58,7 @@ Following configuration parameters for peer class loading can be optionally conf
     "2-0": "`setPeerClassLoadingExecutorServiceShutdown(boolean)`",
     "2-1": "Peer class loading executor service shutdown flag. If the flag is set to true, the peer class loading thread pool will be forcibly shut down when the node stops.",
     "2-2": "`true`",
-    "3-0": "setPeerClassLoadingLocalClassPathExclude(String...)",
+    "3-0": "`setPeerClassLoadingLocalClassPathExclude(String...)`",
     "3-1": "List of packages in a system class path that should be P2P loaded even if they exist locally.",
     "3-2": "`null`",
     "4-0": "`setPeerClassLoadingMissedResourcesCacheSize(int)`",
