@@ -124,7 +124,7 @@ As a solution you can increase pages flushing to disk from defaul 30 seconds to 
 
 If GC log shows “low user time, high system time, long GC pause” then most likely memory pressure triggers swapping or scanning for free memory.
 
-- Check and decrease 'snappiness' setting to protect heap and anonymous memory
+- Check and decrease 'swappiness' setting to protect heap and anonymous memory
 [block:code]
 {
   "codes": [
