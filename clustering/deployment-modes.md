@@ -1,7 +1,7 @@
 Specifics of peer-class-loading behavior are controlled by different deployment modes. Particularly, the un-deployment behavior in cases when originating node leaves grid depends on the deployment mode. Other aspects, governed by deployment mode, are user resources management and class versions management. In the sections below we describe each deployment mode in more detail.
 
 ## PRIVATE
-In this mode deployed classes do not share user resources (see Resource Injection).
+In this mode deployed classes do not share user resources (see [Resource Injection](doc:resource-injection)).
 Basically, user resources are created once per deployed task class, and then get reused for all executions. Note that classes deployed within the same class loader on master node, will still share the same class loader remotely on worker nodes. However, tasks deployed from different master nodes will not share the same class loader on worker nodes, which is useful in development when different developers can be working on different versions of the same classes. Also note that resources are associated with task deployment, not task execution. If the same deployed task gets executed multiple times, then it will keep reusing the same user resources every time.
 
 In this mode classes are un-deployed when master node leaves the cluster.
