@@ -50,7 +50,12 @@ There are a number of pre-defined resources that you can inject:
     "9-0": "`TaskContinuousMapperResource`",
     "10-0": "`TaskSessionResource`",
     "3-1": "Injects instance of `ComputeJobContext`. Job context holds useful information about a particular job execution. For example, you can get the name of the cache containing the entry for which a job was [Collocated](doc:collocate-compute-and-data).",
-    "4-1": "Injects `ComputeLoadBalancer` instance. When injected, it can be used for explicit [load balancing](doc:load-balancing)."
+    "4-1": "Injects `ComputeLoadBalancer` instance. When injected, it can be used for explicit [load balancing](doc:load-balancing).",
+    "5-1": "Injects instance of `IgniteLogger` which is used to write messages to a local node's log.",
+    "6-1": "Injects Ignite service by specified service name.",
+    "7-1": "Injects Spring's `ApplicationContext` resource.",
+    "8-1": "Injects resource from Spring's `ApplicationContext`. Use it whenever you would like to access a bean specified in Spring's application context  XML configuration.",
+    "9-1": "Injects an instance of `ComputeTaskContinuousMapper`. Continuous mapping allows to emit jobs from the task at any point, even after initial *map* phase."
   },
   "cols": 2,
   "rows": 11
