@@ -29,7 +29,7 @@ You can inject resources by either annotating a field or a method. In case you a
   "title": "Pre-defined Resources"
 }
 [/block]
-There are a number of pre-defined resources that you can inject:
+There are a number of pre-defined Ignite resources that you can inject:
 [block:parameters]
 {
   "data": {
