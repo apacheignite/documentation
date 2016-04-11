@@ -35,12 +35,23 @@ There are a number of pre-defined resources that you can inject:
   "data": {
     "h-0": "Resource",
     "h-1": "Description",
-    "0-0": "`IgniteInstanceResource`",
-    "0-1": "Injects current instance of Ignite API.",
-    "1-0": "`CacheNameResource`",
-    "1-1": "Injects grid cache name provided via `CacheConfiguration.getName()`."
+    "0-0": "`CacheNameResource`",
+    "0-1": "Injects grid cache name provided via `CacheConfiguration.getName()`.",
+    "1-0": "`CacheStoreSessionResource`",
+    "1-1": "Injects current `CacheStoreSession` instance.",
+    "2-1": "Injects current instance of Ignite API.",
+    "2-0": "`IgniteInstanceResource`",
+    "3-0": "`JobContextResource`",
+    "4-0": "`LoadBalancerResource`",
+    "5-0": "`LoggerResource`",
+    "6-0": "`ServiceResource`",
+    "7-0": "SpringApplicationContextResource`",
+    "8-0": "`SpringResource`",
+    "9-0": "`TaskContinuousMapperResource`",
+    "10-0": "`TaskSessionResource`",
+    "3-1": "Injects instance of `ComputeJobContext`. Job context holds useful information about a particular job execution. For example, you can get the name of the cache containing the entry for which a job was collocated"
   },
   "cols": 2,
-  "rows": 6
+  "rows": 11
 }
 [/block]
