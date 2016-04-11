@@ -2,7 +2,7 @@ Ignite allows dependency injection of both pre-defined Ignite resources and user
 [block:api-header]
 {
   "type": "basic",
-  "title": "Field Based and Method Based Resource Injection"
+  "title": "Field Based and Method Based"
 }
 [/block]
 You can inject resources by either annotating field or method. In case you annotate the field, GridGain simply sets the value of the field at injection time (disregarding an access modifier of the field). If you annotate the method with resource annotation, it should accept an input parameter of type, corresponding to an injected resource. If it does, then the method is invoked at injection time with the appropriate resource passed as input argument.
