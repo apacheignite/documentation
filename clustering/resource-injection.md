@@ -49,7 +49,7 @@ There are a number of pre-defined resources that you can inject:
     "8-0": "`SpringResource`",
     "9-0": "`TaskContinuousMapperResource`",
     "10-0": "`TaskSessionResource`",
-    "3-1": "Injects instance of `ComputeJobContext`. Job context holds useful information about a particular job execution. For example, you can get the name of the cache containing the entry for which a job was collocated"
+    "3-1": "Injects instance of `ComputeJobContext`. Job context holds useful information about a particular job execution. For example, you can get the name of the cache containing the entry for which a job was [Collocated](doc:collocate-compute-and-data)."
   },
   "cols": 2,
   "rows": 11
