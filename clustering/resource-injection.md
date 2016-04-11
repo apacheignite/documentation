@@ -10,12 +10,12 @@ You can inject resources by either annotating a field or a method. In case you a
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\nCollection<String> res = ignite.compute().broadcast(new IgniteCallable<String>() {\n  \t// Automatically inject ignite instance.  \n  \t@IgniteInstanceResource\n    private Ignite ignite;\n\n    @Override\n    public String call() throws Exception {\n        IgniteCache<Object, Object> cache = ignite.getOrCreateCache(CACHE_NAME);\n\n        // Do some stuff with cache.\n        ...\n    }\n});",
+      "code": "Ignite ignite = Ignition.ignite();\n\nCollection<String> res = ignite.compute().broadcast(new IgniteCallable<String>() {\n  \t// Inject Ignite instance.  \n  \t@IgniteInstanceResource\n    private Ignite ignite;\n\n    @Override\n    public String call() throws Exception {\n        IgniteCache<Object, Object> cache = ignite.getOrCreateCache(CACHE_NAME);\n\n        // Do some stuff with cache.\n        ...\n    }\n});",
       "language": "java",
       "name": "Field based resource injection"
     },
     {
-      "code": "public class MyClusterJob implements ComputeJob {\n    ...\n    private Ignite ignite;\n    ...\n    @IgniteInstanceResource\n    public void setIgnite(Ignite ignite) {\n        this.ignite = ignite;\n    }\n    ...\n}",
+      "code": "public class MyClusterJob implements ComputeJob {\n    ...\n    private Ignite ignite;\n    ...\n    // Inject Ignite instance.  \n    @IgniteInstanceResource\n    public void setIgnite(Ignite ignite) {\n        this.ignite = ignite;\n    }\n    ...\n}",
       "language": "java",
       "name": "Method based resource injection"
     }
@@ -34,9 +34,13 @@ There are a number of pre-defined resources that you can inject:
 {
   "data": {
     "h-0": "Resource",
-    "h-1": "Description"
+    "h-1": "Description",
+    "0-0": "`IgniteInstanceResource`",
+    "0-1": "Injects current instance of Ignite API.",
+    "1-0": "`CacheNameResource`",
+    "1-1": "Injects grid cache name provided via `CacheConfiguration.getName()`."
   },
   "cols": 2,
-  "rows": 1
+  "rows": 6
 }
 [/block]
