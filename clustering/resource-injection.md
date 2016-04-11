@@ -55,7 +55,8 @@ There are a number of pre-defined resources that you can inject:
     "6-1": "Injects Ignite service by specified service name.",
     "7-1": "Injects Spring's `ApplicationContext` resource.",
     "8-1": "Injects resource from Spring's `ApplicationContext`. Use it whenever you would like to access a bean specified in Spring's application context  XML configuration.",
-    "9-1": "Injects an instance of `ComputeTaskContinuousMapper`. Continuous mapping allows to emit jobs from the task at any point, even after initial *map* phase."
+    "9-1": "Injects an instance of `ComputeTaskContinuousMapper`. Continuous mapping allows to emit jobs from the task at any point, even after initial *map* phase.",
+    "10-1": "Injects instance of `ComputeTaskSession` resource which defines a distributed session for a particular task execution."
   },
   "cols": 2,
   "rows": 11
