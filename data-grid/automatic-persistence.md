@@ -125,7 +125,7 @@ All operations defined in [Persistent Store](doc:persistent-store) are available
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> c = node.jcache(CACHE_NAME);\nc.loadCache(null, \"java.lang.Integer\", \"select * from Person where id > 100\");",
+      "code": "Ignite ignite = Ignition.ignite();\n\nIgniteCache<Long, Person> c = ignite.getOrCreateCache(\"myCache\");\nc.loadCache(null, \"java.lang.Integer\", \"select * from Person where id > 100\");",
       "language": "java"
     }
   ]
