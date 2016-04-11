@@ -45,7 +45,7 @@ There are a number of pre-defined resources that you can inject:
     "4-0": "`LoadBalancerResource`",
     "5-0": "`LoggerResource`",
     "6-0": "`ServiceResource`",
-    "7-0": "SpringApplicationContextResource`",
+    "7-0": "`SpringApplicationContextResource`",
     "8-0": "`SpringResource`",
     "9-0": "`TaskContinuousMapperResource`",
     "10-0": "`TaskSessionResource`",
