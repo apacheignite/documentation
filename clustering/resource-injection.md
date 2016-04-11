@@ -1,4 +1,4 @@
-Ignite allows dependency injection of both pre-defined Ignite resources and user-defined resources. It supports field-based and method-based injection. Any resources with the proper annotations will be injected into the corresponding task, job, closure or SPI before it is initialized.
+Ignite allows dependency injection of pre-defined Ignite resources, and supports field-based as well as method-based injection. Any resources with the proper annotations will be injected into the corresponding task, job, closure or SPI before it is initialized.
 [block:api-header]
 {
   "type": "basic",
