@@ -5,7 +5,7 @@ Ignite allows dependency injection of both pre-defined Ignite resources and user
   "title": "Field Based and Method Based"
 }
 [/block]
-You can inject resources by either annotating field or method. In case you annotate the field, GridGain simply sets the value of the field at injection time (disregarding an access modifier of the field). If you annotate the method with resource annotation, it should accept an input parameter of type, corresponding to an injected resource. If it does, then the method is invoked at injection time with the appropriate resource passed as input argument.
+You can inject resources by either annotating a field or a method. In case you annotate a field, Ignite simply sets the value of the field at injection time (disregarding an access modifier of the field). If you annotate a method with resource annotation, it should accept an input parameter of type corresponding to an injected resource. If it does, then the method is invoked at injection time with the appropriate resource passed as input argument.
 [block:code]
 {
   "codes": [
@@ -15,10 +15,28 @@ You can inject resources by either annotating field or method. In case you annot
       "name": "Field based resource injection"
     },
     {
-      "code": "",
-      "language": "text",
+      "code": "public class MyClusterJob implements ComputeJob {\n    ...\n    private Ignite ignite;\n    ...\n    @IgniteInstanceResource\n    public void setIgnite(Ignite ignite) {\n        this.ignite = ignite;\n    }\n    ...\n}",
+      "language": "java",
       "name": "Method based resource injection"
     }
   ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Pre-defined Resources"
+}
+[/block]
+There are a number of pre-defined resources that you can inject:
+[block:parameters]
+{
+  "data": {
+    "h-0": "Resource",
+    "h-1": "Description"
+  },
+  "cols": 2,
+  "rows": 1
 }
 [/block]
