@@ -50,7 +50,7 @@ You can also limit the scope of computations to a [Cluster Group](doc:cluster-gr
 {
   "codes": [
     {
-      "code": "Ignite ignite = Ignitition.ignite();\n\nClusterGroup remoteGroup = ignite.cluster().forRemotes();\n\n// Limit computations only to remote nodes (exclude local node).\nIgniteCompute compute = ignite.compute(remoteGroup);",
+      "code": "Ignite ignite = Ignition.ignite();\n\nClusterGroup remoteGroup = ignite.cluster().forRemotes();\n\n// Limit computations only to remote nodes (exclude local node).\nIgniteCompute compute = ignite.compute(remoteGroup);",
       "language": "java"
     }
   ]
