@@ -147,25 +147,20 @@ We need to introduce some concepts in order to describe how lock `SERIALIZABLE` 
   "title": "Integration With JTA"
 }
 [/block]
-Ignite can be configured with a JTA transaction manager lookup class using `TransactionConfiguration#setTxManagerLookupClassName` method. Transaction manager lookup is basically a factory that provides Ignite with an instance of JTA transaction manager.
+Ignite can be configured with a JTA transaction manager lookup class using `TransactionConfiguration#setTxManagerFactory` method. Transaction manager factory is a factory that provides Ignite with an instance of JTA transaction manager.
+
+Ignite provides `CacheJndiTmFactory` factory.  It's out-of-the-box transaction manager factory implementation that is using JNDI names to find TM.
+
 When set, on each cache operation on a transactional cache Ignite will check if there is an ongoing JTA transaction. If JTA transaction is started, Ignite will also start a transaction and will enlist it into JTA transaction using it's own internal implementation of `XAResource`. Ignite transaction will be prepared, committed or rolledback altogether with corresponding JTA transaction.
 Below is an example of using JTA transaction manager together with Ignite.
 [block:code]
 {
   "codes": [
     {
-      "code": "// Get an instance of JTA transaction manager.\nTMService tms = appCtx.getComponent(TMService.class);\n\n// Get an instance of Ignite cache.\nIgniteCache<String, Integer> cache = cache();\n\nUserTransaction jtaTx = tms.getUserTransaction();\n\n// Start JTA transaction.\njtaTx.begin();\n\ntry {\n    // Do some cache operations.\n    cache.put(\"key1\", 1);\n    cache.put(\"key2\", 2);\n\n    // Commit the transaction.\n    jtaTx.commit();\n}\nfinally {\n    // Rollback in a case of exception.\n    if (jtaTx.getStatus() == Status.STATUS_ACTIVE)\n        jtaTx.rollback();\n}\n",
+      "code": "// Get an instance of JTA transaction manager.\nTMService tms = appCtx.getComponent(TMService.class);\n\n// Get an instance of Ignite cache.\nIgniteCache<String, Integer> cache = cache();\n\nUserTransaction jtaTx = tms.getUserTransaction();\n\n// Start JTA transaction.\njtaTx.begin();\n\ntry {\n    // Do some cache operations.\n    cache.put(\"key1\", 1);\n    cache.put(\"key2\", 2);\n\n    // Commit the transaction.\n    jtaTx.commit();\n}\nfinally {\n    // Rollback in a case of exception.\n    if (jtaTx.getStatus() == Status.STATUS_ACTIVE)\n        jtaTx.rollback();\n}",
       "language": "java"
     }
   ]
-}
-[/block]
-
-[block:callout]
-{
-  "type": "info",
-  "body": "Instead of creating a separate XA resource for each cache transaction, there is an option to enlist into JTA using lightweight synchronization callback (`javax.transaction.Synchronization`). In some cases this can give performance improvement, but keep in mind that most of the transaction managers do not allow to add more that one callback to a single transaction.\n\nTo enable this mode set `TransactionConfiguration#setUseJtaSynchronization` configuration flag to `true`.",
-  "title": "Use javax.transaction.Synchronization"
 }
 [/block]
 
