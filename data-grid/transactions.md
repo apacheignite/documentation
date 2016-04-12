@@ -66,7 +66,7 @@ For more information on how Ignite 2PC works, you can check out these blogs:
 [/block]
 Whenever `TRANSACTIONAL` atomicity mode is configured, Ignite supports `OPTIMISTIC` and `PESSIMISTIC` **concurrency modes** for transactions. Concurrency level determines when an entry-level transaction lock should be acquired - at the time of data access or during the `prepare` phase. Locking prevents concurrent access to an object. For example, when you attempt to update a ToDo list item with pessimistic locking, the server places a lock on the object until you either commit or rollback the transaction so that no other transaction or operation is allowed to update the same entry. Regardless of the concurrency level used in a transaction, there exists a moment in time when all entries enlisted in the transaction are locked before the commit.
 **Isolation level** defines how concurrent transactions will 'see' and handle operations on the same keys. Ignite supports `READ_COMMITTED`, `REPEATABLE_READ` and `SERIALIZABLE` isolation levels. 
-All combinations of concurrency and isolation levels can be used simultaneously. Below is the description of Ignite behavior and guarantees provided by each concurrency-isolation combination.
+All combinations of concurrency modes and isolation levels can be used simultaneously. Below is the description of Ignite behavior and guarantees provided by each concurrency-isolation combination.
 [block:api-header]
 {
   "type": "basic",
