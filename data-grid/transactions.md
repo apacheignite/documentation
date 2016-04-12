@@ -158,7 +158,7 @@ Below is an example of using JTA transaction manager together with Ignite.
 {
   "codes": [
     {
-      "code": "// Get an instance of JTA transaction manager.\nTMService tms = appCtx.getComponent(TMService.class);\n\n// Get an instance of Ignite cache.\nIgniteCache<String, Integer> cache = cache();\n\nUserTransaction jtaTx = tms.getUserTransaction();\n\n// Start JTA transaction.\njtaTx.begin();\n\ntry {\n    // Do some cache operations.\n    cache.put(\"key1\", 1);\n    cache.put(\"key2\", 2);\n\n    // Commit the transaction.\n    jtaTx.commit();\n}\nfinally {\n    // Rollback in a case of exception.\n    if (jtaTx.getStatus() == Status.STATUS_ACTIVE)\n        jtaTx.rollback();\n}\n",
+      "code": "// Get an instance of JTA transaction manager.\nTMService tms = appCtx.getComponent(TMService.class);\n\n// Get an instance of Ignite cache.\nIgniteCache<String, Integer> cache = cache();\n\nUserTransaction jtaTx = tms.getUserTransaction();\n\n// Start JTA transaction.\njtaTx.begin();\n\ntry {\n    // Do some cache operations.\n    cache.put(\"key1\", 1);\n    cache.put(\"key2\", 2);\n\n    // Commit the transaction.\n    jtaTx.commit();\n}\nfinally {\n    // Rollback in a case of exception.\n    if (jtaTx.getStatus() == Status.STATUS_ACTIVE)\n        jtaTx.rollback();\n}",
       "language": "java"
     }
   ]
