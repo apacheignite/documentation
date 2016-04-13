@@ -70,10 +70,10 @@ Write-behind caching can be enabled via `CacheConfiguration.setWriteBehindEnable
 }
 [/block]
 ## load(), write(), delete()
-Methods `load()`, `write()`, and `delete()` on the `CacheStore` are called whenever methods `get()`, `put()`, and `remove()` are called correspondingly on the `IgniteCache` interface. These methods are used to enable **read-through** and **write-through** behavior when working with individual cache entries.
+Methods `load()`, `write()`, and `delete()` in the `CacheStore` are called whenever methods `get()`, `put()`, and `remove()` are called correspondingly on the `IgniteCache` interface. These methods are used to enable **read-through** and **write-through** behavior when working with individual cache entries.
 
 ## loadAll(), writeAll(), deleteAll()
-Methods `loadAll()`, `writeAll()`, and `deleteAll()` on the `CacheStore` are called whenever methods `getAll()`, `putAll()`, and `removeAll()` are called correspondingly on the `IgniteCache` interface. These methods are used to enable **read-through** and **write-through** behavior when working with multiple cache entries and should generally be implemented using batch operations to provide better performance.
+Methods `loadAll()`, `writeAll()`, and `deleteAll()` in the `CacheStore` are called whenever methods `getAll()`, `putAll()`, and `removeAll()` are called correspondingly on the `IgniteCache` interface. These methods are used to enable **read-through** and **write-through** behavior when working with multiple cache entries and should generally be implemented using batch operations to provide better performance.
 [block:callout]
 {
   "type": "info",
