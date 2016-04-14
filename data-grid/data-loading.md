@@ -19,7 +19,7 @@ See  [Data Streamers](doc:data-streamers) documentation for more information.
   "title": "IgniteCache.loadCache()"
 }
 [/block]
-Another way to load large amounts of data into cache is through [CacheStore.loadCache()](docs:persistent-store#section-loadcache-) method, which allows for cache data loading even without passing all the keys that need to be loaded. 
+Another way to load large amounts of data into cache is through [CacheStore.loadcache()](doc:persistent-store#section-loadcache-)  method, which allows for cache data loading even without passing all the keys that need to be loaded. 
 
 `IgniteCache.loadCache()` method will delegate to `CacheStore.loadCache()` method on every cluster member that is running the cache. To invoke loading only on the local cluster node, use `IgniteCache.localLoadCache()` method.
 [block:callout]
