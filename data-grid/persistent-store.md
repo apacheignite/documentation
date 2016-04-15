@@ -177,7 +177,7 @@ Following configuration parameters can be used to enable and configure **write-b
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n    <property name=\"cacheConfiguration\">\n      <list>\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          ...\n          <property name=\"cacheStoreFactory\">\n                        <bean class=\"javax.cache.configuration.FactoryBuilder\" factory-method=\"factoryOf\">\n                            <constructor-arg value=\"foo.bar.MyPersonStore\"/>\n                        </bean>\n                    </property>\n    \t\t\t...\n    \t\t</bean>\n    \t</list>\n    </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n    <property name=\"cacheConfiguration\">\n      <list>\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          ...\n          <property name=\"cacheStoreFactory\">\n    \t\t\t\t<bean class=\"javax.cache.configuration.FactoryBuilder\" factory-method=\"factoryOf\">\n        \t\t\t<constructor-arg value=\"foo.bar.MyPersonStore\"/>\n    \t\t\t\t</bean>\n\t\t\t\t\t</property>\n    \t\t\t...\n    \t\t</bean>\n    \t</list>\n    </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {
