@@ -177,11 +177,11 @@ Following configuration parameters can be used to enable and configure **write-b
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n    <property name=\"cacheConfiguration\">\n      <list>\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          ...\n          <property name=\"cacheStoreFactory\">\n            <bean class=\"javax.cache.configuration.FactoryBuilder$SingletonFactory\">\n              <constructor-arg>\n                <bean class=\"foo.bar.MyPersonStore\">\n    \t\t\t\t\t\t\t...\n    \t\t\t\t\t\t</bean>\n    \t\t\t\t\t</constructor-arg>\n    \t\t\t\t</bean>\n\t    \t\t</property>\n    \t\t\t...\n    \t\t</bean>\n    \t</list>\n    </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n    <property name=\"cacheConfiguration\">\n      <list>\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          ...\n          <property name=\"cacheStoreFactory\">\n    \t\t\t\t<bean class=\"javax.cache.configuration.FactoryBuilder\" factory-method=\"factoryOf\">\n        \t\t\t<constructor-arg value=\"foo.bar.MyPersonStore\"/>\n    \t\t\t\t</bean>\n\t\t\t\t\t</property>\n    \t\t\t...\n    \t\t</bean>\n    \t</list>\n    </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\nCacheConfiguration<Long, Person> cacheCfg = new CacheConfiguration<>();\n\nCacheStore<Long, Person> store;\n\nstore = new MyPersonStore();\n\ncacheCfg.setCacheStoreFactory(new FactoryBuilder.SingletonFactory<>(store));\ncacheCfg.setReadThrough(true);\ncacheCfg.setWriteThrough(true);\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n\nCacheConfiguration<Long, Person> cacheCfg = new CacheConfiguration<>();\n\ncacheCfg.setCacheStoreFactory(FactoryBuilder.factoryOf(MyPersonStore.class));\ncacheCfg.setReadThrough(true);\ncacheCfg.setWriteThrough(true);\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
