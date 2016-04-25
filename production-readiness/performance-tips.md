@@ -212,3 +212,28 @@ If you are seeing spikes in your throughput due to Garbage Collection (GC), then
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Do Not Copy Value On Read"
+}
+[/block]
+JCache standard requires cache providers to support store-by-value semantics, which means that when you read a value from the cache, you don't get the reference to the object that is actually stored, but rather a copy of this object. Ignite behaves this way by default, but it's possible override this behavior via `CacheConfiguration.copyOnRead` configuration property:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <!-- \n        Force cache to return the instance that is stored in cache\n        instead of creating a copy. \n    -->\n    <property name=\"copyOnRead\" value=\"false\"/>\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "body": "Note that using this configuration can potentially be unsafe in case the value is mutable. Modifying the returned instance will change the value in cache without the actual update, thus causing data inconsistency. However, avoiding the copy creation can give performance improvement in read-only scenarios."
+}
+[/block]
