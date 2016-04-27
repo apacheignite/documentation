@@ -50,7 +50,7 @@ Once all is installed you can build Ignite ODBC driver:
 {
   "codes": [
     {
-      "code": "cd $IGNITE_HOME/platforms/cpp\n./configure --enable-odbc --disable-node --disable-core\nmake\n\n#The following step will most probably require root privileges:\nmake install",
+      "code": "cd $IGNITE_HOME/platforms/cpp\nlibtoolize && aclocal && autoheader && automake --add-missing && autoreconf\n./configure --enable-odbc --disable-node --disable-core\nmake\n\n#The following step will most probably require root privileges:\nmake install",
       "language": "shell"
     }
   ]
