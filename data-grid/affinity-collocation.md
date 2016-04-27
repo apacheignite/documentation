@@ -10,6 +10,14 @@ In many cases it is beneficial to collocate different cache keys together if the
 For example, let's say you have `Person` and `Company` objects and you want to collocate `Person` objects with `Company` objects for which this person works. There are two ways to declare affinity key for a key type.
 
 First, cache key used to cache `Person` objects may have a field or method annotated with `@AffinityKeyMapped` annotation, which will provide the value of the company key for collocation. For convenience, you can also optionally use `AffinityKey` class
+[block:callout]
+{
+  "type": "info",
+  "title": "Annotations in Scala",
+  "body": "Note that if Scala case class is used as a key class and one of its constructor parameters is annotated with `@AffinityKeyMapped`, by default the annotation will not be properly applied to the generated field, and therefore will not be recognized by Ignite. To override this behavior, use `@field` meta annotation in addition to `@AffinityKeyMapped` (see example below)."
+}
+[/block]
+
 [block:code]
 {
   "codes": [
@@ -17,6 +25,11 @@ First, cache key used to cache `Person` objects may have a field or method annot
       "code": "public class PersonKey {\n    // Person ID used to identify a person.\n    private String personId;\n \n    // Company ID which will be used for affinity.\n    @AffinityKeyMapped\n    private String companyId;\n    ...\n}\n\n// Instantiate person keys with the same company ID which is used as affinity key.\nObject personKey1 = new PersonKey(\"myPersonId1\", \"myCompanyId\");\nObject personKey2 = new PersonKey(\"myPersonId2\", \"myCompanyId\");\n \nPerson p1 = new Person(personKey1, ...);\nPerson p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncompCache.put(\"myCompanyId\", new Company(...));\nperCache.put(personKey1, p1);\nperCache.put(personKey2, p2);",
       "language": "java",
       "name": "using PersonKey"
+    },
+    {
+      "code": "case class PersonKey (\n    // Person ID used to identify a person.\n    personId: String,\n \n    // Company ID which will be used for affinity.\n    @(AffinityKeyMapped @field)\n    companyId: String\n)\n\n// Instantiate person keys with the same company ID which is used as affinity key.\nval personKey1 = PersonKey(\"myPersonId1\", \"myCompanyId\");\nval personKey2 = PersonKey(\"myPersonId2\", \"myCompanyId\");\n \nval p1 = new Person(personKey1, ...);\nval p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncompCache.put(\"myCompanyId\", Company(...));\nperCache.put(personKey1, p1);\nperCache.put(personKey2, p2);",
+      "language": "scala",
+      "name": "using PersonKey (Scala)"
     },
     {
       "code": "Object personKey1 = new AffinityKey(\"myPersonId1\", \"myCompanyId\");\nObject personKey2 = new AffinityKey(\"myPersonId2\", \"myCompanyId\");\n \nPerson p1 = new Person(personKey1, ...);\nPerson p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncomCache.put(\"myCompanyId\", new Company(..));\nperCache.put(personKey1, p1);\nperCache.put(personKey2, p2);",
