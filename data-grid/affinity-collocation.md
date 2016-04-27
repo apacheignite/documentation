@@ -9,7 +9,7 @@ In many cases it is beneficial to collocate different cache keys together if the
 
 For example, let's say you have `Person` and `Company` objects and you want to collocate `Person` objects with `Company` objects for which this person works. There are two ways to declare affinity key for a key type.
 
-First, cache key used to cache `Person` objects may have a field or method annotated with `@AffinityKeyMapped` annotation, which will provide the value of the company key for collocation. For convenience, you can also optionally use `AffinityKey` class
+First, cache key used to cache `Person` objects may have a field or method annotated with `@AffinityKeyMapped` annotation, which will provide the value of the company key for collocation. For convenience, you can also optionally use `AffinityKey` class.
 [block:callout]
 {
   "type": "info",
