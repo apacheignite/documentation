@@ -14,7 +14,7 @@ First, cache key used to cache `Person` objects may have a field or method annot
 {
   "type": "info",
   "title": "Annotations in Scala",
-  "body": "Note that if Scala case class is used as a key class and one of its constructor parameters is annotated with `@AffinityKeyMapped`, by default the annotation will not be properly applied to the generated field, and therefore will not be recognized by Ignite. To override this behavior, use `@field` meta annotation in addition to `@AffinityKeyMapped` (see example below)."
+  "body": "Note that if Scala case class is used as a key class and one of its constructor parameters is annotated with `@AffinityKeyMapped`, by default the annotation will not be properly applied to the generated field, and therefore will not be recognized by Ignite. To override this behavior, use [`@field`](http://www.scala-lang.org/api/current/#scala.annotation.meta.package) meta annotation in addition to `@AffinityKeyMapped` (see example below)."
 }
 [/block]
 
