@@ -48,7 +48,8 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
         "371",
         "#6c9cb4",
         ""
-      ]
+      ],
+      "sizing": "80"
     }
   ]
 }
@@ -65,7 +66,8 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
         "258",
         "#425c67",
         ""
-      ]
+      ],
+      "sizing": "80"
     }
   ]
 }
@@ -82,7 +84,8 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
         "389",
         "#425c68",
         ""
-      ]
+      ],
+      "sizing": "80"
     }
   ]
 }
