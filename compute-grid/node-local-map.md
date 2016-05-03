@@ -9,7 +9,7 @@ Often it is useful to share a state between different compute jobs or different 
   ]
 }
 [/block]
-Node-local values are similar to thread locals in a way that these values are not distributed and kept only on the local node. Node-local data can be used by compute jobs to share the state between executions. It can also be used by deployed services as well. 
+Node-local values are similar to thread locals in a way that these values are not distributed and kept only on the local node. Node-local data can be used by compute jobs to share the state between executions. It can be used by deployed services as well. 
 
 As an example, let's create a job which increments a node-local counter every time it executes on some node. This way, the node-local counter on each node will tell us how many times a job had executed on that cluster node. 
 [block:code]
