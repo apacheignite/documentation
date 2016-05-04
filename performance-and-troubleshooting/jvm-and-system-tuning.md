@@ -1,8 +1,11 @@
-This section contains the following 
-- [Recommendations for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-on_heap-caches)
-- [JVM Tuning](doc:jvm-and-system-tuning)
-- [Capacity Planning](doc:capacity-planning)
-- [File Descriptors](doc:file-descriptors)
+This section consists of the following blocks that are related to the tuning and debugging/troubleshooting:
+
+- [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-on_heap-caches)
+- [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-off_heap-caches)
+- [GC attacks by Linux](doc:jvm-and-system-tuning#gc-attacks-by-linux)
+- [Getting heap dump on OutOfMemory errors](doc:jvm-and-system-tuning#getting-heap-dump-on-out-of-memory-errors)
+- [Detailed garbage collection stats](doc:jvm-and-system-tuning#detailed-garbage-collection-stats)
+- [FlighRecorder settings](doc:jvm-and-system-tuning#flightrecorder-settings)
 [block:api-header]
 {
   "type": "basic",
