@@ -1,4 +1,4 @@
-This section consists of the following blocks that are related to the tuning and debugging/troubleshooting:
+This section consists of the following blocks that are related to the GC tuning and debugging/troubleshooting:
 
 - [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-on_heap-caches)
 - [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-off_heap-caches)
