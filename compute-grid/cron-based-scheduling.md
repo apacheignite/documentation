@@ -28,7 +28,7 @@ The `IgniteScheduler.scheduleLocal()` methods return `SchedulerFuture`, which ha
 {
   "codes": [
     {
-      "code": "SchedulerFuture<?> fut = ignite.scheduler().scheduleLocal(new Runnable() {\n    @Override public void run() {\n        ...\n    }\n}, \"0 0 * * *\");\n\nSystem.out.println(\"The task will be next executed on \" + new \tDate(fut.nextExecutionTime()));\n\nfut.get(); // Wait for next execution to finish.\n\nfut.cancel(); // Cancel periodic execution.",
+      "code": "SchedulerFuture<?> fut = ignite.scheduler().scheduleLocal(new Runnable() {\n    @Override public void run() {\n        ...\n    }\n}, \"0 0 * * *\");\n\nSystem.out.println(\"The task will be next executed on \" + new Date(fut.nextExecutionTime()));\n\nfut.get(); // Wait for next execution to finish.\n\nfut.cancel(); // Cancel periodic execution.",
       "language": "java"
     }
   ]
