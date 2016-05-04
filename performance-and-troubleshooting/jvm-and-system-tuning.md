@@ -1,9 +1,9 @@
 This section contains the following blocks related JVM and system level tuning:
 
-- [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-on_heap-caches)
-- [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-off_heap-caches)
+- [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-on_heap-caches)
+- [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-off_heap-caches)
 - [GC attacks by Linux](doc:jvm-and-system-tuning#gc-attacks-by-linux)
-- [Debugging memory usage issues and GC pauses](doc:jvm-and-system-tuning#debugging-and-troubleshooting-memory-issues-and-gc)
+- [Debugging memory usage issues and GC pauses](doc:jvm-and-system-tuning#debugging-memory-usage-issues-and-gc-pauses)
 - [File Descriptors](doc:jvm-and-system-tuning#file-descriptors) 
 [block:api-header]
 {
