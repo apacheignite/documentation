@@ -1,7 +1,14 @@
+This section contains the following blocks related to JVM and system level tuning:
+
+- [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-on_heap-caches)
+- [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-off_heap-caches)
+- [GC attacks by Linux](doc:jvm-and-system-tuning#gc-attacks-by-linux)
+- [Debugging memory usage issues and GC pauses](doc:jvm-and-system-tuning#debugging-memory-usage-issues-and-gc-pauses)
+- [File Descriptors](doc:jvm-and-system-tuning#file-descriptors) 
 [block:api-header]
 {
   "type": "basic",
-  "title": "Recommendations for clusters with ON_HEAP caches"
+  "title": "JVM tuning for clusters with ON_HEAP caches"
 }
 [/block]
 This section contains basic recommendations for clusters that keeps all or significant amount of cache entries in Java heap. 
@@ -45,7 +52,7 @@ For JDK 1.7⁄ 1.8 (8GB heap example for machine with 32 CPUs):
 [block:api-header]
 {
   "type": "basic",
-  "title": "Recommendations for clusters with OFF_HEAP caches"
+  "title": "JVM tuning for clusters with OFF_HEAP caches"
 }
 [/block]
 This section contains basic recommendations for clusters that keeps all or significant amount of cache entries off heap. 
@@ -162,9 +169,13 @@ If GC log shows “low user time, high system time, long GC pause” then most l
 [block:api-header]
 {
   "type": "basic",
-  "title": "Getting Heap Dump on Out of Memory Errors"
+  "title": "Debugging memory usage issues and GC pauses"
 }
 [/block]
+The section contains information that may be helpful when you need to debug and troubleshoot issues related to memory usage or long GC pauses.
+
+##Getting Heap Dump on Out of Memory Errors
+
 In case your JVM is throwing an ‘OutOfMemoryException’ and the JVM process should be restarted you may add the following properties to your JVM configuration:
 [block:code]
 {
@@ -176,13 +187,8 @@ In case your JVM is throwing an ‘OutOfMemoryException’ and the JVM process s
   ]
 }
 [/block]
+##Detailed Garbage Collection stats
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Detailed Garbage Collection stats"
-}
-[/block]
 In order to capture detailed information about garbage collection and its performance add the following parameters to the JVM configuration:
 [block:code]
 {
@@ -206,12 +212,9 @@ For G1 it's recommended to set the property below that provides many ergonomic d
 }
 [/block]
 Make sure you modify the path and file names accordingly and ensure to use a different file name for each invocation in order to avoid overwriting the log files from multiple processes.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "FlightRecorder Settings"
-}
-[/block]
+
+##FlightRecorder Settings
+
 In cases when you need to debug performance or memory issues you can rely on Java Flight Recorder tool that allows continuously collect low level and detailed runtime information enabling after-the-fact incident analysis. To enable Flight Recorder use the following settings below:
 [block:code]
 {
@@ -235,3 +238,97 @@ To start recording for a particular Java process use this command as an example
 }
 [/block]
 For complete details on Java Flight Recorder refer to Oracle official documentation.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "File Descriptors"
+}
+[/block]
+##System File Descriptor Limit
+
+When running a large number of threads accessing the grid as in the case of large-scale server-side applications, you may end up with a large number of open files used both on client and server nodes. It is recommended that you increase the default values to the max defaults.
+
+Misconfiguring the file descriptors settings will impact application stability and performance. For this we have to set both “System level File Descriptor Limit” and “Process level File Descriptor Limit”, respectively, by following these steps as a root user:
+
+1. Modify the following line in the **/etc/sysctl.conf** file:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "fs.file-max = 300000",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+2. Apply the change by executing the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "/sbin/sysctl -p",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Verify your settings using:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "cat /proc/sys/fs/file-max ",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Alternatively, you may execute the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sysctl fs.file-max\n",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+## Process File Descriptor Limit
+
+By default, Linux OS has a relatively small number of file descriptors available and max user processes (1024) configured. It is important that you use a user account which has its maximum open file descriptors (open files) and max user processes configured to an appropriate value. 
+[block:callout]
+{
+  "type": "info",
+  "body": "A good maximum value for open file descriptors is 32768"
+}
+[/block]
+Use the following command to set the maximum open file descriptors and maximum user processes:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ulimit -n 32768 -u 32768",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Alternatively, you may modify the following files accordingly:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "/etc/security/limits.conf\n\n- soft    nofile          32768\n- hard    nofile          32768\n\n/etc/security/limits.d/90-nproc.conf\n\n- soft nproc 32768\n",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "See [increase-open-files-limit](https://easyengine.io/tutorials/linux/increase-open-files-limit/) for more details."
+}
+[/block]
