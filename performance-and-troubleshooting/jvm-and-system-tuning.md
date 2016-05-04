@@ -7,7 +7,7 @@ This section contains the following blocks related to garbage collection tuning 
 - [Detailed garbage collection stats](doc:jvm-and-system-tuning#detailed-garbage-collection-stats)
 - [FlighRecorder settings](doc:jvm-and-system-tuning#flightrecorder-settings)
 
-In advance the following sections include information on additional system's components tuning:
+In advance the following infinclude information on additional system's components tuning:
 - [File Descriptors](doc:jvm-and-system-tuning#file-descriptors) 
 [block:api-header]
 {
@@ -56,7 +56,7 @@ For JDK 1.7⁄ 1.8 (8GB heap example for machine with 32 CPUs):
 [block:api-header]
 {
   "type": "basic",
-  "title": "Recommendations for clusters with OFF_HEAP caches"
+  "title": "JVM tuning for clusters with OFF_HEAP caches"
 }
 [/block]
 This section contains basic recommendations for clusters that keeps all or significant amount of cache entries off heap. 
@@ -173,9 +173,13 @@ If GC log shows “low user time, high system time, long GC pause” then most l
 [block:api-header]
 {
   "type": "basic",
-  "title": "Getting Heap Dump on Out of Memory Errors"
+  "title": "Debugging and troubleshooting memory issues and GC pauses"
 }
 [/block]
+The section contains information that may be helpful when you need to debug and troubleshoot issues related to memory usage or long GC pauses.
+
+##Getting Heap Dump on Out of Memory Errors
+
 In case your JVM is throwing an ‘OutOfMemoryException’ and the JVM process should be restarted you may add the following properties to your JVM configuration:
 [block:code]
 {
@@ -187,13 +191,8 @@ In case your JVM is throwing an ‘OutOfMemoryException’ and the JVM process s
   ]
 }
 [/block]
+##Detailed Garbage Collection stats
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Detailed Garbage Collection stats"
-}
-[/block]
 In order to capture detailed information about garbage collection and its performance add the following parameters to the JVM configuration:
 [block:code]
 {
@@ -217,12 +216,9 @@ For G1 it's recommended to set the property below that provides many ergonomic d
 }
 [/block]
 Make sure you modify the path and file names accordingly and ensure to use a different file name for each invocation in order to avoid overwriting the log files from multiple processes.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "FlightRecorder Settings"
-}
-[/block]
+
+##FlightRecorder Settings
+
 In cases when you need to debug performance or memory issues you can rely on Java Flight Recorder tool that allows continuously collect low level and detailed runtime information enabling after-the-fact incident analysis. To enable Flight Recorder use the following settings below:
 [block:code]
 {
