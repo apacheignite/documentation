@@ -245,7 +245,12 @@ To start recording for a particular Java process use this command as an example
 }
 [/block]
 For complete details on Java Flight Recorder refer to Oracle official documentation.
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "File Descriptors"
+}
+[/block]
 ##System File Descriptor Limit
 
 When running a large number of threads accessing the grid as in the case of large-scale server-side applications, you may end up with a large number of open files used both on client and server nodes. It is recommended that you increase the default values to the max defaults.
@@ -296,14 +301,7 @@ Alternatively, you may execute the following command:
   ]
 }
 [/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": ""
-}
-[/block]
-##Process File Descriptor Limit
+## Process File Descriptor Limit
 
 By default, Linux OS has a relatively small number of file descriptors available and max user processes (1024) configured. It is important that you use a user account which has its maximum open file descriptors (open files) and max user processes configured to an appropriate value. 
 [block:callout]
