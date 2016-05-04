@@ -1,4 +1,4 @@
-This section contains of the following blocks that are related to the GC tuning and debugging/troubleshooting:
+This section contains the following blocks related to garbage collection tuning and debugging/troubleshooting:
 
 - [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-on_heap-caches)
 - [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-off_heap-caches)
@@ -7,11 +7,12 @@ This section contains of the following blocks that are related to the GC tuning 
 - [Detailed garbage collection stats](doc:jvm-and-system-tuning#detailed-garbage-collection-stats)
 - [FlighRecorder settings](doc:jvm-and-system-tuning#flightrecorder-settings)
 
-In advance 
+In advance the following sections include information on additional system's components tuning:
+- [File Descriptors](doc:jvm-and-system-tuning#file-descriptors) 
 [block:api-header]
 {
   "type": "basic",
-  "title": "Recommendations for clusters with ON_HEAP caches"
+  "title": "JVM tuning for clusters with ON_HEAP caches"
 }
 [/block]
 This section contains basic recommendations for clusters that keeps all or significant amount of cache entries in Java heap. 
