@@ -34,3 +34,21 @@ The `IgniteScheduler.scheduleLocal()` methods return `SchedulerFuture`, which ha
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Syntax Extension"
+}
+[/block]
+Ignite introduces an extension to Cron syntax, which allows to specify an initial delay in seconds and a number of runs. These two optional numbers go in curly braces, comma-separated, before the Cron specification. An example below specifies execution 5 times each minute with an initial 2 seconds delay.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "\n{2, 5} * * * * *",
+      "language": "text"
+    }
+  ]
+}
+[/block]
