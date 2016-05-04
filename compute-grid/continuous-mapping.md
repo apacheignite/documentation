@@ -32,7 +32,7 @@ For continuous mapping, there are several constraints that you need to be aware 
   * Continuous mapper can not be used after `ComputeTask.result()` method returned the `REDUCE` policy.
   * If `ComputeTask.result()` method returned the `WAIT` policy and all jobs are finished, then task will go to `Reduce` step and continuous mapper can not be used any more.
 
-In other respects, the computation logic is the same as in normal MapReduce, described in [MapReduce](doc:map-reduce) chapter.
+In other respects, the computation logic is the same as in normal MapReduce, described in the [MapReduce](doc:map-reduce) chapter.
 [block:api-header]
 {
   "type": "basic",
