@@ -3,11 +3,7 @@ This section contains the following blocks related to garbage collection tuning 
 - [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-on_heap-caches)
 - [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-off_heap-caches)
 - [GC attacks by Linux](doc:jvm-and-system-tuning#gc-attacks-by-linux)
-- [Getting heap dump on OutOfMemory errors](doc:jvm-and-system-tuning#getting-heap-dump-on-out-of-memory-errors)
-- [Detailed garbage collection stats](doc:jvm-and-system-tuning#detailed-garbage-collection-stats)
-- [FlighRecorder settings](doc:jvm-and-system-tuning#flightrecorder-settings)
-
-In advance the following infinclude information on additional system's components tuning:
+- [Debugging memory usage issues and GC pauses](doc:jvm-and-system-tuning#debugging-and-troubleshooting-memory-issues-and-gc)
 - [File Descriptors](doc:jvm-and-system-tuning#file-descriptors) 
 [block:api-header]
 {
@@ -173,7 +169,7 @@ If GC log shows “low user time, high system time, long GC pause” then most l
 [block:api-header]
 {
   "type": "basic",
-  "title": "Debugging and troubleshooting memory issues and GC pauses"
+  "title": "Debugging memory usage issues and GC pauses"
 }
 [/block]
 The section contains information that may be helpful when you need to debug and troubleshoot issues related to memory usage or long GC pauses.
