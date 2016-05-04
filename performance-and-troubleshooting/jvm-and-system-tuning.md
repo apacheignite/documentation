@@ -1,4 +1,4 @@
-This section contains the following blocks related to garbage collection tuning and debugging/troubleshooting:
+This section contains the following blocks related JVM and system level tuning:
 
 - [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-on_heap-caches)
 - [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#recommendations-for-clusters-with-off_heap-caches)
