@@ -36,7 +36,7 @@ arguments:
     "1-1": "Port on which OdbcProcessor of the node is listening.",
     "0-1": "Address of the node to connect to.",
     "0-2": "lacalhost",
-    "1-2": "11443"
+    "1-2": "10800"
   },
   "cols": 3,
   "rows": 3
@@ -55,19 +55,14 @@ You can find samples of the connection string below. These strings can be used w
 {
   "codes": [
     {
-      "code": "DRIVER={Apache Ignite};SERVER=localhost;PORT=11443;CACHE=MyCache",
+      "code": "DRIVER={Apache Ignite};SERVER=localhost;PORT=10800;CACHE=MyCache",
       "language": "text",
       "name": "Specific cache"
     },
     {
-      "code": "DRIVER={Apache Ignite};SERVER=localhost;PORT=11443",
+      "code": "DRIVER={Apache Ignite};SERVER=localhost;PORT=10800",
       "language": "text",
       "name": "Default cache"
-    },
-    {
-      "code": "DRIVER={Apache Ignite}",
-      "language": "text",
-      "name": "All defaults"
     }
   ]
 }
