@@ -17,6 +17,14 @@ However, there are cases when it is simply impossible to send computations to re
 [block:callout]
 {
   "type": "info",
+  "title": "Transactions",
+  "body": "Near caches are fully transactional and get updated or invalidated automatically whenever the data changes on the servers."
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
   "title": "Near Caches on Server Nodes",
   "body": "Whenever accessing data from `PARTITIONED` caches on the server side in a non-collocated fashion, you may need to configure near-caches on the server nodes via `CacheConfiguration.setNearConfiguration(...)` property."
 }
