@@ -2,7 +2,7 @@
 [block:callout]
 {
   "type": "info",
-  "body": "Use `ComputeTask` only when you need fine-grained control over the job-to-node mapping, or custom fail-over logic. For all other cases you should use simple closure executions on the cluster documented in [Distributed Computations](doc:compute) section."
+  "body": "Use `ComputeTask` only when you need fine-grained control over the job-to-node mapping, or custom fail-over logic. For all other cases you should use simple closure executions on the cluster documented in [Distributed Closures](doc:distributed-closures) section."
 }
 [/block]
 
