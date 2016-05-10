@@ -93,6 +93,30 @@ Both, `IgniteCompute.affinityRun(...)` and `IgniteCache.invoke(...)` methods off
 [block:api-header]
 {
   "type": "basic",
+  "title": "Affinity Function"
+}
+[/block]
+Affinity of a partition controls which grid node or nodes a partition will be cached on. `AffinityFunction` is a pluggable API used to determine an ideal mapping of partitions to nodes in the grid. When cluster topology changes, the partition-to node mapping may be different from an ideal distribution provided by the affinity function until rebalancing is completed.
+
+Ignite is shipped with two predefined affinity function implementations:
+ * `RendezvousAffinityFunction` - This function allows a bit of discrepancy in partition-to-node mapping (i.e. some nodes may be responsible for a slightly larger number of partitions than others), however, it guarantees that when topology changes, partitions are migrated only to a joined node or only from a left node. No data exchange will happen between existing nodes in a cluster.
+ * `FairAffinityFunction` - This functions tries to make sure that partition distribution among cluster nodes is even. This comes at a price of a possible partition migration between existing nodes in a cluster.
+
+Note that the cache affinity function does not directly map keys to nodes, it maps keys to partitions. Partition is simply a number from a limited set (0 to 1024 by default). After the keys are mapped to their partitions (i.e. they get their partition numbers), the existing partition-to-nodes mapping is used for current topology version. Key-to-partition mapping must not change over the time.
+[block:callout]
+{
+  "type": "info",
+  "body": "It is useful to arrange partitions in a cluster in such a way that primary and backup copies are not located on the same physical machine. To ensure this property, a user can set `excludeNeighbors` flag on both `RendezvousAffinityFunction` and `FairAffinityFunction`.\n\nSometimes it is also useful to have primary and backup copies of a partition on different racks. In this case, a user may assign a specific attribute to each node and then use `backupFilter` property on both `RendezvousAffinityFunction` and `FairAffinityFunction` to exclude nodes from the same rack that are candidates for backup copy assignment.",
+  "title": "Crash-Safe Affinity"
+}
+[/block]
+`AffinityFunction` is a pluggable API and a user can provide it's own implementation of the function. The 3 main methods of `AffinityFunction` API are:
+  *  `partitions()` - Gets the total number of partitions for a cache. Cannot be changed while cluster is up.
+  *  `partition(...)` - Given a key, this method determines which partition a key belongs to. The mapping must not change over time.
+  * `assignPartitions(...)` - This method is called every time a cluster topology changes. This method returns a partition-to-node mapping for the given cluster topology. 
+[block:api-header]
+{
+  "type": "basic",
   "title": "Affinity Key Mapper"
 }
 [/block]
