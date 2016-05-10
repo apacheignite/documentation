@@ -1,13 +1,8 @@
 Specifics of peer-class-loading behavior are controlled by different deployment modes. Particularly, the un-deployment behavior in cases when originating node leaves grid depends on the deployment mode. Other aspects, governed by deployment mode, are user resources management and class versions management. In the sections below we describe each deployment mode in more detail.
 
-## PRIVATE
-In this mode deployed classes do not share user resources (see [Resource Injection](doc:resource-injection)).
-Basically, user resources are created once per deployed task class, and then get reused for all executions. Note that classes deployed within the same class loader on master node, will still share the same class loader remotely on worker nodes. However, tasks deployed from different master nodes will not share the same class loader on worker nodes, which is useful in development when different developers can be working on different versions of the same classes. Also note that resources are associated with task deployment, not task execution. If the same deployed task gets executed multiple times, then it will keep reusing the same user resources every time.
-
-In this mode, classes get un-deployed when master node leaves the cluster.
-
-## ISOLATED
-Unlike `PRIVATE` mode, where different deployed tasks will never use the same instance of user resources, in `ISOLATED` mode, tasks or classes deployed within the same class loader will share the same instances of user resources (see [Resource Injection](doc:resource-injection)). This means that if multiple task classes are loaded by the same class loader on the master node, then they will share instances of user resources on worker nodes. In other words, user resources get initialized once per class loader and then get reused for all consequent executions. Note that classes deployed within the same class loader on master node, will still share the same class loader remotely on worker nodes. However, tasks deployed from different master nodes will not share the same class loader on worker nodes, which is especially useful when different developers can be working on different versions of the same classes.
+## PRIVATE and ISOLATED
+Classes deployed within the same class loader on master node, will still share the same class loader remotely on worker nodes. However, tasks deployed from different master nodes will not share the same class loader on worker nodes, which is useful in development when different developers can be working on different versions of the same classes. 
+There is no difference in PRIVATE and ISOLATED deployment modes since `@UserResource` annotation has been removed. Both constants were kept for backward-compatibility reasons and one of them is likely to be removed in the future major release.
 
 In this mode, classes get un-deployed when master node leaves the cluster.
 
