@@ -107,7 +107,7 @@ Both, `IgniteCompute.affinityRun(...)` and `IgniteCache.invoke(...)` methods off
 [block:api-header]
 {
   "type": "basic",
-  "title": "Affinity Mapper"
+  "title": "Affinity Key Mapper"
 }
 [/block]
 
