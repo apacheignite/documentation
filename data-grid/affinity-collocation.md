@@ -120,7 +120,7 @@ Note that the cache affinity function does not directly map keys to nodes, it ma
 [block:callout]
 {
   "type": "info",
-  "title": "Crash-Safe Affinity",
+  "title": "Crash-safe Affinity",
   "body": "It is useful to arrange partitions in a cluster in such a way that primary and backup copies are not located on the same physical machine. To ensure this property, a user can set `excludeNeighbors` flag on both `RendezvousAffinityFunction` and `FairAffinityFunction`.\n\nSometimes it is also useful to have primary and backup copies of a partition on different racks. In this case, a user may assign a specific attribute to each node and then use `backupFilter` property on both `RendezvousAffinityFunction` and `FairAffinityFunction` to exclude nodes from the same rack that are candidates for backup copy assignment."
 }
 [/block]
