@@ -103,3 +103,14 @@ Both, `IgniteCompute.affinityRun(...)` and `IgniteCache.invoke(...)` methods off
   "body": "See [JCache EntryProcessor](/docs/jcache#entryprocessor) documentation for more information about `IgniteCache.invoke(...)` method."
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Affinity Mapper"
+}
+[/block]
+
+`CacheAffinityKeyMapper` is a pluggable API responsible for getting an affinity key for a cache key. Usually cache key itself is used for affinity, however sometimes it is important to change affinity of a cache key in order to collocate it with other cache keys.
+
+The main method of `CacheAffinityKeyMapper` is `affinityKey(key)` which returns affinity Key for a cache key. By default Ignite will look for any field or method annotated with `@CacheAffinityKeyMapped` annotation. If such field or method is not found, then the cache key itself is used for affinity. If such field or method is found, then the value of this field or method will be returned from `CacheAffinityKeyMapper.affinityKey(key)`method. This allows you to specify an alternate affinity key, other than the cache key itself, whenever needed.
