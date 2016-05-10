@@ -111,6 +111,7 @@ Both, `IgniteCompute.affinityRun(...)` and `IgniteCache.invoke(...)` methods off
 }
 [/block]
 Affinity of a partition controls which grid node or nodes a partition will be cached on. `AffinityFunction` is a pluggable API used to determine an ideal mapping of partitions to nodes in the grid. When cluster topology changes, the partition-to node mapping may be different from an ideal distribution provided by the affinity function until rebalancing is completed.
+
 Ignite is shipped with two predefined affinity function implementations:
  * `RendezvousAffinityFunction` - This function allows a bit of discrepancy in partition-to-node mapping (i.e. some nodes may be responsible for a slightly larger number of partitions than others), however, it guarantees that when topology changes, partitions are migrated only to a joined node or only from a left node. No data exchange will happen between existing nodes in a cluster.
  * `FairAffinityFunction` - This functions tries to make sure that partition distribution among cluster nodes is even. This comes at a price of a possible partition migration between existing nodes in a cluster.
