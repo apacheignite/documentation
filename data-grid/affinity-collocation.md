@@ -125,9 +125,9 @@ Note that the cache affinity function does not directly map keys to nodes, it ma
 }
 [/block]
 `AffinityFunction` is a pluggable API and a user can provide it's own implementation of the function. The 3 main methods of `AffinityFunction` API are:
- * `partitions()` - Gets the total number of partitions for a cache. Cannot be changed while cluster is up.
- * `partition(...)` - Given a key, this method determines which partition a key belongs to. The mapping must not change over time.
-* `assignPartitions(...)` - This method is called every time a cluster topology changes. This method returns a partition-to-node mapping for the given cluster topology.
+  *  `partitions()` - Gets the total number of partitions for a cache. Cannot be changed while cluster is up.
+  *  `partition(...)` - Given a key, this method determines which partition a key belongs to. The mapping must not change over time.
+  * `assignPartitions(...)` - This method is called every time a cluster topology changes. This method returns a partition-to-node mapping for the given cluster topology. 
 [block:api-header]
 {
   "type": "basic",
