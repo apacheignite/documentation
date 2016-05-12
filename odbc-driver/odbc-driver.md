@@ -87,7 +87,7 @@ dependencies can be resolved i.e. they can be found either in the %PATH% or
 in the same directory as the driver.
 
 After that you should use one of the install scripts from the directory 
-`%IGNITE_HOME%/platforms/cpp/odbc/install`:
+`%IGNITE_HOME%/platforms/cpp/odbc/install`. Note that most likely you will need OS administrator privileges to execute these scripts.
 [block:code]
 {
   "codes": [
@@ -104,7 +104,6 @@ After that you should use one of the install scripts from the directory
   ]
 }
 [/block]
-Most likely you will need OS administrator privileges to execute these scripts.
 
 ## Installing on Linux
 
