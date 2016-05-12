@@ -112,6 +112,7 @@ Once you have built and performed "make install" command the Ignite ODBC Driver 
 
 * Ensure linker is able to locate all dependencies of the ODBC driver. You can check it using `ldd` command like this (assuming ODBC driver is located under `/usr/local/lib`):
   ```ldd /usr/local/lib/libignite-odbc.so```
+If there is unresolved links to other libraries you may want to add directories with these libraries to the `LD_LIBRARY_PATH`.
 
 * Edit file `$IGNITE_HOME/platforms/cpp/odbc/install/ignite-odbc-install.ini` and ensure that `Driver` parameter of the `Apache Ignite` section points to the right location where `libignite-odbc.so` is located.
    
