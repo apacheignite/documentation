@@ -176,7 +176,7 @@ In `OPTIMISTIC` transactions, entry locks are acquired on primary nodes during t
   ]
 }
 [/block]
-Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)) since the value of the entry could be important to the logic within the initiated transaction.
+Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)), since the value of the entry could be important to the logic within the initiated transaction.
 
 Note that the key order is important for `READ_COMMITTED` and `REPEATABLE_READ` transactions since the locks are still acquired sequentially in these modes.
 [block:api-header]
