@@ -111,7 +111,7 @@ Note that in `PESSIMISTIC` mode, the order of locking is important. Moreover, Ig
   "title": "Deadlock Detection in Pessimistic Transactions"
 }
 [/block]
-One major rule that anyone has to follow when working with distributed pessimistic transactions is that locks for keys, participating in a transaction, must be acquired in a  similar order. Violating this rule may lead to a distributed deadlock.
+One major rule that anyone has to follow when working with distributed pessimistic transactions is that locks for keys, participating in a transaction, must be acquired in the same order. Violating this rule may lead to a distributed deadlock.
 
 Ignite does not avoid distributed deadlocks, but rather has  a built-in functionality that makes it easier to debug and fix such situations.
 
