@@ -120,7 +120,7 @@ As shown in the code snippet below, a pessimistic transaction has been started w
 {
   "codes": [
     {
-      "code": "try (Transaction tx = ignite.transactions().txStart(TransactionConcurrency.PESSIMISTIC,\n    TransactionIsolation.READ_COMMITTED, 300, 0)) {\n    cache.put(1, 1);\n\n    cache.put(2, 1);\n\n    tx.commit();\n}\ncatch (CacheException e) {\n    if (e.getCause() instanceof TransactionTimeoutException &&\n        e.getCause().getCause() instanceof TransactionDeadlockException)    \n        \n        System.out.println(e.getCause().getCause().getMessage());\n}",
+      "code": "try (Transaction tx = ignite.transactions().txStart(TransactionConcurrency.PESSIMISTIC,\n        TransactionIsolation.READ_COMMITTED, 300, 0)) {\n    cache.put(1, 1);\n\n    cache.put(2, 1);\n\n    tx.commit();\n}\ncatch (CacheException e) {\n    if (e.getCause() instanceof TransactionTimeoutException &&\n        e.getCause().getCause() instanceof TransactionDeadlockException)    \n        \n        System.out.println(e.getCause().getCause().getMessage());\n}",
       "language": "java"
     }
   ]
