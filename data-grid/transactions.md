@@ -141,8 +141,8 @@ Deadlock detection is a multi step procedure that may take many iterations depen
 
 Since a transaction is not rolled back until the deadlock detection procedure is completed, sometimes, it makes sense to tune the parameters (shown below), if you want to have a predictable time for a transaction's rollback. 
 
-- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS`: specifies the maximum number of iterations for the deadlock detection procedure. If the value of this property is less than or equal to zero, the deadlock detection will be disabled (1000 by default);
-- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_TIMEOUT`: specifies timeout for the deadlock detection mechanism (1 minute by default).
+- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS` - Specifies the maximum number of iterations for the deadlock detection procedure. If the value of this property is less than or equal to zero, the deadlock detection will be disabled (1000 by default);
+- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_TIMEOUT` - Specifies timeout for the deadlock detection mechanism (1 minute by default).
 
 Note that if there are too few iterations, you may get an incomplete deadlock-report.
 [block:callout]
