@@ -15,6 +15,14 @@ However, regardless of which mode you use, as long as your cluster is alive, the
   "body": "You can combine multiple operations from different caches into one transaction. Note that this allows to update caches of different types, like `REPLICATED` and `PARTITIONED` caches, in one transaction."
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "Near caches are fully transactional and get updated or invalidated automatically whenever the data changes on the servers.",
+  "title": "Near Cache Transactions"
+}
+[/block]
 You can obtain an instance of `IgniteTransactions` as follows:
 [block:code]
 {
@@ -100,6 +108,51 @@ Note that in `PESSIMISTIC` mode, the order of locking is important. Moreover, Ig
 [block:api-header]
 {
   "type": "basic",
+  "title": "Deadlock Detection in Pessimistic Transactions"
+}
+[/block]
+One major rule that anyone has to follow when working with distributed pessimistic transactions is that locks for keys, participating in a transaction, must be acquired in a  similar order. If this rule is violated at some point of time this may lead to a distributed deadlock. 
+
+Ignite doesn't avoid distributed deadlocks but rather has built-in functionality that makes it easier to debug and fix such situations.
+
+As the code snippet below shows a pessimistic transaction has to be started with a timeout and if the timeout expires then the deadlock detection procedure will try to find a possible deadlock that might have caused the timeout. When timeout expires `TransactionTimeoutException` is generated and propagated to application code as the cause of `CacheException` regardless of a deadlock. However, if a deadlock is detected then the cause of returned `TransactionTimeoutException` will be `TransactionDeadlockException` (at least for one transaction involved in the deadlock). 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "try (Transaction tx = ignite.transactions().txStart(TransactionConcurrency.PESSIMISTIC,\n    TransactionIsolation.READ_COMMITTED, 300, 0)) {\n    cache.put(1, 1);\n\n    cache.put(2, 1);\n\n    tx.commit();\n}\ncatch (CacheException e) {\n    if (e.getCause() instanceof TransactionTimeoutException &&\n        e.getCause().getCause() instanceof TransactionDeadlockException)    \n        \n        System.out.println(e.getCause().getCause().getMessage());\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+The message that is a part of `TransactionDeadlockException` contains useful information that will help to find out a reason of a deadlock
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Deadlock detected:\n\nK1: TX1 holds lock, TX2 waits lock.\nK2: TX2 holds lock, TX1 waits lock.\n\nTransactions:\n\nTX1 [txId=GridCacheVersion [topVer=74949328, time=1463469328421, order=1463469326211, nodeOrder=1], nodeId=ad68354d-07b8-4be5-85bb-f5f2362fbb88, threadId=73]\nTX2 [txId=GridCacheVersion [topVer=74949328, time=1463469328421, order=1463469326210, nodeOrder=1], nodeId=ad68354d-07b8-4be5-85bb-f5f2362fbb88, threadId=74]\n\nKeys:\n\nK1 [key=1, cache=default]\nK2 [key=2, cache=default]",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+Deadlock detection is a multi step procedure that may take many iterations depending on a number of nodes in the cluster, keys and transactions that involved in a possible deadlock. A deadlock detection initiator is a node where a transaction has been started and failed with `TransactionTimeoutException`. This node will try to prove that the deadlock happened exchanging with requests/responses with other remote nodes in order to prepare a deadlock related report that is provided with `TransactionDeadlockException`. Each such request/response step is known as an iteration.
+
+Since a transaction is not rolled back until the deadlock detection procedure is completed sometimes it makes sense to tune the parameters below if you need to have predictable time for transaction's rollback and ready to sacrifice with deadlock related report if the latest really happened:
+- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS`: specifies maximum number of iterations for the deadlock detection procedure. If value of this property is less then or equal to zero then the deadlock detection will be disabled (1000 by default);
+- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_TIMEOUT`: specifies timeout for the deadlock detection mechanism (1 minute by default).
+[block:callout]
+{
+  "type": "success",
+  "title": "",
+  "body": "If you want to avoid deadlocks at all refer to Optimistic Transactions and Deadlock-free Transactions sections below."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Optimistic Transactions"
 }
 [/block]
@@ -114,7 +167,7 @@ In `OPTIMISTIC` transactions, entry locks are acquired on primary nodes during t
 {
   "codes": [
     {
-      "code": "IgniteTransactions txs = ignite.transactions();\n\n// Start transaction in optimistic mode with serializable isolation level.\nwhile (true) {\n    try (Transaction tx =  \n         ignite.transactions().txStart(TransactionConcurrency.OPTIMISTIC,\n                                       TransactionIsolation.SERIALIZABLE)) {\n\t \t\t\t// Modify cache entires as part of this transcation.\n  \t\t\t....\n        \n  \t\t\t// commit transaction.  \n  \t\t\ttx.commit();\n\n      \t// Transaction succeeded. Leave the while loop.\n      \tbreak;\n    }\n    catch (TransactionOptimisticException e) {\n    \t\t// Transaction has failed. Retry.\n    }\n}",
+      "code": "IgniteTransactions txs = ignite.transactions();\n\n// Start transaction in optimistic mode with serializable isolation level.\nwhile (true) {\n    try (Transaction tx =  \n         ignite.transactions().txStart(TransactionConcurrency.OPTIMISTIC,\n                                       TransactionIsolation.SERIALIZABLE)) {\n\t \t\t\t// Modify cache entires as part of this transacation.\n  \t\t\t....\n        \n  \t\t\t// commit transaction.  \n  \t\t\ttx.commit();\n\n      \t// Transaction succeeded. Leave the while loop.\n      \tbreak;\n    }\n    catch (TransactionOptimisticException e) {\n    \t\t// Transaction has failed. Retry.\n    }\n}",
       "language": "java"
     }
   ]
