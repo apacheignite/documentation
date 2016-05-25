@@ -137,12 +137,14 @@ The message that is a part of `TransactionDeadlockException` contains useful inf
   ]
 }
 [/block]
-Deadlock detection is a multi step procedure that may take many iterations depending on the number of nodes in the cluster, keys, and transactions that are involved in a possible deadlock. A deadlock detection initiator is a node where a transaction was started and failed with a `TransactionTimeoutException`. This node will investigate if a deadlock has occurred, by exchanging requests/responses with other remote nodes, and prepare a deadlock related report provided with the `TransactionDeadlockException`. Each such request/response step is known as an iteration. The investigation stops once the node initiator detects a deadlock, or reaches the iteration limit.
+Deadlock detection is a multi step procedure that may take many iterations depending on the number of nodes in the cluster, keys, and transactions that are involved in a possible deadlock. A deadlock detection initiator is a node where a transaction was started and failed with a `TransactionTimeoutException`. This node will investigate if a deadlock has occurred, by exchanging requests/responses with other remote nodes, and prepare a deadlock related report provided with the `TransactionDeadlockException`. Each such message (request/response) is known as an iteration. 
 
-Since a transaction is not rolled back until the deadlock detection procedure is completed sometimes it makes sense to tune the parameters below if you need to have predictable time for transaction's rollback and ready to sacrifice with deadlock related report if the latest really happened:
+Since a transaction is not rolled back until the deadlock detection procedure is completed, sometimes, it makes sense to tune the parameters (shown below), if you want to have a predictable time for a transaction's rollback. 
 
-- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS`: specifies maximum number of iterations for the deadlock detection procedure. If value of this property is less then or equal to zero then the deadlock detection will be disabled (1000 by default);
+- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS`: specifies the maximum number of iterations for the deadlock detection procedure. If the value of this property is less than or equal to zero, the deadlock detection will be disabled (1000 by default);
 - `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_TIMEOUT`: specifies timeout for the deadlock detection mechanism (1 minute by default).
+
+Note that if there are too few iterations, you may get an incomplete deadlock-report.
 [block:callout]
 {
   "type": "success",
