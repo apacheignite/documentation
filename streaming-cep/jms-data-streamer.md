@@ -20,7 +20,7 @@ This data streamer supports the following features:
   * Both options are compatible with each other. You can disable either, but not both if batching is enabled.
 * Supports specifying the destination with implementation-specific `Destination` objects or with names.
 
-We have tested our implementation against [Apache ActiveMQ](http://activemq.apache.org), but any JMS broker is supported as long as it client library implements the [JMS 1.1 specification](http://download.oracle.com/otndocs/jcp/7195-jms-1.1-fr-spec-oth-JSpec/).
+We have tested our implementation against [Apache ActiveMQ](http://activemq.apache.org), but any JMS broker is supported as long as its client library implements the [JMS 1.1 specification](http://download.oracle.com/otndocs/jcp/7195-jms-1.1-fr-spec-oth-JSpec/).
 [block:api-header]
 {
   "type": "basic",
