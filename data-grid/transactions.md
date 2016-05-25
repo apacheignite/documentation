@@ -140,13 +140,14 @@ The message that is a part of `TransactionDeadlockException` contains useful inf
 Deadlock detection is a multi step procedure that may take many iterations depending on the number of nodes in the cluster, keys, and transactions that are involved in a possible deadlock. A deadlock detection initiator is a node where a transaction has been started and failed with a `TransactionTimeoutException`. This node will try to prove that the deadlock happened exchanging with requests/responses with other remote nodes in order to prepare a deadlock related report that is provided with `TransactionDeadlockException`. Each such request/response step is known as an iteration.
 
 Since a transaction is not rolled back until the deadlock detection procedure is completed sometimes it makes sense to tune the parameters below if you need to have predictable time for transaction's rollback and ready to sacrifice with deadlock related report if the latest really happened:
+
 - `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS`: specifies maximum number of iterations for the deadlock detection procedure. If value of this property is less then or equal to zero then the deadlock detection will be disabled (1000 by default);
 - `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_TIMEOUT`: specifies timeout for the deadlock detection mechanism (1 minute by default).
 [block:callout]
 {
   "type": "success",
   "title": "",
-  "body": "If you want to avoid deadlocks at all refer to Optimistic Transactions and Deadlock-free Transactions sections below."
+  "body": "If you want to avoid deadlocks, refer to Optimistic Transactions and Deadlock-free Transactions sections below."
 }
 [/block]
 
