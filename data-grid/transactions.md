@@ -137,7 +137,7 @@ The message that is a part of `TransactionDeadlockException` contains useful inf
   ]
 }
 [/block]
-Deadlock detection is a multi step procedure that may take many iterations depending on the number of nodes in the cluster, keys, and transactions that are involved in a possible deadlock. A deadlock detection initiator is a node where a transaction was started and failed with a `TransactionTimeoutException`. This node will investigate if a deadlock has occurred, by exchanging request/responses with other remote nodes, and prepare a deadlock related report provided with the `TransactionDeadlockException`. Each such request/response step is known as an iteration. The investigation stops once the node initiator detects a deadlock, or reaches the iteration limit.
+Deadlock detection is a multi step procedure that may take many iterations depending on the number of nodes in the cluster, keys, and transactions that are involved in a possible deadlock. A deadlock detection initiator is a node where a transaction was started and failed with a `TransactionTimeoutException`. This node will investigate if a deadlock has occurred, by exchanging requests/responses with other remote nodes, and prepare a deadlock related report provided with the `TransactionDeadlockException`. Each such request/response step is known as an iteration. The investigation stops once the node initiator detects a deadlock, or reaches the iteration limit.
 
 Since a transaction is not rolled back until the deadlock detection procedure is completed sometimes it makes sense to tune the parameters below if you need to have predictable time for transaction's rollback and ready to sacrifice with deadlock related report if the latest really happened:
 
