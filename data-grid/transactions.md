@@ -111,11 +111,11 @@ Note that in `PESSIMISTIC` mode, the order of locking is important. Moreover, Ig
   "title": "Deadlock Detection in Pessimistic Transactions"
 }
 [/block]
-One major rule that anyone has to follow when working with distributed pessimistic transactions is that locks for keys, participating in a transaction, must be acquired in a  similar order. If this rule is violated at some point of time this may lead to a distributed deadlock. 
+One major rule that anyone has to follow when working with distributed pessimistic transactions is that locks for keys, participating in a transaction, must be acquired in a  similar order. Violating this rule may lead to a distributed deadlock.
 
-Ignite doesn't avoid distributed deadlocks but rather has built-in functionality that makes it easier to debug and fix such situations.
+Ignite does not avoid distributed deadlocks, but rather has built-in functionality that makes it easier to debug and fix such situations.
 
-As the code snippet below shows a pessimistic transaction has to be started with a timeout and if the timeout expires then the deadlock detection procedure will try to find a possible deadlock that might have caused the timeout. When timeout expires `TransactionTimeoutException` is generated and propagated to application code as the cause of `CacheException` regardless of a deadlock. However, if a deadlock is detected then the cause of returned `TransactionTimeoutException` will be `TransactionDeadlockException` (at least for one transaction involved in the deadlock). 
+As shown in the code snippet below, a pessimistic transaction has been started with a timeout, and if the timeout expires, the deadlock detection procedure will try to find a possible deadlock that might have caused the timeout. When the timeout expires, `TransactionTimeoutException` is generated and propagated to the application code as the cause of `CacheException` regardless of a deadlock. However, if a deadlock is detected, the cause of returned `TransactionTimeoutException` will be `TransactionDeadlockException` (at least for one transaction involved in the deadlock). 
 [block:code]
 {
   "codes": [
@@ -126,18 +126,18 @@ As the code snippet below shows a pessimistic transaction has to be started with
   ]
 }
 [/block]
-The message that is a part of `TransactionDeadlockException` contains useful information that will help to find out a reason of a deadlock
+The message that is a part of `TransactionDeadlockException` contains useful information that can you help to find the reason for the deadlock.
 [block:code]
 {
   "codes": [
     {
       "code": "Deadlock detected:\n\nK1: TX1 holds lock, TX2 waits lock.\nK2: TX2 holds lock, TX1 waits lock.\n\nTransactions:\n\nTX1 [txId=GridCacheVersion [topVer=74949328, time=1463469328421, order=1463469326211, nodeOrder=1], nodeId=ad68354d-07b8-4be5-85bb-f5f2362fbb88, threadId=73]\nTX2 [txId=GridCacheVersion [topVer=74949328, time=1463469328421, order=1463469326210, nodeOrder=1], nodeId=ad68354d-07b8-4be5-85bb-f5f2362fbb88, threadId=74]\n\nKeys:\n\nK1 [key=1, cache=default]\nK2 [key=2, cache=default]",
-      "language": "text"
+      "language": "shell"
     }
   ]
 }
 [/block]
-Deadlock detection is a multi step procedure that may take many iterations depending on a number of nodes in the cluster, keys and transactions that involved in a possible deadlock. A deadlock detection initiator is a node where a transaction has been started and failed with `TransactionTimeoutException`. This node will try to prove that the deadlock happened exchanging with requests/responses with other remote nodes in order to prepare a deadlock related report that is provided with `TransactionDeadlockException`. Each such request/response step is known as an iteration.
+Deadlock detection is a multi step procedure that may take many iterations depending on the number of nodes in the cluster, keys, and transactions that are involved in a possible deadlock. A deadlock detection initiator is a node where a transaction has been started and failed with a `TransactionTimeoutException`. This node will try to prove that the deadlock happened exchanging with requests/responses with other remote nodes in order to prepare a deadlock related report that is provided with `TransactionDeadlockException`. Each such request/response step is known as an iteration.
 
 Since a transaction is not rolled back until the deadlock detection procedure is completed sometimes it makes sense to tune the parameters below if you need to have predictable time for transaction's rollback and ready to sacrifice with deadlock related report if the latest really happened:
 - `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS`: specifies maximum number of iterations for the deadlock detection procedure. If value of this property is less then or equal to zero then the deadlock detection will be disabled (1000 by default);
