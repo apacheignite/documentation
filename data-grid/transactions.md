@@ -126,7 +126,7 @@ As shown in the code snippet below, a pessimistic transaction has been started w
   ]
 }
 [/block]
-`TransactionDeadlockException` message contains useful information that can help you find the reason for the deadlock.
+As shown below, `TransactionDeadlockException` message contains useful information that can help you find the reason for the deadlock.
 [block:code]
 {
   "codes": [
