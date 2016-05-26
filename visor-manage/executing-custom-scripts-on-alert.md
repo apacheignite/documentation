@@ -37,7 +37,7 @@ Alert options:
       Script will receive following arguments:
       1) Alert name or alert ID when name is not defined.
       2) Alert condition as string.
-      3, ...) Values of alert conditions ordered as in alert command.
+      3) Values of alert conditions ordered as in alert command.
     
   -i
        Configure alert notification minimal throttling interval in seconds. Default is 60 seconds.
