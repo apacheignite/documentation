@@ -9,7 +9,7 @@ With [aspect-oriented-programming](https://en.wikipedia.org/wiki/Aspect-oriented
   ]
 }
 [/block]
-You can use any AOP library of your choice: AspectJ, JBoss, or Spring AOP. Provided that you have properly configured one of these frameworks for your master node (node which will originate the execution), a mere invocation of the above method would result in a task execution across the grid, which will print "Hello!" on all worker nodes in your topology.
+You can use any AOP library of your choice: **AspectJ**, **JBoss**, or **Spring AOP**. Provided that you have properly configured one of these frameworks for your master node (node which will originate the execution), a mere invocation of the above method would result in a task execution across the grid, which will print "Hello!" on all worker nodes in your topology.
 [block:api-header]
 {
   "type": "basic",
