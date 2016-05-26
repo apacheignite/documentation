@@ -97,5 +97,15 @@ In this section we describe the configuration details for each of the above fram
 **AspectJ**
 
 To enable AspectJ byte code weaving, your master node's JVM should be configured the following way:
-  * It should be launched with `-javaagent:IGNITE_HOME/libs/aspectjweaver-1.8.9.jar` argument
-  * The classpath should contain `IGNITE_HOME/config/aop/aspectj` folder
+  * It should be launched with `-javaagent:IGNITE_HOME/libs/aspectjweaver-1.8.9.jar` argument.
+  * The classpath should contain `IGNITE_HOME/config/aop/aspectj` folder.
+ 
+**JBoss AOP**
+To enable JBoss byte code weaving, your master node's JVM should have the following configuration:
+  * It should be launched with the arguments:
+    * -javaagent:[path to jboss-aop-jdk50-4.x.x.jar]
+    * -Djboss.aop.class.path=[path to gridgain.jar]}
+    * -Djboss.aop.exclude=org,com
+    * -Djboss.aop.include=[your package name]
+    
+  * It should contain the following jars in classpath:
