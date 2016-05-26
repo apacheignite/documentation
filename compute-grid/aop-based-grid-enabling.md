@@ -114,3 +114,14 @@ To enable JBoss byte code weaving, your master node's JVM should have the follow
      * jboss-aspect-library-jdk50-4.x.x.jar
      * jboss-common-4.x.x.jar
      * trove-1.0.2.jar
+[block:callout]
+{
+  "type": "warning",
+  "body": "Ignite is not shipped with JBoss, and necessary libraries will have to be downloaded separately (they come standard if you have JBoss installed already).",
+  "title": "JBoss Dependencies"
+}
+[/block]
+**Spring AOP**
+
+Spring AOP framework is based on dynamic proxy implementation and doesn't require any specific runtime parameters for online weaving. All weaving is on-demand and should be performed by calling method `GridifySpringEnhancer.enhance()` for the object that has method with `@Gridify` annotation.
+Note that this method of weaving is rather inconvenient and AspectJ or JBoss AOP are recommended instead. Spring AOP can be used in situation when code augmentation is undesired and cannot be used. It also allows for very fine grained control of what gets weaved.
