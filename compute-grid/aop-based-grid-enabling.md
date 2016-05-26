@@ -74,3 +74,28 @@ You can use a custom task for specifying grid-enabling logic for a *gridified* m
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuring AOP"
+}
+[/block]
+Ignite supports 3 AOP frameworks:
+  * AspectJ
+  * JBoss AOP
+  * Spring AOP
+
+In this section we describe the configuration details for each of the above frameworks. We assume IGNITE_HOME to be an Ignite installation directory.
+
+[block:callout]
+{
+  "type": "warning",
+  "body": "These details apply to a logical master node only (the node that initiates the execution). Logical worker nodes should be left intact."
+}
+[/block]
+**AspectJ**
+
+To enable AspectJ byte code weaving, your master node's JVM should be configured the following way:
+  * It should be launched with `-javaagent:IGNITE_HOME/libs/aspectjweaver-1.8.9.jar` argument
+  * The classpath should contain `IGNITE_HOME/config/aop/aspectj` folder
