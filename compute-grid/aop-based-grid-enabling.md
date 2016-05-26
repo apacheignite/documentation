@@ -104,8 +104,13 @@ To enable AspectJ byte code weaving, your master node's JVM should be configured
 To enable JBoss byte code weaving, your master node's JVM should have the following configuration:
   * It should be launched with the arguments:
     * -javaagent:[path to jboss-aop-jdk50-4.x.x.jar]
-    * -Djboss.aop.class.path=[path to gridgain.jar]}
+    * -Djboss.aop.class.path=[path to ignite.jar]
     * -Djboss.aop.exclude=org,com
     * -Djboss.aop.include=[your package name]
     
   * It should contain the following jars in classpath:
+     * javassist-3.x.x.jar
+     * jboss-aop-jdk50-4.x.x.jar
+     * jboss-aspect-library-jdk50-4.x.x.jar
+     * jboss-common-4.x.x.jar
+     * trove-1.0.2.jar
