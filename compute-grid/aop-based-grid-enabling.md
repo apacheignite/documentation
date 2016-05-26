@@ -60,7 +60,7 @@ If you use @Gridify annotation with no parameters, the default behaviour is impl
   * A task of class `GridifyDefaultTask` is created, which generates 1 job of class `GridifyJobAdapter`, and uses default load balancer for choosing a worker node.
   * A job on remote node invokes a method with the passed-in parameters, using deserialized this object (or null if the method is static), and returns the method result as job result.
   * The job result on remote node will become a task result on the caller side.
-  * Task result will be returned to user as *Gridified* method return value. 
+  * Task result will be returned to user as a *Gridified* method return value. 
  
 ##Custom Task
 You can use a custom task for specifying grid-enabling logic for a *gridified* method. An example below broadcasts the *gridified* method to all available worker nodes and skips the reduce step (meaning that this task returns nothing):
