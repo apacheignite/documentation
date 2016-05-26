@@ -13,7 +13,7 @@ You can use any AOP library of your choice: **AspectJ**, **JBoss**, or **Spring 
 [block:api-header]
 {
   "type": "basic",
-  "title": "Gridify Annotation Parameters"
+  "title": "Gridify Annotation"
 }
 [/block]
 `@Gridify` annotation can be used on any method, and has the following parameters, all of which are optional:
