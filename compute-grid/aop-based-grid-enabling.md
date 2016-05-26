@@ -49,11 +49,11 @@ You can use any AOP library of your choice: **AspectJ**, **JBoss**, or **Spring 
   "rows": 5
 }
 [/block]
-Generally, if you call a Gridified method, the following happens:
+Generally, if you call a *Gridified* method, the following happens:
   * A grid with specified `gridName` will be used for execution (if no grid name is specified, default no-name grid will be used).
   * If specified, an interceptor is used to check if the method should be grid-enabled. If interceptor returns `false`, a method is called as usual, without grid-enabling.
   * A grid task is created and executed with effective method arguments, `this` object (if method is non-static), and timeout.
-  * The return value of grid task is returned from *Gridified* method. 
+  * The return value of grid task is returned from the *Gridified* method. 
  
 ## Default Behaviour 
 If you use @Gridify annotation with no parameters, the default behaviour is implied, which is the following:
