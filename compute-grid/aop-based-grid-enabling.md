@@ -60,4 +60,17 @@ If you use @Gridify annotation with no parameters, the default behaviour is impl
   * A task of class `GridifyDefaultTask` is created, which generates 1 job of class `GridifyJobAdapter`, and uses default load balancer for choosing a worker node.
   * A job on remote node invokes a method with the passed-in parameters, using deserialized this object (or null if the method is static), and returns the method result as job result.
   * The job result on remote node will become a task result on the caller side.
-  * Task result will be returned to user as *Gridified* method return value.
+  * Task result will be returned to user as *Gridified* method return value. 
+ 
+##Custom Task
+You can use a custom task for specifying grid-enabling logic for a *gridified* method. An example below broadcasts the *gridified* method to all available worker nodes and skips the reduce step (meaning that this task returns nothing):
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Custom task class.\nclass GridifyBroadcastMethodTask extends GridifyTaskAdapter<Void> {\n    @Nullable @Override\n    public Map<? extends ComputeJob, ClusterNode> map(List<ClusterNode> subgrid, @Nullable GridifyArgument arg) throws IgniteException {\n        Map<ComputeJob, ClusterNode> ret = new HashMap<>(subgrid.size());\n\n        // Broadcast method to all nodes.\n        for (ClusterNode node : subgrid)\n            ret.put(new GridifyJobAdapter(arg), node);\n\n        return ret;\n    }\n\n    @Nullable @Override\n    public Void reduce(List<ComputeJobResult> list) throws IgniteException {\n        return null; // No-op.\n    }\n}\n \npublic class GridifyHelloWorldTaskExample {\n\t...\n\t// Gridified method. \n\t@Gridify(taskClass = GridifyBroadcastMethodTask.class)\n\tpublic static void sayHello(String arg) {\n\t    System.out.println(\"Hello, \" + arg + '!');\n\t}\n\t...\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
