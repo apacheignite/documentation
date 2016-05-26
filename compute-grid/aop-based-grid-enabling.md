@@ -63,7 +63,7 @@ If you use @Gridify annotation with no parameters, the default behaviour is impl
   * Task result will be returned to user as a *Gridified* method return value. 
  
 ##Custom Task
-You can use a custom task for specifying grid-enabling logic for a *gridified* method. An example below broadcasts the *gridified* method to all available worker nodes and skips the reduce step (meaning that this task returns nothing):
+You can use a custom task for specifying grid-enabling logic for a gridified method. An example below broadcasts the gridified method to all available worker nodes and skips the reduce step (meaning that this task returns nothing):
 [block:code]
 {
   "codes": [
