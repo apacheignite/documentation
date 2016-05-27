@@ -232,7 +232,7 @@ Note that if there are too few iterations, you may get an incomplete deadlock-re
 {
   "type": "success",
   "title": "",
-  "body": "If you want to avoid deadlocks at all, refer to Deadlock-free Transactions sections below."
+  "body": "If you want to avoid deadlocks at all, refer to Deadlock-free Transactions section below."
 }
 [/block]
 
