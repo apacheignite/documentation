@@ -108,14 +108,14 @@ Note that in `PESSIMISTIC` mode, the order of locking is important. Moreover, Ig
 [block:api-header]
 {
   "type": "basic",
-  "title": "Deadlock Detection in Pessimistic Transactions"
+  "title": "Deadlock Detection"
 }
 [/block]
-One major rule that anyone has to follow when working with distributed pessimistic transactions is that locks for keys, participating in a transaction, must be acquired in the same order. Violating this rule may lead to a distributed deadlock.
+One major rule that anyone has to follow when working with distributed transactions is that locks for keys, participating in a transaction, must be acquired in the same order. Violating this rule may lead to a distributed deadlock.
 
 Ignite does not avoid distributed deadlocks, but rather has a built-in functionality that makes it easier to debug and fix such situations.
 
-As shown in the code snippet below, a pessimistic transaction has been started with a timeout. If the timeout expires, the deadlock detection procedure will try to find a possible deadlock that might have caused the timeout. When the timeout expires, `TransactionTimeoutException` is generated and propagated to the application code as the cause of `CacheException` regardless of a deadlock. However, if a deadlock is detected, the cause of the returned `TransactionTimeoutException` will be `TransactionDeadlockException` (at least for one transaction involved in the deadlock). 
+As shown in the code snippet below, a transaction has been started with a timeout. If the timeout expires, the deadlock detection procedure will try to find a possible deadlock that might have caused the timeout. When the timeout expires, `TransactionTimeoutException` is generated and propagated to the application code as the cause of `CacheException` regardless of a deadlock. However, if a deadlock is detected, the cause of the returned `TransactionTimeoutException` will be `TransactionDeadlockException` (at least for one transaction involved in the deadlock). 
 [block:code]
 {
   "codes": [
@@ -149,7 +149,7 @@ Note that if there are too few iterations, you may get an incomplete deadlock-re
 {
   "type": "success",
   "title": "",
-  "body": "If you want to avoid deadlocks, refer to Optimistic Transactions and Deadlock-free Transactions sections below."
+  "body": "If you want to avoid deadlocks at all, refer to Deadlock-free Transactions sections below."
 }
 [/block]
 
