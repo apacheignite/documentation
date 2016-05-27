@@ -20,17 +20,17 @@ For example, let's say you have `Person` and `Company` objects and you want to c
 {
   "codes": [
     {
-      "code": "public class PersonKey {\n    // Person ID used to identify a person.\n    private String personId;\n \n    // Company ID which will be used for affinity.\n    @AffinityKeyMapped\n    private String companyId;\n    ...\n}\n\n// Instantiate person keys with the same company ID which is used as affinity key.\nObject personKey1 = new PersonKey(\"myPersonId1\", \"myCompanyId\");\nObject personKey2 = new PersonKey(\"myPersonId2\", \"myCompanyId\");\n \nPerson p1 = new Person(personKey1, ...);\nPerson p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncache.put(\"myCompanyId\", new Company(...));\ncache.put(personKey1, p1);\ncache.put(personKey2, p2);",
+      "code": "public class PersonKey {\n    // Person ID used to identify a person.\n    private String personId;\n \n    // Company ID which will be used for affinity.\n    @AffinityKeyMapped\n    private String companyId;\n    ...\n}\n\n// Instantiate person keys with the same company ID which is used as affinity key.\nObject personKey1 = new PersonKey(\"myPersonId1\", \"myCompanyId\");\nObject personKey2 = new PersonKey(\"myPersonId2\", \"myCompanyId\");\n \nPerson p1 = new Person(personKey1, ...);\nPerson p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncompaniesCache.put(\"myCompanyId\", new Company(...));\n\npersonsCache.put(personKey1, p1);\npersonsCache.put(personKey2, p2);",
       "language": "java",
       "name": "using PersonKey"
     },
     {
-      "code": "case class PersonKey (\n    // Person ID used to identify a person.\n    personId: String,\n \n    // Company ID which will be used for affinity.\n    @(AffinityKeyMapped @field)\n    companyId: String\n)\n\n// Instantiate person keys with the same company ID which is used as affinity key.\nval personKey1 = PersonKey(\"myPersonId1\", \"myCompanyId\");\nval personKey2 = PersonKey(\"myPersonId2\", \"myCompanyId\");\n \nval p1 = new Person(personKey1, ...);\nval p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncompCache.put(\"myCompanyId\", Company(...));\nperCache.put(personKey1, p1);\nperCache.put(personKey2, p2);",
+      "code": "case class PersonKey (\n    // Person ID used to identify a person.\n    personId: String,\n \n    // Company ID which will be used for affinity.\n    @(AffinityKeyMapped @field)\n    companyId: String\n)\n\n// Instantiate person keys with the same company ID which is used as affinity key.\nval personKey1 = PersonKey(\"myPersonId1\", \"myCompanyId\");\nval personKey2 = PersonKey(\"myPersonId2\", \"myCompanyId\");\n \nval p1 = new Person(personKey1, ...);\nval p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncompaniesCache.put(\"myCompanyId\", Company(...));\npersonsCache.put(personKey1, p1);\npersonsCache.put(personKey2, p2);",
       "language": "scala",
       "name": "using PersonKey (Scala)"
     },
     {
-      "code": "Object personKey1 = new AffinityKey(\"myPersonId1\", \"myCompanyId\");\nObject personKey2 = new AffinityKey(\"myPersonId2\", \"myCompanyId\");\n \nPerson p1 = new Person(personKey1, ...);\nPerson p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncache.put(\"myCompanyId\", new Company(..));\ncache.put(personKey1, p1);\ncache.put(personKey2, p2);",
+      "code": "Object personKey1 = new AffinityKey(\"myPersonId1\", \"myCompanyId\");\nObject personKey2 = new AffinityKey(\"myPersonId2\", \"myCompanyId\");\n \nPerson p1 = new Person(personKey1, ...);\nPerson p2 = new Person(personKey2, ...);\n \n// Both, the company and the person objects will be cached on the same node.\ncompaniesCache.put(\"myCompanyId\", new Company(..));\npersonsCache.put(personKey1, p1);\npersonsCache.put(personKey2, p2);",
       "language": "java",
       "name": "using AffinityKey"
     }
