@@ -1,11 +1,14 @@
 This documentation contains the following blocks related to Transactions in Ignite:
 
-- [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-on_heap-caches)
-- [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-off_heap-caches)
-- [GC attacks by Linux](doc:jvm-and-system-tuning#gc-attacks-by-linux)
-- [Debugging memory usage issues and GC pauses](doc:jvm-and-system-tuning#debugging-memory-usage-issues-and-gc-pauses)
-- [File Descriptors](doc:jvm-and-system-tuning#file-descriptors) 
-
+- [Atomicity Mode](doc:transactions#atomicity-mode)
+- [Ignite Transactions](doc:transactions#ignitetransactions)
+- [Two-Phase-Commit (2PC)](doc:transactions#two-phase-commit-2pc)
+- [Concurrency Modes and Isolation Levels](doc:transactions#concurrency-modes-and-isolation-levels)
+- [Pessimistic Transactions](doc:transactions#pessimistic-transactions) 
+- [Optimistic Transactions](doc:transactions#optimistic-transactions) 
+- [Deadlock Detection](doc:transactions#deadlock-detection) 
+- [Deadlock-Free Transactions](doc:transactions#deadlock-free-transactions) 
+- [Integration with JTA](doc:transactions#integration-with-jta) 
 [block:api-header]
 {
   "type": "basic",
