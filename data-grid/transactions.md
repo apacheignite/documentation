@@ -1,7 +1,3 @@
-Ignite supports 2 modes for cache operation, *transactional* and *atomic*. In `transactional` mode you are able to group multiple cache operations in a transaction, while `atomic` mode supports multiple atomic operations, one at a time. `Atomic` mode is more light-weight and generally has better performance over `transactional` caches.
-
-However, regardless of which mode you use, as long as your cluster is alive, the data between different cluster nodes must remain consistent. This means that whichever node is being used to retrieve data, it will never get data that has been partially committed or that is inconsistent with other data.
-
 This documentation contains the following blocks related to Transactions in Ignite:
 
 - [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-on_heap-caches)
@@ -16,35 +12,22 @@ This documentation contains the following blocks related to Transactions in Igni
   "title": "Atomicity Mode"
 }
 [/block]
-Ignite supports 2 atomicity modes defined in `CacheAtomicityMode` enum:
+Ignite supports 2 modes for cache operations, *transactional* and *atomic*. In `transactional` mode you are able to group multiple cache operations in a transaction, while `atomic` mode supports multiple atomic operations, one at a time.
+
+These atomicity modes are defined in `CacheAtomicityMode` enum:
   * `TRANSACTIONAL`
   * `ATOMIC`
-
+  
 `TRANSACTIONAL` mode enables fully ACID-compliant transactions, however, when only atomic semantics are needed, it is recommended that  `ATOMIC` mode is used for better performance.
 
 `ATOMIC` mode provides better performance by avoiding transactional locks, while still providing data atomicity and consistency. Another difference in `ATOMIC` mode is that bulk writes, such as `putAll(...)`and `removeAll(...)` methods are no longer executed in one transaction and can partially fail. In case of partial failure, `CachePartialUpdateException` will be thrown which will contain a list of keys for which the update failed.
-[block:callout]
-{
-  "type": "info",
-  "body": "Note that transactions are disabled whenever `ATOMIC` mode is used, which allows to achieve much higher performance and throughput in cases when transactions are not needed.",
-  "title": "Performance"
-}
-[/block]
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Configuration"
-}
-[/block]
-Atomicity mode is defined in `CacheAtomicityMode` enum and can be configured via `atomicityMode` property of `CacheConfiguration`. 
-
-Default atomicity mode is `ATOMIC`.
+The example below shows how to set and atomicity mode for a cache.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          \t<!-- Set a cache name. -->\n   \t\t\t\t\t<property name=\"name\" value=\"myCache\"/>\n\n            <!-- Set atomicity mode, can be ATOMIC or TRANSACTIONAL. -->\n    \t\t\t\t<property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n            ... \n        </bean>\n    </property>\n          \n    <!-- Optional transaction configuration. -->\n    <property name=\"transactionConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.TransactionConfiguration\">\n            <!-- Configure TM lookup here. -->\n        </bean>\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          \t<!-- Set a cache name. -->\n   \t\t\t\t\t<property name=\"name\" value=\"myCache\"/>\n\n            <!-- Set atomicity mode, can be ATOMIC or TRANSACTIONAL. \n\t\t\t\t\t\t\t\t ATOMIC is default. -->\n    \t\t\t\t<property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n            ... \n        </bean>\n    </property>\n          \n    <!-- Optional transaction configuration. -->\n    <property name=\"transactionConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.TransactionConfiguration\">\n            <!-- Configure TM lookup here. -->\n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     },
     {
@@ -52,6 +35,14 @@ Default atomicity mode is `ATOMIC`.
       "language": "java"
     }
   ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "Note that transactions are disabled whenever `ATOMIC` mode is used, which allows to achieve much higher performance and throughput in cases when transactions are not needed.",
+  "title": "Performance"
 }
 [/block]
 
@@ -233,6 +224,8 @@ In `OPTIMISTIC` transactions, entry locks are acquired on primary nodes during t
 Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)), since the value of the entry could be important to the logic within the initiated transaction.
 
 Note that the key order is important for `READ_COMMITTED` and `REPEATABLE_READ` transactions since the locks are still acquired sequentially in these modes.
+
+For `OPTIMISTIC` `SERIALIZABLE` transactions locks are not acquired sequentially. In this mode keys can be accessed in any order because transaction locks are acquired in parallel with an additional check allowing Ignite to avoid deadlocks. Refer to `Deadlock-Free Transactions` section below for more details.
 [block:api-header]
 {
   "type": "basic",
