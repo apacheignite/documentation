@@ -30,7 +30,9 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
   "title": "Base concepts"
 }
 [/block]
-[TBD]
+To setup Cassandra as a persistent store you should set `CacheStoreFactory` for your Ignite cache to `org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory`.
+
+This could be done using Spring context configuration like this:
 [block:api-header]
 {
   "type": "basic",
