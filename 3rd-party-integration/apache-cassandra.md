@@ -15,8 +15,8 @@ Ignite Cassandra module implements [persistent store](doc:persistent-store) for 
 
 It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-store#cachejdbcblobstore) and [CacheJdbcPojoStore](doc:persistent-store#cachejdbcpojostore) and provides such benefits:
 
-  * Utilizes Apache Cassandra, which is a very high performance and scalable key-value storage.
-  * Uses Cassandra asynchronous queries for CacheStore batch operation LOADALL(), WRITEALL(), DELETEALL() to provide extremely high performance.
+ 1. Utilizes [Apache Cassandra](http://cassandra.apache.org/), which is a very high performance and scalable key-value storage.
+ 2. Uses Cassandra asynchronous queries for CacheStore batch operation LOADALL(), WRITEALL(), DELETEALL() to provide extremely high performance.
   * Automatically creates all necessary tables (and keyspaces) in Cassandra if they are absent. Also automatically detects all the necessary fields for Ignite key-values which should be stored as POJO and creates appropriate table structure for you. Thus you don't need to care about Cassandra DDL syntax for table creation and Java to Cassandra type mapping details. You can also use @QuerySqlField annotation to provide configuration (column name, index, sort order) for Cassandra table columns.
   * You can optionally specify the settings (replication factor, replication strategy, bloom filter and etc.) for Cassandra tables and keyspaces which should be created.
   * Combines functionality of BLOB and POJO storage, allowing to specify how you prefer to store (as a BLOB or as a POJO) key-value pairs from your Ignite cache.
