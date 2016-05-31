@@ -1,6 +1,6 @@
 [block:api-header]
 {
   "type": "basic",
-  "title": "TEst1"
+  "title": "Index"
 }
 [/block]
