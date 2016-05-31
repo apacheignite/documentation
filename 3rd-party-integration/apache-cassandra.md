@@ -1,5 +1,5 @@
 ##Index
-* [Overview]()
+* [Overview](#overview)
 * [Base concepts](doc:base-concepts)
 * [DDL generator](doc:ddl-generator)
 * [Examples](doc:examples)
