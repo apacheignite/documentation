@@ -1,4 +1,4 @@
-####Index
+###Index
 * [Overview](#overview)
 * [Base concepts](#base-concepts)
 * [DDL generator](#ddl-generator)
