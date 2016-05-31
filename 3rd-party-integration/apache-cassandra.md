@@ -11,7 +11,7 @@
   "title": "Overview"
 }
 [/block]
-[TBD]
+Ignite Cassandra module implements [persistent store](doc:persistent-store) for Ignite caches by utilizing Cassandra as a persistent storage for expired cache records.
 [block:api-header]
 {
   "type": "basic",
