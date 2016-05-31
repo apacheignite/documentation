@@ -1,10 +1,10 @@
 ##Index
 * [Overview](#overview)
-* [Base concepts](doc:base-concepts)
-* [DDL generator](doc:ddl-generator)
-* [Examples](doc:examples)
-* [Load tests](doc:load-tests)
-* [Unit tests](doc:unit-tests)
+* [Base concepts](#base-concepts)
+* [DDL generator](#ddl-generator)
+* [Examples](#examples)
+* [Load tests](#load-tests)
+* [Unit tests](#unit-tests)
 [block:api-header]
 {
   "type": "basic",
