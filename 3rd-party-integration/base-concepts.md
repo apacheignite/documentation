@@ -182,7 +182,7 @@ Next two sections are providing detailed specification for **partition** and **c
 {
   "type": "info",
   "title": "Optional element",
-  "body": "Container for `field` elements."
+  "body": "Container for `field` elements specifying Cassandra partition key."
 }
 [/block]
 Defines **Ignite cache** KEY object fields (inside it), which should be used as a **partition key** fields in Cassandra table and specifies fields mappings to table columns.
@@ -193,3 +193,25 @@ Mappings are specified by using `<field>` tag having such attributes:
 | :-------------| :-------------| :----------------|
 | <sup>**name**      | <sup>yes | <sup>POJO object field name. |
 | <sup>**column**  | <sup>no | <sup>Cassandra table column name. If not specified lowercase POJO field name will be used.|
+[block:html]
+{
+  "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">clusterKey</div>"
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Optional element",
+  "body": "Container for `field` elements specifying Cassandra cluster key."
+}
+[/block]
+Defines **Ignite cache** KEY object fields (inside it), which should be used as a **cluster key** fields in Cassandra table and specifies fields mappings to table columns. 
+
+Mapping are specified by using `<field>` tag having such attributes:
+
+| **Attribute**      | **Required**      | **Description**          |
+| :-------------| :-------------| :----------------|
+| <sup>**name**      | <sup>yes | <sup>POJO object field name. |
+| <sup>**column**  | <sup>no | <sup>Cassandra table column name. If not specified lowercase POJO field name will be used.|
+| <sup>**sort**      | <sup>no | <sup>Specifies sort order for the field (**asc** or **desc**). |
