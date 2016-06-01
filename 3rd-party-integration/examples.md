@@ -119,14 +119,7 @@ Next sections will provide examples of persistence settings configuration for di
   "title": "Example 1"
 }
 [/block]
-
-[block:callout]
-{
-  "type": "info",
-  "body": "Persistence setting for Ignite cache with keys of `Integer` type to be persisted as `int` in Cassandra and values of `String` type to be persisted as `text` in Cassandra."
-}
-[/block]
-
+Persistence setting for Ignite cache with keys of `Integer` type to be persisted as `int` in Cassandra and values of `String` type to be persisted as `text` in Cassandra.
 [block:code]
 {
   "codes": [
