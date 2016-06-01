@@ -121,3 +121,25 @@ After that you can easily run load tests just executing appropriate shell script
 * **cassandra-load-tests.sh / cassandra-load-tests.bat** - shell scripts to run persistence load tests directly against Cassandra cluster. This test allows you to measure the performance of direct key/value persistence operations for your Cassandra cluster bypassing Ignite cluster. This could be rather useful, cause based on the test results you'll be able to select Cassandra cluster of appropriate capacity to be used as a persistence store for your Ignite cache.
 
 * **ignite-load-tests.sh / ignite-load-tests.bat** - shell scripts to run persistence load tests against Ignite cluster. This test allows you to measure the performance of key/value persistence operations for your Ignite cluster with a Cassandra cluster configured to be used as a persistence store. Based on the test results you'll be able to select Ignite cluster of appropriate capacity.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Using custom key/value classes"
+}
+[/block]
+If you want to use your custom key/value classes for load tests you should:
+
+1. Specify generator for your custom key class in `load.tests.key.generator` property of `tests.properties`. The idea of **generator** class is pretty simple - it's responsible for generating instances of particular class and should implement such method `public Object generate(int i)` of `org.apache.ignite.tests.load.Generator` interface. You can also find such implementation examples:
+   * **org.apache.ignite.tests.load.IntGenerator** - generates `int` instances
+   * **org.apache.ignite.tests.load.PersonIdGenerator** - generates instances of custom Ignite cache key class `org.apache.ignite.tests.pojos.PersonId`
+   * **org.apache.ignite.tests.load.PersonIdGenerator** - generates instances of custom Ignite cache value class `org.apache.ignite.tests.pojos.Person`
+
+2. Specify generator for your custom value class in `load.tests.value.generator` property of `tests.properties`. Actually it's the same generator like mentioned above, but instead of key objects it should generate appropriate custom value objects.
+
+3. Specify Cassandra persistence settings for you custom key/value classes, put persistence settings configuration file inside `settings` folder and check that `load.tests.persistence.settings` property of `tests.properties` points to your custom persistence settings configuration.
+
+4. Define Ignite cache configuration so that it will use your custom persistence settings and check that `load.tests.ignite.config` property of `tests.properties` points to your Ignite cache configuration file.
+
+5. Create **jar** file containing you custom key/value classes and corresponding **generator** classes for them and put it inside `lib` directory.
+
+That's all the steps you need to run load tests using your custom classes.
