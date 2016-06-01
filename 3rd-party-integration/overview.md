@@ -19,7 +19,7 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
 [/block]
 * [Overview](doc:overview)
 * [Base concepts](doc:base-concepts)
-* [Examples](#examples)
+* [Examples](doc:examples)
 * [DDL generator](#ddl-generator)
 * [Load tests](#load-tests)
 * [AWS infrastructure deployment](doc:aws-infrastructure-deployment)
