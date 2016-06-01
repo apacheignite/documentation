@@ -161,7 +161,7 @@ Available serializer implementations:
 If you are using **PRIMITIVE** or **BLOB** persistence strategy you don't need to specify internal elements of `keyPersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by 'column' attribute).
 
 If you are using **POJO** persistence strategy you have two option:
-* **Leave `keyPersistence` tag empty** - in a such case, all the fields of POJO object class will be detected automatically using such rules:
+* Leave `keyPersistence` tag empty - in a such case, all the fields of POJO object class will be detected automatically using such rules:
   * Only fields having simple java types which could be directly mapped to [appropriate Cassandra types](http://docs.datastax.com/en/developer/java-driver/1.0/java-driver/reference/javaClass2Cql3Datatypes_r.html) will be detected.
   * Fields discovery mechanism takes into account `@QuerySqlField` annotation:
     * If `name` attribute is specified it will be used as a column name for Cassandra table. Otherwise field name in a lowercase will be used as a column name.
@@ -169,6 +169,6 @@ If you are using **POJO** persistence strategy you have two option:
   * Fields discovery mechanism takes into account `@AffinityKeyMapped` annotation. All the fields marked by this annotation will be treated as [partition key](http://docs.datastax.com/en/cql/3.0/cql/ddl/ddl_compound_keys_c.html) fields (in an order as they are declared in a class). All other fields will be treated as [cluster key](http://docs.datastax.com/en/cql/3.0/cql/ddl/ddl_compound_keys_c.html) fields.
   * If there are no fields annotated with `@AffinityKeyMapped` all the discovered fields will be treated as [partition key](http://docs.datastax.com/en/cql/3.0/cql/ddl/ddl_compound_keys_c.html) fields.
 
-* **Specify persistence details inside 'keyPersistence' tag** - in a such case, you have to specify **partition key** fields mapping to Cassandra table columns inside `partitionKey` tag. This tag is used just as a container for mapping settings and doesn't have any attributes. Optionally (if you are going to use cluster key) you can also specify **cluster key** fields mapping to appropriate Cassandra table columns inside `clusterKey` tag. This tag is used just as a container for mapping settings and doesn't have any attributes. 
+* Specify persistence details inside `keyPersistence` tag - in a such case, you have to specify **partition key** fields mapping to Cassandra table columns inside `partitionKey` tag. This tag is used just as a container for mapping settings and doesn't have any attributes. Optionally (if you are going to use cluster key) you can also specify **cluster key** fields mapping to appropriate Cassandra table columns inside `clusterKey` tag. This tag is used just as a container for mapping settings and doesn't have any attributes. 
 
 Next two sections are providing detailed specification for **partition** and **cluster** key fields mappings (which makes sense if you choose second option from the list above).
