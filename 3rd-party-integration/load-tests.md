@@ -141,6 +141,6 @@ If you want to use your custom key/value classes for load tests you should:
 
 4. Define Ignite cache configuration so that it will use your custom persistence settings and check that `load.tests.ignite.config` property of `tests.properties` points to your Ignite cache configuration file.
 
-5. Create **jar** file containing you custom key/value classes and corresponding **generator** classes for them and put it (and its dependencies) inside `lib` directory.
+5. Create **jar** file containing you custom key/value classes and corresponding **generator** classes for them and put it (and its 3rd party dependencies if any) inside `lib` directory.
 
 That's all the steps you need to run load tests using your custom classes.
