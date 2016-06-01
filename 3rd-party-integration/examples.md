@@ -43,7 +43,7 @@ You can optionally specify [write-behind](doc:persistent-store#write-behind-cach
   "codes": [
     {
       "code": "<property name=\"writeBehindEnabled\" value=\"true\"/>",
-      "language": "text"
+      "language": "xml"
     }
   ]
 }
