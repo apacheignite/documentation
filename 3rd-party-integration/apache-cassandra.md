@@ -53,7 +53,7 @@ There are two main properties which should be specified for `CassandraCacheStore
   "title": "Serializable"
 }
 [/block]
-
+In the below section these two beans and their configuration settings will be described in details.
 [block:api-header]
 {
   "type": "basic",
