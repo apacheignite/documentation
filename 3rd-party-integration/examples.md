@@ -64,4 +64,52 @@ You should use `org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFacto
 
 * **persistenceSettingsBean** - name of the Spring bean, which specifies all the details about how objects should be persisted into Cassandra database. For more details visit this [link](doc:base-concepts#persistencesettingsbean).
 
-In the specified example `cassandraAdminDataSource` is a data source bean, which is imported into Ignite cache config file using this directive:
+In the specified example `cassandraAdminDataSource` is a data source bean, which is imported into Ignite cache config file using this directive: 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<import resource=\"classpath:org/apache/ignite/tests/cassandra/connection-settings.xml\" />",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+and `cache1_persistence_settings` is a persistence settings bean, which is defined in Ignite cache config file using such directive:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean id=\"cache1_persistence_settings\" class=\"org.apache.ignite.cache.store.cassandra.utils.persistence.KeyValuePersistenceSettings\">\n    <constructor-arg type=\"org.springframework.core.io.Resource\" value=\"classpath:org/apache/ignite/tests/persistence/blob/persistence-settings-1.xml\" />\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Now lets look at the specification of `cassandraAdminDataSource` from `org/apache/ignite/tests/cassandra/connection-settings.xml` test resource:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xsi:schemaLocation=\"\n        http://www.springframework.org/schema/beans\n        http://www.springframework.org/schema/beans/spring-beans.xsd\">\n\n    <bean id=\"cassandraAdminCredentials\" class=\"org.apache.ignite.tests.utils.CassandraAdminCredentials\"/>\n\n    <bean id=\"loadBalancingPolicy\" class=\"com.datastax.driver.core.policies.RoundRobinPolicy\"/>\n\n    <bean id=\"contactPoints\" class=\"org.apache.ignite.tests.utils.CassandraHelper\" factory-method=\"getContactPointsArray\"/>\n\n    <bean id=\"cassandraAdminDataSource\" class=\"org.apache.ignite.cache.store.cassandra.utils.datasource.DataSource\">\n        <property name=\"credentials\" ref=\"cassandraAdminCredentials\"/>\n        <property name=\"contactPoints\" ref=\"contactPoints\"/>\n        <property name=\"readConsistency\" value=\"ONE\"/>\n        <property name=\"writeConsistency\" value=\"ONE\"/>\n        <property name=\"loadBalancingPolicy\" ref=\"loadBalancingPolicy\"/>\n    </bean>\n</beans>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+For more details about Cassandra data source connection configuration visit this [link](doc:base-concepts#datasourcebean) from [Base concepts](doc:base-concepts) page.
+
+Finally, the last piece which wasn't still described is persistence settings configuration. Lets look at the `cache1_persistence_settings` from the `org/apache/ignite/tests/persistence/blob/persistence-settings-1.xml` test resource.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<persistence keyspace=\"test1\" table=\"blob_test1\">\n    <keyPersistence class=\"java.lang.Integer\" strategy=\"PRIMITIVE\" />\n    <valuePersistence strategy=\"BLOB\"/>\n</persistence>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+In the configuration above, we can see that Cassandra `test1.blob_test1` table will be used to store key/value objects for **cache1** cache. Key objects of the cache will be stored as **integer** in `key` column. Value objects of the cache will be stored as **blob** in `value` column. For more information about persistence settings configuration visit this [link](doc:base-concepts#persistencesettingsbean) from [Base concepts](doc:base-concepts) page.
+
+Next sections will provide examples of persistence settings configuration for different kind of persistence strategies (see more details about persistence strategies in [Base concepts](doc:base-concepts).
