@@ -126,3 +126,15 @@ Next sections will provide examples of persistence settings configuration for di
   "body": "Persistence setting for Ignite cache with keys of `Integer` type to be persisted as `int` in Cassandra and values of `String` type to be persisted as `text` in Cassandra."
 }
 [/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<persistence keyspace=\"test1\" table=\"my_table\">\n    <keyPersistence class=\"java.lang.Integer\" strategy=\"PRIMITIVE\" column=\"my_key\"/>\n    <valuePersistence class=\"java.lang.String\" strategy=\"PRIMITIVE\" />\n</persistence>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Keys will be stored in `my_key` column. Values will be stored in `value` column (which is used by default if `column` attribute wasn't specified).
