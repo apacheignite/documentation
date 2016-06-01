@@ -34,7 +34,7 @@ After building Ignite distribution from the source code you will be able to find
 
 * **recreate-cassandra-artifacts.sh** - the same shell script like above, but for Linux.
 
-As you just seen there are actually two types of load tests:
+As you just seen (from the list of shell scripts) there are actually two types of load tests:
 * **Cassandra load tests** - performs all key/value persistence operations directly with Cassandra bypassing Ignite.
 * **Ignite load tests** - performs all key/value persistence operations with Ignite using appropriate instance of [IgniteCache](doc:getting-started#first-ignite-data-grid-application).
 
