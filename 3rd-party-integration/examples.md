@@ -131,3 +131,21 @@ Persistence setting for Ignite cache with keys of `Integer` type to be persisted
 }
 [/block]
 Keys will be stored in `my_key` column. Values will be stored in `value` column (which is used by default if `column` attribute wasn't specified).
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example 2"
+}
+[/block]
+Persistence setting for Ignite cache with keys of `Integer` type to be persisted as `int` in Cassandra and values of `any` type (you don't need to specify the type for **BLOB** persistence strategy) to be persisted as `blob` in Cassandra. The only solution for this situation is to store value as a `BLOB` in Cassandra table.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<persistence keyspace=\"test1\" table=\"my_table\">\n    <keyPersistence class=\"java.lang.Integer\" strategy=\"PRIMITIVE\" />\n    <valuePersistence strategy=\"BLOB\"/>\n</persistence>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Keys will be stored in `key` column (which is used by default if `column` attribute wasn't specified). Values will be stored in `value` column.
