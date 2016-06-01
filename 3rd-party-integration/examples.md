@@ -301,4 +301,27 @@ In such case Ignite cache keys of `org.apache.ignite.tests.pojos.PersonId` type 
 | personNumber    | number              | int     |
 In addition to that, combination of columns `(company, department)` will be used as Cassandra `PARTITION` key and column `number` will be used as a `CLUSTER` key sorted in descending order.
 
-Finally lets more to the last section, which specifies persistence settings for Ignite cache values:
+Finally lets move to the last section, which specifies persistence settings for Ignite cache values:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<valuePersistence class=\"org.apache.ignite.tests.pojos.Person\"\n                  strategy=\"POJO\"\n                  serializer=\"org.apache.ignite.cache.store.cassandra.utils.serializer.KryoSerializer\">\n    <!-- Mapping from POJO field to Cassandra table column -->\n    <field name=\"firstName\" column=\"first_name\" />\n    <field name=\"lastName\" column=\"last_name\" />\n    <field name=\"age\" />\n    <field name=\"married\" index=\"true\"/>\n    <field name=\"height\" />\n    <field name=\"weight\" />\n    <field name=\"birthDate\" column=\"birth_date\" />\n    <field name=\"phones\" />\n</valuePersistence>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Lets assume `that org.apache.ignite.tests.pojos.Person` class has the same implementation like in [Example 4](doc:examples#example-4). In this case Ignite cache values of `org.apache.ignite.tests.pojos.Person` type will be persisted into a set of Cassandra table columns using such mapping rule:
+
+| POJO field    | Table column     | Column type |
+| :-------------| :----------------| :----------|
+| firstName     | first_name        | text    |
+| lastName      | last_name         | text    |
+| age           | age              | int     |
+| married       | married          | boolean |
+| height        | height           | bigint    |
+| weight        | weight           | float    |
+| birthDate     | birth_date        | timestamp    |
+| phones        | phones           | blob    |
+Comparing to [Emaple 4](doc:examples#example-4) we can see that now `phones` field will be serialized to `phones` column of `blob` type using [Kryo](https://github.com/EsotericSoftware/kryo) serializer. In addition to that, Cassandra secondary index will be created for the `married` column.
