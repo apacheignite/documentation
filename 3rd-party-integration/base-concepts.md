@@ -69,4 +69,8 @@ Here is the generic example of a XML configuration document (persistence descrip
 }
 [/block]
 Below are provided all the details about persistence descriptor configuration and its elements:
-### persistence
+[block:html]
+{
+  "html": "<div></div>\npersistence\n<style></style>"
+}
+[/block]
