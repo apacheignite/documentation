@@ -135,6 +135,7 @@ Text specified in this XML element is just a chunk of [CREATE TABLE](http://docs
 }
 [/block]
 These settings specify how key objects from Ignite cache should be stored/loaded to/from Cassandra table.
+
 | **Attribute**      | **Required**      | **Description**          |
 | :-------------| :-------------| :----------------|
 | <sup>**class**      | <sup>yes | <sup>Java class name for Ignite cache keys. |
