@@ -54,7 +54,36 @@ There are two main properties which should be specified for `CassandraCacheStore
 }
 [/block]
 In the below section these two beans and their configuration settings will be described in details.
-# DataSourceBean 
+#DataSourceBean
+This bean stores all the details required for Cassandra database connection and CRUD operations. In the table below you can find all the bean properties:
+
+| Property      | Default          | Description |
+| :-------------| :----------------| :-----|
+| <sup>**user**      |  | <sup>User name used to connect to Cassandra |
+| <sup>**password**  |  |   <sup>User password used to connect to Cassandra |
+| <sup>**credentials** |  | <sup>Credentials bean providing **username** and **password** |
+| <sup>**authProvider** |  | <sup>Use the specified AuthProvider when connecting to Cassandra. Use this method when a custom authentication scheme is in place. |
+| <sup>**port** |  | <sup>Port to use to connect to Cassandra (if it's not provided in connection point specification) |
+| <sup>**contactPoints** |  | <sup>Array of contact points (**hostaname:[port]**) to use for Cassandra connection |
+| <sup>**maxSchemaAgreementWaitSeconds** | <sup>10 sec | <sup>Maximum time to wait for schema agreement before returning from a DDL query |
+| <sup>**protocolVersion** | <sup>3 | <sup>Specifies what version of Cassandra driver protocol should be used (could be helpful for backward compatibility with old versions of Cassandra) |
+| <sup>**compression** |  | <sup>Compression to use for the transport. Supported compressions: **snappy**, **lz4** |
+| <sup>**useSSL** | <sup>false | <sup>Enables the use of SSL |
+| <sup>**sslOptions** | <sup>false | <sup>Enables the use of SSL using the provided options |
+| <sup>**collectMetrix** | <sup>false | <sup>Enables metrics collection |
+| <sup>**jmxReporting** | <sup>false | <sup>Enables JMX reporting of the metrics |
+| <sup>**fetchSize** |  | <sup>Specifies query fetch size. Fetch size controls how much resulting rows will be retrieved simultaneously. |
+| <sup>**readConsistency** |  | <sup>Specifies consistency level for READ queries |
+| <sup>**writeConsistency** |  | <sup>Specifies consistency level for WRITE/DELETE/UPDATE queries |
+| <sup>**loadBalancingPolicy** | <sup>TokenAwarePolicy | <sup>Specifies load balancing policy to use |
+| <sup>**reconnectionPolicy** | <sup>ExponentialReconnectionPolicy | <sup>Specifies reconnection policy to use |
+| <sup>**retryPolicy** | <sup>DefaultRetryPolicy | <sup>Specifies retry policy to use |
+| <sup>**addressTranslater** | <sup>IdentityTranslater | <sup>Specifies address translater to use |
+| <sup>**speculativeExecutionPolicy** | <sup>NoSpeculativeExecutionPolicy | <sup>Specifies speculative execution policy to use |
+| <sup>**poolingOptions** |  | <sup>Specifies connection pooling options |
+| <sup>**socketOptions** |  | <sup>Specifies low-level socket options for the connections kept to the Cassandra hosts |
+| <sup>**nettyOptions** |  | <sup>Hooks that allow clients to customize Cassandra driver's underlying Netty layer |
+
 [block:api-header]
 {
   "type": "basic",
