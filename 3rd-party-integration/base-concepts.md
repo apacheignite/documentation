@@ -158,10 +158,10 @@ Available serializer implementations:
 | <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.JavaSerializer** | <sup>Uses standard Java serialization framework |
 | <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.KryoSerializer** | <sup>Uses Kryo serialization framework |
 
-If you are using PRIMITIVE or BLOB persistence strategy you don't need to specify internal elements of `keyPersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by 'column' attribute).
+If you are using **PRIMITIVE** or **BLOB** persistence strategy you don't need to specify internal elements of `keyPersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by 'column' attribute).
 
-If you are using POJO persistence strategy you have two option:
-* **Leave 'keyPersistence' tag empty** - in a such case, all the fields of POJO object class will be detected automatically using such rules:
+If you are using **POJO** persistence strategy you have two option:
+* **Leave `keyPersistence` tag empty** - in a such case, all the fields of POJO object class will be detected automatically using such rules:
   * Only fields having simple java types which could be directly mapped to [appropriate Cassandra types](http://docs.datastax.com/en/developer/java-driver/1.0/java-driver/reference/javaClass2Cql3Datatypes_r.html) will be detected.
   * Fields discovery mechanism takes into account `@QuerySqlField` annotation:
     * If `name` attribute is specified it will be used as a column name for Cassandra table. Otherwise field name in a lowercase will be used as a column name.
