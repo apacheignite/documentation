@@ -21,5 +21,5 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
 * [Examples](#examples)
 * [DDL generator](#ddl-generator)
 * [Load tests](#load-tests)
-* [AWS load tests infrastructure](doc:aws-infrastructure-deployment) ]
-* [Unit tests](#unit-tests)
+* [AWS infrastructure deployment](doc:aws-infrastructure-deployment)
+* [Unit tests](doc:unit-tests)
