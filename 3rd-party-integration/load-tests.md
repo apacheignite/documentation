@@ -12,7 +12,7 @@ Such kind of measurements could be useful for better understanding of system sca
 [/block]
 Load tests for Cassandra module are provided as a part of tests source code of the module. Thus first of all you should [build Ignite distribution](doc:getting-started#section-building-from-source) from the source code. 
 
-After building Ignite distribution from the source code you will be able to find `target/tests-package` directory inside Cassandra module directory. This directory contains ready to use load tests application for Ignite Cassandra module and has such structure:
+After building Ignite distribution from the source code you will be able to find `target/tests-package` directory inside Cassandra module directory (and `target/ignite-cassandra-tests-<current-version>.zip` archive of this directory). This directory contains ready to use load tests application for Ignite Cassandra module and has such structure:
 
 * **lib** - directory containing all the required **jars** to communicate with Ignite and Cassandra. If you are going to run load tests for your custom key/value classes, you should create a separate **jar** for them and put it inside this directory (see more details in the next chapters).
 
