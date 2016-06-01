@@ -26,6 +26,14 @@ After building Ignite distribution from the source code you will be able to find
 
 * **ignite-load-tests.sh** - the same shell script like above, but for Linux.
 
+* **jvm-opts.bat** - shell script for MS Windows, to specify JVM settings for load tests.
+
+* **jvm-opts.sh** - the same shell script like above, but for Linux.
+
+* **recreate-cassandra-artifacts.bat** - shell script to recreate Cassandra artifacts (keyspaces and tables) before running load tests (used by AWS load tests infrastructure deployment scripts, thus you don't need to run it manually).
+
+* **recreate-cassandra-artifacts.sh** - the same shell script like above, but for Linux.
+
 As you just seen there are actually two types of load tests:
 * **Cassandra load tests** - performs all key/value persistence operations directly with Cassandra bypassing Ignite.
 * **Ignite load tests** - performs all key/value persistence operations with Ignite using appropriate instance of [IgniteCache](https://apacheignite.readme.io/docs/getting-started#first-ignite-data-grid-application).
