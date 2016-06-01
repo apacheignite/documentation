@@ -324,4 +324,4 @@ Lets assume `that org.apache.ignite.tests.pojos.Person` class has the same imple
 | weight        | weight           | float    |
 | birthDate     | birth_date        | timestamp    |
 | phones        | phones           | blob    |
-Comparing to [Emaple 4](doc:examples#example-4) we can see that now `phones` field will be serialized to `phones` column of `blob` type using [Kryo](https://github.com/EsotericSoftware/kryo) serializer. In addition to that, Cassandra secondary index will be created for the `married` column.
+Comparing to [Example 4](doc:examples#example-4) we can see that now `phones` field will be serialized to `phones` column of `blob` type using [Kryo](https://github.com/EsotericSoftware/kryo) serializer. In addition to that, Cassandra secondary index will be created for the `married` column.
