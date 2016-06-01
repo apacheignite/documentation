@@ -27,6 +27,6 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
 
 * [Load tests](doc:load-tests) - explains how to run load test (provided with the module source code) for your custom classes to measure performance and identify appropriate infrastructure to handle your load
 
-* [AWS infrastructure deployment](doc:aws-infrastructure-deployment) - scripts which allows to automatically spin up `Cassandra/Ignite/Tests` infrastructure of any size in Amazon and automates all the routine for you (create and bootstrap required amount of EC2 instances for `Ignite/Cassandra/Tests` clusters, run load tests and wait for their completion, collect all the load tests statistics from each EC2 instance and produce summary report). Also provides [Ganglia](http://ganglia.info/) monitoring for your `Ignite/Cassandra/Tests` clusters
+* [AWS infrastructure deployment](doc:aws-infrastructure-deployment) - framework to automatically spin up `Cassandra/Ignite/Tests` infrastructure of any size in Amazon and automates all the routine for you (create and bootstrap required amount of EC2 instances for `Ignite/Cassandra/Tests` clusters, run load tests and wait for their completion, collect all the load tests statistics from each EC2 instance and produce summary report). Also provides [Ganglia](http://ganglia.info/) monitoring for your `Ignite/Cassandra/Tests` clusters
 
 * [Unit tests](doc:unit-tests) - brief description of unit tests (provided with the module source code)
