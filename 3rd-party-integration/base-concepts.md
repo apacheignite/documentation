@@ -215,3 +215,61 @@ Mapping are specified by using `<field>` tag having such attributes:
 | <sup>**name**      | <sup>yes | <sup>POJO object field name. |
 | <sup>**column**  | <sup>no | <sup>Cassandra table column name. If not specified lowercase POJO field name will be used.|
 | <sup>**sort**      | <sup>no | <sup>Specifies sort order for the field (**asc** or **desc**). |
+[block:html]
+{
+  "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">valuePersistence</div>"
+}
+[/block]
+
+[block:callout]
+{
+  "type": "danger",
+  "title": "Required element",
+  "body": "Persistent settings for Ignite cache values."
+}
+[/block]
+These settings specify how value objects from Ignite cache should be stored/loaded to/from Cassandra table and looks very similar to corresponding settings for Ignite cache keys.
+
+| **Attribute**      | **Required**      | **Description**          |
+| :-------------| :-------------| :----------------|
+| <sup>**class**      | <sup>yes | <sup>Java class name for Ignite cache values. |
+| <sup>**strategy**  | <sup>yes | <sup>Specifies one of three possible persistent strategies (see below) which controls how object should be persisted/loaded to/from Cassandra table.|
+| <sup>**serializer** | <sup>no | <sup>Serializer class for BLOB strategy (see below for available implementations). Shouldn't be used for PRIMITIVE and POJO strategies.|
+| <sup>**column** | <sup>no | <sup>Column name for PRIMITIVE and BLOB strategies where to store value. If not specified, column having 'value' name will be used. Attribute shouldn't be specified for POJO strategy.|
+
+Persistence strategies
+
+| **Name**      | **Description**      |
+| :-------------| :-------------|
+| <sup>**PRIMITIVE**     | <sup>Stores object as is, by mapping it to Cassandra table column with corresponding type. Should be used only for simple java types (int, long, String, double, Date) which could be directly mapped to corresponding Cassadra types. Use this [link](http://docs.datastax.com/en/developer/java-driver/2.0/java-driver/reference/javaClass2Cql3Datatypes_r.html) to figure out Java to Cassandra types mapping. |
+| <sup>**BLOB**     | <sup>Stores object as BLOB, by mapping it to Cassandra table column with blob type. Could be used for any java object. Conversion of java object to BLOB is handled by "serializer" which could be specified in serializer attribute of **keyPersistence** container. |
+| <sup>**POJO**     | <sup>Stores each field of an object as a column having corresponding type in Cassandra table. Provides ability to utilize Cassandra secondary indexes for object fields. Could be used only for POJO objects following Java Beans convention and having their fields of [simple java type which could be directly mapped to corresponding Cassandra types](http://docs.datastax.com/en/developer/java-driver/1.0/java-driver/reference/javaClass2Cql3Datatypes_r.html).|
+
+Available serializer implementations
+
+| **Class**      | **Description**      |
+| :-------------| :-------------|
+| <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.JavaSerializer** | <sup>Uses standard Java serialization framework |
+| <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.KryoSerializer** | <sup>Uses Kryo serialization framework |
+
+If you are using PRIMITIVE or BLOB persistence strategy you don't need to specify internal elements of `valuePersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by 'column' attribute).
+
+If you are using POJO persistence strategy you have two option (similar to two options for keys):
+* **Leave 'valuePersistence' tag empty** - in a such case, all the fields of POJO object class will be detected automatically using such rules:
+  * Only fields having simple java types which could be directly mapped to [appropriate Cassandra types](http://docs.datastax.com/en/developer/java-driver/1.0/java-driver/reference/javaClass2Cql3Datatypes_r.html) will be detected.
+  * Fields discovery mechanism takes into account `@QuerySqlField` annotation:
+    * If `name` attribute is specified it will be used as a column name for Cassandra table. Otherwise field name in a lowercase will be used as a column name.
+    * If `index` attribute is specified, secondary index will be created for corresponding column in Cassandra table (if such table does't exists). 
+  
+* **Specify persistence details inside 'valuePersistence' tag** - in a such case, you have to specify your POJO fields mapping to Cassandra table columns inside `valuePersistence` tag.  
+
+If you selected the second option from the list above, you have to use `<field>` tag to specify POJO fields to Cassandra table columns mapping. The tag has following attributes:
+
+| **Attribute**      | **Required**      | **Description**          |
+| :-------------| :-------------| :----------------|
+| <sup>**name**      | <sup>yes | <sup>POJO object field name. |
+| <sup>**column**  | <sup>no | <sup>Cassandra table column name. If not specified lowercase POJO field name will be used.|
+| <sup>**static**  | <sup>no | <sup>Boolean flag which specifies that column is static withing a given partition.|
+| <sup>**index**  | <sup>no | <sup>Boolean flag specifying that secondary index should be created for the field.|
+| <sup>**indexClass**  | <sup>no | <sup>Custom index java class name, in case you want to use custom index.|
+| <sup>**indexOptions**  | <sup>no | <sup>Custom index options.|
