@@ -39,3 +39,17 @@ As you just seen (from the list of shell scripts) there are actually two types o
 * **Ignite load tests** - performs all key/value persistence operations with Ignite using appropriate instance of [IgniteCache](doc:getting-started#first-ignite-data-grid-application).
 
 Now lets take a look at load tests scenarios and configuration details.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Load tests scenarios"
+}
+[/block]
+Both `Cassandra` and `Ignite` load tests scripts are using exactly the same set of tests:
+
+1. Load test for single **WRITE** operation. Such an operation is performed when you calling `IgniteCache.put` method of your cache.
+2. Load test for signle **READ** operation. Such an operation is performed when you calling `IgniteCache.get` method of your cache.
+3. Load test for **BULK_READ** operation. Such an operation is performed when you calling `IgniteCache.getAll` method of your cache.
+4. Load test for **BULK_WRITE** operation. Such an operation is performed when you calling `IgniteCache.putAll` method of your cache.
+
+All of the specified load tests will be executed sequentially one after another in the provided order.
