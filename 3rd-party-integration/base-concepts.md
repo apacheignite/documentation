@@ -16,7 +16,7 @@ There are two main properties which should be specified for `CassandraCacheStore
 - `persistenceSettingsBean` - instance of `org.apache.ignite.cache.store.cassandra.utils.persistence.KeyValuePersistenceSettings` class responsible for all the aspects of how objects should be persisted into Cassandra (keyspace and its options, table and its options, partition and cluster key options, POJO object fields mapping, secondary indexes, serializer for BLOB objects and etc...)
 [block:callout]
 {
-  "type": "warning",
+  "type": "danger",
   "title": "Serializable",
   "body": "Current implementation of `org.apache.ignite.cache.store.cassandra.utils.datasource.DataSource` doesn't implement `Serializable`, thus for distributed Ignite clusters, `CassandraCacheStoreFactory` could only be setup through Spring XML file, but not from code."
 }
@@ -81,4 +81,14 @@ Below are provided all the details about persistence descriptor configuration an
   "title": "Required element"
 }
 [/block]
-231423423143214321
+<table><tr valign="middle"><td>:red_circle:</td><td style="font-size: 7pt;">Required element</td></tr></table>
+
+Root container for persistence settings configuration.
+
+| **Attribute**      | **Required**      | **Description**          |
+| :-------------| :-------------| :----------------|
+| <sup>**keyspace**      | <sup>yes | <sup>Keyspace for Cassandra tables which should be used to store key/value pairs. If keyspace doesn't exist it will be created (if specified Cassandra account has appropriate permissions). |
+| <sup>**table**  | <sup>yes | <sup>Cassandra tables which should be used to store key/value pairs. If table doesn't exist it will be created (if specified Cassandra account has appropriate permissions).|
+| <sup>**ttl** | <sup>no | <sup>Expiration period for the table rows (in seconds). Use this [link](http://docs.datastax.com/en/cql/3.1/cql/cql_using/use_expire_c.html) to read more about Cassandra ttl.|
+
+In the next chapters you'll find what child elements could be placed inside persistence settings container.
