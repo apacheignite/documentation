@@ -246,3 +246,59 @@ Lets first look at the root tag:
   ]
 }
 [/block]
+It specifies that Ignite cache keys and values should be stored in `test1.my_table` table and that data in each row [expires](http://docs.datastax.com/en/cql/3.1/cql/cql_using/use_expire_c.html) after 86400 sec which is 24 hours.
+
+Then we can see the advanced settings for Cassandra keyspace. The setting will be used to create keyspace if it's not exist.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<keyspaceOptions>\n    REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : 3}\n    AND DURABLE_WRITES = true\n</keyspaceOptions>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Then by analogy to keyspace setting we can see table advanced setting, which will be used only for table creation.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<tableOptions>\n    comment = 'A most excellent and useful table'\n    AND read_repair_chance = 0.2\n</tableOptions>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Next section specifies how Ignite cache keys should be persisted:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<keyPersistence class=\"org.apache.ignite.tests.pojos.PersonId\" strategy=\"POJO\">\n    <!-- Partition key fields if POJO strategy used -->\n    <partitionKey>\n        <!-- Mapping from POJO field to Cassandra table column -->\n        <field name=\"companyCode\" column=\"company\" />\n        <field name=\"departmentCode\" column=\"department\" />\n    </partitionKey>\n\n    <!-- Cluster key fields if POJO strategy used -->\n    <clusterKey>\n        <!-- Mapping from POJO field to Cassandra table column -->\n        <field name=\"personNumber\" column=\"number\" sort=\"desc\"/>\n    </clusterKey>\n</keyPersistence>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Lets assume that `org.apache.ignite.tests.pojos.PersonId` has such implementation:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "public class PersonId {\n    private String companyCode;\n    private String departmentCode;\n    private int personNumber;\n\n    public void setCompanyCode(String code) {\n        companyCode = code;\n    }\n\n    public String getCompanyCode() {\n        return companyCode;\n    }\n\n    public void setDepartmentCode(String code) {\n        departmentCode = code;\n    }\n\n    public String getDepartmentCode() {\n        return departmentCode;\n    }\n\n    public void setPersonNumber(int number) {\n        personNumber = number;\n    }\n\n    public int getPersonNumber() {\n        return personNumber;\n    }\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+In such case Ignite cache keys of `org.apache.ignite.tests.pojos.PersonId` type will be persisted into a set of Cassandra table columns representing `PARTITION` and `CLUSTER` key using this mapping rule:
+
+| POJO field    | Table column     | Column type |
+| :-------------| :----------------| :----------|
+| companyCode     | company        | text    |
+| departmentCode  | department         | text    |
+| personNumber    | number              | int     |
+In addition to that, combination of columns `(company, department)` will be used as Cassandra `PARTITION` key and column `number` will be used as a `CLUSTER` key sorted in descending order.
+
+Finally lets more to the last section, which specifies persistence settings for Ignite cache values:
