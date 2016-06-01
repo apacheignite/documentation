@@ -228,7 +228,9 @@ Mapping are specified by using `<field>` tag having such attributes:
   "body": "Persistent settings for Ignite cache values."
 }
 [/block]
-These settings specify how value objects from Ignite cache should be stored/loaded to/from Cassandra table and looks very similar to corresponding settings for Ignite cache keys.
+These settings specify how value objects from Ignite cache should be stored/loaded to/from Cassandra table. 
+
+The settings attributes looks very similar to corresponding settings for Ignite cache keys:
 
 | **Attribute**      | **Required**      | **Description**          |
 | :-------------| :-------------| :----------------|
@@ -237,7 +239,7 @@ These settings specify how value objects from Ignite cache should be stored/load
 | <sup>**serializer** | <sup>no | <sup>Serializer class for BLOB strategy (see below for available implementations). Shouldn't be used for PRIMITIVE and POJO strategies.|
 | <sup>**column** | <sup>no | <sup>Column name for PRIMITIVE and BLOB strategies where to store value. If not specified, column having 'value' name will be used. Attribute shouldn't be specified for POJO strategy.|
 
-Persistence strategies
+Persistence strategies (same as for key persistence settings):
 
 | **Name**      | **Description**      |
 | :-------------| :-------------|
@@ -245,7 +247,7 @@ Persistence strategies
 | <sup>**BLOB**     | <sup>Stores object as BLOB, by mapping it to Cassandra table column with blob type. Could be used for any java object. Conversion of java object to BLOB is handled by "serializer" which could be specified in serializer attribute of **keyPersistence** container. |
 | <sup>**POJO**     | <sup>Stores each field of an object as a column having corresponding type in Cassandra table. Provides ability to utilize Cassandra secondary indexes for object fields. Could be used only for POJO objects following Java Beans convention and having their fields of [simple java type which could be directly mapped to corresponding Cassandra types](http://docs.datastax.com/en/developer/java-driver/1.0/java-driver/reference/javaClass2Cql3Datatypes_r.html).|
 
-Available serializer implementations
+Available serializer implementations (same as for key persistence settings):
 
 | **Class**      | **Description**      |
 | :-------------| :-------------|
