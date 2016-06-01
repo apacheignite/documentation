@@ -215,3 +215,34 @@ As you can see from the table above, `phones` field will not be persisted into t
   "body": "Provided example shows that - it's very easy to setup persistence for POJO objects by using very simple configuration and relying on dynamic object fields mapping."
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example 5"
+}
+[/block]
+Persistence setting for Ignite cache with keys of custom POJO `org.apache.ignite.tests.pojos.PersonId` and values of custom POJO `org.apache.ignite.tests.pojos.Person` types, both to be persisted into a set of table columns based on manually specified mapping rules.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<persistence keyspace=\"test1\" table=\"my_table\" ttl=\"86400\">\n    <!-- Cassandra keyspace options which should be used to create provided keyspace if it doesn't exist -->\n    <keyspaceOptions>\n        REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : 3}\n        AND DURABLE_WRITES = true\n    </keyspaceOptions>\n\n    <!-- Cassandra table options which should be used to create provided table if it doesn't exist -->\n    <tableOptions>\n        comment = 'A most excellent and useful table'\n        AND read_repair_chance = 0.2\n    </tableOptions>\n\n    <!-- Persistent settings for Ignite cache keys -->\n    <keyPersistence class=\"org.apache.ignite.tests.pojos.PersonId\" strategy=\"POJO\">\n        <!-- Partition key fields if POJO strategy used -->\n        <partitionKey>\n            <!-- Mapping from POJO field to Cassandra table column -->\n            <field name=\"companyCode\" column=\"company\" />\n            <field name=\"departmentCode\" column=\"department\" />\n        </partitionKey>\n\n        <!-- Cluster key fields if POJO strategy used -->\n        <clusterKey>\n            <!-- Mapping from POJO field to Cassandra table column -->\n            <field name=\"personNumber\" column=\"number\" sort=\"desc\"/>\n        </clusterKey>\n    </keyPersistence>\n\n    <!-- Persistent settings for Ignite cache values -->\n    <valuePersistence class=\"org.apache.ignite.tests.pojos.Person\"\n                      strategy=\"POJO\"\n                      serializer=\"org.apache.ignite.cache.store.cassandra.utils.serializer.KryoSerializer\">\n        <!-- Mapping from POJO field to Cassandra table column -->\n        <field name=\"firstName\" column=\"first_name\" />\n        <field name=\"lastName\" column=\"last_name\" />\n        <field name=\"age\" />\n        <field name=\"married\" index=\"true\"/>\n        <field name=\"height\" />\n        <field name=\"weight\" />\n        <field name=\"birthDate\" column=\"birth_date\" />\n        <field name=\"phones\" />\n    </valuePersistence>\n</persistence>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+These persistence settings looks rather complicated. Lets go step by step and analyse them.
+
+Lets first look at the root tag:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<persistence keyspace=\"test1\" table=\"my_table\" ttl=\"86400\">",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
