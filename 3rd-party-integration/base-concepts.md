@@ -78,12 +78,10 @@ Below are provided all the details about persistence descriptor configuration an
 [block:callout]
 {
   "type": "danger",
-  "title": "Required element"
+  "title": "Required element",
+  "body": "Root container for persistence settings configuration"
 }
 [/block]
-<table><tr valign="middle"><td>:red_circle:</td><td style="font-size: 7pt;">Required element</td></tr></table>
-
-Root container for persistence settings configuration.
 
 | **Attribute**      | **Required**      | **Description**          |
 | :-------------| :-------------| :----------------|
