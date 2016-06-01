@@ -18,7 +18,8 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
 }
 [/block]
 * [Base concepts](#base-concepts)
-* [DDL generator](#ddl-generator)
 * [Examples](#examples)
+* [DDL generator](#ddl-generator)
 * [Load tests](#load-tests)
+* [AWS load tests infrastructure](doc:aws-infrastructure-deployment) ]
 * [Unit tests](#unit-tests)
