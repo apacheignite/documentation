@@ -74,7 +74,7 @@ Below are provided all the details about persistence descriptor configuration an
   "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">persistence</div>"
 }
 [/block]
-
+Root container for persistence settings configuration.
 [block:callout]
 {
   "type": "danger",
