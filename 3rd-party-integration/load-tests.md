@@ -166,3 +166,11 @@ Here is an example of `ignite-load-tests.log` (log for Cassandra load tests look
   ]
 }
 [/block]
+According to the provided log we can see that:
+* Average speed of single `WRITE` operation is `5597 msg/sec`
+* Average speed of `BULK_WRITE` operation is `6748 msg/sec`
+* Average speed of single `READ` operation is `6404 msg/sec`
+* Average speed of `BULK_READ` operation is `12790 msg/sec`
+* There were no errors occurred for each kind of tests. When you simulating load, which is higher that your current Ignite/Cassandra infrastructure can handle, some of the `WRITE/BULK_WRITE/READ/BULK_READ` operations can fail and it will be reflected in the number (and percentage) of errors in the tests statistics.
+
+Thus to simulate the real load for your cluster you just need to run the same load test simultaneously from multiple client nodes. After that just summarize average speed of each test among all the nodes and it will be the average speed of the `READ/WRITE/BULK_READ/BULK_WRITE` operation which your current configuration could handle.
