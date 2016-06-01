@@ -36,6 +36,6 @@ After building Ignite distribution from the source code you will be able to find
 
 As you just seen there are actually two types of load tests:
 * **Cassandra load tests** - performs all key/value persistence operations directly with Cassandra bypassing Ignite.
-* **Ignite load tests** - performs all key/value persistence operations with Ignite using appropriate instance of [IgniteCache](https://apacheignite.readme.io/docs/getting-started#first-ignite-data-grid-application).
+* **Ignite load tests** - performs all key/value persistence operations with Ignite using appropriate instance of [IgniteCache](doc:getting-started#first-ignite-data-grid-application).
 
 Now lets take a look at load tests scenarios and configuration details.
