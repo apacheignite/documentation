@@ -121,3 +121,23 @@ Text specified in this XML element is just a chunk of [CREATE KEYSPACE](http://d
 Table will be created only if it doesn't exist and if account used to connect to Cassandra has appropriate permissions.
 
 Text specified in this XML element is just a chunk of [CREATE TABLE](http://docs.datastax.com/en/cql/3.0/cql/cql_reference/create_table_r.html) Cassandra DDL statement which goes after **WITH** keyword.
+[block:html]
+{
+  "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">keyPersistence</div>"
+}
+[/block]
+
+[block:callout]
+{
+  "type": "danger",
+  "title": "Required element",
+  "body": "Persistent settings for Ignite cache keys."
+}
+[/block]
+These settings specify how key objects from Ignite cache should be stored/loaded to/from Cassandra table.
+| **Attribute**      | **Required**      | **Description**          |
+| :-------------| :-------------| :----------------|
+| <sup>**class**      | <sup>yes | <sup>Java class name for Ignite cache keys. |
+| <sup>**strategy**  | <sup>yes | <sup>Specifies one of three possible persistent strategies (see below) which controls how object should be persisted/loaded to/from Cassandra table.|
+| <sup>**serializer** | <sup>no | <sup>Serializer class for BLOB strategy (see below for available implementations). Shouldn't be used for PRIMITIVE and POJO strategies.|
+| <sup>**column** | <sup>no | <sup>Column name for PRIMITIVE and BLOB strategies where to store key. If not specified, column having 'key' name will be used. Attribute shouldn't be specified for POJO strategy.|
