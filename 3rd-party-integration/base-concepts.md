@@ -6,7 +6,7 @@ This could be done using Spring context configuration like this:
   "codes": [
     {
       "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <property name=\"cacheConfiguration\">\n        <list>\n            ...\n            <!-- Configuring persistence for \"cache1\" cache -->\n            <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n                <property name=\"name\" value=\"cache1\"/>\n                <!-- Tune on Read-Through and Write-Through mode -->\n                <property name=\"readThrough\" value=\"true\"/>\n                <property name=\"writeThrough\" value=\"true\"/>\n                <!-- Specifying CacheStoreFactory -->\n                <property name=\"cacheStoreFactory\">\n                    <bean class=\"org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory\">\n                        <!-- Datasource configuration bean which is responsible for Cassandra connection details -->\n                        <property name=\"dataSourceBean\" value=\"cassandraDataSource\"/>\n                        <!-- Persistent settings bean which is responsible for the details of how objects will be persisted to Cassandra -->\n                        <property name=\"persistenceSettingsBean\" value=\"cache1_persistence_settings\"/>\n                    </bean>\n                </property>\n            </bean>\n            ...\n        </list>\n        ...\n    </property>\n</bean>",
-      "language": "text"
+      "language": "xml"
     }
   ]
 }
