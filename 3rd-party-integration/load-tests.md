@@ -174,3 +174,9 @@ According to the provided log we can see that:
 * There were no errors occurred for each kind of tests. When you simulating load, which is higher than your current Ignite/Cassandra infrastructure can handle, some of the `WRITE/BULK_WRITE/READ/BULK_READ` operations can fail and it will be reflected in the number (and percentage) of errors in the tests statistics.
 
 Thus to simulate the real load for your cluster you just need to run the same load test simultaneously from multiple client nodes. After that just summarize average speed of each test among all the nodes and it will be the average speed of the `READ/WRITE/BULK_READ/BULK_WRITE` operation which your current configuration could handle.
+[block:callout]
+{
+  "type": "info",
+  "body": "It's recommended to execute **recreate-cassandra-artifacts.sh / recreate-cassandra-artifacts.bat** script, before running load tests, to clean up all the Cassandra keyspace/tables which exists from previous load tests execution. Otherwise statistics could be not very accurate."
+}
+[/block]
