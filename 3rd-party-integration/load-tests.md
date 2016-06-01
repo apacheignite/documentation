@@ -86,3 +86,20 @@ While `log4j.properties` file is rather simple and straightforward configuration
 | <sup>**admin.password**      | <sup>Admin user password to connect to Cassandra|
 | <sup>**regular.user**      | <sup>Regular user name to connect to Cassandra|
 | <sup>**regular.password**      | <sup>Regular user password to connect to Cassandra|
+[block:html]
+{
+  "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">tests.properties</div>"
+}
+[/block]
+| Property      | Description |
+| :-------------| :-----|
+| <sup>**bulk.operation.size**      | <sup>Number of elements used for each bulk operation attempt: `IgniteCache.getAll`, `IgniteCache.putAll` |
+| <sup>**load.tests.cache.name**  |   <sup>Ignite cache to be used by load tests |
+| <sup>**load.tests.threads.count**  |   <sup>Number of threads used for each load test |
+| <sup>**load.tests.warmup.period**  |   <sup>Warm up period (in milliseconds) for each load test before starting any measurements |
+| <sup>**load.tests.execution.time**  |   <sup>Time for each load test execution, excluding warm up period (in milliseconds) |
+| <sup>**load.tests.requests.latency**  |   <sup>Latency (in milliseconds) between two sequential requests to Cassandra/Ignite |
+| <sup>**load.tests.persistence.settings**  |   <sup>Resource specifying Cassandra persistence settings for load tests |
+| <sup>**load.tests.ignite.config**  |   <sup>Resource specifying Ignite cluster connection settings for load tests |
+| <sup>**load.tests.key.generator**  |   <sup>Key object generator for Ignite cache (see below) |
+| <sup>**load.tests.value.generator**  |   <sup>Value object generator for Ignite cache (see below) |
