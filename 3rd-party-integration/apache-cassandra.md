@@ -85,7 +85,6 @@ This bean stores all the details required for Cassandra database connection and 
 | <sup>**nettyOptions** |  | <sup>Hooks that allow clients to customize Cassandra driver's underlying Netty layer |
 
 #PersistenceSettingsBean
-
 This bean stores all the details(keyspace, table, partition options, POJO fields mapping and etc...) of how objects (keys and values) should be persisted into Cassandra database.
 
 Constructor of `org.apache.ignite.cache.store.cassandra.utils.persistence.KeyValuePersistenceSettings` allows to create such bean from a string which contains XML configuration document of specific structure (see below) or from the resource pointing to XML document.
