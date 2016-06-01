@@ -150,3 +150,25 @@ Persistence strategies
 | <sup>**PRIMITIVE**     | <sup>Stores object as is, by mapping it to Cassandra table column with corresponding type. Should be used only for simple java types (int, long, String, double, Date) which could be directly mapped to corresponding Cassadra types. Use this [link](http://docs.datastax.com/en/developer/java-driver/2.0/java-driver/reference/javaClass2Cql3Datatypes_r.html) to figure out Java to Cassandra types mapping. |
 | <sup>**BLOB**     | <sup>Stores object as BLOB, by mapping it to Cassandra table column with blob type. Could be used for any java object. Conversion of java object to BLOB is handled by "serializer" which could be specified in serializer attribute of **keyPersistence** container. |
 | <sup>**POJO**     | <sup>Stores each field of an object as a column having corresponding type in Cassandra table. Provides ability to utilize Cassandra secondary indexes for object fields. Could be used only for POJO objects following Java Beans convention and having their fields of [simple java type which could be directly mapped to corresponding Cassandra types](http://docs.datastax.com/en/developer/java-driver/1.0/java-driver/reference/javaClass2Cql3Datatypes_r.html).|
+
+Available serializer implementations
+
+| **Class**      | **Description**      |
+| :-------------| :-------------|
+| <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.JavaSerializer** | <sup>Uses standard Java serialization framework |
+| <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.KryoSerializer** | <sup>Uses Kryo serialization framework |
+
+If you are using PRIMITIVE or BLOB persistence strategy you don't need to specify internal elements of `keyPersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by 'column' attribute).
+
+If you are using POJO persistence strategy you have two option:
+* **Leave 'keyPersistence' tag empty** - in a such case, all the fields of POJO object class will be detected automatically using such rules:
+  * Only fields having simple java types which could be directly mapped to [appropriate Cassandra types](http://docs.datastax.com/en/developer/java-driver/1.0/java-driver/reference/javaClass2Cql3Datatypes_r.html) will be detected.
+  * Fields discovery mechanism takes into account `@QuerySqlField` annotation:
+    * If `name` attribute is specified it will be used as a column name for Cassandra table. Otherwise field name in a lowercase will be used as a column name.
+    * If `descending` attribute is specified for a field mapped to **cluster key** column, it will be used to set sort order for the column. 
+  * Fields discovery mechanism takes into account `@AffinityKeyMapped` annotation. All the fields marked by this annotation will be treated as [partition key](http://docs.datastax.com/en/cql/3.0/cql/ddl/ddl_compound_keys_c.html) fields (in an order as they are declared in a class). All other fields will be treated as [cluster key](http://docs.datastax.com/en/cql/3.0/cql/ddl/ddl_compound_keys_c.html) fields.
+  * If there are no fields annotated with `@AffinityKeyMapped` all the discovered fields will be treated as [partition key](http://docs.datastax.com/en/cql/3.0/cql/ddl/ddl_compound_keys_c.html) fields.
+
+* **Specify persistence details inside 'keyPersistence' tag** - in a such case, you have to specify **partition key** fields mapping to Cassandra table columns inside `partitionKey` tag. This tag is used just as a container for mapping settings and doesn't have any attributes. Optionally (if you are going to use cluster key) you can also specify **cluster key** fields mapping to appropriate Cassandra table columns inside `clusterKey` tag. This tag is used just as a container for mapping settings and doesn't have any attributes. 
+
+Next two sections are providing detailed specification for **partition** and **cluster** key fields mappings (which makes sense if you choose second option from the list above).
