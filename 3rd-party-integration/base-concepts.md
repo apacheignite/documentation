@@ -172,3 +172,24 @@ If you are using **POJO** persistence strategy you have two option:
 * Specify persistence details inside `keyPersistence` tag - in a such case, you have to specify **partition key** fields mapping to Cassandra table columns inside `partitionKey` tag. This tag is used just as a container for mapping settings and doesn't have any attributes. Optionally (if you are going to use cluster key) you can also specify **cluster key** fields mapping to appropriate Cassandra table columns inside `clusterKey` tag. This tag is used just as a container for mapping settings and doesn't have any attributes. 
 
 Next two sections are providing detailed specification for **partition** and **cluster** key fields mappings (which makes sense if you choose second option from the list above).
+[block:html]
+{
+  "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">partitionKey</div>"
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Optional element",
+  "body": "Just a container."
+}
+[/block]
+Defines **Ignite cache** KEY object fields (inside it), which should be used as a **partition key** fields in Cassandra table and specifies fields mappings to table columns.
+
+Mappings are specified by using `<field>` tag having such attributes:
+
+| **Attribute**      | **Required**      | **Description**          |
+| :-------------| :-------------| :----------------|
+| <sup>**name**      | <sup>yes | <sup>POJO object field name. |
+| <sup>**column**  | <sup>no | <sup>Cassandra table column name. If not specified lowercase POJO field name will be used.|
