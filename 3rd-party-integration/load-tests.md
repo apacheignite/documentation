@@ -10,7 +10,7 @@ Such kind of measurements could be useful for better understanding of system sca
   "title": "Building load tests"
 }
 [/block]
-Load tests for Cassandra module are provided as a part of tests source code of the module. Thus first of all you should [build Ignite distribution](https://apacheignite.readme.io/docs/getting-started#section-building-from-source) from the source code. 
+Load tests for Cassandra module are provided as a part of tests source code of the module. Thus first of all you should [build Ignite distribution](doc:getting-started#section-building-from-source) from the source code. 
 
 After building Ignite distribution from the source code you will be able to find `target/tests-package` directory inside Cassandra module directory. This directory contains ready to use load tests application for Ignite Cassandra module and has such structure:
 
