@@ -24,3 +24,4 @@ Lets start from the cache configuration details. They are pretty similar for bot
   ]
 }
 [/block]
+First of all we can see that [read-through and write-through](doc:persistent-store#read-through-and-write-through) options are enabled:
