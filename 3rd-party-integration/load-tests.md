@@ -129,8 +129,9 @@ After that you can easily run load tests just executing appropriate shell script
 [/block]
 If you want to use your custom key/value classes for load tests you should:
 
-1. Specify generator for your custom key class in `load.tests.key.generator` property of `tests.properties`. The idea of **generator** class is pretty simple - it's responsible for generating instances of particular class and should implement such method `public Object generate(int i)` of `org.apache.ignite.tests.load.Generator` interface. You can also find such implementation examples:
+1. Specify generator for your custom key class in `load.tests.key.generator` property of `tests.properties`. The idea of **generator** class is pretty simple - it's responsible for generating instances of particular class and should implement such method `public Object generate(long i)` of `org.apache.ignite.tests.load.Generator` interface. You can also find such implementation examples:
    * **org.apache.ignite.tests.load.IntGenerator** - generates `int` instances
+   * **org.apache.ignite.tests.load.LongGenerator** - generates `long` instances
    * **org.apache.ignite.tests.load.PersonIdGenerator** - generates instances of custom Ignite cache key class `org.apache.ignite.tests.pojos.PersonId`
    * **org.apache.ignite.tests.load.PersonIdGenerator** - generates instances of custom Ignite cache value class `org.apache.ignite.tests.pojos.Person`
 
