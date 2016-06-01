@@ -79,7 +79,7 @@ Below are provided all the details about persistence descriptor configuration an
 {
   "type": "danger",
   "title": "Required element",
-  "body": "Root container for persistence settings configuration"
+  "body": ""
 }
 [/block]
 
@@ -90,3 +90,15 @@ Below are provided all the details about persistence descriptor configuration an
 | <sup>**ttl** | <sup>no | <sup>Expiration period for the table rows (in seconds). Use this [link](http://docs.datastax.com/en/cql/3.1/cql/cql_using/use_expire_c.html) to read more about Cassandra ttl.|
 
 In the next chapters you'll find what child elements could be placed inside persistence settings container.
+[block:html]
+{
+  "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">keyspaceOptions</div>"
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "Optional"
+}
+[/block]
