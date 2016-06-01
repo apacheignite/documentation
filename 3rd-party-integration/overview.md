@@ -18,7 +18,7 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
 }
 [/block]
 * [Overview](doc:overview)
-* [Base concepts](#base-concepts)
+* [Base concepts](doc:base-concepts)
 * [Examples](#examples)
 * [DDL generator](#ddl-generator)
 * [Load tests](#load-tests)
