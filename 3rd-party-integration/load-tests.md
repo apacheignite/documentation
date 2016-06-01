@@ -97,7 +97,7 @@ While `log4j.properties` file is rather simple and straightforward configuration
 | <sup>**load.tests.cache.name**  |   <sup>Ignite cache to be used by load tests |
 | <sup>**load.tests.threads.count**  |   <sup>Number of threads used for each load test |
 | <sup>**load.tests.warmup.period**  |   <sup>Warm up period (in milliseconds) for each load test before starting any measurements |
-| <sup>**load.tests.execution.time**  |   <sup>Time for each load test execution, excluding warm up period (in milliseconds) |
+| <sup>**load.tests.execution.time**  |   <sup>Time for each load test execution (in milliseconds), excluding warm up period|
 | <sup>**load.tests.requests.latency**  |   <sup>Latency (in milliseconds) between two sequential requests to Cassandra/Ignite |
 | <sup>**load.tests.persistence.settings**  |   <sup>Resource specifying Cassandra persistence settings for load tests |
 | <sup>**load.tests.ignite.config**  |   <sup>Resource specifying Ignite cluster connection settings for load tests |
