@@ -79,11 +79,9 @@ Below are provided all the details about persistence descriptor configuration an
 {
   "type": "danger",
   "title": "Required element",
-  "body": ""
+  "body": "Root container for persistence settings configuration."
 }
 [/block]
-Root container for persistence settings configuration.
-
 | **Attribute**      | **Required**      | **Description**          |
 | :-------------| :-------------| :----------------|
 | <sup>**keyspace**      | <sup>yes | <sup>Keyspace for Cassandra tables which should be used to store key/value pairs. If keyspace doesn't exist it will be created (if specified Cassandra account has appropriate permissions). |
