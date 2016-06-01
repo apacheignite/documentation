@@ -117,4 +117,7 @@ Before running load tests make sure that:
 
 3. Cassandra connection settings specified correctly in `org/apache/ignite/tests/cassandra/connection.properties` and `org/apache/ignite/tests/cassandra/credentials.properties` files.
 
-After that you can easily run load tests just executing appropriate shell script.
+After that you can easily run load tests just executing appropriate shell script:
+* **cassandra-load-tests.sh / cassandra-load-tests.bat** - shell scripts to run persistence load tests directly against Cassandra cluster. This test allows you to measure the performance of direct key/value persistence operations for your Cassandra cluster bypassing Ignite cluster. This could be rather useful, cause based on the test results you'll be able to select Cassandra cluster of appropriate capacity to be used as a persistence store for your Ignite cache.
+
+* **ignite-load-tests.sh / ignite-load-tests.bat** - shell scripts to run persistence load tests against Ignite cluster. This test allows you to measure the performance of key/value persistence operations for your Ignite cluster with a Cassandra cluster configured to be used as a persistence store. Based on the test results you'll be able to select Ignite cluster of appropriate capacity.
