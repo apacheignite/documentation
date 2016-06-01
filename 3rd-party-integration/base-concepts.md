@@ -71,6 +71,6 @@ Here is the generic example of a XML configuration document (persistence descrip
 Below are provided all the details about persistence descriptor configuration and its elements:
 [block:html]
 {
-  "html": "<div style=\"color:green;font-weight: bold;\">persistence</div>\n\n<style></style>"
+  "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">persistence</div>\n\n<style></style>"
 }
 [/block]
