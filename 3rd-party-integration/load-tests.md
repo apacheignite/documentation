@@ -14,6 +14,8 @@ Load tests for Cassandra module are provided as a part of tests source code of t
 
 After building Ignite distribution from the source code you will be able to find `target/tests-package` directory inside Cassandra module directory (and `target/ignite-cassandra-tests-<version>.zip` archive of this directory as well). The directory contains ready to use load tests application for Ignite Cassandra module and has such structure:
 
+* **bootstrap** - directory containing bootstrap scripts for [AWS infrastructure deployment]() framework
+
 * **lib** - directory containing all the required **jars** to communicate with Ignite and Cassandra. If you are going to run load tests for your custom key/value classes, you should create a separate **jar** for them and put it inside this directory (see more details in the next chapters).
 
 * **settings** - directory containing load tests configuration settings like Cassandra and Ignite connection details, persistent settings and so on (see more details in the next chapters).
