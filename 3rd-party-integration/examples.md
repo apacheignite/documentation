@@ -113,3 +113,16 @@ Finally, the last piece which wasn't still described is persistence settings con
 In the configuration above, we can see that Cassandra `test1.blob_test1` table will be used to store key/value objects for **cache1** cache. Key objects of the cache will be stored as **integer** in `key` column. Value objects of the cache will be stored as **blob** in `value` column. For more information about persistence settings configuration visit this [link](doc:base-concepts#persistencesettingsbean) from [Base concepts](doc:base-concepts) page.
 
 Next sections will provide examples of persistence settings configuration for different kind of persistence strategies (see more details about persistence strategies in [Base concepts](doc:base-concepts).
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example 1"
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "Persistence setting for Ignite cache with keys of `Integer` type to be persisted as `int` in Cassandra and values of `String` type to be persisted as `text` in Cassandra."
+}
+[/block]
