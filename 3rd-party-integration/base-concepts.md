@@ -98,6 +98,10 @@ In the next chapters you'll find what child elements could be placed inside pers
 [block:callout]
 {
   "type": "info",
-  "title": "Optional"
+  "title": "Optional element",
+  "body": "Cassandra keyspace options to create the keyspace specified in **keyspace** attribute of persistence settings container."
 }
 [/block]
+Keyspace will be created only if it doesn't exist and if account used to connect to Cassandra has appropriate permissions.
+
+Text specified in this XML element is just a chunk of [CREATE KEYSPACE](http://docs.datastax.com/en/cql/3.0/cql/cql_reference/create_keyspace_r.html) Cassandra DDL statement which goes after **WITH** keyword.
