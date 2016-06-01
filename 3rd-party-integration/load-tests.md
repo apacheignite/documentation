@@ -177,7 +177,7 @@ Thus to simulate the real load for your cluster you just need to run the same lo
 [block:callout]
 {
   "type": "info",
-  "body": "If you plan to run load tests using [AWS infrastructure](https://aws.amazon.com/products/?nc2=h_ql_sf_ls), you can just use [AWS infrastructure deployment](#aws-test) scripts which automatically take care about all the routine (collect all the load tests statistic from each EC2 node and produce summary report). As a bonus you'll also have **Cassandra/Ignite/Tests** clusters monitoring based on [Ganglia](http://ganglia.info/) which allows you to see what's going on with your clusters under high load."
+  "body": "If you plan to run load tests using [AWS infrastructure](https://aws.amazon.com/products/?nc2=h_ql_sf_ls), you can just use [AWS infrastructure deployment](#aws-test) scripts, which automatically take care about all the routine (create and bootstrap required amount of EC2 instances for `Ignite/Cassandra/Tests` clusters, run load tests and wait for their completion, collect all the load tests statistics from each EC2 instance and produce summary report). As a bonus you'll also have **Cassandra/Ignite/Tests** clusters monitoring based on [Ganglia](http://ganglia.info/) which allows you to see what's going on with your clusters under high load."
 }
 [/block]
 
