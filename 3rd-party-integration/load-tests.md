@@ -152,7 +152,7 @@ That's all the steps you need to run load tests using your custom classes.
 [/block]
 The results of load tests execution are provided as `log4j` log files. By default (if you didn't modify `log4j.properties` file) there are two files which shows summary results of tests execution:
 
-1. **cassandra-load-tests.log** - contains summary statistic of Cassandra load tests execution results (if you run cassandra-load-tests.sh or cassandra-load-tests.bat shell script).
-2. **ignite-load-tests.log** - contains summary statistic of Ignite load tests execution results (if you run ignite-load-tests.sh or ignite-load-tests.bat shell script).
+1. **cassandra-load-tests.log** - contains summary statistic of Cassandra load tests execution results (if you run `cassandra-load-tests.sh` or `cassandra-load-tests.bat` shell script).
+2. **ignite-load-tests.log** - contains summary statistic of Ignite load tests execution results (if you run `ignite-load-tests.sh` or `ignite-load-tests.bat` shell script).
 
 Here is an example of `cassandra-load-tests.log`:
