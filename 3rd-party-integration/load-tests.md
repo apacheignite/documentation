@@ -103,3 +103,18 @@ While `log4j.properties` file is rather simple and straightforward configuration
 | <sup>**load.tests.ignite.config**  |   <sup>Resource specifying Ignite cluster connection settings for load tests |
 | <sup>**load.tests.key.generator**  |   <sup>Key object generator for Ignite cache (see below) |
 | <sup>**load.tests.value.generator**  |   <sup>Value object generator for Ignite cache (see below) |
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Running load tests"
+}
+[/block]
+Before running load tests make sure that:
+
+1. All nodes of your Ignite cluster are configured to use the same Cassandra cache store configuration settings. You can find an example of remote Ignite node configuration in a resource file `settings/org/apache/ignite/tests/persistence/primitive/ignite-remote-server-config.xml` from tests source code. If you plan to use only Cassandra load tests you don't need this step.
+
+2. `load.tests.ignite.config` property of `tests.properties` points to correct Ignite client node configuration (which should have exactly the same Cassandra connection and persistence settings like remote Ignite node config file). If you plan to use only Cassandra load tests you don't need this step.
+
+3. Cassandra connection settings specified correctly in `org/apache/ignite/tests/cassandra/connection.properties` and `org/apache/ignite/tests/cassandra/credentials.properties` files.
+
+After that you can easily run load tests just executing appropriate shell script.
