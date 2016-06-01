@@ -177,6 +177,6 @@ Thus to simulate the real load for your cluster you just need to run the same lo
 [block:callout]
 {
   "type": "info",
-  "body": "It's recommended to execute **recreate-cassandra-artifacts.sh / recreate-cassandra-artifacts.bat** script, before running load tests, to clean up all the Cassandra keyspace/tables which exists from previous load tests execution. Otherwise statistics could be not very accurate."
+  "body": "It's recommended to execute **recreate-cassandra-artifacts.sh / recreate-cassandra-artifacts.bat** script, before running load tests. The script will clean up all the Cassandra keyspace/tables which exists from the previous load tests execution. Otherwise statistics could be not very accurate."
 }
 [/block]
