@@ -72,3 +72,6 @@ While `log4j.properties` file is rather simple and straightforward configuration
   "html": "<div style=\"color:green;font-weight: bold;font-size: 120%;\">org/apache/ignite/tests/cassandra/connection.properties</div>"
 }
 [/block]
+| Property      | Description |
+| :-------------| :-----|
+| <sup>**contact.points**      | <sup>Comma separated list of Cassandra nodes to use as contact points. Should be is such a format: **server-1[:port], server-2[:port], server-3[:port]** and etc.|
