@@ -46,6 +46,13 @@ This could be done using Spring context configuration like this:
 There are two main properties which should be specified for `CassandraCacheStoreFactory`:
 - `dataSourceBean` - instance of `org.apache.ignite.cache.store.cassandra.utils.datasource.DataSource` class responsible for all the aspects of Cassandra database connection (credentials, contact points, read/write consistency level, load balancing policy and etc...)
 - `persistenceSettingsBean` - instance of `org.apache.ignite.cache.store.cassandra.utils.persistence.KeyValuePersistenceSettings` class responsible for all the aspects of how objects should be persisted into Cassandra (keyspace and its options, table and its options, partition and cluster key options, POJO object fields mapping, secondary indexes, serializer for BLOB objects and etc...)
+[block:callout]
+{
+  "type": "warning",
+  "body": "**Current implementation of `org.apache.ignite.cache.store.cassandra.utils.datasource.DataSource` doesn't implement `Serializable`, thus for distributed Ignite clusters, `CassandraCacheStoreFactory` could only be setup through Spring XML file, but not from code.**"
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
