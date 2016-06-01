@@ -54,7 +54,7 @@ There are two main properties which should be specified for `CassandraCacheStore
 }
 [/block]
 In the below section these two beans and their configuration settings will be described in details.
-##DataSourceBean
+#DataSourceBean
 [block:api-header]
 {
   "type": "basic",
