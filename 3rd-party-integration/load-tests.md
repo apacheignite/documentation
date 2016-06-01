@@ -14,7 +14,7 @@ Load tests for Cassandra module are provided as a part of tests source code of t
 
 After building Ignite distribution from the source code you will be able to find `target/tests-package` directory inside Cassandra module directory (and `target/ignite-cassandra-tests-<version>.zip` archive of this directory as well). The directory contains ready to use load tests application for Ignite Cassandra module and has such structure:
 
-* **bootstrap** - directory containing bootstrap scripts for [AWS infrastructure deployment]() framework
+* **bootstrap** - directory containing bootstrap scripts for [AWS infrastructure deployment](doc:aws-infrastructure-deployment) framework
 
 * **lib** - directory containing all the required **jars** to communicate with Ignite and Cassandra. If you are going to run load tests for your custom key/value classes, you should create a separate **jar** for them and put it inside this directory (see more details in the next chapters).
 
@@ -179,13 +179,13 @@ Thus to simulate the real load for your cluster you just need to run the same lo
 [block:callout]
 {
   "type": "info",
-  "body": "If you plan to run load tests using [AWS infrastructure](https://aws.amazon.com/products/?nc2=h_ql_sf_ls), you can just use [AWS infrastructure deployment](#aws-test), which automatically takes care about all the routine (create and bootstrap required amount of EC2 instances for `Ignite/Cassandra/Tests` clusters, run load tests and wait for their completion, collect all the load tests statistics from each EC2 instance and produce summary report). As a bonus you'll also have `Cassandra/Ignite/Tests` clusters monitoring based on [Ganglia](http://ganglia.info/) which allows you to see what's going on with your clusters under high load."
+  "body": "If you plan to run load tests using [AWS infrastructure](https://aws.amazon.com/products/?nc2=h_ql_sf_ls), you can just use [AWS infrastructure deployment](doc:aws-infrastructure-deployment), which automatically takes care about all the routine (create and bootstrap required amount of EC2 instances for `Ignite/Cassandra/Tests` clusters, run load tests and wait for their completion, collect all the load tests statistics from each EC2 instance and produce summary report). As a bonus you'll also have `Cassandra/Ignite/Tests` clusters monitoring based on [Ganglia](http://ganglia.info/) which allows you to see what's going on with your clusters under high load."
 }
 [/block]
 
 [block:callout]
 {
   "type": "info",
-  "body": "It's recommended to execute **recreate-cassandra-artifacts.sh / recreate-cassandra-artifacts.bat** script, before running load tests. The script will clean up all the Cassandra keyspace/tables which exists from the previous load tests execution. Otherwise statistics could be not very accurate. If you are using [AWS infrastructure deployment](#aws-test) this will be done for you automatically."
+  "body": "It's recommended to execute **recreate-cassandra-artifacts.sh / recreate-cassandra-artifacts.bat** script, before running load tests. The script will clean up all the Cassandra keyspace/tables which exists from the previous load tests execution. Otherwise statistics could be not very accurate. If you are using [AWS infrastructure deployment](doc:aws-infrastructure-deployment) this will be done for you automatically."
 }
 [/block]
