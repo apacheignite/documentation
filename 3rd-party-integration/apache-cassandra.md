@@ -49,7 +49,8 @@ There are two main properties which should be specified for `CassandraCacheStore
 [block:callout]
 {
   "type": "warning",
-  "body": "**Current implementation of `org.apache.ignite.cache.store.cassandra.utils.datasource.DataSource` doesn't implement `Serializable`, thus for distributed Ignite clusters, `CassandraCacheStoreFactory` could only be setup through Spring XML file, but not from code.**"
+  "body": "Current implementation of `org.apache.ignite.cache.store.cassandra.utils.datasource.DataSource` doesn't implement `Serializable`, thus for distributed Ignite clusters, `CassandraCacheStoreFactory` could only be setup through Spring XML file, but not from code.",
+  "title": "Serializable"
 }
 [/block]
 
