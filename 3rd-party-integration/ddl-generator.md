@@ -4,6 +4,6 @@ You just need to build XML configuration document ([persistence descriptor](doc:
 [block:callout]
 {
   "type": "danger",
-  "title": "IN THE CONNECTION SETTINGS FOR CASSANDRA, YOU SHOULD SPECIFY USER HAVING ENOUGH PERMISSIONS TO CREATE KEYSPACES/TABLES"
+  "title": "In connection settings for cassandra, you should specify user having enough permissions to create keyspaces/tables"
 }
 [/block]
