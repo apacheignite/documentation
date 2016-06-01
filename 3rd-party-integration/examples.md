@@ -149,3 +149,62 @@ Persistence setting for Ignite cache with keys of `Integer` type to be persisted
 }
 [/block]
 Keys will be stored in `key` column (which is used by default if `column` attribute wasn't specified). Values will be stored in `value` column.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example 3"
+}
+[/block]
+Persistence setting for Ignite cache with keys of `Integer` type and values of **any** type, both to be persisted as `BLOB` in Cassandra.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<persistence keyspace=\"test1\" table=\"my_table\">\n    <!-- By default Java standard serialization is going to be used -->\n    <keyPersistence class=\"java.lang.Integer\"\n                    strategy=\"BLOB\"/>\n\n    <!-- Kryo serialization specified to be used -->\n    <valuePersistence class=\"org.apache.ignite.tests.pojos.Person\"\n                      strategy=\"BLOB\"\n                      serializer=\"org.apache.ignite.cache.store.cassandra.utils.serializer.KryoSerializer\"/>\n</persistence>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Keys will be stored in `key` column having `blob` type and using [Java standard serialization](https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html). Values will be stored in `value` column having 'blob' type and using [Kryo serialization](https://github.com/EsotericSoftware/kryo).
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example 4"
+}
+[/block]
+Persistence setting for Ignite cache with keys of `Integer` type to be persisted as `int` in Cassandra and values of custom POJO `org.apache.ignite.tests.pojos.Person` type to be dynamically analyzed and persisted into a set of table columns, so that each POJO field will be mapped to appropriate table column. For more details about dynamic POJO fields discovery read [this](doc:base-concepts#persistencesettingsbean) section from [Base concepts](doc:base-concepts).
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<persistence keyspace=\"test1\" table=\"my_table\">\n    <keyPersistence class=\"java.lang.Integer\" strategy=\"PRIMITIVE\"/>\n    <valuePersistence class=\"org.apache.ignite.tests.pojos.Person\" strategy=\"POJO\"/>\n</persistence>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Keys will be stored in `key` column having `int` type. 
+
+Now lets imagine that `org.apache.ignite.tests.pojos.Person` class has such an implementation:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "public class Person {\n    private String firstName;\n    private String lastName;\n    private int age;\n    private boolean married;\n    private long height;\n    private float weight;\n    private Date birthDate;\n    private List<String> phones;\n\n    public void setFirstName(String name) {\n        firstName = name;\n    }\n\n    public String getFirstName() {\n        return firstName;\n    }\n\n    public void setLastName(String name) {\n        lastName = name;\n    }\n\n    public String getLastName() {\n        return lastName;\n    }\n\n    public void setAge(int age) {\n        this.age = age;\n    }\n\n    public int getAge() {\n        return age;\n    }\n\n    public void setMarried(boolean married) {\n        this.married = married;\n    }\n\n    public boolean getMarried() {\n        return married;\n    }\n\n    public void setHeight(long height) {\n        this.height = height;\n    }\n\n    public long getHeight() {\n        return height;\n    }\n\n    public void setWeight(float weight) {\n        this.weight = weight;\n    }\n\n    public float getWeight() {\n        return weight;\n    }\n\n    public void setBirthDate(Date date) {\n        birthDate = date;\n    }\n\n    public Date getBirthDate() {\n        return birthDate;\n    }\n\n    public void setPhones(List<String> phones) {\n        this.phones = phones;\n    }\n\n    public List<String> getPhones() {\n        return phones;\n    }\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+In this case Ignite cache values of `org.apache.ignite.tests.pojos.Person` type will be persisted into a set of Cassandra table columns using such dynamically configured mapping rule:
+
+| POJO field    | Table column     | Column type |
+| :-------------| :----------------| :----------|
+| firstName     | firstname        | text    |
+| lastName      | lastname         | text    |
+| age           | age              | int     |
+| married       | married          | boolean |
+| height        | height           | bigint    |
+| weight        | weight           | float    |
+| birthDate     | birthdate        | timestamp    |
