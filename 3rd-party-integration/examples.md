@@ -209,3 +209,9 @@ In this case Ignite cache values of `org.apache.ignite.tests.pojos.Person` type 
 | weight        | weight           | float    |
 | birthDate     | birthdate        | timestamp    |
 As you can see from the table above, `phones` field will not be persisted into table. That's because it's not of simple java type which could be directly mapped to [appropriate](http://docs.datastax.com/en/developer/java-driver/1.0/java-driver/reference/javaClass2Cql3Datatypes_r.html) Cassandra type. Such kind of fields could be persisted into Cassandra only if you manually specify all mapping details for the object type and if field type itself is implementing `java.io.Serializable` interface. In a such case field will be persisted into a separate table column as `blob`. See more details in the next example.
+[block:callout]
+{
+  "type": "success",
+  "body": "Provided example shows that - it's very easy to setup persistence for POJO objects by using very simple configuration and relying on dynamic object fields mapping."
+}
+[/block]
