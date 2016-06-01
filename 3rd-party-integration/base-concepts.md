@@ -158,7 +158,7 @@ Available serializer implementations:
 | <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.JavaSerializer** | <sup>Uses standard Java serialization framework |
 | <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.KryoSerializer** | <sup>Uses Kryo serialization framework |
 
-If you are using **PRIMITIVE** or **BLOB** persistence strategy you don't need to specify internal elements of `keyPersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by 'column' attribute).
+If you are using **PRIMITIVE** or **BLOB** persistence strategy you don't need to specify internal elements of `keyPersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by `column` attribute).
 
 If you are using **POJO** persistence strategy you have two option:
 * Leave `keyPersistence` tag empty - in a such case, all the fields of POJO object class will be detected automatically using such rules:
@@ -254,7 +254,7 @@ Available serializer implementations (same as for key persistence settings):
 | <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.JavaSerializer** | <sup>Uses standard Java serialization framework |
 | <sup>**org.apache.ignite.cache.store.cassandra.utils.serializer.KryoSerializer** | <sup>Uses Kryo serialization framework |
 
-If you are using **PRIMITIVE** or **BLOB** persistence strategy you don't need to specify internal elements of `valuePersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by 'column' attribute).
+If you are using **PRIMITIVE** or **BLOB** persistence strategy you don't need to specify internal elements of `valuePersistence` tag, cause the idea of these two strategies is that the whole object should be persisted into one column of Cassandra table (which could be specified by `column` attribute).
 
 If you are using POJO persistence strategy you have two option (similar to two options for keys):
 * Leave `valuePersistence` tag empty - in a such case, all the fields of POJO object class will be detected automatically using such rules:
