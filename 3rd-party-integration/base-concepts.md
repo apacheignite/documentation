@@ -182,7 +182,7 @@ Next two sections are providing detailed specification for **partition** and **c
 {
   "type": "info",
   "title": "Optional element",
-  "body": "Container for `field` elemts."
+  "body": "Container for `field` elemets."
 }
 [/block]
 Defines **Ignite cache** KEY object fields (inside it), which should be used as a **partition key** fields in Cassandra table and specifies fields mappings to table columns.
