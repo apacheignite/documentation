@@ -1,21 +1,3 @@
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Index"
-}
-[/block]
-* [Base concepts](#base-concepts)
-* [Examples](#examples)
-* [DDL generator](#ddl-generator)
-* [Load tests](#load-tests)
-* [AWS infrastructure deployment](doc:aws-infrastructure-deployment)
-* [Unit tests](doc:unit-tests)
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Overview"
-}
-[/block]
 Ignite Cassandra module implements [persistent store](doc:persistent-store) for Ignite caches by utilizing Cassandra as a persistent storage for expired cache records.
 
 It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-store#cachejdbcblobstore) and [CacheJdbcPojoStore](doc:persistent-store#cachejdbcpojostore) and provides such benefits:
@@ -28,4 +10,16 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
 6. Supports Standard [Java](https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html) and [Kryo](https://github.com/EsotericSoftware/kryo) serialization for key-values which should be stored as a BLOB in Cassandra
 7. Supports Cassandra [secondary indexes](http://docs.datastax.com/en/cql/3.0/cql/cql_reference/create_index_r.html) (including custom indexes) through persistence configuration settings for particular Ignite cache or such settings could be detected automatically if you configured [SQL Indexes by Annotations](doc:sql-queries#configuring-sql-indexes-by-annotations) by using `@QuerySqlField(index = true)` annotation
 8. Supports sort order for Cassandra cluster key fields through persistence configuration settings or such settings could be detected automatically if you are using `@QuerySqlField(descending = true)` annotation.
-9. Supports [Affinity Collocation](doc:affinity-collocation) for the POJO key classes having one of their fields annotated by `@AffinityKeyMapped`. In a such way, key-values pairs which were stored on one node in Ignite cache will be also stored (collocated) on one node in Cassandra.
+9. Supports [Affinity Collocation](doc:affinity-collocation) for the POJO key classes having one of their fields annotated by `@AffinityKeyMapped`. In a such way, key-values pairs which were stored on one node in Ignite cache will be also stored (collocated) on one node in Cassandra. 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Index"
+}
+[/block]
+* [Base concepts](#base-concepts)
+* [Examples](#examples)
+* [DDL generator](#ddl-generator)
+* [Load tests](#load-tests)
+* [AWS infrastructure deployment](doc:aws-infrastructure-deployment)
+* [Unit tests](doc:unit-tests)
