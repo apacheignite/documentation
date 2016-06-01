@@ -56,7 +56,6 @@ There are two main properties which should be specified for `CassandraCacheStore
 In the below section these two beans and their configuration settings will be described in details.
 #DataSourceBean
 This bean stores all the details required for Cassandra database connection and CRUD operations. In the table below you can find all the bean properties:
-
 | Property      | Default          | Description |
 | :-------------| :----------------| :-----|
 | <sup>**user**      |  | <sup>User name used to connect to Cassandra |
