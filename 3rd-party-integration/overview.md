@@ -17,7 +17,7 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
   "title": "Index"
 }
 [/block]
-* [Overview](#overview)
+* [Overview](doc:overview)
 * [Base concepts](#base-concepts)
 * [Examples](#examples)
 * [DDL generator](#ddl-generator)
