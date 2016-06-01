@@ -25,3 +25,43 @@ Lets start from the cache configuration details. They are pretty similar for bot
 }
 [/block]
 First of all we can see that [read-through and write-through](doc:persistent-store#read-through-and-write-through) options are enabled:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<property name=\"readThrough\" value=\"true\"/>\n<property name=\"writeThrough\" value=\"true\"/>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+which is required for Ignite cache, if you plan to use persistent store for cache entries which expired.
+
+You can optionally specify [write-behind](doc:persistent-store#write-behind-caching) setting if you prefer persistent store to be updated asynchronously:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<property name=\"writeBehindEnabled\" value=\"true\"/>",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+The next important thing is `CacheStoreFactory` configuration:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<property name=\"cacheStoreFactory\">\n    <bean class=\"org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory\">\n        <property name=\"dataSourceBean\" value=\"cassandraAdminDataSource\"/>\n        <property name=\"persistenceSettingsBean\" value=\"cache1_persistence_settings\"/>\n    </bean>\n</property>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+You should use `org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory` as a `CacheStoreFactory` for your Ignite cache to utilize Cassandra as a persistent store. For `CassandraCacheStoreFactory` you should specify two required properties:
+* **dataSourceBean** - name of the Spring bean, which specifies all the details about Cassandra database connection. For more details visit this [link](doc:base-concepts#datasourcebean). 
+
+* **persistenceSettingsBean** - name of the Spring bean, which specifies all the details about how objects should be persisted into Cassandra database. For more details visit this [link](doc:base-concepts#persistencesettingsbean).
+
+In the specified example `cassandraAdminDataSource` is a data source bean, which is imported into Ignite cache config file using this directive:
