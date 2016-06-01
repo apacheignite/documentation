@@ -11,3 +11,16 @@ Below is an example of typical configuration for Ignite cache to use Cassandra a
   ]
 }
 [/block]
+In the specified example we have two Ignite caches configured: `cache1` and `cache2`. So lets look at the configuration details.
+
+Lets start from the cache configuration details. They are pretty similar for both caches (**cache1** and **cache2**) and looks like that:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <property name=\"name\" value=\"cache1\"/>\n    <property name=\"readThrough\" value=\"true\"/>\n    <property name=\"writeThrough\" value=\"true\"/>\n    <property name=\"cacheStoreFactory\">\n        <bean class=\"org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory\">\n            <property name=\"dataSourceBean\" value=\"cassandraAdminDataSource\"/>\n            <property name=\"persistenceSettingsBean\" value=\"cache1_persistence_settings\"/>\n        </bean>\n    </property>\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
