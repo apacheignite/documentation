@@ -82,7 +82,6 @@ Root container for persistence settings configuration.
   "body": ""
 }
 [/block]
-
 | **Attribute**      | **Required**      | **Description**          |
 | :-------------| :-------------| :----------------|
 | <sup>**keyspace**      | <sup>yes | <sup>Keyspace for Cassandra tables which should be used to store key/value pairs. If keyspace doesn't exist it will be created (if specified Cassandra account has appropriate permissions). |
