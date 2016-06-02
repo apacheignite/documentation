@@ -1,6 +1,6 @@
 * [Ignition Class](doc:ignite-life-cycle#ignition-class)
-  * [LifeCycleBean](doc:ignite-life-cycle#lifecyclebean)
-  * [Lifecycle Event Types](doc:ignite-life-cycle#lifecycle-event-types) 
+* [LifeCycleBean](doc:ignite-life-cycle#lifecyclebean)
+* [Lifecycle Event Types](doc:ignite-life-cycle#lifecycle-event-types) 
 [block:api-header]
 {
   "type": "basic"
