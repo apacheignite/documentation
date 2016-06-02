@@ -66,3 +66,33 @@ After building Ignite distribution from the source code you will be able to find
 All the details of the Amazon infrastructure deployment are configured by scripts from `bootstrap/aws` directory of the tests package. 
 
 Now lets take a look at the `bootstrap` directory and framework configuration settings in more details.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Framework structure"
+}
+[/block]
+All infrastructure deployment settings are specified in the shell scripts inside `bootstrap` directory of the tests package. The directory itself has such a structure:
+* **aws** - root directory for AWS bootstrap shell scripts.
+  * **cassandra** - root directory for shell scripts to spin up Cassandra cluster.
+     * **cassandra-bootstrap.sh** - bootstrap script for EC2 nodes of Cassandra cluster. You should only modify **TESTS_PACKAGE_DONLOAD_URL** environment variable (see next chapters).
+     * **cassandra-env.sh** - Cassandra daemon environment configuration script. You can modify it according to your custom use-case, but be careful cause incorrect modifications could prevent Cassandra daemon to start correctly.
+	 * **cassandra-start.sh** - shell script used by the framework to start Cassandra cluster. **Don't modify this file**.
+	 * **cassandra-template.yaml** - Cassandra YAML configuration file. You can modify it according to your custom use-case, but be careful cause incorrect modifications could prevent Cassandra daemon to start correctly.
+  * **ganglia** - root directory for shell scripts to spin up [Ganglia](http://ganglia.info/) monitoring system.
+	 * **agent-bootstrap.sh** - Ganglia agent bootstrap script. **Don't modify this file**.
+	 * **agent-start.sh** - Ganglia agent start script. **Don't modify this file**.
+	 * **master-bootstrap.sh** - Ganglia master bootstrap script. You should only modify **TESTS_PACKAGE_DONLOAD_URL** environment variable (see next chapters). 
+  * **ignite** - root directory for shell scripts to spin up Ignite cluster.
+	 * **ignite-bootstrap.sh** - bootstrap script for EC2 nodes of Ignite cluster. You should only modify **TESTS_PACKAGE_DONLOAD_URL** environment variable (see next chapters).
+	 * **ignite-cassandra-server-template.xml** - Ignite daemon Spring context configuration. You can modify it according to your custom use-case, but be careful cause incorrect modifications could prevent Ignite daemon to start correctly.
+	 * **ignite-env.sh** - Ignite daemon environment configuration script. You can modify it according to your custom use-case, but be careful cause incorrect modifications could prevent Ignite daemon to start correctly. 
+	 * **ignite-start.sh** - shell script used by the framework to start Ignite cluster. **Don't modify this file**.   
+  * **tests** - root directory for shell scripts to spin up Tests cluster.
+	 * **ignite-cassandra-client-template.xml** - Ignite client Spring context configuration. You can modify it according to your custom use-case, but be careful cause incorrect modifications could prevent Ignite client to connect to server.
+	 * **tests-bootstrap.sh** - bootstrap script for EC2 nodes of Tests cluster. You should only modify **TESTS_PACKAGE_DONLOAD_URL** environment variable (see next chapters).
+	 * **tests-manager.sh** - tests manager daemon script. **Don't modify this file**.
+	 * **tests-report.sh** - shell script which is responsible for collecting tests statistic from all EC2 instances, generating summary report and uploading it to S3. **Don't modify this file**.     
+  * **common.sh** - shell script defining common functions to reuse. **Don't modify this file**.
+  * **env.sh** - shell scripts defining environment variables for the infrastructure. This is the main script to specify settings for AWS infrastructure which should be created (see next chapters).
+  * **logs-collector.sh** - shell script for logs collector daemon, which is responsible for collecting logs from all EC2 instances and uploading them to S3. **Don't modify this file**.
