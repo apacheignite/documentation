@@ -1,4 +1,4 @@
-This documentation contains the following blocks related to Transactions in Ignite:
+This documentation contains the following topics related to Transactions in Ignite:
 
 - [Atomicity Mode](doc:transactions#atomicity-mode)
 - [Ignite Transactions](doc:transactions#ignitetransactions)
