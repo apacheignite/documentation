@@ -117,7 +117,7 @@ Lets now look at how to configure framework to deploy your custom infrastructure
   * **bootstrap/aws/tests/tests-bootstrap.sh**
 6. Inside **Tests package** update `bootstrap/aws/env.sh` shell script (which is used to specifies all the main settings) by specifying such environment variables:
 
-  | Variable      | Description |
+| Variable      | Description |
 | :-------------| :-----|
 | <sup>**EC2_INSTANCE_REGION**      | <sup>[Amazon region](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) where you are going to launch all EC2 instances|
 | <sup>**EC2_OWNER_TAG**      | <sup>Sets `owner` tag for all the EC2 instances to specified value. This element is optional and makes sense for reporting when you are managing rather big AWS infrastructures and want to distinguish EC2 nodes related to different owners. |
