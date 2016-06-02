@@ -143,3 +143,29 @@ Lets now look at how to configure framework to deploy your custom infrastructure
   * **bootstrap/aws/tests/tests-bootstrap.sh**
 
 That's all the steps you need to do to prepare framework for deployment of your custom infrastructure in Amazon and launching load tests.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Deployment"
+}
+[/block]
+As far as you already prepared everything, lets deploy all the clusters in Amazon and launch load tests.
+
+For each of the cluster (Cassandra, Ignite, Tests) you should do such steps:
+
+1. Use EC2 web console to create appropriate number of EC2 instances. You can also create a spot request asking for appropriate number of EC2 instances, which makes sense cause spot instances can dramatically decrease the cost of your infrastructure (in the next steps of the guide we will spot requests).
+2. On the first step of the wizard select any EC2 image which has [yum](https://access.redhat.com/solutions/9934) as its package manager. For example: `Amazon Linux AMI`, `Red Hat`, `CentOs`
+3. On the next step select instance type.
+4. On the next step specify instance details and **make sure that**:
+  * You specified correct number of EC2 instances. According to the cluster type it should be one of the values `CASSANDRA_NODES_COUNT`, `IGNITE_NODES_COUNT`, `TEST_NODES_COUNT` you specified in `bootstrap/aws/env.sh` file of step 6 during [framework configuration](https://github.com/irudyak/ignite/wiki/AWS-infrastructure-deployment#configuration-details).
+  * You specified correct `IAM Role` according to the step 3 from [Prerequisites](https://github.com/irudyak/ignite/wiki/AWS-infrastructure-deployment#prerequisites) section.
+  * You specified one of the bootstrap scripts from step 9 of the [Configuration details](https://github.com/irudyak/ignite/wiki/AWS-infrastructure-deployment#configuration-details) section, which corresponds to the cluster type (Ignite, Cassandra, Tests) you are going to create.
+5. On the next step specify storage for your EC2 instances.
+6. On the next step specify tags for your instances (or spot requests).
+7. On the next step specify security group for your instances and launch them.
+
+If you want to have Ganglia monitoring for your clusters the procedure to setup Ganglia master (server which has Web UI and other servers report their metrics) is pretty much the same as described above. The only difference is that in step 4 (above) you should specify only one EC2 instance - cause there are no reasons to have multiple masters.
+
+Congratulations!!! You just started deployment procedure which will setup all the infrastructure and launch load tests. 
+
+Lets now look at how we can monitor the status of deployment process (and load tests execution), cause you want to know how thing are going.
