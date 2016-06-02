@@ -11,7 +11,7 @@ When preparing and planning for a system capacity planning is an integral part o
 - Calculate primary data size: multiply the size of one entry in bytes by the total number of entries
 - If you have backups, multiply by their number
 - Indexes also require memory. Basic use cases will add a 30% increase
-- Add around 20MB per cache. (This value can be reduced if you explicitly set `IgniteSystemProperties.IGNITE_ATOMIC_CACHE_DELETE_HISTORY_SIZE to a smaller value than default.`)
+- Add around 20MB per cache. (This value can be reduced if you explicitly set `IgniteSystemProperties.IGNITE_ATOMIC_CACHE_DELETE_HISTORY_SIZE` to a smaller value than default.)
 - Add around 200-300MB per node for internal memory and reasonable amount of memory for JVM and GC to operate efficiently
 [block:callout]
 {
