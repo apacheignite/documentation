@@ -5,7 +5,7 @@
 * [Modifying Binary Objects Using BinaryObjectBuilder](doc:binary-marshaller#modifying-binary-objects-using-binaryobjectbuilder)
 * [BinaryObject Type Metadata](doc:binary-marshaller#binaryobject-type-metadata)
 * [BinaryObject and CacheStore](doc:binary-marshaller#binaryobject-and-cachestore)
-* Binary Name Mapper and Binary ID Mapper](doc:binary-marshaller#binary-name-mapper-and-binary-id-mapper)
+* [Binary Name Mapper and Binary ID Mapper](doc:binary-marshaller#binary-name-mapper-and-binary-id-mapper)
 
 [block:api-header]
 {
