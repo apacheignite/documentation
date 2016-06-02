@@ -260,3 +260,15 @@ Each time all `Tests` EC2 instances completed with load tests execution, it will
 * **failed-nodes** - file with hostnames of instances failed to execute load tests
 * **succeed-nodes** - file with hostnames of instances succeed to execute load tests
 * **report.txt** - report itself
+
+Here is an example of such report:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Test type         : ignite\nTest nodes count  : 20\nTest nodes succeed: 20\nTest nodes failed : 0\n----------------------------------------------------------------------------------------------\nSucceed test nodes |\n-------------------\nip-10-2-66-154.us-west-2.compute.internal\nip-10-2-67-148.us-west-2.compute.internal\nip-10-2-67-187.us-west-2.compute.internal\nip-10-2-69-189.us-west-2.compute.internal\nip-10-2-70-152.us-west-2.compute.internal\nip-10-2-71-34.us-west-2.compute.internal\nip-10-2-72-54.us-west-2.compute.internal\nip-10-2-76-164.us-west-2.compute.internal\nip-10-2-78-129.us-west-2.compute.internal\nip-10-2-78-140.us-west-2.compute.internal\nip-10-2-80-141.us-west-2.compute.internal\nip-10-2-80-165.us-west-2.compute.internal\nip-10-2-80-89.us-west-2.compute.internal\nip-10-2-81-240.us-west-2.compute.internal\nip-10-2-87-183.us-west-2.compute.internal\nip-10-2-90-138.us-west-2.compute.internal\nip-10-2-90-88.us-west-2.compute.internal\nip-10-2-91-124.us-west-2.compute.internal\nip-10-2-94-60.us-west-2.compute.internal\nip-10-2-95-151.us-west-2.compute.internal\n----------------------------------------------------------------------------------------------\nWRITE test metrics |\n-------------------\nMessages: 24091321\nSpeed   : 80173 msg/sec\nErrors  : 0\n----------------------------------------------------------------------------------------------\nBULK_WRITE test metrics |\n------------------------\nMessages: 28765200\nSpeed   : 95946 msg/sec\nErrors  : 0\n----------------------------------------------------------------------------------------------\nREAD test metrics |\n------------------\nMessages: 39980897\nSpeed   : 133222 msg/sec\nErrors  : 0\n----------------------------------------------------------------------------------------------\nBULK_READ test metrics |\n-----------------------\nMessages: 55773300\nSpeed   : 186171 msg/sec\nErrors  : 0\n----------------------------------------------------------------------------------------------",
+      "language": "text"
+    }
+  ]
+}
+[/block]
