@@ -230,3 +230,19 @@ There are also additional set of system S3 folders for `Tests` EC2 instances. Th
 }
 [/block]
 In case when you also deployed `Ganglia` master EC2 instance, you can also use Ganglia to monitor your clusters. Just use this url to access Ganglia web UI: `http://<master-host-name>/ganglia`. There will be three different clusters configured corresponding to `Ignite`, `Cassandra` and `Tests`.
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://www.filepicker.io/api/file/pzNKEATaTt1T33GDKKmC",
+        "ganglia.png",
+        "2314",
+        "5160",
+        "#d81e2b",
+        ""
+      ]
+    }
+  ]
+}
+[/block]
