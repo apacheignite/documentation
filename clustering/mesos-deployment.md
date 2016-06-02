@@ -289,9 +289,13 @@ All configuration is handled through environment variables (this lends itself we
     "16-0": "`IGNITE_PACKAGE_PATH`",
     "16-1": "Path to Apache Ignite archive. This parameter might be useful when access to internet is limited.",
     "16-2": "`N/A`",
-    "16-3": "`/opt/ignite/apache-ignite-fabric-1.5.0.final-bin.zip`"
+    "16-3": "`/opt/ignite/apache-ignite-fabric-1.5.0.final-bin.zip`",
+    "17-0": "`IGNITE_JVM_OPTS`",
+    "17-1": "Environment variable used by Ignite in its startup script to configure parameters.",
+    "17-2": "`N/A`",
+    "17-3": "`-XX:+PrintGCDetails -verbose:gc -XX:+UseConcMarkSweepGC`"
   },
   "cols": 4,
-  "rows": 17
+  "rows": 18
 }
 [/block]
