@@ -96,3 +96,50 @@ All infrastructure deployment settings are specified in the shell scripts inside
   * **common.sh** - shell script defining common functions to reuse. **Don't modify this file**.
   * **env.sh** - shell scripts defining environment variables for the infrastructure. This is the main script to specify settings for AWS infrastructure which should be created (see next chapters).
   * **logs-collector.sh** - shell script for logs collector daemon, which is responsible for collecting logs from all EC2 instances and uploading them to S3. **Don't modify this file**.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuration details"
+}
+[/block]
+Lets now look at how to configure framework to deploy your custom infrastructure in Amazon:
+
+1. First of all you should build Ignite from the source code. As a result you'll have two artifacts:
+  * **Ignite package** - which represents zip archive and could be found in the `target/bin` directory inside source code root directory.
+  * **Tests package** - which represent zip archive naming like `ignite-cassandra-tests-<version>.zip` and could be found in the `modules/cassandra/target` directory inside source code root directory.
+2. You should have some folder on S3 which will be used as a root for framework system data.
+3. Inside S3 root folder create another folder (name doesn't important) where you will upload your **Ignite package** and **Tests package** with your custom environment settings (see next steps).
+4. Inside S3 root folder create another folder (name doesn't important) where framework will store all its system info and metadata.
+5. Inside **Tests package** update shell scripts specified below, by setting only **TESTS_PACKAGE_DONLOAD_URL** environment variable pointing to the S3 location where you are going to upload **Tests package** (should be a file on S3 inside the folder which you created on step 3)
+  * **bootstrap/aws/cassandra/cassandra-bootstrap.sh**
+  * **bootstrap/aws/ganglia/master-bootstrap.sh**
+  * **bootstrap/aws/ignite/ignite-bootstrap.sh**
+  * **bootstrap/aws/tests/tests-bootstrap.sh**
+6. Inside **Tests package** update `bootstrap/aws/env.sh` shell script (which is used to specifies all the main settings) by specifying such environment variables:
+
+  | Variable      | Description |
+  | :-------------| :-----|
+  | <sup>**EC2_INSTANCE_REGION**      | <sup>[Amazon region](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) where you are going to launch all EC2 instances|
+  | <sup>**EC2_OWNER_TAG**      | <sup>Sets `owner` tag for all the EC2 instances to specified value. This element is optional and makes sense for reporting when you are managing rather big AWS infrastructures and want to distinguish EC2 nodes related to different owners. |
+  | <sup>**EC2_PROJECT_TAG**      | <sup>Sets `project` tag for all the EC2 instances to specified value. This element is optional and makes sense for reporting when you are managing rather big AWS infrastructures and want to distinguish EC2 nodes related to different projects. |
+  | <sup>**EC2_CASSANDRA_TAG**      | <sup>Sets `Name` tag for all the EC2 instances of Cassandra cluster to specified value. This element is optional.|
+  | <sup>**EC2_IGNITE_TAG**      | <sup>Sets `Name` tag for all the EC2 instances of Ignite cluster to specified value. This element is optional.|
+  | <sup>**EC2_TEST_TAG**      | <sup>Sets `Name` tag for all the EC2 instances of Tests cluster to specified value. This element is optional.|
+  | <sup>**EC2_GANGLIA_TAG**      | <sup>Sets `Name` tag for the EC2 instance of Ganglia master to specified value. This element is optional.|
+  | <sup>**CASSANDRA_NODES_COUNT**      | <sup>Number of EC2 nodes in Cassandra cluster. This is very important parameter, cause framework will wait until this number of Cassandra nodes up and running before launching load tests.|
+  | <sup>**IGNITE_NODES_COUNT**      | <sup>Number of EC2 nodes in Ignite cluster. This is very important parameter, cause framework will wait until this number of Ignite nodes up and running before launching load tests.|
+  | <sup>**TEST_NODES_COUNT**      | <sup>Number of EC2 nodes in Tests cluster. This is very important parameter, cause framework will wait until this number of Tests nodes up and running before launching load tests.|
+  | <sup>**TESTS_TYPE**      | <sup>Type of the load tests to launch. There only two options: `ignite` or `cassandra`|
+  | <sup>**S3_ROOT**      | <sup>S3 root folder from the step 2|
+  | <sup>**S3_DOWNLOADS**      | <sup>S3 folder from the step 3|
+  | <sup>**S3_SYSTEM**      | <sup>S3 folder from the step 4|
+  | <sup>**TESTS_PACKAGE_DONLOAD_URL**      | <sup>S3 url from step 5 pointing to the location of tests package|
+7. Inside **Tests package** update `settings/tests.properties` load tests configuration file, to reflect your custom use-case. Visit this [link](https://github.com/irudyak/ignite/wiki/Load-tests#load-tests-settings) to read more about load tests configuration details. 
+8. Upload **Ignite package** and **Tests package** inside S3 folder from step 3.
+9. Save specified below shell scripts from updated **Tests package** on your local drive (you'll use them in the next steps to specify [User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) section for your EC2 instances): 
+  * **bootstrap/aws/cassandra/cassandra-bootstrap.sh**
+  * **bootstrap/aws/ganglia/master-bootstrap.sh**
+  * **bootstrap/aws/ignite/ignite-bootstrap.sh**
+  * **bootstrap/aws/tests/tests-bootstrap.sh**
+
+That's all the steps you need to do to prepare framework for deployment of your custom infrastructure in Amazon and launching load tests.
