@@ -18,7 +18,7 @@ Lets now dive deeper in the details and the whole idea of the framework step by 
 [block:callout]
 {
   "type": "success",
-  "title": "That's all you need to do to setup your infrastructure."
+  "title": "That's all you need to do, to setup your infrastructure."
 }
 [/block]
 The cool feature is that you don't need to wait for one cluster up and running to start creating another cluster. For example `Ignite` cluster nodes need information about `Cassandra` cluster nodes to correctly setup persistent store settings, `Tests` cluster nodes need info about nodes of both `Ignite` & `Cassandra` clusters and etc. Using the framework you can just launch creation process for all types of the clusters in parallel and framework will take care about all such details. Moreover it's the preferred way to deploy your infrastructure, cause it takes the minimum time to setup everything.
