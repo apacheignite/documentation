@@ -39,3 +39,17 @@ Framework will take care about all such details like:
 	    * All `Ignite` nodes up and running
 	    * All `Tests` nodes up and running and ready to launch tests
   * Collect load tests statistic from all EC2 nodes of `Tests` cluster, produces summary report and upload it to S3
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Prerequisites"
+}
+[/block]
+As far as framework using Amazon infrastructure it requires some prerequisites to be setup in the Amazon account where you are going to deploy all the staff. Here is the list of prerequisites:
+
+1. [AWS account](http://docs.aws.amazon.com/lambda/latest/dg/setup.html) from which you are going to deploy all the `Cassandra/Ignite/Tests` clusters infrastructure should have permissions to create [EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Instances.html) instances.
+2. The framework uses [S3](https://aws.amazon.com/s3/) to coordinate activities between `Tests` nodes and store some metadata about the system. Thus you should have some folder on S3 which is dedicated as a root folder to store all this staff.
+3. There should be [IAM Role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) which grants full access (READ/WRITE/DELETE) to the folder specified above.
+4. The IAM Role specified above, should have [permissions](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_permissions.html) to list IAM roles and assign the role specified above to EC2 instances.
+5. The IAM Role specified above, should have [permissions](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_permissions.html) to tag EC2 instances. This requirement is optional and is only needed if you want to [tag](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) your EC2 instances. It actually makes sense when you are working with rather big EC2 environments to being able to distinguish different EC2 instances.
+6. The AWS account you are using, should have access to select from existing or create new [security group](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
