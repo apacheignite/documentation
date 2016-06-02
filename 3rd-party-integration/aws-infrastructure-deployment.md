@@ -246,3 +246,17 @@ In case when you also deployed `Ganglia` master EC2 instance, you can also use G
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Tests summary report"
+}
+[/block]
+Each time all `Tests` EC2 instances completed with load tests execution, it will be automatically created summary report on S3. Its location is specified by `S3_TESTS_SUMMARY` property from `env.sh`. The report represent zip archive having such structure:
+
+* **failed** - folder with logs for `Tests` instances failed to execute load tests
+* **succeed** - folder with logs for `Tests` instances succeed to execute load tests
+* **failed-nodes** - file with hostnames of instances failed to execute load tests
+* **succeed-nodes** - file with hostnames of instances succeed to execute load tests
+* **report.txt** - report itself
