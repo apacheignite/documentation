@@ -44,7 +44,7 @@ Here is an example of how to select [Cluster Group](doc:cluster-groups) with onl
 {
   "codes": [
     {
-      "code": "gniteCluster cluster = ignite.cluster();\n\n// Dynamic cluster group representing the youngest cluster node.\n// Will automatically shift to the next oldest, if the oldest\n// node crashes.\nClusterGroup youngestNode = cluster.forYoungest();",
+      "code": "gniteCluster cluster = ignite.cluster();\n\n// Dynamic cluster group representing the youngest cluster node.\n// Will automatically shift to the next youngest , if the youngest\n// node crashes.\nClusterGroup youngestNode = cluster.forYoungest();",
       "language": "java"
     }
   ]

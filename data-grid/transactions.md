@@ -15,6 +15,14 @@ However, regardless of which mode you use, as long as your cluster is alive, the
   "body": "You can combine multiple operations from different caches into one transaction. Note that this allows to update caches of different types, like `REPLICATED` and `PARTITIONED` caches, in one transaction."
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "Near caches are fully transactional and get updated or invalidated automatically whenever the data changes on the servers.",
+  "title": "Near Cache Transactions"
+}
+[/block]
 You can obtain an instance of `IgniteTransactions` as follows:
 [block:code]
 {

@@ -12,12 +12,12 @@ You can limit job execution, service deployment, messaging, events, and other ta
 {
   "codes": [
     {
-      "code": "final Ignite ignite = Ignition.ignite();\n\nIgniteCluster cluster = ignite.cluster();\n\n// Get compute instance which will only execute\n// over remote nodes, i.e. not this node.\nIgniteCompute compute = ignite.compute(cluster.forRemotes());\n\n// Broadcast to all remote nodes and print the ID of the node \n// on which this closure is executing.\ncompute.broadcast(() -> System.out.println(\"Hello Node: \" + ignite.cluster().localNode().id());\n",
+      "code": "final Ignite ignite = Ignition.ignite();\n\nIgniteCluster cluster = ignite.cluster();\n\n// Get compute instance which will only execute\n// over remote nodes, i.e. not this node.\nIgniteCompute compute = ignite.compute(cluster.forRemotes());\n\n// Broadcast to all remote nodes and print the ID of the node \n// on which this closure is executing.\ncompute.broadcast(() -> System.out.println(\"Hello Node: \" + ignite.cluster().localNode().id()));\n",
       "language": "java",
       "name": "broadcast"
     },
     {
-      "code": "final Ignite ignite = Ignition.ignite();\n\nIgniteCluster cluster = ignite.cluster();\n\n// Get compute instance which will only execute\n// over remote nodes, i.e. not this node.\nIgniteCompute compute = ignite.compute(cluster.forRemotes());\n\n// Broadcast closure only to remote nodes.\ncompute.broadcast(new IgniteRunnable() {\n    @Override public void run() {\n        // Print ID of the node on which this runnable is executing.\n        System.out.println(\">>> Hello Node: \" + ignite.cluster().localNode().id());\n    }\n}",
+      "code": "final Ignite ignite = Ignition.ignite();\n\nIgniteCluster cluster = ignite.cluster();\n\n// Get compute instance which will only execute\n// over remote nodes, i.e. not this node.\nIgniteCompute compute = ignite.compute(cluster.forRemotes());\n\n// Broadcast closure only to remote nodes.\ncompute.broadcast(new IgniteRunnable() {\n    @Override public void run() {\n        // Print ID of the node on which this runnable is executing.\n        System.out.println(\">>> Hello Node: \" + ignite.cluster().localNode().id());\n    }\n});",
       "language": "java",
       "name": "java7 broadcast"
     }

@@ -12,12 +12,12 @@ You can inject resources by either annotating a field or a method. In case you a
     {
       "code": "Ignite ignite = Ignition.ignite();\n\nCollection<String> res = ignite.compute().broadcast(new IgniteCallable<String>() {\n  \t// Inject Ignite instance.  \n  \t@IgniteInstanceResource\n    private Ignite ignite;\n\n    @Override\n    public String call() throws Exception {\n        IgniteCache<Object, Object> cache = ignite.getOrCreateCache(CACHE_NAME);\n\n        // Do some stuff with cache.\n        ...\n    }\n});",
       "language": "java",
-      "name": "Field based"
+      "name": "Field Based"
     },
     {
       "code": "public class MyClusterJob implements ComputeJob {\n    ...\n    private Ignite ignite;\n    ...\n    // Inject Ignite instance.  \n    @IgniteInstanceResource\n    public void setIgnite(Ignite ignite) {\n        this.ignite = ignite;\n    }\n    ...\n}",
       "language": "java",
-      "name": "Method based"
+      "name": "Method Based"
     }
   ]
 }

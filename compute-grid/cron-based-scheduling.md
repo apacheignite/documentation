@@ -13,7 +13,8 @@ Instances of `Runnable` and `Callable` can be scheduled for periodic execution o
 [block:callout]
 {
   "type": "warning",
-  "body": "In current implementation, Cron shorthands (@hourly, @daily, @weekly...) are not supported, and a minimal scheduling time unit is 1 minute."
+  "body": "In current implementation, Cron shorthands (@hourly, @daily, @weekly...) are not supported, and a minimal scheduling time unit is 1 minute.",
+  "title": "Cron shorthands"
 }
 [/block]
 
