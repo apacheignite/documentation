@@ -172,3 +172,31 @@ If you want to have Ganglia monitoring for your clusters the procedure to setup 
   "body": "You just started deployment procedure which will setup all the infrastructure and launch load tests."
 }
 [/block]
+Lets now look at how we can monitor the status of deployment process (and load tests execution), cause you want to know how thing are going.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Monitoring"
+}
+[/block]
+To simplify your monitoring and management tasks it makes sense to specify all the tag properties from step 6 of [Configuration details](#configuration-details) section. In a such way all your EC2 instances will be tagged (or not if something goes wrong, which will be like an indicator for you) and it will be easier for you to distinguish them.
+
+The first thing you need to do is to check the amount of each EC2 instance types (Ignite, Cassandra, Tests, Ganglia). It should be exactly the same as environment variables values (`CASSANDRA_NODES_COUNT`, `IGNITE_NODES_COUNT`, `TEST_NODES_COUNT`) you specified in `env.sh`.
+
+Once you have correct number of EC2 instances of each type up and running you can monitor how deployment process is going on by periodically browsing system state which is stored inside specific S3 folders. All the system folders are specified inside `env.sh` file. 
+
+There are some set of properties from `env.sh` file, specifying **bootstrap** system folders, which EC2 instances should use to report the state of their bootstrap process. The idea of these folders is rather simple - once instance bootstrap completed/failed it creates a subfolder inside **success**/**failure** folder with the same name as instance `hostname` and uploads there all the logs. Having a subfolder with instance `hostname` inside **success** or **failed** folder, serve like an indicator that particular instance succeed or failed to bootstrap (you can also find failure reason from logs).
+
+For `Ignite`, `Cassandra` and `Ganglia` EC2 instances, there are such set of system properties related to bootstrap:
+  * **S3_[NODE-TYPE]_BOOTSTRAP_SUCCESS** - folder for successfully bootstrapped EC2 instances 
+  * **S3_[NODE-TYPE]_BOOTSTRAP_FAILURE** - folder for failed to bootstrap EC2 instances
+  
+For `Tests` EC2 instances, there are such set of system properties related to bootstrap:
+  * **S3_TESTS_SUCCESS** - folder for successfully bootstrapped EC2 instances 
+  * **S3_TESTS_FAILURE** - folder for failed to bootstrap EC2 instances
+  
+There are also additional set of system S3 folders for `Tests` EC2 instances. They allow to monitor instance state. When instance switches from one state to another it remove file with its `hostname` from one folder and creates such file in another folder. Here is the whole list of such folders corresponding to `Tests` instances states lifecycle:
+  * **S3_TESTS_IDLE** - folder for all instances which now in **IDLE** state. Instance is in this state when there is no work for it. It's the situation when load tests execution completed, but new load tests execution is not triggered yet.
+  * **S3_TESTS_PREPARING** - folder for all instances which now in **PREPARING** state. Instance is in this state when new load tests execution was triggered. In response to this it starts preparing by updating load tests parameters from S3, cleaning all the logs from previous tests and etc.
+  * **S3_TESTS_WAITING** - folder for all instances which now in **WAITING** state. Instance is in this state when it's ready for load tests execution and just waiting for all other `Tests` instances switching to **WAITING** state and all nodes from `Ignite` and `Cassandra` clusters to be up and running (cause it doesn't make sense to launch load tests once you don't have clusters having full capacity of nodes). 
+  * **S3_TESTS_RUNNING** - folder for all instances which now in **RUNNING** state. Instance is in this state when it's running load tests at the moment. Once it completes with load tests execution it will switch again to **IDLE** state.
