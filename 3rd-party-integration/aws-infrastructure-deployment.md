@@ -284,3 +284,16 @@ While monitoring S3 system folders provides you some high level view of the syst
 To trigger logs collection, just recreate file on S3 specified by `S3_LOGS_TRIGGER` property from `env.sh`. It doesn't matter what's inside this file, it just serve as a trigger for logs collection daemon running on each EC2 instance. 
 
 The daemon, just checks every 30 seconds if `timestamp` of the `logs trigger` file has changed and starts collecting and uploading logs on S3 to the folder specified by the `S3_<NODE-TYPE>_LOGS` property from `env.sh`.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Triggering tests execution"
+}
+[/block]
+While load tests execution will be triggered automatically once infrastructure deployment process completed, sometimes you would like to changes tests settings and re-trigger load tests execution with new settings on the same infrastructure.
+
+To manually trigger load tests execution you first of all should prepare file with tests settings. It has absolutely the same structure as `tests.properties` file specified in [Load tests settings](doc:load-tests#load-tests-settings), but should have one more property `TESTS_TYPE`, which specifies tests type (for more info about tests type visit the [link](load-tests#building-load-tests)) and can have such values:
+* **ignite** - indicates that Ignite load tests should be executed
+* **cassandra** - indicates that Cassandra load tests should be executed
+
+After you prepared tests settings file just upload into S3, to the location specified by `S3_TESTS_TRIGGER` property from `env.sh`. After that load tests will be automatically executed on all EC2 instances of `Tests` cluster.
