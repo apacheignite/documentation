@@ -200,3 +200,9 @@ There are also additional set of system S3 folders for `Tests` EC2 instances. Th
   * **S3_TESTS_PREPARING** - folder for all instances which now in **PREPARING** state. Instance is in this state when new load tests execution was triggered. In response to this it starts preparing by updating load tests parameters from S3, cleaning all the logs from previous tests and etc.
   * **S3_TESTS_WAITING** - folder for all instances which now in **WAITING** state. Instance is in this state when it's ready for load tests execution and just waiting for all other `Tests` instances switching to **WAITING** state and all nodes from `Ignite` and `Cassandra` clusters to be up and running (cause it doesn't make sense to launch load tests once you don't have clusters having full capacity of nodes). 
   * **S3_TESTS_RUNNING** - folder for all instances which now in **RUNNING** state. Instance is in this state when it's running load tests at the moment. Once it completes with load tests execution it will switch again to **IDLE** state.
+[block:callout]
+{
+  "type": "info",
+  "body": "It's important to mention that, once infrastructure deployment process was successfully completed it will be automatically triggered load tests execution. Automatic load tests execution will be triggered only once. If you want to change load tests setting and trigger their execution on the same infrastructure once again you should do it manually (see [Triggering tests execution](#triggering-tests-execution) chapter)."
+}
+[/block]
