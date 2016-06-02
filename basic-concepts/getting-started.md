@@ -1,5 +1,5 @@
 * [Prerequisites](doc:getting-started#prerequisites)
-  * [Insatallation](doc:getting-started#installation)
+  * [Installation](doc:getting-started#installation)
   * [Start from Command Line](doc:getting-started#start-from-command-line) 
   * [Get It With Maven](doc:getting-started#get-it-with-maven)
   * [First Ignite Compute Application](doc:getting-started#first-ignite-compute-application)
