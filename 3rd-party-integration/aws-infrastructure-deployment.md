@@ -165,11 +165,11 @@ For each of the cluster (Cassandra, Ignite, Tests) you should do such steps:
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/5twfXsaEQHKi8wBjirmD",
+        "https://www.filepicker.io/api/file/4uEJahwRyy0QTCmYH2Og",
         "aws.png",
         "1073",
         "678",
-        "#e22029",
+        "#e12028",
         ""
       ]
     }
