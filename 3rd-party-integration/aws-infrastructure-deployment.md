@@ -206,3 +206,10 @@ There are also additional set of system S3 folders for `Tests` EC2 instances. Th
   "body": "It's important to mention that, once infrastructure deployment process was successfully completed it will be automatically triggered load tests execution. Automatic load tests execution will be triggered only once. If you want to change load tests setting and trigger their execution on the same infrastructure once again you should do it manually (see [Triggering tests execution](#triggering-tests-execution) chapter)."
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "Once all `Tests` EC2 instances completed with load tests execution, it will be automatically created summary report on S3. Its location is specified by `S3_TESTS_SUMMARY` property from `env.sh`. See [Tests summary report](#tests-summary-report) chapter for more details about the report. It also will be automatically triggered logs collection process and logs from all EC2 nodes will be collected into S3 folder specified by `S3_LOGS_ROOT` property from `env.sh`. See [Triggering logs collection](#triggering-logs-collection) chapter for more details about how to manually trigger logs collection."
+}
+[/block]
