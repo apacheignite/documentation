@@ -235,11 +235,11 @@ In case when you also deployed `Ganglia` master EC2 instance, you can also use G
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/pzNKEATaTt1T33GDKKmC",
-        "ganglia.png",
+        "https://www.filepicker.io/api/file/wzFx8UB9SSIhD6QYqXIw",
+        "ganglia2.png",
         "2314",
-        "5160",
-        "#d81e2b",
+        "3088",
+        "#3c3e7d",
         ""
       ]
     }
