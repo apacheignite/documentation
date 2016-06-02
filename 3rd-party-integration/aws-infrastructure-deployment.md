@@ -179,7 +179,7 @@ Lets now look at how we can monitor the status of deployment process (and load t
   "title": "Monitoring"
 }
 [/block]
-To simplify your monitoring and management tasks it makes sense to specify all the tag properties from step 6 of [Configuration details](#configuration-details) section. In a such way all your EC2 instances will be tagged (or not if something goes wrong, which will be like an indicator for you) and it will be easier for you to distinguish them.
+To simplify your monitoring and management tasks it makes sense to specify all the tag properties from step 6 of the [Configuration details](#configuration-details) section. In a such way all your EC2 instances will be tagged (or not if something goes wrong, which will be like an indicator for you) and it will be easier for you to distinguish them.
 
 The first thing you need to do is to check the amount of each EC2 instance types (Ignite, Cassandra, Tests, Ganglia). It should be exactly the same as environment variables values (`CASSANDRA_NODES_COUNT`, `IGNITE_NODES_COUNT`, `TEST_NODES_COUNT`) you specified in `env.sh`.
 
