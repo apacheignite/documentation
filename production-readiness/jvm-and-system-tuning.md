@@ -1,5 +1,3 @@
-This section contains the following topics related to JVM and system level tuning:
-
 - [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-on_heap-caches)
 - [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-off_heap-caches)
 - [GC attacks by Linux](doc:jvm-and-system-tuning#gc-attacks-by-linux)
