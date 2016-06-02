@@ -53,3 +53,16 @@ As far as framework uses Amazon cloud infrastructure it requires some prerequisi
 4. The IAM Role specified above, should have [permissions](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_permissions.html) to list IAM roles and assign the role specified above to EC2 instances.
 5. The IAM Role specified above, should have [permissions](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_permissions.html) to tag EC2 instances. This requirement is optional and is only needed if you want to [tag](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) your EC2 instances. It actually makes sense when you are working with rather big EC2 environments to being able to distinguish different EC2 instances.
 6. The AWS account you are using, should have access to select from existing or create new [security group](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Building framework"
+}
+[/block]
+Framework itself is represented as a set of bootstrap shell scripts, which can be used from [EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) console to launch appropriate number of `Ignite/Cassandra/Tests` EC2 instances and provided as a part of tests source code of the module. Thus first of all you should [build Ignite distribution](https://apacheignite.readme.io/docs/getting-started#section-building-from-source) from the source code.
+
+After building Ignite distribution from the source code you will be able to find `target/tests-package` directory and `target/ignite-cassandra-tests-<version>.zip` zip archive of this directory (**tests package**) inside Cassandra module directory. The structure of the test package is explained in [Load tests](https://github.com/irudyak/ignite/wiki/Load-tests#building-load-tests) document. 
+
+All the details of the Amazon infrastructure deployment are configured by scripts from `bootstrap/aws` directory of the tests package. 
+
+Now lets take a look at the `bootstrap` directory and framework configuration settings in more details.
