@@ -15,8 +15,10 @@ Lets now dive deeper in the details and the whole idea of the framework step by 
 1. At the high level, you can just think about the framework as a set of bootstrap shell scripts to create  `Ignite/Cassandra/Tests` clusters and `Ganglia` monitoring.
 2. To spin up `Ignite/Cassandra/Tests` cluster or `Ganglia` you can just use [EC2 instance launch wizard](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) or [Spot instances launch wizard](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html) where you should specify appropriate number of instances for your cluster and bootstrap script in the `User Data` section. As another option you can just use AWS CLI where you can specify number of EC2 instances and bootstrap script as `User Data` section.
 3. Thus you just need to repeat the previous step for each type of the cluster `Ignite/Cassandra/Tests` and optionally for `Ganglia` (if you want to monitor your infrastructure). **That's probably all you need to do**. 
-4. The cool feature is that you don't need to wait for one cluster up and running to start creating another cluster. For example `Ignite` cluster nodes need information about `Cassandra` cluster nodes to correctly setup persistent store settings, `Tests` cluster nodes need info about nodes of both `Ignite` & `Cassandra` clusters and etc. Using the framework you can just launch creation process for all types of the clusters in parallel and framework will take care about all such details. Moreover it's the preferred way to deploy your infrastructure, cause it takes the minimum time to setup everything.
-5. Framework will take care about all such details like:
+
+The cool feature is that you don't need to wait for one cluster up and running to start creating another cluster. For example `Ignite` cluster nodes need information about `Cassandra` cluster nodes to correctly setup persistent store settings, `Tests` cluster nodes need info about nodes of both `Ignite` & `Cassandra` clusters and etc. Using the framework you can just launch creation process for all types of the clusters in parallel and framework will take care about all such details. Moreover it's the preferred way to deploy your infrastructure, cause it takes the minimum time to setup everything.
+
+Framework will take care about all such details like:
   * Correctly spinning up all EC2 nodes of Cassandra cluster thus that:
      * All of them will be in the same cluster
   * Correctly spinning up all EC2 nodes of Ignite cluster thus that:
@@ -30,4 +32,4 @@ Lets now dive deeper in the details and the whole idea of the framework step by 
 	    * All `Cassandra` nodes up and running
 	    * All `Ignite` nodes up and running
 	    * All `Tests` nodes up and running and ready to launch tests
-6. Collects load tests statistic from all EC2 nodes of `Tests` cluster, produces summary report and upload it to S3
+  * Collect load tests statistic from all EC2 nodes of `Tests` cluster, produces summary report and upload it to S3
