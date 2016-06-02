@@ -134,6 +134,7 @@ Lets now look at how to configure framework to deploy your custom infrastructure
   | <sup>**S3_DOWNLOADS**      | <sup>S3 folder from the step 3|
   | <sup>**S3_SYSTEM**      | <sup>S3 folder from the step 4|
   | <sup>**TESTS_PACKAGE_DONLOAD_URL**      | <sup>S3 url from step 5 pointing to the location of tests package|
+
 7. Inside **Tests package** update `settings/tests.properties` load tests configuration file, to reflect your custom use-case. Visit this [link](https://github.com/irudyak/ignite/wiki/Load-tests#load-tests-settings) to read more about load tests configuration details. 
 8. Upload **Ignite package** and **Tests package** inside S3 folder from step 3.
 9. Save specified below shell scripts from updated **Tests package** on your local drive (you'll use them in the next steps to specify [User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) section for your EC2 instances): 
