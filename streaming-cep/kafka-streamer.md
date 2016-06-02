@@ -119,8 +119,13 @@ To perform a very basic functionality check, you can do the following,
   ]
 }
 [/block]
-In addition to being able to export data from Kafka to Ignite cache, you can subscribe to cache events and stream them to Kafka with IgniteSourceConnector.
 
+[block:callout]
+{
+  "type": "info",
+  "body": "In addition to being able to export data from Kafka to Ignite cache, you can subscribe to cache events and stream them to Kafka with IgniteSourceConnector."
+}
+[/block]
 ## Streaming data with Ignite Kafka Streamer Module
 
 If you are using Maven to manage dependencies of your project, first of all you will have to add Kafka Streamer module dependency like this (replace '${ignite.version}' with actual Ignite version you are interested in):
