@@ -1,3 +1,10 @@
+* [Prerequisites](doc:getting-started#prerequisites)
+  * [Insatallation](doc:getting-started#installation)
+  * [Start from Command Line](doc:getting-started#start-from-command-line) 
+  * [Get It With Maven](doc:getting-started#get-it-with-maven)
+  * [First Ignite Compute Application](doc:getting-started#first-ignite-compute-application)
+  * [First Ignite Data Grid Application](doc:getting-started#first-ignite-data-grid-application)
+  * [Ignite Visor Admin Console](doc:getting-started#ignite-visor-admin-console)
 [block:api-header]
 {
   "type": "basic",
@@ -51,7 +58,7 @@ If you downloaded the source package, you can build the binary using the followi
 [block:api-header]
 {
   "type": "basic",
-  "title": "Start From Command Line"
+  "title": "Start from Command Line"
 }
 [/block]
 An Ignite node can be started from command line either with default configuration or by passing a configuration file. You can start as many nodes as you like and they will all automatically discover each other. 
@@ -217,7 +224,7 @@ Since we are using cache in this example, we should make sure that it is configu
   "title": "Ignite Visor Admin Console"
 }
 [/block]
-The easiest way to examine the content of the data grid as well as perform a long list of other management and monitoring operations is to use Ignite Visor Command Line Utility.
+The easiest way to examine the content of the data grid as well as perform a long list of other management and monitoring operations is to use Ignite [Visor Command Line](doc:command-line-interface) Utility.
 
 To start Visor simply run:
 [block:code]
