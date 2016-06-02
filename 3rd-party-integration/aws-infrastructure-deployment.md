@@ -272,3 +272,15 @@ Here is an example of such report:
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Triggering logs collection"
+}
+[/block]
+While monitoring S3 system folders provides you some high level view of the system state, sometimes you want to know what is going on with your EC2 instances at the moment. For such a purpose you can just manually triggering logs collection and logs from all EC2 instances will be uploaded into S3 folder specified by `S3_LOGS_ROOT` property from `env.sh`.
+
+To trigger logs collection, just recreate file on S3 specified by `S3_LOGS_TRIGGER` property from `env.sh`. It doesn't matter what's inside this file, it just serve as a trigger for logs collection daemon running on each EC2 instance. 
+
+The daemon, just checks every 30 seconds if `timestamp` of the `logs trigger` file has changed and starts collecting and uploading logs on S3 to the folder specified by the `S3_<NODE-TYPE>_LOGS` property from `env.sh`.
