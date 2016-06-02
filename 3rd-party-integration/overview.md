@@ -17,8 +17,6 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
   "title": "Index"
 }
 [/block]
-* [Overview](doc:overview) - this document
-
 * [Base concepts](doc:base-concepts) - base concepts and how to configure Ignite Cache to be persisted/loaded to/from Cassandra database
 
 * [Examples](doc:examples) - configuration examples
