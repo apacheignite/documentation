@@ -168,6 +168,7 @@ If you want to have Ganglia monitoring for your clusters the procedure to setup 
 [block:callout]
 {
   "type": "success",
-  "title": "Congratulations!!! You just started deployment procedure which will setup all the infrastructure and launch load tests."
+  "title": "Congratulations",
+  "body": "You just started deployment procedure which will setup all the infrastructure and launch load tests."
 }
 [/block]
