@@ -59,7 +59,7 @@ As far as framework uses Amazon cloud infrastructure it requires some prerequisi
   "title": "Building framework"
 }
 [/block]
-Framework itself is represented as a set of bootstrap shell scripts, which can be used from [EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) console to launch appropriate number of `Ignite/Cassandra/Tests` EC2 instances and provided as a part of tests source code of the module. Thus first of all you should [build Ignite distribution](https://apacheignite.readme.io/docs/getting-started#section-building-from-source) from the source code.
+Framework itself is represented as a set of bootstrap shell scripts, which can be used from [EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) console to launch appropriate number of `Ignite/Cassandra/Tests` EC2 instances and provided as a part of tests source code of the module. Thus first of all you should [build Ignite distribution](doc:getting-started#section-building-from-source) from the source code.
 
 After building Ignite distribution from the source code you will be able to find `target/tests-package` directory and its zip archive `target/ignite-cassandra-tests-<version>.zip` (**tests package** further) inside Cassandra module directory. The structure of the test package is explained in [Load tests](doc:load-tests#building-load-tests) document.
 
