@@ -17,7 +17,7 @@ To connect to Ignite using PHP client for Memcached, you need to [download Ignit
   "codes": [
     {
       "code": "// Create client instance.\n$client = new Memcached();\n\n// Set localhost and port (set to correct values).\n$client->addServer(\"localhost\", 11211);\n\n// Force client to use binary protocol.\n$client->setOption(Memcached::OPT_BINARY_PROTOCOL, true);\n\n// Put entry to cache.\nif ($client->add(\"key\", \"val\"))\n    echo \"Successfully put entry in cache.\\n\";\n\n// Check entry value.\necho(\"Value for 'key': \" . $client->get(\"key\") . \"\\n\");",
-      "language": "php"
+      "language": "java"
     }
   ]
 }

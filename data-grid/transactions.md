@@ -1,54 +1,6 @@
-This documentation contains the following topics related to Transactions in Ignite:
+Ignite supports 2 modes for cache operation, *transactional* and *atomic*. In `transactional` mode you are able to group multiple cache operations in a transaction, while `atomic` mode supports multiple atomic operations, one at a time. `Atomic` mode is more light-weight and generally has better performance over `transactional` caches.
 
-- [Atomicity Mode](doc:transactions#atomicity-mode)
-- [Ignite Transactions](doc:transactions#ignitetransactions)
-- [Two-Phase-Commit (2PC)](doc:transactions#two-phase-commit-2pc)
-- [Concurrency Modes and Isolation Levels](doc:transactions#concurrency-modes-and-isolation-levels)
-- [Pessimistic Transactions](doc:transactions#pessimistic-transactions) 
-- [Optimistic Transactions](doc:transactions#optimistic-transactions) 
-- [Deadlock Detection](doc:transactions#deadlock-detection) 
-- [Deadlock-Free Transactions](doc:transactions#deadlock-free-transactions) 
-- [Integration with JTA](doc:transactions#integration-with-jta) 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Atomicity Mode"
-}
-[/block]
-Ignite supports 2 modes for cache operations, *transactional* and *atomic*. In `transactional` mode you are able to group multiple cache operations in a transaction, while `atomic` mode supports multiple atomic operations, one at a time.
-
-These atomicity modes are defined in `CacheAtomicityMode` enum:
-  * `TRANSACTIONAL`
-  * `ATOMIC`
-  
-`TRANSACTIONAL` mode enables fully ACID-compliant transactions, however, when only atomic semantics are needed, it is recommended that  `ATOMIC` mode is used for better performance.
-
-`ATOMIC` mode provides better performance by avoiding transactional locks, while still providing data atomicity and consistency. Another difference in `ATOMIC` mode is that bulk writes, such as `putAll(...)`and `removeAll(...)` methods are no longer executed in one transaction and can partially fail. In case of partial failure, `CachePartialUpdateException` will be thrown which will contain a list of keys for which the update failed.
-
-The example below shows how to set and atomicity mode for a cache.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          \t<!-- Set a cache name. -->\n   \t\t\t\t\t<property name=\"name\" value=\"myCache\"/>\n\n            <!-- Set atomicity mode, can be ATOMIC or TRANSACTIONAL. \n\t\t\t\t\t\t\t\t ATOMIC is default. -->\n    \t\t\t\t<property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n            ... \n        </bean>\n    </property>\n          \n    <!-- Optional transaction configuration. -->\n    <property name=\"transactionConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.TransactionConfiguration\">\n            <!-- Configure TM lookup here. -->\n        </bean>\n    </property>\n</bean>",
-      "language": "xml"
-    },
-    {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\ncacheCfg.setAtomicityMode(CacheAtomicityMode.ATOMIC);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Optional transaction configuration. Configure TM lookup here.\nTransactionConfiguration txCfg = new TransactionConfiguration();\n\ncfg.setTransactionConfiguration(txCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-
-[block:callout]
-{
-  "type": "info",
-  "body": "Note that transactions are disabled whenever `ATOMIC` mode is used, which allows to achieve much higher performance and throughput in cases when transactions are not needed.",
-  "title": "Performance"
-}
-[/block]
-
+However, regardless of which mode you use, as long as your cluster is alive, the data between different cluster nodes must remain consistent. This means that whichever node is being used to retrieve data, it will never get data that has been partially committed or that is inconsistent with other data.
 [block:api-header]
 {
   "type": "basic",
@@ -156,6 +108,49 @@ Note that in `PESSIMISTIC` mode, the order of locking is important. Moreover, Ig
 [block:api-header]
 {
   "type": "basic",
+  "title": "Deadlock Detection in Pessimistic Transactions"
+}
+[/block]
+One major rule that anyone has to follow when working with distributed pessimistic transactions is that locks for keys, participating in a transaction, must be acquired in a  similar order. If this rule is violated at some point of time this may lead to a distributed deadlock. 
+
+Ignite doesn't avoid distributed deadlocks but rather has built-in functionality that makes it easier to debug and fix such situations.
+
+As the code snippet below shows a pessimistic transaction has to be started with a timeout and if the timeout expires then the deadlock detection mechanism will try to find a possible deadlock that might have caused the timeout. When timeout expires `TransactionTimeoutException` is generated and propagated to application code as the cause of `CacheException` regardless of a deadlock. However, if a deadlock is detected then the cause of returned `TransactionTimeoutException` will be `TransactionDeadlockException` (at least for one transaction involved in the deadlock). 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "try (Transaction tx = ignite.transactions().txStart(TransactionConcurrency.PESSIMISTIC,\n    TransactionIsolation.READ_COMMITTED, 300, 0)) {\n    cache.put(1, 1);\n\n    cache.put(2, 1);\n\n    tx.commit();\n}\ncatch (CacheException e) {\n    if (e.getCause() instanceof TransactionTimeoutException &&\n        e.getCause().getCause() instanceof TransactionDeadlockException)    \n        \n        System.out.println(e.getCause().getCause().getMessage());\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+The message that is a part of `TransactionDeadlockException` contains useful information that will help to find out a reason of a deadlock
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Deadlock detected:\n\nK1: TX1 holds lock, TX2 waits lock.\nK2: TX2 holds lock, TX1 waits lock.\n\nTransactions:\n\nTX1 [txId=GridCacheVersion [topVer=74949328, time=1463469328421, order=1463469326211, nodeOrder=1], nodeId=ad68354d-07b8-4be5-85bb-f5f2362fbb88, threadId=73]\nTX2 [txId=GridCacheVersion [topVer=74949328, time=1463469328421, order=1463469326210, nodeOrder=1], nodeId=ad68354d-07b8-4be5-85bb-f5f2362fbb88, threadId=74]\n\nKeys:\n\nK1 [key=1, cache=default]\nK2 [key=2, cache=default]",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+There is also a number of system properties that allow to tune the deadlock detection mechanism:
+- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS`: specifies maximum number of iterations for the deadlock detection procedure. If value of this property is less then or equal to zero then the deadlock detection will be disabled (1000 by default);
+- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_TIMEOUT`: specifies timeout for the deadlock detection mechanism (1 minute by default).
+[block:callout]
+{
+  "type": "success",
+  "title": "",
+  "body": "If you want to avoid deadlocks at all refer to Optimistic Transactions and Deadlock-free Transactions sections below."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Optimistic Transactions"
 }
 [/block]
@@ -176,66 +171,9 @@ In `OPTIMISTIC` transactions, entry locks are acquired on primary nodes during t
   ]
 }
 [/block]
-Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)), since the value of the entry could be important to the logic within the initiated transaction.
+Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)) since the value of the entry could be important to the logic within the initiated transaction.
 
 Note that the key order is important for `READ_COMMITTED` and `REPEATABLE_READ` transactions since the locks are still acquired sequentially in these modes.
-
-For `OPTIMISTIC` `SERIALIZABLE` transactions locks are not acquired sequentially. In this mode keys can be accessed in any order because transaction locks are acquired in parallel with an additional check allowing Ignite to avoid deadlocks. Refer to `Deadlock-Free Transactions` section below for more details.
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Deadlock Detection"
-}
-[/block]
-One major rule that anyone has to follow when working with distributed transactions is that locks for keys, participating in a transaction, must be acquired in the same order. Violating this rule may lead to a distributed deadlock.
-
-Ignite does not avoid distributed deadlocks, but rather has a built-in functionality that makes it easier to debug and fix such situations.
-
-[block:callout]
-{
-  "type": "warning",
-  "body": "Presently the deadlock detection procedure is supported for pessimistic transactions only. Support of optimistic transaction will be available in the next Apache Ignite release."
-}
-[/block]
-As shown in the code snippet below, a transaction has been started with a timeout. If the timeout expires, the deadlock detection procedure will try to find a possible deadlock that might have caused the timeout. When the timeout expires, `TransactionTimeoutException` is generated and propagated to the application code as the cause of `CacheException` regardless of a deadlock. However, if a deadlock is detected, the cause of the returned `TransactionTimeoutException` will be `TransactionDeadlockException` (at least for one transaction involved in the deadlock). 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "try (Transaction tx = ignite.transactions().txStart(TransactionConcurrency.PESSIMISTIC,\n    TransactionIsolation.READ_COMMITTED, 300, 0)) {\n    cache.put(1, 1);\n\n    cache.put(2, 1);\n\n    tx.commit();\n}\ncatch (CacheException e) {\n    if (e.getCause() instanceof TransactionTimeoutException &&\n        e.getCause().getCause() instanceof TransactionDeadlockException)    \n        \n        System.out.println(e.getCause().getCause().getMessage());\n}",
-      "language": "java"
-    }
-  ]
-}
-[/block]
- `TransactionDeadlockException` message contains useful information that can help you find the reason for the deadlock.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "Deadlock detected:\n\nK1: TX1 holds lock, TX2 waits lock.\nK2: TX2 holds lock, TX1 waits lock.\n\nTransactions:\n\nTX1 [txId=GridCacheVersion [topVer=74949328, time=1463469328421, order=1463469326211, nodeOrder=1], nodeId=ad68354d-07b8-4be5-85bb-f5f2362fbb88, threadId=73]\nTX2 [txId=GridCacheVersion [topVer=74949328, time=1463469328421, order=1463469326210, nodeOrder=1], nodeId=ad68354d-07b8-4be5-85bb-f5f2362fbb88, threadId=74]\n\nKeys:\n\nK1 [key=1, cache=default]\nK2 [key=2, cache=default]",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
-Deadlock detection is a multi step procedure that may take many iterations depending on the number of nodes in the cluster, keys, and transactions that are involved in a possible deadlock. A deadlock detection initiator is a node where a transaction was started and failed with a `TransactionTimeoutException`. This node will investigate if a deadlock has occurred, by exchanging requests/responses with other remote nodes, and prepare a deadlock related report that is provided with the `TransactionDeadlockException`. Each such message (request/response) is known as an iteration. 
-
-Since a transaction is not rolled back until the deadlock detection procedure is completed, sometimes, it makes sense to tune the parameters (shown below), if you want to have a predictable time for a transaction's rollback. 
-
-- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_MAX_ITERS` - Specifies the maximum number of iterations for the deadlock detection procedure. If the value of this property is less than or equal to zero, the deadlock detection will be disabled (1000 by default);
-- `IgniteSystemProperties.IGNITE_TX_DEADLOCK_DETECTION_TIMEOUT` - Specifies timeout for the deadlock detection mechanism (1 minute by default).
-
-Note that if there are too few iterations, you may get an incomplete deadlock-report.
-[block:callout]
-{
-  "type": "success",
-  "title": "",
-  "body": "If you want to avoid deadlocks at all, refer to Deadlock-free Transactions section below."
-}
-[/block]
-
 [block:api-header]
 {
   "type": "basic",
@@ -271,6 +209,51 @@ Below is an example of using JTA transaction manager together with Ignite.
   "codes": [
     {
       "code": "// Get an instance of JTA transaction manager.\nTMService tms = appCtx.getComponent(TMService.class);\n\n// Get an instance of Ignite cache.\nIgniteCache<String, Integer> cache = cache();\n\nUserTransaction jtaTx = tms.getUserTransaction();\n\n// Start JTA transaction.\njtaTx.begin();\n\ntry {\n    // Do some cache operations.\n    cache.put(\"key1\", 1);\n    cache.put(\"key2\", 2);\n\n    // Commit the transaction.\n    jtaTx.commit();\n}\nfinally {\n    // Rollback in a case of exception.\n    if (jtaTx.getStatus() == Status.STATUS_ACTIVE)\n        jtaTx.rollback();\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Atomicity Mode"
+}
+[/block]
+Ignite supports 2 atomicity modes defined in `CacheAtomicityMode` enum:
+  * `TRANSACTIONAL`
+  * `ATOMIC`
+
+`TRANSACTIONAL` mode enables fully ACID-compliant transactions, however, when only atomic semantics are needed, it is recommended that  `ATOMIC` mode is used for better performance.
+
+`ATOMIC` mode provides better performance by avoiding transactional locks, while still providing data atomicity and consistency. Another difference in `ATOMIC` mode is that bulk writes, such as `putAll(...)`and `removeAll(...)` methods are no longer executed in one transaction and can partially fail. In case of partial failure, `CachePartialUpdateException` will be thrown which will contain a list of keys for which the update failed.
+[block:callout]
+{
+  "type": "info",
+  "body": "Note that transactions are disabled whenever `ATOMIC` mode is used, which allows to achieve much higher performance and throughput in cases when transactions are not needed.",
+  "title": "Performance"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuration"
+}
+[/block]
+Atomicity mode is defined in `CacheAtomicityMode` enum and can be configured via `atomicityMode` property of `CacheConfiguration`. 
+
+Default atomicity mode is `ATOMIC`.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          \t<!-- Set a cache name. -->\n   \t\t\t\t\t<property name=\"name\" value=\"myCache\"/>\n\n            <!-- Set atomicity mode, can be ATOMIC or TRANSACTIONAL. -->\n    \t\t\t\t<property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n            ... \n        </bean>\n    </property>\n          \n    <!-- Optional transaction configuration. -->\n    <property name=\"transactionConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.TransactionConfiguration\">\n            <!-- Configure TM lookup here. -->\n        </bean>\n    </property>\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\ncacheCfg.setAtomicityMode(CacheAtomicityMode.ATOMIC);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Optional transaction configuration. Configure TM lookup here.\nTransactionConfiguration txCfg = new TransactionConfiguration();\n\ncfg.setTransactionConfiguration(txCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
