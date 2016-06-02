@@ -1,3 +1,18 @@
+* [Disable Internal Events Notification](doc:performance-tips#disable-internal-events-notification)
+* [Tune Cache Start Size](doc:performance-tips#tune-cache-start-size)
+* [Turn Off Backups](performance-tips#turn-off-backups)
+* [Tune Off-Heap Memory](performance-tips#tune-off-heap-memory)
+* [Disable Swap Storage](doc:performance-tips#disable-swap-storage)
+* [Disable Peer Class Loading](doc:performance-tips#disable-peer-class-loading)
+* [Tune Eviction Policy](doc:performance-tips#tune-eviction-policy)
+* [Tune Cache Data Rebalancing](doc:performance-tips#tune-cache-data-rebalancing)
+* [Configure Thread Pools](doc:performance-tips#configure-thread-pools)
+* [Use Collocated Computations](doc:performance-tips#use-collocated-computations)
+* [Use Data Streamer](doc:performance-tips#use-data-streamer)
+* [Batch Up Your Messages](doc:performance-tips#batch-up-your-messages)
+* [Tune Garbage Collection](doc:performance-tips#tune-garbage-collection)
+* [Do Not Copy Value On Read](doc:performance-tips#do-not-copy-value-on-read)
+
 Ignite In-Memory Data Grid performance and throughput vastly depends on the features and the settings you use. In almost any use case the cache performance can be optimized by simply tweaking the cache configuration.
 [block:api-header]
 {
