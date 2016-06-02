@@ -165,7 +165,9 @@ For each of the cluster (Cassandra, Ignite, Tests) you should do such steps:
 7. On the next step specify security group for your instances and launch them.
 
 If you want to have Ganglia monitoring for your clusters the procedure to setup Ganglia master (server which has Web UI and other servers report their metrics) is pretty much the same as described above. The only difference is that in step 4 (above) you should specify only one EC2 instance - cause there are no reasons to have multiple masters.
-
-Congratulations!!! You just started deployment procedure which will setup all the infrastructure and launch load tests. 
-
-Lets now look at how we can monitor the status of deployment process (and load tests execution), cause you want to know how thing are going.
+[block:callout]
+{
+  "type": "success",
+  "title": "Congratulations!!! You just started deployment procedure which will setup all the infrastructure and launch load tests."
+}
+[/block]
