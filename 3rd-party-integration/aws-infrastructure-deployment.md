@@ -17,24 +17,3 @@ Lets now dive deeper in the details and the whole idea of the framework step by 
 3. Thus you just need to repeat the previous step for each type of the cluster `Ignite/Cassandra/Tests` and optionally for `Ganglia` (if you want to monitor your infrastructure). 
 
 The cool feature is that you don't need to wait for one cluster up and running to start creating another cluster. For example `Ignite` cluster nodes need information about `Cassandra` cluster nodes to correctly setup persistent store settings, `Tests` cluster nodes need info about nodes of both `Ignite` & `Cassandra` clusters and etc. Using the framework you can just launch creation process for all types of the clusters in parallel and framework will take care about all such details. Moreover it's the preferred way to deploy your infrastructure, cause it takes the minimum time to setup everything.
-[block:callout]
-{
-  "type": "success",
-  "title": "That's all you need to do to setup your infrastructure."
-}
-[/block]
-Framework will take care about all such details like:
-  * Correctly spinning up all EC2 nodes of Cassandra cluster thus that:
-     * All of them will be in the same cluster
-  * Correctly spinning up all EC2 nodes of Ignite cluster thus that:
-     * All of them will be in the same cluster
-     * All of them will reference appropriate Cassandra cluster seeds in persistent store configuration settings
-  * Correctly spinning up all EC2 nodes of Tests cluster thus that:
-     * All of them will be in the same cluster
-     * All of them will reference appropriate Cassandra cluster seeds in load tests settings
-     * All of them will reference appropriate Ignite cluster nodes in load tests settings
-	 * Automatically launch load tests on all nodes only when:
-	    * All `Cassandra` nodes up and running
-	    * All `Ignite` nodes up and running
-	    * All `Tests` nodes up and running and ready to launch tests
-  * Collect load tests statistic from all EC2 nodes of `Tests` cluster, produces summary report and upload it to S3
