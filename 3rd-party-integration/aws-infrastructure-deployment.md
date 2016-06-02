@@ -159,7 +159,7 @@ For each of the cluster (Cassandra, Ignite, Tests) you should do such steps:
 4. On the next step specify instance details and **make sure that**:
   * You specified correct number of EC2 instances. According to the cluster type it should be one of the values `CASSANDRA_NODES_COUNT`, `IGNITE_NODES_COUNT`, `TEST_NODES_COUNT` you specified in `bootstrap/aws/env.sh` file from step 6 of the  [Configuration details](#configuration-details) section.
   * You specified correct `IAM Role` according to the step 3 from [Prerequisites](#prerequisites) section.
-  * You specified one of the bootstrap scripts from step 9 of the [Configuration details](#configuration-details) section, which corresponds to the cluster type (Ignite, Cassandra, Tests) you are going to create.
+  * You specified in the [User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) field one of the bootstrap scripts from step 9 of the [Configuration details](#configuration-details) section, which corresponds to the cluster type (Ignite, Cassandra, Tests) you are going to create.
 5. On the next step specify storage for your EC2 instances.
 6. On the next step specify tags for your instances (or spot requests).
 7. On the next step specify security group for your instances and launch them.
