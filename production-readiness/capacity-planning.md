@@ -1,6 +1,10 @@
 When preparing and planning for a system capacity planning is an integral part of the design. Understanding the size of the cache that will be required will help decide how much physical memory, how many JVMs, and how many CPUs and servers will be required. In this section we discuss various techniques that can help plan and identify the minimum hardware requirements for a given deployment.
-
-## Calculating the Memory Usage
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Calculating the Memory Usage"
+}
+[/block]
 - Calculate primary data size: multiply the size of one entry in bytes by the total number of entries
 - If you have backups, multiply by their number
 - Indexes also require memory. Basic use cases will add a 30% increase
