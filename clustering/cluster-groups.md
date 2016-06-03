@@ -1,4 +1,4 @@
-* [Cluster Group](doc:cluster-groups#cluster-group)
+* [ClusterGroup](doc:cluster-groups#cluster-group)
 * [Predefined Cluster Groups](doc:cluster-groups#predefined-cluster-groups)
 * [Cluster Groups with Node Attributes](doc:cluster-groups#cluster-groups-with-node-attributes)
 * [Custom Cluster Groups](doc:cluster-groups#custom-cluster-groups)
@@ -8,7 +8,7 @@
 [block:api-header]
 {
   "type": "basic",
-  "title": "Cluster Group"
+  "title": "ClusterGroup"
 }
 [/block]
 `ClusterGroup` represents a logical grouping of cluster nodes. 
