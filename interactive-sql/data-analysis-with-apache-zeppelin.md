@@ -1,9 +1,3 @@
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Overview"
-}
-[/block]
 [Apache Zeppelin](http://zeppelin.incubator.apache.org), a web-based notebook that enables interactive data analytics. You can make beautiful data-driven, interactive and collaborative documents with SQL, Scala and more. 
 
 You can use Zeppelin to retrieve distributed data from cache using Ignite SQL interpreter. Moreover, Ignite interpreter allows you to execute any Scala code in cases when SQL doesn't fit to your requirements. For example you can populate data into your caches or execute distributed computations.
