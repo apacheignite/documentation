@@ -68,3 +68,29 @@ Ignite offers a JMS Data Streamer to consume messages from JMS brokers, convert 
 IgniteSink is a Flume sink that extracts Events from an associated Flume channel and injects into an Ignite cache. Flume 1.6.0 is supported.
 
 [Read More](doc:flume-data-streamer)
+
+## MQTT Data Streamer
+MQTT Data Streamer consumes from a MQTT topic and feeds key-value pairs into an IgniteDataStreamer instance, using Eclipse Paho as an MQTT client.
+
+[Read More](doc:mqtt-streamer)
+
+## Camel Data Streamer
+With Camel Data Streamer, you can ingest entries from Apache Camel straight into an Ignite cache.
+
+[Read More](doc:camel-streamer)
+
+
+## Kafka Data Streamer
+Apache Ignite Kafka Streamer module provides streaming data from Apache Kafka into Ignite caches.
+
+[Read More](doc:kafka-streamer)
+
+##Storm Data Streamer
+Apache Ignite Storm Streamer module provides streaming data from Apache Storm into Ignite caches.
+
+[Read More](doc:apache-storm-streamer)
+
+##Flink Streamer
+Apache Ignite Flink Sink module is a streaming connector to inject Flink data into Ignite cache. 
+
+[Read More](doc:flink-streamer)
