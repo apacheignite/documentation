@@ -1,3 +1,15 @@
+* [Multicast Based Discovery](doc:cluster-config#multicast-based-discovery)
+* [Static IP Based Discovery](doc:cluster-config#static-ip-based-discovery)
+* [Multicast and Static IP Based Discovery](doc:cluster-config#multicast-and-static-ip-based-discovery)
+* [Isolated Ignite Clusters on the Same Set of Machines](doc:cluster-config#isolated-ignite-clusters-on-the-same-set-of-machin)
+* [Apache jclouds Based Discovery](doc:cluster-config#apache-jclouds-based-discovery)
+* [Amazon S3 Based Discovery](doc:cluster-config#amazon-s3-based-discovery)
+* [Google Cloud Storage Based Discovery](doc:cluster-config#google-cloud-storage-based-discovery)
+* [JDBC Based Discovery](doc:cluster-config#jdbc-based-discovery)
+* [ZooKeeper Based Discovery](doc:cluster-config#zookeeper-based-discovery)
+* [Failure Detection Timeout](doc:cluster-config#failure-detection-timeout)
+* [Configuration](doc:cluster-config#configuration)
+
 In Ignite, nodes can discover each other by using `DiscoverySpi`. Ignite provides `TcpDiscoverySpi` as a default implementation of `DiscoverySpi` that uses TCP/IP for node discovery. Discovery SPI can be configured for Multicast and Static IP based node discovery.
 [block:api-header]
 {
