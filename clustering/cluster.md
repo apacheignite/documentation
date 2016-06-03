@@ -1,3 +1,8 @@
+* [IgniteCluster](doc:cluster#ignitecluster)
+* [ClusterNode](doc:cluster#clusternode)
+* [Cluster Node Attributes](doc:cluster#cluster-node-attributes)
+* [Cluster Node Metrics](doc:cluster#cluster-node-metrics)
+* [Local Cluster Node](doc:cluster#local-cluster-node)
 [block:api-header]
 {
   "type": "basic",
