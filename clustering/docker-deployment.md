@@ -182,7 +182,7 @@ To run Ignite docker container with bare Ignite node, use the following command:
   ]
 }
 [/block]
-Should see the following in logs:
+You should see the following in the logs:
 [block:image]
 {
   "images": [
