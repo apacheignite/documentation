@@ -1,3 +1,16 @@
+* [Cluster Group](doc:cluster-groups#cluster-group)
+* [Predefined Cluster Groups](doc:cluster-groups#predefined-cluster-groups)
+* [Cluster Groups with Node Attributes](doc:cluster-groups#cluster-groups-with-node-attributes)
+* [Custom Cluster Groups](doc:cluster-groups#custom-cluster-groups)
+* [Combining Cluster Groups](doc:cluster-groups#combining-cluster-groups)
+* [Getting Nodes from Cluster Groups](doc:cluster-groups#getting-nodes-from-cluster-groups)
+* [Cluster Group Metrics](doc:cluster-groups#getting-nodes-from-cluster-groups)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Cluster Group"
+}
+[/block]
 `ClusterGroup` represents a logical grouping of cluster nodes. 
 
 In Ignite all nodes are equal by design, so you don't have to start any nodes in specific order, or assign any specific roles to them. However, Ignite allows users to logically group cluster nodes for any application specific purpose. For example, you may wish to deploy a service only on remote nodes, or assign a role of "worker" to some worker nodes for job execution.
