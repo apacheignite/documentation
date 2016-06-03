@@ -75,13 +75,8 @@ The configuration parameters are passed through environment variables in docker 
   "rows": 6
 }
 [/block]
+## Example
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Example"
-}
-[/block]
 To run Ignite docker container from GIT repository, execute the following command:
 [block:code]
 {
@@ -174,13 +169,8 @@ The configuration parameters are passed through environment variables in docker 
   "rows": 5
 }
 [/block]
+## Example
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Example"
-}
-[/block]
 To run Ignite docker container with bare Ignite node, use the following command:
 [block:code]
 {
