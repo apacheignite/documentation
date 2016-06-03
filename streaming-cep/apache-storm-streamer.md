@@ -1,4 +1,4 @@
-Apache Ignite Storm Streamer module provides streaming via Storm (http://storm.apache.org/) to Ignite cache.
+Apache Ignite Storm Streamer module provides streaming via [Storm](http://storm.apache.org/) to Ignite cache.
 
 Starting data transfer to Ignite cache can be done with the following steps.
 
