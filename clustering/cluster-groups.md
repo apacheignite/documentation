@@ -5,7 +5,6 @@
 * [Combining Cluster Groups](doc:cluster-groups#combining-cluster-groups)
 * [Getting Nodes from Cluster Groups](doc:cluster-groups#getting-nodes-from-cluster-groups)
 * [Cluster Group Metrics](doc:cluster-groups#getting-nodes-from-cluster-groups)
-
 [block:api-header]
 {
   "type": "basic",
