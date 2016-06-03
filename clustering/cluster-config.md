@@ -1,6 +1,6 @@
 * [Multicast Based Discovery](doc:cluster-config#multicast-based-discovery)
 * [Static IP Based Discovery](doc:cluster-config#static-ip-based-discovery)
-* [Multicast and Static IP Based Discovery(doc:cluster-config#multicast-and-static-ip-based-discovery)
+* [Multicast and Static IP Based Discovery](doc:cluster-config#multicast-and-static-ip-based-discovery)
 * [Isolated Ignite Clusters on the Same Set of Machines](doc:cluster-config#isolated-ignite-clusters-on-the-same-set-of-machin)
 * [Apache jclouds Based Discovery](doc:cluster-config#apache-jclouds-based-discovery)
 * [Amazon S3 Based Discovery](doc:cluster-config#amazon-s3-based-discovery)
