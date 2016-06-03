@@ -1,3 +1,11 @@
+* [Cluster Group](doc:cluster-groups#cluster-group)
+* [Predefined Cluster Groups](doc:cluster-groups#predefined-cluster-groups)
+* [Cluster Groups with Node Attributes](doc:cluster-groups#cluster-groups-with-node-attributes)
+* [Custom Cluster Groups](doc:cluster-groups#custom-cluster-groups)
+* [Combining Cluster Groups](doc:cluster-groups#combining-cluster-groups)
+* [Getting Nodes from Cluster Groups](doc:cluster-groups#getting-nodes-from-cluster-groups)
+* [Cluster Group Metrics](doc:cluster-groups#getting-nodes-from-cluster-groups)
+
 [block:api-header]
 {
   "type": "basic",
