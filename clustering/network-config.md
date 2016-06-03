@@ -15,7 +15,7 @@ To enable communication with other nodes, `TcpCommunicationSpi` adds `TcpCommunc
   "title": "Configuration"
 }
 [/block]
-Following configuration parameters can be optionally configured on `TcpCommuncationSpi`:
+Following configuration parameters can be optionally configured on `TcpCommunicationSpi`:
 [block:parameters]
 {
   "data": {
