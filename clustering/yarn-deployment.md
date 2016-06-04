@@ -5,7 +5,7 @@
 
 Integration with YARN supports scheduling and running Apache Ignite nodes in a YARN cluster.
 YARN is a resource negotiator which provides a general runtime environment providing all the essentials to deploy, run and manage distributed applications. Its resource manager and isolation helps getting the most out of servers.
-For information about YARN refer to [http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html) 
+For information about YARN, refer to [http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html) 
 [block:api-header]
 {
   "type": "basic",
