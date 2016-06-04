@@ -1,11 +1,11 @@
+## On this page
+* [Ignite Mesos Framework](doc:mesos-deployment#ignite-mesos-framework)
+* [Running Ignite Mesos Framework](doc:mesos-deployment#running-ignite-mesos-framework)
+* [Configuration](doc:mesos-deployment#configuration)
+
 Apache Ignite Framework supports scheduling and running Apache Ignite nodes in a Mesos cluster. 
 Apache Mesos is a cluster manager which provides a general runtime environment providing all the essentials to deploy, run and manage distributed applications. Its resource management and isolation helps getting the most out of servers.
 For information about Apache Mesos please refer to [http://mesos.apache.org/](http://mesos.apache.org/) 
-
-## On this page
-1.  [Ignite Mesos Framework](doc:mesos-deployment#ignite-mesos-framework)
-2.  [Running Ignite Mesos Framework](doc:mesos-deployment#running-ignite-mesos-framework)
-3.  [Configuration](doc:mesos-deployment#configuration)
 [block:api-header]
 {
   "type": "basic",
