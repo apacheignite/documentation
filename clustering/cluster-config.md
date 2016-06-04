@@ -1,3 +1,4 @@
+## On this page
 * [Multicast Based Discovery](doc:cluster-config#multicast-based-discovery)
 * [Static IP Based Discovery](doc:cluster-config#static-ip-based-discovery)
 * [Multicast and Static IP Based Discovery](doc:cluster-config#multicast-and-static-ip-based-discovery)
