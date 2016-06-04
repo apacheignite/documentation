@@ -166,7 +166,7 @@ Persistence setting for Ignite cache with keys of `Integer` type and values of *
   ]
 }
 [/block]
-Keys will be stored in `key` column having `blob` type and using [Java standard serialization](https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html). Values will be stored in `value` column having 'blob' type and using [Kryo serialization](https://github.com/EsotericSoftware/kryo).
+Keys will be stored in `key` column having `blob` type and using [Java standard serialization](https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html). Values will be stored in `value` column having `blob` type and using [Kryo serialization](https://github.com/EsotericSoftware/kryo).
 [block:api-header]
 {
   "type": "basic",
