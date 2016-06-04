@@ -66,7 +66,7 @@ This bean stores all the details(keyspace, table, partition options, POJO fields
 
 Constructor of `org.apache.ignite.cache.store.cassandra.utils.persistence.KeyValuePersistenceSettings` allows to create such bean from a string which contains XML configuration document of specific structure (see below) or from the resource pointing to XML document.
 
-Here is the generic example of a XML configuration document (persistence descriptor) which specifies how Ignite cache keys and values should be serialized/deserialized to/from Cassandra:
+Here is the generic example of a XML configuration document (**persistence descriptor**) which specifies how Ignite cache keys and values should be serialized/deserialized to/from Cassandra:
 [block:code]
 {
   "codes": [
