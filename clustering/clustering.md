@@ -21,6 +21,8 @@ Ignite nodes can automatically discover each other. This helps to scale the clus
 * [Leader Election](doc:leader-election) 
 * [Cluster Configuration](doc:cluster-config) 
 * [Zero Deployment](doc:zero-deployment) 
+* [Deployment Modes](doc:deployment-modes) 
+* [Resource Injection](doc:resource-injection) 
 * [Amazon AWS Integration](doc:aws-config) 
 * [Google Cloud Integration](doc:gce-configuration) 
 * [JClouds Integration](doc:generic-cloud-configuration) 
