@@ -1,3 +1,4 @@
+## On this page
 * [ClusterGroup](doc:cluster-groups#cluster-group)
 * [Predefined Cluster Groups](doc:cluster-groups#predefined-cluster-groups)
 * [Cluster Groups with Node Attributes](doc:cluster-groups#cluster-groups-with-node-attributes)
