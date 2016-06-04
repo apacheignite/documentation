@@ -1,3 +1,8 @@
+## On this page
+* [Ignite YARN Application](doc:https://apacheignite.readme.io/docs/yarn-deployment#ignite-yarn-application)
+* [Running Ignite YARN application](doc:yarn-deployment#running-ignite-yarn-application)
+* [Configuration](doc:yarn-deployment#configuration)
+
 Integration with YARN supports scheduling and running Apache Ignite nodes in a YARN cluster.
 YARN is a resource negotiator which provides a general runtime environment providing all the essentials to deploy, run and manage distributed applications. Its resource manager and isolation helps getting the most out of servers.
 For information about YARN refer to [http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html) 
@@ -10,7 +15,7 @@ For information about YARN refer to [http://hadoop.apache.org/docs/current/hadoo
 Deploying Apache Ignite cluster typically involves downloading the Apache Ignite distribution, changing configuration settings and starting the nodes up. Integration with YARN allows to avoid the actions. Apache Ignite Yarn Application allows to greatly simplify cluster deployment. The application consist from the following components: 
 
 * Client downloads ignte distributive, puts necessary resources to HDFS, creates the necessary context for launching the task, launches the ApplicationMaster process.
-* `Application master`. Once registration is successful the component will begin requesting of resource from Resource Manager to utilize resources for Apache Ignite nodes. `The Application Master` will maintain the Ignite cluster at desired total resources level (CPU, memory, etc).
+* `Application master` - Once registration is successful the component will begin requesting of resource from Resource Manager to utilize resources for Apache Ignite nodes. `The Application Master` will maintain the Ignite cluster at desired total resources level (CPU, memory, etc).
 * `Container` - the entity that runs Ignite Node on slaves.
 [block:api-header]
 {
