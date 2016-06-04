@@ -126,9 +126,9 @@ Lets now look at how to configure framework to deploy your custom infrastructure
 | <sup>**EC2_IGNITE_TAG**      | <sup>Sets `Name` tag for all the EC2 instances of Ignite cluster to specified value. This element is optional.|
 | <sup>**EC2_TEST_TAG**      | <sup>Sets `Name` tag for all the EC2 instances of Tests cluster to specified value. This element is optional.|
 | <sup>**EC2_GANGLIA_TAG**      | <sup>Sets `Name` tag for the EC2 instance of Ganglia master to specified value. This element is optional.|
-| <sup>**CASSANDRA_NODES_COUNT**      | <sup>Number of EC2 nodes in Cassandra cluster. This is very important parameter, cause framework will wait until this number of Cassandra nodes up and running before launching load tests.|
-| <sup>**IGNITE_NODES_COUNT**      | <sup>Number of EC2 nodes in Ignite cluster. This is very important parameter, cause framework will wait until this number of Ignite nodes up and running before launching load tests.|
-| <sup>**TEST_NODES_COUNT**      | <sup>Number of EC2 nodes in Tests cluster. This is very important parameter, cause framework will wait until this number of Tests nodes up and running before launching load tests.|
+| <sup>**CASSANDRA_NODES_COUNT**      | <sup>Number of EC2 nodes in Cassandra cluster. This is **very important** parameter, cause framework will wait until this number of Cassandra nodes up and running before launching load tests.|
+| <sup>**IGNITE_NODES_COUNT**      | <sup>Number of EC2 nodes in Ignite cluster. This is **very important** parameter, cause framework will wait until this number of Ignite nodes up and running before launching load tests.|
+| <sup>**TEST_NODES_COUNT**      | <sup>Number of EC2 nodes in Tests cluster. This is **very important** parameter, cause framework will wait until this number of Tests nodes up and running before launching load tests.|
 | <sup>**TESTS_TYPE**      | <sup>Type of the load tests to launch. There only two options: `ignite` or `cassandra`|
 | <sup>**S3_ROOT**      | <sup>S3 root folder from the step 2|
 | <sup>**S3_DOWNLOADS**      | <sup>S3 folder from the step 3|
