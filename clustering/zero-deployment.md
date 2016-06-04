@@ -9,7 +9,7 @@ The closures and tasks that you use for your computations may be of any custom c
   "title": "Peer Class Loading"
 }
 [/block]
-Zero Deployment is possible due to peer class loading (P2P class loading), a special **distributed  ClassLoader** in Ignite for inter-node byte-code exchange. With peer-class-loading enabled, you don't have to manually deploy your Java or Scala code on each node in the grid and re-deploy it each time it changes.
+Zero deployment is possible due to peer class loading (P2P class loading), a special **distributed  ClassLoader** in Ignite for inter-node byte-code exchange. With peer-class-loading enabled, you don't have to manually deploy your Java or Scala code on each node in the grid and re-deploy it each time it changes.
 
 A code example like below would run on all remote nodes due to peer class loading, without any explicit deployment step.
 [block:code]
