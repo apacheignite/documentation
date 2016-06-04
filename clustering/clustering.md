@@ -16,7 +16,7 @@ Ignite nodes can automatically discover each other. This helps to scale the clus
 }
 [/block]
 ##Features
-* [Cluster](doc:cluster) 
+* [Cluster APIs](doc:cluster) 
 * [Cluster Groups](doc:cluster-groups) 
 * [Leader Election](doc:leader-election) 
 * [Cluster Configuration](doc:cluster-config) 
