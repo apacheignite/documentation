@@ -105,7 +105,7 @@ All infrastructure deployment settings are specified in the shell scripts inside
 Lets now look at how to configure framework to deploy your custom infrastructure in Amazon:
 
 1. First of all you should build Ignite from the source code. As a result you'll have two artifacts:
-  * **Ignite package** - which represents zip archive and could be found in the `target/bin` directory inside source code root directory.
+  * **Ignite package** - which represents zip archive naming like `apache-ignite-fabric-<version>-bin.zip` and could be found in the `target/bin` directory inside source code root directory.
   * **Tests package** - which represent zip archive naming like `ignite-cassandra-tests-<version>.zip` and could be found in the `modules/cassandra/target` directory inside source code root directory.
 2. You should have some folder on S3 which will be used as a root for framework system data.
 3. Inside S3 root folder create another folder (name doesn't important) where you will upload your **Ignite package** and **Tests package** with your custom environment settings (see next steps).
