@@ -1,7 +1,7 @@
 ## On this page
 * [Prerequisites](doc:getting-started#prerequisites)
 * [Installation](doc:getting-started#installation)
-* [Start From Command Line](doc:getting-started#start-from-command-line) 
+* [Start from Command Line](doc:getting-started#start-from-command-line) 
 * [Get It With Maven](doc:getting-started#get-it-with-maven)
 * [First Ignite Compute Application](doc:getting-started#first-ignite-compute-application)
 * [First Ignite Data Grid Application](doc:getting-started#first-ignite-data-grid-application)
@@ -59,7 +59,7 @@ If you downloaded the source package, you can build the binary using the followi
 [block:api-header]
 {
   "type": "basic",
-  "title": "Start From Command Line"
+  "title": "Start from Command Line"
 }
 [/block]
 An Ignite node can be started from command line either with default configuration or by passing a configuration file. You can start as many nodes as you like and they will all automatically discover each other. 
