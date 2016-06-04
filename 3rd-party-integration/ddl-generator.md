@@ -12,9 +12,16 @@ However, for some of the deployments it's not possible - because of the very str
 That's the exact use-case for DDL generator utility - it generates DDLs from [persistence descriptors](doc:base-concepts#persistencesettingsbean)
 
 Syntax sample:
-
-`java org.apache.ignite.cache.store.cassandra.utils.DDLGenerator /opt/dev/ignite/persistence-settings-1.xml /opt/dev/ignite/persistence-settings-2.xml`
-
+[block:code]
+{
+  "codes": [
+    {
+      "code": "java org.apache.ignite.cache.store.cassandra.utils.DDLGenerator /opt/dev/ignite/persistence-settings-1.xml /opt/dev/ignite/persistence-settings-2.xml",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 Output sample:
 [block:code]
 {
