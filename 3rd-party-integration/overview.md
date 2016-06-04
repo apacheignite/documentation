@@ -21,7 +21,7 @@ It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-s
 
 * [Examples](doc:examples) - configuration examples
 
-* [DDL generator](doc:ddl-generator) - command line utility to generate DDLs for Cassandra keyspaces/tables from xml files specifying persistence settings ([persistence descriptor](https://github.com/irudyak/ignite/wiki/Base-concepts#persistence))
+* [DDL generator](doc:ddl-generator) - command line utility to generate DDLs for Cassandra keyspaces/tables from xml files specifying persistence settings ([persistence descriptor](base-concepts#persistencesettingsbean))
 
 * [Load tests](doc:load-tests) - explains how to run load test (provided with the module source code) for your custom classes to measure performance and identify appropriate infrastructure to handle your load
 
