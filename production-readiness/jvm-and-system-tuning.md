@@ -195,7 +195,7 @@ In case your JVM is throwing an ‘OutOfMemoryException’ and the JVM process s
   ]
 }
 [/block]
-##Detailed Garbage Collection stats
+##Detailed Garbage Collection Stats
 
 In order to capture detailed information about garbage collection and its performance add the following parameters to the JVM configuration:
 [block:code]
