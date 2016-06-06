@@ -1,6 +1,6 @@
 ## On this page
 * [IgniteDataStreamer](#ignitedatastreamer)
-* [IgniteCache.loadCache](#ignitecacheloadcache)
+* [IgniteCache.loadCache()](#ignitecacheloadcache)
 
 Data loading usually has to do with initializing cache data on startup. Using standard cache `put(...)` or `putAll(...)` operations is generally inefficient for loading large amounts of data. 
 [block:api-header]
