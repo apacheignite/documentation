@@ -7,8 +7,6 @@ Whenever the `TopologyValidator.validate(Collection)` method returns true, then 
 - `IgniteException` will be thrown for the transaction commit attempt.
 
 After returning false and declaring the topology not valid, the topology validator can return to normal state whenever the next topology change happens.
-
-## Example 
 [block:code]
 {
   "codes": [
