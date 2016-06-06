@@ -1,3 +1,9 @@
+## On this page
+* [IgniteCache API](doc:jcache#ignitecache)
+* [Basic Operations](doc:jcache#basic-operations)
+* [EntryProcessor](doc:jcache#entryprocessor)
+* [Asynchronous Support](doc:jcache#asynchronous-support)
+
 Apache Ignite data grid is an implementation of **JCache (JSR 107)** specification. JCache provides a very simple to use, but yet very powerful API for data access. However, the specification purposely omits any details about data distribution and consistency to allow vendors enough freedom in their own implementations. 
 
 With JCache support you get the following:
@@ -11,7 +17,7 @@ In addition to JCache, Ignite provides ACID transactions, data querying capabili
 [block:api-header]
 {
   "type": "basic",
-  "title": "IgniteCache"
+  "title": "IgniteCache API"
 }
 [/block]
 `IgniteCache` interface is a gateway into Ignite cache implementation and provides methods for storing and retrieving data, executing queries, including SQL, iterating and scanning, etc.
