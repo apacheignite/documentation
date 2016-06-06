@@ -1,18 +1,27 @@
-## On this page
-- [JVM tuning for clusters with ON_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-on_heap-caches)
-- [JVM tuning for clusters with OFF_HEAP caches](doc:jvm-and-system-tuning#jvm-tuning-for-clusters-with-off_heap-caches)
-- [GC attacks by Linux](doc:jvm-and-system-tuning#gc-attacks-by-linux)
-- [Debugging memory usage issues and GC pauses](doc:jvm-and-system-tuning#debugging-memory-usage-issues-and-gc-pauses)
-- [File Descriptors](doc:jvm-and-system-tuning#file-descriptors) 
+* [JVM tuning for clusters with ON_HEAP caches](#jvm-tuning-for-clusters-with-on_heap-caches)
+ * [Basic JVM Configuration](#section-basic-jvm-configuration)
+ * [Advanced JVM Configuration](#section-advanced-jvm-configuration)
+* [JVM tuning for clusters with OFF_HEAP caches](#jvm-tuning-for-clusters-with-off_heap-caches)
+ * [JVM Configuration](#section-jvm-configuration)
+* [GC Attacks by Linux](#gc-attacks-by-linux)
+ * [I/O Issues](#section-i-o-issues)
+ * [Memory Issues](#section-memory-issues)
+* [Debugging memory usage issues and GC pauses](#debugging-memory-usage-issues-and-gc-pauses)
+ * [Getting Heap Dump on Out of Memory Errors](#section-getting-heap-dump-on-out-of-memory-errors)
+ * [Detailed Garbage Collection stats](#section-detailed-garbage-collection-stats)
+ * [FireRecorder Settings](#section-detailed-garbage-collection-stats)
+* [File Descriptors](#file-descriptors)
+ * [System File Descriptor Limit](#section-system-file-descriptor-limit)
+ * [Process File Descriptor Limit](#section-process-file-descriptor-limit) 
 [block:api-header]
 {
   "type": "basic",
-  "title": "JVM tuning for clusters with ON_HEAP caches"
+  "title": "JVM Tuning for Clusters With ON_HEAP Caches"
 }
 [/block]
 This section contains basic recommendations for clusters that keeps all or significant amount of cache entries in Java heap. 
 
-##Basic JVM configuration
+##Basic JVM Configuration
 
 The following JVM settings have proven to provide fairly smooth throughput without large spikes:
 [block:code]
@@ -51,12 +60,12 @@ For JDK 1.7⁄ 1.8 (8GB heap example for machine with 32 CPUs):
 [block:api-header]
 {
   "type": "basic",
-  "title": "JVM tuning for clusters with OFF_HEAP caches"
+  "title": "JVM Tuning for Clusters With OFF_HEAP Caches"
 }
 [/block]
 This section contains basic recommendations for clusters that keeps all or significant amount of cache entries off heap. 
 
-##JVM configuration
+##JVM Configuration
 
 Below are sets of advanced JVM configurations for applications that might generate high numbers of temporary objects hence triggering long pauses due to garbage collection activities.
 
@@ -100,7 +109,7 @@ If by some reason G1 doesn't suite well for your case or JDK 7 is used then you 
 [block:api-header]
 {
   "type": "basic",
-  "title": "GC attacks by Linux"
+  "title": "GC Attacks by Linux"
 }
 [/block]
 In Linux environment it may happen that an IMDG based application faces with long GC pauses due to I/O or memory starvation or other kernel specific settings. This section gives some guidelines on how to modify kernel settings in order to overcome long GC pauses caused by the Linux kernel.
@@ -168,7 +177,7 @@ If GC log shows “low user time, high system time, long GC pause” then most l
 [block:api-header]
 {
   "type": "basic",
-  "title": "Debugging memory usage issues and GC pauses"
+  "title": "Debugging Memory Usage Issues and GC Pauses"
 }
 [/block]
 The section contains information that may be helpful when you need to debug and troubleshoot issues related to memory usage or long GC pauses.
