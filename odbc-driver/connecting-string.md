@@ -1,7 +1,11 @@
+## On this page
+* [Connection String Format](#connection-string-format)
+* [Supported Arguments](#supported-arguments)
+* [Connection String Example](#connection-string-samples)
 [block:api-header]
 {
   "type": "basic",
-  "title": "Connection string format"
+  "title": "Connection String Format"
 }
 [/block]
 Apache Ignite ODBC Driver supports standard connection string format. Here is the formal syntax:
@@ -18,7 +22,7 @@ To put it simple connection string is just list of the key=value entries separat
 [block:api-header]
 {
   "type": "basic",
-  "title": "Supported arguments"
+  "title": "Supported Arguments"
 }
 [/block]
 Apache Ignite ODBC driver supports and uses following connection string/DSN
@@ -47,10 +51,10 @@ valid parameter names and refer to the same parameter.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Connection string samples"
+  "title": "Connection String Example"
 }
 [/block]
-You can find samples of the connection string below. These strings can be used with `SQLDriverConnect` ODBC call to establish connection with an Apache Ignite node.
+You can find examples of the connection string below. These strings can be used with `SQLDriverConnect` ODBC call to establish connection with an Apache Ignite node.
 [block:code]
 {
   "codes": [
