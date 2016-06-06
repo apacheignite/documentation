@@ -1,3 +1,8 @@
+## On this page
+* [How to Enable Caching](#how-to-enable-caching)
+* [Dynamic Caches](##dynamic-caches)
+* [Example](#example)
+
 Ignite is shipped with the `SpringCacheManager` - an implementation of [Spring Cache Abstraction](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html). It provides annotation-based way to enable caching for Java methods so that the result of a method execution is stored in the Ignite cache. If later the same method is called with the same set of parameters, the result will be retrieved from the cache instead of actually executing the method.
 [block:callout]
 {
@@ -10,7 +15,7 @@ Ignite is shipped with the `SpringCacheManager` - an implementation of [Spring C
 [block:api-header]
 {
   "type": "basic",
-  "title": "How to enable caching"
+  "title": "How to Enable Caching"
 }
 [/block]
 Only two simple steps are required to plug in Ignite's cache into your Spring-based application:
