@@ -1,4 +1,3 @@
-## On this page
 * [Disable Internal Events Notification](doc:performance-tips#disable-internal-events-notification)
 * [Tune Cache Start Size](doc:performance-tips#tune-cache-start-size)
 * [Turn Off Backups](performance-tips#turn-off-backups)
