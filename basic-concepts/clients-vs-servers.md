@@ -1,11 +1,16 @@
-## On this page
-* [Configuring Clients and Servers](doc:clients-vs-servers#configuring-clients-and-servers)
-* [Creating Distributed Caches](doc:clients-vs-servers#creating-distributed-caches)
-* [Computing on Clients or Servers](doc:clients-vs-servers#computing-on-clients-or-servers)
-* [Managing Slow Clients](doc:clients-vs-servers#managing-slow-clients)
-* [Client Reconnect](doc:clients-vs-servers#client-reconnect)
-* [Forcing Server Mode On Client Nodes](doc:clients-vs-servers#forcing-server-mode-on-client-nodes)
-
+* [Overview](#overview)
+* [Configuring Clients and Servers](#configuring-clients-and-servers)
+* [Creating Distributed Caches](#creating-distributed-caches)
+* [Computing on Clients or Servers](#computing-on-clients-or-servers)
+* [Managing Slow Clients](#managing-slow-clients)
+* [Client Reconnect](#client-reconnect)
+* [Forcing Server Mode On Client Nodes](#forcing-server-mode-on-client-nodes)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite has an optional notion of **client** and **server** nodes. Server nodes participate in caching, compute execution, stream processing, etc., while the native client nodes provide ability to connect to the servers remotely. Ignite native clients allow to use the whole set of `Ignite APIs`, including near caching, transactions, compute, streaming, services, etc. from the client side.
 
 By default, all Ignite nodes are started as `server` nodes, and `client` mode needs to be explicitly enabled.
