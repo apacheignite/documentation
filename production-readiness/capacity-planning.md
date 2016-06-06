@@ -11,7 +11,7 @@ When preparing and planning for a system capacity planning is an integral part o
 [block:api-header]
 {
   "type": "basic",
-  "title": "Calculating the Memory Usage"
+  "title": "Calculating Memory Usage"
 }
 [/block]
 - Calculate primary data size: multiply the size of one entry in bytes by the total number of entries
