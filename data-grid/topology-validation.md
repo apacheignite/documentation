@@ -24,5 +24,5 @@ In this example update operations will be allowed to cache with name
 - `CACHE_NAME_1` in case cluster contains exactly 2 nodes
 - `CACHE_NAME_2` in case cluster contain at least 2 nodes.
 
-Configuration
+## Configuration
 The topology validator can be configured either from code or XML via `CacheConfiguration.setTopologyValidator(TopologyValidator)` method.
