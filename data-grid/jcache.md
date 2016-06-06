@@ -1,5 +1,6 @@
 ## On this page
 * [IgniteCache API](doc:jcache#ignitecache)
+* * [Dynamic Cache](#section-dynamic-cache)
 * [Basic Operations](doc:jcache#basic-operations)
 * [EntryProcessor](doc:jcache#entryprocessor)
 * [Asynchronous Support](doc:jcache#asynchronous-support)
