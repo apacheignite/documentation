@@ -1,5 +1,4 @@
-This documentation contains the following topics related to Transactions in Ignite:
-
+## On this page
 - [Atomicity Mode](doc:transactions#atomicity-mode)
 - [Ignite Transactions](doc:transactions#ignitetransactions)
 - [Two-Phase-Commit (2PC)](doc:transactions#two-phase-commit-2pc)
