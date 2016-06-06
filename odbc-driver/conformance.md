@@ -1,8 +1,12 @@
+## On this page
+* [Core Interface Conformance](#core-interface-conformance)
+* [Function Support](#function-support)
+
 ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several Interface conformance levels. In this section you can find which features are supported by the Ignite Apache ODBC driver.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Core Interface conformance"
+  "title": "Core Interface Conformance"
 }
 [/block]
 
@@ -68,7 +72,7 @@ ODBC [defines](https://msdn.microsoft.com/en-us/library/ms710289.aspx) several I
 [block:api-header]
 {
   "type": "basic",
-  "title": "Function support"
+  "title": "Function Support"
 }
 [/block]
 
