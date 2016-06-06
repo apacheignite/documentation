@@ -1,3 +1,8 @@
+## On this page
+* [JDBC Connection](#jdbc-connection)
+* [Example](#example)
+* [Backward Compatibility](#backward-compatibility)
+
 Ignite is shipped with JDBC driver that allows you to retrieve distributed data from cache using standard SQL queries and JDBC API. 
 [block:api-header]
 {
@@ -119,7 +124,7 @@ Minimalistic version of `ignite-jdbc.xml` configuration file can look like:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Backward compatibility"
+  "title": "Backward Compatibility"
 }
 [/block]
 For previous versions of Ignite (prior 1.4) JDBC connection URL has the following pattern:
