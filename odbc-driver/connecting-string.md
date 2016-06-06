@@ -1,7 +1,7 @@
 ## On this page
 * [Connection String Format](#connection-string-format)
 * [Supported Arguments](#supported-arguments)
-* [Connection String Example](#connection-string-samples)
+* [Connection String Example](#connection-string-example)
 [block:api-header]
 {
   "type": "basic",
