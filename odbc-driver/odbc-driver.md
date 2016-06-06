@@ -1,3 +1,8 @@
+## On this page
+* [Prerequisites](#prerequisites)
+* [Building ODBC Driver](#building-odbc-driver)
+* [Installing ODBC Driver](#installing-odbc-driver)
+
 Ignite now includes ODBC driver that allows you to retrieve distributed data from cache using standard SQL queries and native ODBC API.
 
 For detailed info on ODBC please refer to [ODBC Programmer's Reference](https://msdn.microsoft.com/en-us/library/ms714177.aspx).
@@ -28,7 +33,7 @@ Apache Ignite ODBC Driver was officially tested on:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Building ODBC driver"
+  "title": "Building ODBC Driver"
 }
 [/block]
 Ignite ODBC Driver shipped in sources as a part of Apache Ignite package. It means that you need to build it before you are going to be able to use it. For instructions on how to acquire and set up Apache Ignite itself please refer to [Getting Started](doc:getting-started) page.
@@ -71,7 +76,7 @@ The path will be most likely `/usr/local/lib/libignite-odbc.so`
 [block:api-header]
 {
   "type": "basic",
-  "title": "Installing ODBC driver"
+  "title": "Installing ODBC Driver"
 }
 [/block]
 In order to use ODBC driver you need to register it in your system so your ODBC Driver Manager will be able to locate it.
