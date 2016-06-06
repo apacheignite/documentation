@@ -1,5 +1,5 @@
 ## On this page
-* [ContinuousQuery API](#)
+* [ContinuousQuery API](#continuousquery-api)
 * [Events Delivery Guarantees](#events-delivery-guarantees)
 [block:api-header]
 {
