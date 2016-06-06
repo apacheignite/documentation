@@ -1,4 +1,10 @@
-Ignite ships with its own database schema mapping wizard which provides automatic support for integrating with persistence stores. This utility automatically connects to the underlying database and generates all the required XML OR-mapping configuration and Java domain model POJOs.
+## On this page
+* [Database Schema Import](#database-schema-import)
+* [CacheJdbcPojoStore](#cachejdbcpojostore)
+* [Example)(#example)
+* [Demo](#demo)
+
+Ignite ships with its own database schema mapping wizard which provides automatic support for integrating with persistence stores. This utility automatically connects to the underlying database and generates all the required XML OR-mapping configuration and Java domain model POJOs.**
 
 Ignite also ships with `org.apache.ignite.cache.store.jdbc.CacheJdbcPojoStore`, which is out-of-the-box JDBC implementation of the [IgniteCacheStore](doc:persistent-store) interface, and automatically handles all the write-through and read-through logic.
 [block:api-header]
