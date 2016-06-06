@@ -1,3 +1,8 @@
+## On this page
+* [L2 Cache Configuration](#l2-cache-configuration)
+* [Query Cache](#query-cache)
+* [Query Cache Configuration](#query-cache-configuration)
+
 Ignite In-Memory Data Fabric can be used as [Hibernate](http://hibernate.org) Second-Level cache (or L2 cache), which can significantly speed-up the persistence layer of your application.
 
 [Hibernate](http://hibernate.org) is a well-known and widely used framework for Object-Relational Mapping (ORM). While interacting closely with an SQL database, it performs caching of retrieved data to minimize expensive database requests.
