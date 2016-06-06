@@ -1,3 +1,10 @@
+## On this page
+* [Partitioned Mode](doc:cache-modes#partitioned-mode)
+* [Replicated Mode](doc:cache-modes#replicated-mode)
+* [Local Mode](doc:cache-modes#local-mode)
+* [Configuration](doc:cache-modes#configuration)
+* [Atomic Write Order Mode](doc:cache-modes#atomic-write-order-mode)
+
 Ignite provides three different modes of cache operation: `PARTITIONED`, `REPLICATED`, and `LOCAL`. A cache mode is configured for each cache. Cache modes are defined in `CacheMode` enumeration. 
 [block:api-header]
 {
