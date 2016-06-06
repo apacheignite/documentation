@@ -1,4 +1,3 @@
-## On this page
 * [Read-Through and Write-Through](#read-through-and-write-through)
 * [Write-Behind Caching](#write-behind-caching)
 * [CacheStore](#cachestore)
