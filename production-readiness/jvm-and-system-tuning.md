@@ -65,7 +65,7 @@ For JDK 1.7⁄ 1.8 (8GB heap example for machine with 32 CPUs):
 [/block]
 This section contains basic recommendations for clusters that keeps all or significant amount of cache entries off heap. 
 
-##JVM configuration
+##JVM Configuration
 
 Below are sets of advanced JVM configurations for applications that might generate high numbers of temporary objects hence triggering long pauses due to garbage collection activities.
 
