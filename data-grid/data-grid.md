@@ -48,6 +48,7 @@ Ignite data grid is lightning fast and is one of the fastest implementations of 
 * [SQL Queries](doc:sql-queries) 
 * [Continuous Queries](doc:continuous-queries) 
 * [ ACID Transactions](doc:transactions) 
+* [Locks](doc:distributed-locks) 
 * [Off-Heap Memory](doc:off-heap-memory) 
 * [Affinity Collocation](doc:affinity-collocation) 
 * [Persistent Store](doc:persistent-store) 
