@@ -1,3 +1,4 @@
+* [Overview](#overview)
 * [Read-Through and Write-Through](#read-through-and-write-through)
 * [Write-Behind Caching](#write-behind-caching)
 * [CacheStore](#cachestore)
@@ -13,7 +14,8 @@
 * [CacheHibernateBlobStore](#cachehibernateblobstore)
 [block:api-header]
 {
-  "type": "basic"
+  "type": "basic",
+  "title": "Overview"
 }
 [/block]
 JCache specification comes with APIs for [javax.cache.integration.CacheLoader](https://ignite.incubator.apache.org/jcache/1.0.0/javadoc/javax/cache/integration/CacheLoader.html) and [javax.cache.integration.CacheWriter](https://ignite.incubator.apache.org/jcache/1.0.0/javadoc/javax/cache/integration/CacheWriter.html) which are used for **write-through** and **read-through** to and from an underlying persistent storage respectively (e.g. an RDBMS database like Oracle or MySQL, or NoSQL database like MongoDB or Couchbase).
