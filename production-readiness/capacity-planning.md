@@ -1,5 +1,5 @@
 * [Overview](#overview)
-* [Calculating Memory Usage](#calculating-the-memory-usage)
+* [Calculating Memory Usage](#calculating-memory-usage)
 * [Capacity Planning Example](#capacity-planning-example)
 [block:api-header]
 {
