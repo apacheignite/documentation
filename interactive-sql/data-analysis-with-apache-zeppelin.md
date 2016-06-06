@@ -93,11 +93,11 @@ For more complicated cases you can define own configuration of Ignite using `ign
 }
 [/block]
 ### Starting Ignite cluster
-Before using Zeppelin we need start Ignite cluster. Download [Apache Ignite In-Memory Data Fabric binary release](http://mirrors.koehn.com/apache//incubator/ignite/1.2.0/apache-ignite-fabric-1.2.0-incubating-bin.zip) and unpack the downloaded archive:
-`unzip apache-ignite-fabric-1.2.0-incubating-bin.zip -d <dest_dir>`
+Before using Zeppelin we need start Ignite cluster. Download [Apache Ignite In-Memory Data Fabric binary release](https://ignite.apache.org/download.cgi#binaries) and unpack the downloaded archive:
+`unzip apache-ignite-fabric-1.6.0-bin.zip -d <dest_dir>`
 
 Examples are shipped as a separate Maven project, so to start running you simply need
-to import provided `<dest_dir>/apache-ignite-fabric-1.2.0-incubating-bin/pom.xml` file into your favourite IDE.
+to import provided `<dest_dir>/apache-ignite-fabric-1.6.0-bin/pom.xml` file into your favourite IDE.
 
 Start the following examples:
   * `org.apache.ignite.examples.ExampleNodeStartup` - starts one Ignite node. You can start one or more nodes.
