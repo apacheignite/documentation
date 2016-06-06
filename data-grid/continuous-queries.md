@@ -3,12 +3,7 @@
 * [Events Delivery Guarantees](#events-delivery-guarantees)
 
 Continuous queries are good for cases when you want to execute a query and then continue to get notified about the data changes that fall into your query filter.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "ContinuousQuery API"
-}
-[/block]
+
 Continuous queries are supported via `ContinuousQuery` class, which supports the following:
 ## Initial Query
 Whenever executing continuous query, you have an option to execute initial query before starting to listen to updates. The initial query can be set via `ContinuousQuery.setInitialQuery(Query)` method and can be of any query type, [Scan](/docs/cache-queries#scan-queries), [SQL](/docs/cache-queries#sql-queries), or [TEXT](/docs/cache-queries#text-queries). This parameter is optional, and if not set, will not be used.
