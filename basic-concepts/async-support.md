@@ -1,7 +1,14 @@
-## On this page
-* [IgniteAsyncSupport](doc:async-support#igniteasyncsupport)
-* [@IgniteAsyncSupported Annotation](doc:async-support#igniteasyncsupported)
- 
+* [Overview](#overview)
+* [IgniteAsyncSupport](#igniteasyncsupport)
+ * [Compute Grid Example](#section-compute-grid-example)
+ * [Data Grid Example](#section-data-grid-example)
+* [@IgniteAsyncSupported Annotation](#igniteasyncsupported)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 All distributed methods on all Ignite APIs can be executed either synchronously or asynchronously. However, instead of having a duplicate asynchronous method for every synchronous one (like `get()` and `getAsync()`, or `put()` and `putAsync()`, etc.), Ignite chose a more elegant approach, where methods don't have to be duplicated.
 [block:api-header]
 {
