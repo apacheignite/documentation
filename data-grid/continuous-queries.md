@@ -1,5 +1,5 @@
 ## On this page
-* [ContunuousQuery API](#continuousquery-api)
+* [ContunuousQuery API](#)
 * [Events Delivery Guarantees](#events-delivery-guarantees)
 
 Continuous queries are good for cases when you want to execute a query and then continue to get notified about the data changes that fall into your query filter.
