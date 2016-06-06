@@ -1,8 +1,8 @@
 ## On this page
 * [Least Recently Used](#least-recently-used-lru)
 * [First In First Out](#first-in-first-out-fifo)
-*[Sorted](#sorted)
-*[Random](#random)
+* [Sorted](#sorted)
+* [Random](#random)
 
 Least Recently Used
 Eviction policies control the maximum number of elements that can be stored in a cache on-heap memory.  Whenever maximum on-heap cache size is reached, entries are evicted into [off-heap space](doc:off-heap-memory), if one is enabled. 
