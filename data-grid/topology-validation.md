@@ -8,7 +8,7 @@ Whenever the `TopologyValidator.validate(Collection)` method returns true, then 
 
 After returning false and declaring the topology not valid, the topology validator can return to normal state whenever the next topology change happens.
 
-Example
+## Example 
 [block:code]
 {
   "codes": [
