@@ -1,7 +1,12 @@
-## On this page
-* [Common Dependencies](doc:maven-setup#common-dependencies)
-* [Importing Individual Modules A La Carte](doc:maven-setup#importing-individual-modules-a-la-carte)
-
+* [Overview](#overview)
+* [Common Dependencies](#common-dependencies)
+* [Importing Individual Modules A La Carte](#importing-individual-modules-a-la-carte)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 If you are using Maven to manage dependencies of your project, you can import individual Ignite modules a la carte.
 [block:callout]
 {
