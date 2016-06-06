@@ -12,7 +12,11 @@
 * [CacheJdbcBlobStore](#cachejdbcblobstore)
 * [CacheJdbcPojoStore](#cachejdbcpojostore)
 * [CacheHibernateBlobStore](#cachehibernateblobstore)
-
+[block:api-header]
+{
+  "type": "basic"
+}
+[/block]
 JCache specification comes with APIs for [javax.cache.integration.CacheLoader](https://ignite.incubator.apache.org/jcache/1.0.0/javadoc/javax/cache/integration/CacheLoader.html) and [javax.cache.integration.CacheWriter](https://ignite.incubator.apache.org/jcache/1.0.0/javadoc/javax/cache/integration/CacheWriter.html) which are used for **write-through** and **read-through** to and from an underlying persistent storage respectively (e.g. an RDBMS database like Oracle or MySQL, or NoSQL database like MongoDB or Couchbase).
 
 While Ignite allows you to configure the `CacheLoader` and `CacheWriter` separately, it is very awkward to implement a transactional store within 2 separate classes, as multiple `load` and `put` operations have to share the same connection within the same transaction. To mitigate that, Ignite provides `org.apache.ignite.cache.store.CacheStore` interface which extends both, `CacheLoader` and `CacheWriter`. 
@@ -178,8 +182,6 @@ Following configuration parameters can be used to enable and configure **write-b
   "rows": 5
 }
 [/block]
-
-
 `CacheStore` interface can be set on `IgniteConfiguration` via a `Factory` in much the same way like `CacheLoader` and `CacheWriter` are being set. 
 [block:callout]
 {
