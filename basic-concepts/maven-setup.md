@@ -1,4 +1,3 @@
-## On this page
 * [Common Dependencies](doc:maven-setup#common-dependencies)
 * [Importing Individual Modules A La Carte](doc:maven-setup#importing-individual-modules-a-la-carte)
 
