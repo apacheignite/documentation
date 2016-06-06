@@ -1,4 +1,3 @@
-## On this page
 * [IgniteCluster](doc:cluster#ignitecluster)
 * [ClusterNode](doc:cluster#clusternode)
 * [Cluster Node Attributes](doc:cluster#cluster-node-attributes)
