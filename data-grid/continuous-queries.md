@@ -1,5 +1,10 @@
 Continuous queries are good for cases when you want to execute a query and then continue to get notified about the data changes that fall into your query filter.
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "ContinuousQuery API"
+}
+[/block]
 Continuous queries are supported via `ContinuousQuery` class, which supports the following:
 ## Initial Query
 Whenever executing continuous query, you have an option to execute initial query before starting to listen to updates. The initial query can be set via `ContinuousQuery.setInitialQuery(Query)` method and can be of any query type, [Scan](/docs/cache-queries#scan-queries), [SQL](/docs/cache-queries#sql-queries), or [TEXT](/docs/cache-queries#text-queries). This parameter is optional, and if not set, will not be used.
@@ -23,7 +28,13 @@ Whenever events pass the remote filter, they will be send to the client to notif
   ]
 }
 [/block]
-## Events Delivery Guarantees
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Events Delivery Guarantees"
+}
+[/block]
 Continuous query implementation guarantees exactly once delivery of an event to the client's local listener.
 It's feasible since every backup node(s) maintains an update queue in addition to the primary node. If the primary node crashes or a topology is changed for some other reason, then every backup node flushes content of its internal queue to the client making sure that there will be no event that was not delivered to the client's local listener. 
 
