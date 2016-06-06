@@ -1,4 +1,3 @@
-## On this page
 * [Basic Concepts](doc:binary-marshaller#basic-concepts)
 * [BinaryObject Equality](doc:binary-marshaller#binaryobject-equality)
 * [Configuring Binary Objects](doc:binary-marshaller#configuring-binary-objects)
