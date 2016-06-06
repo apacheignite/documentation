@@ -1,10 +1,10 @@
-* [Prerequisites](doc:getting-started#prerequisites)
-* [Installation](doc:getting-started#installation)
-* [Start from Command Line](doc:getting-started#start-from-command-line) 
-* [Get It With Maven](doc:getting-started#get-it-with-maven)
-* [First Ignite Compute Application](doc:getting-started#first-ignite-compute-application)
-* [First Ignite Data Grid Application](doc:getting-started#first-ignite-data-grid-application)
-* [Ignite Visor Admin Console](doc:getting-started#ignite-visor-admin-console)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Start from Command Line](#start-from-command-line) 
+* [Get It With Maven](#get-it-with-maven)
+* [First Ignite Compute Application](#first-ignite-compute-application)
+* [First Ignite Data Grid Application](#first-ignite-data-grid-application)
+* [Ignite Visor Admin Console](#ignite-visor-admin-console)
 [block:api-header]
 {
   "type": "basic",
