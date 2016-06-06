@@ -1,8 +1,19 @@
+## On this page
+* [Configuring Backups](doc:primary-and-backup-copies#configuring-backups)
+* [Synchronous and Asynchronous Backups](doc:primary-and-backup-copies#synchronous-and-asynchronous-backups)
+
 In `PARTITIONED` mode, nodes to which the keys are assigned to are called primary nodes for those keys. You can also optionally configure any number of backup nodes for cached data. If the number of backups is greater than 0, then Ignite will automatically assign backup nodes for each individual key. For example if the number of backups is 1, then every key cached in the data grid will have 2 copies, 1 primary and 1 backup.
 [block:callout]
 {
   "type": "info",
   "body": "By default, backups are turned off for better performance."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuring Backups"
 }
 [/block]
 Backups can be configured by setting `backups()` property of `CacheConfiguration`, like so:
