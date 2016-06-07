@@ -1,7 +1,7 @@
 * [Overview](#overview)
- * Time-Based Sliding Windows](#section-time-based-sliding-windows)
- * [FIFO Sliding Window](#section-fifo-sliding-windows)
- * [LRU Sliding Window](#section-lru-sliding-windows)
+* Time-Based Sliding Windows](#section-time-based-sliding-windows)
+* [FIFO Sliding Window](#section-fifo-sliding-windows)
+* [LRU Sliding Window](#section-lru-sliding-windows)
 * [Querying Sliding Windows](##querying-sliding-windows)
 [block:api-header]
 {
@@ -26,7 +26,13 @@ Sliding windows are configured as Ignite cache eviction policies, and can be tim
   ]
 }
 [/block]
-##Time-Based Sliding Windows
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Time-Based Sliding Windows"
+}
+[/block]
 Time-based windows are configured using JCache-compliant `ExpiryPolicy`. You can have streamed events expire based on **create time**, **last-access time**, or **update time**.
 
 Here is how you can configure a 5-second sliding window based on creation time in Ignite.
@@ -40,7 +46,13 @@ Here is how you can configure a 5-second sliding window based on creation time i
   ]
 }
 [/block]
-##FIFO Sliding Window
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "FIFO Sliding Window"
+}
+[/block]
 FIFO (first-in-first-out) sliding windows are configured via `FifoEvictionPolicy` in Ignite caches. This policy is size-based. Stream tuples are inserted into the window until cache size reaches its maximum limit. Then the oldest tuples start getting evicted automatically. 
 
 Here is how you can configure a FIFO sliding window holding 1,000,000 of stream tuples.
@@ -54,7 +66,13 @@ Here is how you can configure a FIFO sliding window holding 1,000,000 of stream 
   ]
 }
 [/block]
-##LRU Sliding Window
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "LRU Sliding Window"
+}
+[/block]
 LRU (least-recently-used) sliding windows are configured via `LruEvictionPolicy` in Ignite caches. This policy is size-based. Stream tuples are inserted into the window until cache size reaches its maximum limit. Then the least recently accessed tuples start getting evicted automatically. 
 
 Here is how you can configure LRU sliding window holding 1,000,000 of most recently accessed data.
