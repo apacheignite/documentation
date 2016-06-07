@@ -1,11 +1,8 @@
-## On this page
 * [Collocate Data with Data](#collocate-data-with-data)
 * [Collocating Compute with Data](#collocating-compute-with-data)
 * [IgniteCompute vs EntryProcessor](#ignitecompute-vs-entryprocessor)
 * [Affinity Function](#affinity-function)
 * [Affinity Key Mapper](#affinity-key-mapper)
-
-Given that the most common ways to cache data is in `PARTITIONED` caches, collocating compute with data or data with data can significantly improve performance and scalability of your application.
 [block:api-header]
 {
   "type": "basic",
