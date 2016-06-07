@@ -1,3 +1,4 @@
+* [Overview](#overview)
 * [Disable Internal Events Notification](doc:performance-tips#disable-internal-events-notification)
 * [Tune Cache Start Size](doc:performance-tips#tune-cache-start-size)
 * [Turn Off Backups](performance-tips#turn-off-backups)
@@ -14,7 +15,8 @@
 * [Do Not Copy Value On Read](doc:performance-tips#do-not-copy-value-on-read)
 [block:api-header]
 {
-  "type": "basic"
+  "type": "basic",
+  "title": "Overview"
 }
 [/block]
 Ignite In-Memory Data Grid performance and throughput vastly depends on the features and the settings you use. In almost any use case the cache performance can be optimized by simply tweaking the cache configuration.
