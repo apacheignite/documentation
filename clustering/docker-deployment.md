@@ -1,8 +1,8 @@
 * [Overview](#overview)
-* [Start from User Git Repository](doc:docker-deployment#start-from-user-git-repository)
-* [Start Bare Ignite Node](doc:docker-deployment#start-bare-ignite-node)
-* [Google Compute Deployment](doc:docker-deployment#google-compute-deployment)
-* [Amazon EC2 Deployment](doc:docker-deployment#amazon-ec2-deployment)
+* [Start from User Git Repository](#start-from-user-git-repository)
+* [Start Bare Ignite Node](#start-bare-ignite-node)
+* [Google Compute Deployment](#google-compute-deployment)
+* [Amazon EC2 Deployment](#amazon-ec2-deployment)
 [block:api-header]
 {
   "type": "basic",
