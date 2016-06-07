@@ -1,8 +1,8 @@
 * [Overview](#overview)
-* [Time-Based Sliding Windows](#section-time-based-sliding-windows)
-* [FIFO Sliding Window](#section-fifo-sliding-windows)
-* [LRU Sliding Window](#section-lru-sliding-windows)
-* [Querying Sliding Windows](##querying-sliding-windows)
+* [Time-Based Sliding Windows](#time-based-sliding-windows)
+* [FIFO Sliding Window](#fifo-sliding-windows)
+* [LRU Sliding Window](#lru-sliding-windows)
+* [Querying Sliding Windows](#querying-sliding-windows)
 [block:api-header]
 {
   "type": "basic",
