@@ -1,8 +1,6 @@
 * [JDBC Connection](#jdbc-connection)
 * [Example](#example)
 * [Backward Compatibility](#backward-compatibility)
-
-
 [block:api-header]
 {
   "type": "basic",
