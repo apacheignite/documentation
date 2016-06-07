@@ -1,10 +1,15 @@
-## On this page
+* [Overview](#overview)
 * [PRIVATE and ISOLATED](doc:deployment-modes#section-private-and-isolated)
 * [SHARED](doc:deployment-modes#section-shared)
 * [CONTINUOUS](doc:deployment-modes#section-continuous)
 * [Un-Deployment and User Versions](doc:deployment-modes#un-deployment-and-user-versions)
 * [Configuration](doc:deployment-modes#configuration)
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Specifics of peer-class-loading behavior are controlled by different deployment modes. Particularly, the un-deployment behavior in cases when originating node leaves grid depends on the deployment mode. Other aspects, governed by deployment mode, are user resources management and class versions management. In the sections below we describe each deployment mode in more detail.
 
 ## PRIVATE and ISOLATED
