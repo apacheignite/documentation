@@ -1,4 +1,5 @@
 * [Overview](#overview)
+* [TcpCommunicationSpi](#tcpcommunicationspi)
 * [Configuration](#Configuration)
 [block:api-header]
 {
