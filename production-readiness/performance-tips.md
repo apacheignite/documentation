@@ -15,7 +15,8 @@
 * [Do Not Copy Value On Read](doc:performance-tips#do-not-copy-value-on-read)
 [block:api-header]
 {
-  "type": "basic"
+  "type": "basic",
+  "title": "Overview"
 }
 [/block]
 Ignite In-Memory Data Grid performance and throughput vastly depends on the features and the settings you use. In almost any use case the cache performance can be optimized by simply tweaking the cache configuration.
