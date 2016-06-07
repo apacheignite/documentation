@@ -1,3 +1,11 @@
+* [Overview](#overview)
+* [Amazon S3 Based Discovery](##amazon-s3-based-discovery)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Node discovery on AWS cloud is usually proven to be more challenging. Amazon EC2, just like most of the other virtual environments, has the following limitations:
 * Multicast is disabled.
 * TCP addresses change every time a new image is started.
@@ -16,8 +24,6 @@ To mitigate constantly changing IP addresses problem, Ignite supports automatic 
   "body": "Such approach allows to create your configuration once and reuse it for all EC2 instances."
 }
 [/block]
-
-
 Here is an example of how to configure Amazon S3 IP finder:
 [block:code]
 {
