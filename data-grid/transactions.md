@@ -1,5 +1,5 @@
 - [Atomicity Mode](doc:transactions#atomicity-mode)
-- [Ignite Transactions](doc:transactions#ignitetransactions)
+- [IgniteTransactions](doc:transactions#ignitetransactions)
 - [Two-Phase-Commit (2PC)](doc:transactions#two-phase-commit-2pc)
 - [Concurrency Modes and Isolation Levels](doc:transactions#concurrency-modes-and-isolation-levels)
 - [Pessimistic Transactions](doc:transactions#pessimistic-transactions) 
