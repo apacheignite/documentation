@@ -1,6 +1,6 @@
 * [Overview](#overview)
 * [Ignite YARN Application](#ignite-yarn-application)
-* [Running Ignite YARN application](#running-ignite-yarn-application)
+* [Running Ignite YARN Application](#running-ignite-yarn-application)
 * [Configuration](#configuration)
 [block:api-header]
 {
@@ -25,7 +25,7 @@ Deploying Apache Ignite cluster typically involves downloading the Apache Ignite
 [block:api-header]
 {
   "type": "basic",
-  "title": "Running Ignite YARN application"
+  "title": "Running Ignite YARN Application"
 }
 [/block]
 For running Ignite Application requires YARN and Hadoop cluster are configured and running. For information on how to set up a the cluster please refer to http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/ClusterSetup.html
