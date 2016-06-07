@@ -1,4 +1,3 @@
-## On this page
 * [Securing Connection between Nodes](doc:ssltls#securing-connection-between-nodes)
 * [SSL and TLS](doc:ssltls#ssl-and-tls)
 * [Configuration](doc:ssltls#configuration)
