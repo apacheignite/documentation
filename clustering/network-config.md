@@ -1,12 +1,7 @@
 * [Overview](#overview)
 * [TcpCommunicationSpi](#tcpcommunicationspi)
 * [Configuration](#Configuration)
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Overview"
-}
-[/block]
+
 `CommunicationSpi` provides basic plumbing to send and receive grid messages and is utilized for all distributed grid operations, such as task execution, monitoring data exchange, distributed event querying and others. 
 [block:api-header]
 {
