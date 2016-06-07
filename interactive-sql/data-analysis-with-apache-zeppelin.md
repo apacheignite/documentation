@@ -1,3 +1,13 @@
+* [Overview](#overview)
+* [Zeppelin Installation and Configuration](#zeppelin-installation-and-configuration)
+* [Configuring Ignite Interpreters](#configuring-ignite-interpreters)
+* [Using Ignite Interpreters](##using-ignite-interpreters)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 [Apache Zeppelin](http://zeppelin.incubator.apache.org), a web-based notebook that enables interactive data analytics. You can make beautiful data-driven, interactive and collaborative documents with SQL, Scala and more. 
 
 You can use Zeppelin to retrieve distributed data from cache using Ignite SQL interpreter. Moreover, Ignite interpreter allows you to execute any Scala code in cases when SQL doesn't fit to your requirements. For example you can populate data into your caches or execute distributed computations.
@@ -73,12 +83,12 @@ Click on "Interpreter" menu item. This page contains settings for all configured
   ]
 }
 [/block]
-### Configuring Ignite SQL Interpreter
+## Configuring Ignite SQL Interpreter
 Ignite SQL interpreter requires only `ignite.jdbc.url` property that contains JDBC connection URL. In our example we will use `words` cache. Edit `ignite.jdbc.url` property setting the following value: `jdbc:ignite://localhost:11211/words`.
 
 See also [JDBC Driver](http://apacheignite.readme.io/v1.2/docs/jdbc-driver)  section for details.
  
-### Configuring Ignite Interpreter
+## Configuring Ignite Interpreter
 For most simple cases Ignite interpreter requires the following properties:
 
   * `ignite.addresses` - Coma separated list of Ignite cluster hosts. See [Cluster Configuration](http://apacheignite.readme.io/v1.2/docs/cluster-config) section for details.
@@ -92,7 +102,7 @@ For more complicated cases you can define own configuration of Ignite using `ign
   "title": "Using Ignite Interpreters"
 }
 [/block]
-### Starting Ignite cluster
+## Starting Ignite cluster
 Before using Zeppelin we need start Ignite cluster. Download [Apache Ignite In-Memory Data Fabric binary release](https://ignite.apache.org/download.cgi#binaries) and unpack the downloaded archive:
 `unzip apache-ignite-fabric-1.6.0-bin.zip -d <dest_dir>`
 
@@ -105,7 +115,7 @@ Start the following examples:
 
 Now you are ready for using Zeppelin for accesing to our Ignite cluster.
 
-### Creating new note in Zeppelin
+## Creating new note in Zeppelin
 Create new (or open existing) note using "Notebook" menu item. 
 [block:image]
 {
@@ -160,7 +170,7 @@ Since note is created you can input SQL query or Scala code and execute it click
   ]
 }
 [/block]
-### Using Ignite SQL interpreter
+## Using Ignite SQL interpreter
 For execute SQL query use `%ignite.ignitesql` prefix and your SQL query. For example we can select top 10 words in our `words` cache using the following query:
 [block:code]
 {
@@ -244,7 +254,7 @@ After executing this example you can see result as table or graph. Use correspon
   ]
 }
 [/block]
-### Using Ignite interpreter
+## Using Ignite interpreter
 For execute Scala code snippet use `%ignite` prefix and your code snippet. For example we can select average, min and max counts among all the words:
 [block:code]
 {
