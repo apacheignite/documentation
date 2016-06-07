@@ -1,4 +1,13 @@
-Data loading usually has to do with initializing cache data on startup. Using standard cache `put(...)` or `putAll(...)` operations is generally inefficient for loading large amounts of data. 
+* [Overview](#overview)
+* [IgniteDataStreamer](#ignitedatastreamer)
+* [IgniteCache.loadCache()](#ignitecacheloadcache)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
+Data loading usually has to do with initializing cache data on startup. Using standard cache `put(...)` or `putAll(...)` operations is generally inefficient for loading large amounts of data. Ignite offers `IgniteDataStreamer` API and `CacheStore` API that can help you to efficiently load large volumes of data into Ignite caches.
 [block:api-header]
 {
   "type": "basic",
