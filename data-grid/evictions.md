@@ -1,24 +1,23 @@
-## On this page
+* [Overview](#overview)
 * [Least Recently Used](#least-recently-used-lru)
 * [First In First Out](#first-in-first-out-fifo)
 * [Sorted](#sorted)
 * [Random](#random)
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Eviction policies control the maximum number of elements that can be stored in a cache on-heap memory.  Whenever maximum on-heap cache size is reached, entries are evicted into [off-heap space](doc:off-heap-memory), if one is enabled. 
 
-Some eviction policies support batch eviction and eviction by memory size limit. 
-
-If batch eviction is enabled than eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted.
-
-If eviction by memory size limit is enabled then eviction starts when size of cache entries in bytes becomes greater than the maximum memory size.
+Some eviction policies support batch eviction and eviction by memory size limit. If batch eviction is enabled than eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted. If eviction by memory size limit is enabled then eviction starts when size of cache entries in bytes becomes greater than the maximum memory size.
 [block:callout]
 {
   "type": "info",
   "body": "Batch eviction is supported only if maximum memory limit isn't set."
 }
 [/block]
-
-
 In Ignite eviction policies are pluggable and are controlled via `EvictionPolicy` interface. An implementation of eviction policy is notified of every cache change and defines the algorithm of choosing the entries to evict from cache. 
 [block:callout]
 {
