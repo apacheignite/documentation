@@ -153,7 +153,7 @@ All configurations are handled through environment variables or property file. F
     "5-2": "IGNITE_MEMORY_PER_NODE * 0.10, with a minimum of 384",
     "5-3": "512",
     "10-0": "IGNITE_PATH",
-    "10-1": "The hdfs path to Apache Ignite build. The parameter can be useful when yarn cluster running in net without access to internet.",
+    "10-1": "The hdfs path to Apache Ignite build. The property can be useful when yarn cluster running in net without access to internet.",
     "10-2": "`N/A`",
     "10-3": "`N/A`"
   },
