@@ -9,7 +9,7 @@
 [/block]
 Ignite is shipped with JDBC driver that allows you to retrieve distributed data from cache using standard SQL queries and JDBC API. 
 
-In Ignite JDBC connection URL has the following pattern:
+In Ignite, JDBC connection URL has the following pattern:
 [block:code]
 {
   "codes": [
