@@ -1,4 +1,4 @@
-* [Securing Connection between Nodes](#securing-connection-between-nodes)
+* [Securing Connection Between Nodes](#securing-connection-between-nodes)
 * [SSL and TLS](#ssl-and-tls)
 * [Configuration](#configuration)
 [block:api-header]
