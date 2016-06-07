@@ -7,7 +7,7 @@
 }
 [/block]
 Nodes discovery on Google Compute Engine is usually proven to be more challenging. Google Cloud, just like most of the other virtual environments, has the following limitations:
-* Multicast is disabled;
+* Multicast is disabled.
 * TCP addresses change every time a new image is started.
 
 Although you can use TCP-based discovery in the absence of the Multicast, you still have to deal with constantly changing IP addresses and constantly updating the configuration. This creates a major inconvenience and makes configurations based on static IPs virtually unusable in such environments.
