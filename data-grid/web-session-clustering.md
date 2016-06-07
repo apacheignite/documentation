@@ -1,3 +1,18 @@
+* [Overview](#overview)
+* [Architecture](#architecture)
+* [Replication Strategies](#replication-strategies)
+ * [Fully Replicated Cache](#section-fully-replicated-cache)
+ * [Partitioned Cache With Backups](#section-partitioned-cache-with-backups)
+* [Expiration and Eviction](#expiration-and-eviction)
+* [Configuration](#configuration)
+ * [Configuration Parameters](#section-configuration-parameters) 
+* [Supported Containers](#supported-containers)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite In-Memory Data Fabric is capable of caching web sessions of all Java Servlet containers that follow Java Servlet 3.0 Specification, including Apache Tomcat, Eclipse Jetty, Oracle WebLogic, and others.
 
 Web sessions caching becomes useful when running a cluster of app servers. When running a web application in a servlet container, you may face performance and scalability problems. A single app server is usually not able to handle large volumes of traffic by itself. A common solution is to scale your web application across multiple clustered instances:
