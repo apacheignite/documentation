@@ -1,4 +1,4 @@
-## On this page
+* [Overview](#overview)
 * [SQL Joins](#sql-joins)
 * [Field Queries](#fields-queries)
 * [Cross-Cache Queries](#cross-cache-queries)
@@ -10,7 +10,12 @@
 * [Off-heap SQL Indexes](#off-heap-sql-indexes)
 * [Choosing Indexes](#choosing-indexes)
 * [Performance and Usability Considerations](#performance-and-usability-considerations)
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite supports free-form SQL queries virtually without any limitations. SQL syntax is ANSI-99 compliant. You can use any SQL function, any aggregation, any grouping and Ignite will figure out where to fetch the results from.
 
 See example **SqlQuery** below.
