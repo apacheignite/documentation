@@ -1,6 +1,6 @@
 * [Overview](#overview)
-* [Configuring Backups](doc:primary-and-backup-copies#configuring-backups)
-* [Synchronous and Asynchronous Backups](doc:primary-and-backup-copies#synchronous-and-asynchronous-backups)
+* [Configuring Backups](#configuring-backups)
+* [Synchronous and Asynchronous Backups](#synchronous-and-asynchronous-backups)
 [block:api-header]
 {
   "type": "basic",
