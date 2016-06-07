@@ -1,5 +1,7 @@
 * [Overview](#overview)
 * [Main Abstractions](#main-abstractions)
+ * [Query](#section-query)
+ * [QueryCursor](#section-querycursor) 
 * [Scan Queries](#scan-queries)
 * [SQL Queries](#sql-queries)
 * [Text Queries](#text-queries)
