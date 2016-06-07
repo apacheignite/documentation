@@ -1,4 +1,3 @@
-## On this page
 * [JDBC Connection](#jdbc-connection)
 * [Example](#example)
 * [Backward Compatibility](#backward-compatibility)
