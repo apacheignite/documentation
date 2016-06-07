@@ -1,3 +1,21 @@
+* [Overview](#overview)
+* [SQL Joins](#sql-joins)
+* [Field Queries](#fields-queries)
+* [Cross-Cache Queries](#cross-cache-queries)
+* [Configuring SQL Indexes by Annotations](#configuring-sql-indexes-by-annotations)
+* [Configuring SQL Indexes using QueryEntity](#configuring-sql-indexes-using-queryentity)
+* [How SQL Queries Work](#how-sql-queries-work)
+* [Using EXPLAIN](#using-explain)
+* [Using H2 Debug Console](#using-h2-debug-console)
+* [Off-heap SQL Indexes](#off-heap-sql-indexes)
+* [Choosing Indexes](#choosing-indexes)
+* [Performance and Usability Considerations](#performance-and-usability-considerations)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite supports free-form SQL queries virtually without any limitations. SQL syntax is ANSI-99 compliant. You can use any SQL function, any aggregation, any grouping and Ignite will figure out where to fetch the results from.
 
 See example **SqlQuery** below.
