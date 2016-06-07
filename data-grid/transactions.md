@@ -23,7 +23,7 @@ These atomicity modes are defined in `CacheAtomicityMode` enum:
 
 `ATOMIC` mode provides better performance by avoiding transactional locks, while still providing data atomicity and consistency. Another difference in `ATOMIC` mode is that bulk writes, such as `putAll(...)`and `removeAll(...)` methods are no longer executed in one transaction and can partially fail. In case of partial failure, `CachePartialUpdateException` will be thrown which will contain a list of keys for which the update failed.
 
-The example below shows how to set and atomicity mode for a cache.
+Atomicity mode is defined in CacheAtomicityMode enum and can be configured via atomicityMode property of CacheConfiguration.
 [block:code]
 {
   "codes": [
