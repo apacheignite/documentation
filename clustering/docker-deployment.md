@@ -9,9 +9,7 @@
   "title": "Overview"
 }
 [/block]
-Docker allows to package Ignite deployment with all the dependencies into a standard container. Docker automates downloading the Ignite release, deploying users' code into Ignite, and configuring nodes. It also automatically starts up a fully configured Ignite node.
-
-Ignite docker container can run it two modes:  
+Docker allows to package Ignite deployment with all the dependencies into a standard container. Docker automates downloading the Ignite release, deploying users' code into Ignite, and configuring nodes. It also automatically starts up a fully configured Ignite node. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
 [block:api-header]
 {
   "type": "basic",
