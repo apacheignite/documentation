@@ -1,3 +1,11 @@
+* [Overview](#overview)
+* [Google Cloud Storage Based Discovery](#google-cloud-storage-based-discovery)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Nodes discovery on Google Compute Engine is usually proven to be more challenging. Google Cloud, just like most of the other virtual environments, has the following limitations:
 * Multicast is disabled;
 * TCP addresses change every time a new image is started.
