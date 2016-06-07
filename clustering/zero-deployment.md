@@ -1,7 +1,12 @@
-## On this page
+* [Overview](#overview)
 * [Peer Class Loading](doc:zero-deployment#peer-class-loading)
 * [Explicit Deployment](doc:zero-deployment#explicit-deployment)
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 The closures and tasks that you use for your computations may be of any custom class, including anonymous classes. In Ignite, the remote nodes will automatically become aware of those classes, and you won't need to explicitly deploy or move any .jar files to any remote nodes. 
 [block:api-header]
 {
