@@ -1,3 +1,14 @@
+* [ContinuousQuery API](#continuousquery-api)
+ * [Initial Query](#section-initial-query)
+ * [Remote Filter](#section-remote-filter)
+ * [Local Listener](#section-local-listener)
+* [Events Delivery Guarantees](#events-delivery-guarantees)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "ContinuousQuery API"
+}
+[/block]
 Continuous queries are good for cases when you want to execute a query and then continue to get notified about the data changes that fall into your query filter.
 
 Continuous queries are supported via `ContinuousQuery` class, which supports the following:
