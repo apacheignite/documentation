@@ -1,7 +1,7 @@
 * [Overview](#overview)
 * [L2 Cache Configuration](#l2-cache-configuration)
  * [Maven Configuration](#section-maven-configuration)
- * [Hibernate Configuration Example)(#section-hibernate-configuration-example)
+ * [Hibernate Configuration Example](#section-hibernate-configuration-example)
  * [Ignite Configuration Example](#section-ignite-configuration-example)
 * [Query Cache](#query-cache)
 * [Query Cache Configuration](#query-cache-configuration)
