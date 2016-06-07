@@ -2,5 +2,4 @@ This section covers the main considerations to be taken into account when prepar
 
 - [Performance Tips](doc:performance-tips)
 - [Capacity Planning](doc:capacity-planning)
-- [JVM Tuning](doc:jvm-and-system-tuning)
-- [File Descriptors](doc:file-descriptors)
+- [JVM and System Tuning](doc:jvm-and-system-tuning)
