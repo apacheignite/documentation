@@ -1,3 +1,11 @@
+* [Overview](#overview)
+* [Apache JClouds Based Discovery](#apache-jclouds-based-discovery)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Nodes discovery on a cloud platform is usually proven to be more challenging because the most of of such virtual environments, has the following limitations:
 * Multicast is disabled;
 * TCP addresses change every time a new image is started.
