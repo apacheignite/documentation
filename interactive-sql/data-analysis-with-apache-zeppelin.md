@@ -1,7 +1,13 @@
 * [Overview](#overview)
 * [Zeppelin Installation and Configuration](#zeppelin-installation-and-configuration)
 * [Configuring Ignite Interpreters](#configuring-ignite-interpreters)
-* [Using Ignite Interpreters](##using-ignite-interpreters)
+ * [Configuring Ignite SQL Interpreters](#section-configuring-ignite-sql-interpreter)
+ * [Configuring Ignite Interpreter](#section-configuring-ignite-interpreter)
+* [Using Ignite Interpreters](#using-ignite-interpreters)
+ * [Starting Ignite Cluster](#section-starting-ignite-cluster)
+ * [Creating New Note in Zeppelin](#section-creating-new-note-in-zeppelin)
+ * [Using Ignite SQL Interpreters](#section-using-ignite-sql-interpreter)
+ * [Using Ignite Interpreter](#section-using-ignite-interpreter)
 [block:api-header]
 {
   "type": "basic",
