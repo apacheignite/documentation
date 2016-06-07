@@ -1,7 +1,6 @@
-## On this page
-* [Securing Connection between Nodes](doc:ssltls#securing-connection-between-nodes)
-* [SSL and TLS](doc:ssltls#ssl-and-tls)
-* [Configuration](doc:ssltls#configuration)
+* [Securing Connection between Nodes](#securing-connection-between-nodes)
+* [SSL and TLS](#ssl-and-tls)
+* [Configuration](#configuration)
 [block:api-header]
 {
   "type": "basic",
