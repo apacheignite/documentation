@@ -1,3 +1,14 @@
+* [Overview](#overview)
+ * Time-Based Sliding Windows](#section-time-based-sliding-windows)
+ * [FIFO Sliding Window](#section-fifo-sliding-windows)
+ * [LRU Sliding Window](#section-lru-sliding-windows)
+* [Querying Sliding Windows](##querying-sliding-windows)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Sliding windows are configured as Ignite cache eviction policies, and can be time-based, size-based, or batch-based. You can configure one sliding-window per cache. However, you can easily define more than one cache if you need different sliding windows for the same data.
 [block:image]
 {
