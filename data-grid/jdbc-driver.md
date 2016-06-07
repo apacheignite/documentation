@@ -1,5 +1,4 @@
 * [JDBC Connection](#jdbc-connection)
- * [Parameters](#section-parameters)
 * [Example](#example)
 * [Backward Compatibility](#backward-compatibility)
 [block:api-header]
@@ -33,7 +32,6 @@ In Ignite, JDBC connection URL has the following pattern:
   ]
 }
 [/block]
-## Parameters
 The following parameters are supported:
 [block:parameters]
 {
