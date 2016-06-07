@@ -1,12 +1,17 @@
-## On this page
+* [Overview](#overview)
 * [Main Abstractions](#main-abstractions)
-* [Predicate-based Scan Queries](#scan-queries)
+* [Scan Queries](#scan-queries)
 * [SQL Queries](#sql-queries)
 * [Text Queries](#text-queries)
 * [Query Configuration by Annotations](#query-configuration-by-annotations)
 * [Query Configuration using QueryEntity ](#query-configuration-using-queryentity)
-  
-For SQL queries ignites supports in-memory indexing, so all the data lookups are extremely fast. If you are caching your data in [off-heap memory](doc:off-heap-memory), then query indexes will also be cached in off-heap memory as well.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
+Ignite supports a very elegant query API with support for Predicate-based Scan Queries, SQL Queries (ANSI 99), and Text Queries. For SQL queries ignites supports in-memory indexing, so all the data lookups are extremely fast. If you are caching your data in [off-heap memory](doc:off-heap-memory), then query indexes will also be cached in off-heap memory as well.
 
 Ignite also provides support for custom indexing via `IndexingSpi` and `SpiQuery` class.
 [block:api-header]
