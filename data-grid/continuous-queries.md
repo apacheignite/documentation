@@ -1,5 +1,7 @@
-## On this page
 * [ContinuousQuery API](#continuousquery-api)
+ * [Initial Query](#section-initial-query)
+ * [Remote Filter](#section-remote-filter)
+ * [Local Listener](#section-local-listener)
 * [Events Delivery Guarantees](#events-delivery-guarantees)
 [block:api-header]
 {
