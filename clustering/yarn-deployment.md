@@ -104,7 +104,7 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
   "title": "Configuration"
 }
 [/block]
-All configuration is handled through environment variables or property file. Following configuration parameters can be optionally configured.
+All configurations are handled through environment variables or property file. Following configuration parameters can be optionally configured.
 [block:parameters]
 {
   "data": {
