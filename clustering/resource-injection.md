@@ -1,7 +1,12 @@
-## On this page
+* [Overview](#overview)
 * [Field Based and Method Based](doc:resource-injection#field-based-and-method-based)
 * [Pre-defined Resources](doc:resource-injection#pre-defined-resources)
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite allows dependency injection of pre-defined Ignite resources, and supports field-based as well as method-based injection. Any resources with the proper annotations will be injected into the corresponding task, job, closure or SPI before it is initialized.
 [block:api-header]
 {
