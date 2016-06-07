@@ -3,14 +3,16 @@
 * [Example](#example)
 * [Backward Compatibility](#backward-compatibility)
 
-Ignite is shipped with JDBC driver that allows you to retrieve distributed data from cache using standard SQL queries and JDBC API. 
+
 [block:api-header]
 {
   "type": "basic",
   "title": "JDBC Connection"
 }
 [/block]
-In Ignite JDBC connection URL has the following pattern:
+Ignite is shipped with JDBC driver that allows you to retrieve distributed data from cache using standard SQL queries and JDBC API. 
+
+In Ignite, JDBC connection URL has the following pattern:
 [block:code]
 {
   "codes": [
