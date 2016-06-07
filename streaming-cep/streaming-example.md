@@ -1,3 +1,13 @@
+* [Overview](#overview)
+* [Cache Configuration](#cache-configuration)
+* [Stream Words](#stream-words)
+* Query Words](#query-words)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 In this example we will stream text into Ignite and count each individual word. We will also issue periodic SQL queries into the stream to query top 10 most popular words. 
 
 The example will work as follows:
