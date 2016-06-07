@@ -1,7 +1,7 @@
 * [Overview](#overview)
 * [Cache Configuration](#cache-configuration)
 * [Stream Words](#stream-words)
-* Query Words](#query-words)
+* [Query Words](#query-words)
 [block:api-header]
 {
   "type": "basic",
