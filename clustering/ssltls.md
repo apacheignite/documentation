@@ -110,7 +110,7 @@ Following configuration parameters can be configured on `SslContextFactory`.
     "7-2": "`JKS`",
     "8-0": "`setTrustManagers`",
     "8-1": "Sets pre-configured trust managers.",
-    "8-2": "'N/A`"
+    "8-2": "`N/A`"
   },
   "cols": 3,
   "rows": 9
