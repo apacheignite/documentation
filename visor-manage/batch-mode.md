@@ -7,7 +7,7 @@ Run ignitevisorcmd.{sh|bat} -? it will show available options:
     {
       "code": "Usage:\n    ignitevisorcmd.bat [? | -help]|[{-v}{-np} {-cfg=<path>}]|[{-b=<path>} {-e=command1;command2;...}]\n    Where:\n        ?, /help, -help      - show this message.\n        -v                   - verbose mode (quiet by default).\n        -np                  - no pause on exit (pause by default).\n        -cfg=<path>          - connect with specified configuration.\n        -b=<path>            - batch mode with file.\n        -e=cmd1;cmd2;...     - batch mode with commands.\n",
       "language": "text",
-      "name": "ignitevisorcmd.{sh|bat} -?"
+      "name": null
     }
   ]
 }
@@ -26,7 +26,7 @@ First batch mode "-b=<path>" will read commands from file. All commands must sta
     {
       "code": "open\n0\nstatus",
       "language": "text",
-      "name": "sample.txt"
+      "name": null
     }
   ]
 }
@@ -48,6 +48,6 @@ This will do the same as previous example.
 [block:callout]
 {
   "type": "info",
-  "body": "Please note, that in batch mode Visor Command Line simply run supplied commands one by one as if were entered from keyboard."
+  "body": "Please note, that in batch mode Visor Command Line simply run supplied commands one by one as if they were entered from keyboard."
 }
 [/block]
