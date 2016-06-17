@@ -31,9 +31,38 @@ First batch mode "-b=<path>" will read commands from file. All commands must sta
   ]
 }
 [/block]
-Usage: ignitevisorcmd.{sh|bat} -np -b=sample.txt
 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "./ignitevisorcmd.sh -np -b=sample.txt\nignitevisorcmd.bat -np -b=sample.txt",
+      "language": "text",
+      "name": "Usage"
+    }
+  ]
+}
+[/block]
 This will open configuration with index "0" and execute "status" command.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Batch mode using list of commands"
+}
+[/block]
+Second batch mode will take a list of commands separated by semicolons.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "./ignitevisorcmd.sh -np \"-e=open;0;status\"\nignitevisorcmd.bat -np -e=open;0;status",
+      "language": "text",
+      "name": "Usage"
+    }
+  ]
+}
+[/block]
+This will do the same as previous example.
 [block:callout]
 {
   "type": "info",
