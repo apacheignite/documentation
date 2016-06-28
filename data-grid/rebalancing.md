@@ -1,5 +1,6 @@
 * [Overview](#overview)
 * [Rebalance Modes](#rebalance-modes)
+* [Rebalance Thread Pool Tuning](#rebalance-thread-pool-tuning)
 * [Rebalance Message Throttling](#rebalance-message-throttling)
 * [Configuration](#configuration)
 [block:api-header]
@@ -135,17 +136,5 @@ CacheConfiguration
   },
   "cols": 3,
   "rows": 6
-}
-[/block]
-IgniteConfiguration
-[block:parameters]
-{
-  "data": {
-    "0-0": "`setRebalanceThreadPoolSize`",
-    "0-1": "Max count of threads can be used at rebalancing",
-    "0-2": "1 (has minimal impact on the operation of the grid)"
-  },
-  "cols": 3,
-  "rows": 1
 }
 [/block]
