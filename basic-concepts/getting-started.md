@@ -111,7 +111,12 @@ Path to configuration file can be absolute, or relative to either `IGNITE_HOME` 
   "body": "To pick a configuration file in interactive mode just pass `-i` flag, like so: `ignite.sh -i`."
 }
 [/block]
+##Overriding JMX port
+By default when Ignite node is started with `ignite.sh` it picks up a random JMX port and binds to it.
 
+To set an explicit port for usage `IGNITE_JMX_PORT` environment variable hast to be set. In Unix systems it can be done this way:
+
+`export IGNITE_JMX_PORT=50000`
 [block:api-header]
 {
   "type": "basic",
