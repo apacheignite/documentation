@@ -10,7 +10,13 @@
 }
 [/block]
 When a new node joins topology, existing nodes relinquish primary or back up ownership of some keys to the new node so that keys remain equally balanced across the grid at all times.
-
+[block:parameters]
+{
+  "data": {},
+  "cols": 3,
+  "rows": 1
+}
+[/block]
 If the new node becomes a primary or backup for some partition, it will fetch data from previous primary node for that partition or from one of the backup nodes for that partition. Once a partition is fully loaded to the new node, it will be marked obsolete on the old node and will be eventually evicted after all current transactions on that node are finished. Hence, for some short period of time, after topology changes, there can be a case when a cache will have more backup copies for a key than configured. However once rebalancing completes, extra backup copies will be removed from node caches.
 [block:api-header]
 {
@@ -122,7 +128,7 @@ CacheConfiguration
     "2-0": "`setRebalanceBatchSize`",
     "2-1": "Size (in bytes) to be loaded within a single rebalance message. Rebalancing algorithm will split total data set on every node into multiple batches prior to sending data.",
     "3-0": "`setRebalanceThrottle`",
-    "3-1": "See `Rebalance Message Throttling` section above for more information.",
+    "3-1": "See `Rebalance Message Throttling` section above for details.",
     "4-0": "`setRebalanceOrder`",
     "4-1": "Order in which rebalancing should be done. Rebalance order can be set to non-zero value for caches with SYNC or ASYNC rebalance modes only. Rebalancing for caches with smaller rebalance order will be completed first. By default, rebalancing is not ordered.",
     "0-2": "`ASYNC`",
@@ -139,5 +145,20 @@ CacheConfiguration
   },
   "cols": 3,
   "rows": 7
+}
+[/block]
+IgniteConfiguration
+[block:parameters]
+{
+  "data": {
+    "h-0": "Setter Method",
+    "h-1": "Description",
+    "h-2": "Default",
+    "0-2": "1",
+    "0-0": "`setRebalanceThreadPoolSize`",
+    "0-1": "See `Rebalance Thread Pool Tuning` section above for details."
+  },
+  "cols": 3,
+  "rows": 1
 }
 [/block]
