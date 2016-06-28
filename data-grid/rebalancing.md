@@ -53,6 +53,15 @@ By default, `ASYNC` rebalance mode is enabled. To use another mode, you can set 
 [block:api-header]
 {
   "type": "basic",
+  "title": "Rebalance Thread Pool Tuning"
+}
+[/block]
+`IgniteConfiguration` has a method name `setRebalanceThreadPoolSize` that allows to set a number of threads that will be taken from the Ignite's system thread pool and used by rebalancing needs. A system thread is taken from the pool every time a node needs to send a batch of data to a remote node, that became primary or backup for a partition, or needs to process a batch that came from the opposite direction. The thread is relinquished every time the batch is sent or received and processed. 
+
+By default only one thread is used 
+[block:api-header]
+{
+  "type": "basic",
   "title": "Rebalance Message Throttling"
 }
 [/block]
