@@ -86,7 +86,7 @@ For convenience, you can inject an instance of service proxy into your computati
 {
   "codes": [
     {
-      "code": "IgniteCompute compute = igntie.compute();\n\ncompute.run(new IgniteRunnable() {\n  @ServiceResource(serviceName = \"myCounterService\");\n  private MyCounterService counterSvc;\n  \n  public void run() {\n\t\t// Ivoke a method on 'MyCounterService' interface.\n\t\tint newValue = cntrSvc.increment();\n\n\t\t// Print latest counter value from our counter service.\n\t\tSystem.out.println(\"Incremented value : \" + newValue);\n  }\n});",
+      "code": "IgniteCompute compute = ignite.compute();\n\ncompute.run(new IgniteRunnable() {\n  @ServiceResource(serviceName = \"myCounterService\");\n  private MyCounterService counterSvc;\n  \n  public void run() {\n\t\t// Ivoke a method on 'MyCounterService' interface.\n\t\tint newValue = cntrSvc.increment();\n\n\t\t// Print latest counter value from our counter service.\n\t\tSystem.out.println(\"Incremented value : \" + newValue);\n  }\n});",
       "language": "java"
     }
   ]
