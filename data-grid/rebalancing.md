@@ -59,7 +59,7 @@ By default, `ASYNC` rebalance mode is enabled. To use another mode, you can set 
 [/block]
 `IgniteConfiguration` provides `setRebalanceThreadPoolSize` method that allows to set a number of threads that will be taken from the Ignite's system thread pool and used for rebalancing needs. A system thread is taken from the pool every time a node needs to send a batch of data to a remote node, that became primary or backup for a partition, or needs to process a batch that came from the opposite direction. The thread is relinquished every time the batch is sent or received and processed. 
 
-By default, only one thread is used for rebalancing needs. Basically it means that at a particular point of time only one thread will be used to transfer batches from one node to another, or to process batches coming from the remote side. As an example, in the situation when there is a single cache and two nodes in the cluster, then all the cache's partitions will be re-balanced sequentially, one by one. If there are still two nodes and already two different caches then these caches will be re-balanced in parallel but at particular point of time only batches that belong to a particular cache will be processed as explained above.
+By default, only one thread is used for rebalancing needs. Basically it means that at a particular point of time only one thread will be used to transfer batches from one node to another, or to process batches coming from the remote side. As an example, if the cluster has two nodes and a single cache, then all the cache's partitions will be re-balanced sequentially, one by one. If the cluster has two nodes and two different caches, then these caches will be re-balanced in parallel, but at a particular point of time only batches that belong to a particular cache will be processed as explained above.
 [block:callout]
 {
   "type": "success",
@@ -69,8 +69,8 @@ By default, only one thread is used for rebalancing needs. Basically it means th
 Depending on the number of caches in the system and amount of data stored in the caches, if the rebalance thread pool's size is equal to `1`, it can take a significant amount of time before all of the data is re-balanced to a node. To speed up the preloading process you can increase  `IgniteConfiguration.setRebalanceThreadPoolSize` to the value that is applicable for your case.
 
  Let's imagine that `IgniteConfiguration.setRebalanceThreadPoolSize` is set to `4` and considering the examples provided above, the rebalancing behavior will be the following - 
-  * If there is a single cache and two nodes in the cluster, then the cache's partitions will be re-balanced in parallel by four different threads. 
-  * If there are two nodes and two different caches, then all these caches will be re-balanced in parallel by four different threads. 
+  * If the cluster has two nodes and a single cache, then the cache's partitions will be re-balanced in parallel by four different threads. 
+  * If the cluster has two nodes and two different caches, then all these caches will be re-balanced in parallel by four different threads. 
 [block:callout]
 {
   "type": "warning",
