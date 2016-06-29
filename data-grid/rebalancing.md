@@ -57,7 +57,7 @@ By default, `ASYNC` rebalance mode is enabled. To use another mode, you can set 
   "title": "Rebalance Thread Pool Tuning"
 }
 [/block]
-`IgniteConfiguration` provides `setRebalanceThreadPoolSize` method that allows to set a number of threads that will be taken from the Ignite's system thread pool and used for rebalancing needs. A system thread is taken from the pool every time a node needs to send a batch of data to a remote node, that became primary or backup for a partition, or needs to process a batch that came from the opposite direction. The thread is relinquished every time the batch is sent or received and processed. 
+`IgniteConfiguration` provides `setRebalanceThreadPoolSize` method that allows to set a number of threads that will be taken from the Ignite's system thread pool and used for rebalancing needs. A system thread is taken from the pool every time a node needs to send a batch of data to a remote node, that maybe primary or backup for a partition, or needs to process a batch that came from the opposite direction. The thread is relinquished every time the batch is sent or received and processed. 
 
 By default, only one thread is used for rebalancing needs. Basically it means that at a particular point of time only one thread will be used to transfer batches from one node to another, or to process batches coming from the remote side. As an example, if the cluster has two nodes and a single cache, then all the cache's partitions will be re-balanced sequentially, one by one. If the cluster has two nodes and two different caches, then these caches will be re-balanced in parallel, but at a particular point of time only batches that belong to a particular cache will be processed as explained above.
 [block:callout]
