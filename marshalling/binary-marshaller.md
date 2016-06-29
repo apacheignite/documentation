@@ -120,6 +120,13 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "body": "Make sure to set values for all the fields that an object from your domain model has. If you need to set `null` as a value use `BinaryObjectBuilder.setField(String name, @Nullable T val, Class<? super T> type)` method directly specifying field's type.\n\nIf to follow this recommendation you'll reduce the size of internal metadata object that every  `BinaryObject` of a particular type has.  Usually the metadata size grows because particular fields are not set to an instance of `BinaryObject` constructed with `BinaryObjectBuilder`. Every time when you construct an object setting only a subset of the fields the metadata object related to this type is expanded by the metadata processor which treats every new combination of the fields as the new version of `BinaryObject`."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
