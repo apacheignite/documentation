@@ -70,7 +70,8 @@ Depending on the number of caches in the system and amount of data stored in the
 
  Let's imagine that `IgniteConfiguration.setRebalanceThreadPoolSize` is set to `4` and considering the examples provided above, the rebalancing behavior will be the following - 
   * If the cluster has two nodes and a single cache, then the cache's partitions will be logically put in 4 different groups which will be rebalanced in parallel by one of the 4 threads. Partitions that belong to a particular group will be rebalanced sequentially, one by one.
-  * If the cluster has two nodes and two different caches, then partitions of every cache will be logically put in 4 different groups (each cache will have its own 4 groups giving 8 group in total) and the groups will be re-balanced in parallel by four different threads. However at a particular point of time only batches that belong to a group (8 in total) will be processed as explained above. 
+  
+  * If the cluster has two nodes and two different caches, then partitions of every cache will be logically put in 4 different groups (each cache will have its own 4 groups giving 8 groups in total) and the groups will be re-balanced in parallel by four different threads. However at a particular point of time only batches that belong to a group (8 in total) will be processed as explained above. 
 [block:callout]
 {
   "type": "warning",
