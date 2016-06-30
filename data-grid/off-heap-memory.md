@@ -168,6 +168,8 @@ To configure `OFFHEAP_VALUES` memory mode, you need to:
 }
 [/block]
 Whenever your data set exceeds the limits of on-heap and off-heap memory, you can configure swap space in which case Ignite will evict entries to the disk instead of discarding them.
+
+Note that to use swap space you need to configure `SwapSpaceSpi` in the `IgniteConfiguration` (see configuration samples below).
 [block:callout]
 {
   "type": "warning",
@@ -180,11 +182,11 @@ Whenever your data set exceeds the limits of on-heap and off-heap memory, you ca
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n  ...\n  <!-- Enable swap. -->\n  <property name=\"swapEnabled\" value=\"true\"/> \n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <!-- Enable swap space. -->\n    <property name=\"swapSpaceSpi\">\n        <bean class=\"org.apache.ignite.spi.swapspace.file.FileSwapSpaceSpi\"/>\n    </property>\n    ...\n</bean>\n\n<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    ...\n    <!-- Enable swap for this cache. -->\n    <property name=\"swapEnabled\" value=\"true\"/> \n    ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setSwapEnabled(true);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setSwapEnabled(true);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setSwapSpaceSpi(new FileSwapSpaceSpi());\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
