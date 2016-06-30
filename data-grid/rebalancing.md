@@ -69,6 +69,7 @@ By default, only one thread is used for rebalancing needs. Basically it means th
 Depending on the number of caches in the system and amount of data stored in the caches, if the rebalance thread pool's size is equal to `1`, it can take a significant amount of time before all of the data is re-balanced to a node. To speed up the preloading process, you can increase  `IgniteConfiguration.setRebalanceThreadPoolSize` to the value that is applicable for your case.
 
  Let's imagine that `IgniteConfiguration.setRebalanceThreadPoolSize` is set to `4` and considering the examples provided above, the rebalancing behavior will be the following - 
+
   * If the cluster has two nodes and a single cache, then the cache's partitions will be logically put in 4 different groups which will be rebalanced in parallel by one of the 4 threads. Partitions that belong to a particular group will be rebalanced sequentially, one by one.
   
   * If the cluster has two nodes and two different caches, then partitions of every cache will be logically put in 4 different groups (each cache will have its own 4 groups giving 8 groups in total) and the groups will be re-balanced in parallel by four different threads. However at a particular point of time only batches that belong to a group (8 in total) will be processed as explained above. 
