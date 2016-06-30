@@ -112,7 +112,7 @@ For example, if you want rebalancer to send 2MB of data per message with 100 ms 
 [/block]
 Cache rebalancing behavior can be customized by optionally setting the following configuration properties:
 
-CacheConfiguration
+## CacheConfiguration 
 [block:parameters]
 {
   "data": {
@@ -145,7 +145,7 @@ CacheConfiguration
   "rows": 7
 }
 [/block]
-IgniteConfiguration
+## IgniteConfiguration 
 [block:parameters]
 {
   "data": {
