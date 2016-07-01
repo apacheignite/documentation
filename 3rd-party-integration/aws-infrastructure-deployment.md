@@ -80,9 +80,8 @@ All infrastructure deployment settings are specified in the shell scripts inside
 	 * **cassandra-start.sh** - shell script used by the framework to start Cassandra cluster. **Don't modify this file**.
 	 * **cassandra-template.yaml** - Cassandra YAML configuration file. You can modify it according to your custom use-case, but be careful cause incorrect modifications could prevent Cassandra daemon to start correctly.
   * **ganglia** - root directory for shell scripts to spin up [Ganglia](http://ganglia.info/) monitoring system.
-	 * **agent-bootstrap.sh** - Ganglia agent bootstrap script. **Don't modify this file**.
 	 * **agent-start.sh** - Ganglia agent start script. **Don't modify this file**.
-	 * **master-bootstrap.sh** - Ganglia master bootstrap script. You should only modify **TESTS_PACKAGE_DONLOAD_URL** environment variable (see next chapters). 
+	 * **ganglia-bootstrap.sh** - Ganglia master bootstrap script. You should only modify **TESTS_PACKAGE_DONLOAD_URL** environment variable (see next chapters). 
   * **ignite** - root directory for shell scripts to spin up Ignite cluster.
 	 * **ignite-bootstrap.sh** - bootstrap script for EC2 nodes of Ignite cluster. You should only modify **TESTS_PACKAGE_DONLOAD_URL** environment variable (see next chapters).
 	 * **ignite-cassandra-server-template.xml** - Ignite daemon Spring context configuration. You can modify it according to your custom use-case, but be careful cause incorrect modifications could prevent Ignite daemon to start correctly.
@@ -112,7 +111,7 @@ Lets now look at how to configure framework to deploy your custom infrastructure
 4. Inside S3 root folder create another folder (name doesn't important) where framework will store all its system info and metadata.
 5. Inside **Tests package** update shell scripts specified below, by setting only **TESTS_PACKAGE_DONLOAD_URL** environment variable pointing to the S3 location where you are going to upload **Tests package** (should be a file on S3 inside the folder which you created on step 3)
   * **bootstrap/aws/cassandra/cassandra-bootstrap.sh**
-  * **bootstrap/aws/ganglia/master-bootstrap.sh**
+  * **bootstrap/aws/ganglia/ganglia-bootstrap.sh**
   * **bootstrap/aws/ignite/ignite-bootstrap.sh**
   * **bootstrap/aws/tests/tests-bootstrap.sh**
 6. Inside **Tests package** update `bootstrap/aws/env.sh` shell script (which is used to specifies all the main settings) by specifying such environment variables:
@@ -139,7 +138,7 @@ Lets now look at how to configure framework to deploy your custom infrastructure
 8. Upload **Ignite package** and **Tests package** inside S3 folder from step 3.
 9. Save specified below shell scripts from updated **Tests package** on your local drive (you'll use them in the next steps to specify [User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) section for your EC2 instances): 
   * **bootstrap/aws/cassandra/cassandra-bootstrap.sh**
-  * **bootstrap/aws/ganglia/master-bootstrap.sh**
+  * **bootstrap/aws/ganglia/ganglia-bootstrap.sh**
   * **bootstrap/aws/ignite/ignite-bootstrap.sh**
   * **bootstrap/aws/tests/tests-bootstrap.sh**
 
