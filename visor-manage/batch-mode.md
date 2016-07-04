@@ -63,6 +63,20 @@ Second batch mode will take a list of commands separated by semicolons.
 }
 [/block]
 This will do the same as previous example.
+
+When commands have space symbols they should be additionally quoted
+[block:code]
+{
+  "codes": [
+    {
+      "code": "./ignitevisorcmd.sh -np \"-e='open -cpath=config/default-config.xml;status'\"\nignitevisorcmd.bat -np -e=\"'open -cpath=config/default-config.xml;status'\"",
+      "language": "text",
+      "name": "Command quoting"
+    }
+  ]
+}
+[/block]
+
 [block:callout]
 {
   "type": "info",
