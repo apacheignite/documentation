@@ -71,7 +71,7 @@ When commands have space symbols they should be additionally quoted
     {
       "code": "./ignitevisorcmd.sh -np \"-e='open -cpath=config/default-config.xml;status'\"\nignitevisorcmd.bat -np -e=\"'open -cpath=config/default-config.xml;status'\"",
       "language": "text",
-      "name": "Command escaping"
+      "name": "Command quoting"
     }
   ]
 }
