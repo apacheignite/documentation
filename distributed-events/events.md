@@ -32,7 +32,7 @@ Listen methods can be used to receive notification for specified events happenin
       "name": "local listen"
     },
     {
-      "code": "Ignite ignite = Ignition.ignite();\n\n// Get an instance of named cache.\nfinal IgniteCache<Integer, String> cache = ignite.jcache(\"cacheName\");\n\n// Sample remote filter which only accepts events for keys\n// that are greater than or equal to 10.\nIgnitePredicate<CacheEvent> rmtLsnr = evt -> evt.<Integer>key() >= 10;\n\n// Subscribe to specified cache events on all nodes that have cache running.\nignite.events(ignite.cluster().forCacheNodes(\"cacheName\")).remoteListen(null, rmtLsnr,                                                                 EventType.EVT_CACHE_OBJECT_PUT,\n  EventType.EVT_CACHE_OBJECT_READ,\n  EventType.EVT_CACHE_OBJECT_REMOVED);\n\n// Generate cache events.\nfor (int i = 0; i < 20; i++)\n  cache.put(i, Integer.toString(i));\n",
+      "code": "Ignite ignite = Ignition.ignite();\n\n// Get an instance of named cache.\nfinal IgniteCache<Integer, String> cache = ignite.jcache(\"cacheName\");\n\n// Sample remote filter which only accepts events for keys\n// that are greater than or equal to 10.\nIgnitePredicate<CacheEvent> rmtFilter = evt -> evt.<Integer>key() >= 10;\n\n// Subscribe to specified cache events on all nodes that have cache running.\nignite.events(ignite.cluster().forCacheNodes(\"cacheName\")).remoteListen(null, rmtFilter,                                                                 EventType.EVT_CACHE_OBJECT_PUT,\n  EventType.EVT_CACHE_OBJECT_READ,\n  EventType.EVT_CACHE_OBJECT_REMOVED);\n\n// Generate cache events.\nfor (int i = 0; i < 20; i++)\n  cache.put(i, Integer.toString(i));\n",
       "language": "java",
       "name": "remote listen"
     },
