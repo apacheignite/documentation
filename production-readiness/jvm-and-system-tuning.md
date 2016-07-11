@@ -43,7 +43,7 @@ For JDK 1.7⁄ 1.8 (8GB heap example for machine with 32 CPUs):
 {
   "codes": [
     {
-      "code": "-server \n-Xms8g \n-Xmx8g \n-XX:+UseParNewGC \n-XX:+UseConcMarkSweepGC \n-XX:+UseTLAB \n-XX:NewSize=128m \n-XX:MaxNewSize=128m \n-XX:MaxTenuringThreshold=0 \n-XX:SurvivorRatio=1024 \n-XX:+UseCMSInitiatingOccupancyOnly \n-XX:CMSInitiatingOccupancyFraction=40\n-XX:MaxGCPauseMillis=1000 \n-XX:InitiatingHeapOccupancyPercent=50 \n-XX:+UseCompressedOops\n-XX:ParallelGCThreads=8 \n-XX:ConcGCThreads=8 \n-XX:+DisableExplicitGC",
+      "code": "-server \n-Xms8g \n-Xmx8g \n-XX:+UseParNewGC \n-XX:+UseConcMarkSweepGC \n-XX:+UseTLAB \n-XX:NewSize=128m \n-XX:MaxNewSize=128m \n-XX:MaxTenuringThreshold=0 \n-XX:SurvivorRatio=1024 \n-XX:+UseCMSInitiatingOccupancyOnly \n-XX:CMSInitiatingOccupancyFraction=40\n-XX:MaxGCPauseMillis=1000 \n-XX:InitiatingHeapOccupancyPercent=50 \n-XX:+UseCompressedOops\n-XX:+DisableExplicitGC",
       "language": "shell"
     }
   ]
@@ -74,7 +74,7 @@ For JDK 1.8 we recommend to use G1 garbage collector and below you can see 10GB 
 {
   "codes": [
     {
-      "code": "-server \n-Xms10g \n-Xmx10g\n-XX:NewSize=512m\n-XX:SurvivorRatio=6\n-XX:+AlwaysPreTouch\n-XX:+UseG1GC\n-XX:MaxGCPauseMillis=2000\n-XX:GCTimeRatio=4\n-XX:InitiatingHeapOccupancyPercent=30\n-XX:G1HeapRegionSize=8M\n-XX:ConcGCThreads=16\n-XX:G1HeapWastePercent=10\n-XX:+UseTLAB\n-XX:+ScavengeBeforeFullGC\n-XX:+DisableExplicitGC\n",
+      "code": "-server \n-Xms10g \n-Xmx10g\n-XX:NewSize=512m\n-XX:SurvivorRatio=6\n-XX:+AlwaysPreTouch\n-XX:+UseG1GC\n-XX:MaxGCPauseMillis=2000\n-XX:GCTimeRatio=4\n-XX:InitiatingHeapOccupancyPercent=30\n-XX:G1HeapRegionSize=8M\n-XX:G1HeapWastePercent=10\n-XX:+UseTLAB\n-XX:+ScavengeBeforeFullGC\n-XX:+DisableExplicitGC\n",
       "language": "shell"
     }
   ]
@@ -92,7 +92,7 @@ If by some reason G1 doesn't suite well for your case or JDK 7 is used then you 
 {
   "codes": [
     {
-      "code": "-server\n-Xms10g\n-Xmx10g\n-XX:NewSize=512m\n-XX:SurvivorRatio=6\n-XX:+UseParNewGC\n-XX:+UseConcMarkSweepGC\n-XX:+AlwaysPreTouch\n-XX:CMSInitiatingOccupancyFraction=30\n-XX:+UseCMSInitiatingOccupancyOnly\n-XX:+CMSClassUnloadingEnabled\n-XX:+CMSPermGenSweepingEnabled \n-XX:ConcGCThreads=16\n-XX:+UseTLAB\n-XX:+ScavengeBeforeFullGC\n-XX:+CMSScavengeBeforeRemark\n-XX:+DisableExplicitGC\n",
+      "code": "-server\n-Xms10g\n-Xmx10g\n-XX:NewSize=512m\n-XX:SurvivorRatio=6\n-XX:+UseParNewGC\n-XX:+UseConcMarkSweepGC\n-XX:+AlwaysPreTouch\n-XX:CMSInitiatingOccupancyFraction=30\n-XX:+UseCMSInitiatingOccupancyOnly\n-XX:+CMSClassUnloadingEnabled\n-XX:+CMSPermGenSweepingEnabled \n-XX:+UseTLAB\n-XX:+ScavengeBeforeFullGC\n-XX:+CMSScavengeBeforeRemark\n-XX:+DisableExplicitGC\n",
       "language": "shell"
     }
   ]
