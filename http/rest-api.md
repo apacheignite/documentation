@@ -2723,7 +2723,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "http://host:port/ignite?cmd=qryexe&type=Person&pzs=10&cacheName=Person&arg1=1000&arg2=2000qry=salary+%3E+%3F+and+salary+%3C%3D+%3F",
+      "code": "http://host:port/ignite?cmd=qryexe&type=Person&pageSize=10&cacheName=Person&arg1=1000&arg2=2000qry=salary+%3E+%3F+and+salary+%3C%3D+%3F",
       "language": "curl"
     }
   ]
@@ -2810,7 +2810,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "http://host:port/ignite?cmd=qryfldexe&pzs=10&cacheName=Person&qry=select+firstName%2C+lastName+from+Person",
+      "code": "http://host:port/ignite?cmd=qryfldexe&pageSize=10&cacheName=Person&qry=select+firstName%2C+lastName+from+Person",
       "language": "curl"
     }
   ]
@@ -2892,7 +2892,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "http://host:port/ignite?cmd=qryscanexe&pzs=10&cacheName=Person&className=org.apache.ignite.schema.Person",
+      "code": "http://host:port/ignite?cmd=qryscanexe&pageSize=10&cacheName=Person&className=org.apache.ignite.schema.Person",
       "language": "curl"
     }
   ]
@@ -2969,7 +2969,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "http://host:port/ignite?cmd=qryfetch&pzs=10&qryId=5",
+      "code": "http://host:port/ignite?cmd=qryfetch&pageSize=10&qryId=5",
       "language": "curl"
     }
   ]
