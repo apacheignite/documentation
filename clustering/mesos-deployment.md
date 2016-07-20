@@ -67,7 +67,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/K8lOpF96Q5Kq9tDio7dc",
+        "https://files.readme.io/sTIbAfcdScKoDCSAJ6Q5_marathon.png",
         "marathon.png",
         "1087",
         "639",
@@ -84,7 +84,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/eUPcPUU7RAiySMaWV67I",
+        "https://files.readme.io/WSZ5mvnqQzy0dsUeq9WQ_mesos.png",
         "mesos.png",
         "1260",
         "861",
@@ -101,7 +101,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/KubgxqRT8H9oJcZfIfAy",
+        "https://files.readme.io/qUqG485tRtKS50JCp7yn_mesos_sandbox.png",
         "mesos_sandbox.png",
         "1225",
         "642",
@@ -118,7 +118,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/nsJmyoQ2R46UAZxY8wIV",
+        "https://files.readme.io/Ch5VkVm1Q5qGvrGEYF4k_mesos_sandbox_stdout.png",
         "mesos_sandbox_stdout.png",
         "1493",
         "853",
@@ -170,7 +170,7 @@ where `properties.prop` is a property file. If file is not provided then the fra
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/ZDVBhJYDRRKsawoqCfEc",
+        "https://files.readme.io/eEmfch9cQcSQiM27gSqT_Mesos_console.png",
         "Mesos_console.png",
         "1385",
         "592",
@@ -187,7 +187,7 @@ where `properties.prop` is a property file. If file is not provided then the fra
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/pz8ayMC8RsONh8112m5S",
+        "https://files.readme.io/s6fvlxNcQz66nhq8e9zH_Sandbox.png",
         "Sandbox.png",
         "1384",
         "395",
@@ -204,7 +204,7 @@ where `properties.prop` is a property file. If file is not provided then the fra
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/VGkkrjESWKaHInhO3OQs",
+        "https://files.readme.io/MEksCWXBTRq5WpUyp4CJ_stdout.png",
         "stdout.png",
         "943",
         "574",

@@ -235,7 +235,7 @@ When developing with Ignite sometimes it is useful to check if your tables and i
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/X2drTdAyQBiOqjPYpbDg",
+        "https://files.readme.io/OsddL8lfTOSLKqZWaTlI_Screen%20Shot%202015-08-24%20at%207.06.36%20PM.png",
         "Screen Shot 2015-08-24 at 7.06.36 PM.png",
         "1394",
         "1018",

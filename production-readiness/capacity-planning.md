@@ -22,7 +22,7 @@ When preparing and planning for a system capacity planning is an integral part o
 [block:callout]
 {
   "type": "info",
-  "body": "GridGain will typically add around 200 bytes overhead to each entry."
+  "body": "Ignite will typically add around 200 bytes overhead to each cache entry entry."
 }
 [/block]
 

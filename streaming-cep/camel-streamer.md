@@ -30,7 +30,7 @@ This streamer supports two modes of ingestion: **direct ingestion** and **mediat
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/QZPsu44JR6C5Mb6MkwVi",
+        "https://files.readme.io/dTjcpt5TkCO88MSVTAdg_Screen-Shot-2016-01-28-at-18-04-41.png",
         "Screen-Shot-2016-01-28-at-18-04-41.png",
         "896",
         "508",

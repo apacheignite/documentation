@@ -52,7 +52,7 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/ujiyfSgaS8yQr4XPek6N",
+        "https://files.readme.io/ISnxYZaaSyWC3Z6VP54H_AllApp.png",
         "AllApp.png",
         "1553",
         "371",
@@ -69,7 +69,7 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/RmS0GvSgQGqU80NbTbPw",
+        "https://files.readme.io/y0U5GlGoTUeSl3qc8iMQ_ContainerLogs.png",
         "ContainerLogs.png",
         "1318",
         "258",
@@ -86,7 +86,7 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/w3kq8AnYQSa0IqSgxR7I",
+        "https://files.readme.io/a3e8yeROWckIihHTWTwp_ContainerStdout.png",
         "ContainerStdout.png",
         "1384",
         "389",

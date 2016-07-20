@@ -166,7 +166,7 @@ For each of the cluster (Cassandra, Ignite, Tests) you should do such steps:
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/4uEJahwRyy0QTCmYH2Og",
+        "https://files.readme.io/yl34kW2nRyudcvGYL025_aws.png",
         "aws.png",
         "1073",
         "678",
@@ -236,7 +236,7 @@ In case when you also deployed `Ganglia` master EC2 instance, you can also use G
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/wzFx8UB9SSIhD6QYqXIw",
+        "https://files.readme.io/BCBeMldTp68YJOSz7k3p_ganglia2.png",
         "ganglia2.png",
         "2314",
         "3088",
