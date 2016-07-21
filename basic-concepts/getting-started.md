@@ -46,6 +46,19 @@ Here is the quick summary on installation of Apache Ignite:
   * Set `IGNITE_HOME` environment variable to point to the installation folder and make sure there is no trailing `/` in the path (this step is optional)
 
 ##Building From Source
+Additional Maven configuration can be required before building from sources. 
+Please note that following command will override current 'MAVEN_OPTS' environment variable.
+In case current  'MAVEN_OPTS' environment variable already contains -XX:MaxPermSize >=  1024m no need to redefine it.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "export MAVEN_OPTS=\"-Xmx2g -XX:MaxPermSize=1024m\"",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 If you downloaded the source package, you can build the binary using the following commands:
 [block:code]
 {
