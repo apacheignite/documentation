@@ -1,6 +1,6 @@
-As described in [Base concepts](doc:base-concepts) to configure Cassandra as a cache store you need to set **CacheStoreFactory** for your Ignite cache to `org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory`.
+As described in [Base concepts](doc:base-concepts), to configure Cassandra as a cache store you need to set **CacheStoreFactory** for your Ignite cache to `org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory`.
 
-Below is an example of typical configuration for Ignite cache to use Cassandra as a cache store. Don't afraid if it looks too complicated, we will go step by step through all the configuration items a bit further. The example is taken from the unit tests resource file `test/resources/org/apache/ignite/tests/persistence/blob/ignite-config.xml` of Cassandra module source code.
+Below is an example of a typical configuration for Ignite cache to use Cassandra as a cache store. We will go step-by-step through all the configuration items, further down. The example is taken from the unit tests resource file `test/resources/org/apache/ignite/tests/persistence/blob/ignite-config.xml` of Cassandra module source code.
 [block:code]
 {
   "codes": [
