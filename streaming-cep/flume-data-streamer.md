@@ -1,3 +1,11 @@
+[Overview](#overview)
+ [Setting up](#setting-up)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Apache Flume is a distributed, reliable, and available service for efficiently collecting, aggregating, and moving large amounts of log data." (https://github.com/apache/flume).
 
 IgniteSink is a Flume sink that extracts Events from an associated Flume channel and injects into an Ignite cache. Flume 1.6.0 is supported.
