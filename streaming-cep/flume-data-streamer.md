@@ -1,5 +1,5 @@
 * [Overview](#overview)
- * [Setting up](#setting-up)
+* [Setting up](#setting-up)
 [block:api-header]
 {
   "type": "basic",
