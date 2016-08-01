@@ -56,7 +56,7 @@ As far as framework uses Amazon cloud infrastructure it requires some prerequisi
 [block:api-header]
 {
   "type": "basic",
-  "title": "Building framework"
+  "title": "Building Framework"
 }
 [/block]
 Framework itself is represented as a set of bootstrap shell scripts, which can be used from [EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) console to launch appropriate number of `Ignite/Cassandra/Tests` EC2 instances and provided as a part of tests source code of the module. Thus first of all you should [build Ignite distribution](doc:getting-started#section-building-from-source) from the source code.
@@ -69,7 +69,7 @@ Now lets take a look at the `bootstrap` directory and framework configuration se
 [block:api-header]
 {
   "type": "basic",
-  "title": "Framework structure"
+  "title": "Framework Structure"
 }
 [/block]
 All infrastructure deployment settings are specified in the shell scripts inside `bootstrap` directory of the tests package. The directory itself has such a structure:
@@ -98,7 +98,7 @@ All infrastructure deployment settings are specified in the shell scripts inside
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuration details"
+  "title": "Configuration Details"
 }
 [/block]
 Lets now look at how to configure framework to deploy your custom infrastructure in Amazon:
@@ -251,7 +251,7 @@ In case when you also deployed `Ganglia` master EC2 instance, you can also use G
 [block:api-header]
 {
   "type": "basic",
-  "title": "Tests summary report"
+  "title": "Tests Summary Report"
 }
 [/block]
 Each time all `Tests` EC2 instances completed with load tests execution, it will be automatically created summary report on S3. Its location is specified by `S3_TESTS_SUMMARY` property from `env.sh`. The report represent zip archive having such structure:
@@ -277,7 +277,7 @@ Here is an example of such report:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Triggering logs collection"
+  "title": "Triggering Logs Collection"
 }
 [/block]
 While monitoring S3 system folders provides you some high level view of the system state, sometimes you want to know what is going on with your EC2 instances at the moment. For such a purpose you can just manually triggering logs collection and logs from all EC2 instances will be uploaded into S3 folder specified by `S3_LOGS_ROOT` property from `env.sh`.
@@ -288,7 +288,7 @@ The daemon, just checks every 30 seconds if `timestamp` of the `logs trigger` fi
 [block:api-header]
 {
   "type": "basic",
-  "title": "Triggering tests execution"
+  "title": "Triggering Tests Execution"
 }
 [/block]
 While load tests execution will be triggered automatically once infrastructure deployment process completed, sometimes you would like to changes tests settings and re-trigger load tests execution with new settings on the same infrastructure.
