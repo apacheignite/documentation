@@ -1,4 +1,4 @@
-To setup Cassandra as a persistent store you should set `CacheStoreFactory` for your Ignite cache to `org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory`.
+To setup Cassandra as a persistent store, you should set `CacheStoreFactory` for your Ignite cache to `org.apache.ignite.cache.store.cassandra.CassandraCacheStoreFactory`.
 
 This could be done using Spring context configuration like this:
 [block:code]
@@ -87,7 +87,7 @@ Below are provided all the details about persistence descriptor configuration an
 [block:callout]
 {
   "type": "danger",
-  "title": "Required element",
+  "title": "Required Element",
   "body": "Root container for persistence settings configuration."
 }
 [/block]
@@ -123,7 +123,7 @@ Text specified in this XML element is just a chunk of [CREATE KEYSPACE](http://d
 [block:callout]
 {
   "type": "info",
-  "title": "Optional element",
+  "title": "Optional Element",
   "body": "Options to create Cassandra table specified in the **table** attribute of persistence settings container."
 }
 [/block]
@@ -190,7 +190,7 @@ Next two sections are providing detailed specification for **partition** and **c
 [block:callout]
 {
   "type": "info",
-  "title": "Optional element",
+  "title": "Optional Element",
   "body": "Container for `field` elements specifying Cassandra partition key."
 }
 [/block]
@@ -211,7 +211,7 @@ Mappings are specified by using `<field>` tag having such attributes:
 [block:callout]
 {
   "type": "info",
-  "title": "Optional element",
+  "title": "Optional Element",
   "body": "Container for `field` elements specifying Cassandra cluster key."
 }
 [/block]
@@ -233,7 +233,7 @@ Mapping are specified by using `<field>` tag having such attributes:
 [block:callout]
 {
   "type": "danger",
-  "title": "Required element",
+  "title": "Required Element",
   "body": "Persistent settings for Ignite cache values."
 }
 [/block]
