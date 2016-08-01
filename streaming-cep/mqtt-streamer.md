@@ -1,7 +1,21 @@
+* [Overview](#overview)
+* [Features](#features)
+* [Code Sample](#code-sample)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 This streamer consumes from a MQTT topic and feeds key-value pairs into an `IgniteDataStreamer` instance, using [Eclipse Paho](https://eclipse.org/paho/) as an MQTT client.
 
 You must provide a stream tuple extractor (either a single-entry or multiple-entries extractor) to process the incoming message and extract the tuple to insert.
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Features"
+}
+[/block]
 This streamer supports:
 
 * Subscribing to a single topic or multiple topics at once.
