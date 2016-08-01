@@ -1,7 +1,7 @@
 * [Overview](#overview)
-* [Features](#features-supported)
+* [Features](#features)
 * [Instantiating a JMS Streamer](#instantiating-a-jms-streamer)
-* [Example](#example-of-usage)
+* [Example](#example)
 [block:api-header]
 {
   "type": "basic",
