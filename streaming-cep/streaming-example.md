@@ -2,6 +2,7 @@
 * [Cache Configuration](#cache-configuration)
 * [Stream Words](#stream-words)
 * [Query Words](#query-words)
+* [Starting Server Nodes](#starting-server-nodes)
 [block:api-header]
 {
   "type": "basic",
