@@ -1,7 +1,13 @@
+* [Overview](#overview)
 * [Features](#features-supported)
 * [Instantiating a JMS Streamer](#instantiating-a-jms-streamer)
 * [Example](#example-of-usage)
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite offers a JMS Data Streamer to consume messages from JMS brokers, convert them into cache tuples and insert them in Ignite caches. 
 [block:api-header]
 {
