@@ -7,7 +7,7 @@ Such kind of measurements could be useful for better understanding of system sca
 [block:api-header]
 {
   "type": "basic",
-  "title": "Building load tests"
+  "title": "Building Load Tests"
 }
 [/block]
 Load tests for Cassandra module are provided as a part of tests source code of the module. Thus first of all you should [build Ignite distribution](doc:getting-started#section-building-from-source) from the source code. 
@@ -59,7 +59,7 @@ All of the specified load tests will be executed sequentially one after another 
 [block:api-header]
 {
   "type": "basic",
-  "title": "Load tests settings"
+  "title": "Load Tests Settings"
 }
 [/block]
 Load test settings are specified inside these property files from `settings` folder:
@@ -109,7 +109,7 @@ While `log4j.properties` file is rather simple and straightforward configuration
 [block:api-header]
 {
   "type": "basic",
-  "title": "Running load tests"
+  "title": "Running Load Tests"
 }
 [/block]
 Before running load tests make sure that:
@@ -127,7 +127,7 @@ After that you can easily run load tests just executing appropriate shell script
 [block:api-header]
 {
   "type": "basic",
-  "title": "Using custom key/value classes"
+  "title": "Using Custom Key/Value Classes"
 }
 [/block]
 If you want to use your custom key/value classes for load tests you should:
@@ -150,7 +150,7 @@ That's all the steps you need to run load tests using your custom classes.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Analyzing tests execution results"
+  "title": "Analyzing Tests Execution Results"
 }
 [/block]
 The results of load tests execution are provided as `log4j` log files. By default (if you didn't modify `log4j.properties` file) there are two files which shows summary results of tests execution:
