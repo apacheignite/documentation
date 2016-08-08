@@ -53,7 +53,7 @@ and open start page in your browser (default start page URL is [http://localhost
     {
       "caption": "Apache Zeppelin start page",
       "image": [
-        "https://www.filepicker.io/api/file/3bHTJnpSvGiI2KEUIM6L",
+        "https://files.readme.io/ta3RwMy0RDKGiTtl1Y25_Selection_001.png",
         "Selection_001.png",
         "1142",
         "618",
@@ -78,7 +78,7 @@ Click on "Interpreter" menu item. This page contains settings for all configured
     {
       "caption": "Apache Ignite interpreters settings",
       "image": [
-        "https://www.filepicker.io/api/file/vOhUlN7XRXiE0Gf5bPgC",
+        "https://files.readme.io/bsnliQ2Rgir1zYrqUIeb_Selection_002.png",
         "Selection_002.png",
         "1142",
         "671",
@@ -129,7 +129,7 @@ Create new (or open existing) note using "Notebook" menu item.
     {
       "caption": "Creating new note",
       "image": [
-        "https://www.filepicker.io/api/file/pF9Q8948SeOG7GPtyH0v",
+        "https://files.readme.io/g5LuJDlqSYk8IHXfCNqy_Selection_003.png",
         "Selection_003.png",
         "1137",
         "662",
@@ -146,7 +146,7 @@ After creating new note you should click "Notebook" menu item again and open cre
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/Maj9hwbjSpi0GrTDqfeE",
+        "https://files.readme.io/8HkeqrRgQGWvNPwPfkpg_Selection_004.png",
         "Selection_004.png",
         "1157",
         "232",
@@ -164,7 +164,7 @@ Since note is created you can input SQL query or Scala code and execute it click
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/oOQjImXzTlGlImyEwbxx",
+        "https://files.readme.io/qLUo3lETUamX6TYKOhOg_Selection_005.png",
         "Selection_005.png",
         "1158",
         "234",
@@ -195,7 +195,7 @@ For execute SQL query use `%ignite.ignitesql` prefix and your SQL query. For exa
     {
       "caption": "Using Ignite SQL interpreter",
       "image": [
-        "https://www.filepicker.io/api/file/NRcgOAoyT0OXinq2qpeb",
+        "https://files.readme.io/2qZjpiugSeuO9RSKVlLP_Selection_006.png",
         "Selection_006.png",
         "1156",
         "257",
@@ -213,7 +213,7 @@ After executing this example you can see result as table or graph. Use correspon
     {
       "caption": "SQL query result as table",
       "image": [
-        "https://www.filepicker.io/api/file/0xedliKRxinxivxgHwcC",
+        "https://files.readme.io/kwqW1zL5R3epXRsfuokL_Selection_007.png",
         "Selection_007.png",
         "1143",
         "640",
@@ -231,7 +231,7 @@ After executing this example you can see result as table or graph. Use correspon
     {
       "caption": "SQL query result as graph",
       "image": [
-        "https://www.filepicker.io/api/file/7ZwjGd0ZTUm02yY3Mmig",
+        "https://files.readme.io/XtpeKSx4RVCesV9Atr3a_Selection_008.png",
         "Selection_008.png",
         "1157",
         "551",
@@ -249,7 +249,7 @@ After executing this example you can see result as table or graph. Use correspon
     {
       "caption": "SQL query result as pie chart",
       "image": [
-        "https://www.filepicker.io/api/file/vGib202NTiaQkpxyvH5q",
+        "https://files.readme.io/W51ux1IsQHSN4n664xEM_Selection_009.png",
         "Selection_009.png",
         "1141",
         "650",
@@ -279,7 +279,7 @@ For execute Scala code snippet use `%ignite` prefix and your code snippet. For e
     {
       "caption": "Using Ignite interpreter",
       "image": [
-        "https://www.filepicker.io/api/file/NdEH40jSLGaEML8LD5lw",
+        "https://files.readme.io/1dAkZbRbitVcnpijTYOg_Selection_010.png",
         "Selection_010.png",
         "1156",
         "473",
@@ -297,7 +297,7 @@ After executing this example you will see output of Scala REPL.
     {
       "caption": "Scala REPL output",
       "image": [
-        "https://www.filepicker.io/api/file/DsaHrKE3QKCPHNSVSmLO",
+        "https://files.readme.io/DCZWZY4FSRSLHO49KD0Z_Selection_011.png",
         "Selection_011.png",
         "1143",
         "649",

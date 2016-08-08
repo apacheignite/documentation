@@ -48,10 +48,13 @@ The following parameters are supported:
     "2-1": "Query will be executed only on local node. Use this parameter with `nodeId` parameter in order to limit data set by specified node.",
     "2-2": "false",
     "3-1": "Flag that used for optimization purposes. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node, Ignite can make significant performance and network optimizations.",
-    "3-2": "false"
+    "3-2": "false",
+    "4-0": "`distributedJoins`",
+    "4-1": "Allows use distributed joins for non collocated data.",
+    "4-2": "false"
   },
   "cols": 3,
-  "rows": 4
+  "rows": 5
 }
 [/block]
 

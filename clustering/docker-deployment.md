@@ -103,7 +103,7 @@ To run Ignite docker container from GIT repository, execute the following comman
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/3hddP5AaQTOpZosN00HN",
+        "https://files.readme.io/ryYtMcSCuGiyVcXN1GCw_dock_git_repo.png",
         "dock_git_repo.png",
         "979",
         "643",
@@ -197,7 +197,7 @@ You should see the following in the logs:
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/lbgfn28TQKqOX03FTVsc",
+        "https://files.readme.io/A0auyExTrqkcxOZfRnbu_docker_bare.png",
         "docker_bare.png",
         "1113",
         "633",
@@ -237,7 +237,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/uWZ9KlAKQeKzcaP9f7Sv",
+        "https://files.readme.io/PhTYum4TZ6SPIFu5xsLA_Choose_image.png",
         "Choose_image.png",
         "760",
         "625",
@@ -254,7 +254,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/dczZ8N7ATLCOV5X3KvKH",
+        "https://files.readme.io/7W6VPUq6QNiFkFP4soQP_Metadata.png",
         "Metadata.png",
         "683",
         "563",
@@ -332,7 +332,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/tdxlrfjQqM4MSJpY8L6g",
+        "https://files.readme.io/onqTRfT7ShiGDVgK8YrA_AmazonUserData.png",
         "AmazonUserData.png",
         "1112",
         "513",

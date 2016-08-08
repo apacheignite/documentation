@@ -35,7 +35,7 @@ The picture below illustrates a simple view of a partitioned cache. Essentially 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/0m7MlV5CSkKQezO3IPHK",
+        "https://files.readme.io/egtolRvXRdqIWEQWP940_partitioned_cache.png",
         "partitioned_cache.png",
         "500",
         "431",
@@ -61,7 +61,7 @@ In Ignite, *replicated caches* are implemented using *partitioned caches* where 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/swdpIwPpSCNUglRWYIMq",
+        "https://files.readme.io/0yOEFydERAyggehGP75B_replicated_catche_8_sm.png",
         "replicated_catche_8_sm.png",
         "500",
         "408",

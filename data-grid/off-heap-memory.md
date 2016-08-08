@@ -16,7 +16,7 @@ Off-Heap memory allows your cache to overcome lengthy JVM Garbage Collection (GC
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/iXCEc4RsQ4a1SM1Vfjnl",
+        "https://files.readme.io/aM4uHn8wRMmmtFvkZndL_off-heap-memory.png",
         "off-heap-memory.png",
         "450",
         "354",
