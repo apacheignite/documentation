@@ -41,12 +41,12 @@ plugins.d/
 [block:parameters]
 {
   "data": {
-    "0-0": "channel",
-    "1-0": "type",
-    "2-0": "igniteCfg",
-    "3-0": "cacheName",
-    "4-0": "eventTransformer",
-    "5-0": "batchSize",
+    "0-0": "`channel`",
+    "1-0": "`type`",
+    "2-0": "`igniteCfg`",
+    "3-0": "`cacheName`",
+    "4-0": "`eventTransformer`",
+    "5-0": "`batchSize`",
     "h-0": "Property name",
     "h-1": "Default",
     "h-2": "Description",
