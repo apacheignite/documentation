@@ -97,7 +97,7 @@ The distributed joins has been designed and supported by Apache Ignite exactly f
   "body": "Don't overuse the distributed joins based approach in practice because the performance of the distributed joins is worse then the performance of the affinity collocation based joins due to the fact that there will be much more network round-trips and data movement between the nodes to fulfill a query."
 }
 [/block]
-When the distributed joins setting is enabled for a specific SQL query with `SqlQuery.setDistributedJoins(boolean)` parameter then a node will request missing data (that is not presented locally) needed to complete a join from remote nodes either sending broadcast or unicast requests. The unicast requests are sent to specific nodes in cases when the join is done on a primary key (cache key) or an affinity key and the node, the performs the join, definitely knows where the missing data is located. The broadcast requests are sent in all the other cases. 
+When the distributed joins setting is enabled for a specific SQL query with `SqlQuery.setDistributedJoins(boolean)` parameter then a node will request missing data (that is not presented locally) from remote nodes either sending broadcast or unicast requests. The unicast requests are sent to specific nodes in cases when the join is done on a primary key (cache key) or an affinity key and the node, the performs the join, definitely knows where the missing data is located. The broadcast requests are sent in all the other cases. 
 [block:callout]
 {
   "type": "success",
