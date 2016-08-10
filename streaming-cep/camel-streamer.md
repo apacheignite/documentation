@@ -1,3 +1,15 @@
+* [Overview](#overview)
+* [Direct Ingestion](#direct-ingestion)
+* [Mediated Ingestion](#mediated-ingestion)
+* [Setting a Response](#setting-a-response)
+* [Maven Dependency](#maven-dependency)
+* [About Apache Camel](#about-apache-camel)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 This documentation page focuses on the **[Apache Camel](http://camel.apache.org) Streamer**, which can also be thought of as a _Universal Streamer_ because it allows you to consume from any technology or protocol supported by Camel into an Ignite Cache. 
 [block:callout]
 {
@@ -86,7 +98,7 @@ We call this **mediated ingestion**.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Setting a response"
+  "title": "Setting a Response"
 }
 [/block]
 By default, the response sent back to the caller (if it is a synchronous endpoint) is simply an echo of the original request. If you want to customise the response, set a Camel `Processor` as a `responseProcessor`:
