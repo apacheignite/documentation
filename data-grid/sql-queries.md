@@ -56,22 +56,22 @@ See example **Cross-Cache SqlFieldsQuery**.
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\nSqlQuery sql = new SqlQuery(Person.class, \"salary > ?\");\n\n// Find only persons earning more than 1,000.\ntry (QueryCursor<Entry<Long, Person>> cursor = cache.query(sql.setArgs(1000))) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\nSqlQuery sql = new SqlQuery(Person.class, \"salary > ?\");\n\n// Find only persons earning more than 1,000.\ntry (QueryCursor<Entry<Long, Person>> cursor = cache.query(sql.setArgs(1000))) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
       "language": "java",
       "name": "SqlQuery"
     },
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// SQL join on Person and Organization.\nSqlQuery sql = new SqlQuery(Person.class,\n  \"from Person, Organization \"\n  + \"where Person.orgId = Organization.id \"\n  + \"and lower(Organization.name) = lower(?)\");\n\n// Find all persons working for Ignite organization.\ntry (QueryCursor<Entry<Long, Person>> cursor = cache.query(sql.setArgs(\"Ignite\"))) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\n// SQL join on Person and Organization.\nSqlQuery sql = new SqlQuery(Person.class,\n  \"from Person as p, \\\"orgCache\\\".Organization as org\"\n  + \"where p.orgId = org.id \"\n  + \"and lower(org.name) = lower(?)\");\n\n// Find all persons working for Ignite organization.\ntry (QueryCursor<Entry<Long, Person>> cursor = cache.query(sql.setArgs(\"Ignite\"))) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
       "language": "java",
       "name": "SqlQuery JOIN"
     },
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// Select with join between Person and Organization.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n  \"select concat(firstName, ' ', lastName), Organization.name \"\n  + \"from Person, Organization where \"\n  + \"Person.orgId = Organization.id and \"\n  + \"Person.salary > ?\");\n\n// Only find persons with salary > 1000.\ntry (QueryCursor<List<?>> cursor = cache.query(sql.setArgs(1000))) {\n  for (List<?> row : cursor)\n    System.out.println(\"personName=\" + row.get(0) + \", orgName=\" + row.get(1));\n}",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\n// Execute query to get names of all employees.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n  \"select concat(firstName, ' ', lastName) from Person\");\n\n// Iterate over the result set.\ntry (QueryCursor<List<?>> cursor = cache.query(sql) {\n  for (List<?> row : cursor)\n    System.out.println(\"personName=\" + row.get(0));\n}",
       "language": "java",
       "name": "SqlFieldsQuery"
     },
     {
-      "code": "// In this example, suppose Person objects are stored in a \n// cache named 'personCache' and Organization objects \n// are stored in a cache named 'orgCache'.\n\nIgniteCache<Long, Person> personCache = ignite.cache(\"personCache\");\n\n// Select with join between Person and Organization to \n// get the names of all the employees of a specific organization.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n    \"select Person.name  \"\n        + \"from Person, \\\"orgCache\\\".Organization where \"\n        + \"Person.orgId = Organization.id \"\n        + \"and Organization.name = ?\");\n\n// Execute the query and obtain the query result cursor.\ntry (QueryCursor<List<?>> cursor =  personCache.query(sql.setArgs(\"Ignite\"))) {\n    for (List<?> row : cursor)\n        System.out.println(\"Person name=\" + row);\n}",
+      "code": "// In this example, suppose Person objects are stored in a \n// cache named 'personCache' and Organization objects \n// are stored in a cache named 'orgCache'.\nIgniteCache<Long, Person> personCache = ignite.cache(\"personCache\");\n\n// Select with join between Person and Organization to \n// get the names of all the employees of a specific organization.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n    \"select Person.name  \"\n        + \"from Person as p, \\\"orgCache\\\".Organization as org where \"\n        + \"p.orgId = org.id \"\n        + \"and org.name = ?\");\n\n// Execute the query and obtain the query result cursor.\ntry (QueryCursor<List<?>> cursor =  personCache.query(sql.setArgs(\"Ignite\"))) {\n    for (List<?> row : cursor)\n        System.out.println(\"Person name=\" + row.get(0));\n}",
       "language": "java",
       "name": "Cross-Cache SqlFieldsQuery"
     }
