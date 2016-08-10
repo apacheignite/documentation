@@ -2,6 +2,7 @@
 * [SQL Joins](#sql-joins)
 * [Field Queries](#fields-queries)
 * [Cross-Cache Queries](#cross-cache-queries)
+* [Distribute Joins](#dist
 * [Configuring SQL Indexes by Annotations](#configuring-sql-indexes-by-annotations)
  * [Making Fields Visible for SQL Queries](#section-making-fields-visible-for-sql-queries)
  * [Single Column Indexes](#section-single-column-indexes)
