@@ -60,6 +60,13 @@ See *example-ignite.xml* in tests for a simple cache configuration file example.
   ]
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "In addition to being able to export data from Kafka to Ignite cache, you can subscribe to cache events and stream them to Kafka with IgniteSourceConnector."
+}
+[/block]
 ### Checking the Flow
 
 To perform a very basic functionality check, you can do the following,
