@@ -102,7 +102,7 @@ When the distributed joins setting is enabled for a specific SQL query with `Sql
 {
   "type": "success",
   "title": "",
-  "body": "Neither broadcast nor unicast requests, that are sent by one node to another in order to get missing data, are executed sequentially. The SQL engine combines all the request into batches. This batch size can be managed using `SqlQuery.setPageSize(int)` parameter."
+  "body": "Neither broadcast nor unicast requests, that are sent by one node to another in order to get the missing data, are executed sequentially. The SQL engine combines all the request into batches. This batch size can be managed using `SqlQuery.setPageSize(int)` parameter."
 }
 [/block]
 The following code snippet is provided from the [CacheQueryExample](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheQueryExample.java) included in the Ignite distribution.
