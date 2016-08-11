@@ -105,18 +105,19 @@ When the distributed joins setting is enabled for a specific SQL query with `Sql
   "body": "Neither broadcast nor unicast requests, that are sent by one node to another in order to get missing data, are executed sequentially. The SQL engine combines all the request into batches. This batch size can be managed using `SqlQuery.setPageSize(int)` parameter."
 }
 [/block]
-Refer to [the distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details and to **CacheQueryExample** which snippet of the code is provided below.
+The following code snippet is provided from the [CacheQueryExample](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheQueryExample.java) included in the Ignite distribution.
 [block:code]
 {
   "codes": [
     {
       "code": "IgniteCache<AffinityKey<Long>, Person> cache = ignite.cache(\"personCache\");\n\n// SQL clause query with join over non-collocated data.\nString joinSql =\n\t\"from Person, \\\"orgCache\\\".Organization as org \" +\n  \"where Person.orgId = org.id \" +\n  \"and lower(org.name) = lower(?)\";\n\nSqlQuery qry = new SqlQuery<AffinityKey<Long>, Person>(Person.class, joinSql).\n\tsetArgs(\"ApacheIgnite\");\n\n// Enable distributed joins for the query.\nqry.setDistributedJoins(true);\n\n// Execute the query to find out employees for specified organization.\nSystem.out.println(\"Following people are 'ApacheIgnite' employees (distributed \t\tjoin): \", cache.query(qry).getAll());",
-      "language": "java"
+      "language": "java",
+      "name": "SqlQueryWithDistributedJoin"
     }
   ]
 }
 [/block]
-
+For more technical details, refer to [the distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html.
 [block:api-header]
 {
   "type": "basic",
