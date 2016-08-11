@@ -1,3 +1,12 @@
+* [Overview](#overview)
+* [Streaming Data via Kafka Connect](#section-streaming-data-via-kafka-connect)
+* [Streaming data with Ignite Kafka Streamer Module](#section-streaming-data-with-ignite-kafka-streamer-module)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Apache Ignite Kafka Streamer module provides streaming from Kafka to Ignite cache.
 Either of the following two methods can be used to achieve such streaming:
 - using Kafka Connect functionality with Ignite sink;
@@ -58,13 +67,6 @@ See *example-ignite.xml* in tests for a simple cache configuration file example.
       "language": "shell"
     }
   ]
-}
-[/block]
-
-[block:callout]
-{
-  "type": "info",
-  "body": "In addition to being able to export data from Kafka to Ignite cache, you can subscribe to cache events and stream them to Kafka with IgniteSourceConnector."
 }
 [/block]
 ### Checking the Flow
