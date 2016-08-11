@@ -117,7 +117,7 @@ The following code snippet is provided from the [CacheQueryExample](https://gith
   ]
 }
 [/block]
-For more technical details, refer to [the distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html).
+Refer to [the distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details.
 [block:api-header]
 {
   "type": "basic",
