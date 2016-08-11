@@ -86,23 +86,23 @@ See example **Cross-Cache SqlFieldsQuery**.
   "title": "Distributed Joins"
 }
 [/block]
-By default if an SQL join has to be done across a number of Ignite caches then all the caches has to be collocated. Otherwise you will get an incomplete result at the end of query execution because at the join phase a node uses the data that is available **locally** only.
+By default, if an SQL join has to be done across a number of Ignite caches, then all the caches have to be collocated. Otherwise, you will get an incomplete result at the end of query execution because at the join phase a node uses the data that is available only **locally**.
 
-Besides of the fact that the affinity collocation is a powerful concept that once set up for an application's business entities (caches) will let you execute cross-cache joins in the most optimal way, returning a complete and consistent result set, there is always a chance that you won't be able to collocate all the data thus you won't be able to execute the whole range of SQL queries that are needed to satisfy your use case.
+Besides the fact that the affinity collocation is a powerful concept that, once set up for an application's business entities (caches), will let you execute cross-cache joins in the most optimal way by returning a complete and consistent result set, there is always a chance that you won't be able to collocate all the data. Thus, you won't be able to execute the whole range of SQL queries that are needed to satisfy your use case.
 
-The distributed joins has been designed and supported by Apache Ignite exactly for the cases when it's extremely difficult or impossible to collocate all the data but you still need to execute a number of SQL queries over non-collocated caches.
+The distributed joins has been designed and supported by Apache Ignite for cases when it's extremely difficult or impossible to collocate all the data but you still need to execute a number of SQL queries over non-collocated caches.
 [block:callout]
 {
   "type": "danger",
   "body": "Don't overuse the distributed joins based approach in practice because the performance of the distributed joins is worse then the performance of the affinity collocation based joins due to the fact that there will be much more network round-trips and data movement between the nodes to fulfill a query."
 }
 [/block]
-When the distributed joins setting is enabled for a specific SQL query with `SqlQuery.setDistributedJoins(boolean)` parameter then a node will request missing data (that is not presented locally) from remote nodes either sending broadcast or unicast requests. The unicast requests are sent to specific nodes in cases when a join is done on a primary key (cache key) or an affinity key so that the the node, that is performing the join, definitely knows where the missing data is located. The broadcast requests are sent in all the other cases. 
+When the distributed joins setting is enabled for a specific SQL query with `SqlQuery.setDistributedJoins(boolean)` parameter, a node will request for the missing data (that is not present locally) from the remote nodes by sending either broadcast or unicast requests. The unicast requests are sent to specific nodes in cases when a join is done on a primary key (cache key) or an affinity key so that the node, that is performing the join, definitely knows where the missing data is located. The broadcast requests are sent in all the other cases. 
 [block:callout]
 {
   "type": "success",
   "title": "",
-  "body": "Neither broadcast nor unicast requests, that are sent by one node to another in order to get missing data, are executed sequentially. The SQL engine combines all the request into batches which size is manageable with `SqlQuery.setPageSize(int)` parameter."
+  "body": "Neither broadcast nor unicast requests, that are sent by one node to another in order to get missing data, are executed sequentially. The SQL engine combines all the request into batches. This batch size can be managed using `SqlQuery.setPageSize(int)` parameter."
 }
 [/block]
 Refer to [the distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details and to **CacheQueryExample** which snippet of the code is provided below.
