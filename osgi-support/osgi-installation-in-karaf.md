@@ -1,3 +1,9 @@
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 [Apache Karaf](https://karaf.apache.org/) is a lightweight, powerful, and enterprise ready container powered by OSGi. It supports both the Eclipse Equinox and Apache Felix OSGi runtimes.
 [block:callout]
 {
