@@ -1,5 +1,8 @@
 * [Overview](#overview)
 * [ComputeTask](#computetask)
+* *[Map Method](#section-map-method)
+* *[Result Method](#section-result-method)
+* *[Reduce Method](#section-reduce-method)
 * [Compute Task Adapters](#compute-task-adapters)
 * [ComputeJob](#computejob)
 * [Example](#example)
