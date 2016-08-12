@@ -75,3 +75,41 @@ The following modules are available:
   * `ignite-aws` (for seamless cluster discovery on AWS S3)
   * `ignite-aop` (for AOP-based grid-enabling)
   * `ignite-visor-console`  (open source command line management and monitoring tool)
+[block:callout]
+{
+  "type": "warning",
+  "title": "Artifact versions",
+  "body": "Note that when importing several Ignite module, the version has to the same for all of them. E.g., if you're using `ignite-core` 1.7, all other modules must be imported with the version 1.7 as well."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "LGPL dependencies"
+}
+[/block]
+The following Ignite modules have LGPL dependencies and therefore can't be deployed on Maven Central repository:
+* `ignite-hibernate`
+* `ignite-geospatial`
+* `ignite-schedule`
+To use these modules you will need to build them from sources manually and add to your project. For example, to install `ignite-hibernate` into your local repository, run this command in the Ignite source package:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "mvn clean install -DskipTests -Plgpl -pl modules/hibernate -am",
+      "language": "shell",
+      "name": ""
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "3rd party repositories",
+  "body": "GridGain provides his own [Maven repository](http://www.gridgainsystems.com/nexus/content/repositories/external) containing Apache Ignite LGPL artifacts such as `ignite-hibernate`.\nPlease note that artifacts located at GridGain Maven repository provided for convenience and are NOT official Apache Ignite artifacts."
+}
+[/block]
