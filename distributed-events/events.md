@@ -4,8 +4,8 @@
   * [Local Events](#section-local-events)
   * [Remote Events](#section-remote-events)
 * [Query for Events](#query-for-events)
-  * [Local Events](#section-local-events)
-  * [Remote Events](#section-remote-events)
+  * [Local Events](#section-local-query)
+  * [Remote Events](#section-remote-query)
 * [Configuration](#configuration)
 [block:api-header]
 {
@@ -86,9 +86,9 @@ In the above example `EVT_CACHE_OBJECT_PUT`,`EVT_CACHE_OBJECT_READ`, and `EVT_CA
 }
 [/block]
 All events generated in the system are kept locally on the local node. `IgniteEvents` API provides methods to query for these events.
-##Local Events
+##Local Query
 `localQuery(...)`  method queries for events on the local node using the passed in predicate filter. If all predicates are satisfied, a collection of events happening on the local node is returned.
-##Remote Events
+##Remote Query
 `remoteQuery(...)`  method asynchronously queries for events on remote nodes in this projection using the passed in predicate filter. This operation is distributed and hence can fail on communication layer and generally can take much longer than local event notifications. Note that this method will not block and will return immediately with future.
 
 [block:api-header]
