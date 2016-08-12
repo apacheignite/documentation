@@ -1,3 +1,12 @@
+* [Overview](#overview)
+* [IgniteMessaging](#ignitemessaging)
+* [Publish Messages](#publish-messages)
+  * [Ordered Messages](#section-ordered-messages)
+  * [Unordered Messages](#section-unordered-messages)
+* [Subscribe for Messages](#subscribe-for-messages)
+  * [Local Listen](#section-local-listen)
+  * [Remote Listen](#section-remote-listen)
+* [Example](#example)
 [block:api-header]
 {
   "type": "basic",
