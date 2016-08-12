@@ -1,3 +1,10 @@
+* [DeploymentSpi](#deploymentspi)
+* [UriDeploymentSpi](#urideploymentspi)
+  * [GAR file](#section-gar-file)
+  * [Example](#section-example)
+  * [Configuration](#section-configuration)
+  * [Protocols](#section-protocols)
+* [LocalDeploymentSpi](#localdeploymentspi)
 [block:api-header]
 {
   "type": "basic",
@@ -59,7 +66,7 @@ GAR file may be deployed without descriptor file. If there is no descriptor file
 
 By default, all downloaded GAR files that have digital signature in `META-INF` folder will be verified and deployed only if signature is valid.
 
-## Code Example
+## Example
 The following examples demonstrate how the deployment SPI can be used. Different protocols can be used together as well. 
 [block:code]
 {
