@@ -1,8 +1,8 @@
 * [Overview](#overview)
 * [IgniteMessaging](#ignitemessaging)
-* [Subscribe for Events]
-* [Query for Events]
-* [Configuration]
+* [Subscribe for Events](#subscribe-for-events)
+* [Query for Events](#query-for-events)
+* [Configuration](#configuration)
 [block:api-header]
 {
   "type": "basic",
