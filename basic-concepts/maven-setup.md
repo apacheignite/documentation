@@ -94,6 +94,7 @@ The following Ignite modules have LGPL dependencies and therefore can't be deplo
 * `ignite-hibernate`
 * `ignite-geospatial`
 * `ignite-schedule`
+
 To use these modules you will need to build them from sources manually and add to your project. For example, to install `ignite-hibernate` into your local repository, run this command in the Ignite source package:
 [block:code]
 {
