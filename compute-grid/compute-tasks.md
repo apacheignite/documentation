@@ -2,7 +2,7 @@
 * [ComputeTask](#computetask)
 * [Compute Task Adapters](#compute-task-adapters)
 * [ComputeJob](#computejob)
-* Example](#example)
+* [Example](#example)
 * [Distributed Task Session](#distributed-task-session)
 [block:api-header]
 {
