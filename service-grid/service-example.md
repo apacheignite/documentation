@@ -1,3 +1,8 @@
+* [Define Your Service Interface](#define-your-service-interface)
+* [Service Implementation](#service-implementation)
+* [Service Proxy](#service-proxy)
+  * [Sticky vs Not-Sticky Proxies](#section-sticky-vs-not-sticky-proxies)
+* [Access Service from Computations](#access-service-from-computations)
 [block:api-header]
 {
   "type": "basic",
@@ -62,7 +67,7 @@ We should deploy our counter service as per-node-singleton within the cluster gr
 [/block]
 You can access an instance of the deployed service from any node within the cluster. If the service is deployed on that node, then the locally deployed instance will be returned. Otherwise, if service is not locally available, a remote proxy for the service will be created automatically.
 
-# Sticky vs Not-Sticky Proxies
+## Sticky vs Not-Sticky Proxies
 Proxies can be either *sticky* or not. If proxy is sticky, then Ignite will always go back to the same cluster node to contact a remotely deployed service. If proxy is *not-sticky*, then Ignite will load balance remote service proxy invocations among all cluster nodes on which the service is deployed.
 [block:code]
 {
