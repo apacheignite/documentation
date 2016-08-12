@@ -1,3 +1,6 @@
+* [Alert command specification](#alert-command-specification)
+* [Examples](#examples)
+* [Custom Script](#custom-script)
 [block:api-header]
 {
   "type": "basic",
@@ -94,7 +97,7 @@ alert -r -n=Nodes -t=15 -nc=gte3 -s=/home/user/scripts/alert.sh -i=300
 [block:api-header]
 {
   "type": "basic",
-  "title": "Custom script"
+  "title": "Custom Script"
 }
 [/block]
 For example
