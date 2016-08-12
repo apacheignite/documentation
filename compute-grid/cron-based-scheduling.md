@@ -1,3 +1,12 @@
+* [Overview](#overview)
+* [SchedulerFuture](#schedulerfuture)
+* [Syntax Extension](#syntax-extension)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Instances of `Runnable` and `Callable` can be scheduled for periodic execution on local node using `IgniteScheduler.scheduleLocal()` methods and `Cron` syntax. An example below triggers periodic cache metrics reporting on all available nodes: 
 [block:code]
 {
