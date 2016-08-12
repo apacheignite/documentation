@@ -1,5 +1,21 @@
+* [Overview]
+* [IgniteMessaging] 
+* [Subscribe for Events]
+* [Query for Events]
+* [Configuration]
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite distributed events functionality allows applications to receive notifications when a variety of events occur in the distributed grid environment. You can automatically get notified for task executions, read, write or query operations occurring on local or remote nodes within the cluster.
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "IgniteMessaging"
+}
+[/block]
 Distributed events functionality is provided via `IgniteEvents` interface. You can get an instance of `IgniteEvents` from Ignite as follows:
 [block:code]
 {
