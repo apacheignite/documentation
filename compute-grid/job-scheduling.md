@@ -50,7 +50,7 @@ Note that by setting `parallelJobsNumber` to 1, you can guarantee that all jobs 
 ##Task Priorities
 Task priorities are set in the [task session](/docs/compute-tasks#distributed-task-session) via `grid.task.priority` attribute. If no priority has been assigned to a task, then default priority of 0 is used.
 
-Below is an example showing how task priority can be set. 
+Below is an example showing how task priority can be set:
 [block:code]
 {
   "codes": [
