@@ -29,9 +29,9 @@ See example **SqlQuery** below.
   "title": "SQL Joins"
 }
 [/block]
-Ignite supports distributed SQL joins. Moreover, if data resides in different caches, Ignite allows for cross-cache joins as well. 
+Ignite supports collocated and non-collocated distributed SQL joins. Moreover, if data resides in different caches, Ignite allows for cross-cache joins as well. 
 
-Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. However, if you do a join between two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are **collocated**. 
+Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. However, if you do a join between two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are either **collocated** or you enabled non-collocated joins parameter for the query. 
 
 See example **SqlQuery JOIN** below.
 [block:api-header]
@@ -83,21 +83,21 @@ See example **Cross-Cache SqlFieldsQuery**.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Distributed Joins"
+  "title": "Non-Collocated Distributed Joins"
 }
 [/block]
 By default, if an SQL join has to be done across a number of Ignite caches, then all the caches have to be collocated. Otherwise, you will get an incomplete result at the end of query execution because at the join phase a node uses the data that is available only **locally**.
 
 Besides the fact that the affinity collocation is a powerful concept that, once set up for an application's business entities (caches), will let you execute cross-cache joins in the most optimal way by returning a complete and consistent result set, there is always a chance that you won't be able to collocate all the data. Thus, you may not be able to execute the whole range of SQL queries that are needed to satisfy your use case.
 
-The distributed joins has been designed and supported by Apache Ignite for cases when it's extremely difficult or impossible to collocate all the data but you still need to execute a number of SQL queries over non-collocated caches.
+The non-collocated distributed joins has been designed and supported by Apache Ignite for cases when it's extremely difficult or impossible to collocate all the data but you still need to execute a number of SQL queries over non-collocated caches.
 [block:callout]
 {
   "type": "danger",
-  "body": "Don't overuse the distributed joins based approach in practice because the performance of the distributed joins is worse then the performance of the affinity collocation based joins due to the fact that there will be much more network round-trips and data movement between the nodes to fulfill a query."
+  "body": "Don't overuse the non-collocated distributed joins based approach in practice because the performance of this type of joins is worse then the performance of the affinity collocation based joins due to the fact that there will be much more network round-trips and data movement between the nodes to fulfill a query."
 }
 [/block]
-When the distributed joins setting is enabled for a specific SQL query with the `SqlQuery.setDistributedJoins(boolean)` parameter, then, the node to which the query was mapped will request for the missing data (that is not present locally) from the remote nodes by sending either broadcast or unicast requests. The unicast requests are only sent in cases when a join is done on a primary key (cache key) or an affinity key, since the node performing the join knows the location of the missing data. The broadcast requests are sent in all the other cases. 
+When the non-collocated distributed joins setting is enabled for a specific SQL query with the `SqlQuery.setDistributedJoins(boolean)` parameter, then, the node to which the query was mapped will request for the missing data (that is not present locally) from the remote nodes by sending either broadcast or unicast requests. The unicast requests are only sent in cases when a join is done on a primary key (cache key) or an affinity key, since the node performing the join knows the location of the missing data. The broadcast requests are sent in all the other cases. 
 [block:callout]
 {
   "type": "success",
@@ -117,7 +117,7 @@ The following code snippet is provided from the [CacheQueryExample](https://gith
   ]
 }
 [/block]
-Refer to [the distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details.
+Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details.
 [block:api-header]
 {
   "type": "basic",
