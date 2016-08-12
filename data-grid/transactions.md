@@ -4,7 +4,7 @@
 - [Concurrency Modes and Isolation Levels](doc:transactions#concurrency-modes-and-isolation-levels)
 - [Pessimistic Transactions](doc:transactions#pessimistic-transactions) 
 - [Optimistic Transactions](doc:transactions#optimistic-transactions) 
-- [Deadlock Detection](doc:transactions#deadlock-detection) 
+- [Deadlock Detection](doc:transactions#deadlock-detection-in-pessimistic-transactions) 
 - [Deadlock-Free Transactions](doc:transactions#deadlock-free-transactions) 
 - [Integration with JTA](doc:transactions#integration-with-jta) 
 [block:api-header]
