@@ -1,3 +1,6 @@
+* [Starting Visor in Batch Mode](#starting-visor-in-batch-mode)
+* [Batch Mode Using File with Commands](#batch-mode-using-file-with-commands)
+* [Batch Mode Using List of Commands](#batch-mode-using-list-of-commands)
 [block:api-header]
 {
   "type": "basic",
