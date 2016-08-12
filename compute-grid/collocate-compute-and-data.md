@@ -1,3 +1,5 @@
+* [Overview](#overview)
+* [Affinity Call and Run Methods](#affinity-call-and-run-methods) 
 [block:api-header]
 {
   "type": "basic",
