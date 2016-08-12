@@ -1,5 +1,16 @@
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite's counting distributed semaphore implementation and behavior is similar to the concept of a well-known `java.util.concurrent.Semaphore`. As any other semaphore it maintains a set of permits that are taken using `acquire()` method and released with `release()` counterpart allowing to restrict access to some logical or physical resource or synchronize execution flow. The only difference is that Ignite's semaphore empowers you to fulfill these kind of actions not only in boundaries of a single JVM but rather a cluster wide, across many remote nodes.   
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example"
+}
+[/block]
 To start using a distributed semaphore it should be created in a way as in the example below:
 [block:code]
 {
