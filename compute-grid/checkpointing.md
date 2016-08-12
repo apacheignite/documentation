@@ -5,8 +5,8 @@
 * [File System Checkpoint Configuration](#file-system-checkpoint-configuration)
 * [Cache Checkpoint Configuration](#cache-checkpoint-configuration)
 * [Database Checkpoint Configuration](#database-checkpoint-configuration)
-* [Amazon S3 Checkpoint Configuration](#amazon-s3-checkpoint-configuration)
   * [Apche DBCP](#section-apache-dbcp)
+* [Amazon S3 Checkpoint Configuration](#amazon-s3-checkpoint-configuration)
 [block:api-header]
 {
   "type": "basic",
