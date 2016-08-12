@@ -1,5 +1,5 @@
 * [Overview](#overview)
-* [Streaming Data via Kafka Connect](#section-streaming-data-via-kafka-connect)
+* [Streaming Data via Kafka Connect](#streaming-data-via-kafka-connect)
 * [Streaming data with Ignite Kafka Streamer Module](#section-streaming-data-with-ignite-kafka-streamer-module)
 [block:api-header]
 {
@@ -11,9 +11,12 @@ Apache Ignite Kafka Streamer module provides streaming from Kafka to Ignite cach
 Either of the following two methods can be used to achieve such streaming:
 - using Kafka Connect functionality with Ignite sink;
 - importing Kafka Streamer module in your Maven project and instantiating KafkaStreamer for data streaming;
-
-## Streaming Data via Kafka Connect
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Streaming Data via Kafka Connect"
+}
+[/block]
 IgniteSinkConnector will help you export data from Kafka to Ignite cache by polling data from Kafka topics and writing it to your specified cache.
 Connector can be found in 'optional/ignite-kafka.' It and its dependencies have to be on the classpath of a Kafka running instance, as described in the following subsection.
 *For more information on Kafka Connect, see [Kafka Documentation](http://kafka.apache.org/documentation.html#connect).*
@@ -128,8 +131,13 @@ To perform a very basic functionality check, you can do the following,
   ]
 }
 [/block]
-## Streaming data with Ignite Kafka Streamer Module
 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Streaming data with Ignite Kafka Streamer Module"
+}
+[/block]
 If you are using Maven to manage dependencies of your project, first of all you will have to add Kafka Streamer module dependency like this (replace '${ignite.version}' with actual Ignite version you are interested in):
 [block:code]
 {
