@@ -1,18 +1,5 @@
-* [Overview](#overview)
-* [Example](#example)
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Overview"
-}
-[/block]
 If you are familiar with `java.util.concurrent.CountDownLatch` for synchronization between threads within a single JVM, Ignite provides `IgniteCountDownLatch` to allow similar behavior across cluster nodes. 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Example"
-}
-[/block]
+
 A distributed CountDownLatch in Ignite can be created as follows:
 [block:code]
 {
