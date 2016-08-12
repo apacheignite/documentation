@@ -1,3 +1,14 @@
+* [Overview](#overview)
+* [Round-Robin Load Balancing](#round-robin-load-balancing)
+  * [Per-Task Mode](#section-per-task-mode)
+  * [Global Mode](#section-global-mode)
+* [Random and Weighted Load Balancing](#random-and-weighted-load-balancing)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Load balancing component balances job distribution among cluster nodes. In Ignite load balancing is achieved via `LoadBalancingSpi` which controls load on all nodes and makes sure that every node in the cluster is equally loaded. In homogeneous environments with homogeneous tasks load balancing is achieved by random or round-robin policies. However, in many other use cases, especially under uneven load, more complex adaptive load-balancing policies may be needed.
 [block:callout]
 {
