@@ -38,7 +38,7 @@ Locate the `jre-1.x` property for the version of the JRE you're on, and append t
 [block:api-header]
 {
   "type": "basic",
-  "title": "Installing Ignite Features Repository"
+  "title": "Installing the Ignite Features Repository"
 }
 [/block]
 Use the following command in the Apache Karaf shell to install the Ignite features repository, making sure your container has access to the Internet or to an alternate Maven repository containing the Ignite artifacts:
