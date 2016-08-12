@@ -1,3 +1,15 @@
+* [Overview](#overview)
+* [FIFO Ordering](#fifo-ordering)
+  * [One at a Time](#section-one-at-a-time)
+* [Priority Ordering](#priority-ordering)
+  * [Task Priorities](#overview)
+  * [Configuration](#overview)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 In Ignite, jobs are mapped to cluster nodes during initial task split or closure execution on the  client side. However, once jobs arrive to the designated nodes, then need to be ordered for execution. By default, jobs are submitted to a thread pool and are executed in random order.  However, if you need to have a fine-grained control over job ordering, you can enable `CollisionSpi`.
 [block:api-header]
 {
@@ -35,7 +47,7 @@ Note that by setting `parallelJobsNumber` to 1, you can guarantee that all jobs 
 [/block]
 `PriorityQueueCollisionSpi` allows to assign priorities to individual jobs, so jobs with higher priority will be executed ahead of lower priority jobs. 
 
-#Task Priorities
+##Task Priorities
 Task priorities are set in the [task session](/docs/compute-tasks#distributed-task-session) via `grid.task.priority` attribute. If no priority has been assigned to a task, then default priority of 0 is used.
 
 Below is an example showing how task priority can be set. 
