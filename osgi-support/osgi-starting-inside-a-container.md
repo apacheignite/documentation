@@ -1,3 +1,5 @@
+* [Setting-Up the Container](#setting-up-the-container)
+* [Implementing the Ignite Bundle Activator](#implementing-the-ignite-bundle-activator)
 [block:api-header]
 {
   "type": "basic",
