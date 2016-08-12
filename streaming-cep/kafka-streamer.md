@@ -1,6 +1,6 @@
 * [Overview](#overview)
 * [Streaming Data via Kafka Connect](#streaming-data-via-kafka-connect)
-* [Streaming data with Ignite Kafka Streamer Module](streaming-data-with-ignite-kafka-streamer-module)
+* [Streaming data with Ignite Kafka Streamer Module](#streaming-data-with-ignite-kafka-streamer-module)
 [block:api-header]
 {
   "type": "basic",
