@@ -10,7 +10,7 @@ In order to facilitate the deployment of the different Ignite modules – along 
 [block:api-header]
 {
   "type": "basic",
-  "title": "Preparatory steps"
+  "title": "Preparatory Steps"
 }
 [/block]
 First off, Ignite uses the low-level Oracle/Sun JRE package `sun.nio.ch` (which is also available on OpenJDK).
@@ -32,7 +32,7 @@ Locate the `jre-1.x` property for the version of the JRE you're on, and append t
 [block:api-header]
 {
   "type": "basic",
-  "title": "Installing the Ignite features repository"
+  "title": "Installing Ignite Features Repository"
 }
 [/block]
 Use the following command in the Apache Karaf shell to install the Ignite features repository, making sure your container has access to the Internet or to an alternate Maven repository containing the Ignite artifacts:
@@ -65,7 +65,7 @@ You should now be able to list all supported Ignite features:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Install the appropriate Ignite features"
+  "title": "Install Appropriate Ignite Features"
 }
 [/block]
 The following features are special:
