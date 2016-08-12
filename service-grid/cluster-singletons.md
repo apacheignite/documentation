@@ -1,3 +1,13 @@
+* [Overview](#overview)
+* [Cluster Singleton](#cluster-singleton)
+* [Node Singleton](#node-singleton)
+* [Cache Key Affinity Singleton](#cache-key-affinity-singleton)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 `IgniteServices` facade allows to deploy any number of services on any of the grid nodes. However, the most commonly used feature is to deploy singleton services on the cluster. Ignite will manage the singleton contract regardless of topology changes and node crashes.
 [block:callout]
 {
