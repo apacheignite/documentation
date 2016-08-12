@@ -1,4 +1,10 @@
-Visor Command Line can be start in batch mode (run several commands).
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Starting Visor in Batch Mode"
+}
+[/block]
+Visor Command Line can be started in batch mode (run several commands).
 
 Run ignitevisorcmd.{sh|bat} -help it will show available options:
 [block:code]
