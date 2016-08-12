@@ -1,3 +1,12 @@
+* [Overview](#overview)
+* [Running Continuously Mapped Tasks](#running-continuously-mapped-tasks)
+* [Example](#example)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 In classical MapReduce paradigm we have a well-defined and finite set of jobs, which is known on the Map step and doesn't change throughout all computation run. But what if we have a stream of jobs instead? In this case we can still run MapReduce using Ignite's continuous mapping facility. With continuous mapping, the jobs can be generated on-the-fly when computation is already running. The newly generated jobs are processed by worker nodes as usual, and the reducer receives results just like in normal MapReduce.
 [block:api-header]
 {
