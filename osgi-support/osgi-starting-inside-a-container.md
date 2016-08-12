@@ -1,7 +1,7 @@
 [block:api-header]
 {
   "type": "basic",
-  "title": "Setting up the container"
+  "title": "Setting-Up the Container"
 }
 [/block]
 To start Apache Ignite inside an OSGi container you must have at least installed the following bundles:
