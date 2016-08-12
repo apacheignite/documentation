@@ -1,3 +1,8 @@
+* [Overview](#overview)
+* [Preparatory Steps](#overview)
+* [Installing the Ignite Features Repository](#overview)
+* [Install Appropriate Ignite Features](#overview)
+* [ignite-log4j and Pax Logging](#overview)
 [block:api-header]
 {
   "type": "basic",
