@@ -1,5 +1,5 @@
 * [Overview](#overview)
-  * [Example](#example)
+* [Example](#example)
 [block:api-header]
 {
   "type": "basic",
