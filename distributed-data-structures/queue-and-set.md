@@ -1,3 +1,7 @@
+* [Overview](#overview)
+* [Collocated vs. Non-Collocated Mode](#collocated-vs-non-collocated-mode)
+* [Cache Queues and Load Balancing](#cache-queues-and-load-balancing)
+* [Collection Configuration](#collection-configuration)
 [block:api-header]
 {
   "type": "basic",
