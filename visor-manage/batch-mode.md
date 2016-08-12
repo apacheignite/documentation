@@ -16,7 +16,7 @@ Run ignitevisorcmd.{sh|bat} -help it will show available options:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Batch mode using file with commands"
+  "title": "Batch Mode Using File with Commands"
 }
 [/block]
 In this mode commands will be read from file. All commands must start from a new line.
@@ -47,7 +47,7 @@ This example will connect to grid using configuration with index "0" and execute
 [block:api-header]
 {
   "type": "basic",
-  "title": "Batch mode using list of commands"
+  "title": "Batch Mode Using List of Commands"
 }
 [/block]
 In this mode commands will be read from -e option. Commands must be separated by semicolons.
