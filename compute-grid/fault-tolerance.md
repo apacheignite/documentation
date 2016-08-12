@@ -1,3 +1,7 @@
+* [Overview](#overview)
+* [At Least Once Guarantee](#at-least-once-guarantee)
+* [Closure Failover](#closure-failover) 
+* [AlwaysFailOverSpi](#alwaysfailoverspi) 
 [block:api-header]
 {
   "type": "basic",
