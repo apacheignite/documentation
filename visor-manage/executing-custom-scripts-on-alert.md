@@ -1,5 +1,5 @@
 * [Alert command specification](#alert-command-specification)
-* [Examples](#examples)
+* [Examples](#example)
 * [Custom Script](#custom-script)
 [block:api-header]
 {
@@ -11,15 +11,15 @@ Register alert: alert -r {-t=<sec>} {-<metric>=<condition><value>} ... {-<metric
 Unregister: alert -u {-id=<alert-id>|-a}
 
 Alert options:
-  **-n **
+  -n 
       Alert name    
     
-  **-u**
+  -u
       Unregisters alert(s). Either '-a' flag or '-id' parameter is required.
       Note that only one of the '-u' or '-r' is allowed.
       If neither '-u' or '-r' provided - all alerts will be printed.
     
- ** -a**
+  -a
       When provided with '-u' - all alerts will be unregistered.
     
   -id=<alert-id>
