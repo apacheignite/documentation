@@ -4,8 +4,8 @@
   * [Local Events](#section-local-events)
   * [Remote Events](#section-remote-events)
 * [Query for Events](#query-for-events)
-  * [Local Events](#section-local-query)
-  * [Remote Events](#section-remote-query)
+  * [Local Query](#section-local-query)
+  * [Remote Query](#section-remote-query)
 * [Configuration](#configuration)
 [block:api-header]
 {
