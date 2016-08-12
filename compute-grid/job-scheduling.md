@@ -2,8 +2,8 @@
 * [FIFO Ordering](#fifo-ordering)
   * [One at a Time](#section-one-at-a-time)
 * [Priority Ordering](#priority-ordering)
-  * [Task Priorities](#overview)
-  * [Configuration](#overview)
+  * [Task Priorities](#section-task-priorities)
+  * [Configuration](#section-configuration)
 [block:api-header]
 {
   "type": "basic",
