@@ -1,7 +1,11 @@
 * [Overview](#overview)
 * [IgniteMessaging](#ignitemessaging)
 * [Subscribe for Events](#subscribe-for-events)
+  * [Local Events](#section-local-events)
+  * [Remote Events](#section-remote-events)
 * [Query for Events](#query-for-events)
+* [Local Events](#section-local-events)
+* [Remote Events](#section-remote-events)
 * [Configuration](#configuration)
 [block:api-header]
 {
