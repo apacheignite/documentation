@@ -1,3 +1,18 @@
+* [Overview](#overview)
+* [Master Node Failure Protection](#master-node-failure-protection)
+* [Setting Checkpoints](#setting-checkpoints)
+* [CheckpointSpi](#checkpointspi)
+* [File System Checkpoint Configuration](#file-system-checkpoint-configuration)
+* [Cache Checkpoint Configuration](#cache-checkpoint-configuration)
+* [Database Checkpoint Configuration](#database-checkpoint-configuration)
+* [Amazon S3 Checkpoint Configuration](#amazon-s3-checkpoint-configuration)
+  * [Apche DBCP](#section-apache-dbcp)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Checkpointing provides an ability to save an intermediate job state. It can be useful when long running jobs need to store some intermediate state to protect from node failures. Then on restart of a failed node, a job would load the saved checkpoint and continue from where it left off. The only requirement for job checkpoint state is to implement `java.io.Serializable` interface.
 
 Checkpoints are available through the following methods on `GridTaskSession` interface:
