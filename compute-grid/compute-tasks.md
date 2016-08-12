@@ -4,7 +4,10 @@
   * [Result Method](#section-result-method)
   * [Reduce Method](#section-reduce-method)
 * [Compute Task Adapters](#compute-task-adapters)
+  * [ComputeTaskAdapter](#section-computetaskadapter)
+  * [ComputeTaskSplitAdapter](#section-computetasksplitadapter)
 * [ComputeJob](#computejob)
+  * [ComputeJobAdapter](#section-computejobadapter)
 * [Example](#example)
 * [Distributed Task Session](#distributed-task-session)
 [block:api-header]
