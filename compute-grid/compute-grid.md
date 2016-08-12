@@ -28,7 +28,7 @@ Distributed computations are performed in parallel fashion to gain **high perfor
   * [Job State Checkpointing](doc:checkpointing) 
   * [Job Scheduling](doc:job-scheduling) 
   * [Task Deployment](doc:deployment-spi) 
-  * [Cron-Based Scheduling](doc:cron-based-secheduling)
+  * [Cron-Based Scheduling](doc:cron-based-scheduling)
 [block:api-header]
 {
   "type": "basic",
