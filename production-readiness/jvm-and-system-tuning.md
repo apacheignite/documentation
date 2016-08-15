@@ -173,7 +173,22 @@ If GC log shows “low user time, high system time, long GC pause” then most l
   ]
 }
 [/block]
+## Page Cache
 
+In cases when an application interacts a lot with an underlying file system this can lead to the situation when RAM is highly utilized by page cache. If `kswapd` daemon doesn't keep up with pages reclamation, located the page cache, in background then an application can face with high latencies due to direct reclamation when it needs a new page. This situation can affect not only the performance of an app but may lead to long GC pauses.
+
+To get over long GC pauses caused by direct page memory reclaim on Linux with the latest kernel versions you can add extra bytes between `wmark_min` and `wmark_low` with `/proc/sys/vm/extra_free_kbytes` setting trying to avoid before mentioned latencies.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sysctl -w vm.extra_free_kbytes=1240000",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+To get more insights on the topic discussed under this section please refer to the following slides [slides](http://events.linuxfoundation.org/sites/events/files/lcjp13_moriya.pdf)
 [block:api-header]
 {
   "type": "basic",
