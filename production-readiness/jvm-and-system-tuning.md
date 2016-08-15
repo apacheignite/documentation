@@ -6,6 +6,7 @@
 * [GC Attacks by Linux](#gc-attacks-by-linux)
  * [I/O Issues](#section-i-o-issues)
  * [Memory Issues](#section-memory-issues)
+ * [Page Cache](#section-page-cache)
 * [Debugging memory usage issues and GC pauses](#debugging-memory-usage-issues-and-gc-pauses)
  * [Getting Heap Dump on Out of Memory Errors](#section-getting-heap-dump-on-out-of-memory-errors)
  * [Detailed Garbage Collection stats](#section-detailed-garbage-collection-stats)
