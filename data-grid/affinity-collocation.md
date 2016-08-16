@@ -84,7 +84,7 @@ Here is how you can collocate your computation with the same cluster node on whi
   "title": "IgniteCompute vs EntryProcessor"
 }
 [/block]
-Both, `IgniteCompute.affinityRun(...)` and `IgniteCache.invoke(...)` methods offer ability to collocate compute and data. The main difference is that `invoke(...)` methods is atomic and executes while holding a lock on a key. You should not access other keys from within the `EntryProcessor` logic as it may cause a deadlock. 
+Both `IgniteCompute.affinityRun(...)` and `IgniteCache.invoke(...)` methods offer ability to collocate compute and data. The main difference is that `invoke(...)` methods is atomic and executes while holding a lock on a key. You should not access other keys from within the `EntryProcessor` logic as it may cause a deadlock. 
 
  `affinityRun(...)` and `affinityCall(...)`, on the other hand, do not hold any locks. For example, it is absolutely legal to start multiple transactions or execute cache queries from these methods without worrying about deadlocks. In this case Ignite will automatically detect that the processing is collocated and will employ a light-weight 1-Phase-Commit optimization for transactions (instead of 2-Phase-Commit).
 [block:callout]
