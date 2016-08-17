@@ -36,7 +36,9 @@ However, there are cases when it is simply impossible to send computations to re
   "title": "Configuration"
 }
 [/block]
-Following are configuration parameters on `NearCacheConfiguration`.
+Most configuration parameters available on `CacheConfiguration` that make sense for the near cache are inherited from the server configuration. For example, if the server cache has an `ExpiryPolicy`, entries in the near cache will be expired based on the same policy.
+
+Parameters listed in the table below are not inherited from the server configuration and provided separately, via the `NearCacheConfiguration` object.
 [block:parameters]
 {
   "data": {
