@@ -233,7 +233,7 @@ Note that the key order is important for `READ_COMMITTED` and `REPEATABLE_READ` 
 [block:api-header]
 {
   "type": "basic",
-  "title": "Deadlock-free Transactions"
+  "title": "Deadlock-Free Transactions"
 }
 [/block]
 For `OPTIMISTIC` `SERIALIZABLE` transactions locks are not acquired sequentially. In this mode keys can be accessed in any order because transaction locks are acquired in parallel with an additional check allowing Ignite to avoid deadlocks.
