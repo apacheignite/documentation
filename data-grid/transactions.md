@@ -230,14 +230,14 @@ Note that if there are too few iterations, you may get an incomplete deadlock-re
 {
   "type": "success",
   "title": "",
-  "body": "If you want to avoid deadlocks at all, refer to Deadlock-free Transactions section below."
+  "body": "If you want to completely avoid deadlocks, refer to Deadlock-free Transactions section below."
 }
 [/block]
 
 [block:api-header]
 {
   "type": "basic",
-  "title": "Deadlock-free Transactions"
+  "title": "Deadlock-Free Transactions"
 }
 [/block]
 For `OPTIMISTIC` `SERIALIZABLE` transactions locks are not acquired sequentially. In this mode keys can be accessed in any order because transaction locks are acquired in parallel with an additional check allowing Ignite to avoid deadlocks.
