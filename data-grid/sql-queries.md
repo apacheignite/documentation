@@ -125,7 +125,7 @@ When the non-collocated distributed joins setting is enabled for a specific SQL 
         "#dfa95b"
       ],
       "caption": "Picture 2. Non-collocated SQL Query",
-      "sizing": "original"
+      "sizing": "smart"
     }
   ]
 }
