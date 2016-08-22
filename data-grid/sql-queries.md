@@ -109,7 +109,7 @@ The **non-collocated** distributed joins have been designed and supported by Apa
 [block:callout]
 {
   "type": "danger",
-  "body": "Don't overuse the non-collocated distributed joins based approach in practice because the performance of this type of joins is worse then the performance of the affinity collocation based joins due to the fact that there will be much more network round-trips and data movement between the nodes to fulfill a query."
+  "body": "Do not overuse the non-collocated distributed joins based approach in practice because the performance of this type of joins is worse then the performance of the affinity collocation based joins due to the fact that there will be much more network round-trips and data movement between the nodes to fulfill a query."
 }
 [/block]
 When the non-collocated distributed joins setting is enabled for a specific SQL query with the `SqlQuery.setDistributedJoins(boolean)` parameter, then, the node to which the query was mapped will request for the missing data (that is not present locally) from the remote nodes by sending either broadcast or unicast requests. This is depicted on **Picture 2.** below as a potential data movement step (`D(Q)`). The potential unicast requests are only sent in cases when a join is done on a primary key (cache key) or an affinity key, since the node performing the join knows the location of the missing data. The broadcast requests are sent in all the other cases. 
