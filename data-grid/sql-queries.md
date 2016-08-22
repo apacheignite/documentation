@@ -86,7 +86,7 @@ See example **Cross-Cache SqlFieldsQuery**.
   "title": "Distributed Joins"
 }
 [/block]
-By default, if an SQL join has to be done across a number of Ignite caches, then all the caches have to be collocated. Otherwise, you will get an incomplete result at the end of query execution because at the join phase a node uses the data that is available only **locally**.
+By default, if an SQL join has to be done across a number of Ignite caches, then all the caches have to be collocated. Otherwise, you will get an incomplete result at the end of query execution because at the join phase a node uses the data that is available only **locally**. Referring to **Picture 1.** below you will see that, first, an SQL query is sent to all the nodes (`Q`) where data, required for a join, is located. After that the query is executed right away by every node (`E(Q)`) over the local data set and, finally, the overall execution result is aggregated on the client side (`R`).  
 [block:image]
 {
   "images": [
@@ -105,14 +105,31 @@ By default, if an SQL join has to be done across a number of Ignite caches, then
 [/block]
 Besides the fact that the affinity collocation is a powerful concept that, once set up for an application's business entities (caches), will let you execute cross-cache joins in the most optimal way by returning a complete and consistent result set, there is always a chance that you won't be able to collocate all the data. Thus, you may not be able to execute the whole range of SQL queries that are needed to satisfy your use case.
 
-The non-collocated distributed joins have been designed and supported by Apache Ignite for cases when it's extremely difficult or impossible to collocate all the data but you still need to execute a number of SQL queries over non-collocated caches.
+The **non-collocated** distributed joins have been designed and supported by Apache Ignite for cases when it's extremely difficult or impossible to collocate all the data but you still need to execute a number of SQL queries over non-collocated caches.
 [block:callout]
 {
   "type": "danger",
   "body": "Don't overuse the non-collocated distributed joins based approach in practice because the performance of this type of joins is worse then the performance of the affinity collocation based joins due to the fact that there will be much more network round-trips and data movement between the nodes to fulfill a query."
 }
 [/block]
-When the non-collocated distributed joins setting is enabled for a specific SQL query with the `SqlQuery.setDistributedJoins(boolean)` parameter, then, the node to which the query was mapped will request for the missing data (that is not present locally) from the remote nodes by sending either broadcast or unicast requests. The unicast requests are only sent in cases when a join is done on a primary key (cache key) or an affinity key, since the node performing the join knows the location of the missing data. The broadcast requests are sent in all the other cases. 
+When the non-collocated distributed joins setting is enabled for a specific SQL query with the `SqlQuery.setDistributedJoins(boolean)` parameter, then, the node to which the query was mapped will request for the missing data (that is not present locally) from the remote nodes by sending either broadcast or unicast requests. This is depicted on **Picture 2.** below as a potential data movement step (`D(Q)`). The potential unicast requests are only sent in cases when a join is done on a primary key (cache key) or an affinity key, since the node performing the join knows the location of the missing data. The broadcast requests are sent in all the other cases. 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/b3c13aa-Non_collocated_sql_queries.png",
+        "Non_collocated_sql_queries.png",
+        1401,
+        1156,
+        "#232424"
+      ],
+      "caption": "Picture 2. Non-collocated SQL Query"
+    }
+  ]
+}
+[/block]
+
 [block:callout]
 {
   "type": "success",
