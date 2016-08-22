@@ -118,11 +118,11 @@ When the non-collocated distributed joins setting is enabled for a specific SQL 
   "images": [
     {
       "image": [
-        "https://files.readme.io/b3c13aa-Non_collocated_sql_queries.png",
+        "https://files.readme.io/95f09db-Non_collocated_sql_queries.png",
         "Non_collocated_sql_queries.png",
-        1401,
-        1156,
-        "#232424"
+        500,
+        413,
+        "#dfa95b"
       ],
       "caption": "Picture 2. Non-collocated SQL Query"
     }
