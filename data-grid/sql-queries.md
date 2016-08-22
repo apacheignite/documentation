@@ -99,7 +99,7 @@ By default, if an SQL join has to be done across a number of Ignite caches, then
         "#eaaf5b"
       ],
       "caption": "Picture 1. Collocated SQL Query.",
-      "sizing": "80"
+      "sizing": "original"
     }
   ]
 }
