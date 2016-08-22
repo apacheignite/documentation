@@ -92,13 +92,14 @@ By default, if an SQL join has to be done across a number of Ignite caches, then
   "images": [
     {
       "image": [
-        "https://files.readme.io/f9d9c8e-collocated_small.png",
-        "collocated_small.png",
-        889,
-        766,
-        "#262727"
+        "https://files.readme.io/57b6bbf-Collocated_sql_queries.png",
+        "Collocated_sql_queries.png",
+        700,
+        578,
+        "#eaaf5b"
       ],
-      "caption": "Picture 1. Collocated SQL Query."
+      "caption": "Picture 1. Collocated SQL Query.",
+      "sizing": "80"
     }
   ]
 }
