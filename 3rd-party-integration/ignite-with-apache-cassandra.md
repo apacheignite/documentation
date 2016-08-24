@@ -1,3 +1,9 @@
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite Cassandra module implements [persistent store](doc:persistent-store) for Ignite caches by utilizing [Cassandra](http://cassandra.apache.org/) as a persistent storage for expired cache records.
 
 It functions pretty much the same way like [CacheJdbcBlobStore](doc:persistent-store#cachejdbcblobstore) and [CacheJdbcPojoStore](doc:persistent-store#cachejdbcpojostore) and provides such benefits:
