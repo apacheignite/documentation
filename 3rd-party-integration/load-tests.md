@@ -45,7 +45,7 @@ Now lets take a look at load tests scenarios and configuration details.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Load tests scenarios"
+  "title": "Load Tests Scenarios"
 }
 [/block]
 Both `Cassandra` and `Ignite` load tests scripts are using exactly the same set of tests:
