@@ -4,7 +4,8 @@ You just need to build XML configuration document ([persistence descriptor](doc:
 [block:callout]
 {
   "type": "danger",
-  "title": "In connection settings for Cassandra, you should specify user having enough permissions to create keyspaces/tables"
+  "title": "",
+  "body": "In connection settings for Cassandra, you should specify user having enough permissions to create keyspaces/tables"
 }
 [/block]
 However, for some of the deployments it's not possible - because of the very strict security policy. Thus the only solution in a such situation is to provide DDL scripts for DevOps team to create all the necessary Cassandra keyspaces/tables in advance. 
