@@ -294,12 +294,16 @@ All configuration is handled through environment variables (this lends itself we
     "14-1": "Comma separated list of ulrs to libs which will be added to classpath.",
     "14-2": "`N/A`",
     "14-3": "`https://example.com/lib.zip,`\n`https://example.com/lib1.zip`",
-    "16-0": "`IGNITE_PACKAGE_PATH`",
-    "16-1": "Path to Apache Ignite archive. This parameter might be useful when access to internet is limited.",
+    "17-0": "`IGNITE_PACKAGE_PATH`",
+    "17-1": "Path to Apache Ignite archive. This parameter might be useful when access to internet is limited.",
+    "17-2": "`N/A`",
+    "17-3": "`/opt/ignite/apache-ignite-fabric-1.5.0.final-bin.zip`",
+    "16-0": "`IGNITE_PACKAGE_URL`",
+    "16-1": "URL to Apache Ignite archive. This parameter could be used instead IGNITE_VERSION parameter.",
     "16-2": "`N/A`",
-    "16-3": "`/opt/ignite/apache-ignite-fabric-1.5.0.final-bin.zip`"
+    "16-3": "`http://apache-mirror.rbc.ru/pub/apache//ignite/1.7.0/apache-ignite-1.7.0-src.zip`"
   },
   "cols": 4,
-  "rows": 17
+  "rows": 18
 }
 [/block]
