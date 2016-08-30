@@ -185,7 +185,7 @@ To run Ignite docker container with bare Ignite node, use the following command:
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host -e \"IGNITE_VERSION=1.1.0\" apacheignite/ignite-docker",
+      "code": "sudo docker run -it --net=host -e \"IGNITE_VERSION=1.4.0\" apacheignite/ignite-docker",
       "language": "shell"
     }
   ]
