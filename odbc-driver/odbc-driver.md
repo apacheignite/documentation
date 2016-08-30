@@ -117,7 +117,7 @@ After that you should use one of the install scripts from the directory
 
 ## Installing on Linux
 
-To be able to build and install ODBC driver on Linux you first need to install
+To be able to build and install ODBC driver on Linux, you first need to install
 ODBC Driver Manager. Apache Ignite ODBC driver has been tested with [UnixODBC]
 (http://www.unixodbc.org). 
 
