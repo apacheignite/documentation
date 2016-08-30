@@ -22,7 +22,7 @@ Ignite also provides support for custom indexing via `IndexingSpi` and `SpiQuery
   "title": "Main Abstractions"
 }
 [/block]
-`IgniteCache` has several query methods all of which receive some sublcass of `Query` class and return `QueryCursor`.
+`IgniteCache` has several query methods all of which receive some subclass of `Query` class and return `QueryCursor`.
 ##Query
 `Query` abstract class represents an abstract paginated query to be executed on the distributed cache. You can set the page size for the returned cursor via `Query.setPageSize(...)` method (default is `1024`).
 
