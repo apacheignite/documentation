@@ -301,9 +301,13 @@ All configuration is handled through environment variables (this lends itself we
     "16-0": "`IGNITE_PACKAGE_URL`",
     "16-1": "URL to Apache Ignite archive. This parameter could be used instead IGNITE_VERSION parameter.",
     "16-2": "`N/A`",
-    "16-3": "`http://apache-mirror.rbc.ru/pub/apache//ignite/1.7.0/apache-ignite-1.7.0-src.zip`"
+    "16-3": "`http://apache-mirror.rbc.ru/pub/apache//ignite/1.7.0/apache-ignite-1.7.0-src.zip`",
+    "18-0": "IGNITE_HTTP_SERVER_IDLE_TIMEOUT",
+    "18-1": "Sets the maximum Idle time (milliseconds) for a http connection, which will be used for jetty  server. The server provides resources for ignite mesos framework such as ignite archive, user's libs, configurations and etc.",
+    "18-2": "30000",
+    "18-3": "300000"
   },
   "cols": 4,
-  "rows": 18
+  "rows": 19
 }
 [/block]
