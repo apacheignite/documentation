@@ -29,7 +29,7 @@ See example **SqlQuery** below.
   "title": "SQL Joins"
 }
 [/block]
-Ignite supports collocated and non-collocated distributed SQL joins. Moreover, if data the resides in different caches, Ignite allows for cross-cache joins as well. 
+Ignite supports collocated and non-collocated distributed SQL joins. Moreover, if the data resides in different caches, Ignite allows for cross-cache joins as well. 
 
 Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. However, if you do a join between two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are either **collocated** or you have enabled the non-collocated joins parameter for the query. 
 
