@@ -64,19 +64,8 @@ If you need only part of your data to be returned, you can use transformers with
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// getting only keys of persons earning more than 1,000.\nList<Long> keys = cache.query(\n    new ScanQuery((k, p) -> p.getSalary() > 1000), \n    (IgniteClosure<Cache.Entry<Long, Person>, Long>)e -> e.getKey()\n).getAll();",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// Get only keys for persons earning more than 1,000.\nList<Long> keys = cache.query(new ScanQuery<Long, Person>(\n    (k, p) -> p.getSalary() > 1000), // Remote filter.\n    Cache.Entry::getKey              // Transformer.\n).getAll();",
       "language": "java"
-    }
-  ]
-}
-[/block]
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"mycache\");\n\n// getting only names of persons earning more than 1,000.\nList<String> names = cache.query(\n    new ScanQuery((k, p) -> p.getSalary() > 1000), \n    (IgniteClosure<Cache.Entry<Long, Person>, Long>)e ->\n        e.getValue().getName()\n).getAll();",
-      "language": "text"
     }
   ]
 }
