@@ -59,7 +59,7 @@ Scan queries allow for querying cache in distributed form based on some user def
   ]
 }
 [/block]
-If you need only part of your data to be returned, you can use transformers with Scan queries.
+Scan queries also support optional transformer closure which allows to convert the entry on the server node before sending it to the client. This is useful, for example, when you want to fetch only several fields out of large object and want to minimize the network traffic. Example below shows how to fetch only keys and do not send value objects at all.
 [block:code]
 {
   "codes": [
