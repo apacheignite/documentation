@@ -117,6 +117,10 @@ After that you should use one of the install scripts from the directory
 
 ## Installing on Linux
 
+To be able to build and install ODBC driver on Linux you first need to install
+ODBC Driver Manager. Apache Ignite ODBC driver has been tested with [UnixODBC]
+(http://www.unixodbc.org). 
+
 Once you have built and performed "make install" command the Ignite ODBC Driver i.e. `libignite-odbc.so` is going to be most likely placed to `/usr/local/lib`. To install it as an ODBC driver in your Driver Manager and be able to use it you should perform the following steps:
 
 * Ensure linker is able to locate all dependencies of the ODBC driver. You can check it using `ldd` command like this (assuming ODBC driver is located under `/usr/local/lib`):
