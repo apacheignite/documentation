@@ -2,7 +2,7 @@ Apache Ignite Storm Streamer module provides streaming via [Storm](http://storm.
 
 Starting data transfer to Ignite cache can be done with the following steps.
 
-1. Import Ignite Kafka Streamer Module In Maven Project.
+1. Import Ignite Storm Streamer Module In Maven Project.
 If you are using Maven to manage dependencies of your project, you can add Storm module dependency like this (replace '${ignite.version}' with actual Ignite version you are interested in):
 [block:code]
 {
