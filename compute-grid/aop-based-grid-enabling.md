@@ -56,7 +56,7 @@ Generally, if you call a *Gridified* method, the following happens:
   * The return value of grid task is returned from the *Gridified* method. 
  
 ## Default Behaviour 
-If you use `@Gridify` annotation with no parameters, the default behaviour is implied, which is the following:
+If you use `@Gridify` annotation with no parameters, the default behavior is implied, which is the following:
   * A task of class `GridifyDefaultTask` is created, which generates 1 job of class `GridifyJobAdapter`, and uses default load balancer for choosing a worker node.
   * A job on remote node invokes a method with the passed-in parameters, using deserialized this object (or null if the method is static), and returns the method result as job result.
   * The job result on remote node will become a task result on the caller side.
