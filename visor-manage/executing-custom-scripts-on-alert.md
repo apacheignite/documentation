@@ -114,7 +114,8 @@ For example
   ]
 }
 [/block]
-Will generated string like this:
+Will generate a string like this:
+
 ALERT [MyAlert] CONDITION [-nc=gte2 -cc=lte16] alarmed with node count [2] and cpu count [8]
 
 Note, that $1 points to alert name, $2 points to alert conditions and $3, $4,.... point to value of each sub-condition.
