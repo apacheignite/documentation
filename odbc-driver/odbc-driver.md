@@ -47,7 +47,13 @@ As ODBC Driver is written in C++ it is shipped as as part of the Apache Ignite C
 
 ## Building on Windows
 You need MS Visual Studio 2010 or later to be able to build ODBC driver on Windows. Once you have it open Ignite solution `%IGNITE_HOME%\platforms\cpp\project\vs\ignite.sln` (or ignite_86.sln if you are running 32-bit platform) left-click odbc project in Solution Explorer and choose "Build". Visual Studio will automatically detect and build all necessary dependencies.
-
+[block:callout]
+{
+  "type": "warning",
+  "title": "",
+  "body": "If you are using VS 2015 or later (MSVC 14.0 or later), you need to link to `legacy_stdio_definitions.lib` due to breaking change made by MS."
+}
+[/block]
 Once the build process is over you can find `odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release`.
 
 ## Building on Linux
