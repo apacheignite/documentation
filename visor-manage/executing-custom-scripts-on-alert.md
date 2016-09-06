@@ -101,7 +101,8 @@ alert -r -n=Nodes -t=15 -nc=gte3 -s=/home/user/scripts/alert.sh -i=300
 }
 [/block]
 For example :
-    alert -r -t=5 -n=MyAlert -nc=gte2 -cc=lte16 -i=15 -s=/home/user/myScript.sh
+    
+alert -r -t=5 -n=MyAlert -nc=gte2 -cc=lte16 -i=15 -s=/home/user/myScript.sh
 
 [block:code]
 {
