@@ -240,7 +240,7 @@ For `OPTIMISTIC` `SERIALIZABLE` transactions locks are not acquired sequentially
 We need to introduce some concepts in order to describe how locks in `SERIALIZABLE` transactions work. In Ignite, each transaction is assigned a comparable version called `XidVersion`. Upon transaction commit, each entry that is written in the transaction is assigned a new comparable version called `EntryVersion`. An `OPTIMISTIC` `SERIALIZABLE` transaction with version `XidVersionA` will fail with a `TransactionOptimisticException` if:
  * There is an ongoing `PESSIMISTIC` or non-serializable `OPTIMISTIC` transaction holding a lock on an entry of the `SERIALIZABLE` transaction.
  * There is another ongoing `OPTIMISTIC` `SERIALIZABLE` transaction with version `XidVersionB` such that `XidVersionB > XidVersionA` and this transaction holds a lock on an entry of the `SERIALIZABLE` transaction.
- * By the time the `OPTIMISTIC` `SERIALIZABLE` transaction acquires all required locks there exists an entry with the current version different from the observed version before commit.
+ * By the time the `OPTIMISTIC` `SERIALIZABLE` transaction acquires all required locks, there exists an entry with the current version different from the observed version before commit.
 [block:callout]
 {
   "type": "info",
