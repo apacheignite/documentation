@@ -161,11 +161,11 @@ For each of the cluster (Cassandra, Ignite, Tests) you should do such steps:
   "images": [
     {
       "image": [
-        "https://files.readme.io/8b4379b-ganglia2.png",
-        "ganglia2.png",
-        2314,
-        3088,
-        "#f0efef"
+        "https://files.readme.io/f142b7f-cassandra_aws.png",
+        "cassandra_aws.png",
+        1073,
+        678,
+        "#496288"
       ]
     }
   ]
@@ -229,7 +229,13 @@ In case when you also deployed `Ganglia` master EC2 instance, you can also use G
 {
   "images": [
     {
-      "image": []
+      "image": [
+        "https://files.readme.io/d553198-ganglia2.png",
+        "ganglia2.png",
+        2314,
+        3088,
+        "#f0efef"
+      ]
     }
   ]
 }
