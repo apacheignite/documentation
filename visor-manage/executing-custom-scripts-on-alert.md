@@ -1,10 +1,10 @@
-* [Alert command specification](#alert-command-specification)
+* [Alert Command Specification](#alert-command-specification)
 * [Examples](#example)
 * [Custom Script](#custom-script)
 [block:api-header]
 {
   "type": "basic",
-  "title": "Alert command specification"
+  "title": "Alert Command Specification"
 }
 [/block]
 Register alert: alert -r {-t=<sec>} {-<metric>=<condition><value>} ... {-<metric>=<condition><value>}
