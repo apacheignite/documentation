@@ -29,7 +29,7 @@ When preparing and planning for a system capacity planning is an integral part o
 ## Memory Capacity Planning Example
 [block:callout]
 {
-  "type": "info",
+  "type": "success",
   "body": "- 2,000,000 objects\n- 1,024 bytes per object (1 KB)\n- 1 backup\n- 4 nodes",
   "title": "Let's take for example the following scenario:"
 }
