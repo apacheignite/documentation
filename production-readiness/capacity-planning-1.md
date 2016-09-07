@@ -1,6 +1,6 @@
 * [Overview](#overview)
 * [Calculating Memory Usage](#calculating-memory-usage)
-* [Capacity Planning Example](#capacity-planning-example)
+* [Calculating Compute Usage](#calculating-compute-usage)
 [block:api-header]
 {
   "type": "basic",
@@ -22,7 +22,8 @@ When preparing and planning for a system capacity planning is an integral part o
 [block:callout]
 {
   "type": "info",
-  "body": "GridGain will typically add around 200 bytes overhead to each entry."
+  "body": "GridGain will typically add around 200 bytes overhead to each entry.",
+  "title": "GridGain Memory Overhead"
 }
 [/block]
 ## Memory Capacity Planning Example
