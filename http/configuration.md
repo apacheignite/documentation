@@ -13,7 +13,7 @@
     "h-2": "Optional",
     "h-1": "Description",
     "0-0": "**setSecretKey(String)**",
-    "0-1": "Defines secret key used for client authentication. When provided, client request must contain HTTP header **X-Signature** with Base64 encoded SHA1 hash of the string \"[1];[2]\", where [1] is timestamp in milliseconds and [2] is the secret key.",
+    "0-1": "Defines secret key used for client authentication. When provided, client request must contain HTTP header **X-Signature** with the string \"[1]:[2]\", where [1] is timestamp in milliseconds and [2] is the Base64 encoded SHA1 hash of the secret key.",
     "0-3": "**null**",
     "0-2": "Yes",
     "1-0": "**setPortRange(int)**",
