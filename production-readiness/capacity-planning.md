@@ -64,10 +64,7 @@ No, data size on disk is not a direct 1-to-1 mapping in memory. As a very rough 
 
 - How do I plan for processing capacity?
 
-This is generally much harder to estimate without some code already in place. It is important to understand the cost of a given operation that your application will be performing and multiply this by the number of operations expected at various times. A good starting point for this would be the Ignite benchmarks which detail the results of standard operations and give a rough estimate of the capacity required to deliver such performance. :
-
-
-
+This is generally much harder to estimate without some code already in place. It is important to understand the cost of a given operation that your application will be performing and multiply this by the number of operations expected at various times. A good starting point for this would be the Ignite benchmarks which detail the results of standard operations and give a rough estimate of the capacity required to deliver such performance.
 [block:callout]
 {
   "type": "info",
