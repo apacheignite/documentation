@@ -33,7 +33,7 @@ Let's take for example the following scenario:
 {
   "type": "success",
   "body": "- 2,000,000 objects\n- 1,024 bytes per object (1 KB)\n- 1 backup\n- 4 nodes",
-  "title": "Specification"
+  "title": "Example Specification"
 }
 [/block]
 - Total number of objects X object size X 2 (one primary and one backup copy for each object):
