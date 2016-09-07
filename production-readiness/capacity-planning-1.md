@@ -23,7 +23,7 @@ When preparing and planning for a system capacity planning is an integral part o
 {
   "type": "info",
   "body": "GridGain will typically add around 200 bytes overhead to each entry.",
-  "title": "GridGain Memory Overhead"
+  "title": ""
 }
 [/block]
 ## Memory Capacity Planning Example
