@@ -52,3 +52,11 @@ Total size
 5,078 + 1,200 = 6,278 MB
 
 Hence the anticipated total memory consumption would be just over ~ 6 GB
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Capacity Planning FAQ"
+}
+[/block]
+- I have 300GB of data in DB will this be the same in GridGain?
+ - No, data size on disk is not a direct 1-to-1 mapping in memory. As a very rough estimate it can be about 2.5/3 times size on disk excluding indexes and any other overhead.
