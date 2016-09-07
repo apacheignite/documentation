@@ -58,11 +58,11 @@ Hence the anticipated total memory consumption would be just over ~ 6 GB
   "title": "Capacity Planning FAQ"
 }
 [/block]
-- I have 300GB of data in DB will this be the same in GridGain?
+**- I have 300GB of data in DB will this be the same in GridGain?**
 
 No, data size on disk is not a direct 1-to-1 mapping in memory. As a very rough estimate it can be about 2.5/3 times size on disk excluding indexes and any other overhead. To get a more accurate estimation you need to figure out the average object size by importing a record into GridGain and multiplying by the number of objects expected.
 
-- How do I plan for processing capacity?
+**- How do I plan for processing capacity?**
 
 This is generally much harder to estimate without some code already in place. It is important to understand the cost of a given operation that your application will be performing and multiply this by the number of operations expected at various times. A good starting point for this would be the Ignite benchmarks which detail the results of standard operations and give a rough estimate of the capacity required to deliver such performance.
 [block:callout]
