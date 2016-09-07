@@ -35,16 +35,16 @@ Let's take for example the following scenario:
 - 1 backup
 - 4 nodes
 
-Total number of objects X object size X 2 (one primary and one backup copy for each object):
+- Total number of objects X object size X 2 (one primary and one backup copy for each object):
 2,000,000 x 1,024 x 2 = 4,096,000,000 bytes
 
-Considering indexes:
+- Considering indexes:
 4,096,000,000 + (4,096,000,000 x 30%) = 5,078 MB
 
-Approximate additional memory required by the platform
+- Approximate additional memory required by the platform:
 300 MB x 4 = 1,200 MB
 
-Total size
+- Total size:
 5,078 + 1,200 = 6,278 MB
 
 Hence the anticipated total memory consumption would be just over ~ 6 GB
