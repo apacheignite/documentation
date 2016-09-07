@@ -58,13 +58,12 @@ Hence the anticipated total memory consumption would be just over ~ 6 GB
 Calculating compute is generally much harder to estimate without some code already in place. It is important to understand the cost of a given operation that your application will be performing and multiply this by the number of operations expected at various times. A good starting point for this would be the Ignite benchmarks which detail the results of standard operations and give a rough estimate of the capacity required to deliver such performance.
 
 With 32 cores over 4 large AWS instances the following benchmarks were recorded:
-
-- PUT/GET: 26k/sec
-- PUT (TRANSACTIONAL): 68k/sec
-- PUT (TRANSACTIONAL - PESSIMISTIC): 20k/sec
-- PUT (TRANSACTIONAL - OPTIMISTIC): 44k/sec
-- SQL Query: 72k/sec
-
+[block:callout]
+{
+  "type": "success",
+  "body": "- PUT/GET: 26k/sec\n- PUT (TRANSACTIONAL): 68k/sec\n- PUT (TRANSACTIONAL - PESSIMISTIC): 20k/sec\n- PUT (TRANSACTIONAL - OPTIMISTIC): 44k/sec\n- SQL Query: 72k/sec"
+}
+[/block]
 [More results here](http://www.gridgain.com/resources/benchmarks/ignite-vs-hazelcast-benchmarks)
 [block:api-header]
 {
