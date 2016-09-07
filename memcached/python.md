@@ -16,7 +16,7 @@ To connect to Ignite using Python client for Memcached, you need to [download Ig
 {
   "codes": [
     {
-      "code": "import pylibmc\n\nclient = memcache.Client([\"127.0.0.1:11211\", binary=True])\n\nclient.set(\"key\", \"val\")\n\nprint \"Value for 'key': %s\" % \n\nclient.get(\"key\")",
+      "code": "import pylibmc\n\nclient = pylibmc.Client ([\"127.0.0.1:11211\"], binary=True)\n\nclient.set(\"key\", \"val\")\n\nprint \"Value for 'key': %s\"%client.get(\"key\")",
       "language": "python"
     }
   ]
