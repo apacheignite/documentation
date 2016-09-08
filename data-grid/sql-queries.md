@@ -7,7 +7,7 @@
  * [Making Fields Visible for SQL Queries](#section-making-fields-visible-for-sql-queries)
  * [Single Column Indexes](#section-single-column-indexes)
  * [Group Indexes](#section-group-indexes)
-* [Configuring SQL Indexes using QueryEntity](#configuring-sql-indexes-using-queryentity)
+* [Configuring SQL Indexes Using QueryEntity](#configuring-sql-indexes-using-queryentity)
 * [How SQL Queries Work](#how-sql-queries-work)
 * [Using EXPLAIN](#using-explain)
 * [Using H2 Debug Console](#using-h2-debug-console)
@@ -250,7 +250,7 @@ For example of a group index in the class below we have field `age` which partic
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuring SQL Indexes using QueryEntity"
+  "title": "Configuring SQL Indexes Using QueryEntity"
 }
 [/block]
 Indexes and fields can also be configured with `org.apache.ignite.cache.QueryEntity` which is convenient for XML configuration with Spring. It is equivalent to using `@QuerySqlField` annotation because class annotations are converted to query entities internally.
