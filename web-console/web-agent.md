@@ -45,9 +45,8 @@ Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
 To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat} --help` in terminal.
 
 Available options with they descriptions:
-* `-h`, `--help` Print this help message
-* -c, --config
-  Path to configuration file
+* `-h`, `--help`Print this help message
+* `-c`, `--config` Path to configuration file
 * -d, --driver-folder
   Path to folder with JDBC drivers, default value: ./jdbc-drivers
 *-n, --node-uri
