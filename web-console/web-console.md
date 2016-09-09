@@ -38,15 +38,11 @@ In this mode internal Ignite node will be started. Cache created and populated w
 
 For example:
  * Enter SQL statement:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "SELECT p.name, count(*) AS cnt\nFROM \"ParkingCache\".Parking p\nINNER JOIN \"CarCache\".Car c\n  ON (p.id) = (c.parkingId)\nGROUP BY P.NAME",
-      "language": "sql"
-    }
-  ]
-}
-[/block]
+`SELECT p.name, count(*) AS cnt
+FROM "ParkingCache".Parking p
+INNER JOIN "CarCache".Car c
+  ON (p.id) = (c.parkingId)
+GROUP BY P.NAME`
+
  * Click "Execute" button. You should get some data in table.
  * Click charts buttons to see auto generated charts.
