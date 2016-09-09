@@ -1,6 +1,6 @@
 * [Prerequisites](#prerequisites)
 * [Building Ignite Web Agent](#building-ignite-web-agent)
-* [Building Ignite Web Console Backend](#building-ignite-web-console-backend)
+* [Building Ignite Web Console Frontend](#building-ignite-web-console-frontend)
 [block:api-header]
 {
   "type": "basic",
@@ -26,7 +26,7 @@ Before first start you need download dependencies:
   "title": "Building Ignite Web Agent"
 }
 [/block]
-  To build Ignite Web Agent from sources run following command in Ignite project root folder:
+To build Ignite Web Agent from sources run following command in Ignite project root folder:
 `mvn clean package -pl :ignite-web-agent -am -P web-console -DskipTests=true`
 
 Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in: 
@@ -34,6 +34,6 @@ Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Building Ignite Web Console Backend"
+  "title": "Building Ignite Web Console Frontend"
 }
 [/block]
