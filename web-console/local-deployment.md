@@ -1,6 +1,6 @@
 * [Prerequisites](#prerequisites)
 * [Building Ignite Web Agent](#building-ignite-web-agent)
-* [Building Ignite Web Console Frontend](#building-ignite-web-console-frontend)
+* [Run Ignite Web Console Frontend](#run-ignite-web-console-frontend)
 [block:api-header]
 {
   "type": "basic",
@@ -34,6 +34,7 @@ Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Building Ignite Web Console Frontend"
+  "title": "Run Ignite Web Console"
 }
 [/block]
+If needed run "npm install --no-optional" (if dependencies changed) and start webpack in development mode "npm run dev".
