@@ -28,6 +28,7 @@ How to evaluate:
   * Click "Next" button. You should see list of available tables.
   * Click "Next" button. You should see import options.
   * Select some of them and click "Save".
+
 ## Demo for SQL.
 How to evaluate:
 In this mode internal Ignite node will be started. Cache created and populated with data.
