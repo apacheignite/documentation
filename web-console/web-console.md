@@ -23,11 +23,11 @@ To start demo, you need to click button `Start demo`. New tab will be open with 
 ## Demo for import domain model from database
 In this mode an in-memory H2 database will be started on connected Ignite Web Agent.
 How to evaluate:
-  * Go to Ignite Web Console "Domain model" screen.
-  * Click "Import from database". You should see modal with demo description.
-  * Click "Next" button. You should see list of available schemas.
-  * Click "Next" button. You should see list of available tables.
-  * Click "Next" button. You should see import options.
+  * Go to Ignite Web Console `Domain model` screen.
+  * Click `Import from database`. You should see modal with demo description.
+  * Click `Next` button. You should see list of available schemas.
+  * Click `Next` button. You should see list of available tables.
+  * Click `Next` button. You should see import options.
   * Select some of them and click "Save".
 
 ## Demo for SQL
