@@ -24,10 +24,10 @@ To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat
   "title": "Configuration"
 }
 [/block]
-Ignite Web Agent may be configured using configuration file (`default.properties`), command line options.
 ###Configuration file
-Should be a file with simple line-oriented format as described here: http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#load(java.io.Reader)
 By default Ignite Web Agent try to load configuration from `default.properties`
+Should be a file with simple line-oriented format as described here: http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#load(java.io.Reader)
+
 
   Available entries names:
     tokens
