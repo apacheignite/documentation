@@ -26,7 +26,7 @@ Before first start you need download dependencies:
   "title": "Building Ignite Web Agent"
 }
 [/block]
-To build Ignite Web Agent from sources run following command in $IGNITE_HOME folder:
+To build Ignite Web Agent from sources run following command in `$IGNITE_HOME` folder:
 `mvn clean package -pl :ignite-web-agent -am -P web-console -DskipTests=true`
 
 Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in: 
