@@ -21,7 +21,7 @@ To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat
 [block:callout]
 {
   "type": "info",
-  "body": "* In order to communicate with web agent Ignite node should be started with REST server (move ignite-rest-http folder from lib/optional/ to lib/).\n* Configure web agent serverURI property by Ignite node REST server URI.",
+  "body": "* In order to communicate with web agent Ignite node should be started with REST server (move `ignite-rest-http` folder from `lib/optional/` to `lib/`).\n* Configure web agent `serverURI` property by Ignite node REST server URI.",
   "title": "Requirements"
 }
 [/block]
