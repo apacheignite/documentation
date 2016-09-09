@@ -1,6 +1,6 @@
 * [Prerequisites](#prerequisites)
 * [Building Ignite Web Agent](#building-ignite-web-agent)
-* [Run Ignite Web Console Frontend](#run-ignite-web-console-frontend)
+* [Run Ignite Web Console Frontend](#run-ignite-web-console-in-development-mode)
 [block:api-header]
 {
   "type": "basic",
