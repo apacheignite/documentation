@@ -19,4 +19,11 @@ Two main functions of Ignite Web Agent:
 Ignite Web Agent zip ships with `ignite-web-agent.{sh|bat}` script that used for agent start.
 To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat} --help` in terminal.
 
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuration"
+}
+[/block]
 Ignite Web Agent may be configured using configuration file(`default.properties`)
