@@ -24,4 +24,4 @@ To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat
   "title": "Configuration"
 }
 [/block]
-Ignite Web Agent may be configured using configuration file(`default.properties`)
+Ignite Web Agent may be configured using configuration file (`default.properties`), command line options.
