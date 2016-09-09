@@ -29,8 +29,6 @@ By default Ignite Web Agent try to load configuration settings from `default.pro
 This file must have simple line-oriented format as described [here](#http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html)
 
 Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
-
-Example configuration file:  
 [block:code]
 {
   "codes": [
