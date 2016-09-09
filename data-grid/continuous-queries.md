@@ -15,7 +15,7 @@ Continuous queries are supported via `ContinuousQuery` class, which supports the
 ## Initial Query
 Whenever executing continuous query, you have an option to execute initial query before starting to listen to updates. The initial query can be set via `ContinuousQuery.setInitialQuery(Query)` method and can be of any query type, [Scan](/docs/cache-queries#scan-queries), [SQL](/docs/cache-queries#sql-queries), or [TEXT](/docs/cache-queries#text-queries). This parameter is optional, and if not set, will not be used.
 ## Remote Filter
-This filter is executed on the primary node for a given key and evaluates whether the event should be propagated to the listener. If the filter returns `true`, then the listener will be notified, otherwise the event will be skipped. Filtering events on the node on which they have occurred allows to minimize unnecessary network traffic for listener notifications. Remote filter can be set via `ContinuousQuery.setRemoteFilter(CacheEntryEventFilter<K, V>)` method.
+This filter is executed on the primary and backup nodes for a given key and evaluates whether the event should be propagated to the listener. If the filter returns `true`, then the listener will be notified, otherwise the event will be skipped. Filtering events on the node on which they have occurred allows to minimize unnecessary network traffic for listener notifications. Remote filter can be set via `ContinuousQuery.setRemoteFilter(CacheEntryEventFilter<K, V>)` method.
 ## Local Listener
 Whenever events pass the remote filter, they will be send to the client to notify the local listener there. Local listener is set via `ContinuousQuery.setLocalListener(CacheEntryUpdatedListener<K, V>)` method.
 [block:code]
