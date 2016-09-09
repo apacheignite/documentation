@@ -16,22 +16,21 @@ Ignite Web Console is an interactive configuration wizard, management and monito
   "title": "Demo Mode"
 }
 [/block]
-In order to simplify evaluation of Ignite Web Console demo mode was implemented.
-To start demo, you need to click button `Start demo`. New tab will be open with prepared demo data on each screen.
+The one can use Web Console's demo mode for evolution purposes. To enable this mode you need to click on `Start demo` button, located in the top menu, and wait while a popup screen appears providing you additional steps.
 
-## Demo for import domain model from database
-In this mode an in-memory H2 database will be started on connected Ignite Web Agent.
+## Importing a domain model from a database
+In this mode an instance of in-memory H2 database will be started on connected Ignite Web Agent.
 How to evaluate:
   * Go to Ignite Web Console `Domain model` screen.
-  * Click `Import from database`. You should see modal with demo description.
+  * Click `Import from database`. You should see a modal window with the demo description.
   * Click `Next` button. You should see list of available schemas.
   * Click `Next` button. You should see list of available tables.
   * Click `Next` button. You should see import options.
   * Select some of them and click `Save`.
 
-## Demo for SQL
+## SQL Demonstration
 How to evaluate:
-In this mode tree server node and one client node will be started. Cache created and populated with data.
+In this mode tree server and one client nodes will be started. A cache will be created and populated with data.
  * Click `SQL` in Ignite Web Console top menu.
  * `Demo` notebook with preconfigured queries will be opened.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
