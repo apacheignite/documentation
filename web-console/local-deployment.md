@@ -1,4 +1,6 @@
 * [Prerequisites](#prerequisites)
+* [Building Ignite Web Agent](#building-ignite-web-agent)
+* 
 [block:api-header]
 {
   "type": "basic",
