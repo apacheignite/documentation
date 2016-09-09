@@ -17,3 +17,7 @@ Ignite Web Console is an interactive configuration wizard and management tool th
   "title": "Demo Mode"
 }
 [/block]
+In order to simplify evaluation of Ignite Web Console demo mode was implemented.
+To start demo, you need to click button "Start demo". New tab will be open with prepared demo data on each screen.
+
+### Demo for import domain model from database
