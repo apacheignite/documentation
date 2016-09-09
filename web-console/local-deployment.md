@@ -34,7 +34,7 @@ Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Run Ignite Web Console"
+  "title": "Run Ignite Web Console In Development Mode"
 }
 [/block]
 If needed run "npm install --no-optional" (if dependencies changed) and start webpack in development mode "npm run dev".
