@@ -18,6 +18,14 @@ Two main functions of Ignite Web Agent:
 [/block]
 Ignite Web Agent zip ships with `ignite-web-agent.{sh|bat}` script that used for agent start.
 To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat} --help` in terminal.
+[block:callout]
+{
+  "type": "info",
+  "body": "* In order to communicate with web agent Ignite node should be started with REST server (move ignite-rest-http folder from lib/optional/ to lib/).\n* Configure web agent serverURI property by Ignite node REST server URI.",
+  "title": "Requirements"
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
@@ -40,3 +48,4 @@ Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
   ]
 }
 [/block]
+###Command line options
