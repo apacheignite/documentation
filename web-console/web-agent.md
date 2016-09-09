@@ -1,9 +1,3 @@
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Overview"
-}
-[/block]
 Ignite Web Agent is a java standalone application that allow to connect Ignite Grid to Ignite Web Console.
 Ignite Web Agent communicates with grid nodes via REST interface and connects to Ignite Web Console via web-socket.
 
