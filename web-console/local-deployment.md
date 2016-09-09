@@ -29,5 +29,5 @@ Before first start you need download dependencies:
   To build Ignite Web Agent from sources run following command in Ignite project root folder:
 `mvn clean package -pl :ignite-web-agent -am -P web-console -DskipTests=true`
 
-Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in 
-`<Ignite project root folder>/modules/web-console/web-agent/taget`.
+Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in: 
+`<Ignite project root folder>/modules/web-console/web-agent/taget`
