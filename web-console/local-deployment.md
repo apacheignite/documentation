@@ -38,4 +38,4 @@ Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in:
 }
 [/block]
 To run Ignite Web Console in development mode need do following steps:
-* Configure MongoDB to run as service or in terminal start MongoDB by executing `mongod`
+* Configure MongoDB to run as service or in terminal start MongoDB by executing `mongod` command
