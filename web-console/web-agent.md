@@ -25,8 +25,8 @@ To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat
 }
 [/block]
 ###Configuration file
-By default Ignite Web Agent try to load configuration settings from `default.properties` file
-This file must have simple line-oriented format as described here: http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#load(java.io.Reader)
+By default Ignite Web Agent try to load configuration settings from `default.properties` file.
+This file must have simple line-oriented format as described [here](#http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#load(java.io.Reader))
 
 Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
 
