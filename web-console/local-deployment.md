@@ -1,3 +1,4 @@
+* [Prerequisites](#prerequisites)
 [block:api-header]
 {
   "type": "basic",
@@ -17,3 +18,9 @@ Before first start you need download dependencies:
 * For frontend:
 `cd $IGNITE_HOME/modules/web-console/frontend `
 `npm install --no-optional`
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Building Ignite Web Agent"
+}
+[/block]
