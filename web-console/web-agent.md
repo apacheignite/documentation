@@ -49,5 +49,5 @@ Available options with they descriptions:
 * `-c`, `--config` - Path to configuration file
 * `-d`, `--driver-folder` - Path to folder with JDBC drivers, default value: ./jdbc-drivers
 * `-n`, `--node-uri` - URI for connect to Ignite REST server, default value: `http://localhost:8080`
-* `-s`, `--server-uri` - URI for connect to Ignite Web Console via web-socket protocol, default value: `http://localhost:3001`
+* `-s`, `--server-uri` - URI for connect to Ignite Web Console, default value: `http://localhost:3001`
 * `-t`, `--tokens` - User's security tokens
