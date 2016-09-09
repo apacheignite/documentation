@@ -47,11 +47,7 @@ To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat
 Available options with they descriptions:
 * `-h`, `--help` - Print this help message
 * `-c`, `--config` - Path to configuration file
-* -d, --driver-folder
-  Path to folder with JDBC drivers, default value: ./jdbc-drivers
-*-n, --node-uri
-  URI for connect to Ignite REST server, default value: `http://localhost:8080`
-*-s, --server-uri
-  URI for connect to Ignite Web Console via web-socket protocol, default value: `http://localhost:3001`
-*-t, --tokens
-  User's security tokens
+* `-d`, `--driver-folder` - Path to folder with JDBC drivers, default value: ./jdbc-drivers
+* `-n`, `--node-uri` - URI for connect to Ignite REST server, default value: `http://localhost:8080`
+* `-s`, `--server-uri` - URI for connect to Ignite Web Console via web-socket protocol, default value: `http://localhost:3001`
+* `-t`, `--tokens` - User's security tokens
