@@ -1,3 +1,9 @@
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Prerequisites"
+}
+[/block]
 In order to local deployment of Ignite Web Console you should install before:
 
 * MongoDB (version >=3.x) follow instructions from site [http://docs.mongodb.org/manual/installation](http://docs.mongodb.org/manual/installation)
