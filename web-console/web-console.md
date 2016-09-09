@@ -39,10 +39,8 @@ In this mode tree server node and one client node will be started. Cache created
 
 For example:
  * Enter SQL statement:
-`SELECT p.name, count(*) AS cnt`
-`FROM "ParkingCache".Parking p`
-`INNER JOIN "CarCache".Car c`
-`  ON (p.id) = (c.parkingId)`
+`SELECT p.name, count(*) AS cnt FROM "ParkingCache".Parking p`
+`INNER JOIN "CarCache".Car c ON (p.id) = (c.parkingId)`
 `GROUP BY P.NAME`
 
  * Click "Execute" button. You should get some data in table.
