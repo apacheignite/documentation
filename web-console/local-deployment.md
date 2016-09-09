@@ -1,6 +1,6 @@
 * [Prerequisites](#prerequisites)
 * [Building Ignite Web Agent](#building-ignite-web-agent)
-* 
+* [Building Ignite Web Console Backend](#building-ignite-web-console-backend)
 [block:api-header]
 {
   "type": "basic",
@@ -31,3 +31,9 @@ Before first start you need download dependencies:
 
 Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in: 
 `<Ignite project root folder>/modules/web-console/web-agent/taget`
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Building Ignite Web Console Backend"
+}
+[/block]
