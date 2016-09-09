@@ -1,4 +1,5 @@
 * [Overview](#overview)
+* [Demo Mode](#demo-mode)
 [block:api-header]
 {
   "type": "basic",
