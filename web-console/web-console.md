@@ -42,5 +42,5 @@ For example:
 `SELECT p.name, count(*) AS cnt FROM "ParkingCache".Parking p`
 `INNER JOIN "CarCache".Car c ON (p.id) = (c.parkingId)`
 `GROUP BY P.NAME`
- * Click "Execute" button. You should get some data in table.
+ * Click `Execute` button. You should get some data in table.
  * Click charts buttons to see auto generated charts.
