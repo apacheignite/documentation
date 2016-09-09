@@ -6,6 +6,7 @@
 }
 [/block]
 Ignite Web Console is an interactive configuration wizard and management tool that allows you to:
-* Create and download various configurations for Apache Ignite
+* Create and download various configurations for Apache Ignite cluster.
 * Automatically load SQL metadata from any RDBMS
-* Connect to Ignite cluster and run SQL analytics on it
+* Provides management capabilities which allow you to run SQL queries
+ on your in-memory cache as well as view execution plans, in-memory schema, and streaming charts.
