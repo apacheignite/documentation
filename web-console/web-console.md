@@ -34,7 +34,7 @@ How to evaluate:
 How to evaluate:
 In this mode tree server node and one client node will be started. Cache created and populated with data.
  * Click `SQL` in Ignite Web Console top menu.
- * "Demo" notebook with preconfigured queries will be opened.
+ * `Demo` notebook with preconfigured queries will be opened.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
 
 For example:
