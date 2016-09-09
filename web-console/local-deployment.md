@@ -7,6 +7,7 @@ Before first start you need download dependencies:
 * For backend:
 `cd $IGNITE_HOME/modules/web-console/backend`
 `npm install --no-optional`
+
 * For frontend:
 `cd $IGNITE_HOME/modules/web-console/frontend `
 `npm install --no-optional`
