@@ -28,8 +28,17 @@ To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat
 By default Ignite Web Agent try to load configuration setting from `default.properties`
 This file must have simple line-oriented format as described here: http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#load(java.io.Reader)
 
-  Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
+Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
 
-  Example configuration file:
-    tokens=1a2b3c4d5f,2j1s134d12
-    serverURI=https://console.example.com:3001
+Example configuration file:  
+[block:code]
+{
+  "codes": [
+    {
+      "code": "tokens=1a2b3c4d5f,2j1s134d12\nserverURI=https://console.example.com:3001",
+      "language": "text",
+      "name": "default.properties"
+    }
+  ]
+}
+[/block]
