@@ -10,3 +10,9 @@ Ignite Web Console is an interactive configuration wizard and management tool th
 * Automatically load SQL metadata from any RDBMS
 * Provides management capabilities which allow you to run SQL queries
  on your in-memory cache as well as view execution plans, in-memory schema, and streaming charts.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Demo Mode"
+}
+[/block]
