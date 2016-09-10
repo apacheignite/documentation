@@ -30,7 +30,7 @@ How to evaluate:
 
 ## SQL Demonstration
 How to evaluate:
-In this mode three server and one client nodes will be started. A cache will be created and populated with data.
+In this mode three server and one client nodes will be started. Several caches will be created and populated with data.
  * Click `SQL` in Ignite Web Console top menu.
  * `Demo` notebook with preconfigured queries will be opened.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
