@@ -143,7 +143,7 @@ The following code snippet is provided from the [CacheQueryExample](https://gith
 {
   "codes": [
     {
-      "code": "IgniteCache<AffinityKey<Long>, Person> cache = ignite.cache(\"personCache\");\n\n// SQL clause query with join over non-collocated data.\nString joinSql =\n\t\"from Person, \\\"orgCache\\\".Organization as org \" +\n  \"where Person.orgId = org.id \" +\n  \"and lower(org.name) = lower(?)\";\n\nSqlQuery qry = new SqlQuery<AffinityKey<Long>, Person>(Person.class, joinSql).\n\tsetArgs(\"ApacheIgnite\");\n\n// Enable distributed joins for the query.\nqry.setDistributedJoins(true);\n\n// Execute the query to find out employees for specified organization.\nSystem.out.println(\"Following people are 'ApacheIgnite' employees (distributed \t\tjoin): \", cache.query(qry).getAll());",
+      "code": "IgniteCache<AffinityKey<Long>, Person>> cache = ignite.cache(\"personCache\");\n\n// SQL clause query with join over non-collocated data.\nString joinSql =\n\t\"from Person, \\\"orgCache\\\".Organization as org \" +\n  \"where Person.orgId = org.id \" +\n  \"and lower(org.name) = lower(?)\";\n\nSqlQuery qry = new SqlQuery<AffinityKey<Long>, Person>>(Person.class, joinSql).\n\tsetArgs(\"ApacheIgnite\");\n\n// Enable distributed joins for the query.\nqry.setDistributedJoins(true);\n\n// Execute the query to find out employees for specified organization.\nSystem.out.println(\"Following people are 'ApacheIgnite' employees (distributed \t\tjoin): \", cache.query(qry).getAll());",
       "language": "java",
       "name": "SqlQueryWithDistributedJoin"
     }
