@@ -6,7 +6,7 @@ Ignite allows you to control how many instances of your service should be deploy
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/c3Rr8tQ1RGyRw4cxMVoD",
+        "https://files.readme.io/qOINezbjTiOJFl3ueIUs_ignite_service.png",
         "ignite_service.png",
         "1645",
         "741",

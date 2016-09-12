@@ -46,7 +46,7 @@ The picture below illustrates a simple view of a partitioned cache. Essentially 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/7pGSgxCVR3OZSHqYLdJv",
+        "https://files.readme.io/vlEqOYuURffsdK09Kil2_in_memory_data_grid.png",
         "in_memory_data_grid.png",
         "500",
         "338",

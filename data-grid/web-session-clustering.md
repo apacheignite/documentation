@@ -6,7 +6,7 @@ Web sessions caching becomes useful when running a cluster of app servers. When 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/AlvqqQhZRym15ji5iztA",
+        "https://files.readme.io/fXQ5L489QN20pgUwDRbK_web_sessions_1.png",
         "web_sessions_1.png",
         "561",
         "502",
@@ -23,7 +23,7 @@ In the architecture shown above, High Availability Proxy (Load Balancer) distrib
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/KtAyyVzrQ5CwhxODgEVV",
+        "https://files.readme.io/UICv27GNTC6MVrwGWfJj_web_sessions_2.png",
         "web_sessions_2.png",
         "561",
         "502",
@@ -40,7 +40,7 @@ A solution here is to use Ignite In-Memory Data Fabric web sessions cache - a di
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/8WyBbutWSm4PRYDNWRr7",
+        "https://files.readme.io/L8tFX1JCQdCTtnuipk9e_web_sessions_3.png",
         "web_sessions_3.png",
         "561",
         "502",

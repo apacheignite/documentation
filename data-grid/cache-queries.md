@@ -12,7 +12,7 @@ Ignite provides a very elegant query API with support for
   * [SQL Queries](#sql-queries)
   * [Text Queries](#text-queries)
   
-For SQL queries ignites supports in-memory indexing, so all the data lookups are extremely fast. If you are caching your data in [off-heap memory](doc:off-heap-memory), then query indexes will also be cached in off-heap memory as well.
+For SQL queries, Ignite supports in-memory indexing so all the data lookups are extremely fast. If you are caching your data in [off-heap memory](doc:off-heap-memory), then query indexes will also be cached in off-heap memory as well.
 
 Ignite also provides support for custom indexing via `IndexingSpi` and `SpiQuery` class.
 [block:api-header]

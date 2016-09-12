@@ -9,7 +9,7 @@
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/lydEeGB6Rs9hwbpcQxiw",
+        "https://files.readme.io/WkzzRftJTgCYmvbRN28x_apache-ignite.png",
         "apache-ignite.png",
         "1024",
         "310",

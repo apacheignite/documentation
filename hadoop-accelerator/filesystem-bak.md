@@ -4,7 +4,7 @@ Ignite Hadoop Accelerator ships with `FileSystem` implementation over `IGFS` cal
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/qsXmrVXhSluPGib17yZT",
+        "https://files.readme.io/BRv2HAbiT76GsMkXo5N2_ignite_filesystem.png",
         "ignite_filesystem.png",
         "1848",
         "1278",

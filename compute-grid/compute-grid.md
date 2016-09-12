@@ -4,7 +4,7 @@ Distributed computations are performed in parallel fashion to gain **high perfor
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/zrJB0GshRdS3hLn0QGlI",
+        "https://files.readme.io/kFOguSuNQNWCEnyUECLi_in_memory_compute.png",
         "in_memory_compute.png",
         "400",
         "301",

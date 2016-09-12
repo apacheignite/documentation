@@ -4,7 +4,7 @@ Ignite nodes can automatically discover each other. This helps to scale the clus
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/hgY8OZDqTIacGi4ylDDT",
+        "https://files.readme.io/oyNkFwhoSGePqh1QpQbX_ignite_cluster.png",
         "ignite_cluster.png",
         "500",
         "270",

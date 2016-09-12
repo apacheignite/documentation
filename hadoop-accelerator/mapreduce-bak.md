@@ -5,7 +5,7 @@ Ignite In-Memory MapReduce allows to effectively parallelize the processing data
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/aPKj2pqhRJuciy6AqFme",
+        "https://files.readme.io/sto4HGpGQxiYIGVFrAQX_ignite_mapreduce.png",
         "ignite_mapreduce.png",
         "800",
         "526",

@@ -28,7 +28,7 @@ The first screen will ask you for database connectivity settings. Note that JDBC
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/7JgX69krRnC7H10vaYTd",
+        "https://files.readme.io/lozGg6iKQw2kGVLG5nuP_ignite-schema-import-01.png",
         "ignite-schema-import-01.png",
         "650",
         "497",
@@ -46,7 +46,7 @@ The second screen allows to map database tables to domain model classes and auto
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/qWiSTnY2QMOISjqFBN56",
+        "https://files.readme.io/bI8nWm38RAiLUTzXIxkF_ignite-schema-import-02.png",
         "ignite-schema-import-02.png",
         "650",
         "650",
@@ -175,7 +175,7 @@ H2 Console will be started in your default browser.
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/LzsAGZm5SI6gujNNJltx",
+        "https://files.readme.io/VTJShO5uTB2FD7At1bAe_ignite-schema-import-demo-h2.png",
         "ignite-schema-import-demo-h2.png",
         "456",
         "389",
@@ -206,7 +206,7 @@ H2 Console will be started in your default browser.
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/KU9EDmkqTU6YZzFiTraO",
+        "https://files.readme.io/NpFhbqRL6SfI4108qDFw_ignite-schema-import-demo-connect.png",
         "ignite-schema-import-demo-connect.png",
         "650",
         "650",
@@ -223,7 +223,7 @@ H2 Console will be started in your default browser.
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/uDZ9QJroQ8y9b712cIAB",
+        "https://files.readme.io/ADInqx2dT2lbvfH5c4Ag_ignite-schema-import-demo-generate.png",
         "ignite-schema-import-demo-generate.png",
         "650",
         "650",

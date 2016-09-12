@@ -24,7 +24,7 @@ Ignite data grid is lightning fast and is one of the fastest implementations of 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/ZBWQwPXbQmyq6RRUyWfm",
+        "https://files.readme.io/GX80TOyHR7aixlJBkYTh_in-memory-data-grid-1.jpg",
         "in-memory-data-grid-1.jpg",
         "500",
         "338",
