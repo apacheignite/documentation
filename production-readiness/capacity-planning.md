@@ -73,6 +73,6 @@ With 32 cores over 4 large AWS instances the following benchmarks were recorded:
   "title": "Capacity Planning FAQ"
 }
 [/block]
-**- I have 300GB of data in DB will this be the same in GridGain?**
+**- I have 300GB of data in DB will this be the same in Ignite?**
 
-No, data size on disk is not a direct 1-to-1 mapping in memory. As a very rough estimate it can be about 2.5/3 times size on disk excluding indexes and any other overhead. To get a more accurate estimation you need to figure out the average object size by importing a record into GridGain and multiplying by the number of objects expected.
+No, data size on disk is not a direct 1-to-1 mapping in memory. As a very rough estimate it can be about 2.5/3 times size on disk excluding indexes and any other overhead. To get a more accurate estimation you need to figure out the average object size by importing a record into Ignite and multiplying by the number of objects expected.
