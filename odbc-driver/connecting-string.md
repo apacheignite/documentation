@@ -48,7 +48,7 @@ arguments:
     "5-1": "Used to specify ODBC protocol version to use. Currently, there are only two versions: 1.6.0 and 1.8.0. You should use 1.6.0 protocol version to connect to nodes with Ignite version < 1.8.0.",
     "5-2": "1.8.0",
     "6-0": "PAGE_SIZE",
-    "6-1": "Number of rows returned in response to a fetching request to the data source. Default value should be fine for the most of use cases. Setting low value can result in slow data fetching while setting high value can result in additional memory usage by the driver and additional delay when the next page is being retrieved.",
+    "6-1": "Number of rows returned in response to a fetching request to the data source. Default value should be fine in most cases. Setting low value can result in slow data fetching while setting high value can result in additional memory usage by the driver and additional delay when the next page is being retrieved.",
     "6-2": "1024"
   },
   "cols": 3,
