@@ -55,7 +55,7 @@ arguments:
   "rows": 7
 }
 [/block]
-All parameter names are case-insensitive so `SERVER`, `Server` and `server` all are
+All parameter names are case-insensitive so `ADDRESS`, `Address` and `address` all are
 valid parameter names and refer to the same parameter.
 [block:api-header]
 {
