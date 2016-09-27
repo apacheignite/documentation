@@ -36,13 +36,23 @@ arguments:
     "1-0": "PORT",
     "2-0": "CACHE",
     "2-1": "Cache name. If it is not defined than default cache will be used. Note that the cache name is case sensitive.",
-    "1-1": "Port on which OdbcProcessor of the node is listening.",
-    "0-1": "Address of the node to connect to.",
-    "0-2": "lacalhost",
-    "1-2": "10800"
+    "1-1": "**Deprecated. Please, use ADDRESS attribute instead.**\nPort on which OdbcProcessor of the node is listening.",
+    "0-1": "**Deprecated. Please, use ADDRESS attribute instead.**\nAddress of the node to connect to.",
+    "0-2": "",
+    "1-2": "10800",
+    "3-0": "ADDRESS",
+    "3-1": "Address of the remote node to connect to. The format: <host>[:<port>]. For example: localhost, example.com:12345, 127.0.0.1, 192.168.3.80:5893.",
+    "5-0": "PROTOCOL_VERSION",
+    "4-0": "DSN",
+    "4-1": "Use to connect using specified DSN.",
+    "5-1": "Used to specify ODBC protocol version to use. Currently, there are only two versions: 1.6.0 and 1.8.0. You should use 1.6.0 protocol version to connect to nodes with Ignite version < 1.8.0.",
+    "5-2": "1.8.0",
+    "6-0": "PAGE_SIZE",
+    "6-1": "Number of rows returned in response to the one request to the data source. Default value should be fine for the most of use cases. Setting low value can result in slow data fetching while setting high value can result in additional memory usage by the driver and additional delay when the next page is being retrieved.",
+    "6-2": "1024"
   },
   "cols": 3,
-  "rows": 3
+  "rows": 7
 }
 [/block]
 All parameter names are case-insensitive so `SERVER`, `Server` and `server` all are
