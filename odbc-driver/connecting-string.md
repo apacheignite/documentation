@@ -68,14 +68,29 @@ You can find samples of the connection string below. These strings can be used w
 {
   "codes": [
     {
-      "code": "DRIVER={Apache Ignite};SERVER=localhost;PORT=10800;CACHE=MyCache",
+      "code": "DRIVER={Apache Ignite};ADDRESS=localhost:10800;CACHE=MyCache",
       "language": "text",
       "name": "Specific cache"
     },
     {
-      "code": "DRIVER={Apache Ignite};SERVER=localhost;PORT=10800",
+      "code": "DRIVER={Apache Ignite};ADDRESS=localhost:10800",
       "language": "text",
       "name": "Default cache"
+    },
+    {
+      "code": "DSN=MyIgniteDSN",
+      "language": "text",
+      "name": "DSN"
+    },
+    {
+      "code": "DRIVER={Apache Ignite};ADDRESS=example.com:12901;CACHE=SomeCache;PROTOCOL_VERSION=1.6.0",
+      "language": "text",
+      "name": "Legacy Node"
+    },
+    {
+      "code": "DRIVER={Apache Ignite};ADDRESS=example.com:12901;CACHE=MyCache;PAGE_SIZE=4096",
+      "language": "text",
+      "name": "Custom page size"
     }
   ]
 }
