@@ -55,7 +55,24 @@ To configure Ignite In-Memory Data Fabric as a Hibernate L2 cache, without any c
   * Add dependency on *hibernate-ignite* module.
   * Configure Hibernate itself to use Ignite as L2 cache.
   * Configure Ignite cache appropriately. 
+[block:callout]
+{
+  "type": "warning",
+  "body": "Binary format is currently not fully supported when used with the Hibernate L2 cache, so it's recommended to switch to `OptimizedMarshaller`. See the configuration snippet below that does that.",
+  "title": "Binary format"
+}
+[/block]
 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <property name=\"marshaller\">\n        <bean class=\"org.apache.ignite.marshaller.optimized.OptimizedMarshaller\"/>\n    </property>\n  \n    ...\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
 ##Maven Configuration
 [block:callout]
 {
