@@ -159,7 +159,10 @@ All operations defined in [Persistent Store](doc:persistent-store) are available
 [/block]
 Example `org.apache.ignite.examples.datagrid.store.auto.CacheAutoStoreExample` demonstrates usage of cache store.
 
-In order to run example for automatic persistence you need to set `CacheNodeWithStoreStartup.STORE = AUTO`  and run `CacheAutoStoreExample`.
+In order to run example for automatic persistence you need:
+  * Start H2 server using `DbH2ServerStartup`.
+  * Start several nodes using `ExampleNodeStartup`.
+  * Start `CacheAutoStoreExample`. 
 [block:api-header]
 {
   "type": "basic",
