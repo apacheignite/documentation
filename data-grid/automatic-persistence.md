@@ -21,18 +21,8 @@ Ignite also ships with `org.apache.ignite.cache.store.jdbc.CacheJdbcPojoStore`, 
   "title": "Database Schema Import"
 }
 [/block]
-To start the wizard for generating database schema mapping, execute `bin/ignite-schema-import.sh` script:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "$ bin/ignite-schema-import.sh",
-      "language": "shell",
-      "name": "Shell"
-    }
-  ]
-}
-[/block]
+To start the wizard for generating database schema mapping, execute `bin/ignite-schema-import.sh` script: `bin/ignite-schema-import.{sh|bat}`
+
 This command will bring up a UI wizard which will take you through a couple of screens.
 
 ## Connect To Database
@@ -173,7 +163,7 @@ Lets do step-by-step demo. You can find demo sources in `examples/schema-import`
 
 We will use [H2 database](http://www.h2database.com).
 
-* Start H2 server with following script: `examples/schema-import/bin/h2-server.sh`
+* Start H2 server with following script: `examples/schema-import/bin/h2-server.{sh|bat}`
 
 H2 Console will be started in your default browser.
 
