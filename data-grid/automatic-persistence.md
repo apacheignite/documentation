@@ -173,18 +173,8 @@ Lets do step-by-step demo. You can find demo sources in `examples/schema-import`
 
 We will use [H2 database](http://www.h2database.com).
 
-* Start H2 server with following script:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "$  examples/schema-import/bin/h2-server.sh",
-      "language": "shell",
-      "name": "Shell"
-    }
-  ]
-}
-[/block]
+* Start H2 server with following script: `examples/schema-import/bin/h2-server.sh`
+
 H2 Console will be started in your default browser.
 
 * Connect to H2 with following settings:
