@@ -21,7 +21,7 @@ Ignite also ships with `org.apache.ignite.cache.store.jdbc.CacheJdbcPojoStore`, 
   "title": "Database Schema Import"
 }
 [/block]
-To start the wizard for generating database schema mapping, execute `bin/ignite-schema-import.sh` script: `bin/ignite-schema-import.{sh|bat}`
+To start the wizard for generating database schema mapping, execute script: `bin/ignite-schema-import.{sh|bat}`
 
 This command will bring up a UI wizard which will take you through a couple of screens.
 
