@@ -4,7 +4,6 @@
 * [Turn Off Backups](performance-tips#turn-off-backups)
 * [Tune Off-Heap Memory](performance-tips#tune-off-heap-memory)
 * [Disable Swap Storage](doc:performance-tips#disable-swap-storage)
-* [Disable Peer Class Loading](doc:performance-tips#disable-peer-class-loading)
 * [Tune Eviction Policy](doc:performance-tips#tune-eviction-policy)
 * [Tune Cache Data Rebalancing](doc:performance-tips#tune-cache-data-rebalancing)
 * [Configure Thread Pools](doc:performance-tips#configure-thread-pools)
@@ -112,24 +111,6 @@ Swap storage is disabled by default. However, in your configuration it might be 
   "codes": [
     {
       "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n            ...\n            <!-- Disable swap. -->\n            <property name=\"swapEnabled\" value=\"false\"/> \n            ...\n        </bean>\n    </property>\n</bean>",
-      "language": "xml"
-    }
-  ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Disable Peer Class Loading"
-}
-[/block]
-While peer class loading is very convenient in development, it does carry a certain overhead and should be turned off in production. To disable peer class loading, use the following configuration snippet:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n            ...\n            <!-- Explicitly disable peer class loading. -->\n            <property name=\"peerClassLoadingEnabled\" value=\"false\"/> \n            ...\n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     }
   ]
