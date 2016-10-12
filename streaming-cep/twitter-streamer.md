@@ -15,7 +15,7 @@ dependency like this :
   ]
 }
 [/block]
-Note: Replace '${ignite.version}' with the actual Ignite version you are interested in.
+Replace '${ignite.version}' with the actual Ignite version you are interested in.
 
 2. Set the necessary parameters and start the streamer, like so:
 [block:code]
@@ -28,4 +28,4 @@ Note: Replace '${ignite.version}' with the actual Ignite version you are interes
   ]
 }
 [/block]
-Refer to [Twitter streaming API](https://dev.twitter.com/streaming/overview) documentation for more information on various streaming parameters that can be provided.
+Refer to [Twitter streaming API](https://dev.twitter.com/streaming/overview) documentation for more information on various streaming parameters.
