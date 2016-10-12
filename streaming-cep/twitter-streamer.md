@@ -1,6 +1,6 @@
-Ignite Twitter Streamer module consumes Twitter tweets and feeds transformed key-value pairs <tweetId, text> into an Ignite cache.
+Ignite Twitter Streamer module consumes tweets from Twitter and feeds the transformed key-value pairs <tweetId, text> into an Ignite cache. 
 
-Starting data transfer to Ignite cache can be done with the following steps.
+To stream data from twitter to Ignite cache, you need to: 
 
 1. Import Ignite Twitter Module in Maven Project
 If you are using Maven to manage dependencies of your project, you can add the Twitter module
