@@ -1,0 +1,1 @@
+Ignite Twitter Streamer module provides streaming via Twitter into Ignite cache.
