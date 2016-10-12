@@ -28,3 +28,4 @@ Replace '${ignite.version}' with the actual Ignite version you are interested in
   ]
 }
 [/block]
+Refer to [Twitter streaming API](https://dev.twitter.com/streaming/overview) documentation for more information on various streaming parameters that can be provided.
