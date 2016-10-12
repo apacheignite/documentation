@@ -15,7 +15,7 @@ dependency like this :
   ]
 }
 [/block]
-Replace '${ignite.version}' with the actual Ignite version you are interested in.
+Note: Replace '${ignite.version}' with the actual Ignite version you are interested in.
 
 2. Set the necessary parameters and start the streamer, like so:
 [block:code]
