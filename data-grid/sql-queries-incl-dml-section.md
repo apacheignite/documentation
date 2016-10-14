@@ -400,3 +400,5 @@ Since 1.8.0, Ignite is capable not only of querying data from cache, but also to
 }
 [/block]
 ##MERGE
+
+**MERGE** is the most straightforward operation as it translates to cache **put**/**putAll** operation (depending on how many rows are listed in query, or how many rows have been returned by subquery).
