@@ -15,6 +15,11 @@
 * [Choosing Indexes](#choosing-indexes)
 * [Performance and Usability Considerations](#performance-and-usability-considerations)
 * [SQL data manipulation language (DML) features](#sql-data-manipulation-language-dml-features)
+* [DML operations](#dml-operations)
+ * [MERGE](#merge)
+ * [INSERT](#insert)
+ * [DELETE](#delete)
+ * [UPDATE](#update)
 [block:api-header]
 {
   "type": "basic",
@@ -387,4 +392,11 @@ select name from Person where sex='M' and age = 30`. This way indexes will be us
   "title": "SQL data manipulation language (DML) features"
 }
 [/block]
-Since 1.8.0, Ignite is capable not only of querying data from cache, but also to
+Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation. Let's have a closer look.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "DML operations"
+}
+[/block]
+##MERGE
