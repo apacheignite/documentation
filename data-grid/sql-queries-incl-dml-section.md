@@ -16,10 +16,10 @@
 * [Performance and Usability Considerations](#performance-and-usability-considerations)
 * [SQL data manipulation language (DML) features](#sql-data-manipulation-language-dml-features)
 * [DML operations](#dml-operations)
- * [MERGE](#merge)
- * [INSERT](#insert)
- * [DELETE](#delete)
- * [UPDATE](#update)
+ * [MERGE](#section-merge)
+ * [INSERT](#section-insert)
+ * [DELETE](#section-delete)
+ * [UPDATE](#section-update)
 [block:api-header]
 {
   "type": "basic",
@@ -392,7 +392,14 @@ select name from Person where sex='M' and age = 30`. This way indexes will be us
   "title": "SQL data manipulation language (DML) features"
 }
 [/block]
-Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation. Let's have a closer look.
+Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation. Let's have a closer look at basic concepts and how operations work.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Basic concepts"
+}
+[/block]
+As long as SQL in case of Ignite is merely an interface to query or manipulate cache data, 
 [block:api-header]
 {
   "type": "basic",
@@ -402,3 +409,15 @@ Since 1.8.0, Ignite is capable not only of querying data from cache, but also to
 ##MERGE
 
 **MERGE** is the most straightforward operation as it translates to cache **put**/**putAll** operation (depending on how many rows are listed in query, or how many rows have been returned by subquery).
+
+Syntax example:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "merge into Person(_key, first_name, second_name) values\n  (1, \"John\", \"Smith\"),\n  (5, \"Mary\", \"Jones\")",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
