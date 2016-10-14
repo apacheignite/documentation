@@ -14,7 +14,7 @@
 * [Off-heap SQL Indexes](#off-heap-sql-indexes)
 * [Choosing Indexes](#choosing-indexes)
 * [Performance and Usability Considerations](#performance-and-usability-considerations)
-* [SQL data manipulation language (DML) features](#dml-features)
+* [SQL data manipulation language (DML) features](#sql-data-manipulation-language-dml-features)
 [block:api-header]
 {
   "type": "basic",
