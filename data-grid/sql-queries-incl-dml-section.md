@@ -410,13 +410,19 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 
 **MERGE** is the most straightforward operation as it translates to cache **put**/**putAll** operation (depending on how many rows are listed in query, or how many rows have been returned by subquery).
 
-Syntax example:
+SQL syntax example:
 [block:code]
 {
   "codes": [
     {
       "code": "merge into Person(_key, first_name, second_name) values\n  (1, \"John\", \"Smith\"),\n  (5, \"Mary\", \"Jones\")",
-      "language": "sql"
+      "language": "sql",
+      "name": "Rows list"
+    },
+    {
+      "code": "merge into Person(_key, first_name, second_name)\n  (select _key + 1000, first_name, second_name\n   \tfrom Person\n   \t  where _key > 100 and _key < 200)",
+      "language": "sql",
+      "name": "Subquery"
     }
   ]
 }
