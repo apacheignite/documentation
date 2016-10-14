@@ -15,6 +15,9 @@
 * [Choosing Indexes](#choosing-indexes)
 * [Performance and Usability Considerations](#performance-and-usability-considerations)
 * [SQL data manipulation language (DML) features](#sql-data-manipulation-language-dml-features)
+* [Basic concepts](#basic-concepts)
+ * [Put new items to cache](#section-put-new-items-to-cache)
+ * [Modify existing cache items](#section-modify-existing-cache-items)
 * [DML operations](#dml-operations)
  * [MERGE](#section-merge)
  * [INSERT](#section-insert)
@@ -392,14 +395,32 @@ select name from Person where sex='M' and age = 30`. This way indexes will be us
   "title": "SQL data manipulation language (DML) features"
 }
 [/block]
-Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation. Let's have a closer look at basic concepts and how operations work.
+Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
+
+
+
+Let's have a closer look at basic concepts and how operations work.
 [block:api-header]
 {
   "type": "basic",
   "title": "Basic concepts"
 }
 [/block]
-As long as SQL in case of Ignite is merely an interface to query or manipulate cache data, 
+Four DML operations mentioned above can be split in two small groups: the ones that put new items to cache (that would be **MERGE** and **INSERT**) and those that modify existing items (**UPDATE** and **DELETE**). Let's discuss the former group first.
+
+##Put new items to cache
+Both **MERGE** and **INSERT** put new key-value pairs to cache, and their syntax is nearly identical as you will see soon. The difference between them is semantic.
+
+**MERGE** puts given pair(s) to cache without considering current presence of keys in the cache, which is identical to, say, MySQL's `INSERT ... ON DUPLICATE KEY UPDATE`.
+
+In its turn, **INSERT** puts only pairs for which the keys are not in cache yet - it's identical to semantic of **INSERT** in conventional RDBMSes.
+
+Both **MERGE** and **INSERT** may work in two modes - rows list based and subquery based. In first case, the user explicitly lists field values in tuples each of which then is converted to key-value pair and put to cache. In second case, first SQL SELECT is done, and then each row of its results serves as base tuple for new key-value pair.
+
+As long as SQL in case of Ignite is merely an interface to query or manipulate cache data, in the end all DML operations boil down to modifying key-value pairs that reside in cache. Thus, as all columns in Ignite's tables correspond either to key or to value, when a tuple (which is a "new row") is processed, key and value get instantiated and get their fields set based on what has been passed in tuple. After all tuples are well-formed, cache modifying operations are performed.
+
+##Modify existing cache items
+(TODO)
 [block:api-header]
 {
   "type": "basic",
@@ -427,3 +448,4 @@ SQL syntax example:
   ]
 }
 [/block]
+As you may see, there's two modes to **MERGE** - one that takes
