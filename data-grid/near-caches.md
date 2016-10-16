@@ -1,6 +1,6 @@
 A partitioned cache can also be fronted by a `Near` cache, which is a smaller local cache that stores most recently or most frequently accessed data. Just like with a partitioned cache, the user can control the size of the near cache and its eviction policies. 
 
-Near caches can be created directly on *client* nodes by passing `NearConfiguration` into the `Ignite.createNearCache(NearConfiguration)` or `Ignite.getOrCreateNearCache(NearConfiguration)` methods.
+Near caches can be created directly on *client* nodes by passing `NearConfiguration` into the `Ignite.createNearCache(NearConfiguration)` or `Ignite.getOrCreateNearCache(NearConfiguration)` nodes. Use `Ignite.getOrCreateCache(CacheConfiguration, NearCacheConfiguration) method if you need both start a distributed cache dynamically and create a near-cache for it.
 [block:code]
 {
   "codes": [
