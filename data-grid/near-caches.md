@@ -5,7 +5,7 @@ Near caches can be created directly on *client* nodes by passing `NearConfigurat
 {
   "codes": [
     {
-      "code": "// Create distributed cache on the server nodes, called \"myCache\".\nignite.getOrCreateCache(new CacheConfiguration<MyKey, MyValue>(\"myCache\"));\n\n// Create near-cache configuration for \"myCache\".\nNearCacheConfiguration<MyKey, MyValue> nearCfg = new NearCacheConfiguration<>();\n\n// Use LRU eviction policy to automatically evict entries\n// from near-cache, whenever it reaches 100_000 in size.\nnearCfg.setEvictionPolicy(new LruEvictionPolicy<>(100_000));\n\n// Create near-cache for \"myCache\".\nIgniteCache<MyKey, MyValue> cache = ignite.getOrCreateNearCache(\"myCache\", nearCfg);",
+      "code": "// Create near-cache configuration for \"myCache\".\nNearCacheConfiguration<Integer, Integer> nearCfg = \n    new NearCacheConfiguration<>();\n\n// Use LRU eviction policy to automatically evict entries\n// from near-cache, whenever it reaches 100_000 in size.\nnearCfg.setNearEvictionPolicy(new LruEvictionPolicy<>(100_000));\n\n// Create a distributed cache on server nodes and \n// a near cache on the local node, named \"myCache\".\nIgniteCache<Integer, Integer> cache = ignite.getOrCreateCache(\n    new CacheConfiguration<Integer, Integer>(\"myCache\"), nearCfg);",
       "language": "java"
     }
   ]
