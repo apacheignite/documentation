@@ -25,7 +25,7 @@ You can configure a node to be either a client or a server via `IgniteConfigurat
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...   \n    <!-- Enable client mdoe. -->\n    <property name=\"clientMode\" value=\"true\"/>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...   \n    <!-- Enable client mode. -->\n    <property name=\"clientMode\" value=\"true\"/>\n    ...\n</bean>",
       "language": "xml"
     },
     {
