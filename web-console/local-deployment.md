@@ -7,12 +7,12 @@
   "title": "Prerequisites"
 }
 [/block]
-In order to deploy Ignite Web Console locally  you should install before:
+In order to deploy Ignite Web Console locally, you should install:
 
 * MongoDB (version >=3.2.x) follow instructions from site [http://docs.mongodb.org/manual/installation](http://docs.mongodb.org/manual/installation)
 * NodeJS (version >=6.5.x) using installer from site [https://nodejs.org/en/download/current](https://nodejs.org/en/download/current) for your OS.
 
-Before first start you need download dependencies:
+Download the following dependencies:
 * For backend:
 `cd $IGNITE_HOME/modules/web-console/backend`
 `npm install --no-optional`
