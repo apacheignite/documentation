@@ -35,7 +35,7 @@ Apache Ignite ODBC driver supports and uses several connection string/DSN argume
     "2-0": "PORT",
     "3-0": "CACHE",
     "3-1": "Cache name. If it is not defined than default cache will be used. Note that the cache name is case sensitive.",
-    "2-1": "Port on which OdbcProcessor of the node is listening.\n\nThis argument value is ignored if `ADDRESS` argument is specified.",
+    "2-1": "Port on which `OdbcProcessor` of the node is listening.\n\nThis argument value is ignored if `ADDRESS` argument is specified.",
     "1-1": "Address of the node to connect to.\n\nThis argument value is ignored if `ADDRESS` argument is specified.",
     "1-2": "",
     "2-2": "10800",
