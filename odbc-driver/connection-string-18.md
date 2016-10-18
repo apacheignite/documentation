@@ -24,8 +24,7 @@ To put it simple connection string is just list of the key=value entries separat
   "title": "Supported arguments"
 }
 [/block]
-Apache Ignite ODBC driver supports and uses following connection string/DSN
-arguments:
+Apache Ignite ODBC driver supports and uses several connection string/DSN arguments. All parameter names are case-insensitive so `ADDRESS`, `Address` and `address` all are valid parameter names and refer to the same parameter. If argument is not specified, the default value is used.
 [block:parameters]
 {
   "data": {
@@ -36,8 +35,8 @@ arguments:
     "2-0": "PORT",
     "3-0": "CACHE",
     "3-1": "Cache name. If it is not defined than default cache will be used. Note that the cache name is case sensitive.",
-    "2-1": "Port on which OdbcProcessor of the node is listening.",
-    "1-1": "Address of the node to connect to.",
+    "2-1": "Port on which OdbcProcessor of the node is listening.\n\nThis argument value is ignored if `ADDRESS` argument is specified.",
+    "1-1": "Address of the node to connect to.\n\nThis argument value is ignored if `ADDRESS` argument is specified.",
     "1-2": "",
     "2-2": "10800",
     "6-0": "PROTOCOL_VERSION",
@@ -46,7 +45,7 @@ arguments:
     "6-1": "Used to specify ODBC protocol version to use. Currently, there are only two versions: 1.6.0 and 1.8.0. You should use 1.6.0 protocol version to connect to nodes with Ignite version < 1.8.0.",
     "6-2": "1.8.0",
     "0-0": "ADDRESS",
-    "0-1": "Address of the remote node to connect to. The format: <host>[:<port>]. For example: localhost, example.com:12345, 127.0.0.1, 192.168.3.80:5893.",
+    "0-1": "Address of the remote node to connect to. The format: <host>[:<port>]. For example: localhost, example.com:12345, 127.0.0.1, 192.168.3.80:5893.\n\nIf this attribute is specified then `SERVER` and `PORT` arguments are ignored.",
     "5-0": "PAGE_SIZE",
     "5-1": "Number of rows returned in response to a fetching request to the data source. Default value should be fine in most cases. Setting low value can result in slow data fetching while setting high value can result in additional memory usage by the driver and additional delay when the next page is being retrieved.",
     "5-2": "1024"
@@ -55,8 +54,7 @@ arguments:
   "rows": 7
 }
 [/block]
-All parameter names are case-insensitive so `ADDRESS`, `Address` and `address` all are
-valid parameter names and refer to the same parameter.
+
 [block:api-header]
 {
   "type": "basic",
