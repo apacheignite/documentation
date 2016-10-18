@@ -24,7 +24,7 @@ To put it simple connection string is just list of the key=value entries separat
   "title": "Supported arguments"
 }
 [/block]
-Apache Ignite ODBC driver supports and uses several connection string/DSN arguments. All parameter names are case-insensitive so `ADDRESS`, `Address` and `address` all are valid parameter names and refer to the same parameter. If argument is not specified, the default value is used.
+Apache Ignite ODBC driver supports and uses several connection string/DSN arguments. All parameter names are case-insensitive so `ADDRESS`, `Address` and `address` all are valid parameter names and refer to the same parameter. If argument is not specified, the default value is used. The exception of this rule is `ADDRESS` attribute. If it is not specified, `SERVER` and `PORT` attributes are used instead.
 [block:parameters]
 {
   "data": {
