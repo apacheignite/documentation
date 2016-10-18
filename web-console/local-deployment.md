@@ -30,7 +30,7 @@ To build Ignite Web Agent from sources, run the following command from `$IGNITE_
 `mvn clean package -pl :ignite-web-agent -am -P web-console -DskipTests=true`
 
 Once the build process is over, you can find `ignite-web-agent-x.x.x.zip` in: 
-`$IGNITE_HOME/modules/web-console/web-agent/taget`
+`$IGNITE_HOME/modules/web-console/web-agent/target`
 [block:api-header]
 {
   "type": "basic",
