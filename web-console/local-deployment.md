@@ -26,10 +26,10 @@ Download the following dependencies:
   "title": "Building Ignite Web Agent"
 }
 [/block]
-To build Ignite Web Agent from sources run following command in `$IGNITE_HOME` folder:
+To build Ignite Web Agent from sources, run the following command from `$IGNITE_HOME` folder:
 `mvn clean package -pl :ignite-web-agent -am -P web-console -DskipTests=true`
 
-Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in: 
+Once the build process is over, you can find `ignite-web-agent-x.x.x.zip` in: 
 `$IGNITE_HOME/modules/web-console/web-agent/taget`
 [block:api-header]
 {
@@ -37,7 +37,7 @@ Once the build process is over you can find `ignite-web-agent-x.x.x.zip` in:
   "title": "Run Ignite Web Console In Development Mode"
 }
 [/block]
-To run Ignite Web Console in development mode need do following steps:
+To run Ignite Web Console in development mode, you need to:
 * Configure MongoDB to run as service or in terminal start MongoDB by executing `mongod` command
 * Copy `ignite-web-agent-x.x.x.zip` to `$IGNITE_HOME/modules/web-console/backend/agent_dists` folder
 * In new terminal change directory to `$IGNITE_HOME/modules/web-console/backend`.
