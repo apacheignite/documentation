@@ -23,7 +23,7 @@ To pull the Ignite docker container use the following command:
 {
   "codes": [
     {
-      "code": " sudo docker pull apacheignite/ignite-docker",
+      "code": " sudo docker pull apacheignite/ignite",
       "language": "shell"
     }
   ]
@@ -34,7 +34,7 @@ To run Ignite docker container using `docker run`:
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=$GIT_REPO\" \n[-e \"GIT_BRANCH=$GIT_BRANCH\"]\n[-e \"BUILD_CMD=$BUILD_CMD\"]\n...\napacheignite/ignite-docker ",
+      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=$GIT_REPO\" \n[-e \"GIT_BRANCH=$GIT_BRANCH\"]\n[-e \"BUILD_CMD=$BUILD_CMD\"]\n...\napacheignite/ignite ",
       "language": "shell"
     }
   ]
@@ -91,7 +91,7 @@ To run Ignite docker container from GIT repository, execute the following comman
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\" \napacheignite/ignite-docker ",
+      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\" \napacheignite/ignite ",
       "language": "shell"
     }
   ]
@@ -128,7 +128,7 @@ To pull the Ignite docker container use the following command:
 {
   "codes": [
     {
-      "code": "sudo docker pull apacheignite/ignite-docker",
+      "code": "sudo docker pull apacheignite/ignite",
       "language": "shell"
     }
   ]
@@ -139,7 +139,7 @@ To run Ignite docker container using `docker run`:
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host \n-e \"IGNITE_VERSION=$IGNITE_VERSION\" \n[-e \"IGNITE_CONFIG=$IGNITE_CONFIG\"]\n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n...\napacheignite/ignite-docker ",
+      "code": "sudo docker run -it --net=host \n-e \"IGNITE_VERSION=$IGNITE_VERSION\" \n[-e \"IGNITE_CONFIG=$IGNITE_CONFIG\"]\n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n...\napacheignite/ignite ",
       "language": "shell"
     }
   ]
@@ -185,7 +185,7 @@ To run Ignite docker container with bare Ignite node, use the following command:
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host -e \"IGNITE_VERSION=1.4.0\" apacheignite/ignite-docker",
+      "code": "sudo docker run -it --net=host -e \"IGNITE_VERSION=1.4.0\" apacheignite/ignite",
       "language": "shell"
     }
   ]
