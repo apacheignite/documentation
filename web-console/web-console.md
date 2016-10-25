@@ -20,7 +20,7 @@
 You can use the Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
 
 ## Importing a domain model from a database
-In this mode, an instance of in-memory H2 database will be started on the connected Ignite Web Agent.
+In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent.
 How to evaluate:
   * Go to Ignite Web Console `Domain model` screen.
   * Click `Import from database`. You should see a modal window with the demo description.
