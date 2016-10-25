@@ -9,7 +9,8 @@
 [Ignite Web Console](https://console.gridgain.com/) is an interactive configuration wizard, management and monitoring tool that allows you to:
 * Create and download various configurations to use for your Apache Ignite cluster.
 * Automatically construct Apache Ignite's SQL metadata from any RDBMS schemas.
-* Execute SQL queries over your in-memory caches as well as view their execution plans, in-memory schemas and streaming charts.
+* Execute SQL queries over your in-memory caches.
+*  View query execution plans, in-memory schemas and streaming charts.
 [block:api-header]
 {
   "type": "basic",
