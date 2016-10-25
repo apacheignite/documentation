@@ -17,7 +17,7 @@
   "title": "Demo Mode"
 }
 [/block]
-You can use Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
+You can use the Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
 
 ## Importing a domain model from a database
 In this mode, an instance of in-memory H2 database will be started on the connected Ignite Web Agent.
