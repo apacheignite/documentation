@@ -1,4 +1,5 @@
 PHP provides a lightweight, consistent interface for accessing databases named PHP Data Objects   - PDO. This extension goes with several database-specific PDO drivers. One of them is [PDO_ODBC](http://php.net/manual/en/ref.pdo-odbc.php), which allows connecting to any database, which provides ODBC driver.
+
 As Apache Ignite shipped with its own ODBC driver, we have also tested it with ODBC. On this page you can find some hints and tips about Apache Ignite and PDO interoperability.
 [block:api-header]
 {
