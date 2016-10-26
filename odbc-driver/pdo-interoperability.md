@@ -18,7 +18,7 @@ Once you have all these things, you can finally write some code using PDO to con
 {
   "codes": [
     {
-      "code": "<?php\ntry {\n    $dbh = new PDO('odbc:Apache Ignite DSN');\n  \n} catch (PDOException $e) {\n    print \"Error!: \" . $e->getMessage() . \"\\n\";\n    die();\n}\n?>",
+      "code": "<?php\ntry {\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n  \n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
       "language": "php"
     }
   ]
