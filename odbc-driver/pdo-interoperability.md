@@ -24,3 +24,4 @@ Once you have all these things, you can finally write some code using PDO to con
   ]
 }
 [/block]
+All done. Now you can use your PDO connection with Apache Ignite as any other PDO connection.
