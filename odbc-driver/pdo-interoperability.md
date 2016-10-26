@@ -4,7 +4,7 @@ As Apache Ignite shipped with its own ODBC driver, we have also tested it with O
 [block:api-header]
 {
   "type": "basic",
-  "title": "Getting things working"
+  "title": "Getting started"
 }
 [/block]
 First of all, you need PHP installed on your system with PDO and PDO_ODBC driver. You can find instructions on how you can do it on [PHP website](http://php.net).
