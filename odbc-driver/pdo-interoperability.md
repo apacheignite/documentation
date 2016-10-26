@@ -1,4 +1,4 @@
-PHP provides a lightweight, consistent interface for accessing databases named PHP Data Objects   - PDO.
+PHP provides a lightweight, consistent interface for accessing databases named PHP Data Objects   - PDO. This extension goes with several database-specific PDO drivers. One of them is PDO_ODBC 
 [block:api-header]
 {
   "type": "basic",
