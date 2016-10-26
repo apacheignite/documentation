@@ -1,4 +1,4 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec massa tristique arcu ferme.
+PHP provides a lightweight, consistent interface for accessing databases named PHP Data Objects   - PDO.
 [block:api-header]
 {
   "type": "basic",
