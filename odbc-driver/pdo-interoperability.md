@@ -14,3 +14,13 @@ The second thing you'll need is an installed Apache Ignite ODBC driver. You may 
 You also are going to need properly configured DSN for Ignite.
 
 Once you have all these things, you can finally write some code using PDO to connect to Apache Ignite node.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<?php\ntry {\n    $dbh = new PDO('odbc:Apache Ignite DSN');\n\n} catch (PDOException $e) {\n    print \"Error!: \" . $e->getMessage() . \"\\n\";\n    die();\n}\n?>",
+      "language": "php"
+    }
+  ]
+}
+[/block]
