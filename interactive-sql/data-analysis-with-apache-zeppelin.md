@@ -28,12 +28,12 @@ In order to start using Ignite interpreters you should install Zeppelin in two s
   `git clone https://github.com/apache/incubator-zeppelin.git`
   2. Build Zeppelin from sources
   `cd incubator-zeppelin`
-  `mvn clean install -Dignite-version=1.2.0-incubating -DskipTests`
+  `mvn clean install -Dignite-version=1.7.0 -DskipTests`
 [block:callout]
 {
   "type": "success",
   "title": "Building Zeppelin with specific Ignite version",
-  "body": "You can use `ignite-version` property for build Zeppelin with specific Ignite version. Use version `1.1.0-incubating` or later."
+  "body": "You can use `ignite-version` property for build Zeppelin with a specific Ignite version. Use version `1.7.0` or later."
 }
 [/block]
 
@@ -92,14 +92,14 @@ Click on "Interpreter" menu item. This page contains settings for all configured
 ### Configuring Ignite SQL Interpreter
 Ignite SQL interpreter requires only `ignite.jdbc.url` property that contains JDBC connection URL. In our example we will use `words` cache. Edit `ignite.jdbc.url` property setting the following value: `jdbc:ignite://localhost:11211/words`.
 
-See also [JDBC Driver](http://apacheignite.readme.io/v1.2/docs/jdbc-driver)  section for details.
+See also [JDBC Driver](https://apacheignite.readme.io/docs/jdbc-driver)  section for details.
  
 ### Configuring Ignite Interpreter
 For most simple cases Ignite interpreter requires the following properties:
 
-  * `ignite.addresses` - Coma separated list of Ignite cluster hosts. See [Cluster Configuration](http://apacheignite.readme.io/v1.2/docs/cluster-config) section for details.
-  * `ignite.clientMode` - You can connect to the Ignite cluster as client or server node. See [Clients vs. Servers](http://apacheignite.readme.io/v1.2/docs/clients-vs-servers) section for details. Use `true` or `false` values in order to connect in client or server mode respectively.
-  * `ignite.peerClassLoadingEnabled` - Enables peer-class-loading. See [Zero Deployment](http://apacheignite.readme.io/v1.2/docs/zero-deployment) section for details. Use `true` or `false` values in order to enable or disable P2P class loading respectively.
+  * `ignite.addresses` - Coma separated list of Ignite cluster hosts. See [Cluster Configuration](http://apacheignite.readme.io/docs/cluster-config) section for details.
+  * `ignite.clientMode` - You can connect to the Ignite cluster as client or server node. See [Clients vs. Servers](http://apacheignite.readme.io/docs/clients-vs-servers) section for details. Use `true` or `false` values in order to connect in client or server mode respectively.
+  * `ignite.peerClassLoadingEnabled` - Enables peer-class-loading. See [Zero Deployment](http://apacheignite.readme.io/docs/zero-deployment) section for details. Use `true` or `false` values in order to enable or disable P2P class loading respectively.
 
 For more complicated cases you can define own configuration of Ignite using `ignite.config.url` property that contains URL to Ignite configuration file. Note that if `ignite.config.url` property is defined then all aforementioned properties will be ignored.
 [block:api-header]
@@ -109,17 +109,17 @@ For more complicated cases you can define own configuration of Ignite using `ign
 }
 [/block]
 ### Starting Ignite cluster
-Before using Zeppelin we need start Ignite cluster. Download [Apache Ignite In-Memory Data Fabric binary release](http://mirrors.koehn.com/apache//incubator/ignite/1.2.0/apache-ignite-fabric-1.2.0-incubating-bin.zip) and unpack the downloaded archive:
-`unzip apache-ignite-fabric-1.2.0-incubating-bin.zip -d <dest_dir>`
+Before using Zeppelin we need start Ignite cluster. Download the latest [Apache Ignite In-Memory Data Fabric binary release](https://ignite.apache.org/download.cgi) and unpack the downloaded archive:
+`unzip apache-ignite-fabric-{version}-bin.zip -d <dest_dir>`
 
 Examples are shipped as a separate Maven project, so to start running you simply need
-to import provided `<dest_dir>/apache-ignite-fabric-1.2.0-incubating-bin/pom.xml` file into your favourite IDE.
+to import provided `<dest_dir>/apache-ignite-fabric-{version}-bin/pom.xml` file into your favourite IDE.
 
 Start the following examples:
   * `org.apache.ignite.examples.ExampleNodeStartup` - starts one Ignite node. You can start one or more nodes.
   * `org.apache.ignite.examples.streaming.wordcount.StreamWords` - starts client node that continuously streams words into `words` cache.
 
-Now you are ready for using Zeppelin for accesing to our Ignite cluster.
+Now you are ready for using Zeppelin for accessing​ to our Ignite cluster.
 
 ### Creating new note in Zeppelin
 Create new (or open existing) note using "Notebook" menu item. 
