@@ -1,15 +1,37 @@
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 PHP provides a lightweight, consistent interface for accessing databases named PHP Data Objects   - PDO. This extension goes with several database-specific PDO drivers. One of them is [PDO_ODBC](http://php.net/manual/en/ref.pdo-odbc.php), which allows connecting to any database that provides its own ODBC driver.
 
 With the usage of Apache Ignite's ODBC driver it's possible to connect to an Apache Ignite cluster from a PHP application accessing and modifying data that is stored there. This page provides instructions on how to bring this to life.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Getting started"
+  "title": "Setting Up ODBC Driver"
 }
 [/block]
-First of all, you need PHP installed on your system with PDO and PDO_ODBC driver. You can find instructions on how you can do it on [PHP website](http://php.net).
+Apache Ignite conforms to ODBC protocol and has its own ODBC driver that is released along with other functionality. This is the driver that will be used by PHP PDO framework going forward in order to connect to an Apache Ignite cluster.
 
-The second thing you'll need is an installed Apache Ignite ODBC driver. You may refer to [Getting Started](doc:odbc-driver)  section for details on how to do this.
+Refer to Apach Ignite [ODBC documentation](doc:odbc-driver) configuring it and installing on a target system. Once the driver is installed and works fine go to the section below of this guide.
+[block:callout]
+{
+  "type": "warning",
+  "title": "",
+  "body": "Use Apache Ignite ODBC driver that is available under version 1.8 and later if the driver is going to be used together with PHP PDO framework."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Installing and Configuring PHP PDO"
+}
+[/block]
+To connect to an Apache Ignite cluster 
+First of all, you need PHP installed on your system with PDO and PDO_ODBC driver. You can find instructions on how you can do it on [PHP website](http://php.net).
 
 You also are going to need properly configured DSN for Ignite. In the example below we assume that your DSN's name is "Apache Ignite DSN".
 [block:callout]
