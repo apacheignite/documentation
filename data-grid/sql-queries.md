@@ -11,7 +11,7 @@
 * [How SQL Queries Work](#how-sql-queries-work)
 * [Using EXPLAIN](#using-explain)
 * [Using H2 Debug Console](#using-h2-debug-console)
-* [Off-heap SQL Indexes](#off-heap-sql-indexes)
+* [Off-Heap SQL Indexes](#off-heap-sql-indexes)
 * [Choosing Indexes](#choosing-indexes)
 * [Performance and Usability Considerations](#performance-and-usability-considerations)
 [block:api-header]
@@ -323,14 +323,14 @@ When developing with Ignite sometimes it is useful to check if your tables and i
 [block:api-header]
 {
   "type": "basic",
-  "title": "Off-heap SQL Indexes"
+  "title": "Off-Heap SQL Indexes"
 }
 [/block]
-Ignite supports placing index data to off-heap memory. This makes sense for very large datasets when keeping data on heap causes high GC activity and unacceptable response times. 
+Ignite supports placing index data in off-heap memory. This makes sense for very large datasets since keeping data on heap can cause high GC activity and unacceptable response times. 
 
-SQL Indexes will reside on heap when property `CacheConfiguration.setOffHeapMaxMemory` is set to `-1`, otherwise off-heap indexes are always used. Note that it is the only property to enable or disable off-heap indexing, while for example  `CacheConfiguration.setMemoryMode` does not have any effect on indexing.
+By default, Ignite stores SQL Indexes on heap.  `CacheConfiguration.setOffHeapMaxMemory` property should be configured to store indexes in off-heap memory. The default value of this property is `-1`. Note that `CacheConfiguration.setOffHeapMaxMemory` is the only property to enable or disable off-heap indexing.  While `CacheConfiguration.setMemoryMode` is used to configure off-heap memory, it does not have any effect on indexing.
 
-To improve performance of SQL queries with off-heap enabled, you can try to increase value of property `CacheConfiguration.setSqlOnheapRowCacheSize` which can be low by default `10 000`.
+To improve the performance of SQL queries with off-heap enabled, you can try to increase the value of `CacheConfiguration.setSqlOnheapRowCacheSize` property that has a default value of '10000'.
 [block:code]
 {
   "codes": [
