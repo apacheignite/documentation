@@ -32,7 +32,7 @@ Off-Heap memory allows your cache to overcome lengthy JVM Garbage Collection (GC
 {
   "type": "info",
   "title": "Off-Heap Indexes",
-  "body": "Note that when off-heap memory is configured, Ignite will also store query indexes off-heap. This means that indexes will not take any portion of the on-heap memory."
+  "body": "Note that when off-heap memory is configured, Ignite will store query indexes off-heap as well. This means that indexes will not take any portion of the on-heap memory."
 }
 [/block]
 
