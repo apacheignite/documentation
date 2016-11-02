@@ -15,12 +15,12 @@ With the usage of Apache Ignite's ODBC driver it's possible to connect to an Apa
 [/block]
 Apache Ignite conforms to ODBC protocol and has its own ODBC driver that is released along with other functionality. This is the driver that will be used by PHP PDO framework going forward in order to connect to an Apache Ignite cluster.
 
-Refer to Apach Ignite [ODBC documentation](doc:odbc-driver) configuring it and installing on a target system. Once the driver is installed and works fine go to the section below of this guide.
+Refer to Apache Ignite [ODBC documentation](doc:odbc-driver) configuring it and installing on a target system. Once the driver is installed and works fine move to the section below of this guide.
 [block:callout]
 {
   "type": "warning",
   "title": "",
-  "body": "Use Apache Ignite ODBC driver that is available under version 1.8 and later if the driver is going to be used together with PHP PDO framework."
+  "body": "Use ODBC driver that is available under Apache Ignite 1.8 and later versions. The prior versions of the driver and Apache Ignite don't support PHP PDO framework."
 }
 [/block]
 
@@ -30,7 +30,8 @@ Refer to Apach Ignite [ODBC documentation](doc:odbc-driver) configuring it and i
   "title": "Installing and Configuring PHP PDO"
 }
 [/block]
-To connect to an Apache Ignite cluster 
+To install PHP, PDO and PDO_ODBC driver refer to general documentation that is available on PHP side:
+ 
 First of all, you need PHP installed on your system with PDO and PDO_ODBC driver. You can find instructions on how you can do it on [PHP website](http://php.net).
 
 You also are going to need properly configured DSN for Ignite. In the example below we assume that your DSN's name is "Apache Ignite DSN".
@@ -52,9 +53,3 @@ Once you have all these things, you can finally write some code using PDO to con
 }
 [/block]
 All done. Now you can use your PDO connection with Apache Ignite as any other PDO connection.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Hints and tricks - TODO"
-}
-[/block]
