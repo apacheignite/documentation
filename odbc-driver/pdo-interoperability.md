@@ -30,9 +30,18 @@ Refer to Apache Ignite [ODBC documentation](doc:odbc-driver) configuring it and 
   "title": "Installing and Configuring PHP PDO"
 }
 [/block]
-To install PHP, PDO and PDO_ODBC driver refer to general documentation that is available on PHP side:
+To install PHP, PDO and PDO_ODBC driver refer to the generic PHP resources:
+* [Download](http://php.net/downloads.php) and install the desired PHP version. Note, that PDO driver is enabled by default in PHP as of PHP 5.1.0.
+* [Configure](http://php.net/manual/en/book.pdo.php) PHP PDO framework.
+* [Enable](http://php.net/manual/en/ref.pdo-odbc.php) PDO_ODBC driver.
  
-First of all, you need PHP installed on your system with PDO and PDO_ODBC driver. You can find instructions on how you can do it on [PHP website](http://php.net).
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Connecting From PHP PDO to Ignite Cluster"
+}
+[/block]
+TBD: more details to be added
 
 You also are going to need properly configured DSN for Ignite. In the example below we assume that your DSN's name is "Apache Ignite DSN".
 [block:callout]
