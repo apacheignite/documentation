@@ -59,7 +59,7 @@ TBD: Let's stick to an example where we will start a single node cluster with on
 [block:api-header]
 {
   "type": "basic",
-  "title": "Connecting From PHP PDO to Ignite Cluster"
+  "title": "Connecting From PHP to Ignite Cluster"
 }
 [/block]
 TBD: more details to be added
