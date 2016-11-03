@@ -48,8 +48,9 @@ TBD: Let's stick to an example where we will start a single node cluster with on
 {
   "codes": [
     {
-      "code": "CONFIGURATION THAT IS USED in the example",
-      "language": "xml"
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n\t<property name=\"name\" value=\"Person\"/>\n\t<property name=\"cacheMode\" value=\"PARTITIONED\"/>\n\t<property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n\t<property name=\"writeSynchronizationMode\" value=\"FULL_SYNC\"/>\n\n\t<property name=\"queryEntities\">\n\t\t<list>\n\t\t\t<bean class=\"org.apache.ignite.cache.QueryEntity\">\n\t\t\t\t<property name=\"keyType\" value=\"java.lang.Long\"/>\n\t\t\t\t<property name=\"valueType\" value=\"Person\"/>\n\n\t\t\t\t<property name=\"fields\">\n\t\t\t\t\t<map>\n\t\t\t\t\t\t<entry key=\"orgId\" value=\"java.lang.Long\"/>\n\t\t\t\t\t\t<entry key=\"firstName\" value=\"java.lang.String\"/>\n\t\t\t\t\t\t<entry key=\"lastName\" value=\"java.lang.String\"/>\n\t\t\t\t\t\t<entry key=\"resume\" value=\"java.lang.String\"/>\n\t\t\t\t\t\t<entry key=\"salary\" value=\"java.lang.Double\"/>\n\t\t\t\t\t</map>\n\t\t\t\t</property>\n\n\t\t\t\t<property name=\"indexes\">\n\t\t\t\t\t<list>\n\t\t\t\t\t\t<bean class=\"org.apache.ignite.cache.QueryIndex\">\n\t\t\t\t\t\t\t<constructor-arg value=\"orgId\"/>\n\t\t\t\t\t\t</bean>\n\t\t\t\t\t</list>\n\t\t\t\t</property>\n\t\t\t</bean>\n\t\t</list>\n\t</property>\n</bean>",
+      "language": "xml",
+      "name": "Cache Configuration"
     }
   ]
 }
