@@ -71,13 +71,14 @@ You also are going to need properly configured DSN for Ignite. In the example be
   "title": "Note that you can't connect with PDO ODBC without properly configured DSN."
 }
 [/block]
-Once you have all these things, you can finally write some code using PDO to connect to Apache Ignite node.
+Once you have all these things, you can finally write some code using PDO to connect to Apache Ignite node and run some queries.
 [block:code]
 {
   "codes": [
     {
-      "code": "<?php\ntry {\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n  \n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
-      "language": "php"
+      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  $res = $dbh->query('SELECT firstName, lastName, resume, salary from Person WHERE salary < 2000.0');\n\n  foreach($res as $row) {\n    print_r($row);\n  }\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
+      "language": "php",
+      "name": "Select"
     }
   ]
 }
