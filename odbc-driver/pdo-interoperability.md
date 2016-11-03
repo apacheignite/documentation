@@ -81,9 +81,14 @@ Once you have all these things, you can finally write some code using PDO to con
       "name": "Select"
     },
     {
-      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query and getting result.\n  $dbh->query('UPDATE Person SET salary = 2000.0 WHERE salary < 2000.0');\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
+      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query.\n  $dbh->query('UPDATE Person SET salary = 2000.0 WHERE salary < 2000.0');\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
       "language": "php",
       "name": "Update"
+    },
+    {
+      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Preparing query.\n  $dbs = $dbh->prepare('INSERT INTO Person (_key, firstName, lastName, resume, salary) VALUES (?, ?, ?, ?, ?)');\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
+      "language": "php",
+      "name": "Insert"
     }
   ]
 }
