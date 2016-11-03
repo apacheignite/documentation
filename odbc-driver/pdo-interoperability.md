@@ -44,7 +44,6 @@ To install PHP, PDO and PDO_ODBC driver refer to the generic PHP resources:
 After PHP PDO is installed and ready to be used let's start an Ignite cluster with an exemplary configuration and connect to the cluster from a PHP application updating and querying cluster's data.
 
 TBD: Let's stick to an example where we will start a single node cluster with one cache pre-configured. The cache configuration must contain QueryEntities with key and value fields that will be used in SQL queries (INSERT, UPDATE, DELETE, SELECT). 
-
 [block:code]
 {
   "codes": [
