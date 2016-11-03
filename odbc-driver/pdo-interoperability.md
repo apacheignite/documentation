@@ -89,6 +89,11 @@ Once you have all these things, you can finally write some code using PDO to con
       "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Preparing query.\n  $dbs = $dbh->prepare('INSERT INTO Person (_key, firstName, lastName, resume, salary) VALUES (?, ?, ?, ?, ?)');\n\n  // Declaringing parameters.\n  $key = 777;\n  $firstName = \"James\";\n  $lastName = \"Bond\";\n  $resume = \"Secret Service agent\";\n  $salary = 7777777;\n\n  // Binding parameters.\n  $dbs->bindParam(1, $key);\n  $dbs->bindParam(2, $firstName);\n  $dbs->bindParam(3, $lastName);\n  $dbs->bindParam(4, $resume);\n  $dbs->bindParam(5, $salary);\n  \n  // Executing query.\n  $dbs->execute();\n  \n  // Updating parameters.\n  $key = 42;\n  $firstName = \"Arthur\";\n  $lastName = \"Dent\";\n  $resume = \"No info\";\n  $salary = 0.0;\n  \n  // Executing query again with updated parameters.\n  $dbs->execute();\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
       "language": "php",
       "name": "Insert"
+    },
+    {
+      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query.\n  $dbh->query('DELETE FROM Person WHERE firstName = \\'John\\' and lastName = \\'Smith\\'');\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
+      "language": "php",
+      "name": "Delete"
     }
   ]
 }
