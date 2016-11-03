@@ -79,6 +79,11 @@ Once you have all these things, you can finally write some code using PDO to con
       "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query and getting result.\n  $res = $dbh->query('SELECT firstName, lastName, resume, salary from Person WHERE salary < 2000.0');\n\n  // Printing results.\n  foreach($res as $row) {\n    print_r($row);\n  }\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
       "language": "php",
       "name": "Select"
+    },
+    {
+      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query and getting result.\n  $res = $dbh->query('SELECT firstName, lastName, resume, salary from Person WHERE salary < 2000.0');\n\n  // Printing results.\n  foreach($res as $row) {\n    print_r($row);\n  }\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
+      "language": "php",
+      "name": "Insert"
     }
   ]
 }
