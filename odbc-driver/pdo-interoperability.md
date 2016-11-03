@@ -34,7 +34,7 @@ To install PHP, PDO and PDO_ODBC driver refer to the generic PHP resources:
 * [Download](http://php.net/downloads.php) and install the desired PHP version. Note, that PDO driver is enabled by default in PHP as of PHP 5.1.0.
 * [Configure](http://php.net/manual/en/book.pdo.php) PHP PDO framework.
 * [Enable](http://php.net/manual/en/ref.pdo-odbc.php) PDO_ODBC driver.
-* If necessary, [configure](http://php.net/manual/en/ref.pdo-odbc.php#ref.pdo-odbc.installation) PDO_ODBC driver for your system.
+* If necessary, [configure](http://php.net/manual/en/ref.pdo-odbc.php#ref.pdo-odbc.installation) PDO_ODBC driver for your system. In most cases, however, simple installation of the PDO_ODBC driver is going to be enough.
 [block:api-header]
 {
   "type": "basic",
