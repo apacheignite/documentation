@@ -44,7 +44,6 @@ To install PHP, PDO and PDO_ODBC driver refer to the generic PHP resources:
 After PHP PDO is installed and ready to be used let's start an Ignite cluster with an exemplary configuration and connect to the cluster from a PHP application updating and querying cluster's data.
 
 First of all, you should enable ODBC processor on the node, you are going to connect to. To do so you need to add {{odbcConfiguration}} in your {{IgniteConfiguration}}.
-
 [block:code]
 {
   "codes": [
