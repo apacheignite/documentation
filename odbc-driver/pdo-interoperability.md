@@ -74,7 +74,7 @@ You also are going to need properly configured DSN for Ignite. In the example be
 [block:callout]
 {
   "type": "info",
-  "title": "Note that you can't connect with PDO ODBC without properly configured DSN."
+  "title": "Note that you can't connect using PDO ODBC without properly configured DSN."
 }
 [/block]
 Once you have all these things, you can finally write some code using PDO to connect to Apache Ignite node and run some queries.
@@ -104,4 +104,3 @@ Once you have all these things, you can finally write some code using PDO to con
   ]
 }
 [/block]
-All done. Now you can use your PDO connection with Apache Ignite as any other PDO connection.
