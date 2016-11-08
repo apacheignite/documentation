@@ -68,8 +68,6 @@ Below you can find simple example of such a configuration for a node.
   "title": "Connecting From PHP to Ignite Cluster"
 }
 [/block]
-TBD: more details to be added
-
 You also are going to need properly configured DSN for Ignite. In the example below we assume that your DSN's name is "Apache Ignite DSN".
 [block:callout]
 {
