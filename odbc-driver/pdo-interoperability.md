@@ -47,7 +47,7 @@ After PHP PDO is installed and ready to be used let's start an Ignite cluster wi
 
 First of all, you should enable ODBC processor on the node, you are going to connect to. To do so you need to add `odbcConfiguration` property in your `IgniteConfiguration`.
 
-After that you need to properly configure your cache. From the ODBC standpoint of view, caches are schemas, types are tables and fields are columns. So in order to be able to run queries over cache you first need to describe your "tables", i.e. types. To do so you should you `queryEntities` property of the `org.apache.ignite.configuration.CacheConfiguration` bean.
+After that you need to properly configure your cache. From the ODBC standpoint of view, caches are schemas, types are tables and fields are columns. So in order to be able to run queries over cache you first need to describe your "tables", i.e. types. To do so you should you `queryEntities` property of the `org.apache.ignite.configuration.CacheConfiguration` bean. See [Cache Queries](doc:cache-queries) for details.
 
 Below you can find simple example of such a configuration for a node.
 [block:code]
