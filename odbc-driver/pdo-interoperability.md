@@ -36,7 +36,7 @@ To install PHP, PDO and PDO_ODBC driver refer to the generic PHP resources:
 * [Enable](http://php.net/manual/en/ref.pdo-odbc.php) PDO_ODBC driver.
  * For Windows versions you may need to uncomment `extension=php_pdo_odbc.dll` line in your php.ini and make sure that `extension_dir` points to directory that contains `php_pdo_odbc.dll` and is in `PATH`.
  * For Unix-like OS you ordinary just need to install appropriate package (for example `php5-odbc` for Ubuntu 14.04 and PHP 5).
-* If necessary, [configure](http://php.net/manual/en/ref.pdo-odbc.php#ref.pdo-odbc.installation) and build PDO_ODBC driver for your system. In most cases, however, simple installation of the PDO_ODBC driver is going to be enough.
+* If necessary, [configure](http://php.net/manual/en/ref.pdo-odbc.php#ref.pdo-odbc.installation) and build PDO_ODBC driver for your system. In most cases, however, simple installation of the PHP and PDO_ODBC driver is going to be enough.
 [block:api-header]
 {
   "type": "basic",
