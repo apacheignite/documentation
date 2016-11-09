@@ -19,7 +19,7 @@ These atomicity modes are defined in `CacheAtomicityMode` enum:
   * `TRANSACTIONAL`
   * `ATOMIC`
   
-`TRANSACTIONAL` mode enables fully ACID-compliant transactions, however, when only atomic semantics are needed, it is recommended that  `ATOMIC` mode is used for better performance.
+`TRANSACTIONAL` mode enables fully ACID-compliant transactions, however, when only atomic semantics are needed, it is recommended that  `ATOMIC` mode be used for better performance.
 
 `ATOMIC` mode provides better performance by avoiding transactional locks, while still providing data atomicity and consistency. Another difference in `ATOMIC` mode is that bulk writes, such as `putAll(...)`and `removeAll(...)` methods are no longer executed in one transaction and can partially fail. In case of partial failure, `CachePartialUpdateException` will be thrown which will contain a list of keys for which the update failed.
 
@@ -58,7 +58,7 @@ Atomicity mode is defined in CacheAtomicityMode enum and can be configured via a
 {
   "type": "info",
   "title": "Cross-Cache Transactions",
-  "body": "You can combine multiple operations from different caches into one transaction. Note that this allows to update caches of different types, like `REPLICATED` and `PARTITIONED` caches, in one transaction."
+  "body": "You can combine multiple operations from different caches into one transaction. Note that this allows you to update caches of different types, like `REPLICATED` and `PARTITIONED` caches, in one transaction."
 }
 [/block]
 
@@ -236,7 +236,7 @@ Note that the key order is important for `READ_COMMITTED` and `REPEATABLE_READ` 
   "title": "Deadlock-Free Transactions"
 }
 [/block]
-For `OPTIMISTIC` `SERIALIZABLE` transactions locks are not acquired sequentially. In this mode keys can be accessed in any order because transaction locks are acquired in parallel with an additional check allowing Ignite to avoid deadlocks.
+For `OPTIMISTIC` `SERIALIZABLE` transactions, locks are not acquired sequentially. In this mode, keys can be accessed in any order because transaction locks are acquired in parallel with an additional check allowing Ignite to avoid deadlocks.
 We need to introduce some concepts in order to describe how locks in `SERIALIZABLE` transactions work. In Ignite, each transaction is assigned a comparable version called `XidVersion`. Upon transaction commit, each entry that is written in the transaction is assigned a new comparable version called `EntryVersion`. An `OPTIMISTIC` `SERIALIZABLE` transaction with version `XidVersionA` will fail with a `TransactionOptimisticException` if:
  * There is an ongoing `PESSIMISTIC` or non-serializable `OPTIMISTIC` transaction holding a lock on an entry of the `SERIALIZABLE` transaction.
  * There is another ongoing `OPTIMISTIC` `SERIALIZABLE` transaction with version `XidVersionB` such that `XidVersionB > XidVersionA` and this transaction holds a lock on an entry of the `SERIALIZABLE` transaction.
