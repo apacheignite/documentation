@@ -1,6 +1,6 @@
 * [Overview](#overview)
 * [SQL Joins](#sql-joins)
-* [Field Queries](#fields-queries)
+* [Field Queries](#field-queries)
 * [Cross-Cache Queries](#cross-cache-queries)
 * [Distributed Joins](#distributed-joins)
 * [Configuring SQL Indexes by Annotations](#configuring-sql-indexes-by-annotations)
@@ -37,7 +37,7 @@ See example **SqlQuery JOIN** below.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Fields Queries"
+  "title": "Field Queries"
 }
 [/block]
 Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose Ignite has a concept of `fields queries`. Also it is useful when you want to execute some aggregate query.
