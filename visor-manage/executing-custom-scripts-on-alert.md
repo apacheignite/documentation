@@ -42,7 +42,7 @@ For configuration of throttle period see -i argument. Script will receive follow
     * hu - Heap memory used (in MB) on the node.
     * cd - Current CPU load on the node.
     * hm - Heap memory maximum (in MB) on the node.
-* ```<condition>```
+* ```<condition>``` This defines a condition for metric.
   Comparison part of the mnemonic predicate:
     * eq - Equal '=' to '<value>' number.
     * neq - Not equal '!=' to '<value>' number.
