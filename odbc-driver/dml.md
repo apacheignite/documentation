@@ -1,6 +1,6 @@
 Starting from Ignite 1.8, DML is supported in SQL queries. This means DML can now be used in ODBC as well. On this you can find details.
 
-With DML you can now insert, modify and delete records using SLQ alone, which means you can now manipulate data on Ignite writing virtually zero lines of Java code. Let me give you an example. Consider the following node config:
+With DML you can now insert, modify and delete records using SLQ alone, which means you can now manipulate data on Ignite writing virtually zero lines of Java code. Let me give you an example. Consider the following minimal node config:
 [block:code]
 {
   "codes": [
@@ -10,5 +10,13 @@ With DML you can now insert, modify and delete records using SLQ alone, which me
       "name": "XML"
     }
   ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "title": "",
+  "body": "DiscoverySpi was not configured for this node. You can find details on how to configure it"
 }
 [/block]
