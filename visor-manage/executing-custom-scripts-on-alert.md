@@ -12,22 +12,11 @@ Unregister: ```alert -u {-id=<alert-id>|-a}```
 
 Alert options:
 * ```-n``` Alert name
-* ```-u ``` Unregisters alert(s). Either '-a' flag or '-id' parameter is required. Note that only one of the '-u' or '-r' is allowed. If neither '-u' or '-r' provided - all alerts will be printed.
-    
-  ```-a ```
-      When provided with '-u' - all alerts will be unregistered.
-    
-  -id=<alert-id>
-      When provided with '-u' - alert with matching ID will be unregistered.
-    
-  -r
-      Register new alert with mnemonic predicate(s).
-      Note that only one of the '-u' or '-r' is allowed.
-      If neither '-u' or '-r' provided - all alerts will be printed.
-    
-  -t
-      Defines notification frequency in seconds. Default is 60 seconds.
-      This parameter can only appear with '-r'.
+* ```-u ``` Unregisters alert(s). Either '-a' flag or '-id' parameter is required. Note that only one of the '-u' or '-r' is allowed. If neither '-u' or '-r' provided - all alerts will be printed.   
+* ```-a ``` When provided with '-u' - all alerts will be unregistered.
+* ```-id=<alert-id>``` When provided with '-u' - alert with matching ID will be unregistered.  
+* ```-r``` Register new alert with mnemonic predicate(s). Note that only one of the '-u' or '-r' is allowed. If neither '-u' or '-r' provided - all alerts will be printed.  
+* ```-t``` Defines notification frequency in seconds. Default is 60 seconds. This parameter can only appear with ```-r```.
     
   -s
       Define script for execution when alert triggered.
