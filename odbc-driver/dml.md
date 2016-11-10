@@ -42,7 +42,7 @@ Of course you can still configure node from the Java code, as well as use `@Quer
 [/block]
 First you need to connect to configured Ignite node using ODBC. Nothing new here - you should properly specify connection string arguments. If some argument was not specified default value is used instead. Refer to [Connection String](doc:connecting-string) page for details. Pay special attention to `Cache` attribute - you should specify name of any existing cache here. It is not really important which one thanks to [Cross-cache queries](doc:sql-queries#cross-cache-queries). Note however that you have to specify schema name prior to your tables if you are trying to run query upon some table of a cache which is not the one you connected to.
 
-You can also use pre-configured DSN.
+You can also use pre-configured DSN for connection.
 [block:code]
 {
   "codes": [
