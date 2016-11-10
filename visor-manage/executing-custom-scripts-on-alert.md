@@ -17,7 +17,8 @@ Alert options:
 * ```-id=<alert-id>``` When provided with '-u' - alert with matching ID will be unregistered.  
 * ```-r``` Register new alert with mnemonic predicate(s).
 **Note** only one of the '-u' or '-r' is allowed. If neither '-u' or '-r' provided - all alerts will be printed.
-* ```-t``` Defines notification frequency in seconds. Default is 60 seconds. This parameter can only appear with ```-r```
+* ```-t``` Defines notification frequency in seconds. Default is 60 seconds. 
+**Note** This parameter can only appear with ```-r```
 * ```-s``` Define script for execution when alert triggered.
 For configuration of throttle period see -i argument. Script will receive following arguments: alert name or alert ID when name is not defined, condition as string, values of alert conditions ordered as in alert command.
 * ```-i``` Configure alert notification minimal throttling interval in seconds. Default is 60 seconds.
