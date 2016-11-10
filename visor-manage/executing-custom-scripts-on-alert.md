@@ -7,8 +7,8 @@
   "title": "Alert Command Specification"
 }
 [/block]
-Register alert: alert -r {-t=<sec>} {-<metric>=<condition><value>} ... {-<metric>=<condition><value>}
-Unregister: alert -u {-id=<alert-id>|-a}
+Register alert: ```alert -r {-t=<sec>} {-<metric>=<condition><value>} ... {-<metric>=<condition><value>}```
+Unregister: ```alert -u {-id=<alert-id>|-a}```
 
 Alert options:
   -n 
