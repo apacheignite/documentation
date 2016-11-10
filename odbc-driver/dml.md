@@ -40,4 +40,4 @@ Of course you can still configure node from the Java code, as well as use `@Quer
   "title": "Connecting to the node"
 }
 [/block]
-First you need to connect to configured Ignite node using ODBC. Nothing new here - you should properly specify connection string arguments. If some argument was not specified default value is used instead. Pay special attention to `Cache` attribute - you should specify name of any existing cache here. It is not really important which one thanks to [Cross-cache queries](http://apacheignite.gridgain.org/v1.7/docs/sql-queries#cross-cache-queries)
+First you need to connect to configured Ignite node using ODBC. Nothing new here - you should properly specify connection string arguments. If some argument was not specified default value is used instead. Pay special attention to `Cache` attribute - you should specify name of any existing cache here. It is not really important which one thanks to [Cross-cache queries](doc:sql-queries#cross-cache-queries)
