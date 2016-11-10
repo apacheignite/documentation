@@ -47,7 +47,7 @@ After PHP PDO is installed and ready to be used let's start an Ignite cluster wi
 
 First of all, ODBC processor has to be enabled cluster wide. To do so, `odbcConfiguration` property has to be added to `IgniteConfiguration` of every cluster node.
 
-Next, list configurations for all the caches related to specific data models inside of `IgniteConfiguration`. Since we're going to execute SQL queries from PHP PDO side over the cluster, every cache configuration needs to contain a definition for 'QueryEntity'. Please refer to [Cache Queries documentation](doc:cache-queries) to learn more about query entities and SQL queries in Ignite.
+Next, list configurations for all the caches related to specific data models inside of `IgniteConfiguration`. Since we're going to execute SQL queries from PHP PDO side over the cluster, every cache configuration needs to contain a definition for `QueryEntity`. Please refer to [SQL Queries](doc:sql-queries) documentation to learn more about query entities and SQL queries in Ignite.
 
 Use a configuration template below and start an Ignite cluster using one of the methods described [Getting Started](doc:getting-started#start-from-command-line).  
 [block:code]
