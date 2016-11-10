@@ -22,19 +22,18 @@ Alert options:
 * ```-s``` Define script for execution when alert triggered.
 For configuration of throttle period see -i argument. Script will receive following arguments: alert name or alert ID when name is not defined, condition as string, values of alert conditions ordered as in alert command.
 * ```-i``` Configure alert notification minimal throttling interval in seconds. Default is 60 seconds.
-* ```-<metric>```
-This defines a mnemonic for the metric that will be measured:
+* ```-<metric>``` This defines a mnemonic for the metric that will be measured.
   Grid-wide metrics (not node specific):
     * cc - Total number of available CPUs in the grid.
     * nc - Total number of nodes in the grid.
     * hc - Total number of physical hosts in the grid.
     * cl - Current average CPU load (in %) in the grid.
-      Per-node current metrics:
-         aj - Active jobs on the node.
-         cj - Cancelled jobs on the node.
-         tc - Thread count on the node.
-         ut - Up time on the node.
-      Note: <num> can have 's', 'm', or 'h' suffix indicating seconds, minutes, and hours.
+  Per-node current metrics:
+    *aj - Active jobs on the node.
+    * cj - Cancelled jobs on the node.
+    * tc - Thread count on the node.
+    * ut - Up time on the node.
+  **Note** <num> can have 's', 'm', or 'h' suffix indicating seconds, minutes, and hours.
       By default (no suffix provided) value is assumed to be in milliseconds.
          je - Job execute time on the node.
          jw - Job wait time on the node.
