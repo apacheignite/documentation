@@ -19,8 +19,7 @@ Alert options:
 * ```-t``` Defines notification frequency in seconds. Default is 60 seconds. This parameter can only appear with ```-r```
 * ```-s``` Define script for execution when alert triggered. For configuration of throttle period see -i argument. Script will receive following arguments: alert name or alert ID when name is not defined, condition as string, values of alert conditions ordered as in alert command.
 * ```-i``` Configure alert notification minimal throttling interval in seconds. Default is 60 seconds.
- 
-   -<metric>
+* ```-<metric>```
       This defines a mnemonic for the metric that will be measured:
       Grid-wide metrics (not node specific):
          cc - Total number of available CPUs in the grid.
