@@ -90,3 +90,21 @@ Next we are going to insert a few organizations without preparing statements.
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Updating records"
+}
+[/block]
+Now lets adjust someones salary. Lets write simple function for that.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "void AdjustSalary(SQLHDBC dbc, int64_t key, double salary)\n{\n  SQLHSTMT stmt;\n\n  // Allocate a statement handle\n  SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\n  SQLCHAR query[] = \"UPDATE Person SET salary=? WHERE _key=?\";\n\n  SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_DOUBLE, SQL_DOUBLE, 0, 0, &salary, 0, 0);\n  SQLBindParameter(stmt, 2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\n\n  SQLExecDirect(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n  // Releasing statement handle.\n  SQLFreeHandle(SQL_HANDLE_STMT, stmt);\n}\n\n...\nAdjustSalary(dbc, 3, 1200.0);\nAdjustSalary(dbc, 1, 2500.0);",
+      "language": "cplusplus"
+    }
+  ]
+}
+[/block]
