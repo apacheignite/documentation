@@ -108,3 +108,21 @@ Now lets adjust someones salary. Lets write simple function for that.
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Deleting records"
+}
+[/block]
+Finally, lets remove a few records. Lets use a function for this again:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "void DeletePerson(SQLHDBC dbc, int64_t key)\n{\n  SQLHSTMT stmt;\n\n  // Allocate a statement handle\n  SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\n  SQLCHAR query[] = \"DELETE FROM Person WHERE _key=?\";\n\n  SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\n\n  SQLExecDirect(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n  // Releasing statement handle.\n  SQLFreeHandle(SQL_HANDLE_STMT, stmt);\n}\n\n...\nDeletePerson(dbc, 1);\nDeletePerson(dbc, 4);",
+      "language": "cplusplus"
+    }
+  ]
+}
+[/block]
