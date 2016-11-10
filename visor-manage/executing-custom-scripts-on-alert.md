@@ -32,16 +32,15 @@ For configuration of throttle period see -i argument. Script will receive follow
     *aj - Active jobs on the node.
     * cj - Cancelled jobs on the node.
     * tc - Thread count on the node.
-    * ut - Up time on the node.
+    * ut - Up time on the node. By default (no suffix provided) value is assumed to be in milliseconds.
   **Note** <num> can have 's', 'm', or 'h' suffix indicating seconds, minutes, and hours.
-      By default (no suffix provided) value is assumed to be in milliseconds.
-         je - Job execute time on the node.
-         jw - Job wait time on the node.
-         wj - Waiting jobs count on the node.
-         rj - Rejected jobs count on the node.
-         hu - Heap memory used (in MB) on the node.
-         cd - Current CPU load on the node.
-         hm - Heap memory maximum (in MB) on the node.
+    * je - Job execute time on the node.
+    * jw - Job wait time on the node.
+    * wj - Waiting jobs count on the node.
+    * rj - Rejected jobs count on the node.
+    * hu - Heap memory used (in MB) on the node.
+    * cd - Current CPU load on the node.
+    * hm - Heap memory maximum (in MB) on the node.
 * ```<condition>```
       Comparison part of the mnemonic predicate:
          eq - Equal '=' to '<value>' number.
