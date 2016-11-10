@@ -59,12 +59,20 @@ You can also use pre-configured DSN for connection.
   "type": "basic"
 }
 [/block]
+Lets insert some records using `INSERT` query into `Person` cache. Here we are going to prepare statement and use parameters.
+[block:callout]
+{
+  "type": "info",
+  "title": "There is no error checking in the code below",
+  "body": "This is to make code more clear and easier to understand. You should always check for errors in production."
+}
+[/block]
 
 [block:code]
 {
   "codes": [
     {
-      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query[] = \"SELECT name, salary, Organization.name FROM Person \"\n  \"INNER JOIN \\\"Organization\\\".Organization ON Person.orgId = Organization.id\";\nSQLSMALLINT queryLen = static_cast<SQLSMALLINT>(sizeof(queryLen));\n\nret = SQLExecDirect(stmt, query, queryLen);\n\nif (!SQL_SUCCEEDED(ret))\n{\n  SQLCHAR sqlstate[7] = { 0 };\n  SQLINTEGER nativeCode;\n\n  SQLCHAR errMsg[BUFFER_SIZE] = { 0 };\n  SQLSMALLINT errMsgLen = static_cast<SQLSMALLINT>(sizeof(errMsg));\n\n  SQLGetDiagRec(SQL_HANDLE_DBC, dbc, 1, sqlstate, &nativeCode, errMsg, errMsgLen, &errMsgLen);\n  \n  std::cerr << \"Failed to perfrom SQL query upon Apache Ignite: \" \n            << reinterpret_cast<char*>(sqlstate) << \": \"\n            << reinterpret_cast<char*>(errMsg) << \", \"\n            << \"Native error code: \" << nativeCode \n            << std::endl;\n}\nelse\n{\n  // Printing results.\n  \n  struct OdbcStringBuffer\n  {\n    SQLCHAR buffer[BUFFER_SIZE];\n    SQLLEN resLen;\n  };\n  \n  // Getting number of columns in result set.\n  SQLSMALLINT columnsCnt = 0;\n  SQLNumResultCols(stmt, &columnsCnt);\n\n  // Allocating buffers for columns.\n  std::vector<OdbcStringBuffer> columns(columnsCnt);\n\n  // Binding colums. For simplicity we are going to use only\n  // string buffers here.\n  for (SQLSMALLINT i = 0; i < columnsCnt; ++i)\n    SQLBindCol(stmt, i + 1, SQL_CHAR, columns[i].buffer, BUFFER_SIZE, &columns[i].resLen);\n\n  // Fetching and printing data in a loop.\n  ret = SQLFetch(stmt);\n  while (SQL_SUCCEEDED(ret))\n  {\n    for (size_t i = 0; i < columns.size(); ++i)\n      std::cout << std::setw(16) << std::left << columns[i].buffer << \" \";\n\n    std::cout << std::endl;\n    \n    ret = SQLFetch(stmt);\n  }\n}\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);\n\n// Disconneting from the server.\nSQLDisconnect(dbc);\n\n// Releasing allocated handles.\nSQLFreeHandle(SQL_HANDLE_DBC, dbc);\nSQLFreeHandle(SQL_HANDLE_ENV, env);",
+      "code": "SQLCHAR query[] =\n\t\"INSERT INTO Person (_key, orgId, firstName, lastName, resume, salary) \"\n\t\"VALUES (?, ?, ?, ?, ?, ?)\";\n\nSQLPrepare(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n// Binding columns.\nint64_t key = 0;\nint64_t orgId = 0;\nchar name[1024] = { 0 };\nSQLLEN nameLen = SQL_NTS;\ndouble salary = 0.0;\n\nSQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\nSQLBindParameter(stmt, 2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &orgId, 0, 0);\nSQLBindParameter(stmt, 3, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_VARCHAR,\tsizeof(name), sizeof(name), name, 0, &nameLen);\nSQLBindParameter(stmt, 4, SQL_PARAM_INPUT, SQL_C_DOUBLE, SQL_DOUBLE, 0, 0, &salary, 0, 0);\n\n// Filling cache.\nkey = 1;\norgId = 1;\nstrncpy(name, \"John\", sizeof(firstName));\nsalary = 2200.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 1;\nstrncpy(name, \"Jane\", sizeof(firstName));\nsalary = 1300.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 2;\nstrncpy(name, \"Richard\", sizeof(firstName));\nsalary = 900.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 2;\nstrncpy(name, \"Mary\", sizeof(firstName));\nsalary = 2400.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);",
       "language": "cplusplus"
     }
   ]
