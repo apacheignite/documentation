@@ -80,7 +80,7 @@ Alert options:
   "title": "Examples"
 }
 [/block]
-```alert```
+```alert ```
    Prints all currently registered alerts.
     
 ```alert -u -a```
