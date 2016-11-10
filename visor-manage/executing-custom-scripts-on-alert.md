@@ -1,5 +1,5 @@
 * [Alert Command Specification](#alert-command-specification)
-* [Examples](#example)
+* [Examples](#examples)
 * [Custom Script](#custom-script)
 [block:api-header]
 {
@@ -102,7 +102,7 @@ alert -r -n=Nodes -t=15 -nc=gte3 -s=/home/user/scripts/alert.sh -i=300
 [/block]
 For example :
     
-alert -r -t=5 -n=MyAlert -nc=gte2 -cc=lte16 -i=15 -s=/home/user/myScript.sh
+```alert -r -t=5 -n=MyAlert -nc=gte2 -cc=lte16 -i=15 -s=/home/user/myScript.sh```
 
 [block:code]
 {
@@ -116,7 +116,17 @@ alert -r -t=5 -n=MyAlert -nc=gte2 -cc=lte16 -i=15 -s=/home/user/myScript.sh
 }
 [/block]
 Will generate a string like this:
-
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ALERT [MyAlert] CONDITION [-nc=gte2 -cc=lte16] alarmed with node count [2] and cpu count [8]",
+      "language": "text",
+      "name": "terminal"
+    }
+  ]
+}
+[/block]
 ALERT [MyAlert] CONDITION [-nc=gte2 -cc=lte16] alarmed with node count [2] and cpu count [8]
 
 Note that $1 points to alert name, $2 points to alert conditions and $3, $4,.... point to value of each sub-condition.
