@@ -25,10 +25,10 @@ For configuration of throttle period see -i argument. Script will receive follow
 * ```-<metric>```
 This defines a mnemonic for the metric that will be measured:
   Grid-wide metrics (not node specific):
-    cc - Total number of available CPUs in the grid.
-    nc - Total number of nodes in the grid.
-    hc - Total number of physical hosts in the grid.
-    cl - Current average CPU load (in %) in the grid.
+    * cc - Total number of available CPUs in the grid.
+    * nc - Total number of nodes in the grid.
+    * hc - Total number of physical hosts in the grid.
+    * cl - Current average CPU load (in %) in the grid.
       Per-node current metrics:
          aj - Active jobs on the node.
          cj - Cancelled jobs on the node.
