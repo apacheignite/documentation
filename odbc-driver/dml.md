@@ -56,7 +56,8 @@ You can also use pre-configured DSN for connection.
 
 [block:api-header]
 {
-  "type": "basic"
+  "type": "basic",
+  "title": "Inserting records"
 }
 [/block]
 Lets insert some records using `INSERT` query into `Person` cache. Here we are going to prepare statement and use parameters.
@@ -72,7 +73,18 @@ Lets insert some records using `INSERT` query into `Person` cache. Here we are g
 {
   "codes": [
     {
-      "code": "SQLCHAR query[] =\n\t\"INSERT INTO Person (_key, orgId, firstName, lastName, resume, salary) \"\n\t\"VALUES (?, ?, ?, ?, ?, ?)\";\n\nSQLPrepare(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n// Binding columns.\nint64_t key = 0;\nint64_t orgId = 0;\nchar name[1024] = { 0 };\nSQLLEN nameLen = SQL_NTS;\ndouble salary = 0.0;\n\nSQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\nSQLBindParameter(stmt, 2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &orgId, 0, 0);\nSQLBindParameter(stmt, 3, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_VARCHAR,\tsizeof(name), sizeof(name), name, 0, &nameLen);\nSQLBindParameter(stmt, 4, SQL_PARAM_INPUT, SQL_C_DOUBLE, SQL_DOUBLE, 0, 0, &salary, 0, 0);\n\n// Filling cache.\nkey = 1;\norgId = 1;\nstrncpy(name, \"John\", sizeof(firstName));\nsalary = 2200.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 1;\nstrncpy(name, \"Jane\", sizeof(firstName));\nsalary = 1300.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 2;\nstrncpy(name, \"Richard\", sizeof(firstName));\nsalary = 900.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 2;\nstrncpy(name, \"Mary\", sizeof(firstName));\nsalary = 2400.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);",
+      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query[] =\n\t\"INSERT INTO Person (_key, orgId, firstName, lastName, resume, salary) \"\n\t\"VALUES (?, ?, ?, ?, ?, ?)\";\n\nSQLPrepare(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n// Binding columns.\nint64_t key = 0;\nint64_t orgId = 0;\nchar name[1024] = { 0 };\nSQLLEN nameLen = SQL_NTS;\ndouble salary = 0.0;\n\nSQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\nSQLBindParameter(stmt, 2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &orgId, 0, 0);\nSQLBindParameter(stmt, 3, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_VARCHAR,\tsizeof(name), sizeof(name), name, 0, &nameLen);\nSQLBindParameter(stmt, 4, SQL_PARAM_INPUT, SQL_C_DOUBLE, SQL_DOUBLE, 0, 0, &salary, 0, 0);\n\n// Filling cache.\nkey = 1;\norgId = 1;\nstrncpy(name, \"John\", sizeof(firstName));\nsalary = 2200.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 1;\nstrncpy(name, \"Jane\", sizeof(firstName));\nsalary = 1300.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 2;\nstrncpy(name, \"Richard\", sizeof(firstName));\nsalary = 900.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 2;\nstrncpy(name, \"Mary\", sizeof(firstName));\nsalary = 2400.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);",
+      "language": "cplusplus"
+    }
+  ]
+}
+[/block]
+Next we are going to insert a few organizations without preparing statements.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query1[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (1L, 'Microsoft')\";\nSQLExecDirect(stmt, query1, static_cast<SQLSMALLINT>(sizeof(query1)));\nSQLFreeStmt(stmt, SQL_CLOSE);\n\nSQLCHAR query2[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (2L, 'Red Cross')\";\nSQLExecDirect(stmt, query2, static_cast<SQLSMALLINT>(sizeof(query2)));\nSQLFreeStmt(stmt, SQL_CLOSE);",
       "language": "cplusplus"
     }
   ]
