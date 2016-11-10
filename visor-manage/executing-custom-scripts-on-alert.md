@@ -11,13 +11,8 @@ Register alert: ```alert -r {-t=<sec>} {-<metric>=<condition><value>} ... {-<met
 Unregister: ```alert -u {-id=<alert-id>|-a}```
 
 Alert options:
-```-n```    Alert name
-
-    
-  ```-u ```
-      Unregisters alert(s). Either '-a' flag or '-id' parameter is required.
-      Note that only one of the '-u' or '-r' is allowed.
-      If neither '-u' or '-r' provided - all alerts will be printed.
+```-n``` Alert name
+  ```-u ``` Unregisters alert(s). Either '-a' flag or '-id' parameter is required. Note that only one of the '-u' or '-r' is allowed. If neither '-u' or '-r' provided - all alerts will be printed.
     
   ```-a ```
       When provided with '-u' - all alerts will be unregistered.
