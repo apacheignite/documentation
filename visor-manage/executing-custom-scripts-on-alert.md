@@ -124,7 +124,7 @@ Alert options:
   ]
 }
 [/block]
-Will generate a terminal output like this:
+Will generate output in terminal like this:
 [block:code]
 {
   "codes": [
