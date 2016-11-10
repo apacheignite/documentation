@@ -84,7 +84,7 @@ Next we are going to insert a few organizations without preparing statements.
 {
   "codes": [
     {
-      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query1[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (1L, 'Microsoft')\";\nSQLExecDirect(stmt, query1, static_cast<SQLSMALLINT>(sizeof(query1)));\nSQLFreeStmt(stmt, SQL_CLOSE);\n\nSQLCHAR query2[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (2L, 'Red Cross')\";\nSQLExecDirect(stmt, query2, static_cast<SQLSMALLINT>(sizeof(query2)));\nSQLFreeStmt(stmt, SQL_CLOSE);",
+      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query1[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (1L, 'Some company')\";\nSQLExecDirect(stmt, query1, static_cast<SQLSMALLINT>(sizeof(query1)));\nSQLFreeStmt(stmt, SQL_CLOSE);\n\nSQLCHAR query2[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (2L, 'Some other company')\";\nSQLExecDirect(stmt, query2, static_cast<SQLSMALLINT>(sizeof(query2)));\nSQLFreeStmt(stmt, SQL_CLOSE);",
       "language": "cplusplus"
     }
   ]
