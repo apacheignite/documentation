@@ -34,9 +34,9 @@ To install PHP, PDO and PDO_ODBC driver refer to the generic PHP resources:
 * [Download](http://php.net/downloads.php) and install the desired PHP version. Note, that PDO driver is enabled by default in PHP as of PHP 5.1.0.
 * [Configure](http://php.net/manual/en/book.pdo.php) PHP PDO framework.
 * [Enable](http://php.net/manual/en/ref.pdo-odbc.php) PDO_ODBC driver.
- * For Windows versions you may need to uncomment `extension=php_pdo_odbc.dll` line in your php.ini and make sure that `extension_dir` points to directory that contains `php_pdo_odbc.dll` and is in `PATH`.
- * For Unix-like OS you ordinary just need to install appropriate package (for example `php5-odbc` for Ubuntu 14.04 and PHP 5).
-* If necessary, [configure](http://php.net/manual/en/ref.pdo-odbc.php#ref.pdo-odbc.installation) and build PDO_ODBC driver for your system. In most cases, however, simple installation of the PHP and PDO_ODBC driver is going to be enough.
+ * On Windows it may be needed to uncomment `extension=php_pdo_odbc.dll` line in the php.ini and make sure that `extension_dir` points to a directory which contains `php_pdo_odbc.dll`. Moreover, this directory has to be added to `PATH` environment variable.
+ * On Unix based systems most often it's simply required to install a special PHP_ODBC package. For instance, `php5-odbc` package has to be installed on Ubuntu 14.04.
+* If necessary, [configure](http://php.net/manual/en/ref.pdo-odbc.php#ref.pdo-odbc.installation) and build PDO_ODBC driver for a specific system that does not fall under a general case. In most cases, however, simple installation of both PHP and PDO_ODBC driver is going to be enough.
 [block:api-header]
 {
   "type": "basic",
@@ -45,11 +45,11 @@ To install PHP, PDO and PDO_ODBC driver refer to the generic PHP resources:
 [/block]
 After PHP PDO is installed and ready to be used let's start an Ignite cluster with an exemplary configuration and connect to the cluster from a PHP application updating and querying cluster's data.
 
-First of all, you should enable ODBC processor on the node, you are going to connect to. To do so you need to add `odbcConfiguration` property in your `IgniteConfiguration`.
+First of all, ODBC processor has to be enabled cluster wide. To do so, `odbcConfiguration` property has to be added to `IgniteConfiguration` of every cluster node.
 
-After that you need to properly configure your cache. From the ODBC standpoint of view, caches are schemas, types are tables and fields are columns. So in order to be able to run queries over cache you first need to describe your "tables", i.e. types. To do so you should you `queryEntities` property of the `org.apache.ignite.configuration.CacheConfiguration` bean. See [Cache Queries](doc:cache-queries) for details.
+Next, list configurations for all the caches related to specific data models inside of `IgniteConfiguration`. Since we're going to execute SQL queries from PHP PDO side over the cluster, every cache configuration needs to contain a definition for 'QueryEntity'. Please refer to [Cache Queries documentation](doc:cache-queries) to learn more about query entities and SQL queries in Ignite.
 
-Below you can find simple example of such a configuration for a node.
+Use a configuration template below and start an Ignite cluster using one of the methods described [Getting Started](doc:getting-started#start-from-command-line).  
 [block:code]
 {
   "codes": [
@@ -68,21 +68,21 @@ Below you can find simple example of such a configuration for a node.
   "title": "Connecting From PHP to Ignite Cluster"
 }
 [/block]
-You also are going to need properly configured DSN for Ignite. In the example below we assume that your DSN's name is "Apache Ignite DSN".
+To connect to Ignite from PHP PDO side the DSN has to be properly configured for Ignite. In the example below it's assumed that DSN's name is "Apache Ignite DSN".
 [block:callout]
 {
   "type": "info",
   "title": "Note that you can't connect using PDO ODBC without properly configured DSN."
 }
 [/block]
-Once you have all these things, you can finally write some code using PDO to connect to Apache Ignite node and run some queries.
+At the end, once everything is configured and can be inter-connected it's time to connect to the Apache Ignite cluster from a PHP PDO application and execute a number of queries like the ones shown below.
 [block:code]
 {
   "codes": [
     {
-      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query and getting result.\n  $res = $dbh->query('SELECT firstName, lastName, resume, salary from Person WHERE salary < 2000.0');\n\n  // Printing results.\n  foreach($res as $row) {\n    print_r($row);\n  }\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
+      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Preparing query.\n  $dbs = $dbh->prepare('INSERT INTO Person (_key, firstName, lastName, resume, salary) VALUES (?, ?, ?, ?, ?)');\n\n  // Declaringing parameters.\n  $key = 777;\n  $firstName = \"James\";\n  $lastName = \"Bond\";\n  $resume = \"Secret Service agent\";\n  $salary = 7777777;\n\n  // Binding parameters.\n  $dbs->bindParam(1, $key);\n  $dbs->bindParam(2, $firstName);\n  $dbs->bindParam(3, $lastName);\n  $dbs->bindParam(4, $resume);\n  $dbs->bindParam(5, $salary);\n  \n  // Executing query.\n  $dbs->execute();\n  \n  // Updating parameters.\n  $key = 42;\n  $firstName = \"Arthur\";\n  $lastName = \"Dent\";\n  $resume = \"No info\";\n  $salary = 0.0;\n  \n  // Executing query again with updated parameters.\n  $dbs->execute();\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
       "language": "php",
-      "name": "Select"
+      "name": "Insert"
     },
     {
       "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query.\n  $dbh->query('UPDATE Person SET salary = 2000.0 WHERE salary < 2000.0');\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
@@ -90,9 +90,9 @@ Once you have all these things, you can finally write some code using PDO to con
       "name": "Update"
     },
     {
-      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Preparing query.\n  $dbs = $dbh->prepare('INSERT INTO Person (_key, firstName, lastName, resume, salary) VALUES (?, ?, ?, ?, ?)');\n\n  // Declaringing parameters.\n  $key = 777;\n  $firstName = \"James\";\n  $lastName = \"Bond\";\n  $resume = \"Secret Service agent\";\n  $salary = 7777777;\n\n  // Binding parameters.\n  $dbs->bindParam(1, $key);\n  $dbs->bindParam(2, $firstName);\n  $dbs->bindParam(3, $lastName);\n  $dbs->bindParam(4, $resume);\n  $dbs->bindParam(5, $salary);\n  \n  // Executing query.\n  $dbs->execute();\n  \n  // Updating parameters.\n  $key = 42;\n  $firstName = \"Arthur\";\n  $lastName = \"Dent\";\n  $resume = \"No info\";\n  $salary = 0.0;\n  \n  // Executing query again with updated parameters.\n  $dbs->execute();\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
+      "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query and getting result.\n  $res = $dbh->query('SELECT firstName, lastName, resume, salary from Person WHERE salary < 2000.0');\n\n  // Printing results.\n  foreach($res as $row) {\n    print_r($row);\n  }\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
       "language": "php",
-      "name": "Insert"
+      "name": "Select"
     },
     {
       "code": "<?php\ntry {\n  // Connecting to Ignite using pre-configured DSN.\n  $dbh = new PDO('odbc:Apache Ignite DSN');\n\n  // Performing query.\n  $dbh->query('DELETE FROM Person WHERE firstName = \\'John\\' and lastName = \\'Smith\\'');\n\n} catch (PDOException $e) {\n  print \"Error!: \" . $e->getMessage() . \"\\n\";\n  die();\n}\n?>",
