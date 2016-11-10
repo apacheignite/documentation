@@ -43,13 +43,13 @@ For configuration of throttle period see -i argument. Script will receive follow
     * cd - Current CPU load on the node.
     * hm - Heap memory maximum (in MB) on the node.
 * ```<condition>```
-      Comparison part of the mnemonic predicate:
-         eq - Equal '=' to '<value>' number.
-         neq - Not equal '!=' to '<value>' number.
-         gt - Greater than '>' to '<value>' number.
-         gte - Greater than or equal '>=' to '<value>' number.
-         lt - Less than '<' to 'NN' number.
-         lte - Less than or equal '<=' to '<value>' number.
+  Comparison part of the mnemonic predicate:
+    * eq - Equal '=' to '<value>' number.
+    * neq - Not equal '!=' to '<value>' number.
+    * gt - Greater than '>' to '<value>' number.
+    * gte - Greater than or equal '>=' to '<value>' number.
+    * lt - Less than '<' to 'NN' number.
+    * lte - Less than or equal '<=' to '<value>' number.
 [block:api-header]
 {
   "type": "basic",
