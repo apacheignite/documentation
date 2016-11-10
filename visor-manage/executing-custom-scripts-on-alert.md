@@ -40,7 +40,7 @@ Alert options:
          hu - Heap memory used (in MB) on the node.
          cd - Current CPU load on the node.
          hm - Heap memory maximum (in MB) on the node.
-  <condition>
+* ```<condition>```
       Comparison part of the mnemonic predicate:
          eq - Equal '=' to '<value>' number.
          neq - Not equal '!=' to '<value>' number.
