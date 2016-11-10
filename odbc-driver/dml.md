@@ -4,7 +4,7 @@
 * [Updating records](#updating-records)
 * [Deleting records](#deleting-records)
 
-Starting from Ignite 1.8, DML is supported in SQL queries. This means DML can now be used in ODBC as well. On this you can find details.
+Starting from Ignite 1.8, DML is supported in SQL queries. This means DML can now be used in ODBC as well. Here you can find details and some sample code on how to do that. Also, you can refer to [ODBC Example](https://github.com/apache/ignite/tree/master/modules/platforms/cpp/examples/odbc-example) in Ignite Git repository for a working example code.
 [block:api-header]
 {
   "type": "basic",
