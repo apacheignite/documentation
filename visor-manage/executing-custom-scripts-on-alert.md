@@ -28,6 +28,7 @@ Grid-wide metrics (not node specific):
     * nc - Total number of nodes in the grid.
     * hc - Total number of physical hosts in the grid.
     * cl - Current average CPU load (in %) in the grid.
+
 Per-node current metrics:
     * aj - Active jobs on the node.
     * cj - Cancelled jobs on the node.
