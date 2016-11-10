@@ -33,4 +33,4 @@ As you can see, we have here two caches: `Person` and `Organization`, that conta
   "body": "You can read about how to configure it on [Cluster Configuration](doc:cluster-config) page."
 }
 [/block]
-Of course you can still configure node from the Java code, as well as using `@QuerySqlField` annotations. Refer to [Cache Queries](doc:cache-queries) for details.
+Of course you can still configure node from the Java code, as well as use `@QuerySqlField` annotations. Refer to [Cache Queries](doc:cache-queries) for details.
