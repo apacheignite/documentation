@@ -80,19 +80,19 @@ Alert options:
   "title": "Examples"
 }
 [/block]
-alert
+```alert```
    Prints all currently registered alerts.
     
-alert -u -a
+```alert -u -a```
    Unregisters all currently registered alerts.
     
-alert -u -id=12345678
+```alert -u -id=12345678```
    Unregisters alert with provided ID.
     
-alert -r -t=900 -cc=gte4 -cl=gt50
+```alert -r -t=900 -cc=gte4 -cl=gt50```
    Register alert that will notify every 15 min if grid has >= 4 CPUs and > 50% CPU load.
 
-alert -r -n=Nodes -t=15 -nc=gte3 -s=/home/user/scripts/alert.sh -i=300
+```alert -r -n=Nodes -t=15 -nc=gte3 -s=/home/user/scripts/alert.sh -i=300```
    Register alert that will notify every 15 second if grid has >= 3 nodes and execute script "/home/user/scripts/alert.sh" with repeat interval not less than 5 min.
 [block:api-header]
 {
