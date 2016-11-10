@@ -100,12 +100,12 @@ Alert options:
   "title": "Custom Script"
 }
 [/block]
-Register alert that will notify every 15 second if grid has >= 3 nodes and execute script: ```/home/user/myScript.sh``` with repeat interval not less than 5 min.
+Register alert that will execute script: ```/home/user/myScript.sh``` every 15 second if grid has >= 2 nodes and cpu count <= 16 with repeat interval not less than 5 min.
 [block:code]
 {
   "codes": [
     {
-      "code": "alert -r -n=Nodes -t=15 -nc=gte3 -i=300 -s=/home/user/myScript.sh",
+      "code": "alert -r -t=5 -n=MyAlert -nc=gte2 -cc=lte16 -i=15 -s=/home/user/myScript.sh",
       "language": "shell",
       "name": "Usage"
     }
