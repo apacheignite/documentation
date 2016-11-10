@@ -17,6 +17,6 @@ With DML you can now insert, modify and delete records using SLQ alone, which me
 {
   "type": "info",
   "title": "",
-  "body": "DiscoverySpi was not configured for this node. You can find details on how to configure it"
+  "body": "`DiscoverySpi` was not configured for this node. You can find details on how to configure it"
 }
 [/block]
