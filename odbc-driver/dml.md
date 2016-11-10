@@ -12,7 +12,7 @@ With DML you can now insert, modify and delete records using SLQ alone, which me
   ]
 }
 [/block]
-As you can see, we have here two caches: `Person` and `Organization`.
+As you can see, we have here two caches: `Person` and `Organization`, that contain types with matching names and some fields - `name` and `salary` for `Person` and `name` for `Organization`. Not much, but enough for the demonstration.
 [block:callout]
 {
   "type": "info",
