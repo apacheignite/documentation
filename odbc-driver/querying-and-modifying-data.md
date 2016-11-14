@@ -81,6 +81,17 @@ You can also use pre-configured DSN for connection.
   "title": "Selecting records"
 }
 [/block]
+Now, when everything set up and ready we can use ODBC API to run SQL query upon our data grid just like if it was ordinary database. Lets try it out.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query[] = \"SELECT firstName, lastName, salary, Organization.name FROM Person \"\n  \"INNER JOIN \\\"Organization\\\".Organization ON Person.orgId = Organization._key\";\nSQLSMALLINT queryLen = static_cast<SQLSMALLINT>(sizeof(queryLen));\n\nSQLRETURN ret = SQLExecDirect(stmt, query, queryLen);\n\nif (!SQL_SUCCEEDED(ret))\n{\n  SQLCHAR sqlstate[7] = { 0 };\n  SQLINTEGER nativeCode;\n\n  SQLCHAR errMsg[BUFFER_SIZE] = { 0 };\n  SQLSMALLINT errMsgLen = static_cast<SQLSMALLINT>(sizeof(errMsg));\n\n  SQLGetDiagRec(SQL_HANDLE_DBC, dbc, 1, sqlstate, &nativeCode, errMsg, errMsgLen, &errMsgLen);\n  \n  std::cerr << \"Failed to perfrom SQL query upon Apache Ignite: \" \n            << reinterpret_cast<char*>(sqlstate) << \": \"\n            << reinterpret_cast<char*>(errMsg) << \", \"\n            << \"Native error code: \" << nativeCode \n            << std::endl;\n}\nelse\n{\n  // Printing results.\n  \n  struct OdbcStringBuffer\n  {\n    SQLCHAR buffer[BUFFER_SIZE];\n    SQLLEN resLen;\n  };\n  \n  // Getting number of columns in result set.\n  SQLSMALLINT columnsCnt = 0;\n  SQLNumResultCols(stmt, &columnsCnt);\n\n  // Allocating buffers for columns.\n  std::vector<OdbcStringBuffer> columns(columnsCnt);\n\n  // Binding colums. For simplicity we are going to use only\n  // string buffers here.\n  for (SQLSMALLINT i = 0; i < columnsCnt; ++i)\n    SQLBindCol(stmt, i + 1, SQL_CHAR, columns[i].buffer, BUFFER_SIZE, &columns[i].resLen);\n\n  // Fetching and printing data in a loop.\n  ret = SQLFetch(stmt);\n  while (SQL_SUCCEEDED(ret))\n  {\n    for (size_t i = 0; i < columns.size(); ++i)\n      std::cout << std::setw(16) << std::left << columns[i].buffer << \" \";\n\n    std::cout << std::endl;\n    \n    ret = SQLFetch(stmt);\n  }\n}\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);\n\n// Disconneting from the server.\nSQLDisconnect(dbc);\n\n// Releasing allocated handles.\nSQLFreeHandle(SQL_HANDLE_DBC, dbc);\nSQLFreeHandle(SQL_HANDLE_ENV, env);",
+      "language": "cplusplus"
+    }
+  ]
+}
+[/block]
 
 [block:api-header]
 {
