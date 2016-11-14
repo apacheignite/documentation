@@ -117,4 +117,4 @@ In Linux to configure DSN you first need to locate your odbc.ini file. Steps to 
 }
 [/block]
 Files that you are looking for are going to be listed after SYSTEM DATA SOURCES and 
-USER DATA SOURCES. Once you located the file you should manually open
+USER DATA SOURCES. Once you located the file you should manually open it with any editor (you may need to create it first) and add dsn in the following format:
