@@ -1,5 +1,6 @@
 * [Preparing node](#preparing-node)
 * [Connecting to the node](#connecting-to-the-node)
+* [Selecting records](#selecting-records)
 * [Inserting records](#inserting-records)
 * [Updating records](#updating-records)
 * [Deleting records](#deleting-records)
