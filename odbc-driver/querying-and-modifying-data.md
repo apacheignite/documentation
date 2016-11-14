@@ -15,7 +15,7 @@ Also, you can refer to [ODBC Example](https://github.com/apache/ignite/tree/mast
   "title": "Preparing node"
 }
 [/block]
-First you need to create and properly configure your caches in order to be able to run queries upon them. It means you need either to configure `queryEntities` property of the `CacheConfiguration` or you can use `@QuerySqlField` annotations. Refer to [Cache Queries](doc:cache-queries) for details.
+First you need to create and properly configure your caches in order to be able to run queries upon them. It means you need either to configure `queryEntities` property of the `CacheConfiguration`.
 
 With DML you can now insert, modify and delete records using SLQ alone, which means you can now manipulate data on Ignite writing virtually zero lines of Java code. Let me give you an example. Consider the following simple node configuration:
 [block:code]
@@ -45,7 +45,7 @@ As you can see, we have here two caches: `Person` and `Organization`, that conta
   "body": "You can read about how to configure it on [Cluster Configuration](doc:cluster-config) page."
 }
 [/block]
-
+ Of course you can still configure node from the Java code, as well as use `@QuerySqlField` annotations. Refer to [Cache Queries](doc:cache-queries) for details.
 [block:api-header]
 {
   "type": "basic",
