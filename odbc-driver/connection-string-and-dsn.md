@@ -105,4 +105,16 @@ The same arguments can be used in DSN. However to configure DNS in Windows you s
 
 Once ODBC Data Source Administrator is launched choose `Add...`->`Apache Ignite` and configure your DSN in desired way.
 
-In Linux you
+In Linux to configure DSN you first need to locate your odbc.ini file. Steps to do that can differ depending on your Driver Manager. For example if you are using unixODBC you can run the following command:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "odbcinst -j",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Files that you are looking for are going to be listed after SYSTEM DATA SOURCES and 
+USER DATA SOURCES. Once you located the file you should manually open
