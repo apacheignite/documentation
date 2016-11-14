@@ -77,6 +77,13 @@ You can also use pre-configured DSN for connection.
 [block:api-header]
 {
   "type": "basic",
+  "title": "Selecting records"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Inserting records"
 }
 [/block]
