@@ -4,7 +4,11 @@
 * [Updating records](#updating-records)
 * [Deleting records](#deleting-records)
 
-Starting from Ignite 1.8, DML is supported in SQL queries. This means DML can now be used in ODBC as well. Here you can find details and some sample code on how to do that. Also, you can refer to [ODBC Example](https://github.com/apache/ignite/tree/master/modules/platforms/cpp/examples/odbc-example) in Ignite Git repository for the example code.
+ODBC Driver internally uses Fields queries to retrieve data from the Apache Ignite cache. This means that by ODBC you can only access those fields that are [accessible for SQL queries](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
+
+Starting from Ignite 1.8, DML is supported in SQL queries. This means DML can now be used in ODBC as well. Here you can find details and some sample code on how to do that.
+
+Also, you can refer to [ODBC Example](https://github.com/apache/ignite/tree/master/modules/platforms/cpp/examples/odbc-example) in Ignite Git repository for the example code.
 [block:api-header]
 {
   "type": "basic",
