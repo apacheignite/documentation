@@ -33,6 +33,14 @@ With DML you can now insert, modify and delete records using SLQ alone, which me
 [block:callout]
 {
   "type": "info",
+  "body": "In addition to all the explicitly configured fields, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for example, when one of them is a primitive and you want to filter by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`.",
+  "title": "Predefined Fields"
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
   "title": "Note odbcConfiguration property.",
   "body": "Remember, you need explicitly enable ODBC on the node you going to connect to."
 }
