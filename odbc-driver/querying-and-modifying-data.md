@@ -96,7 +96,7 @@ Now, when everything set up and ready we can use ODBC API to run SQL query upon 
 [block:callout]
 {
   "type": "info",
-  "body": "In the example above we bind all columns to the `SQL_CHAR` columns. This means all values are going to be converted to strings upon fetching. We only do that for the sake of the simplicity. Converting values upon fetching can be pretty slow so your default decision should be to fetch value the same way they are stored.",
+  "body": "In the example above we bind all columns to the `SQL_C_CHAR` columns. This means all values are going to be converted to strings upon fetching. We only do that for the sake of the simplicity. Converting values upon fetching can be pretty slow so your default decision should be to fetch value the same way they are stored.",
   "title": "Columns binding"
 }
 [/block]
