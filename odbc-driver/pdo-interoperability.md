@@ -68,7 +68,7 @@ Use the configuration template below and start an Ignite cluster using one of th
   "title": "Connecting From PHP to Ignite Cluster"
 }
 [/block]
-To connect to Ignite from PHP PDO side the DSN has to be properly configured for Ignite. In the example below it's assumed that DSN's name is "Apache Ignite DSN".
+To connect to Ignite from PHP PDO side the DSN has to be properly configured for Ignite. See [Configuring DSN](connection-string-and-dsn#configuring-dsn) section for details. In the example below it's assumed that DSN's name is "Apache Ignite DSN".
 [block:callout]
 {
   "type": "info",
