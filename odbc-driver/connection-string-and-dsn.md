@@ -1,6 +1,7 @@
 * [Connection String Format](#connection-string-format)
 * [Supported Arguments](#supported-arguments)
 * [Connection String Example](#connection-string-example)
+* [Configuring DSN](#configuring-dsn)
 [block:api-header]
 {
   "type": "basic",
@@ -102,4 +103,6 @@ You can find samples of the connection string below. These strings can be used w
 [/block]
 The same arguments can be used in DSN. However to configure DNS in Windows you should not explicitly type them. Instead you should use system tool `odbcad32` - ODBC Data Source Administrator. To launch it go to `Control panel`->`Administrative Tools`->`Data Sources (ODBC)`.
 
-Once ODBC Data Source Administrator is launched choose `Add...`->`Apache Ignite` and configure
+Once ODBC Data Source Administrator is launched choose `Add...`->`Apache Ignite` and configure your DSN in desired way.
+
+In Linux you
