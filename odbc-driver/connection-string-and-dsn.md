@@ -93,3 +93,11 @@ You can find samples of the connection string below. These strings can be used w
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuring DSN"
+}
+[/block]
+The same arguments can be used in DSN. However to configure DNS in Windows you should not explicitly type them. Instead you should use system tool `odbcad32` - ODBC Data Source Administrator. To launch it go to `Control panel`->`Administrative Tools`->`Data Sources (ODBC)`.
