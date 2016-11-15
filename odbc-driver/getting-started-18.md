@@ -1,4 +1,5 @@
 * [Overview](#overview)
+* [Thread-safety](#thread-safety)
 * [Prerequisites](#prerequisites)
 * [Building ODBC Driver](#building-odbc-driver)
 * [Installing ODBC Driver](#installing-odbc-driver)
@@ -58,6 +59,13 @@ So if you want to change some parameters you can do this like that:
 }
 [/block]
 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Thread-safety"
+}
+[/block]
+Current implementation of the Ignite ODBC driver only provides thread-safety on the connections level. It means you should not access the same connection from several threads without additional synchronization, though you can create separate connections for every thread and use them simultaneously.
 [block:api-header]
 {
   "type": "basic",
