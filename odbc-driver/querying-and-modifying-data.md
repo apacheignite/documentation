@@ -1,5 +1,5 @@
-* [Configuring Ignite Cluster](#configuring-ignite-node)
-* [Connecting to the Cluster](#connecting-to-the-node)
+* [Configuring Ignite Cluster](#configuring-ignite-cluster)
+* [Connecting to the Cluster](#connecting-to-the-cluster)
 * [Selecting records](#selecting-records)
 * [Inserting records](#inserting-records)
 * [Updating records](#updating-records)
