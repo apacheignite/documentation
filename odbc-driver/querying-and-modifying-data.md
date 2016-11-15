@@ -1,9 +1,9 @@
 * [Configuring Ignite Cluster](#configuring-ignite-cluster)
 * [Connecting to the Cluster](#connecting-to-the-cluster)
-* [Selecting records](#selecting-records)
-* [Inserting records](#inserting-records)
-* [Updating records](#updating-records)
-* [Deleting records](#deleting-records)
+* [Querying Data](#querying-data)
+* [Inserting Data](#inserting-data)
+* [Updating Data](#updating-data)
+* [Deleting Data](#deleting-data)
 
 This page elaborates on how to connect to an Ignite cluster and execute a variety of SQL queries using Ignite's ODBC driver. 
 
