@@ -25,7 +25,7 @@ Internally, Ignite ODBC driver uses TCP protocol to establish connection with Ig
 {
   "codes": [
     {
-      "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n  <!-- Enabling ODBC. -->\n  <property name=\"odbcConfiguration\">\n    <bean class=\"org.apache.ignite.configuration.OdbcConfiguration\"></bean>\n  </property>\n  ...\n</bean>\n",
+      "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n  <!-- Enabling ODBC. -->\n  <property name=\"odbcConfiguration\">\n    <bean class=\"org.apache.ignite.configuration.OdbcConfiguration\"/>\n  </property>\n  ...\n</bean>\n",
       "language": "xml"
     },
     {
