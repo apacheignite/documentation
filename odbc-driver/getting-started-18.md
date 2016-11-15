@@ -1,5 +1,5 @@
 * [Overview](#overview)
-* [Cluster configuration](#cluster-configuration)
+* [Cluster Configuration](#cluster-configuration)
 * [Thread-safety](#thread-safety)
 * [Prerequisites](#prerequisites)
 * [Building ODBC Driver](#building-odbc-driver)
