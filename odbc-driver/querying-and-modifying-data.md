@@ -5,11 +5,18 @@
 * [Updating records](#updating-records)
 * [Deleting records](#deleting-records)
 
-ODBC Driver internally uses Fields queries to retrieve data from the Apache Ignite cache. This means that by ODBC you can only access those fields that are [accessible for SQL queries](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
+This page elaborates on how to connect to an Ignite cluster and execute a variety of SQL queries using Ignite's ODBC driver. 
 
-Starting from Ignite 1.8, DML is supported in SQL queries. This means DML can now be used in ODBC as well. Here you can find details and some sample code on how to do that.
+At the implementation layer Ignite's ODBC driver uses Ignite SQL Fields queries to retrieve data from  Apache Ignite Data Grid. This means that from ODBC side you can access only those fields that are [defined in cluster's configuration](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
 
-Also, you can refer to [ODBC Example](https://github.com/apache/ignite/tree/master/modules/platforms/cpp/examples/odbc-example) in Ignite Git repository for the example code.
+Moreover, starting from Ignite 1.8 the ODBC driver supports DML (Data Modification Layer) which means that you can not only request data but modify Ignite Data Grid content as well using an ODBC connection.
+[block:callout]
+{
+  "type": "success",
+  "body": "Refer to [ODBC Example](https://github.com/apache/ignite/tree/master/modules/platforms/cpp/examples/odbc-example) that incorporates complete logic and exemplary queries shown below in the documentation."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
