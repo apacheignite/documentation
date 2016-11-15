@@ -1,4 +1,5 @@
 * [Overview](#overview)
+* [Node configuration](#node-configuration)
 * [Thread-safety](#thread-safety)
 * [Prerequisites](#prerequisites)
 * [Building ODBC Driver](#building-odbc-driver)
@@ -16,7 +17,8 @@ For detailed info on ODBC please refer to [ODBC Programmer's Reference](https://
 Apache Ignite ODBC driver implements version 3.0 of the ODBC API.
 [block:api-header]
 {
-  "type": "basic"
+  "type": "basic",
+  "title": "Node configuration"
 }
 [/block]
 ODBC driver is dynamic library on Windows and shared object on Linux. But user application does not load it directly - instead it uses Driver Manager API which in its own way loads and unloads ODBC drivers when needed.
