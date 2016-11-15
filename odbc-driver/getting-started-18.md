@@ -29,7 +29,7 @@ Internally, Ignite ODBC driver uses TCP protocol to establish connection with Ig
       "language": "xml"
     },
     {
-      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n...\nOdbcConfiguration odbcCfg = new OdbcConfiguration();\ncfg.setOdbcConfiguration(odbcCfg);\n...",
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n//...\nOdbcConfiguration odbcCfg = new OdbcConfiguration();\ncfg.setOdbcConfiguration(odbcCfg);\n//...",
       "language": "java"
     }
   ]
