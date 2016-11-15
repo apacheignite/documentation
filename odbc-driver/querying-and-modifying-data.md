@@ -162,7 +162,7 @@ Next, we are going to insert additional organizations without the usage of prepa
 [block:api-header]
 {
   "type": "basic",
-  "title": "Updating records"
+  "title": "Updating Data"
 }
 [/block]
 Going forward, let's update salary for some of the persons stored in the cluster using SQL `UPDATE` statement.
@@ -180,7 +180,7 @@ Going forward, let's update salary for some of the persons stored in the cluster
 [block:api-header]
 {
   "type": "basic",
-  "title": "Deleting records"
+  "title": "Deleting Data"
 }
 [/block]
 Finally, let's remove few records with the help of SQL `DELETE` statement.
