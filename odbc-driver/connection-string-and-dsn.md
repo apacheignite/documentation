@@ -101,11 +101,11 @@ You can find samples of the connection string below. These strings can be used w
   "title": "Configuring DSN"
 }
 [/block]
-The same arguments can be used in DSN. However to configure DNS in Windows you should not explicitly type them. Instead you should use system tool `odbcad32` - ODBC Data Source Administrator. To launch it go to `Control panel`->`Administrative Tools`->`Data Sources (ODBC)`.
+The same arguments can be used if you prefer to use [DSN](https://en.wikipedia.org/wiki/Data_source_name) (Data Source Name) for connection purposes. 
 
-Once ODBC Data Source Administrator is launched choose `Add...`->`Apache Ignite` and configure your DSN in desired way.
+To configure DSN on Windows you should use a system tool called `odbcad32` that is ODBC Data Source Administrator. To launch it go to `Control panel`->`Administrative Tools`->`Data Sources (ODBC)`. Once ODBC Data Source Administrator is launched choose `Add...`->`Apache Ignite` and configure your DSN in the desired way.
 
-In Linux to configure DSN you first need to locate your odbc.ini file. Steps to do that can differ depending on your Driver Manager. For example if you are using unixODBC you can run the following command:
+To do the same on Linux you have to locate odbc.ini file. The file location varies among Linux distributions and depends on a specific Driver Manager used by a Linux distribution. As an example, if you are using `unixODBC` then you can run the following command that will print out system wide ODBC related details:
 [block:code]
 {
   "codes": [
@@ -116,8 +116,10 @@ In Linux to configure DSN you first need to locate your odbc.ini file. Steps to 
   ]
 }
 [/block]
-Files that you are looking for are going to be listed after `SYSTEM DATA SOURCES` and 
-`USER DATA SOURCES`. Once you located the file you should manually open it with any editor (you may need to create it first) and add dsn in the following format:
+A path to the file of interest Files should be shown in between `SYSTEM DATA SOURCES` and 
+`USER DATA SOURCES` properties.
+
+Once you odbc.ini file has been found, open it with any editor of your choice and add DSN section to it as its shown below:
 
 [block:code]
 {
