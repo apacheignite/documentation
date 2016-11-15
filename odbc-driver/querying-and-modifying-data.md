@@ -1,5 +1,5 @@
-* [Configuring Ignite Node](#configuring-ignite-node)
-* [Connecting to Ignite Cluster](#connecting-to-the-node)
+* [Configuring Ignite Cluster](#configuring-ignite-node)
+* [Connecting to the Cluster](#connecting-to-the-node)
 * [Selecting records](#selecting-records)
 * [Inserting records](#inserting-records)
 * [Updating records](#updating-records)
@@ -20,7 +20,7 @@ Moreover, starting from Ignite 1.8 the ODBC driver supports DML (Data Modificati
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuring Ignite Node"
+  "title": "Configuring Ignite Cluster"
 }
 [/block]
 As the first step, you need to set up a configuration that will be used by the cluster nodes. The configuration should include caches configurations as well with properly defined `QueryEntities` properties. `QueryEntities` are essential for the cases when an application (or the ODBC driver in our scenario) is going to query and modify data using SQL statements.
@@ -55,7 +55,7 @@ As you can see from the configuration, we defined two Ignite caches that will co
 [block:api-header]
 {
   "type": "basic",
-  "title": "Connecting to Ignite Cluster"
+  "title": "Connecting to the Cluster"
 }
 [/block]
 After the cluster is configured and started we can connect to it from the ODBC driver side. To do this you need to prepare a valid connection string and pass it as a parameter to the ODBC driver at the connection time. Refer to [Connection String](doc:connecting-string) page for more details.
