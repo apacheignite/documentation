@@ -35,7 +35,8 @@ Internally, Ignite ODBC driver uses TCP protocol to establish connection with Ig
   ]
 }
 [/block]
-
+This way you will start `OdbcProcessor` with all default parameters. There are number of them:
+* `endpointAddress` - Binding address in format `hostname[:port_from[..port_to]]`
 [block:api-header]
 {
   "type": "basic",
