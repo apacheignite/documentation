@@ -23,7 +23,7 @@ Moreover, starting from Ignite 1.8 the ODBC driver supports DML (Data Modificati
   "title": "Configuring Ignite Node"
 }
 [/block]
-As the first step, you need set up a configuration that will be used by the cluster nodes. The configuration should include caches configurations as well with properly defined `QueryEntities` properties. `QueryEntities` are essential for the cases when an application (or the ODBC driver in our scenario) is going to query and modify data using SQL statements.
+As the first step, you need to set up a configuration that will be used by the cluster nodes. The configuration should include caches configurations as well with properly defined `QueryEntities` properties. `QueryEntities` are essential for the cases when an application (or the ODBC driver in our scenario) is going to query and modify data using SQL statements.
 [block:code]
 {
   "codes": [
@@ -58,9 +58,9 @@ As you can see from the configuration, we defined two Ignite caches that will co
   "title": "Connecting to the node"
 }
 [/block]
-First you need to connect to configured Ignite node using ODBC. Nothing new here - you should properly specify connection string arguments. If some argument was not specified default value is used instead. Refer to [Connection String](doc:connecting-string) page for details. Pay special attention to `Cache` attribute - you should specify name of any existing cache here. It is not really important which one thanks to [Cross-cache queries](doc:sql-queries#cross-cache-queries). Note however that you have to specify schema name prior to your tables if you are trying to run query upon some table of a cache which is not the one you connected to.
+After the cluster is configured and started we can connect to it from the ODBC driver side. To do this you need to prepare a valid connection string and pass it as a parameter to the ODBC driver at the connection time. Refer to [Connection String](doc:connecting-string) page for more details.
 
-You can also use [pre-configured DSN](connection-string-and-dsn#configuring-dsn) for connection.
+Alternatively, you can also use [pre-configured DSN](connection-string-and-dsn#configuring-dsn) for connection purposes as it's shown in the example below.
 [block:code]
 {
   "codes": [
