@@ -1,5 +1,5 @@
 * [Configuring Ignite Node](#configuring-ignite-node)
-* [Connecting to the node](#connecting-to-the-node)
+* [Connecting to Ignite Cluster](#connecting-to-the-node)
 * [Selecting records](#selecting-records)
 * [Inserting records](#inserting-records)
 * [Updating records](#updating-records)
@@ -55,7 +55,7 @@ As you can see from the configuration, we defined two Ignite caches that will co
 [block:api-header]
 {
   "type": "basic",
-  "title": "Connecting to the node"
+  "title": "Connecting to Ignite Cluster"
 }
 [/block]
 After the cluster is configured and started we can connect to it from the ODBC driver side. To do this you need to prepare a valid connection string and pass it as a parameter to the ODBC driver at the connection time. Refer to [Connection String](doc:connecting-string) page for more details.
