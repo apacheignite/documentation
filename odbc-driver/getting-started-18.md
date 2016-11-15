@@ -41,6 +41,23 @@ This way you will start `OdbcProcessor` with all default parameters. There are n
 * `socketSendBufferSize` - Size of the TCP socket send buffer. Default value is 0 - use system default.
 * `socketReceiveBufferSize` - Size of the TCP socket receive buffer. Default value is 0 - use system default.
 * `threadPoolSize` - Number of request-handling threads in the thread pool. Default value is `IgniteConfiguration.DFLT_PUBLIC_THREAD_CNT`.
+
+So if you want to change some parameters you can do this like that:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n  <!-- Enabling ODBC. -->\n  <property name=\"odbcConfiguration\">\n    <bean class=\"org.apache.ignite.configuration.OdbcConfiguration\">\n      <property name=\"endpointAddress\" value=\"127.0.0.1:12345..12346\"/>\n      <property name=\"maxOpenCursors\" value=\"512\"/>\n      <property name=\"socketSendBufferSize\" value=\"65536\"/>\n      <property name=\"socketReceiveBufferSize\" value=\"131072\"/>\n      <property name=\"threadPoolSize\" value=\"4\"/>\n    </bean>\n  </property>\n  ...\n</bean>\n",
+      "language": "xml"
+    },
+    {
+      "code": "IgniteConfiguration cfg = new IgniteConfiguration();\n...\nOdbcConfiguration odbcCfg = new OdbcConfiguration();\n\nodbcCfg.setEndpointAddress(\"127.0.0.1:12345..12346\");\nodbcCfg.setMaxOpenCursors(512);\nodbcCfg.setSocketSendBufferSize(65536);\nodbcCfg.setSocketReceiveBufferSize(131072);\nodbcCfg.setThreadPoolSize(4);\n\ncfg.setOdbcConfiguration(odbcCfg);\n...",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
