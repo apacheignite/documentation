@@ -36,7 +36,11 @@ Internally, Ignite ODBC driver uses TCP protocol to establish connection with Ig
 }
 [/block]
 This way you will start `OdbcProcessor` with all default parameters. There are number of them:
-* `endpointAddress` - Binding address in format `hostname[:port_from[..port_to]]`
+* `endpointAddress` - Binding address in format `hostname[:port_from[..port_to]]`. Default value is `0.0.0.0:10800..10810`. If you specify host name but wont specify port range then default port range is going to be used.
+* `maxOpenCursors` - Limit for the number of cursors that can be opened simultaneously. Default value is 128.
+* `socketSendBufferSize` - Size of the TCP socket send buffer. Default value is 0 - use system default.
+* `socketReceiveBufferSize` - Size of the TCP socket receive buffer. Default value is 0 - use system default.
+* `threadPoolSize` - Number of request-handling threads in the thread pool. Default value is `IgniteConfiguration.DFLT_PUBLIC_THREAD_CNT`.
 [block:api-header]
 {
   "type": "basic",
