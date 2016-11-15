@@ -1,4 +1,4 @@
-* [Preparing node](#preparing-node)
+* [Configuring Ignite Node](#configuring-ignite-node)
 * [Connecting to the node](#connecting-to-the-node)
 * [Selecting records](#selecting-records)
 * [Inserting records](#inserting-records)
