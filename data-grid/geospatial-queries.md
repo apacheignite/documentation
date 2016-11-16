@@ -80,6 +80,7 @@ After the fields of geometry types are defined using on of the methods above, it
 [block:callout]
 {
   "type": "success",
-  "body": "A ready-to-be-run example, that demonstrates the usage of geospatial queries in Ignite, can be found [here](https://github.com/dmagda/geospatial)."
+  "body": "A ready-to-be-run example, that demonstrates the usage of geospatial queries in Ignite, can be found [here](https://github.com/dmagda/geospatial).",
+  "title": "Complete Example"
 }
 [/block]
