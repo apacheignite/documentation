@@ -39,3 +39,26 @@ Add this repository and the Maven dependency below to make sure that the geospat
 }
 [/block]
 Alternatively, you can download Apache Ignite in sources and built the library on your own.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Executing Geospatial Queries"
+}
+[/block]
+The geospatial module works only for the objects of `com.vividsolutions.jts` type. 
+
+To configure indexes of geometry types you need to use the same approaches that exist and used for non-geospatial types.  First, the indexes can be defined with the help of `org.apache.ignite.cache.QueryEntity` which is convenient for Spring XML based configurations. Second, you can achieve the same outcome by annotating indexes with `@QuerySqlField` annotations which will be converted `QueryEntities` internally.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "/**\n * Point with indexed coordinates.\n */\nprivate static class Point {\n    /** Coordinates. */\n    @QuerySqlField(index = true)\n    private Geometry coords;\n\n    /**\n     * @param coords Coordinates.\n     */\n    private Point(Geometry coords) {\n        this.coords = coords;\n    }\n}",
+      "language": "java"
+    },
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <property name=\"name\" value=\"mycache\"/>\n    <!-- Configure query entities -->\n    <property name=\"queryEntities\">\n        <list>\n            <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                <property name=\"keyType\" value=\"java.lang.Integer\"/>\n                <property name=\"valueType\" value=\"org.apache.ignite.examples.Point\"/>\n\n                <property name=\"fields\">\n                    <map>\n                        <entry key=\"coords\" value=\"com.vividsolutions.jts.geom.Geometry\"/>\n                    </map>\n                </property>\n\n                <property name=\"indexes\">\n                    <list>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"coords\"/>\n                        </bean>\n                    </list>\n                </property>\n            </bean>\n        </list>\n    </property>\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
