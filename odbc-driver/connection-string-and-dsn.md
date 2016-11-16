@@ -119,7 +119,7 @@ To do the same on Linux, you have to locate the `odbc.ini` file. The file locati
 A path to the file of interest Files should be shown in between `SYSTEM DATA SOURCES` and 
 `USER DATA SOURCES` properties.
 
-Once you odbc.ini file has been found, open it with any editor of your choice and add DSN section to it as its shown below:
+Once the `odbc.ini` file has been found, open it with any editor of your choice and add DSN section to it as shown below:
 
 [block:code]
 {
