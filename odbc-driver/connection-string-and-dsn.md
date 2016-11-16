@@ -5,7 +5,7 @@
 [block:api-header]
 {
   "type": "basic",
-  "title": "Connection string format"
+  "title": "Connection String Format"
 }
 [/block]
 Apache Ignite ODBC Driver supports standard connection string format. Here is the formal syntax:
@@ -22,7 +22,7 @@ To put it simple connection string is just list of the key=value entries separat
 [block:api-header]
 {
   "type": "basic",
-  "title": "Supported arguments"
+  "title": "Supported Arguments"
 }
 [/block]
 Apache Ignite ODBC driver supports and uses several connection string/DSN arguments. All parameter names are case-insensitive so `ADDRESS`, `Address` and `address` all are valid parameter names and refer to the same parameter. If argument is not specified, the default value is used. The exception of this rule is `ADDRESS` attribute. If it is not specified, `SERVER` and `PORT` attributes are used instead.
@@ -59,7 +59,7 @@ Apache Ignite ODBC driver supports and uses several connection string/DSN argume
 [block:api-header]
 {
   "type": "basic",
-  "title": "Connection string samples"
+  "title": "Connection String Samples"
 }
 [/block]
 You can find samples of the connection string below. These strings can be used with `SQLDriverConnect` ODBC call to establish connection with an Apache Ignite node.
@@ -103,9 +103,9 @@ You can find samples of the connection string below. These strings can be used w
 [/block]
 The same arguments can be used if you prefer to use [DSN](https://en.wikipedia.org/wiki/Data_source_name) (Data Source Name) for connection purposes. 
 
-To configure DSN on Windows you should use a system tool called `odbcad32` that is ODBC Data Source Administrator. To launch it go to `Control panel`->`Administrative Tools`->`Data Sources (ODBC)`. Once ODBC Data Source Administrator is launched choose `Add...`->`Apache Ignite` and configure your DSN in the desired way.
+To configure DSN on Windows, you should use a system tool called `odbcad32` which is an ODBC Data Source Administrator. To launch this tool, go to `Control panel`->`Administrative Tools`->`Data Sources (ODBC)`. Once the ODBC Data Source Administrator is launched, select `Add...`->`Apache Ignite` and configure your DSN in the desired way.
 
-To do the same on Linux you have to locate odbc.ini file. The file location varies among Linux distributions and depends on a specific Driver Manager used by a Linux distribution. As an example, if you are using `unixODBC` then you can run the following command that will print out system wide ODBC related details:
+To do the same on Linux, you have to locate the `odbc.ini` file. The file location varies among Linux distributions and depends on a specific Driver Manager used by a Linux distribution. As an example, if you are using `unixODBC` then you can run the following command that will print out system wide ODBC related details:
 [block:code]
 {
   "codes": [
