@@ -60,7 +60,7 @@ It's always possible to change these parameters as it's shown in the example bel
   ]
 }
 [/block]
-
+For details on how you can tune ODBC connection from the driver side please refer to [Connection String](doc:connecting-string) page.
 [block:api-header]
 {
   "type": "basic",
