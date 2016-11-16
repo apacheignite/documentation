@@ -60,7 +60,7 @@ It's always possible to change these parameters as it's shown in the example bel
   ]
 }
 [/block]
-For details on how you can tune ODBC connection from the driver side please refer to [Connection String](doc:connecting-string) page.
+A connection that is established from ODBC driver side to the cluster via `OdbcProcessor` is also configurable and [here](doc:connecting-string) you can find more details on how to alter connection settings from the driver side.
 [block:api-header]
 {
   "type": "basic",
