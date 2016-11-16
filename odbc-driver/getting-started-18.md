@@ -23,7 +23,7 @@ Apache Ignite ODBC driver implements version 3.0 of the ODBC API.
 [/block]
 ODBC driver is treated as a dynamic library on Windows and a shared object on Linux. An application does not load it directly and instead it uses Driver Manager API which in its own way loads and unloads ODBC drivers whenever it's needed.
 
-Internally, Ignite ODBC driver uses TCP protocol to connect to an Ignite cluster. The connection works over Ignite component called `OdbcProcessor`. By default `OdbcProcessor` is not enabled and started when an Ignite node is being launched​. To enable the processor you need to set `OdbcConfiguration` in your `IgniteConfiguration`:
+Internally, Ignite ODBC driver uses TCP protocol to connect to an Ignite cluster. The connection works over Ignite component called `OdbcProcessor`. By default `OdbcProcessor` is not enabled and not started when an Ignite node is being launched​. To enable the processor you need to set `OdbcConfiguration` in your `IgniteConfiguration`:
 [block:code]
 {
   "codes": [
