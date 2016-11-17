@@ -165,7 +165,7 @@ Next, we are going to insert additional organizations without the usage of prepa
   "title": "Updating Data"
 }
 [/block]
-Going forward, let's update salary for some of the persons stored in the cluster using SQL `UPDATE` statement.
+Let's now update the salary for some of the persons stored in the cluster using SQL `UPDATE` statement.
 [block:code]
 {
   "codes": [
