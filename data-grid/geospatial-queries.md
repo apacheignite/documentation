@@ -70,7 +70,7 @@ After the fields of geometry types are defined using on of the methods above, it
 {
   "codes": [
     {
-      "code": "// Query to find points that fit into a polygon.\nSqlQuery<Integer, MapPoint> query = new SqlQuery<>(MapPoint.class, \"coords && ?\");\n\n// Defining the polygon boundaries.\nquery.setArgs(\"POLYGON((0 0, 0 99, 400 500, 300 0, 0 0))\");\n\n// Executing the query.\nCollection<Cache.Entry<Integer, MapPoint>> entries = cache.query(query).getAll();\n\n// Printing number of points that fit into the area defined by the polygon.\nSystem.out.println(\"Fetched points [\" + entries.size() + ']');\n",
+      "code": "// Query to find points that fit into a polygon.\nSqlQuery<Integer, MapPoint> query = new SqlQuery<>(MapPoint.class, \"coords && ?\");\n\n// Defining the polygon's boundaries.\nquery.setArgs(\"POLYGON((0 0, 0 99, 400 500, 300 0, 0 0))\");\n\n// Executing the query.\nCollection<Cache.Entry<Integer, MapPoint>> entries = cache.query(query).getAll();\n\n// Printing number of points that fit into the area defined by the polygon.\nSystem.out.println(\"Fetched points [\" + entries.size() + ']');\n",
       "language": "java"
     }
   ]
