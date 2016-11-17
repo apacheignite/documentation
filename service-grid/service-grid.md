@@ -2,6 +2,7 @@
 * [IgniteServices](#igniteservices)
 * [Load Balancing](#load-balancing)
 * [Fault Tolerance](#fault-tolerance)
+* [Deployment Management](#deployment-management)
 [block:api-header]
 {
   "type": "basic",
@@ -100,7 +101,7 @@ Ignite always guarantees that services are continuously available, and are deplo
 [/block]
 By default, an Ignite Service will be deployed on a random node (or nodes) depending on the cluster workload as it's described in the load balancing section above.
 
-In addition to this default approach, Ignite provides an API that allows limiting an Ignite Service deployment to a specific set of nodes. Two existed approaches are overviewed below.
+In addition to this default approach, Ignite provides an API that allows limiting an Ignite Service deployment to a specific set of nodes. There are several approaches to do that and all of them are covered below.
 
 ##Node Filter Based Deployment
 
@@ -136,3 +137,30 @@ After the filter is ready you can pass it to `ServiceConfiguration.setNodeFilter
   "body": "Make sure that a node filter's class is located in the classpath of every Ignite node regardless of the fact whether an Ignite Service is going to be deployed there or not. Otherwise you'll get a `ClassNotFoundException`.\n\nThe Ignite Service implementation can be deployed only on the nodes where the service might be deployed in principle throughout the lifetime of a cluster."
 }
 [/block]
+## Cluster Group Based Deployment
+
+One more approach is based on the definition of a specific `ClusterGroup`. Once a reference to Ignite Service Grid is obtained for a specific cluster group the deployment of a new Ignite Service will happen on one or a number of the nodes from that group only.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// A service will be deployed on the server nodes only.\nIgniteServices services = ignite.services(ignite.cluster().forServers());\n\n// Deploying the service.\nservices.deploy(serviceCfg);\n            ",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+## Affinity Key Based Deployment
+
+The latest approach that allows influencing on an Ignite Service deployment is based on an affinity key definition. The service's configuration has to contain a value for the affinity key as well as a cache name to which this key belongs to and during the service startup Ignite Service Grid will deploy the service on a node that is primary for the given key. If the primary node changes throughout the time then the service will be re-deployed automatically as well.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Initiating cache configuration.\nServiceConfiguration cfg = new ServiceConfiguration();\n\n// Setting service instance to deploy.\ncfg.setService(service);\n\n// Setting service name.\ncfg.setName(\"serviceName\");\n\n// Setting the cache name and key's value for the affinity based deployment.\ncfg.setCacheName(\"orgCache\");\ncfg.setAffinityKey(123);\n\n// Getting instance of Ignite Service Grid.\nIgniteServices services = ignite.services();\n\n// Deploying the service.\nservices.deploy(cfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+After the service is deployed using the configuration from the example above, Ignite will make sure to deploy the service on a node that is primary for key `123` stored in cache named `orgCache`.
