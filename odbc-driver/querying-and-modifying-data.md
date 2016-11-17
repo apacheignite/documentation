@@ -9,7 +9,7 @@ This page elaborates on how to connect to an Ignite cluster and execute a variet
 
 At the implementation layer Ignite's ODBC driver uses Ignite SQL Fields queries to retrieve data from  Apache Ignite Data Grid. This means that from ODBC side you can access only those fields that are [defined in cluster's configuration](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
 
-Moreover, starting from Ignite 1.8 the ODBC driver supports DML (Data Modification Layer) which means that you can not only request data but modify Ignite Data Grid content as well using an ODBC connection.
+Moreover, starting from Ignite 1.8, the ODBC driver supports DML (Data Modification Layer) which means that you can not only request data but modify Ignite Data Grid content as well using an ODBC connection.
 [block:callout]
 {
   "type": "success",
@@ -35,7 +35,7 @@ As the first step, you need to set up a configuration that will be used by the c
   ]
 }
 [/block]
-As you can see from the configuration, we defined two Ignite caches that will contain data of  `Person` and `Organization` types. For both of the types we listed specific fields and indexes that will be read or updated using SQL.
+As you can see from the configuration, we defined two Ignite caches that will contain the data of  `Person` and `Organization` types. For both of the types, we listed specific fields and indexes that will be read or updated using SQL.
 [block:callout]
 {
   "type": "info",
@@ -58,7 +58,7 @@ As you can see from the configuration, we defined two Ignite caches that will co
   "title": "Connecting to the Cluster"
 }
 [/block]
-After the cluster is configured and started we can connect to it from the ODBC driver side. To do this you need to prepare a valid connection string and pass it as a parameter to the ODBC driver at the connection time. Refer to [Connection String](doc:connecting-string) page for more details.
+After the cluster is configured and started, we can connect to it from the ODBC driver side. To do this you need to prepare a valid connection string and pass it as a parameter to the ODBC driver at the connection time. Refer to [Connection String](doc:connecting-string) page for more details.
 
 Alternatively, you can also use a [pre-configured DSN](connection-string-and-dsn#configuring-dsn) for connection purposes as it's shown in the example below.
 [block:code]
@@ -78,7 +78,7 @@ Alternatively, you can also use a [pre-configured DSN](connection-string-and-dsn
   "title": "Querying Data"
 }
 [/block]
-After all, when everything is up and running we're ready to execute SQL SELECT queries using ODBC API.
+After everything is up and running, we're ready to execute SQL SELECT queries using the ODBC API.
 [block:code]
 {
   "codes": [
@@ -93,7 +93,7 @@ After all, when everything is up and running we're ready to execute SQL SELECT q
 [block:callout]
 {
   "type": "info",
-  "body": "In the example above we bind all columns to the `SQL_C_CHAR` columns. This means that all values are going to be converted to strings upon fetching. This is done for the sake of simplicity. Values convertion upon fetching can be pretty slow so your default decision should be to fetch value the same way as its stored.",
+  "body": "In the example above, we bind all columns to the `SQL_C_CHAR` columns. This means that all values are going to be converted to strings upon fetching. This is done for the sake of simplicity. Value conversion upon fetching can be pretty slow; so your default decision should be to fetch the value the same way as it is stored.",
   "title": "Columns binding"
 }
 [/block]
