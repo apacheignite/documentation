@@ -92,3 +92,47 @@ In all cases, other than singleton service deployment, Ignite will automatically
 }
 [/block]
 Ignite always guarantees that services are continuously available, and are deployed according to the specified configuration, regardless of any topology changes or node crashes.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Deployment Management"
+}
+[/block]
+By default, an Ignite Service will be deployed on a random node (or nodes) depending on the cluster workload as it's described in the load balancing section above.
+
+In addition to this default approach, Ignite provides an API that allows limiting an Ignite Service deployment to a specific set of nodes. Two existed approaches are overviewed below.
+
+##Node Filter Based Deployment
+
+This approach is based on a filtering predicate that gets called on every node at the time Ignite Service's engine determines a set of possible candidates for the Ignite Service deployment. If the predicate return `true` then a node will be included in the set, otherwise the not will be excluded from the list.
+
+A node filter has to implement `IgnitePredicate<ClusterNode>` interface like it does the exemplary filter below which will instruct the Service Grid engine to deploy an Ignite Service on non client nodes that have `west.coast.attribute` in their local attributes map.
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// The filter implementation.\npublic class ServiceFilter implements IgnitePredicate<ClusterNode> {\n\t@Override public boolean apply(ClusterNode node) {\n  \t// The service will be deployed on non client nodes\n    // that have the attribute 'west.coast.node'.\n    return !node.isClient() &&\n    node.attributes().containsKey(\"west.coast.node\");\n  }\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+After the filter is ready you can pass it to `ServiceConfiguration.setNodeFilter(...)` method and start the service using this configuration.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Initiating cache configuration. \nServiceConfiguration cfg = new ServiceConfiguration();\n        \n// Setting service instance to deploy.\ncfg.setService(service);\n        \n// Setting service name.\ncfg.setName(\"serviceName\");\n        \n// Providing the nodes filter.\ncfg.setNodeFilter(new ServiceFilter());\n        \n// Getting instance of Ignite Service Grid.\nIgniteServices services = ignite.services();\n        \n// Deploying the service.\nservices.deploy(cfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "body": "Make sure that a node filter's class is located in the classpath of every Ignite node regardless of the fact whether an Ignite Service is going to be deployed there or not. Otherwise you'll get a `ClassNotFoundException`.\n\nThe Ignite Service implementation can be deployed only on the nodes where the service might be deployed in principle throughout the lifetime of a cluster."
+}
+[/block]
