@@ -183,7 +183,7 @@ Let's now update the salary for some of the persons stored in the cluster using 
   "title": "Deleting Data"
 }
 [/block]
-Finally, let's remove few records with the help of SQL `DELETE` statement.
+Finally, let's remove a few records with the help of SQL `DELETE` statement.
 [block:code]
 {
   "codes": [
