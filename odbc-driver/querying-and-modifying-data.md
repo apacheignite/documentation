@@ -58,7 +58,7 @@ As you can see from the configuration, we defined two Ignite caches that will co
   "title": "Connecting to the Cluster"
 }
 [/block]
-After the cluster is configured and started, we can connect to it from the ODBC driver side. To do this you need to prepare a valid connection string and pass it as a parameter to the ODBC driver at the connection time. Refer to [Connection String](doc:connecting-string) page for more details.
+After the cluster is configured and started, we can connect to it from the ODBC driver side. To do this, you need to prepare a valid connection string and pass it as a parameter to the ODBC driver at the connection time. Refer to [Connection String](doc:connecting-string) page for more details.
 
 Alternatively, you can also use a [pre-configured DSN](connection-string-and-dsn#configuring-dsn) for connection purposes as shown in the example below.
 [block:code]
