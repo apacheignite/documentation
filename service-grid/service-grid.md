@@ -105,7 +105,7 @@ In addition to this default approach, Ignite provides an API that allows limitin
 
 ##Node Filter Based Deployment
 
-This approach is based on a filtering predicate that gets called on every node at the time Ignite Service engine determines a set of possible candidates for the Ignite Service deployment. If the predicate return `true` then a node will be included in the set, otherwise the not will be excluded from the list.
+This approach is based on a filtering predicate that gets called on every node at the time Ignite Service engine determines a set of possible candidates for the Ignite Service deployment. If the predicate returns `true` then a node will be included in the set, otherwise the not will be excluded from the list.
 
 A node filter has to implement `IgnitePredicate<ClusterNode>` interface like it does the exemplary filter below which will instruct the Service Grid engine to deploy an Ignite Service on non client nodes that have `west.coast.attribute` in their local attributes map.
 
