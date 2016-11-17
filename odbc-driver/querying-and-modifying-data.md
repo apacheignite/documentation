@@ -128,7 +128,7 @@ After everything is up and running, we're ready to execute SQL SELECT queries us
   "title": "Inserting Data"
 }
 [/block]
-To insert new data into the cluster, SQL `INSERT` statements can be freely used from the ODBC side.
+To insert new data into the cluster, SQL `INSERT` statements can be used from the ODBC side.
 [block:code]
 {
   "codes": [
