@@ -1,10 +1,16 @@
+* [Overview](#overview)
 * [Configuring Ignite Cluster](#configuring-ignite-cluster)
 * [Connecting to the Cluster](#connecting-to-the-cluster)
 * [Querying Data](#querying-data)
 * [Inserting Data](#inserting-data)
 * [Updating Data](#updating-data)
 * [Deleting Data](#deleting-data)
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 This page elaborates on how to connect to an Ignite cluster and execute a variety of SQL queries using Ignite's ODBC driver. 
 
 At the implementation layer, Ignite's ODBC driver uses Ignite SQL Fields queries to retrieve data from  Apache Ignite Data Grid. This means that from ODBC side you can access only those fields that are [defined in cluster's configuration](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
