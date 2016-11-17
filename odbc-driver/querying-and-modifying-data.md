@@ -110,7 +110,7 @@ After everything is up and running, we're ready to execute SQL SELECT queries us
 {
   "type": "info",
   "title": "Cross-Cache Queries",
-  "body": "Cache that the driver is connected to is treated as the default schema. To query across multiple caches, [Cross-Cache Query](/docs/cache-queries#cross-cache-queries) functionality can be used."
+  "body": "The cache that the driver is connected to is treated as the default schema. To query across multiple caches, [Cross-Cache Query](/docs/cache-queries#cross-cache-queries) functionality can be used."
 }
 [/block]
 
