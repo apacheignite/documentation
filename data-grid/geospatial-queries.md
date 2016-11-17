@@ -21,7 +21,7 @@ Due to this reason, a binary version of `ignite-geospatial` library is hosted in
 {
   "codes": [
     {
-      "code": "<repositories>\n\t<repository>\n  \t<id>GridGain External Repository</id>             \t<url>http://www.gridgainsystems.com/nexus/content/repositories/external</url>\n\t</repository>\n</repositories>",
+      "code": "<repositories>\n\t<repository>\n    <id>GridGain External Repository</id>\n    <url>http://www.gridgainsystems.com/nexus/content/repositories/external</url>\n\t</repository>\n</repositories>",
       "language": "xml"
     }
   ]
