@@ -134,7 +134,7 @@ After the filter is ready you can pass it to `ServiceConfiguration.setNodeFilter
 [block:callout]
 {
   "type": "warning",
-  "body": "Make sure that a node filter's class is located in the classpath of every Ignite node regardless of the fact whether an Ignite Service is going to be deployed there or not. Otherwise you'll get a `ClassNotFoundException`.\n\nThe Ignite Service implementation can be deployed only on the nodes where the service might be deployed in principle throughout the lifetime of a cluster."
+  "body": "Make sure that a node filter's class is located in the classpath of every Ignite node regardless of the fact whether an Ignite Service is going to be deployed there or not. Otherwise you'll get a `ClassNotFoundException`.\n\nOn the other hand, you're free to add the Ignite Service class implementation to the classpath of the nodes where the service might be deployed in principle throughout the lifetime of a cluster."
 }
 [/block]
 ## Cluster Group Based Deployment
