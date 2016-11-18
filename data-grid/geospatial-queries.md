@@ -13,7 +13,7 @@ Spatial queries' capabilities, as well as available functions and operands, are 
   "title": "Including Ignite Geospatial Library"
 }
 [/block]
-Ignite geospatial library (`ignite-geospatial`) depends on [JTS](http://tsusiatsoftware.net/jts/main.html) that is available under LGPL license that is not aligned with Apache license and prevents from including `ignite-geospatial` into Apache Ignite binary deliveries.
+Ignite geospatial library (`ignite-geospatial`) depends on [JTS](http://tsusiatsoftware.net/jts/main.html) that is available under the LGPL license that is not aligned with Apache license and prevents from including `ignite-geospatial` into Apache Ignite binary deliveries.
 
 Due to this reason, a binary version of `ignite-geospatial` library is hosted in the Maven repository shown below:
  
