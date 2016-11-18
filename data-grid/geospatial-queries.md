@@ -38,7 +38,7 @@ Add this repository and the Maven dependency below to make sure that the geospat
   ]
 }
 [/block]
-Alternatively, you can download Apache Ignite in sources and built the library on your own.
+Alternatively, you can download Apache Ignite from the [source releases](https://ignite.apache.org/download.cgi#sources) and built the library on your own.
 [block:api-header]
 {
   "type": "basic",
