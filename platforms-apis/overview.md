@@ -1,0 +1,1 @@
+Apache Ignite has a reach set of APIs that are covered throughout the documentation. The APIs are implemented in a form of native libraries for such major languages and technologies as Java, .NET and C++ and by supporting a variety of protocol like REST, Memcached or Redis.
