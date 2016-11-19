@@ -32,3 +32,10 @@ Cluster nodes accepts Redis requests listening on a particular socket. By defaul
   ]
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "In Redis, databases are identified by an integer index, not by a database name. Therefore, currently you cannot switch between caches by names and only entries from null cache are handled."
+}
+[/block]
