@@ -1,0 +1,2 @@
+Ignite is partially [Redis](http://redis.io/) compliant which enables users to store and retrieve distributed data from Ignite cache using any Redis compatible client.
+In version 1.8.0 only the following commands are supported.
