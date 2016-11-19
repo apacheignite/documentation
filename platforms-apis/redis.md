@@ -21,4 +21,4 @@ In version 1.8.0 only the following commands are supported
 - EXISTS
 - DBSIZE
 
-Cluster nodes accepts Redis requests listening on a particular socket. By default each Ignite node is listening for incoming requests on {{\[host\]:11211}}. You can override the host and port using ConnectorConfiguration class
+Cluster nodes accepts Redis requests listening on a particular socket. By default each Ignite node is listening for incoming requests on `\[host\]:11211`. You can override the host and port using ConnectorConfiguration class
