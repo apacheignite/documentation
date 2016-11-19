@@ -5,8 +5,8 @@ In version 1.8.0 only the following commands are supported
 - PING
 - QUIT
 - GET
-- MGET (limitation: not null values returned for non-existing keys)
-- SET (limitation: without key expiration)
+- MGET (*limitation: not null values returned for non-existing keys*)
+- SET (*limitation: without key expiration*)
 - MSET
 - INCR
 - DECR
@@ -17,7 +17,7 @@ In version 1.8.0 only the following commands are supported
 - GETSET
 - SETRANGE
 - GETRANGE
-- DEL (limitation: number of submitted keys returned)
+- DEL (*limitation: number of submitted keys returned*)
 - EXISTS
 - DBSIZE
 
