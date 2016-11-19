@@ -194,4 +194,4 @@ If there are unresolved links to other libraries, you may want to add directorie
   ```odbcinst -i -d -f $IGNITE_HOME/platforms/cpp/odbc/install/ignite-odbc-install.ini```
   To perform this command, you may need root privileges.
 
-Now Apache Ignite ODBC driver is installed and ready for use. You can connect to it and use it just like any other ODBC driver.
+Now the Apache Ignite ODBC driver is installed and ready for use. You can connect to it and use it just like any other ODBC driver.
