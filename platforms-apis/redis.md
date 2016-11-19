@@ -39,3 +39,4 @@ Cluster nodes accepts Redis requests listening on a particular socket. By defaul
   "body": "In Redis, databases are identified by an integer index, not by a database name. Therefore, currently you cannot switch between caches by names and only entries from null cache are handled."
 }
 [/block]
+You can connect to Ignite using your favorite [Redis client](http://redis.io/clients). See basic examples for some languages below
