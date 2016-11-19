@@ -1,6 +1,6 @@
 * [Overview](#overview)
 * [Cluster Configuration](#cluster-configuration)
-* [Thread-safety](#thread-safety)
+* [Thread-Safety](#thread-safety)
 * [Prerequisites](#prerequisites)
 * [Building ODBC Driver](#building-odbc-driver)
 * [Installing ODBC Driver](#installing-odbc-driver)
@@ -64,7 +64,7 @@ A connection that is established from the ODBC driver side to the cluster via `O
 [block:api-header]
 {
   "type": "basic",
-  "title": "Thread-safety"
+  "title": "Thread-Safety"
 }
 [/block]
 The current implementation of Ignite ODBC driver only provides thread-safety at the connections level. It means that you should not access the same connection from multiple threads without additional synchronization, though you can create separate connections for every thread and use them simultaneously.
