@@ -48,7 +48,7 @@ You can connect to Ignite using your favorite [Redis client](http://redis.io/cli
   "title": "Java"
 }
 [/block]
-To connect to Ignite using a Java client for Redis, you need to have an Ignite cluster/node configured, if necessary, as shown (above)[#redis] and running.
+To connect to Ignite using a Java client for Redis, you need to have an Ignite cluster/node configured, if necessary, as shown [above](#redis) and running.
 
 To connect to Ignite running on port `6379` with, for instance, `Jedis`
 [block:code]
