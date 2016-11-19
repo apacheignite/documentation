@@ -42,3 +42,22 @@ Cluster nodes accepts Redis requests listening on a particular socket. By defaul
 You can connect to Ignite using your favorite [Redis client](http://redis.io/clients). See basic examples for some languages below
 - [Java](#java)
 - [Python](#python)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Java"
+}
+[/block]
+To connect to Ignite using a Java client for Redis, you need to have an Ignite cluster/node configured, if necessary, as shown (above)[#redis] and running.
+
+To connect to Ignite running on port `6379` with, for instance, `Jedis`
+[block:code]
+{
+  "codes": [
+    {
+      "code": "JedisPoolConfig jedisPoolCfg = new JedisPoolConfig();\n\n// your pool configurations.\n\nJedisPool pool = new JedisPool(jedisPoolCfg, \"localhost\", 6379, 10000);\n\ntry (Jedis jedis = pool.getResource()) {\n    jedis.set(\"key1\", \"1\");\n    System.out.println(\"Value for 'key1': \" + jedis.get(\"key1\"));\n}\n\npool.destroy();",
+      "language": "java"
+    }
+  ]
+}
+[/block]
