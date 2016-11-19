@@ -98,7 +98,7 @@ Apache Ignite ODBC Driver was officially tested on:
 [/block]
 Ignite ODBC Driver is shipped with the source code as part of the Apache Ignite package, and should be built before using. For instructions on how to download and set up Apache Ignite, please refer to [Getting Started](doc:getting-started) page.
 
-As the ODBC Driver is written in C++, it is shipped as part of the Apache Ignite C++ and depends on some of the C++ libraries. More specifically, it depends on `utils` and `binary` Ignite libraries. It means that you will need to build them prior to building the ODBC driver itself.
+Since the ODBC Driver is written in C++, it is shipped as part of the Apache Ignite C++ and depends on some of the C++ libraries. More specifically, it depends on `utils` and `binary` Ignite libraries. It means that you will need to build them prior to building the ODBC driver itself.
 
 ## Building on Windows
 You will need MS Visual Studio 2010 or later to be able to build the ODBC driver on Windows. Once you have it, open Ignite solution `%IGNITE_HOME%\platforms\cpp\project\vs\ignite.sln` (or ignite_86.sln if you are running 32-bit platform), left-click odbc project in the "Solution Explorer" and choose "Build". Visual Studio will automatically detect and build all the necessary dependencies.
