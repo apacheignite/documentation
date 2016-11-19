@@ -40,3 +40,5 @@ Cluster nodes accepts Redis requests listening on a particular socket. By defaul
 }
 [/block]
 You can connect to Ignite using your favorite [Redis client](http://redis.io/clients). See basic examples for some languages below
+- [Java](#java)
+- [Python](#python)
