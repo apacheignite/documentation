@@ -182,16 +182,16 @@ To be able to build and install ODBC driver on Linux, you need to first install
 ODBC Driver Manager. Apache Ignite ODBC driver has been tested with [UnixODBC]
 (http://www.unixodbc.org). 
 
-Once you have built and performed "make install" command, the Ignite ODBC Driver i.e. `libignite-odbc.so` is going to be most likely placed to `/usr/local/lib`. To install it as an ODBC driver in your Driver Manager and be able to use it, you should perform the following steps:
+Once you have built and performed "make install" command, the Ignite ODBC Driver i.e. `libignite-odbc.so` will be placed in the `/usr/local/lib` folder. To install it as an ODBC driver in your Driver Manager and be able to use it, you should perform the following steps:
 
-* Ensure linker is able to locate all dependencies of the ODBC driver. You can check it using `ldd` command like this (assuming ODBC driver is located under `/usr/local/lib`):
+* Ensure linker is able to locate all dependencies of the ODBC driver. You can check this by using `ldd` command like so (assuming ODBC driver is located under `/usr/local/lib`):
   ```ldd /usr/local/lib/libignite-odbc.so```
-If there is unresolved links to other libraries you may want to add directories with these libraries to the `LD_LIBRARY_PATH`.
+If there are unresolved links to other libraries, you may want to add directories with these libraries to the `LD_LIBRARY_PATH`.
 
 * Edit file `$IGNITE_HOME/platforms/cpp/odbc/install/ignite-odbc-install.ini` and ensure that `Driver` parameter of the `Apache Ignite` section points to the right location where `libignite-odbc.so` is located.
    
-* To install Apache Ignite ODBC driver use the following command:
+* To install Apache Ignite ODBC driver, use the following command:
   ```odbcinst -i -d -f $IGNITE_HOME/platforms/cpp/odbc/install/ignite-odbc-install.ini```
-  To perform this command you most likely will need root privileges.
+  To perform this command, you may need root privileges.
 
 Now Apache Ignite ODBC driver is installed and ready for use. You can connect to it and use it just like any other ODBC driver.
