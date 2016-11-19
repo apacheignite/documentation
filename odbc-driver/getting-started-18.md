@@ -112,7 +112,7 @@ You will need MS Visual Studio 2010 or later to be able to build the ODBC driver
 Once the build process is over, you can find `odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release`.
 
 ## Building on Linux
-On a Linux-based operating system, you will have to install an ODBC Driver Manager of your choice to be able to build and use the Ignite ODBC Driver. The Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
+On a Linux-based operating system, you will need to install an ODBC Driver Manager of your choice to be able to build and use the Ignite ODBC Driver. The Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
 
 Additionally, you will need `GCC`, `G++`, and `Make` to build the driver and its dependencies.
 
@@ -138,27 +138,27 @@ After the build process is over, you can find out where your ODBC driver has bee
   ]
 }
 [/block]
-The path will be most likely `/usr/local/lib/libignite-odbc.so`
+The path should look like -  `/usr/local/lib/libignite-odbc.so`
 [block:api-header]
 {
   "type": "basic",
   "title": "Installing ODBC driver"
 }
 [/block]
-In order to use ODBC driver you need to register it in your system so your ODBC Driver Manager will be able to locate it.
+In order to use ODBC driver, you need to register it in your system so that your ODBC Driver Manager will be able to locate it.
 
 ## Installing on Windows
-For 32-bit Windows you should use 32-bit version of the driver while for the
-64-bit Windows you can use 64-bit driver as well as 32-bit. You may want to install both 32-bit and 64-bit drivers on 64-bit Windows to be able to use your driver from both 32-bit and 64-bit applications.
+For 32-bit Windows, you should use 32-bit version of the driver. For the
+64-bit Windows, you can use 64-bit driver as well as 32-bit. You may want to install both 32-bit and 64-bit drivers on 64-bit Windows to be able to use your driver from both 32-bit and 64-bit applications.
 
-To install driver on Windows you should first choose a directory on your
+To install driver on Windows, you should first choose a directory on your
 file system where your driver or drivers will be located. Once you have
-chosen a place you should put your driver there and ensure that all driver
+chosen a place, you should put your driver there and ensure that all driver
 dependencies can be resolved i.e. they can be found either in the %PATH% or
 in the same directory as the driver.
 
-After that you should use one of the install scripts from the directory 
-`%IGNITE_HOME%/platforms/cpp/odbc/install`. Note that most likely you will need OS administrator privileges to execute these scripts.
+After that, you should use one of the install scripts from the directory 
+`%IGNITE_HOME%/platforms/cpp/odbc/install`. Note that you may need OS administrator privileges to execute these scripts.
 [block:code]
 {
   "codes": [
@@ -178,11 +178,11 @@ After that you should use one of the install scripts from the directory
 
 ## Installing on Linux
 
-To be able to build and install ODBC driver on Linux, you first need to install
+To be able to build and install ODBC driver on Linux, you need to first install
 ODBC Driver Manager. Apache Ignite ODBC driver has been tested with [UnixODBC]
 (http://www.unixodbc.org). 
 
-Once you have built and performed "make install" command the Ignite ODBC Driver i.e. `libignite-odbc.so` is going to be most likely placed to `/usr/local/lib`. To install it as an ODBC driver in your Driver Manager and be able to use it you should perform the following steps:
+Once you have built and performed "make install" command, the Ignite ODBC Driver i.e. `libignite-odbc.so` is going to be most likely placed to `/usr/local/lib`. To install it as an ODBC driver in your Driver Manager and be able to use it, you should perform the following steps:
 
 * Ensure linker is able to locate all dependencies of the ODBC driver. You can check it using `ldd` command like this (assuming ODBC driver is located under `/usr/local/lib`):
   ```ldd /usr/local/lib/libignite-odbc.so```
