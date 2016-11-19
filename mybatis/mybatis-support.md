@@ -5,7 +5,7 @@ If you are an Apache Maven user, simply add the following dependency to the pom.
 {
   "codes": [
     {
-      "code": "<dependencies>\n  ...\n  <dependency>\n    <groupId>org.mybatis.caches</groupId>\n    <artifactId>mybatis-ignite</artifactId>\n    <version>1.0.0-beta1</version>\n  </dependency>\n  ...\n</dependencies>",
+      "code": "<dependencies>\n  ...\n  <dependency>\n    <groupId>org.mybatis.caches</groupId>\n    <artifactId>mybatis-ignite</artifactId>\n    <version>1.0.2</version>\n  </dependency>\n  ...\n</dependencies>",
       "language": "xml"
     }
   ]
