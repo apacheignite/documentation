@@ -21,9 +21,9 @@ Apache Ignite ODBC driver implements version 3.0 of the ODBC API.
   "title": "Cluster Configuration"
 }
 [/block]
-ODBC driver is treated as a dynamic library on Windows and a shared object on Linux. An application does not load it directly and instead it uses Driver Manager API which in its own way loads and unloads ODBC drivers whenever it's needed.
+ODBC driver is treated as a dynamic library on Windows and a shared object on Linux. An application does not load it directly. Instead, it uses a Driver Manager API that loads and unloads ODBC drivers whenever required.
 
-Internally, Ignite ODBC driver uses TCP protocol to connect to an Ignite cluster. The connection works over Ignite component called `OdbcProcessor`. By default `OdbcProcessor` is not enabled and not started when an Ignite node is being launched​. To enable the processor you need to set `OdbcConfiguration` in your `IgniteConfiguration`:
+Internally, Ignite ODBC driver uses TCP protocol to connect to an Ignite cluster. The connection works over an Ignite component called `OdbcProcessor`. By default, `OdbcProcessor` is not enabled and not started when an Ignite node is being launched​. To enable the processor, you need to set the `OdbcConfiguration` property in your `IgniteConfiguration`:
 [block:code]
 {
   "codes": [
@@ -38,14 +38,14 @@ Internally, Ignite ODBC driver uses TCP protocol to connect to an Ignite cluster
   ]
 }
 [/block]
-After `OdbcProcessor` is configured in a way like above it will be started with default settings some of which are listed below:
-* `endpointAddress` - Address to bind to in format `hostname[:port_from[..port_to]]`. Default value is `0.0.0.0:10800..10810`. If you specify host name but won't specify a port range then the default port range will be used.
-* `maxOpenCursors` - Limit for the number of cursors that can be opened simultaneously. The default value is 128.
+After `OdbcProcessor` is configured, it will be started with default settings; some of which are listed below:
+* `endpointAddress` - Address to bind to, in the format - `hostname[:port_from[..port_to]]`. Default value is `0.0.0.0:10800..10810`. If you specify host name but do not specify a port range then the default port range will be used.
+* `maxOpenCursors` - Maximum number of cursors that can be opened simultaneously. The default value is 128.
 * `socketSendBufferSize` - Size of the TCP socket send buffer. The default value is 0 which instructs to use a system default value.
 * `socketReceiveBufferSize` - Size of the TCP socket receive buffer. The default value is 0 which instructs to use a system default value.
 * `threadPoolSize` - Number of request-handling threads in the thread pool. The default value is `IgniteConfiguration.DFLT_PUBLIC_THREAD_CNT`.
 
-It's always possible to change these parameters as it's shown in the example below:
+It's always possible to change these parameters as shown in the example below:
 [block:code]
 {
   "codes": [
@@ -60,14 +60,14 @@ It's always possible to change these parameters as it's shown in the example bel
   ]
 }
 [/block]
-A connection that is established from ODBC driver side to the cluster via `OdbcProcessor` is also configurable and [here](doc:connecting-string) you can find more details on how to alter connection settings from the driver side.
+A connection that is established from the ODBC driver side to the cluster via `OdbcProcessor` is also configurable. [Here](doc:connecting-string) you can find more details on how to alter connection settings from the driver side.
 [block:api-header]
 {
   "type": "basic",
   "title": "Thread-safety"
 }
 [/block]
-Current implementation of the Ignite ODBC driver only provides thread-safety on the connections level. It means you should not access the same connection from several threads without additional synchronization, though you can create separate connections for every thread and use them simultaneously.
+The current implementation of Ignite ODBC driver only provides thread-safety at the connections level. It means that you should not access the same connection from multiple threads without additional synchronization, though you can create separate connections for every thread and use them simultaneously.
 [block:api-header]
 {
   "type": "basic",
@@ -93,10 +93,10 @@ Apache Ignite ODBC Driver was officially tested on:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Building ODBC driver"
+  "title": "Building ODBC Driver"
 }
 [/block]
-Ignite ODBC Driver shipped in sources as a part of Apache Ignite package. It means that you need to build it before you are going to be able to use it. For instructions on how to acquire and set up Apache Ignite itself please refer to [Getting Started](doc:getting-started) page.
+Ignite ODBC Driver is shipped with the source code as part of the Apache Ignite package, and should be built before using. For instructions on how to download and set up Apache Ignite, please refer to [Getting Started](doc:getting-started) page.
 
 As ODBC Driver is written in C++ it is shipped as as part of the Apache Ignite C++ and depends on some of the C++ libraries. More specifically it depends on `utils` and `binary` Ignite libraries. It means you will need to build them prior to building ODBC driver itself.
 
