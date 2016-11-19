@@ -109,14 +109,14 @@ You will need MS Visual Studio 2010 or later to be able to build the ODBC driver
   "body": "If you are using VS 2015 or later (MSVC 14.0 or later), you need to add `legacy_stdio_definitions.lib` as an additional library to `odbc` project linker's settings in order to be able to build the project. To add this library to the linker input in the IDE, open the context menu for the project node, choose `Properties`, then in the `Project Properties` dialog box, choose `Linker`, and edit the `Linker Input` to add `legacy_stdio_definitions.lib` to the semi-colon-separated list."
 }
 [/block]
-Once the build process is over you can find `odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release`.
+Once the build process is over, you can find `odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release`.
 
 ## Building on Linux
-On a Linux-based operation system you will need to install ODBC Driver Manager of your choice manually to be able to build and use Ignite ODBC Driver. Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
+On a Linux-based operating system, you will have to install an ODBC Driver Manager of your choice to be able to build and use the Ignite ODBC Driver. The Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
 
-Also you will need `GCC`, `G++`, and `Make` to build the driver and its dependencies.
+Additionally, you will need `GCC`, `G++`, and `Make` to build the driver and its dependencies.
 
-Once all is installed you can build Ignite ODBC driver:
+Once all the above mentioned are installed, you can build the Ignite ODBC driver:
 [block:code]
 {
   "codes": [
@@ -127,7 +127,7 @@ Once all is installed you can build Ignite ODBC driver:
   ]
 }
 [/block]
-Once the build process is over you can find out where is your ODBC driver has been placed running the following command:
+After the build process is over, you can find out where your ODBC driver has been placed by running the following command:
 [block:code]
 {
   "codes": [
