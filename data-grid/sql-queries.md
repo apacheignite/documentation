@@ -328,7 +328,7 @@ When developing with Ignite sometimes it is useful to check if your tables and i
 [/block]
 Ignite supports placing index data in off-heap memory. This makes sense for very large datasets since keeping data on heap can cause high GC activity and unacceptable response times. 
 
-By default, Ignite stores SQL Indexes on heap. If `CacheConfiguration.setMemoryMode` is configured to one of the off-heap memory modes - `OFFHEAP_TIERED` or `OFFHEAP_VALUES`, indexes will be automatically stored in off-heap memory. Additionally, `CacheConfiguration.setOffHeapMaxMemory` property can be configured to a value >= 0 to enable off-heap memory.
+By default, Ignite stores SQL Indexes on heap. If `CacheConfiguration.setMemoryMode` is configured to one of the off-heap memory modes - `OFFHEAP_TIERED` or `OFFHEAP_VALUES`, indexes will be automatically stored in off-heap memory. Additionally, `CacheConfiguration.setOffHeapMaxMemory` property can be configured to a value >= 0 to enable off-heap memory. The default value of this property is `-1`
 [block:callout]
 {
   "type": "info",
