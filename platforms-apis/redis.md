@@ -96,7 +96,7 @@ To connect to Ignite running on port `6379` with, for instance, [predis](https:/
 {
   "codes": [
     {
-      "code": "",
+      "code": "// Load the library.\nrequire 'predis/autoload.php';\nPredis\\Autoloader::register();\n\n// Connect.\ntry {\n    $redis = new Predis\\Client();\n\n    echo \"Successfully connected to Redis. \\n\";\n\n    // Put entry to cache.\n    if ($redis->set('k1', '1'))\n        echo \">>> Successfully put entry in cache. \\n\";\n\n    // Check entry value.\n    echo(\">>> Value for 'k1': \" . $redis->get('k1') . \"\\n\");\n}\ncatch (Exception $e) {\n    echo \"Couldn't connected to Redis\";\n    echo $e->getMessage();\n}",
       "language": "php"
     }
   ]
