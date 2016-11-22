@@ -50,7 +50,7 @@ You can connect to Ignite using your favorite [Redis client](http://redis.io/cli
 [/block]
 To connect to Ignite using a Java client for Redis, you need to have an Ignite cluster/node configured, if necessary, as shown [above](doc:redis) and running.
 
-To connect to Ignite running on port `6379` with, for instance, `Jedis`
+To connect to Ignite running on port `6379` with, for instance, [Jedis](https://github.com/xetorthio/jedis)
 [block:code]
 {
   "codes": [
@@ -66,5 +66,18 @@ To connect to Ignite running on port `6379` with, for instance, `Jedis`
 {
   "type": "basic",
   "title": "Python"
+}
+[/block]
+To connect to Ignite using a Python client for Redis, you need to have an Ignite cluster/node configured, if necessary, as shown [above](doc:redis) and running.
+
+To connect to Ignite running on port `6379` with, for instance, [redis-py](https://github.com/andymccurdy/redis-py)
+[block:code]
+{
+  "codes": [
+    {
+      "code": ">>> import redis\n>>> r = redis.StrictRedis(host='localhost', port=6379, db=0)\n>>> r.set('k1', 1)\nTrue\n>>> r.get('k1')\n'1'",
+      "language": "python"
+    }
+  ]
 }
 [/block]
