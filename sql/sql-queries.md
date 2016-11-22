@@ -4,9 +4,6 @@
 * [Field Queries](#field-queries)
 * [Cross-Cache Queries](#cross-cache-queries)
 * [Distributed Joins](#distributed-joins)
-* [Using EXPLAIN](#using-explain)
-* [Using H2 Debug Console](#using-h2-debug-console)
-* [Performance and Usability Considerations](#performance-and-usability-considerations)
 [block:api-header]
 {
   "type": "basic",
