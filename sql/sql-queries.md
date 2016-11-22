@@ -26,6 +26,17 @@ See example **SqlQuery** below.
 [block:api-header]
 {
   "type": "basic",
+  "title": "How SQL Queries Work"
+}
+[/block]
+There are two main ways of how query can be processed in Ignite:
+
+1. If you execute the query against `REPLICATED` cache, Ignite assumes that all the data is available locally and will run a simple local SQL query in the H2 database engine. The same will happen for `LOCAL` caches.
+
+2. If you execute the query against `PARTITIONED` cache, it will be executed ub the following way: the query will be parsed and split into multiple map queries and a single reduce query. Then all the map queries are executed on all data nodes of participating caches, providing results to the reducing node, which will in turn run the reduce query over these intermediate results.
+[block:api-header]
+{
+  "type": "basic",
   "title": "SQL Joins"
 }
 [/block]
@@ -151,17 +162,6 @@ The following code snippet is provided from the [CacheQueryExample](https://gith
 }
 [/block]
 Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "How SQL Queries Work"
-}
-[/block]
-There are two main ways of how query can be processed in Ignite:
-
-1. If you execute the query against `REPLICATED` cache, Ignite assumes that all the data is available locally and will run a simple local SQL query in the H2 database engine. The same will happen for `LOCAL` caches.
-
-2. If you execute the query against `PARTITIONED` cache, it work the following way: the query will be parsed and split into multiple map queries and a single reduce query. Then all the map queries are executed on all data nodes of participating caches, providing results to the reducing node, which will in turn run the reduce query over these intermediate results.
 [block:api-header]
 {
   "type": "basic",
