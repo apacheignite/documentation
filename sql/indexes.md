@@ -1,8 +1,10 @@
 * [Configuring SQL Indexes by Annotations](#configuring-sql-indexes-by-annotations)
-* [Making Fields Visible for SQL Queries](#section-making-fields-visible-for-sql-queries)
-* [Single Column Indexes](#section-single-column-indexes)
-* [Group Indexes](#section-group-indexes)
+ * [Making Fields Visible for SQL Queries](#section-making-fields-visible-for-sql-queries)
+ * [Single Column Indexes](#section-single-column-indexes)
+ * [Group Indexes](#section-group-indexes)
 * [Configuring SQL Indexes Using QueryEntity](#configuring-sql-indexes-using-queryentity)
+* [Off-Heap SQL Indexes](#off-heap-sql-indexes)
+* [Choosing Indexes](#choosing-indexes)
 [block:api-header]
 {
   "type": "basic",
@@ -116,3 +118,50 @@ Indexes and fields can also be configured with `org.apache.ignite.cache.QueryEnt
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Off-Heap SQL Indexes"
+}
+[/block]
+Ignite supports placing index data in off-heap memory. This makes sense for very large datasets since keeping data in Java heap can cause high GC activity and unacceptable response times. 
+
+By default, Ignite stores SQL Indexes on heap. Ignite will store query indexes in off-heap memory if `CacheConfiguration.setMemoryMode` is configured to one of the off-heap memory modes - `OFFHEAP_TIERED` or `OFFHEAP_VALUES`, or `CacheConfiguration.setOffHeapMaxMemory` property is set to a value >= 0.
+
+To improve the performance of SQL queries with off-heap enabled, you can try to increase the value of `CacheConfiguration.setSqlOnheapRowCacheSize` property that has a default value of '10000'.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "CacheConfiguration<Object, Object> ccfg = new CacheConfiguration<>();\n\n// Set unlimited off-heap memory for cache and enable off-heap indexes.\nccfg.setOffHeapMaxMemory(0); \n\n// Cache entries will be placed on heap and can be evited to off-heap.\nccfg.setMemoryMode(ONHEAP_TIERED);\nccfg.setEvictionPolicy(new RandomEvictionPolicy(100_000));\n\n// Increase size of SQL on-heap row cache for off-heap indexes.\nccfg.setSqlOnheapRowCacheSize(100_000);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Choosing Indexes"
+}
+[/block]
+There are multiple things you should consider when choosing indexes for your Ignite application. 
+
+- Indexes are not free. They consume memory, also each index needs to be updated separately, thus your cache update performance can be lower if you have more indexes. On top of that optimizer can do more mistakes by choosing a wrong index to run a query. 
+[block:callout]
+{
+  "type": "danger",
+  "title": "It is a bad strategy to index everything!"
+}
+[/block]
+- Indexes are just sorted data structures. If you define an index on the fields (a,b,c) , the records are sorted first on a, then b, then c.
+[block:callout]
+{
+  "type": "info",
+  "body": "**| A | B | C |**\n| 1 | 2 | 3 |\n| 1 | 4 | 2 |\n| 1 | 4 | 4 |\n| 2 | 3 | 5 |\n| 2 | 4 | 4 |\n| 2 | 4 | 5 |\n\nAny condition like `a = 1 and b > 3` can be viewed as a bounded range, both bounds can be quickly looked up in in **log(N)** time, the result will be everything between.\n\nThe following conditions will be able to use the index:\n- `a = ?`\n- `a = ? and b = ?`\n- `a = ? and b = ? and c = ?`\n\nCondition `a = ? and c = ?` is no better than `a = ?` from the index point of view.\nObviously half-bounded ranges like `a > ?` can be used as well.",
+  "title": "Example of Sorted Index"
+}
+[/block]
+- Indexes on single fields are no better than group indexes on multiple fields starting with the same field (index on (a) is no better than (a,b,c)). Thus it is preferable to use group indexes.
