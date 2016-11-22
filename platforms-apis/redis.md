@@ -82,3 +82,23 @@ To connect to Ignite running on port `6379` with, for instance, [redis-py](https
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "PHP"
+}
+[/block]
+To connect to Ignite using a PHP client for Redis, you need to have an Ignite cluster/node configured, if necessary, as shown [above](doc:redis) and running.
+
+To connect to Ignite running on port `6379` with, for instance, [predis](https://github.com/nrk/predis)
+[block:code]
+{
+  "codes": [
+    {
+      "code": "",
+      "language": "php"
+    }
+  ]
+}
+[/block]
