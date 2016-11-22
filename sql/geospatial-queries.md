@@ -27,7 +27,7 @@ Due to this reason, a binary version of `ignite-geospatial` library is hosted in
   ]
 }
 [/block]
-Add this repository and the Maven dependency below to make sure that the geospatial library is included into your application:
+Add this repository and the Maven dependency below to your pom.xml file to make sure that the geospatial library is included into your application:
 [block:code]
 {
   "codes": [
