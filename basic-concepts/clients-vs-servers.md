@@ -185,7 +185,7 @@ Automatic client reconnection can be disabled using the 'clientReconnectDisabled
 [/block]
 Client nodes require live server nodes in the topology to start.
 
-However, to start a client node without a running server node,  you can force server mode discovery on client nodes this way:
+However, to start a client node without a running server node,  you can force server mode discovery on client nodes the following way:
 [block:code]
 {
   "codes": [
