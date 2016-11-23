@@ -158,7 +158,7 @@ The following example shows how to use `IgniteClientDisconnectedException`.
       "name": "Compute"
     },
     {
-      "code": "IgniteCache cache = ignite.getOrCreateCache(new CacheConfiguration<>());\n\nwhile (true) {\n  try {\n    cache.put(key, val);\n  }\n  catch (CacheException e) {\n    if (e.getCause() instanceof IgniteClientDisconnectedException) {\n      IgniteClientDisconnectedException cause =\n        (IgniteClientDisconnectedException)e.getCause();\n\n      cause.reconnectFuture().get(); // Wait for reconnect.\n\n      // Can proceed and use the same IgniteCache instance.\n    }\n  }\n}\n",
+      "code": "IgniteCache cache = ignite.getOrCreateCache(new CacheConfiguration<>());\n\nwhile (true) {\n  try {\n    cache.put(key, val);\n  }\n  catch (CacheException e) {\n    if (e.getCause() instanceof IgniteClientDisconnectedException) {\n      IgniteClientDisconnectedException cause =\n        (IgniteClientDisconnectedException)e.getCause();\n\n      cause.reconnectFuture().get(); // Wait for reconnection.\n\n      // Can proceed and use the same IgniteCache instance.\n    }\n  }\n}\n",
       "language": "java",
       "name": "Cache"
     }
