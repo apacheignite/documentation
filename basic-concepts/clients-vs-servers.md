@@ -165,7 +165,7 @@ The following example shows how to use `IgniteClientDisconnectedException`.
   ]
 }
 [/block]
-Automatic client reconnection can be disabled using the 'clientReconnectDisabled' property on `TcpDiscoverySpi`. This will stop the client node when it disconnects from the cluster. Here is an example on how this can be done:
+Automatic client reconnection can be disabled using the 'clientReconnectDisabled' property on `TcpDiscoverySpi`. When reconnection is disabled, client node is stopped.:
 [block:code]
 {
   "codes": [
