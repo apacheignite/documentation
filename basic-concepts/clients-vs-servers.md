@@ -3,7 +3,7 @@
 * [Creating Distributed Caches](#creating-distributed-caches)
 * [Computing on Clients or Servers](#computing-on-clients-or-servers)
 * [Managing Slow Clients](#managing-slow-clients)
-* [Client Reconnect](#client-reconnect)
+* [Client Reconnection](#client-reconnection)
 * [Forcing Server Mode On Client Nodes](#forcing-server-mode-on-client-nodes)
 [block:api-header]
 {
@@ -132,28 +132,28 @@ Examples below show how to configure slow client queue limit in code and XML con
 [block:api-header]
 {
   "type": "basic",
-  "title": "Client Reconnect"
+  "title": "Client Reconnection"
 }
 [/block]
-Client node can disconnect from cluster in several cases:
-*  in case of network problems when client can not re-establish connection with server
-* connection with server was broken for some time, client is able to re-establish connection with server, but server already dropped client node since server did not receive client heartbeats
-* slow clients can be disconnected by server
+Client nodes can get disconnected from the cluster in several cases:
+*  When a client node cannot re-establish the connection with the server node due to network issues.
+* Connection with the server node was broken for some time; the client node is able to re-establish the connection with the server, but server already dropped the client node since the server did not receive client heartbeats
+* Slow clients can be kicked out by server nodes.
 
-When client determines that it disconnected from cluster it assigns to a local node new ID and tries to reconnect to cluster. Note: this has side effect and 'id' property of local `ClusterNode` will change in case of client reconnection.
+When a client determines that it is disconnected from the cluster, it assigns a new node 'id' to itself and tries to reconnect to the cluster. Note that this has side effect - the 'id' property of the local `ClusterNode` will change in case of client reconnection. This means that any application logic that relied on the 'id' value may be affected.
 
-While client is in disconnected state and attempt to reconnect is in progress all Ignite API throws special exception: `IgniteClientDisconnectedException`, this exception provides future which will be completed when client finish reconnect (`IgniteCache` API throws `CacheException` which has `IgniteClientDisconnectedException` as its cause). This future also can be obtained using method `IgniteCluster.clientReconnectFuture()`.
+While a client is in a disconnected state and an attempt to reconnect is in progress, the Ignite API throws  a special exception - `IgniteClientDisconnectedException`. This exception provides `future` which will be completed when the client reconnects with the cluster (`IgniteCache` API throws `CacheException` which has `IgniteClientDisconnectedException` as its cause). This `future` can also be obtained using the `IgniteCluster.clientReconnectFuture()` method.
 
-Also there are special events for client reconnect (these events are local, i.e. they are fired only on client node):
+Also, there are special events for client reconnection (these events are local, i.e. they are fired only on the client node):
 * EventType.EVT_CLIENT_NODE_DISCONNECTED
 * EventType.EVT_CLIENT_NODE_RECONNECTED
 
-Below are examples showing work with `IgniteClientDisconnectedException`.
+The following example shows  how to manage `IgniteClientDisconnectedException`.
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCompute compute = ignite.compute();\n\nwhile (true) {\n    try {\n        compute.run(job);\n    }\n    catch (IgniteClientDisconnectedException e) {\n        e.reconnectFuture().get(); // Wait for reconnect.\n\n        // Can proceed and use the same IgniteCompute instance.\n    }\n}\n",
+      "code": "IgniteCompute compute = ignite.compute();\n\nwhile (true) {\n    try {\n        compute.run(job);\n    }\n    catch (IgniteClientDisconnectedException e) {\n        e.reconnectFuture().get(); // Wait for reconnection.\n\n        // Can proceed and use the same IgniteCompute instance.\n    }\n}\n",
       "language": "java",
       "name": "Compute"
     },
@@ -165,9 +165,7 @@ Below are examples showing work with `IgniteClientDisconnectedException`.
   ]
 }
 [/block]
-Automatic client reconnect can be disabled using 'clientReconnectDisabled' property on `TcpDiscoverySpi`, if reconnect is disabled then client node is stopped when client determines that it disconnected from cluster.
-
-Example below show how to disable client reconnect.
+Automatic client reconnection can be disabled using the 'clientReconnectDisabled' property on `TcpDiscoverySpi`. This will stop the client node when it disconnects from the cluster. Here is an example on how this can be done:
 [block:code]
 {
   "codes": [
