@@ -148,7 +148,7 @@ Also, there are special events for client reconnection (these events are local, 
 * EventType.EVT_CLIENT_NODE_DISCONNECTED
 * EventType.EVT_CLIENT_NODE_RECONNECTED
 
-The following example shows how to manage `IgniteClientDisconnectedException`.
+The following example shows how to use `IgniteClientDisconnectedException`.
 [block:code]
 {
   "codes": [
