@@ -4,7 +4,7 @@
 * [Computing on Clients or Servers](#computing-on-clients-or-servers)
 * [Managing Slow Clients](#managing-slow-clients)
 * [Client Reconnection](#client-reconnection)
-* [Forcing Server Mode On Client Nodes](#forcing-server-mode-on-client-nodes)
+* [Forcing Server Mode on Client Nodes](#forcing-server-mode-on-client-nodes)
 [block:api-header]
 {
   "type": "basic",
@@ -148,7 +148,7 @@ Also, there are special events for client reconnection (these events are local, 
 * EventType.EVT_CLIENT_NODE_DISCONNECTED
 * EventType.EVT_CLIENT_NODE_RECONNECTED
 
-The following example shows  how to manage `IgniteClientDisconnectedException`.
+The following example shows how to manage `IgniteClientDisconnectedException`.
 [block:code]
 {
   "codes": [
@@ -180,12 +180,12 @@ Automatic client reconnection can be disabled using the 'clientReconnectDisabled
 [block:api-header]
 {
   "type": "basic",
-  "title": "Forcing Server Mode On Client Nodes"
+  "title": "Forcing Server Mode on Client Nodes"
 }
 [/block]
-Client nodes will require alive server nodes in topology to start.
+Client nodes require live server nodes in the topology to start.
 
-If it is a requirement to be able to start client node disregarding of server node presence you can force server mode discovery on client nodes this way:
+However, to start a client node without a running server node,  you can force server mode discovery on client nodes this way:
 [block:code]
 {
   "codes": [
@@ -196,11 +196,11 @@ If it is a requirement to be able to start client node disregarding of server no
   ]
 }
 [/block]
-In this case discovery will happen as if all nodes in topology were server nodes.
+In this case discovery will happen as if all the nodes in topology were server nodes.
 [block:callout]
 {
   "type": "warning",
-  "title": "Importan Notice",
-  "body": "In this case all addresses discovery SPI uses on all nodes should be mutually reachable in order for discovery to work properly."
+  "title": "",
+  "body": "In this case, all addresses used by the discovery SPI on all nodes should be mutually reachable in order for the discovery to work properly."
 }
 [/block]
