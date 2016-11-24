@@ -1,25 +1,25 @@
 Ignite is partially [Redis](http://redis.io/) compliant which enables users to store and retrieve distributed data from Ignite cache using any Redis compatible client.
 
 In version 1.8.0 only the following commands are supported
-- ECHO
-- PING
-- QUIT
-- GET
-- MGET (*limitation: not null values returned for non-existing keys*)
-- SET (*limitation: without key expiration*)
-- MSET
-- INCR
-- DECR
-- INCRBY
-- DECRBY
-- APPEND
-- STRLEN
-- GETSET
-- SETRANGE
-- GETRANGE
-- DEL (*limitation: number of submitted keys returned*)
-- EXISTS
-- DBSIZE
+- [ECHO](http://redis.io/commands/echo)
+- [PING](http://redis.io/commands/ping)
+- [QUIT](http://redis.io/commands/quit)
+- [GET](http://redis.io/commands/get)
+- [MGET](http://redis.io/commands/mget) (*limitation: not null values returned for non-existing keys*)
+- [SET](http://redis.io/commands/set) (*limitation: without key expiration*)
+- [MSET](http://redis.io/commands/mset)
+- [INCR](http://redis.io/commands/incr)
+- [DECR](http://redis.io/commands/decr)
+- [INCRBY](http://redis.io/commands/incrby)
+- [DECRBY](http://redis.io/commands/decrby)
+- [APPEND](http://redis.io/commands/append)
+- [STRLEN](http://redis.io/commands/strlen)
+- [GETSET](http://redis.io/commands/getset)
+- [SETRANGE](http://redis.io/commands/setrange)
+- [GETRANGE](http://redis.io/commands/getrange)
+- [DEL](http://redis.io/commands/del) (*limitation: number of submitted keys returned*)
+- [EXISTS](http://redis.io/commands/exists)
+- [DBSIZE](http://redis.io/commands/dbsize)
 
 Cluster nodes accepts Redis requests listening on a particular socket. By default each Ignite node is listening for incoming requests on `[host]:11211`. You can override the host and port using `ConnectorConfiguration`
 [block:code]
@@ -36,7 +36,7 @@ Cluster nodes accepts Redis requests listening on a particular socket. By defaul
 [block:callout]
 {
   "type": "info",
-  "body": "In Redis, databases are identified by an integer index, not by a database name. Therefore, currently you cannot switch between caches by names and only entries from null cache are handled."
+  "body": "In Redis, databases are identified by an integer index, not by a database name. Therefore, currently you cannot switch between caches by names and only entries from <default> cache are handled."
 }
 [/block]
 You can connect to Ignite using your favorite [Redis client](http://redis.io/clients). See basic examples for some languages below
