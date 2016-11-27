@@ -1,6 +1,6 @@
 Ignite is partially [Redis](http://redis.io/) compliant which enables users to store and retrieve distributed data from Ignite cache using any Redis compatible client.
 
-In version 1.8.0 only the following commands are supported
+Starting from version 1.8.0 the following commands are supported by Ignite client:
 - [ECHO](http://redis.io/commands/echo)
 - [PING](http://redis.io/commands/ping)
 - [QUIT](http://redis.io/commands/quit)
