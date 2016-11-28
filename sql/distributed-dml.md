@@ -28,7 +28,7 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
   "title": "Special columns"
 }
 [/block]
-
+As you may know, each Ignite's SQL table has two special columns - those are `_key` and `_val`. They correspond to complete key and value respectively, although of course the table most likely has also the columns corresponding to particular fields of key or value.
 [block:api-header]
 {
   "type": "basic",
