@@ -74,4 +74,21 @@ As you may see, there's two modes to **MERGE** - one that takes tuples correspon
 
 This operation updates values in cache on per field basis. First it generates and performs **SELECT** based on **UPDATE**'s **WHERE** criteria and then modifies existing values.
 
-Actual modification is performed via cache's well known `invokeAll`
+Actual modification is under the hood performed via cache's well known `invokeAll` - upon results of **SELECT**, a bunch of `EntryProcessor`s is created, and each of them modifies corresponding values checking that nobody has interfered between **SELECT** and actual update. (This particular topic will be covered below.)
+
+Here are few important considerations about **UPDATE**:
+[block:callout]
+{
+  "type": "danger",
+  "title": "You can't modify key or its columns with an UPDATE query",
+  "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity), so now there's no way to update a key without removing it first. Probably this will change in the future."
+}
+[/block]
+Also it's important to mention field values priority:
+[block:callout]
+{
+  "type": "info",
+  "title": "Mind your field values overriding priority",
+  "body": "When you perform an **UPDATE** query against Ignite, you can specify a value for *_val* column"
+}
+[/block]
