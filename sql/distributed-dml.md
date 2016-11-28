@@ -21,7 +21,7 @@ Both **MERGE** and **INSERT** may work in two modes - rows list based and subque
 As long as SQL in case of Ignite is merely an interface to query or manipulate cache data, in the end all DML operations boil down to modifying key-value pairs that reside in cache. Thus, as all columns in Ignite's tables correspond either to key or to value, when a tuple (which is a "new row") is processed, key and value get instantiated and get their fields set based on what has been passed in tuple. After all tuples are well-formed, cache modifying operations are performed.
 
 ##Modify existing cache items
-(TODO)
+**UPDATE** and **DELETE** are the operations responsible for this, with former updating values in cache (per field or replacing them completely), and the latter removing entries from the cache. They both include **WHERE** clause that allows the user to specify which rows exactly must be modified.
 [block:api-header]
 {
   "type": "basic",
@@ -72,4 +72,4 @@ As you may see, there's two modes to **MERGE** - one that takes tuples correspon
 [/block]
 ##UPDATE
 
-This operation updates values in cache on per field basis. First it generates and performs **SELECT** based on **UPDATE**'s **WHERE** criteria
+This operation updates values in cache on per field basis. First it generates and performs **SELECT** based on **UPDATE**'s **WHERE** criteria and then modifies existing values.
