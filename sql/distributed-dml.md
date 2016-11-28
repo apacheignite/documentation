@@ -42,11 +42,31 @@ SQL syntax example:
       "name": "Rows List"
     },
     {
-      "code": "merge into Person(_key, first_name, second_name)\n  (select _key + 1000, first_name, second_name\n   \tfrom Person\n   \t  where _key > 100 and _key < 200)",
-      "language": "text",
+      "code": "merge into someCache.Person(_key, first_name, second_name)\n  (select _key + 1000, first_name, second_name\n   \tfrom anotherCache.Person\n   \t  where _key > 100 and _key < 200)",
+      "language": "sql",
       "name": "Subquery"
     }
   ]
 }
 [/block]
-As you may see, there's two modes to **MERGE** - one that takes
+As you may see, there's two modes to **MERGE** - one that takes tuples corresponding to new rows and another that takes data to put to cache from subquery.
+
+##INSERT
+
+**INSERT** is semantically different from **MERGE**: it puts to cache only values whose keys are not present in cache. Besides that, they are nearly identical from user perspective. **INSERT** also supports rows based and subquery based operations:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "insert into Person(_key, first_name, second_name) values\n  (1, \"John\", \"Smith\"),\n  (5, \"Mary\", \"Jones\")",
+      "language": "sql",
+      "name": "Rows list"
+    },
+    {
+      "code": "insert into someCache.Person(_key, first_name, second_name)\n  (select _key + 1000, first_name, second_name\n   \tfrom anotherCache.Person\n   \t  where _key > 100 and _key < 200)",
+      "language": "sql",
+      "name": "Subquery"
+    }
+  ]
+}
+[/block]
