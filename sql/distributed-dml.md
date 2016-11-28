@@ -53,7 +53,7 @@ As you may see, there's two modes to **MERGE** - one that takes tuples correspon
 
 ##INSERT
 
-**INSERT** is semantically different from **MERGE**: it puts to cache only values whose keys are not present in cache. Besides that, they are nearly identical from user perspective. **INSERT** also supports rows based and subquery based operations:
+**INSERT** is semantically different from **MERGE**, but still quite similar: it puts to cache only values whose keys are not present in cache. Besides that, they are nearly identical from user perspective. **INSERT** also supports rows based and subquery based operations:
 [block:code]
 {
   "codes": [
@@ -70,3 +70,6 @@ As you may see, there's two modes to **MERGE** - one that takes tuples correspon
   ]
 }
 [/block]
+##UPDATE
+
+This operation updates values in cache on per field basis. First it generates and performs **SELECT** based on **UPDATE**'s **WHERE** criteria
