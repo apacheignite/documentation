@@ -73,3 +73,5 @@ As you may see, there's two modes to **MERGE** - one that takes tuples correspon
 ##UPDATE
 
 This operation updates values in cache on per field basis. First it generates and performs **SELECT** based on **UPDATE**'s **WHERE** criteria and then modifies existing values.
+
+Actual modification is performed via cache's well known `invokeAll`
