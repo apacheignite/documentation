@@ -25,6 +25,13 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 [block:api-header]
 {
   "type": "basic",
+  "title": "Special columns"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "DML Operations"
 }
 [/block]
@@ -74,7 +81,7 @@ As you may see, there's two modes to **MERGE** - one that takes tuples correspon
 
 This operation updates values in cache on per field basis. First it generates and performs **SELECT** based on **UPDATE**'s **WHERE** criteria and then modifies existing values.
 
-Actual modification is under the hood performed via cache's well known `invokeAll` - upon results of **SELECT**, a bunch of `EntryProcessor`s is created, and each of them modifies corresponding values checking that nobody has interfered between **SELECT** and actual update. (This particular topic will be covered below.)
+Actual modification is under the hood performed via cache's well known `invokeAll` operations - upon results of **SELECT**, a bunch of `EntryProcessor`s is created, and each of them modifies corresponding values checking that nobody has interfered between **SELECT** and actual update. (This particular topic will be covered below.)
 [block:callout]
 {
   "type": "danger",
