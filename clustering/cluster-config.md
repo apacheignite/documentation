@@ -148,21 +148,21 @@ As you see from the configurations the difference between them is minor - only p
   "title": "Apache jclouds Based Discovery"
 }
 [/block]
-Refer to [Generic Cloud Configuration](doc:generic-cloud-configuration) documentation.
+Refer to [Generic Cloud Configuration](https://apacheignite-mix.readme.io/docs/jclouds) documentation.
 [block:api-header]
 {
   "type": "basic",
   "title": "Amazon S3 Based Discovery"
 }
 [/block]
-Refer to [AWS Configuration](doc:aws-config) documentation.
+Refer to [AWS Configuration](https://apacheignite-mix.readme.io/docs/amazon-aws) documentation.
 [block:api-header]
 {
   "type": "basic",
   "title": "Google Cloud Storage Based Discovery"
 }
 [/block]
-Refer to [Google Cloud Configuration](doc:gce-configuration) documentation.
+Refer to [Google Cloud Configuration](https://apacheignite-mix.readme.io/docs/google-compute-engine) documentation.
 [block:api-header]
 {
   "type": "basic",
