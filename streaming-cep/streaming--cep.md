@@ -58,3 +58,5 @@ You can use a full set of Ignite data indexing capabilities, together with Ignit
 In this example we will stream text into Ignite and count each individual word. We will also issue periodic SQL queries into the stream to query top 10 most popular words.
 
 [Read More](doc:streaming-example)
+
+##
