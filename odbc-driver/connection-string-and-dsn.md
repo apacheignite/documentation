@@ -40,19 +40,25 @@ Apache Ignite ODBC driver supports and uses several connection string/DSN argume
     "1-1": "Address of the node to connect to.\n\nThis argument value is ignored if `ADDRESS` argument is specified.",
     "1-2": "",
     "2-2": "10800",
-    "6-0": "PROTOCOL_VERSION",
+    "6-0": "DISTRIBUTED_JOINS",
     "4-0": "DSN",
-    "4-1": "Use to connect using specified DSN.",
-    "6-1": "Used to specify ODBC protocol version to use. Currently, there are only two versions: 1.6.0 and 1.8.0. You should use 1.6.0 protocol version to connect to nodes with Ignite version < 1.8.0.",
-    "6-2": "1.8.0",
+    "4-1": "DSN name to connect to.",
+    "6-1": "Enables [non-collocated distributed joins feature](http://apacheignite.readme.io/docs/sql-queries#distributed-joins) for all the queries that will be executed over an ODBC connection.",
+    "6-2": "false",
     "0-0": "ADDRESS",
     "0-1": "Address of the remote node to connect to. The format: <host>[:<port>]. For example: localhost, example.com:12345, 127.0.0.1, 192.168.3.80:5893.\n\nIf this attribute is specified then `SERVER` and `PORT` arguments are ignored.",
     "5-0": "PAGE_SIZE",
     "5-1": "Number of rows returned in response to a fetching request to the data source. Default value should be fine in most cases. Setting low value can result in slow data fetching while setting high value can result in additional memory usage by the driver and additional delay when the next page is being retrieved.",
-    "5-2": "1024"
+    "5-2": "1024",
+    "8-0": "PROTOCOL_VERSION",
+    "8-1": "Used to specify ODBC protocol version to use. Currently, there are only two versions: 1.6.0 and 1.8.0. You should use 1.6.0 protocol version to connect to nodes with Ignite version < 1.8.0.",
+    "8-2": "1.8.0",
+    "7-0": "ENFORCE_JOIN_ORDER",
+    "7-1": "Enforces a join order of tables in SQL queries. If set to `true` the query optimizer will not reorder tables in the join.",
+    "7-2": "false"
   },
   "cols": 3,
-  "rows": 7
+  "rows": 9
 }
 [/block]
 
@@ -104,7 +110,21 @@ You can find samples of the connection string below. These strings can be used w
 The same arguments can be used if you prefer to use [DSN](https://en.wikipedia.org/wiki/Data_source_name) (Data Source Name) for connection purposes. 
 
 To configure DSN on Windows, you should use a system tool called `odbcad32` which is an ODBC Data Source Administrator. To launch this tool, go to `Control panel`->`Administrative Tools`->`Data Sources (ODBC)`. Once the ODBC Data Source Administrator is launched, select `Add...`->`Apache Ignite` and configure your DSN in the desired way.
-
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/6255aff-DSN_configuration.png",
+        "DSN_configuration.png",
+        607,
+        427,
+        "#efefee"
+      ]
+    }
+  ]
+}
+[/block]
 To do the same on Linux, you have to locate the `odbc.ini` file. The file location varies among Linux distributions and depends on a specific Driver Manager used by a Linux distribution. As an example, if you are using `unixODBC` then you can run the following command that will print out system wide ODBC related details:
 [block:code]
 {
