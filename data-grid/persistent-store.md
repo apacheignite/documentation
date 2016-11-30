@@ -112,6 +112,14 @@ In case of `ATOMIC` caches, method `sessionEnd()` is called after completion of 
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "title": "Cassandra Cache Store",
+  "body": "Ignite provides out of the box integration with Apache Cassandra that is used as a `CacheStore` at the level of the in-memory data grid. To learn more about the integration refer to the [following](https://apacheignite-mix.readme.io/docs/ignite-with-apache-cassandra) documentation section."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
