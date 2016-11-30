@@ -153,12 +153,12 @@ For 32-bit Windows, you should use 32-bit version of the driver. For the
 
 To install driver on Windows, you should first choose a directory on your
 file system where your driver or drivers will be located. Once you have
-chosen a place, you should put your driver there and ensure that all driver
-dependencies can be resolved i.e. they can be found either in the %PATH% or
-in the same directory as the driver.
+chosen the location, you have to put your driver there and ensure that all driver
+dependencies can be resolved as well, i.e., they can be found either in the %PATH% or
+in the same directory where the driver DLL resides.
 
-After that, you should use one of the install scripts from the directory 
-`%IGNITE_HOME%/platforms/cpp/odbc/install`. Note that you may need OS administrator privileges to execute these scripts.
+After that, you have to use one of the install scripts from the following directory 
+`%IGNITE_HOME%/platforms/cpp/odbc/install`. Note, that you may need OS administrator privileges to execute these scripts.
 [block:code]
 {
   "codes": [
