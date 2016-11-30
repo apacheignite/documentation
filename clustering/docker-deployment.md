@@ -162,8 +162,8 @@ The configuration parameters are passed through environment variables in docker 
     "0-2": "`N/A`",
     "1-2": "`latest`",
     "2-2": "`COMMUNITY`",
-    "0-3": "`http://apache-mirror.rbc.ru/pub/apache/incubator/ignite/1.1.0/`\n`apache-ignite-fabric-1.1.0-incubating-bin.zip`",
-    "1-3": "`1.1.4`",
+    "0-3": "`http://apache-mirror.rbc.ru/pub/apache/incubator/ignite/1.7.0/`\n`apache-ignite-fabric-1.7.0-incubating-bin.zip`",
+    "1-3": "`1.7.0`",
     "2-3": "`APACHE`",
     "3-0": "`IGNITE_CONFIG`",
     "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
@@ -185,7 +185,7 @@ To run Ignite docker container with bare Ignite node, use the following command:
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host -e \"IGNITE_VERSION=1.4.0\" apacheignite/ignite",
+      "code": "sudo docker run -it --net=host -e \"IGNITE_VERSION={desired_ignite_version}\" apacheignite/ignite",
       "language": "shell"
     }
   ]
