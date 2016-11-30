@@ -96,7 +96,7 @@ Apache Ignite ODBC Driver was officially tested on:
   "title": "Building ODBC Driver"
 }
 [/block]
-Ignite ODBC Driver is shipped with the source code as part of the Apache Ignite package, and should be built before the usage. For instructions on how to download and set up Apache Ignite, please refer to [Getting Started](doc:getting-started) page.
+Ignite ODBC Driver is shipped with the source code as part of the Apache Ignite package and should be built before the usage. For instructions on how to download and set up Apache Ignite, please refer to [Getting Started](doc:getting-started) page.
 
 Since the ODBC Driver is written in C++, it is shipped as part of the Apache Ignite C++ and depends on some of the C++ libraries. More specifically, it depends on `utils` and `binary` Ignite libraries. It means that you will need to build them prior to building the ODBC driver itself.
 
