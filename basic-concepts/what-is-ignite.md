@@ -30,3 +30,4 @@ You can view Ignite as a collection of independent, well-integrated, in-memory c
   * [Distributed Events](doc:events) 
   * [Hadoop Accelerator](doc:hadoop-accelerator)
   * [Spark Shared RDDs](doc:shared-rdd)
+  * [Apache Ignite Integrations](doc:apache-ignite-integrations)
