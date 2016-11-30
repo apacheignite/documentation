@@ -18,7 +18,7 @@ Collocation of computations with data allow for minimizing data serialization wi
 {
   "type": "info",
   "title": "Consistency Guarantee",
-  "body": "Starting from Apache Ignite 1.8 it's guaranteed that a partition which the affinity key belongs to will not be evicted from a node while a job, triggered by `affinityCall(...)` or `affinityRun(...)`, will be being executed there. The partition rebalancing usually happens due to a topology change event when a new node joins the cluster or the old one leaves it.\n\nThis guarantee makes it feasible to execute complex logic for which it's essential that the data stays on the same node throughout the time the job is being executed. For instance, this feature allows executing *local* SQL queries as a part of a compute job, triggered by `affinityCall(...)` or `affinityRun(...)`, not worrying about the the local query returns a partial result set due to the data rebalancing."
+  "body": "Starting from Apache Ignite 1.8 it's guaranteed that the partition, which the affinity key belongs to, will not be evicted from a node while a job, triggered by `affinityCall(...)` or `affinityRun(...)`, will be being executed there. The partition rebalancing usually happens due to the topology change event when a new node joins the cluster or the old one leaves it.\n\nThis guarantee makes it feasible to execute complex logic for which it's crucial that the data stays on the same node throughout the time the job is being executed there. For instance, this feature allows executing *local* SQL queries as a part of a compute job, triggered by `affinityCall(...)` or `affinityRun(...)`, not worrying about that the local query may return a partial result set due to the data rebalancing."
 }
 [/block]
 
