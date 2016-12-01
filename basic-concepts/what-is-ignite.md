@@ -4,7 +4,7 @@ Apache Ignite<sup>tm</sup> In-Memory Data Fabric is a high-performance, integrat
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/TaOC4vgNQEm30GoXrHpA",
+        "https://files.readme.io/ErcrELN0QACmUnmRPDp1_apache-ignite.png",
         "apache-ignite.png",
         "735",
         "223",

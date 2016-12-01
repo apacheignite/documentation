@@ -149,7 +149,7 @@ Below is an example of setting all of the above parameters in cache configuratio
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">             \n            <!-- Set rebalance batch size to 1 MB. -->\n            <property name=\"rebalanceBatchSize\" value=\"#{1024 * 1024}\"/>\n \n            <!-- Explicitly disable rebalance throttling. -->\n            <property name=\"rebalanceThrottle\" value=\"0\"/>\n \n            <!-- Set 4 threads for rebalancing. -->\n            <property name=\"rebalanceThreadPoolSize\" value=\"4\"/>\n            ... \n        </bean\n    </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    ...\n    <property name=\"cacheConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">             \n            <!-- Set rebalance batch size to 1 MB. -->\n            <property name=\"rebalanceBatchSize\" value=\"#{1024 * 1024}\"/>\n \n            <!-- Explicitly disable rebalance throttling. -->\n            <property name=\"rebalanceThrottle\" value=\"0\"/>\n \n            <!-- Set 4 threads for rebalancing. -->\n            <property name=\"rebalanceThreadPoolSize\" value=\"4\"/>\n            ... \n        </bean>\n    </property>\n</bean>",
       "language": "xml"
     }
   ]
@@ -162,7 +162,7 @@ Below is an example of setting all of the above parameters in cache configuratio
   "title": "Configure Thread Pools"
 }
 [/block]
-By default, Ignite has it's main thread pool size set to the 2 times the available CPU count. In most cases keeping 2 threads per core will result in faster application performance, since there will be less context switching and CPU caches will work better. However, if you are expecting that your jobs will block for I/O or any other reason, it may make sense to increase the thread pool size. Below is an examples of how you configure thread pools:
+By default, Ignite has its main thread pool size set to the 2 times the available CPU count. In most cases keeping 2 threads per core will result in faster application performance, since there will be less context switching and CPU caches will work better. However, if you are expecting that your jobs will block for I/O or any other reason, it may make sense to increase the thread pool size. Below is an examples of how you configure thread pools:
 [block:code]
 {
   "codes": [

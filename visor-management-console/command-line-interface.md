@@ -4,7 +4,7 @@ Visor Command Line Interface provides scriptable monitoring capabilities for Ign
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/Q4WTEhAcQVCchwIWGiSB",
+        "https://files.readme.io/cZV25NaSmqIdjI8fjFrp_visor.png",
         "visor.png",
         "1090",
         "1106",

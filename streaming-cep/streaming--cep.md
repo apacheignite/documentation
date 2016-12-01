@@ -11,7 +11,7 @@ Ignite streaming allows to process continuous never-ending streams of data in sc
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/JWb9VJReTWSUw2PSA2OE",
+        "https://files.readme.io/ruKl3kz4QYiQp4h6gtOE_ignite-stream-query.png",
         "ignite-stream-query.png",
         "600",
         "316",
@@ -34,7 +34,7 @@ Ignite streaming functionality also allows to query into **sliding windows** of 
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/OLzREplOTqWuV62KOSrm",
+        "https://files.readme.io/rFwVt4cCQc24MmIEdcm0_in_memory_streaming.png",
         "in_memory_streaming.png",
         "600",
         "180",

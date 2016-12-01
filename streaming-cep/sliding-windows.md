@@ -4,7 +4,7 @@ Sliding windows are configured as Ignite cache eviction policies, and can be tim
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/LC5Z0RAfQQmLQxTe6ZmN",
+        "https://files.readme.io/cZwoaIpoRyygc8BJFRJL_in_memory_streaming.png",
         "in_memory_streaming.png",
         "600",
         "180",

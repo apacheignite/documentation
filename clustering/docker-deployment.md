@@ -1,3 +1,13 @@
+* [Overview](#overview)
+* [Start Ignite Docker Container](start-ignite-docker-container)
+* [Google Compute Deployment](#google-compute-deployment)
+* [Amazon EC2 Deployment](#amazon-ec2-deployment)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Docker allows to package Ignite deployment with all the dependencies into a standard container. Docker automates downloading the Ignite release, deploying users' library into Ignite, and configuring nodes. It also automatically starts up a fully configured Ignite node. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
 [block:api-header]
 {
@@ -82,7 +92,7 @@ Should see the following in logs:
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/lbgfn28TQKqOX03FTVsc",
+        "https://files.readme.io/A0auyExTrqkcxOZfRnbu_docker_bare.png",
         "docker_bare.png",
         "1113",
         "633",
@@ -122,7 +132,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/uWZ9KlAKQeKzcaP9f7Sv",
+        "https://files.readme.io/PhTYum4TZ6SPIFu5xsLA_Choose_image.png",
         "Choose_image.png",
         "760",
         "625",
@@ -139,7 +149,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/dczZ8N7ATLCOV5X3KvKH",
+        "https://files.readme.io/7W6VPUq6QNiFkFP4soQP_Metadata.png",
         "Metadata.png",
         "683",
         "563",
@@ -217,7 +227,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   "images": [
     {
       "image": [
-        "https://www.filepicker.io/api/file/tdxlrfjQqM4MSJpY8L6g",
+        "https://files.readme.io/onqTRfT7ShiGDVgK8YrA_AmazonUserData.png",
         "AmazonUserData.png",
         "1112",
         "513",
