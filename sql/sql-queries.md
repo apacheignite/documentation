@@ -1,9 +1,11 @@
 * [Overview](#overview)
 * [How SQL Queries Work](#how-sql-queries-work)
-* [SQL Joins](#sql-joins)
-* [Field Queries](#field-queries)
+* [Queries Types](#queries-types)
 * [Cross-Cache Queries](#cross-cache-queries)
 * [Distributed Joins](#distributed-joins)
+* [Query Cancellation](#query-cancellation)
+* [Configuration Properties](#configuration-properties)
+* [Example](#example)
 [block:api-header]
 {
   "type": "basic",
@@ -222,3 +224,23 @@ The following code snippet is provided from the [CacheQueryExample](https://gith
 }
 [/block]
 Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Query Cancellation"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuration Properties"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example"
+}
+[/block]
