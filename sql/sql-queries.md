@@ -254,7 +254,14 @@ The second approach in regards to the query cancellation is to halt the query wi
   ]
 }
 [/block]
- 
+
+[block:callout]
+{
+  "type": "warning",
+  "body": "Query cancellation API is supported in Ignite 1.8 and later versions."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
