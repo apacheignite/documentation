@@ -93,7 +93,8 @@ Instead of selecting the whole object, you can choose to select only specific fi
 [block:callout]
 {
   "type": "warning",
-  "body": "Before specific fields can be used inside of `SqlQuery` or `SqlFieldsQuery` they have to be annotated at a POJO level or defined in a `QueryEntity`. Refer to [indexes](doc:indexes) related documentation that covers this in a nutshell."
+  "body": "Before specific fields can be accessed inside of `SqlQuery` or `SqlFieldsQuery` they have to be annotated at a POJO level or defined in a `QueryEntity` so that the SQL engines becomes aware of them. Refer to [indexes](doc:indexes) related documentation that covers this in a nutshell.",
+  "title": "Queryable Fields Definition"
 }
 [/block]
 
@@ -114,28 +115,12 @@ See example **SqlQuery JOIN** below.
   "title": "Cross-Cache Queries"
 }
 [/block]
-
-You can query data from multiple caches. In this case, cache names act as schema names in convential RDBMS like SQL queries. This means that all caches can be referred by cache names in quotes. The cache on which the query was created acts as the default schema and does not need to be explicitly specified.
+The data can be queried from multiple caches as a part of single `SqlQuery` or `SqlFieldsQuery`. In this case, cache names act as schema names in conventional RDBMS like SQL queries. The name of the cache, that is used to create an instance of either `SqlQuery` or `SqlFieldsQuery`,  will be used as a default schema name and does not need to be explicitly specified. The rest of the objects, that are stored in different caches and will be queried as well, has to be prefixed with the names of their caches (additional schemas names).
 
 See example **Cross-Cache SqlFieldsQuery**.
 [block:code]
 {
   "codes": [
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\nSqlQuery sql = new SqlQuery(Person.class, \"salary > ?\");\n\n// Find all persons earning more than 1,000.\ntry (QueryCursor<Entry<Long, Person>> cursor = cache.query(sql.setArgs(1000))) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
-      "language": "java",
-      "name": "SqlQuery"
-    },
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\n// SQL join on Person and Organization.\nSqlQuery sql = new SqlQuery(Person.class,\n  \"from Person as p, \\\"orgCache\\\".Organization as org\"\n  + \"where p.orgId = org.id \"\n  + \"and lower(org.name) = lower(?)\");\n\n// Find all persons working for Ignite organization.\ntry (QueryCursor<Entry<Long, Person>> cursor = cache.query(sql.setArgs(\"Ignite\"))) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
-      "language": "java",
-      "name": "SqlQuery JOIN"
-    },
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\n// Execute query to get names of all employees.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n  \"select concat(firstName, ' ', lastName) from Person\");\n\n// Iterate over the result set.\ntry (QueryCursor<List<?>> cursor = cache.query(sql) {\n  for (List<?> row : cursor)\n    System.out.println(\"personName=\" + row.get(0));\n}",
-      "language": "java",
-      "name": "SqlFieldsQuery"
-    },
     {
       "code": "// In this example, suppose Person objects are stored in a \n// cache named 'personCache' and Organization objects \n// are stored in a cache named 'orgCache'.\nIgniteCache<Long, Person> personCache = ignite.cache(\"personCache\");\n\n// Select with join between Person and Organization to \n// get the names of all the employees of a specific organization.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n    \"select Person.name  \"\n        + \"from Person as p, \\\"orgCache\\\".Organization as org where \"\n        + \"p.orgId = org.id \"\n        + \"and org.name = ?\");\n\n// Execute the query and obtain the query result cursor.\ntry (QueryCursor<List<?>> cursor =  personCache.query(sql.setArgs(\"Ignite\"))) {\n    for (List<?> row : cursor)\n        System.out.println(\"Person name=\" + row.get(0));\n}",
       "language": "java",
@@ -149,6 +134,20 @@ See example **Cross-Cache SqlFieldsQuery**.
 {
   "type": "basic",
   "title": "Distributed Joins"
+}
+[/block]
+Ignite supports collocated and non-collocated distributed SQL joins. Moreover, if the data resides in different caches, Ignite allows for cross-cache joins as well. 
+
+Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. However, if you do a join between two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are either **collocated** or you have enabled the non-collocated joins parameter for the query. 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\n// SQL join on Person and Organization.\nSqlQuery sql = new SqlQuery(Person.class,\n  \"from Person as p, \\\"orgCache\\\".Organization as org\"\n  + \"where p.orgId = org.id \"\n  + \"and lower(org.name) = lower(?)\");\n\n// Find all persons working for Ignite organization.\ntry (QueryCursor<Entry<Long, Person>> cursor = cache.query(sql.setArgs(\"Ignite\"))) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
+      "language": "java",
+      "name": "SqlQueryJoin"
+    }
+  ]
 }
 [/block]
 By default, if an SQL join has to be done across a number of Ignite caches, then all the caches have to be collocated. Otherwise, you will get an incomplete result at the end of query execution because at the join phase a node uses the data that is available only **locally**. Referring to **Picture 1.** below you will see that, first, an SQL query is sent to all the nodes (`Q`) where data, required for a join, is located. After that the query is executed right away by every node (`E(Q)`) over the local data set and, finally, the overall execution result is aggregated on the client side (`R`).  
