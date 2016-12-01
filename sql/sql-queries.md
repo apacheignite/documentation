@@ -50,6 +50,19 @@ In principle, there are two main ways of how a query is executed by Apache Ignit
 [block:api-header]
 {
   "type": "basic",
+  "title": "Query Types"
+}
+[/block]
+There are two general types of SQL queries that are available at Java API level - `SqlQuery` and `SqlFieldsQuery` respectively.
+[block:callout]
+{
+  "type": "info"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "SQL Joins"
 }
 [/block]
