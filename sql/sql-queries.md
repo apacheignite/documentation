@@ -116,8 +116,6 @@ See example **SqlQuery JOIN** below.
 }
 [/block]
 The data can be queried from multiple caches as a part of single `SqlQuery` or `SqlFieldsQuery`. In this case, cache names act as schema names in conventional RDBMS like SQL queries. The name of the cache, that is used to create an instance of either `SqlQuery` or `SqlFieldsQuery`,  will be used as a default schema name and does not need to be explicitly specified. The rest of the objects, that are stored in different caches and will be queried as well, has to be prefixed with the names of their caches (additional schemas names).
-
-See example **Cross-Cache SqlFieldsQuery**.
 [block:code]
 {
   "codes": [
