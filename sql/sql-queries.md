@@ -53,10 +53,12 @@ In principle, there are two main ways of how a query is executed by Apache Ignit
   "title": "Query Types"
 }
 [/block]
-There are two general types of SQL queries that are available at Java API level - `SqlQuery` and `SqlFieldsQuery` respectively.
+There are two general types of SQL queries that are available at Java API level - `SqlQuery` and `SqlFieldsQuery` respectively. [Quering Data](doc:quering-data) 
 [block:callout]
 {
-  "type": "info"
+  "type": "info",
+  "title": "Alternative APIs",
+  "body": "Apache Ignite In-Memory SQL Grid is not bound to Java APIs only. You can connect to an Ignite cluster from .NET, C++, ODBC or JDBC sides and execute SQL queries without a need to be aware of Java APIs at all. Lear more about additional APIs from the pages listed below:\n* [.NET SQL Queries](https://apacheignite-net.readme.io/docs/sql-queries)\n* [C++ SQL Queries](https://apacheignite-cpp.readme.io/docs/sql-queries)\n* [JDBC Driver Based Queries](doc:jdbc-driver) \n* [ODBC Driver Based Queries](doc:quering-data)"
 }
 [/block]
 
