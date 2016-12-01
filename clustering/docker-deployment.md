@@ -40,7 +40,7 @@ The configuration parameters are passed through environment variables in docker 
     "0-0": "`CONFIG_URI`",
     "0-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
     "0-2": "`N/A`",
-    "0-3": "`https://raw.githubusercontent.com/apache/ignite/master/examples/config/example-cache.xml`",
+    "0-3": "`https://raw.githubusercontent.com/apache/ignite/'\n'master/examples/config/example-cache.xml`",
     "1-0": "`OPTION_LIBS`",
     "1-1": "Ignite optional libs which will be included in the class path.",
     "1-2": "`ignite-log4j,\nignite-spring,\nignite-indexing`",
