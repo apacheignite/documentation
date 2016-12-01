@@ -50,7 +50,7 @@ Second, if a query is executed over a `PARTITIONED` cache then the execution flo
 [block:api-header]
 {
   "type": "basic",
-  "title": "Query Types"
+  "title": "Queries Types"
 }
 [/block]
 There are two general types of SQL queries that are available at Java API level - `SqlQuery` and `SqlFieldsQuery` respectively. 
@@ -59,6 +59,41 @@ There are two general types of SQL queries that are available at Java API level 
   "type": "info",
   "title": "Alternative APIs",
   "body": "Apache Ignite In-Memory SQL Grid is not bound to Java APIs only. You can connect to an Ignite cluster from .NET, C++, ODBC or JDBC sides and execute SQL queries without a need to be aware of Java APIs at all. Lear more about additional APIs from the pages listed below:\n* [.NET SQL Queries](https://apacheignite-net.readme.io/docs/sql-queries)\n* [C++ SQL Queries](https://apacheignite-cpp.readme.io/docs/sql-queries)\n* [JDBC Driver Based Queries](doc:jdbc-driver) \n* [ODBC Driver Based Queries](doc:quering-data)"
+}
+[/block]
+## SqlQuery
+
+`SqlQuery` is useful for the scenarios when at the end of query execution you need to get the whole object, stored in a cache (key and value), back in a final result set. The code snippet below shows how this can be done in practice.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\nSqlQuery sql = new SqlQuery(Person.class, \"salary > ?\");\n\n// Find all persons earning more than 1,000.\ntry (QueryCursor<Entry<Long, Person>> cursor = cache.query(sql.setArgs(1000))) {\n  for (Entry<Long, Person> e : cursor)\n    System.out.println(e.getValue().toString());\n}",
+      "language": "java",
+      "name": "SqlQuery"
+    }
+  ]
+}
+[/block]
+## SqlFieldsQueries
+
+Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose, Ignite implements a concept of `fields queries`. Basically, `SqlFieldsQuery` accepts a conventional ANSI-99 SQL query as its constructor​ parameter and executes its right away as it's shown in the example below.  
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\n// Execute query to get names of all employees.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n  \"select concat(firstName, ' ', lastName) from Person\");\n\n// Iterate over the result set.\ntry (QueryCursor<List<?>> cursor = cache.query(sql) {\n  for (List<?> row : cursor)\n    System.out.println(\"personName=\" + row.get(0));\n}",
+      "language": "java",
+      "name": "SqlFieldsQuery"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "body": "Before specific fields can be used inside of `SqlQuery` or `SqlFieldsQuery` they have to be annotated at a POJO level or defined in a `QueryEntity`. Refer to [indexes](doc:indexes) related documentation that covers this in a nutshell."
 }
 [/block]
 
@@ -76,20 +111,11 @@ See example **SqlQuery JOIN** below.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Field Queries"
-}
-[/block]
-Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose Ignite has a concept of `fields queries`. Also it is useful when you want to execute some aggregate query.
-
-See example **SqlFieldsQuery** below.
-[block:api-header]
-{
-  "type": "basic",
   "title": "Cross-Cache Queries"
 }
 [/block]
 
-You can query data from multiple caches. In this case, cache names act as schema names in regular SQL. This means all caches can be referred by cache names in quotes. The cache on which the query was created acts as the default schema and does not need to be explicitly specified.
+You can query data from multiple caches. In this case, cache names act as schema names in convential RDBMS like SQL queries. This means that all caches can be referred by cache names in quotes. The cache on which the query was created acts as the default schema and does not need to be explicitly specified.
 
 See example **Cross-Cache SqlFieldsQuery**.
 [block:code]
@@ -190,60 +216,3 @@ The following code snippet is provided from the [CacheQueryExample](https://gith
 }
 [/block]
 Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Using EXPLAIN"
-}
-[/block]
-Ignite supports "EXPLAIN ..." syntax in SQL queries and reading execution plans is a main way to analyze query performance in Ignite. Note that plan cursor will contain multiple rows: the last one will contain query for reducing node, others are for map nodes.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "SqlFieldsQuery sql = new SqlFieldsQuery(\n  \"explain select name from Person where age = ?\").setArgs(26); \n\nSystem.out.println(cache.query(sql).getAll());",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-The execution plan itself is generated by H2 as described here: 
-http://www.h2database.com/html/performance.html#explain_plan
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Using H2 Debug Console"
-}
-[/block]
-When developing with Ignite sometimes it is useful to check if your tables and indexes look  correctly or run some local queries against embedded in node H2 database. For that purpose Ignite has an ability to start H2 Console. To do that you can start a local node with `IGNITE_H2_DEBUG_CONSOLE` system property or environment variable set to `true`. The console will be opened in your browser. Probably you will need to click `Refresh` button on the Console because it can be opened before database objects initialized. 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/OsddL8lfTOSLKqZWaTlI_Screen%20Shot%202015-08-24%20at%207.06.36%20PM.png",
-        "Screen Shot 2015-08-24 at 7.06.36 PM.png",
-        "1394",
-        "1018",
-        "#945642",
-        ""
-      ],
-      "caption": ""
-    }
-  ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Performance and Usability Considerations"
-}
-[/block]
-There are few common pitfalls that should be noticed when running SQL queries.
-
-1. If the query is using operator **OR** then it may use indexes not the way you would expect. For example for query `select name from Person where sex='M' and (age = 20 or age = 30)` index on field `age` will not be used even if it is obviously more selective than index on field `sex` and thus is preferable. To workaround this issue you have to rewrite the query with UNION ALL (notice that UNION without ALL will return DISTINCT rows, which will change query semantics and introduce additional performance penalty) like `select name from Person where sex='M' and age = 20 
-UNION ALL 
-select name from Person where sex='M' and age = 30`. This way indexes will be used correctly.
-
-2. If query contains operator **IN** then it has two problems: it is impossible to provide variable list of parameters (you have to specify the exact list in query like `where id in (?, ?, ?)`, but you can not write it like `where id in ?` and pass array or collection) and this query will not use index. To workaround both problems you can rewrite the query in the following way: `select p.name from Person p join table(id bigint = ?) i on p.id = i.id`. Here you can provide object array (Object[]) of any length as a parameter and the query will use index on field `id`. Note that primitive arrays (int[], long[], etc..) can not be used with this syntax, you have to pass array of boxed primitives.
