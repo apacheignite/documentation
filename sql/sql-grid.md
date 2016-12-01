@@ -26,4 +26,5 @@ To execute the queries you can leverage from the APIs that were deliberately cre
 * [JDBC Driver](doc:jdbc-driver) 
 * [ODBC Driver](doc:odbc-driver) 
 * [Geospatial Support](doc:geospatial-queries) 
+* [SQL Grid Based Integrations and Tools](https://apacheignite-mix.readme.io/docs/overview-1)
 * [Performance and Debugging](doc:performance-and-debugging)
