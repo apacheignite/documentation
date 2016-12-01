@@ -132,8 +132,6 @@ In the example above an instance of `SqlFieldsQuery` is created from `personCach
 }
 [/block]
 Ignite supports collocated and non-collocated distributed SQL joins. Moreover, if the data resides in different caches, Ignite allows for cross-cache joins as well. 
-
-Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. However, if you do a join between two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are either **collocated** or you have enabled the non-collocated joins parameter for the query. 
 [block:code]
 {
   "codes": [
@@ -145,6 +143,12 @@ Joins between `PARTITIONED` and `REPLICATED` caches always work without any limi
   ]
 }
 [/block]
+Joins between `PARTITIONED` and `REPLICATED` caches always work without any limitations. 
+
+However, if you do a join between at least two `PARTITIONED` data sets, then you must make sure that the keys you are joining on are either **collocated** or you have to enable the non-collocated joins parameter for the query. The two types of distributed joins modes are explained further below. 
+
+## Distributed Collocated Joins
+
 By default, if an SQL join has to be done across a number of Ignite caches, then all the caches have to be collocated. Otherwise, you will get an incomplete result at the end of query execution because at the join phase a node uses the data that is available only **locally**. Referring to **Picture 1.** below you will see that, first, an SQL query is sent to all the nodes (`Q`) where data, required for a join, is located. After that the query is executed right away by every node (`E(Q)`) over the local data set and, finally, the overall execution result is aggregated on the client side (`R`).  
 [block:image]
 {
