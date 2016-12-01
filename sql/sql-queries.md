@@ -294,6 +294,37 @@ The properties are divided into global ones that are exposed over `CacheConfigur
   "rows": 3
 }
 [/block]
+## `SqlFields` and `SqlFieldsQuery` Configuration Properties
+[block:parameters]
+{
+  "data": {
+    "h-0": "Property Name",
+    "h-1": "Description",
+    "h-2": "Default Value",
+    "h-3": "Supported Query Type",
+    "0-0": "`setCollocated(...)`",
+    "0-1": "Collocation flag is used for optimization purposes. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node Ignite can make significant performance and network optimizations by grouping data on remote nodes.",
+    "0-2": "`false`",
+    "1-0": "`setDistributedJoins(...)`",
+    "1-1": "Enables distributed non-collocated mode for a given query.",
+    "1-2": "`false`",
+    "2-0": "`setEnforceJoinOrder(...)`",
+    "2-1": "Sets flag to enforce join order of tables in the query. If set to `true`  the query optimizer will not reorder tables in a join clause.",
+    "2-2": "`false`",
+    "3-0": "`setLocal(...)`",
+    "3-1": "Forces query execution in purely local mode. Refer to [local queries](doc:local-queries) page for more details on this mode.",
+    "3-2": "`false`",
+    "4-0": "`setPageSize(...)`",
+    "4-1": "Defines a maximum number of entries that can be transferred in a single response chunk to a reducing node (query initiator).",
+    "4-2": "`1024`",
+    "5-0": "`setTimeout(...)`",
+    "5-1": "Sets the query execution timeout. Query will be automatically cancelled if the execution timeout is exceeded. Disabled by default.",
+    "5-2": "`0`"
+  },
+  "cols": 3,
+  "rows": 6
+}
+[/block]
 
 [block:api-header]
 {
