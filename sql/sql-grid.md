@@ -2,7 +2,7 @@ In-Memory SQL Grid is a high-performant and fault-tolerant in-memory distributed
 
 SQL Grid is fully ANSI-99 compliant and allows to execute all the imaginable set of SELECT, UPDATE, INSERT, MERGE and DELETE queries in Ignite. 
 
-To execute the queries you can leverage from the APIs that were deliberately created for Java, .NET or C++ programming languages or, alternatively, you can connect to an Ignite cluster using Ignite's JDBC and ODBC driver and send the queries directly from a favorite programming language or analytical tool.
+To execute the queries you can leverage from the APIs that were deliberately created for Java, .NET or C++ programming languages or, alternatively, you can connect to an Ignite cluster using Ignite's JDBC and ODBC driver and execute the queries directly from a favorite programming language or analytical tool.
 
 
 [block:image]
