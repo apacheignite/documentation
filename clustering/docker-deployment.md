@@ -1,3 +1,8 @@
+* [Overview](#overview)
+* [Start Ignite Docker Container](start-ignite-docker-container)
+* [Google Compute Deployment](#google-compute-deployment)
+* [Amazon EC2 Deployment](#amazon-ec2-deployment)
+
 Docker allows to package Ignite deployment with all the dependencies into a standard container. Docker automates downloading the Ignite release, deploying users' library into Ignite, and configuring nodes. It also automatically starts up a fully configured Ignite node. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
 [block:api-header]
 {
@@ -40,7 +45,7 @@ The configuration parameters are passed through environment variables in docker 
     "0-0": "`CONFIG_URI`",
     "0-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
     "0-2": "`N/A`",
-    "0-3": "`https://raw.githubusercontent.com/`\n`bob/master/ignite-cfg.xml`",
+    "0-3": "`https://raw.githubusercontent.com/apache/ignite/master/examples/config/example-cache.xml`",
     "1-0": "`OPTION_LIBS`",
     "1-1": "Ignite optional libs which will be included in the class path.",
     "1-2": "`ignite-log4j,\nignite-spring,\nignite-indexing`",
@@ -65,12 +70,12 @@ The configuration parameters are passed through environment variables in docker 
   "title": "Example"
 }
 [/block]
-To run Ignite docker container with bare Ignite node, use the following command:
+To run Ignite docker container, use the following command:
 [block:code]
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host -e \"IGNITE_CONFIG=https://raw.githubusercontent.com/bob/master/ignite-cfg.xml\" apacheignite/ignite:1.4.0",
+      "code": "sudo docker run -it --net=host -e \"IGNITE_CONFIG=https://raw.githubusercontent.com/apache/ignite/master/examples/config/example-cache.xml\" apacheignite/ignite",
       "language": "shell"
     }
   ]
