@@ -1,3 +1,9 @@
+Apache Ignite supports advanced indexing capabilities allowing you to define single fields or group indexes with various parameters, to manage indexes location putting them either in Java heap or off-heap spaces and so on so forth.
+
+Indexes in Ignite are kept in a distributed fashion the same way as cache data sets. Each node that stores a specific subset of data keeps and maintains indexes corresponding to this data as well.
+
+From this documentation page you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
+
 * [Configuring SQL Indexes by Annotations](#configuring-sql-indexes-by-annotations)
  * [Making Fields Visible for SQL Queries](#section-making-fields-visible-for-sql-queries)
  * [Single Column Indexes](#section-single-column-indexes)
