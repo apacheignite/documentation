@@ -1,29 +1,18 @@
-* [Overview](#overview)
-* [Start from User Git Repository](#start-from-user-git-repository)
-* [Start Bare Ignite Node](#start-bare-ignite-node)
-* [Google Compute Deployment](#google-compute-deployment)
-* [Amazon EC2 Deployment](#amazon-ec2-deployment)
+Docker allows to package Ignite deployment with all the dependencies into a standard container. Docker automates downloading the Ignite release, deploying users' library into Ignite, and configuring nodes. It also automatically starts up a fully configured Ignite node. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Overview"
+  "title": "Start Ignite Docker Container"
 }
 [/block]
-Docker allows to package Ignite deployment with all the dependencies into a standard container. Docker automates downloading the Ignite release, deploying users' code into Ignite, and configuring nodes. It also automatically starts up a fully configured Ignite node. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Start from User Git Repository"
-}
-[/block]
-Ignite docker container will start in this mode if  the `GIT_REPO` parameter is configured. In this case, the container will build user's project specified by the GIT repository and will start Ignite with user code deployed in it. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
+For running docker container need to pull and start docker image. By default the latest version is downloaded. Full list of tags here: [https://hub.docker.com](https://hub.docker.com/r/apacheignite/ignite/tags)
 
 To pull the Ignite docker container use the following command:
 [block:code]
 {
   "codes": [
     {
-      "code": " sudo docker pull apacheignite/ignite",
+      "code": "# Pull latest version.\nsudo docker pull apacheignite/ignite\n\n# Pull ignite version 1.7.0\nsudo docker pull apacheignite/ignite:1.7.0",
       "language": "shell"
     }
   ]
@@ -34,112 +23,7 @@ To run Ignite docker container using `docker run`:
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=$GIT_REPO\" \n[-e \"GIT_BRANCH=$GIT_BRANCH\"]\n[-e \"BUILD_CMD=$BUILD_CMD\"]\n...\napacheignite/ignite ",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
-The configuration parameters are passed through environment variables in docker container. The following configuration parameters are available:
-[block:parameters]
-{
-  "data": {
-    "h-0": "Name",
-    "h-1": "Description",
-    "h-2": "Optional",
-    "h-3": "Default",
-    "h-4": "Example",
-    "0-0": "`GIT_REPO`",
-    "1-0": "`GIT_BRANCH`",
-    "2-0": "`BUILD_CMD`",
-    "0-1": "URL to the GIT repository.",
-    "1-1": "GIT branch to build.",
-    "2-1": "Command which will be used to build the GIT project.",
-    "0-2": "`false`",
-    "1-2": "`true`",
-    "2-2": "`true`",
-    "0-3": "`N/A`",
-    "1-3": "`master`",
-    "2-3": "`mvn clean package`",
-    "0-4": "`https://github.com/bob/ignite-pojo`",
-    "1-4": "`sprint-1`",
-    "2-4": "`mvn clean package` \\\n`-DskipTests=true`",
-    "3-2": "`true`",
-    "3-0": "`IGNITE_CONFIG`",
-    "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
-    "3-3": "`N/A`",
-    "3-4": "`https://raw.githubusercontent.com/`\n`bob/master/ignite-cfg.xml`",
-    "4-0": "`LIB_PATTERN`",
-    "4-1": "If set then Ignite docker container will only copy the files which match this regex pattern.",
-    "4-2": "`true`",
-    "4-3": "`copy all jar files`\n`from target folder`",
-    "5-0": "`OPTION_LIBS`",
-    "5-1": "Ignite optional libs which will be included in the class path.",
-    "5-2": "`true`",
-    "5-3": "`ignite-log4j,` \\\n`ignite-spring,` \\\n`ignite-indexing`",
-    "5-4": "`ignite-aws,ignite-aop`",
-    "4-4": "`libs/.*`"
-  },
-  "cols": 5,
-  "rows": 6
-}
-[/block]
-## Example
-
-To run Ignite docker container from GIT repository, execute the following command:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "sudo docker run -it --net=host \n-e \"GIT_REPO=https://github.com/TikhonovNikolay/docker-example.git\" \napacheignite/ignite ",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
- You should see the following print out in the logs:
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ryYtMcSCuGiyVcXN1GCw_dock_git_repo.png",
-        "dock_git_repo.png",
-        "979",
-        "643",
-        "#6098ae",
-        ""
-      ]
-    }
-  ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Start Bare Ignite Node"
-}
-[/block]
-If `GIT_REPO` parameter is not configured, then Ignite docker container will download the specified or the latest Ignite distribution. By default the latest version is downloaded.
-
-To pull the Ignite docker container use the following command:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "sudo docker pull apacheignite/ignite",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
-To run Ignite docker container using `docker run`:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "sudo docker run -it --net=host \n-e \"IGNITE_VERSION=$IGNITE_VERSION\" \n[-e \"IGNITE_CONFIG=$IGNITE_CONFIG\"]\n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n...\napacheignite/ignite ",
+      "code": "# Run latest version.\nsudo docker run -it --net=host \n-e \"CONFIG_URI=$CONFIG_URI\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite \n\n# Run ignite version 1.4.0\nsudo docker run -it --net=host \n-e \"CONFIG_URI=$CONFIG_URI\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite ",
       "language": "shell"
     }
   ]
@@ -153,55 +37,56 @@ The configuration parameters are passed through environment variables in docker 
     "h-1": "Description",
     "h-2": "Default",
     "h-3": "Example",
-    "0-0": "`IGNITE_URL`",
-    "1-0": "`IGNITE_VERSION`",
-    "2-0": "`IGNITE_SOURCE`",
-    "0-1": "URL to the Ignite distribuition.",
-    "1-1": "Ignite version.",
-    "2-1": "Ignite edition which will be downloaded. This parameter is ignored, if IGNITE_VERSION is set.",
+    "0-0": "`CONFIG_URI`",
+    "1-0": "`OPTION_LIBS`",
+    "2-0": "`JVM_OPTS`",
+    "3-0": "`EXTERNAL_LIBS`",
+    "0-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
+    "1-1": "Ignite optional libs which will be included in the class path.",
+    "2-1": "Environment variables passed to Ignite instance in your docker command.",
+    "3-1": "List of URL's to libs.",
     "0-2": "`N/A`",
-    "1-2": "`latest`",
-    "2-2": "`COMMUNITY`",
-    "0-3": "`http://apache-mirror.rbc.ru/pub/apache/incubator/ignite/1.7.0/`\n`apache-ignite-fabric-1.7.0-incubating-bin.zip`",
-    "1-3": "`1.7.0`",
-    "2-3": "`APACHE`",
-    "3-0": "`IGNITE_CONFIG`",
-    "3-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml",
+    "1-2": "`ignite-log4j,\nignite-spring,\nignite-indexing`",
+    "2-2": "`N/A`",
     "3-2": "`N/A`",
-    "3-3": "`https://raw.githubusercontent.com/`\n`bob/master/ignite-cfg.xml`",
-    "4-0": "`OPTION_LIBS`",
-    "4-1": "Ignite optional libs which will be included in the class path.",
-    "4-2": "`ignite-log4j,\nignite-spring,\nignite-indexing`",
-    "4-3": "`ignite-aws,ignite-aop`"
+    "0-3": "`https://raw.githubusercontent.com/apache/ignite/master/examples/config/example-cache.xml`",
+    "1-3": "`ignite-aws,ignite-aop`",
+    "2-3": "`-Xms1g -Xmx1g -server -XX:+AggressiveOpts -XX:MaxPermSize=256m`",
+    "3-3": "`http://central.maven.org/maven2/io/undertow/undertow-servlet/1.3.10.Final/undertow-servlet-1.3.10.Final.jar,http://central.maven.org/maven2/io/undertow/undertow-build-config/1.0.0.Beta24/undertow-build-config-1.0.0.Beta24.jar`"
   },
   "cols": 4,
-  "rows": 5
+  "rows": 4
 }
 [/block]
-## Example
 
-To run Ignite docker container with bare Ignite node, use the following command:
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example"
+}
+[/block]
+To run Ignite docker container, use the following command:
 [block:code]
 {
   "codes": [
     {
-      "code": "sudo docker run -it --net=host -e \"IGNITE_VERSION={desired_ignite_version}\" apacheignite/ignite",
+      "code": "sudo docker run -it --net=host -e \"IGNITE_CONFIG=https://raw.githubusercontent.com/apache/ignite/master/examples/config/example-cache.xml\" apacheignite/ignite",
       "language": "shell"
     }
   ]
 }
 [/block]
-You should see the following in the logs:
+Should see the following in logs:
 [block:image]
 {
   "images": [
     {
       "image": [
-        "https://files.readme.io/A0auyExTrqkcxOZfRnbu_docker_bare.png",
-        "docker_bare.png",
-        "1113",
-        "633",
-        "#996220",
+        "https://files.readme.io/ryYtMcSCuGiyVcXN1GCw_dock_git_repo.png",
+        "dock_git_repo.png",
+        "979",
+        "643",
+        "#6098ae",
         ""
       ]
     }
@@ -315,9 +200,9 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
     "0-0": "`US-WEST`",
     "1-0": "`US-EAST`",
     "2-0": "`EU-CENTRAL`",
-    "0-1": "[ami-5b53a41f](https://console.aws.amazon.com/ec2/home?region=us-west-1#launchAmi=ami-5b53a41f)",
-    "1-1": "[ami-3fa45e54](https://console.aws.amazon.com/ec2/home?region=us-east-1#launchAmi=ami-3fa45e54)",
-    "2-1": "[ami-9c5f6481](https://console.aws.amazon.com/ec2/home?region=eu-central-1#launchAmi=ami-9c5f6481)",
+    "0-1": "[ami-9cdbb3fc](https://console.aws.amazon.com/ec2/home?region=us-west-1#launchAmi=ami-9cdbb3fc)",
+    "1-1": "[ami-ce82caa4](https://console.aws.amazon.com/ec2/home?region=us-east-1#launchAmi=ami-ce82caa4)",
+    "2-1": "[ami-191b0775](https://console.aws.amazon.com/ec2/home?region=eu-central-1#launchAmi=ami-191b0775)",
     "h-1": "Image"
   },
   "cols": 2,
