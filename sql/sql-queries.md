@@ -28,8 +28,25 @@ However, the data as well as indexes, are always stored on Ignite Data Grid side
 In principle, there are two main ways of how a query is executed by Apache Ignite SQL Grid:
 
 1. If a query is executed against a `REPLICATED` cache then Ignite assumes that all the data is available locally and will run a simple local SQL query passing it directly to H2 database engine. The same execution flow is true for `LOCAL` caches.
+[block:callout]
+{
+  "type": "info",
+  "title": "Local Queries",
+  "body": "Learn more about local SQL queries in Ignite from [this page](doc:local-queries)."
+}
+[/block]
+2. If a query is executed over a `PARTITIONED` cache then the execution flow will be the following:
+* The query will be parsed and split into multiple map queries and a single reduce query.
+* All the map queries are executed on all the data nodes where cache data resides.
+* All the nodes provide result sets of local execution to the query initiator (reducing node) that, in turn, will accomplish the reduce phase by properly merging provided result sets.
+[block:callout]
+{
+  "type": "info",
+  "title": "Execution Flow of Cross-Cache Queries",
+  "body": "The execution flow of cross-cache or join queries is not different from the one described for the `PARTITIONED` cache above and will covered later as a part of this documentation."
+}
+[/block]
 
-2. If you execute the query against `PARTITIONED` cache, it will be executed ub the following way: the query will be parsed and split into multiple map queries and a single reduce query. Then all the map queries are executed on all data nodes of participating caches, providing results to the reducing node, which will in turn run the reduce query over these intermediate results.
 [block:api-header]
 {
   "type": "basic",
