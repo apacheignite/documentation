@@ -10,9 +10,9 @@
   "title": "Overview"
 }
 [/block]
-Ignite supports free-form SQL queries virtually without any limitations. SQL syntax is ANSI-99 compliant. You can use any SQL function, any aggregation, any grouping and Ignite will figure out where to fetch the results from.
+Ignite supports free-form SQL queries truly without any limitations. The SQL syntax is ANSI-99 compliant which literally means that you can use any kind of SQL functions, aggregations, groupings or joins, defined by the specification, as a part of an SQL query.
 
-See example **SqlQuery** below.
+Furthermore​,  
 [block:api-header]
 {
   "type": "basic",
