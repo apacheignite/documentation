@@ -25,9 +25,9 @@ An embedded H2 instance is always started as a part of an Apache Ignite node pro
 
 However, the data as well as indexes, are always stored on Ignite Data Grid side. In addition, it's Ignite responsibility to make queries workable in a distributed and fault-tolerant way which is not supported by H2 in general. 
 
-There are two main ways of how query can be processed in Ignite:
+In principle, there are two main ways of how a query is executed by Apache Ignite SQL Grid:
 
-1. If you execute the query against `REPLICATED` cache, Ignite assumes that all the data is available locally and will run a simple local SQL query in the H2 database engine. The same will happen for `LOCAL` caches.
+1. If a query is executed against a `REPLICATED` cache then Ignite assumes that all the data is available locally and will run a simple local SQL query passing it directly to H2 database engine. The same execution flow is true for `LOCAL` caches.
 
 2. If you execute the query against `PARTITIONED` cache, it will be executed ub the following way: the query will be parsed and split into multiple map queries and a single reduce query. Then all the map queries are executed on all data nodes of participating caches, providing results to the reducing node, which will in turn run the reduce query over these intermediate results.
 [block:api-header]
