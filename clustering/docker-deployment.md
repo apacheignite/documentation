@@ -49,7 +49,7 @@ The configuration parameters are passed through environment variables in docker 
     "1-2": "`ignite-log4j,\nignite-spring,\nignite-indexing`",
     "2-2": "`N/A`",
     "3-2": "`N/A`",
-    "0-3": "`https://raw.githubusercontent.com/apache/ignite/master/examples/config/example-cache.xml`",
+    "0-3": "`https://raw.githubusercontent.com/apache/ignite/\nmaster/examples/config/example-cache.xml`",
     "1-3": "`ignite-aws,ignite-aop`",
     "2-3": "`-Xms1g -Xmx1g -server -XX:+AggressiveOpts -XX:MaxPermSize=256m`",
     "3-3": "`http://central.maven.org/maven2/io/undertow/undertow-servlet/1.3.10.Final/undertow-servlet-1.3.10.Final.jar,http://central.maven.org/maven2/io/undertow/undertow-build-config/1.0.0.Beta24/undertow-build-config-1.0.0.Beta24.jar`"
