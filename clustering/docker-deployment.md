@@ -1,13 +1,3 @@
-* [Overview](#overview)
-* [Start Ignite Docker Container](start-ignite-docker-container)
-* [Google Compute Deployment](#google-compute-deployment)
-* [Amazon EC2 Deployment](#amazon-ec2-deployment)
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Overview"
-}
-[/block]
 Docker allows to package Ignite deployment with all the dependencies into a standard container. Docker automates downloading the Ignite release, deploying users' library into Ignite, and configuring nodes. It also automatically starts up a fully configured Ignite node. Such integration allows users to deploy new code by simply restarting the Ignite docker container.
 [block:api-header]
 {
