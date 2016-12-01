@@ -83,6 +83,6 @@ A class that owns the custom SQL function has to be registered in a specific `Ca
 [block:callout]
 {
   "type": "warning",
-  "body": "Classes that are registered with `CacheConfiguration.setSqlFunctionClasses(...)` have to be added to the classpath of all the nodes where defined custom functions might be executed."
+  "body": "Classes that are registered with `CacheConfiguration.setSqlFunctionClasses(...)` have to be added to the classpath of all the nodes where defined custom functions might be executed. Otherwise, you'll get a `ClassNotFoundException` at custom function's execution time."
 }
 [/block]
