@@ -116,7 +116,7 @@ The data can be queried from multiple caches as a part of single `SqlQuery` or `
   ]
 }
 [/block]
-
+In the example above an instance of `SqlFieldsQuery` is created from `personCache` which name is treated as a default schema name right after that. This is why `Person` object is accessed without explicitly specified schema name (`from Person as p`). As for `Organization` object, since it's stored in a separate cache named `orgCache`, the name of this cache must be set as a schema name explicitly in the query (`"orgCache".Organization as org`).
 [block:api-header]
 {
   "type": "basic",
