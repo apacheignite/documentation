@@ -1,4 +1,5 @@
 * [Query Cancellation](#query-cancellation)
+* [Custom SQL Functions](#custom-sql-functions)
 [block:api-header]
 {
   "type": "basic",
@@ -41,5 +42,47 @@ The second approach in regards to the query cancellation is to halt the query wi
 {
   "type": "basic",
   "title": "Custom SQL Functions"
+}
+[/block]
+Apache Ignite SQL Engine allows extending SQL functions' set, defined by ANSI-99 specification, by an addition of custom SQL functions written in Java.
+
+A custom SQL function is no more than a public static method marked by `@QuerySqlFunction` annotation.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Defining a custom SQL function.\npublic class MyFunctions {\n    @QuerySqlFunction\n    public static int sqr(int x) {\n        return x * x;\n    }\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+A class that owns the custom SQL function has to be registered in a specific `CacheConfiguration` using  `setSqlFunctionClasses(...)` method.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Preparing a cache configuration.\nCacheConfiguration cfg = new CacheConfiguration();\n\n// Registering the class that contains custom SQL functions.\ncfg.setSqlFunctionClasses(MyFunctions.class);\n            ",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+ After a cache with the configuration above is deployed you're free to call the custom function from SQL queries like it's shown below.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Preparing the query that uses customly defined 'sqr' function.\nSqlFieldsQuery query = new SqlFieldsQuery(\n  \"SELECT name FROM Blocks WHERE sqr(size) > 100\");\n\n// Executing the query.\ncache.query(query).getAll();        ",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "body": "Classes that are registered with `CacheConfiguration.setSqlFunctionClasses(...)` have to be added to the classpath of all the nodes where defined custom functions might be executed."
 }
 [/block]
