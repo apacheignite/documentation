@@ -8,6 +8,7 @@ From this documentation page you'll learn how to define and manage indexes as we
  * [Registering Indexed Types](#registering-indexed-types)
  * [Group Indexes](#section-group-indexes)
 * [QueryEntity Based Configuration](#queryentity-based-configuration)
+* [SkipList Based and Snapshotable Indexes](#skiplist-based-and-snapshotable-indexes)
 * [Off-Heap SQL Indexes](#off-heap-sql-indexes)
 * [Choosing Indexes](#choosing-indexes)
 [block:api-header]
@@ -123,14 +124,25 @@ The example below shows how you can define a single field and group indexes as w
 [block:api-header]
 {
   "type": "basic",
+  "title": "SkipList Based and Snapshotable Indexes"
+}
+[/block]
+SQL Grid provides two indexing implementations that can be used when indexes are stored in Java heap.
+
+The first one is an implementation based on skip list data structure and it's enabled by default.
+
+The second implementation is based on a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf). This implementation is known as snapshotable one in Ignite and can be enabled with `CacheConfiguration.setSnapshotableIndex(...)` method.  
+[block:api-header]
+{
+  "type": "basic",
   "title": "Off-Heap SQL Indexes"
 }
 [/block]
-Ignite supports placing index data in off-heap memory. This makes sense for very large datasets since keeping data in Java heap can cause high GC activity and unacceptable response times. 
+Ignite supports placing of indexed data in off-heap memory. This makes sense for very large datasets since keeping data in Java heap can cause high GC activity and unacceptable response times. 
 
 By default, Ignite stores SQL Indexes on heap. Ignite will store query indexes in off-heap memory if `CacheConfiguration.setMemoryMode` is configured to one of the off-heap memory modes - `OFFHEAP_TIERED` or `OFFHEAP_VALUES`, or `CacheConfiguration.setOffHeapMaxMemory` property is set to a value >= 0.
 
-To improve the performance of SQL queries with off-heap enabled, you can try to increase the value of `CacheConfiguration.setSqlOnheapRowCacheSize` property that has a default value of '10000'.
+To improve the performance of SQL queries with off-heap mode enabled, you can try to increase the value of `CacheConfiguration.setSqlOnheapRowCacheSize` property that has a default value of '10000'.
 [block:code]
 {
   "codes": [
