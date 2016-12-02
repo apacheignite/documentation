@@ -26,13 +26,11 @@ Apache Ignite was officially tested on:
     "2-0": "ISA",
     "1-1": "Linux (any flavor),\nMac OSX (10.6 and up)\nWindows (XP and up), \nWindows Server (2008 and up)\nOracle Solaris",
     "2-1": "x86, x64, SPARC, PowerPC",
-    "3-0": "Hardware",
-    "3-1": "No restrictions",
-    "4-0": "Network",
-    "4-1": "No restrictions (10G recommended)"
+    "3-0": "Network",
+    "3-1": "No restrictions (10G recommended)"
   },
   "cols": 2,
-  "rows": 5
+  "rows": 4
 }
 [/block]
 
