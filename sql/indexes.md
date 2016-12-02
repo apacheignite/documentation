@@ -132,6 +132,8 @@ SQL Grid provides two indexing implementations that can be used when indexes are
 The first one is an implementation based on skip list data structure and it's enabled by default.
 
 The second implementation is based on a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf). This implementation is known as snapshotable one in Ignite and can be enabled with `CacheConfiguration.setSnapshotableIndex(...)` method.  
+
+For off-heap mode, discussed below, Ignite provides only one indexing implementation which is a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf).
 [block:api-header]
 {
   "type": "basic",
