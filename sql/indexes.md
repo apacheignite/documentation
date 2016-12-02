@@ -154,6 +154,14 @@ To improve the performance of SQL queries with off-heap mode enabled, you can tr
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "title": "Indexing Implementation",
+  "body": "For off-heap mode Ignite provides only one indexing implementation which is a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf)."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
