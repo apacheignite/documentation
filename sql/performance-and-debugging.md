@@ -3,7 +3,7 @@ The following page covers these topics:
 * [Using H2 Debug Console](#using-h2-debug-console)
 * [Performance and Usability Considerations](#performance-and-usability-considerations)
 
-To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.gridgain.org/docs/indexes#indexes-tradeoffs).
+To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.readme.io/docs/indexes#indexes-tradeoffs).
 [block:api-header]
 {
   "type": "basic",
