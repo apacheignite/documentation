@@ -1,10 +1,10 @@
-Apache Ignite supports advanced indexing capabilities allowing you to define single fields or group indexes with various parameters, to manage indexes location putting them either in Java heap or off-heap spaces and so on so forth.
+Apache Ignite supports advanced indexing capabilities allowing you to define single column (field) or group indexes with various parameters, to manage indexes location putting them either in Java heap or off-heap spaces and so on so forth.
 
 Indexes in Ignite are kept in a distributed fashion the same way as cache data sets. Each node that stores a specific subset of data keeps and maintains indexes corresponding to this data as well.
 
 From this documentation page you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
 
-* [Configuring SQL Indexes by Annotations](#configuring-sql-indexes-by-annotations)
+* [Configuring SQL Indexes With Annotations](#configuring-sql-indexes-with-annotations)
  * [Making Fields Visible for SQL Queries](#section-making-fields-visible-for-sql-queries)
  * [Single Column Indexes](#section-single-column-indexes)
  * [Group Indexes](#section-group-indexes)
@@ -14,10 +14,26 @@ From this documentation page you'll learn how to define and manage indexes as we
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuring SQL Indexes by Annotations"
+  "title": "Configuring SQL Indexes With Annotations"
 }
 [/block]
-Indexes can be configured from code by using `@QuerySqlField` annotations. To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method, as shown in the example below. Note that this method accepts only pairs of types - one for key class and another for value class. Primitives are passed as boxed types.
+Indexes, as well as queryable fields, can be configured from code with the usage of `@QuerySqlField` annotation.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "public class Person implements Serializable {\n  /** Will be visible for SQL engine. */\n\t@QuerySqlField (index = true)\n  private long id;\n  \n  /** Will be visible for SQL engine. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will NOT be visible for SQL engine. */\n  private int age;\n}",
+      "language": "java"
+    },
+    {
+      "code": "case class Person (\n  /** Will be visible for SQL engine. */\n  @(QuerySqlField @field)(index = true) id: Long,\n\n  /** Will be visible for SQL engine. */\n  @(QuerySqlField @field) name: String,\n  \n  /** Will NOT be visisble for SQL engine. */\n  age: Int\n) extends Serializable {\n  ...\n}",
+      "language": "scala",
+      "name": "Scala"
+    }
+  ]
+}
+[/block]
+To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method, as shown in the example below. Note that this method accepts only pairs of types - one for key class and another for value class. Primitives are passed as boxed types.
 [block:code]
 {
   "codes": [
@@ -30,26 +46,10 @@ Indexes can be configured from code by using `@QuerySqlField` annotations. To te
 [/block]
 ## Making Fields Visible for SQL Queries
 To make fields accessible for SQL queries you have to annotate them with `@QuerySqlField`. Field `age` will not be accessible from SQL. Note that none of these fields are indexed. 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "public class Person implements Serializable {\n  /** Will be visible in SQL. */\n\t@QuerySqlField\n  private long id;\n  \n  /** Will be visible in SQL. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will NOT be visible in SQL. */\n  private int age;\n}",
-      "language": "java"
-    },
-    {
-      "code": "case class Person (\n  /** Will be visible in SQL. */\n  @(QuerySqlField @field) id: Long,\n\n  /** Will be visible in SQL. */\n  @(QuerySqlField @field) name: String,\n  \n  /** Will NOT be visisble in SQL. */\n  age: Int\n) extends Serializable {\n  ...\n}",
-      "language": "scala",
-      "name": "Scala"
-    }
-  ]
-}
-[/block]
-
 [block:callout]
 {
   "type": "info",
-  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for example, when one of them is a primitive and you want to filter by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`.",
+  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for instance, when one of them is of a primitive type and you want to filter out by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`.",
   "title": "Predefined Fields"
 }
 [/block]
