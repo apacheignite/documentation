@@ -20,7 +20,7 @@ The properties are divided into global ones that are exposed over `CacheConfigur
     "2-1": "Defines a number of SQL rows which will be cached onheap to avoid deserialization on each SQL index access. This setting only makes sense when offheap is enabled for this cache. Refer to [indexes](doc:indexes) page for more details on type of indexes.",
     "2-2": "`10,240`",
     "3-0": "`setSnapshotableIndex(...)`",
-    "3-1": "Enables snapshotable indexing implementation for indexed data stored in Java heap. Refer to [this documentation section](doc:indexes#skiplist-based-and-snapshotable-indexes) for more details.",
+    "3-1": "Enables snapshotable indexes implementation for indexed data stored in Java heap. Refer to [this documentation section](doc:indexes#skiplist-based-and-snapshotable-indexes) for more details.",
     "3-2": "`false`"
   },
   "cols": 3,
