@@ -5,10 +5,9 @@ Indexes in Ignite are kept in a distributed fashion the same way as cache data s
 From this documentation page you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
 
 * [Annotation Based Configuration](#annotation-based-configuration)
- * [Making Fields Visible for SQL Queries](#section-making-fields-visible-for-sql-queries)
- * [Single Column Indexes](#section-single-column-indexes)
+ * [Registering Indexed Types](#registering-indexed-types)
  * [Group Indexes](#section-group-indexes)
-* [Configuring SQL Indexes Using QueryEntity](#configuring-sql-indexes-using-queryentity)
+* [QueryEntity Based Configuration](#queryentity-based-configuration)
 * [Off-Heap SQL Indexes](#off-heap-sql-indexes)
 * [Choosing Indexes](#choosing-indexes)
 [block:api-header]
@@ -51,18 +50,18 @@ Finally, `age` is neither queryable nor indexed field and it won't be accessible
 
 After indexed and queryable fields are defined they have to be registered in SQL engine along with object types they belong to.
 
-To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method as shown in the example below.
+To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method as it's shown in the example below.
 [block:code]
 {
   "codes": [
     {
-      "code": "CacheConfiguration<Object,Object> ccfg = new CacheConfiguration<>();\n\n// Here we are setting 3 key-value type pairs to be considered by Ignite.\nccfg.setIndexedTypes(\n  Long.class, Person.class,\n  MyKey.class, MyValue.class,\n  UUID.class, String.class\n);",
+      "code": "// Preparing configuration.\nCacheConfiguration<Long, Person> ccfg = new CacheConfiguration<>();\n\n// Registering indexed type.\nccfg.setIndexedTypes(Long.class, Person.class);",
       "language": "java"
     }
   ]
 }
 [/block]
-
+Note, that this method accepts only pairs of types - one for key class and another for value class. Primitives are passed as boxed types.
 [block:callout]
 {
   "type": "info",
@@ -70,10 +69,17 @@ To tell Ignite which types should be indexed, key-value pairs can be passed into
   "title": "Predefined Fields"
 }
 [/block]
-## Group Indexes
-To have a multi-field index to speedup queries with complex conditions, you can use `@QuerySqlField.Group` annotation. It is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want the field to participate in more than one group index. 
 
-For example of a group index in the class below we have field `age` which participates in a group index named `"age_salary_idx"` with group order 0 and descending sort order. Also in the same group index participates field `salary` with group order 3 and ascending sort order. On top of that field `salary` itself is indexed with single column index (we have `index = true` in addition to `orderedGroups` declaration). Group `order` does not have to be any particular number, it is needed just to sort fields inside of this group. 
+[block:callout]
+{
+  "type": "info",
+  "body": "Thanks to [Binary Marshaller](doc:binary-marshaller) there is no need to add classes of indexed types to the classpath of cluster nodes. SQL query engine is able to pick up values of indexed and queryable fields avoiding object deserialization."
+}
+[/block]
+## Group Indexes
+To set up a multi-field index that will allow accelerating queries with complex conditions, you can use `@QuerySqlField.Group` annotation. It is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want a field to be a part of more than one group. 
+
+For instance, in `Person` class below we have field `age` which belongs to an indexed group named `"age_salary_idx"` with group order 0 and descending sort order. Also, in the same group, we have field `salary` with group order 3 and ascending sort order. Furthermore, field `salary` itself is a single column index (there is `index = true` parameter specified in addition to `orderedGroups` declaration). Group `order` does not have to be any particular number. It is needed just to sort fields inside of a particular group. 
 [block:code]
 {
   "codes": [
