@@ -4,7 +4,7 @@ Indexes in Ignite are kept in a distributed fashion the same way as cache data s
 
 From this documentation page you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
 
-* [Configuring SQL Indexes With Annotations](#configuring-sql-indexes-with-annotations)
+* [Annotation Based Configuration](#annotation-based-configuration)
  * [Making Fields Visible for SQL Queries](#section-making-fields-visible-for-sql-queries)
  * [Single Column Indexes](#section-single-column-indexes)
  * [Group Indexes](#section-group-indexes)
@@ -14,46 +14,32 @@ From this documentation page you'll learn how to define and manage indexes as we
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuring SQL Indexes With Annotations"
+  "title": "Annotation Based Configuration"
 }
 [/block]
 Indexes, as well as queryable fields, can be configured from code with the usage of `@QuerySqlField` annotation.
+
+As it's shown in the example below desired fields have to be marked with this annotation in advance. 
 [block:code]
 {
   "codes": [
     {
-      "code": "public class Person implements Serializable {\n  /** Will be visible for SQL engine. */\n\t@QuerySqlField (index = true)\n  private long id;\n  \n  /** Will be visible for SQL engine. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will NOT be visible for SQL engine. */\n  private int age;\n}",
+      "code": "public class Person implements Serializable {\n  /** Indexed field. Will be visible for SQL engine. */\n\t@QuerySqlField (index = true)\n  private long id;\n  \n  /** Queryable field. Will be visible for SQL engine. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will NOT be visible for SQL engine. */\n  private int age;\n  \n  /**\n   * Indexed field sorted in descending order. \n   * Will be visible for SQL engine.\n   */\n  @QuerySqlField(index = true, descending = true)\n  private float salary;\n}",
       "language": "java"
     },
     {
-      "code": "case class Person (\n  /** Will be visible for SQL engine. */\n  @(QuerySqlField @field)(index = true) id: Long,\n\n  /** Will be visible for SQL engine. */\n  @(QuerySqlField @field) name: String,\n  \n  /** Will NOT be visisble for SQL engine. */\n  age: Int\n) extends Serializable {\n  ...\n}",
+      "code": "case class Person (\n  /** Indexed field. Will be visible for SQL engine. */\n  @(QuerySqlField @field)(index = true) id: Long,\n\n  /** Queryable field. Will be visible for SQL engine. */\n  @(QuerySqlField @field) name: String,\n  \n  /** Will NOT be visisble for SQL engine. */\n  age: Int\n  \n  /**\n   * Indexed field sorted in descending order. \n   * Will be visible for SQL engine.\n   */\n  @(QuerySqlField @field)(index = true, descending = true) salary: Float\n) extends Serializable {\n  ...\n}",
       "language": "scala",
       "name": "Scala"
     }
   ]
 }
 [/block]
-To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method, as shown in the example below. Note that this method accepts only pairs of types - one for key class and another for value class. Primitives are passed as boxed types.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "CacheConfiguration<Object,Object> ccfg = new CacheConfiguration<>();\n\n// Here we are setting 3 key-value type pairs to be indexed.\nccfg.setIndexedTypes(\n  MyKey.class, MyValue.class,\n\tLong.class, MyOtherValue.class,\n  UUID.class, String.class\n);",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-## Making Fields Visible for SQL Queries
-To make fields accessible for SQL queries you have to annotate them with `@QuerySqlField`. Field `age` will not be accessible from SQL. Note that none of these fields are indexed. 
-[block:callout]
-{
-  "type": "info",
-  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for instance, when one of them is of a primitive type and you want to filter out by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`.",
-  "title": "Predefined Fields"
-}
-[/block]
+Both `id` and `salary` are indexed fields. `id` field will be sorted in the ascending order (default) while `salary` in the descending order.
 
+If you don't want to index a field but still need to use it in query's `SELECT` or `WHERE' clauses then the field has to be annotated as well omitting `index = true` parameter. Such a field is called as a queryable field. As an example, `name` is defined as a queryable field above.
+
+Finally, `age` is neither queryable nor indexed field and it won't be accessible from SQL queries in Apache Ignite.
 [block:callout]
 {
   "type": "info",
@@ -61,18 +47,17 @@ To make fields accessible for SQL queries you have to annotate them with `@Query
   "body": "In Scala classes, the `@QuerySqlField` annotation must be accompanied by the `@field` annotation in order for a field to be visible for Ignite, like so:  `@(QuerySqlField @field)`. \n\nAlternatively, you can also use the `@ScalarCacheQuerySqlField` annotation from the `ignite-scalar` module which is just a type alias for the `@field` annotation."
 }
 [/block]
-## Single Column Indexes
-To make fields not only accessible by SQL but also speed up queries you can index field values. To create a single column index you can annotate a field with `@QuerySqlField(index = true)`.
+## Registering Indexed Types
+
+After indexed and queryable fields are defined they have to be registered in SQL engine along with object types they belong to.
+
+To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method as shown in the example below.
 [block:code]
 {
   "codes": [
     {
-      "code": "public class Person implements Serializable {\n  /** Will be indexed in ascending order. */\n\t@QuerySqlField(index = true)\n  private long id;\n  \n  /** Will be visible in SQL, but not indexed. */\n  @QuerySqlField\n  private String name;\n  \n  /** Will be indexed in descending order. */\n  @QuerySqlField(index = true, descending = true)\n  private int age;\n}",
+      "code": "CacheConfiguration<Object,Object> ccfg = new CacheConfiguration<>();\n\n// Here we are setting 3 key-value type pairs to be considered by Ignite.\nccfg.setIndexedTypes(\n  Long.class, Person.class,\n  MyKey.class, MyValue.class,\n  UUID.class, String.class\n);",
       "language": "java"
-    },
-    {
-      "code": "case class Person (\n  /** Will be indexed in ascending order. */\n  @(QuerySqlField @field)(index = true) id: Long,\n  \n  /** Will be visible in SQL, but not indexed. */\n  @(QuerySqlField @field) name: String,\n  \n  /** Will be indexed in descending order. */\n  @(QuerySqlField @field)(index = true, descending = true) age: Int\n) extends Serializable {\n  ...\n}",
-      "language": "scala"
     }
   ]
 }
@@ -81,8 +66,8 @@ To make fields not only accessible by SQL but also speed up queries you can inde
 [block:callout]
 {
   "type": "info",
-  "title": "Scala Annotations",
-  "body": "In Scala classes, the indexed `@QuerySqlField` annotation should look like so: `@(QuerySqlField @field)(index = true)`."
+  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for instance, when one of them is of a primitive type and you want to filter out by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`.",
+  "title": "Predefined Fields"
 }
 [/block]
 ## Group Indexes
