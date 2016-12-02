@@ -5,7 +5,7 @@ Indexes in Ignite are kept in a distributed fashion the same way as cache data s
 From this documentation page you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
 
 * [Annotation Based Configuration](#annotation-based-configuration)
- * [Registering Indexed Types](#registering-indexed-types)
+ * [Registering Indexed Types](#section-registering-indexed-types)
  * [Group Indexes](#section-group-indexes)
 * [QueryEntity Based Configuration](#queryentity-based-configuration)
 * [SkipList Based and Snapshotable Indexes](#skiplist-based-and-snapshotable-indexes)
