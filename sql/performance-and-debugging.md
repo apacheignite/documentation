@@ -1,6 +1,9 @@
+The following page covers these topics:
 * [Using EXPLAIN](#using-explain-statement)
 * [Using H2 Debug Console](#using-h2-debug-console)
 * [Performance and Usability Considerations](#performance-and-usability-considerations)
+
+To learn more on indexes tradeoffs refer to [this documentation page](doc:indexes#indexes-tradeoffs).
 [block:api-header]
 {
   "type": "basic",
