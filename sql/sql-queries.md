@@ -27,7 +27,7 @@ However, the data as well as indexes, are always stored on Ignite Data Grid side
 
 In principle, there are two main ways of how a query is executed by Apache Ignite SQL Grid:
 
-First, if a query is executed against a `REPLICATED` cache then Ignite assumes that all the data is available locally and will run a simple local SQL query passing it directly to H2 database engine. The same execution flow is true for `LOCAL` caches.
+First, if a query is executed against a `REPLICATED` cache on a node where the cache is deployed then Ignite assumes that all the data is available locally and will run a simple local SQL query passing it directly to H2 database engine. The same execution flow is true for `LOCAL` caches.
 [block:callout]
 {
   "type": "info",
