@@ -10,7 +10,7 @@ From this documentation page you'll learn how to define and manage indexes as we
 * [QueryEntity Based Configuration](#queryentity-based-configuration)
 * [SkipList Based and Snapshotable Indexes](#skiplist-based-and-snapshotable-indexes)
 * [Off-Heap SQL Indexes](#off-heap-sql-indexes)
-* [Choosing Indexes](#choosing-indexes)
+* [Indexes Tradeoffs](#indexes-tradeoffs)
 [block:api-header]
 {
   "type": "basic",
@@ -165,7 +165,7 @@ To improve the performance of SQL queries with off-heap mode enabled, you can tr
 [block:api-header]
 {
   "type": "basic",
-  "title": "Choosing Indexes"
+  "title": "Indexes Tradeoffs"
 }
 [/block]
 There are multiple things you should consider when choosing indexes for your Ignite application. 
