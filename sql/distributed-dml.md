@@ -76,7 +76,7 @@ When both `_key` (or `_val`) column value is given in DML query and that query a
   ]
 }
 [/block]
-then DML engine will take `Person` named *John Smith* as the basis and set value of `firstName` field to *Mike*, and resulting `Person` will be *Mike Smith*, even though `_val` column in the query is mentioned _after_ `firstName`.
+then DML engine will take `Person` named **John Smith** as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`.
 [block:api-header]
 {
   "type": "basic",
