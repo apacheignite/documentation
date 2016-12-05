@@ -64,7 +64,7 @@ However, DML engine is capable of building either cache key or value from indivi
 In this case, DML engine will build `Person` object or its binary version by itself and put it to cache.
 
 ## Field values override
-When both `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
+When `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
 [block:code]
 {
   "codes": [
@@ -75,7 +75,7 @@ When both `_key` (or `_val`) column value is given in DML query and that query a
   ]
 }
 [/block]
-then DML engine will take `Person` named **John Smith** and passed as a query argument as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`.
+then DML engine will take `Person` named **John Smith** and passed as a query argument as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`. This behavior holds for all DML operations that build keys and/or values to put to cache - namely, **MERGE**, **INSERT**, and **UPDATE**.
 [block:api-header]
 {
   "type": "basic",
