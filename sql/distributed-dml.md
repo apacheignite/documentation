@@ -217,4 +217,6 @@ will set the value for key `1L` to **Mike Jones** because new value for `_val` c
 ##DELETE
 Winner in straightforwardness: simply filters keys for which condition in **WHERE** holds true and removes them, performing **SELECT** to find those keys - just like with **UPDATE**, that **SELECT** may be distributed two-step or local. (More on this will follow below.).
 
-Inner implementation of cache modifications is also quite similar to **UPDATE** - after **SELECT**, `EntryProcessor`s are created for each found key which are then run via `invokeAll` and then
+Inner implementation of cache modifications is also quite similar to **UPDATE** - after **SELECT**, `EntryProcessor`s are created for each found key which are then run via `invokeAll` and then updates cache entry is nobody got ahead of it (to determine that, the value present in cache at the time of **SELECT** is compared for equality with that being there at the time of `EntryProcessor` execution).
+
+Behavior in case of concurrent modification of cache entries will be described further below.
