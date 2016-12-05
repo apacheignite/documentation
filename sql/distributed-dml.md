@@ -29,6 +29,29 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 }
 [/block]
 As you may know, each Ignite's SQL table has two special columns - those are `_key` and `_val`. They correspond to complete key and value respectively, although of course the table most likely has also the columns corresponding to particular fields of key or value.
+Suppose we have such class:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "public class Person {\n\tprivate final String firstName;\n  \n  private final String secondName;\n  \n  public Person(String firstName, String secondName) {\n  \tthis.firstName = firstName;\n    this.secondName = secondName;\n  }\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Therefore, the simplest way to put an item into cache via DML is as follows:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, _val) VALUES(?, ?)\")\n         .setArgs(1L, new Person(\"John\", \"Smith\")));",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+However, DML engine is capable of building either cache key or value from individual field values - say, if `Person` class has fields `firstName` and `secondName`, we could write the
 [block:api-header]
 {
   "type": "basic",
