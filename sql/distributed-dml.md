@@ -87,10 +87,29 @@ If your caches use only primitive/SQL types as keys **OR** if you do not use `Bi
 {
   "type": "info",
   "title": "SQL data types",
-  "body": "They include:\n- primitives and their wrappers,\n- `String`s,\n- `BigDecimal`s,\n- **non wrapped** byte arrays - `byte[]`,\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`,\n- and `java.util.UUID`.\n\nPlease refer to `GridQueryProcessor#SQL_TYPES` constant for the list of types."
+  "body": "They include:\n- primitives and their wrappers - except `char` and `Character`,\n- `String`s,\n- `BigDecimal`s,\n- **non wrapped** byte arrays - `byte[]`,\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`,\n- and `java.util.UUID`.\n\nPlease refer to `GridQueryProcessor#SQL_TYPES` constant for the list of types."
 }
 [/block]
-**But**, if you use complex keys and binary marshaller, and your keys and values are classless on server (and, probably, client) nodes, i.e. are described as a `QueryEntity` with explicitly stated fields and their types, then you must tell Ignite which columns correspond to keys and which belong to values. New configuration param `QueryEntitty#keyFields` is responsible for that. As stated above, it is in no way mandatory and is overall honored only if the key is of non SQL type.
+**But**, if you use complex keys and binary marshaller, and your keys and/or values are classless on server (and, probably, client) nodes, i.e. are described as a `QueryEntity` with explicitly stated fields and their types, then you must tell Ignite which columns correspond to keys and which belong to values. New configuration param `QueryEntitty#keyFields` is responsible for that. It's a `Set<String>` which contains names of fields that corresponds to **key**.
+[block:callout]
+{
+  "type": "warning",
+  "title": "",
+  "body": "It's assumed that all field names mentioned in `QueryEntitty#keyFields` are present as keys in `QueryEntitty#keyFields`, therefore, please pay attention to maintaining correct list of names in the former."
+}
+[/block]
+As stated above, it is in no way mandatory if you don't use DML and is overall honored only if the key is of non SQL type. Here's how to configure Ignite for DML in code and via XML:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Don't mind cacheConfig method - let's just assume it creates new cache config\n// which has all params set besides QueryEntities.\nCacheConfiguration cacheCfg = cacheConfig(\"cache\");\n\nQueryEntity entity = new QueryEntity(\"Key\", \"Person\");\n\nLinkedHashMap<String, String> flds = new LinkedHashMap<>();\n\nflds.put(\"intKeyField\", Integer.class.getName());\nflds.put(\"strKeyField\", String.class.getName());\n\nflds.put(\"firstName\", String.class.getName());\nflds.put(\"secondName\", String.class.getName());\n\nentity.setFields(flds);\n\nSet<String> keyFlds = new HashSet<>();\nkeyFlds.add(\"intKeyField\");\nkeyFlds.add(\"strKeyField\");\n\nk22p.setKeyFields(Collections.singleton(\"Id\"));\n\nk22p.setIndexes(Collections.<QueryIndex>emptyList());\n\nk22pCcfg.setQueryEntities(Collections.singletonList(k22p));\n\nignite(0).createCache(k22pCcfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
