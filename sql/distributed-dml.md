@@ -29,13 +29,14 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 }
 [/block]
 As you may know, each Ignite's SQL table has two special columns - those are `_key` and `_val`. They correspond to complete key and value respectively, although of course the table most likely has also the columns corresponding to particular fields of key or value.
-Suppose we have such class:
+Suppose we have such class (we'll use it in examples below as well):
 [block:code]
 {
   "codes": [
     {
-      "code": "public class Person {\n\tprivate final String firstName;\n  \n  private final String secondName;\n  \n  public Person(String firstName, String secondName) {\n  \tthis.firstName = firstName;\n    this.secondName = secondName;\n  }\n}",
-      "language": "java"
+      "code": "public class Person {\n\tprivate final String firstName;\n  \n  private final String secondName;\n  \n  public double salary;\n  \n  public Person(String firstName, String secondName) {\n  \tthis.firstName = firstName;\n    this.secondName = secondName;\n  }\n}",
+      "language": "java",
+      "name": "Model Person class"
     }
   ]
 }
@@ -130,6 +131,8 @@ As you may see, there's two modes to **MERGE** - one that takes tuples correspon
 This operation updates values in cache on per field basis. First it generates and performs **SELECT** based on **UPDATE**'s **WHERE** criteria and then modifies existing values.
 
 Actual modification is under the hood performed via cache's well known `invokeAll` operations - upon results of **SELECT**, a bunch of `EntryProcessor`s is created, and each of them modifies corresponding values checking that nobody has interfered between **SELECT** and actual update. (This particular topic will be covered below.)
+
+SQL syntax example:
 [block:callout]
 {
   "type": "danger",
@@ -145,7 +148,7 @@ As stated in section [field values override](#section-field-values-override), **
     {
       "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\n\ncache.query(new SqlFieldsQuery(\"UPDATE Person set firstName = ? \" +\n         \"WHERE _key = 1\").setArgs(\"Mike\"));",
       "language": "java",
-      "name": "UPDATE fields override example 1"
+      "name": "UPDATE field values override example 1"
     }
   ]
 }
@@ -156,7 +159,8 @@ then resulting person will be **Mike Smith**, because **UPDATE** takes existing 
   "codes": [
     {
       "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\n\ncache.query(new SqlFieldsQuery(\"UPDATE Person set firstName = ?, \" +\n         \"_val = ? WHERE _key = 1\").setArgs(\"Mike\", new Person(\"Sarah\",\n         \"Jones\")));",
-      "language": "java"
+      "language": "java",
+      "name": "UPDATE field values override example 2"
     }
   ]
 }
