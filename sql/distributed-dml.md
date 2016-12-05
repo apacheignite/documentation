@@ -138,7 +138,7 @@ SQL syntax example:
   "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity), so now there's no way to update a key without removing it first. Probably this will change in the future."
 }
 [/block]
-###Mind your field values override while doing **UPDATE**
+###Mind your field value overrides while doing **UPDATE**
 As stated in section [field values override](#section-field-values-override), **UPDATE** also honors value of `_val` column while processing rows. But, in contrary with **MERGE** and **INSERT**, **UPDATE** always deals only with existing entries - and that's why there's some value to `_val` column whose fields are modified by values for other columns (if any). For example, if we do this:
 [block:code]
 {
