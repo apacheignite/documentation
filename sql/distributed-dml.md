@@ -51,7 +51,32 @@ Therefore, the simplest way to put an item into cache via DML is as follows:
   ]
 }
 [/block]
-However, DML engine is capable of building either cache key or value from individual field values - say, if `Person` class has fields `firstName` and `secondName`, we could write the
+However, DML engine is capable of building either cache key or value from individual field values - therefore, we could write the above query like this:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" + \t\t\t\t\t\t\t\t \"secondName) VALUES(?, ?, ?)\").setArgs(1L, \"John\", \"Smith\"));",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+In this case, DML engine will build `Person` object or its binary version by itself and put it to cache.
+
+## Field values override
+When both `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" + \t\t\t\t\t\t\t\t \"_val) VALUES(?, ?, ?)\").setArgs(1L, \"Mike\", new Person(\"John\",  \t\t\t\t\t\t\t \"Smith\")));",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+then DML engine will take `Person` named *John Smith* as the basis and set value of `firstName` field to *Mike*, and resulting `Person` will be *Mike Smith*, even though `_val` column in the query is mentioned _after_ `firstName`.
 [block:api-header]
 {
   "type": "basic",
