@@ -79,12 +79,27 @@ then DML engine will take `Person` named **John Smith** and passed as a query ar
 [block:api-header]
 {
   "type": "basic",
+  "title": "Configuration changes to enable DML operations"
+}
+[/block]
+If your caches use only primitive/SQL types as keys **OR** if you do not use `BinaryMarshaller`, then you basically nothing to worry about - you can use DML operations right out of the box without any configuration changes.
+[block:callout]
+{
+  "type": "info",
+  "title": "SQL data types",
+  "body": "They include:\n- primitives and their wrappers,\n- Strings,`BigDecimal`s, **non wrapped** byte arrays - `byte[]`, `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`, `java.util.UUID` instances),"
+}
+[/block]
+**But**, if you use complex keys and binary marshaller, and your keys and values are classless on server (and, probably, client) nodes, i.e. are described as a `QueryEntity` with explicitly stated fields and their types, then you must tell Ignite which columns correspond to keys and which belong to values. New configuration param `QueryEntitty#keyFields` is responsible for that. As stated above, it is in no way mandatory and is overall honored only if the key is of non SQL type.
+[block:api-header]
+{
+  "type": "basic",
   "title": "DML Operations"
 }
 [/block]
 ##MERGE
 
-**MERGE** is the most straightforward operation as it translates to cache **put**/**putAll** operation (depending on how many rows are listed in query, or how many rows have been returned by subquery).
+**MERGE** is the most straightforward operation (except probably for **DELETE**) as it translates to cache **put**/**putAll** operation (depending on how many rows are listed in query, or how many rows have been returned by subquery).
 
 SQL syntax example:
 [block:code]
@@ -177,3 +192,6 @@ then resulting person will be **Mike Smith**, because **UPDATE** takes existing 
 will set the value for key `1L` to **Mike Jones** because new value for `_val` column is present (**Sarah Jones**) and it's taken as basis for new value for the key. It also can be positioned anywhere in updated columns list compared to values of individual fields.
 
 ##DELETE
+Winner in straightforwardness: simply filters keys for which condition in **WHERE** holds true and removes them, performing **SELECT** to find those keys - just like with **UPDATE**, that **SELECT** may be distributed two-step or local. (More on this will follow below.).
+
+Inner implementation of cache modifications is also quite similar to **UPDATE** - after **SELECT**, `EntryProcessor`s are created for each found key which are then run via `invokeAll` and then
