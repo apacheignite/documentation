@@ -47,7 +47,8 @@ Therefore, the simplest way to put an item into cache via DML is as follows:
   "codes": [
     {
       "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, _val) VALUES(?, ?)\")\n         .setArgs(1L, new Person(\"John\", \"Smith\")));",
-      "language": "java"
+      "language": "java",
+      "name": "Insert explicit value as _val"
     }
   ]
 }
@@ -58,7 +59,8 @@ However, DML engine is capable of building either cache key or value from indivi
   "codes": [
     {
       "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" + \t\t\t\t\t\t\t\t \"secondName) VALUES(?, ?, ?)\").setArgs(1L, \"John\", \"Smith\"));",
-      "language": "java"
+      "language": "java",
+      "name": "Build value from individual fields"
     }
   ]
 }
