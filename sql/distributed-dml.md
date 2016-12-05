@@ -87,7 +87,7 @@ If your caches use only primitive/SQL types as keys **OR** if you do not use `Bi
 {
   "type": "info",
   "title": "SQL data types",
-  "body": "They include:\n- primitives and their wrappers,\n- `Strings`,\n- `BigDecimal`s,\n- **non wrapped** byte arrays - `byte[]`,\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`,\n- and `java.util.UUID`."
+  "body": "They include:\n- primitives and their wrappers,\n- `String`s,\n- `BigDecimal`s,\n- **non wrapped** byte arrays - `byte[]`,\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`,\n- and `java.util.UUID`.\n\nPlease refer to `GridQueryProcessor#SQL_TYPES` constant for the list of types."
 }
 [/block]
 **But**, if you use complex keys and binary marshaller, and your keys and values are classless on server (and, probably, client) nodes, i.e. are described as a `QueryEntity` with explicitly stated fields and their types, then you must tell Ignite which columns correspond to keys and which belong to values. New configuration param `QueryEntitty#keyFields` is responsible for that. As stated above, it is in no way mandatory and is overall honored only if the key is of non SQL type.
