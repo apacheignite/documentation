@@ -131,6 +131,17 @@ This operation updates values in cache on per field basis. First it generates an
 Actual modification is under the hood performed via cache's well known `invokeAll` operations - upon results of **SELECT**, a bunch of `EntryProcessor`s is created, and each of them modifies corresponding values checking that nobody has interfered between **SELECT** and actual update. (This particular topic will be covered below.)
 
 SQL syntax example:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\ncache.put(2L, new Person(\"Sarah\", \"Jones\");\n\ncache.query(new SqlFieldsQuery(\"UPDATE Person set salary = ? \" +\n         \"WHERE _key >= ?\").setArgs(5000, 2L)); // Sorry Mike...",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
 [block:callout]
 {
   "type": "danger",
@@ -164,3 +175,5 @@ then resulting person will be **Mike Smith**, because **UPDATE** takes existing 
 }
 [/block]
 will set the value for key `1L` to **Mike Jones** because new value for `_val` column is present (**Sarah Jones**) and it's taken as basis for new value for the key. It also can be positioned anywhere in updated columns list compared to values of individual fields.
+
+##DELETE
