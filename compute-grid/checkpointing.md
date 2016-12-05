@@ -190,7 +190,7 @@ The following configuration parameters can be used to configure `JdbcCheckpointS
     "9-0": "`setUser(String)`",
     "9-1": "Sets checkpoint database user name. Note that authentication will be performed only if both, user and password are set.",
     "9-2": "No value",
-    "10-0": "`setPassword(String)`",
+    "10-0": "`setPwd(String)`",
     "10-1": "Sets checkpoint database password.",
     "10-2": "No value"
   },
@@ -204,11 +204,11 @@ The following configuration parameters can be used to configure `JdbcCheckpointS
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\" singleton=\"true\">\n  ...\n  <property name=\"checkpointSpi\">\n    <bean class=\"org.apache.ignite.spi.checkpoint.database.JdbcCheckpointSpi\">\n      <property name=\"dataSource\">\n        <ref bean=\"anyPoolledDataSourceBean\"/>\n      </property>\n      <property name=\"checkpointTableName\" value=\"CHECKPOINTS\"/>\n      <property name=\"user\" value=\"test\"/>\n      <property name=\"password\" value=\"test\"/>\n    </bean>\n  </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\" singleton=\"true\">\n  ...\n  <property name=\"checkpointSpi\">\n    <bean class=\"org.apache.ignite.spi.checkpoint.jdbc.JdbcCheckpointSpi\">\n      <property name=\"dataSource\">\n        <ref bean=\"anyPoolledDataSourceBean\"/>\n      </property>\n      <property name=\"checkpointTableName\" value=\"CHECKPOINTS\"/>\n      <property name=\"user\" value=\"test\"/>\n      <property name=\"pwd\" value=\"test\"/>\n    </bean>\n  </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "JdbcCheckpointSpi checkpointSpi = new JdbcCheckpointSpi();\n \njavax.sql.DataSource ds = ... // Set datasource.\n \n// Set database checkpoint SPI parameters.\ncheckpointSpi.setDataSource(ds);\ncheckpointSpi.setUser(\"test\");\ncheckpointSpi.setPassword(\"test\");\n \nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Override default checkpoint SPI.\ncfg.setCheckpointSpi(checkpointSpi);\n \n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "JdbcCheckpointSpi checkpointSpi = new JdbcCheckpointSpi();\n \njavax.sql.DataSource ds = ... // Set datasource.\n \n// Set database checkpoint SPI parameters.\ncheckpointSpi.setDataSource(ds);\ncheckpointSpi.setUser(\"test\");\ncheckpointSpi.setPwd(\"test\");\n \nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Override default checkpoint SPI.\ncfg.setCheckpointSpi(checkpointSpi);\n \n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
