@@ -7,9 +7,9 @@
   "title": "JDBC Connection"
 }
 [/block]
-Ignite is shipped with JDBC driver that allows you to retrieve distributed data from cache using standard SQL queries and JDBC API. 
+Ignite is shipped with a JDBC driver that allows you to retrieve distributed data from caches using standard SQL queries and the JDBC API. 
 
-In Ignite, JDBC connection URL has the following pattern:
+In Ignite, the JDBC connection URL has the following pattern:
 [block:code]
 {
   "codes": [
@@ -20,8 +20,8 @@ In Ignite, JDBC connection URL has the following pattern:
   ]
 }
 [/block]
-* `<config_url>` is required and represents any valid URL which points to Ignite configuration file for Ignite client node that will be started during connection establishing by JDBC driver. See [Clients and Servers](doc:clients-vs-servers) section for details.
-* `<params>` is optional part and have the following format:
+* `<config_url>` is required and represents any valid URL which points to an Ignite configuration file for Ignite client node that will be started during connection establishing by JDBC driver. See [Clients and Servers](doc:clients-vs-servers) section for details.
+* `<params>` is an optional part and has the following format:
 [block:code]
 {
   "codes": [
@@ -43,11 +43,11 @@ The following parameters are supported:
     "1-0": "`nodeId`",
     "2-0": "`local`",
     "3-0": "`collocated`",
-    "0-1": "Cache name. If it is not defined than default cache will be used. Note that the cache name is case sensitive.",
+    "0-1": "Cache name. If it is not defined the default cache will be used. Note that the cache name is case sensitive.",
     "1-1": "ID of node where query will be executed. It can be useful for querying through local caches.",
-    "2-1": "Query will be executed only on local node. Use this parameter with `nodeId` parameter in order to limit data set by specified node.",
+    "2-1": "Query will be executed only on a local node. Use this parameter with `nodeId` parameter in order to limit data set by specified node.",
     "2-2": "false",
-    "3-1": "Flag that used for optimization purposes. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node, Ignite can make significant performance and network optimizations.",
+    "3-1": "Flag that is used for optimization purposes. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node, Ignite can make significant performance and network optimizations.",
     "3-2": "false",
     "4-0": "`distributedJoins`",
     "4-1": "Allows use distributed joins for non collocated data.",
@@ -88,7 +88,7 @@ The following parameters are supported:
   "title": "Example"
 }
 [/block]
-Ignite JDBC driver automatically gets only those fields that you actually need from objects stored in cache. For example you have `Person` class declared like this:
+Ignite JDBC driver automatically gets only those fields that you actually need from objects stored in cache. For example if you have a `Person` class declared like this:
 [block:code]
 {
   "codes": [
@@ -99,7 +99,7 @@ Ignite JDBC driver automatically gets only those fields that you actually need f
   ]
 }
 [/block]
-If you have instances of this class in cache, you can query individual fields (name, age or both) via standard JDBC API, like so:
+If you have instances of this class in a cache, you can query individual fields (name, age or both) via standard JDBC API, like so:
 [block:code]
 {
   "codes": [
