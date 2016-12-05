@@ -137,4 +137,5 @@ Actual modification is under the hood performed via cache's well known `invokeAl
   "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity), so now there's no way to update a key without removing it first. Probably this will change in the future."
 }
 [/block]
-###Mind your field values priority while doing **UPDATE**
+###Mind your field values override while doing **UPDATE**
+As stated in section [Field values override](#field-values-override)
