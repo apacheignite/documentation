@@ -22,12 +22,8 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 
 ##Modify existing cache items
 **UPDATE** and **DELETE** are the operations responsible for this, with former updating values in cache (per field or replacing them completely), and the latter removing entries from the cache. They both include **WHERE** clause that allows the user to specify which rows exactly must be modified.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Special columns"
-}
-[/block]
+
+##Special columns
 As you may know, each Ignite's SQL table has two special columns - those are `_key` and `_val`. They correspond to complete key and value respectively, although of course the table most likely has also the columns corresponding to particular fields of key or value.
 Suppose we have such class (we'll use it in examples below as well):
 [block:code]
