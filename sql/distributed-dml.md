@@ -107,7 +107,7 @@ As stated above, this new field is in no way mandatory if you don't use DML and 
       "language": "java"
     },
     {
-      "code": "<!-- the rest is omitted for clarity -->\n<bean class=\"org.apache.ignite.cache.QueryEntity\">\n    <property name=\"keyType\" value=\"Key\" />\n    <property name=\"valueType\" value=\"Person\" />\n  \n    <property name=\"fields\">\n    <map>\n        <entry key=\"intKeyField\" value=\"java.lang.Integer\"/>\n  \t\t<entry key=\"strKeyField\" value=\"java.lang.String\"/>\n  \n        <entry key=\"firstName\" value=\"java.lang.String\"/>\n        <entry key=\"secondName\" value=\"java.lang.String\"/>\n    </map>\n    </property>\n\n    <!-- Note that fields with such names are present in fields list above -->\n    <property name=\"keyFields\">\n        <list>\n  \t\t\t<value>intKeyField</value>\n  \t\t\t<value>strKeyField</value>\n        </list>\n    </property>\n</bean>",
+      "code": "<!-- the rest is omitted for clarity -->\n<bean class=\"org.apache.ignite.cache.QueryEntity\">\n    <property name=\"keyType\" value=\"Key\" />\n    <property name=\"valueType\" value=\"Person\" />\n  \n    <property name=\"fields\">\n    <map>\n        <entry key=\"intKeyField\" value=\"java.lang.Integer\"/>\n  \t\t<entry key=\"strKeyField\" value=\"java.lang.String\"/>\n  \n        <entry key=\"firstName\" value=\"java.lang.String\"/>\n        <entry key=\"secondName\" value=\"java.lang.String\"/>\n    </map>\n    </property>\n\n    <!-- Note that fields with such names are present in fields list above -->\n    <property name=\"keyFields\">\n        <list>\n  \t\t    <value>intKeyField</value>\n  \t\t    <value>strKeyField</value>\n        </list>\n    </property>\n</bean>",
       "language": "xml"
     }
   ]
