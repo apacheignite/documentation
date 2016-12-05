@@ -65,7 +65,7 @@ However, DML engine is capable of building either cache key or value from indivi
 In this case, DML engine will build `Person` object or its binary version by itself and put it to cache.
 
 ## Field values override
-When both `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
+When both `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
 [block:code]
 {
   "codes": [
@@ -76,7 +76,7 @@ When both `_key` (or `_val`) column value is given in DML query and that query a
   ]
 }
 [/block]
-then DML engine will take `Person` named **John Smith** as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`.
+then DML engine will take `Person` named **John Smith** and passed as a query argument as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`.
 [block:api-header]
 {
   "type": "basic",
@@ -92,13 +92,13 @@ SQL syntax example:
 {
   "codes": [
     {
-      "code": "merge into Person(_key, first_name, second_name) values\n  (1, \"John\", \"Smith\"),\n  (5, \"Mary\", \"Jones\")",
-      "language": "sql",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"MERGE INTO Person(_key, firstName, \" +\n         \"secondName) values (1, 'John', 'Smith'), (5, 'Mary', 'Jones')\"));",
+      "language": "java",
       "name": "Rows List"
     },
     {
-      "code": "merge into someCache.Person(_key, first_name, second_name)\n  (select _key + 1000, first_name, second_name\n   \tfrom anotherCache.Person\n   \t  where _key > 100 and _key < 200)",
-      "language": "sql",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"MERGE INTO someCache.Person(_key, firstName, secondName) (SELECT _key + 1000, firstName, secondName \" +\n   \t\"FROM anotherCache.Person WHERE _key > ? AND _key < ?)\").setArgs(100, 200);",
+      "language": "java",
       "name": "Subquery"
     }
   ]
@@ -113,13 +113,13 @@ As you may see, there's two modes to **MERGE** - one that takes tuples correspon
 {
   "codes": [
     {
-      "code": "insert into Person(_key, first_name, second_name) values\n  (1, \"John\", \"Smith\"),\n  (5, \"Mary\", \"Jones\")",
-      "language": "sql",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" +\n         \"secondName) values (1, 'John', 'Smith'), (5, 'Mary', 'Jones')\"));",
+      "language": "java",
       "name": "Rows list"
     },
     {
-      "code": "insert into someCache.Person(_key, first_name, second_name)\n  (select _key + 1000, first_name, second_name\n   \tfrom anotherCache.Person\n   \t  where _key > 100 and _key < 200)",
-      "language": "sql",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO someCache.Person(_key, firstName, secondName) (SELECT _key + 1000, firstName, secondName \" +\n   \t\"FROM anotherCache.Person WHERE _key > ? AND _key < ?)\").setArgs(100, 200);",
+      "language": "java",
       "name": "Subquery"
     }
   ]
