@@ -87,11 +87,11 @@ To configure `ONHEAP_TIERED` memory mode, you need to:
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n  ...\n  <!-- Store cache entries on-heap. -->\n  <property name=\"memoryMode\" value=\"ONHEAP_TIERED\"/> \n\n  <!-- Enable Off-Heap memory with max size of 10 Gigabytes (0 for unlimited). -->\n  <property name=\"offHeapMaxMemory\" value=\"#{10 * 1024L * 1024L * 1024L}\"/>\n\n  <!-- Configure eviction policy. -->\n  <property name=\"evictionPolicy\">\n    <bean class=\"org.apache.ignite.cache.eviction.fifo.CacheFifoEvictionPolicy\">\n      <!-- Evict to off-heap after cache size reaches maxSize. -->\n      <property name=\"maxSize\" value=\"100000\"/>\n    </bean>\n  </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n  ...\n  <!-- Store cache entries on-heap. -->\n  <property name=\"memoryMode\" value=\"ONHEAP_TIERED\"/> \n\n  <!-- Enable Off-Heap memory with max size of 10 Gigabytes (0 for unlimited). -->\n  <property name=\"offHeapMaxMemory\" value=\"#{10 * 1024L * 1024L * 1024L}\"/>\n\n  <!-- Configure eviction policy. -->\n  <property name=\"evictionPolicy\">\n    <bean class=\"org.apache.ignite.cache.eviction.fifo.FifoEvictionPolicy\">\n      <!-- Evict to off-heap after cache size reaches maxSize. -->\n      <property name=\"maxSize\" value=\"100000\"/>\n    </bean>\n  </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setMemoryMode(CacheMemoryMode.ONHEAP_TIERED);\n\n// Set off-heap memory to 10GB (0 for unlimited)\ncacheCfg.setOffHeapMaxMemory(10 * 1024L * 1024L * 1024L);\n\nCacheFifoEvictionPolicy evctPolicy = new CacheFifoEvictionPolicy();\n\n// Store only 100,000 entries on-heap.\nevctPolicy.setMaxSize(100000);\n\ncacheCfg.setEvictionPolicy(evctPolicy);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setMemoryMode(CacheMemoryMode.ONHEAP_TIERED);\n\n// Set off-heap memory to 10GB (0 for unlimited)\ncacheCfg.setOffHeapMaxMemory(10 * 1024L * 1024L * 1024L);\n\nFifoEvictionPolicy evctPolicy = new FifoEvictionPolicy();\n\n// Store only 100,000 entries on-heap.\nevctPolicy.setMaxSize(100000);\n\ncacheCfg.setEvictionPolicy(evctPolicy);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
