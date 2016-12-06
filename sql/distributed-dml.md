@@ -14,6 +14,15 @@
   - [Local operations](#section-local-operations)
   - [Two-step operations](#section-two-step-operations)
   - [Two-step operations concurrency](#section-two-step-operations-concurrency)
+* [Hashing of Non Primitive Keys](#hashing-of-non-primitive-keys)
+  - [Rationale](#section-rationale)
+  - [Binary Identity Resolver interface](#section-binary-identity-resolver-interface)
+  - [Default behavior](#section-default-behavior)
+  - [Configuration](#section-configuration)
+  - [Default identity resolvers](#section-default-identity-resolvers)
+    + [BinaryArrayIdentityResolver](#section-binaryarrayidentityresolver)
+    + [BinaryFieldIdentityResolver](#section-binaryfieldidentityresolver)
+* [Known Limitations](#known-limitations)
 
 Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
 
@@ -267,7 +276,7 @@ Just like ordinary SQL queries, and because DML operations rely heavily on them,
 [/block]
 ##Rationale
 ##Binary Identity Resolver interface
-##Default behavior and things to notice
+##Default behavior
 ##Configuration
 ##Default identity resolvers
 ###BinaryArrayIdentityResolver
