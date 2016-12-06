@@ -1,6 +1,7 @@
 * [Basic Concepts](#basic-concepts)
   - [Put new items to cache](#section-put-new-items-to-cache)
   - [Modify existing cache items](#section-put-new-items-to-cache)
+  - [DML API](#section-dml-api)
   - [Special columns](#section-special-columns)
   - [Field values override](#section-field-values-override)
 * [Configuration](#configuration)
@@ -53,7 +54,7 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 **UPDATE** and **DELETE** are the operations responsible for this, with former updating values in cache (per field or replacing them completely), and the latter removing entries from the cache. They both include **WHERE** clause that allows the user to specify which rows exactly must be modified.
 
 ##DML API
-API almost has not changed due to DML operations introduction - no new classes specific to DML queries and their results have been added
+API almost has not changed due to DML operations introduction - no new classes specific to DML queries and their results have been added, the only changes made are configuration related. Therefore, to execute a DML query, all you need is a good old `SqlFieldsQuery`. Its result will be `QueryCursor<List<?>>`, which is also unchanged, **but** this cursor for a DML query will have single "row" (represented by `List<?>`) and that list will have single `long` element that signifies **number of affected cache items**.
 
 ##Special columns
 As you may know, each Ignite's SQL table has two special columns - those are `_key` and `_val`. They correspond to complete key and value respectively, although of course the table most likely has also the columns corresponding to particular fields of key or value.
@@ -270,6 +271,7 @@ Behavior in case of concurrent modification of cache entries will be described f
 **UPDATE** and **DELETE** queries having **WHERE** clause filter items that should be affected by DML operations by running a **SELECT** query which, in case of **UPDATE**, also computes new values for updated columns. And, as explained [here](doc:distributed-queries) and [here](doc:local-queries), there are **distributed** and **local** queries. That said, **SELECT** for **UPDATE** or **DELETE** may either be distributed (aka *two-step*) and local.
 
 ##Local operations
+
 
 ##Two-step operations
 ##Two-step operations concurrency
