@@ -2,11 +2,13 @@
   - [Put new items to cache](#section-put-new-items-to-cache)
   - [Modify existing cache items](#section-put-new-items-to-cache)
   - [Special columns](#section-special-columns)
+  - [Field values override](#section-field-values-override)
 * [Configuration](#configuration)
 * [DML Operations](#dml-operations)
-* [Cross-Cache Queries](#cross-cache-queries)
-* [Distributed Joins](#distributed-joins)
-* [Example](#example)
+  - [MERGE](#section-merge)
+  - [INSERT](#section-insert)
+  - [UPDATE](#section-update)
+  - [DELETE](#section-delete)
 
 Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
 
@@ -73,7 +75,7 @@ However, DML engine is capable of building either cache key or value from indivi
 [/block]
 In this case, DML engine will build `Person` object or its binary version by itself and put it to cache.
 
-## Field values override
+##Field values override
 When `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
 [block:code]
 {
