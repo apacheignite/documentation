@@ -363,6 +363,7 @@ These run **SELECT**s in map-reduce manner as explained in [Distributed Queries]
 }
 [/block]
 ##Rationale
+When building a new (non primitive) key on **MERGE**
 ##Binary Identity Resolver interface
 ##Default behavior
 ##Configuration
@@ -375,6 +376,7 @@ These run **SELECT**s in map-reduce manner as explained in [Distributed Queries]
   "title": "Known Limitations"
 }
 [/block]
+##Batching in JDBC driver
 ##Scope of subqueries in WHERE
 ##UPDATE is not supported for key or its fields
 ##No EXPLAIN for DML operations
