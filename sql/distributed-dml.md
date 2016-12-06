@@ -348,7 +348,14 @@ Currently Ignite shall make at most **four** consecutive attempts to execute DML
 Still, **actual data modification affects whole cache**, distributed or not, just as it would when doing an ordinary cache `put`, `replace`, or whatever.
 
 ##Two-step operations
-These run **SELECT**s in map-reduce manner as explained in [Distributed Queries](doc:sql-queries) doc. **Actual data modification still affects whole cache.**
+These run **SELECT**s in map-reduce manner as explained in [Distributed Queries](doc:sql-queries) doc. **Actual data modification still affects whole cache.** 
+[block:callout]
+{
+  "type": "success",
+  "body": "All settings related with distrubuted joins, etc., are propagated from original `SqlFieldsQuery` to new one when doing a two-step **SELECT**, so that the user has more fine-grained control over its execution."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
