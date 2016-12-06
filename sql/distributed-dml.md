@@ -10,6 +10,8 @@
   - [UPDATE](#section-update)
       + [Field value overrides with UPDATE](#section-field-value-overrides-with-update-)
   - [DELETE](#section-delete)
+* [Two-step and Local Operations](#two-step-and-local-operations)
+  - []
 
 Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
 
@@ -251,14 +253,10 @@ Behavior in case of concurrent modification of cache entries will be described f
   "title": "Two-step and Local Operations"
 }
 [/block]
-Just like ordinary SQL queries, and because DML operations rely heavily on them, the latter 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Two-step Operations Concurrency"
-}
-[/block]
-
+Just like ordinary SQL queries, and because DML operations rely heavily on them, the latter
+##Local operations
+##Two-step operations
+##Two-step operations concurrency
 [block:api-header]
 {
   "type": "basic",
@@ -267,7 +265,7 @@ Just like ordinary SQL queries, and because DML operations rely heavily on them,
 [/block]
 ##Rationale
 ##Binary Identity Resolver interface
-##Default behavior
+##Default behavior and things to notice
 ##Configuration
 ##Default identity resolvers
 ###BinaryArrayIdentityResolver
