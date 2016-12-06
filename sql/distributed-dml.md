@@ -3,7 +3,7 @@
   - [Modify existing cache items](#section-put-new-items-to-cache)
   - [Special columns](#section-special-columns)
   - [Field values override](#section-field-values-override)
-      + [Field value overrides with UPDATE]
+      + [Field value overrides with UPDATE](#section-field-value-overrides-with-update-)
 * [Configuration](#configuration)
 * [DML Operations](#dml-operations)
   - [MERGE](#section-merge)
