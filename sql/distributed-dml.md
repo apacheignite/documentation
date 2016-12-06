@@ -266,7 +266,7 @@ Just like ordinary SQL queries, and because DML operations rely heavily on them,
 }
 [/block]
 ##Rationale
-##**BinaryIdentityResolver** interface
+##Binary Identity Resolver interface
 ##Default behavior
 ##Configuration
 ##Default identity resolvers
