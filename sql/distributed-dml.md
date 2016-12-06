@@ -318,7 +318,7 @@ then we would find **Sarah Jones** and not **John Smith** when DML engine's entr
   ]
 }
 [/block]
-- note part after **AND**. This query preserves original condition and protects any unrelated entries from being changed by limiting its own scope with only particular set of keys (ones for which it failed before).
+note the part after **AND**. This query preserves original condition and protects any unrelated entries from being changed by limiting its own scope with only particular set of keys (ones for which it failed before).
 
 If this query returns nothing for some key, then original criteria does not hold for that key anymore (`1` in our example), and no modification attempts are made for that key further.
 
