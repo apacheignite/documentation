@@ -36,6 +36,9 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 ##Modify existing cache items
 **UPDATE** and **DELETE** are the operations responsible for this, with former updating values in cache (per field or replacing them completely), and the latter removing entries from the cache. They both include **WHERE** clause that allows the user to specify which rows exactly must be modified.
 
+##DML API
+API almost has not changed due to DML operations introduction - no new classes specific to DML queries and their results have been added
+
 ##Special columns
 As you may know, each Ignite's SQL table has two special columns - those are `_key` and `_val`. They correspond to complete key and value respectively, although of course the table most likely has also the columns corresponding to particular fields of key or value.
 Suppose we have such class (we'll use it in examples below as well):
@@ -245,13 +248,36 @@ Behavior in case of concurrent modification of cache entries will be described f
 [block:api-header]
 {
   "type": "basic",
-  "title": "Operations Scope"
+  "title": "Two-step and Local Operations"
 }
 [/block]
-Just like ordinary SQL queries, and because DML
+Just like ordinary SQL queries, and because DML operations rely heavily on them, the latter 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Two-step Operations Concurrency"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Hashing of Non Primitive Keys"
+}
+[/block]
+##Rationale
+##**BinaryIdentityResolver** interface
+##Default behavior
+##Configuration
+##Default identity resolvers
+###BinaryArrayIdentityResolver
+###BinaryFieldIdentityResolver
 [block:api-header]
 {
   "type": "basic",
   "title": "Known Limitations"
 }
 [/block]
+##Scope of subqueries in WHERE
+##UPDATE is not supported for key or its fields
+##No EXPLAIN for DML operations
