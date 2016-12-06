@@ -1,6 +1,6 @@
 * [Basic Concepts](#basic-concepts)
-            * [Put new items to cache](#section-put-new-items-to-cache)
-            * [Modify existing cache items](#section-put-new-items-to-cache)  
+- [Put new items to cache](#section-put-new-items-to-cache)
+            - [Modify existing cache items](#section-put-new-items-to-cache)  
 * [Configuration](#configuration)
 * [DML Operations](#dml-operations)
 * [Cross-Cache Queries](#cross-cache-queries)
