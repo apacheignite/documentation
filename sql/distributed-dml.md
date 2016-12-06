@@ -312,7 +312,7 @@ then we would find **Sarah Jones** and not **John Smith** when DML engine's entr
 {
   "codes": [
     {
-      "code": "SELECT _key, _value, \"Mike\" from Person WHERE secondName = \"Smith\" AND _key IN (SELECT * FROM TABLE(KEY long = [ 1 ]))",
+      "code": "SELECT _key, _value, \"Mike\" from Person WHERE secondName = \"Smith\"\n    AND _key IN (SELECT * FROM TABLE(KEY long = [ 1 ]))",
       "language": "sql"
     }
   ]
