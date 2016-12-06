@@ -24,6 +24,7 @@
     + [BinaryArrayIdentityResolver](#section-binaryarrayidentityresolver)
     + [BinaryFieldIdentityResolver](#section-binaryfieldidentityresolver)
 * [Known Limitations](#known-limitations)
+  - [Batching in JDBC driver](#section-batching-in-jdbc-driver)
   - [Scope of subqueries in WHERE](#section-scope-of-subqueries-in-where)
   - [UPDATE is not supported for key or its fields](#section-update-is-not-supported-for-key-or-its-fields)
   - [No EXPLAIN for DML operations](#section-no-explain-for-dml-operations)
@@ -363,7 +364,8 @@ These run **SELECT**s in map-reduce manner as explained in [Distributed Queries]
 }
 [/block]
 ##Rationale
-When building a new (non primitive) key on **MERGE**
+When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then its `hashCode`
+
 ##Binary Identity Resolver interface
 ##Default behavior
 ##Configuration
