@@ -3,12 +3,12 @@
   - [Modify existing cache items](#section-put-new-items-to-cache)
   - [Special columns](#section-special-columns)
   - [Field values override](#section-field-values-override)
-      + [Field value overrides with UPDATE](#section-field-value-overrides-with-update-)
 * [Configuration](#configuration)
 * [DML Operations](#dml-operations)
   - [MERGE](#section-merge)
   - [INSERT](#section-insert)
   - [UPDATE](#section-update)
+      + [Field value overrides with UPDATE](#section-field-value-overrides-with-update-)
   - [DELETE](#section-delete)
 
 Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
