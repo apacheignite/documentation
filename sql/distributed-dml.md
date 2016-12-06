@@ -1,3 +1,10 @@
+* [Basic Concepts](#basic-concepts)
+* [How SQL Queries Work](#how-sql-queries-work)
+* [Queries Types](#queries-types)
+* [Cross-Cache Queries](#cross-cache-queries)
+* [Distributed Joins](#distributed-joins)
+* [Example](#example)
+
 Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
 
 Let's have a closer look at basic concepts and how operations work.
@@ -79,7 +86,7 @@ then DML engine will take `Person` named **John Smith** and passed as a query ar
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuration changes to enable DML operations"
+  "title": "Configuration"
 }
 [/block]
 If your caches use only primitive/SQL types as keys **OR** if you do not use `BinaryMarshaller`, then you basically nothing to worry about - you can use DML operations right out of the box without any configuration changes.
