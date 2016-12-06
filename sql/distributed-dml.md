@@ -318,12 +318,17 @@ then we would find **Sarah Jones** and not **John Smith** when DML engine's entr
   ]
 }
 [/block]
-- note part after **AND**. This query preserves original condition and protects any unrelated entries for being changed by limiting its own scope with only particular set of keys (ones for which it failed before).
+- note part after **AND**. This query preserves original condition and protects any unrelated entries from being changed by limiting its own scope with only particular set of keys (ones for which it failed before).
 
 If this query returns nothing for some key, then original criteria does not hold for that key anymore (`1` in our example), and no modification attempts are made for that key further.
 
 However, if some key gets **SELECT**ed again, DML engine attempts to modify its value again. And, of course, it could fail once more. Should that happen, a re-run is done again (of course, excluding those keys from previous re-run that have been processed successfully), and the process repeats, shrinking set of target keys with each attempt.
-
+[block:callout]
+{
+  "type": "info",
+  "body": "Should at some point entry disappear from the cache at all, no further attempts to do anything with it are made - in other words, a re-run is made only for the keys that are still present in cache, gone entries are ignored."
+}
+[/block]
 Currently Ignite shall make at most **four** consecutive attempts to execute DML query as explained above - that is an initial attempt and at most three re-runs, if needed. Number of attempts is currently "hard coded" and probably some configuration param will be added in the future to set that, or maybe some set of predefined policies to control that behavior.
 [block:api-header]
 {
@@ -344,7 +349,6 @@ Still, **actual data modification affects whole cache**, distributed or not, jus
 
 ##Two-step operations
 These run **SELECT**s in map-reduce manner as explained in [Distributed Queries](doc:sql-queries) doc. **Actual data modification still affects whole cache.**
-
 [block:api-header]
 {
   "type": "basic",
