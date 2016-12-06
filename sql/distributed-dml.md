@@ -271,16 +271,19 @@ Behavior in case of concurrent modification of cache entries will be described f
 **INSERT** and **MERGE** queries are capable of retrieving data for new cache keys and values from subqueries which are **SELECT**s declared by the user. **UPDATE** and **DELETE** queries having **WHERE** clause filter items that should be affected by DML operations by running a **SELECT** query which, in case of **UPDATE**, also computes new values for updated columns. And, as explained [here](doc:distributed-queries) and [here](doc:local-queries), there are **distributed** and **local** queries. That said, **SELECT** for any DML operation (if any) may either be distributed (aka *two-step*) and local.
 
 ##Local operations
-**SELECT** will run locally in precisely the same cases as stated in [Local Queries](doc:local-queries)] doc - you can either:
+**SELECT** will run locally in precisely the same cases as stated in [Local Queries](doc:local-queries) doc - you can either:
 
 - force this flag in `SqlFieldsQuery`,
 - or execute a query on `LOCAL` cache,
 - or execute it against a `REPLICATED` cache on a node where the cache is deployed.
 
-Still, actual data modification affects whole cache, distributed or not, just as it would when doing an ordinary cache `put`, `replace`, or whatever.
+Still, **actual data modification affects whole cache**, distributed or not, just as it would when doing an ordinary cache `put`, `replace`, or whatever.
 
 ##Two-step operations
+These run **SELECT**s in map-reduce manner as explained in [Distributed Queries](doc:sql-queries) doc. **Actual data modification still affects whole cache.**
+
 ##Two-step operations concurrency
+
 [block:api-header]
 {
   "type": "basic",
