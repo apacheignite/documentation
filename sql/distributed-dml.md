@@ -267,8 +267,10 @@ Behavior in case of concurrent modification of cache entries will be described f
   "title": "Two-step and Local Operations"
 }
 [/block]
-Just like ordinary SQL queries, and because DML operations rely heavily on them, the latter
+**UPDATE** and **DELETE** queries having **WHERE** clause filter items that should be affected by DML operations by running a **SELECT** query which, in case of **UPDATE**, also computes new values for updated columns. And, as explained [here](doc:distributed-queries)
+
 ##Local operations
+
 ##Two-step operations
 ##Two-step operations concurrency
 [block:api-header]
