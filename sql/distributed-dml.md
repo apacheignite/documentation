@@ -11,7 +11,9 @@
       + [Field value overrides with UPDATE](#section-field-value-overrides-with-update-)
   - [DELETE](#section-delete)
 * [Two-step and Local Operations](#two-step-and-local-operations)
-  - []
+  - [Local operations](#section-local-operations)
+  - [Two-step operations](#section-two-step-operations)
+  - [Two-step operations concurrency](#section-two-step-operations-concurrency)
 
 Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
 
