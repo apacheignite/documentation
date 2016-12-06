@@ -265,10 +265,73 @@ Behavior in case of concurrent modification of cache entries will be described f
 [block:api-header]
 {
   "type": "basic",
+  "title": "UPDATE and DELETE Concurrency"
+}
+[/block]
+As explained above, **UPDATE** and **DELETE** first perform **SELECT** and then modify filtered items - this may be viewed as a map-reduce of some sort by itself. No data is blocked after **SELECT**, and therefore it's possible that someone else's operation slips between **SELECT** and actual data modification thus probably rendering **SELECT** results invalid.
+
+For example, if someone does a cache `put` while data is filtered *but not yet processed* by **UPDATE**, then value is not the same as it was during **SELECT**, and we don't know if it's still right to modify filtered item as long as **WHERE**'s criteria could have stopped holding true for it. To check for such situations, DML engine's entry processors check that current value stored in cache entry is equal (Java's `equals` wise) to that present in cache during **SELECT**.
+
+If some keys were modified concurrently, all of them are collected, and a **query re-run** is performed automatically. A re-run rewrites original query appending to its **WHERE** additional criteria **which limits its scope with the keys that failed to be updated previously.
+
+Say, if we had such query
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\n\ncache.query(new SqlFieldsQuery(\"UPDATE Person set firstName = ? \" +\n         \"WHERE secondName = ?\").setArgs(\"Mike\", \"Smith\"));",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+then it would generate such **SELECT** under the hood...
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SELECT _key, _value, \"Mike\" from Person WHERE secondName = \"Smith\"",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+And, if between running that **SELECT** and data modification someone had managed to interfere with this:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ignite.cache(\"personCache\").put(1L, new Person(\"Sarah\", \"Jones\"))",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+then we would find **Sarah Jones** and not **John Smith** when DML engine's entry processor attempted to modify entry's value by setting it to **Mike Smith**. On a re-run, **SELECT** would look like this:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SELECT _key, _value, \"Mike\" from Person WHERE secondName = \"Smith\" AND _key IN (SELECT * FROM TABLE(KEY long = [ 1 ]))",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+- note part after **AND**. This query preserves original condition and protects any unrelated entries for being changed by limiting its own scope with only particular set of keys (ones for which it failed before).
+
+If this query returns nothing for some key, then original criteria does not hold for that key anymore (`1` in our example), and no modification attempts are made for that key further.
+
+However, if some key gets **SELECT**ed again, DML engine attempts to modify its value again. And, of course, it could fail once more. Should that happen, a re-run is done again (of course, excluding those keys from previous re-run that have been processed successfully), and the process repeats, shrinking set of target keys with each attempt.
+
+Currently Ignite shall make at most **four** consecutive attempts to execute DML query as explained above - that is an initial attempt and at most three re-runs, if needed. Number of attempts is currently "hard coded" and probably some configuration param will be added in the future to set that, or maybe some set of predefined policies to control that behavior.
+[block:api-header]
+{
+  "type": "basic",
   "title": "Two-step and Local Operations"
 }
 [/block]
-**INSERT** and **MERGE** queries are capable of retrieving data for new cache keys and values from subqueries which are **SELECT**s declared by the user. **UPDATE** and **DELETE** queries having **WHERE** clause filter items that should be affected by DML operations by running a **SELECT** query which, in case of **UPDATE**, also computes new values for updated columns. And, as explained [here](doc:distributed-queries) and [here](doc:local-queries), there are **distributed** and **local** queries. That said, **SELECT** for any DML operation (if any) may either be distributed (aka *two-step*) and local.
+**INSERT** and **MERGE** queries are capable of retrieving data for new cache keys and values from subqueries which are **SELECT**s declared by the user. **UPDATE** and **DELETE** queries  filter items that should be affected by them by running a **SELECT** query which, in case of **UPDATE**, also computes new values for updated columns. And, as explained [here](doc:distributed-queries) and [here](doc:local-queries), there are **distributed** and **local** queries. That said, **SELECT** for any DML operation (if any) may either be distributed (aka *two-step*) and local.
 
 ##Local operations
 **SELECT** will run locally in precisely the same cases as stated in [Local Queries](doc:local-queries) doc - you can either:
@@ -281,8 +344,6 @@ Still, **actual data modification affects whole cache**, distributed or not, jus
 
 ##Two-step operations
 These run **SELECT**s in map-reduce manner as explained in [Distributed Queries](doc:sql-queries) doc. **Actual data modification still affects whole cache.**
-
-##Two-step operations concurrency
 
 [block:api-header]
 {
