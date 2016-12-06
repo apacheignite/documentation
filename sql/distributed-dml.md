@@ -242,3 +242,16 @@ Winner in straightforwardness: simply filters keys for which **WHERE** condition
 Inner implementation of cache modifications is also quite similar to **UPDATE** - after **SELECT**, `EntryProcessor`s are created for each found key which are then run via `invokeAll` and then updates cache entry is nobody got ahead of it (to determine that, the value present in cache at the time of **SELECT** is compared for equality with that being there at the time of `EntryProcessor` execution).
 
 Behavior in case of concurrent modification of cache entries will be described further below.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Operations Scope"
+}
+[/block]
+Just like ordinary SQL queries, and because DML
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Known Limitations"
+}
+[/block]
