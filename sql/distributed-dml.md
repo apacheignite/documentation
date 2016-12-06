@@ -23,6 +23,9 @@
     + [BinaryArrayIdentityResolver](#section-binaryarrayidentityresolver)
     + [BinaryFieldIdentityResolver](#section-binaryfieldidentityresolver)
 * [Known Limitations](#known-limitations)
+  - [Scope of subqueries in WHERE](#section-scope-of-subqueries-in-where)
+  - [UPDATE is not supported for key or its fields](#section-update-is-not-supported-for-key-or-its-fields)
+  - [No EXPLAIN for DML operations](#section-no-explain-for-dml-operations)
 
 Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
 
