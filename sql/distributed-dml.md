@@ -116,7 +116,7 @@ then DML engine will take `Person` named **John Smith** and passed as a query ar
   "title": "Configuration"
 }
 [/block]
-If your caches use only primitive/SQL types as keys **OR** if you do not use `BinaryMarshaller`, then you basically nothing to worry about - you can use DML operations right out of the box without any configuration changes.
+If your caches use only primitive/SQL types as keys **OR** if you do not use `BinaryMarshaller`, then you basically have nothing to worry about - you can use DML operations right out of the box without any configuration changes.
 [block:callout]
 {
   "type": "info",
