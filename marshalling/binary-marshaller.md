@@ -84,7 +84,7 @@ Default resolver used when none is set for a type in configuration. It encompass
 {
   "type": "warning",
   "title": "BinaryArrayIdentityResolver hashing is NOT used by default in BinaryObjectBuilder",
-  "body": "`BinaryArrayIdentityResolver` computes hash code in absence of a resolver set in configuration"
+  "body": "`BinaryArrayIdentityResolver` computes hash code in absence of a resolver set in configuration only when a binary object is created from a non binary form - `BinaryObjectBuilder` **does not** compute any hash code if resolver is not set for a type in configuration."
 }
 [/block]
 ##BinaryFieldIdentityResolver
