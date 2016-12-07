@@ -246,7 +246,7 @@ then resulting person will be **Mike Smith**, because **UPDATE** takes existing 
   ]
 }
 [/block]
-will set the value for key `1L` to **Mike Jones** because new value for `_val` column is present (**Sarah Jones**) and it's taken as basis for new value for the key. It also can be positioned anywhere in updated columns list compared to values of individual fields.
+will set the value for key `1L` to **Mike Jones** because new value for `_val` column is present (**Sarah Jones**) and it's taken as basis for the new key. It also can be positioned anywhere in updated columns list compared to values of individual fields.
 
 ##DELETE
 Winner in straightforwardness: simply filters keys for which **WHERE** condition holds true and removes them, performing **SELECT** to find those keys - just like with **UPDATE**, that **SELECT** may be distributed two-step or local. (More on this will follow below.). Example:
