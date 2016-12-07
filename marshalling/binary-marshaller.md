@@ -32,12 +32,27 @@ The `IgniteBinary` facade, which can be obtained from an instance of Ignite, con
   "title": "BinaryObject Equality"
 }
 [/block]
-When an object is translated to the binary format, Ignite captures it's hash code and stores it alongside with the binary object fields. This way a proper and consistent hash code can be provided on all nodes in a cluster for any object. For the `equals` comparison, Ignite relies on binary representation of the serialized object.
+When an object is translated to the binary format, Ignite captures it's hash code and stores it alongside with the binary object fields. This way a proper and consistent hash code can be provided on all nodes in a cluster for any object. For the `equals` comparison, Ignite by default relies on binary representation of the serialized object.
 [block:callout]
 {
   "type": "warning",
-  "body": "Note that since `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized",
+  "body": "Note that since _by default_ `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized",
   "title": "Binary Equals"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "BinaryObjectBuilder hash code harness"
+}
+[/block]
+When a `BinaryObject` is created with `BinaryObjectBuilder` by specifying field values and type name or id, hash code for it is specified via builder's method `hashCode(int)` bearing a parameter.
+[block:callout]
+{
+  "type": "warning",
+  "title": "Hash code must be explicitly set with BinaryObjectBuilder",
+  "body": "All binary objects must have their hash codes set in order to be used as keys. An attempt of any action with a key created with `BinaryObjectBuilder` and missing hash code will result into failure."
 }
 [/block]
 
