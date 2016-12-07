@@ -47,7 +47,6 @@ When an object is translated to the binary format, Ignite captures it's hash cod
   "title": "BinaryObjectBuilder: Hash Code Harness"
 }
 [/block]
-##Default behavior
 When a `BinaryObject` is created with `BinaryObjectBuilder` by specifying field values and type name or id, hash code for it is specified via builder's method `hashCode(int)` bearing a parameter.
 [block:callout]
 {
@@ -81,7 +80,13 @@ For your binary objects, you can introduce a custom implementation of that inter
 
 ##BinaryArrayIdentityResolver
 Default resolver used when none is set for a type in configuration. It encompasses default/pre 1.8 logic - hash code is computed based on contents of byte array representing given object's field values, and `equals` compares contents of those arrays. Just like before 1.8 and as stated above, this implementation is fields order dependent and thus is not guaranteed to hash objects that are equal from the user's perspective in the same way, let alone compare them for equality in the same way.
-
+[block:callout]
+{
+  "type": "warning",
+  "title": "BinaryArrayIdentityResolver hashing is NOT used by default in BinaryObjectBuilder",
+  "body": "`BinaryArrayIdentityResolver` computes hash code in absence of a resolver set in configuration"
+}
+[/block]
 ##BinaryFieldIdentityResolver
 A resolver that hashes and compares only values of specified fields - much like IDE generated `equals` and `hashCode` do. With this resolver, fields traversal order is determined by configuration, hence it's more stable and predictable than the previous one. Its disadvantage is necessity to configure its fields list, while `BinaryArrayIdentityResolver` does not require any configuration at all.
 [block:api-header]
