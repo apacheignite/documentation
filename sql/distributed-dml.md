@@ -29,7 +29,7 @@
   - [UPDATE is not supported for key or its fields](#section-update-is-not-supported-for-key-or-its-fields)
   - [No EXPLAIN for DML operations](#section-no-explain-for-dml-operations)
 
-Since 1.8.0, Ignite is capable not only of querying data from cache, but also to modify it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
+Since 1.8.0, Ignite is capable not only of querying data from cache, but also of modifying it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
 
 Let's have a closer look at basic concepts and how operations work.
 [block:api-header]
@@ -360,18 +360,18 @@ These run **SELECT**s in map-reduce manner as explained in [Distributed Queries]
 [block:api-header]
 {
   "type": "basic",
-  "title": "Hashing of Non Primitive Keys"
+  "title": "Hashing of Non Primitive Binary Keys"
 }
 [/block]
-##Rationale
-When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then its `hashCode`
+When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then result of invoking its `hashCode` method is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
 
-##Binary Identity Resolver interface
-##Default behavior
-##Configuration
-##Default identity resolvers
-###BinaryArrayIdentityResolver
-###BinaryFieldIdentityResolver
+Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is computed using it 
+
+However, things get more complicated when `BinaryObjectBuilder` is used to create a binary object: the user has to provide hash code explicitly in this case via builder's `hashCode(int)` method. This section covers the case when there's no user to provide hash code and still binary object builder is used - that is what happens inside Ignite's DML engine when new binary key is created from scratch: hash code has to be computed automatically.
+
+When there's `hashCode` overridden, there also must be corresponding custom implementation of `equals`. To separate that logic from binary objects as they were pre 1.8 and make it easily tunable, a new interface was introduced - it's named `BinaryIdentityResolver`.
+
+
 [block:api-header]
 {
   "type": "basic",
