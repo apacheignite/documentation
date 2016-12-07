@@ -1,6 +1,6 @@
 * [Basic Concepts](#basic-concepts)
   - [Put new items to cache](#section-put-new-items-to-cache)
-  - [Modify existing cache items](#section-put-new-items-to-cache)
+  - [Modify existing cache items](#section-modify-existing-cache-items)
   - [DML API](#section-dml-api)
   - [Special columns](#section-special-columns)
   - [Field values override](#section-field-values-override)
