@@ -44,18 +44,34 @@ When an object is translated to the binary format, Ignite captures it's hash cod
 [block:api-header]
 {
   "type": "basic",
-  "title": "BinaryObjectBuilder hash code harness"
+  "title": "BinaryObjectBuilder: Hash Code Harness"
 }
 [/block]
+##Default behavior
 When a `BinaryObject` is created with `BinaryObjectBuilder` by specifying field values and type name or id, hash code for it is specified via builder's method `hashCode(int)` bearing a parameter.
 [block:callout]
 {
   "type": "warning",
   "title": "Hash code must be explicitly set with BinaryObjectBuilder",
-  "body": "All binary objects must have their hash codes set in order to be used as keys. An attempt of any action with a key created with `BinaryObjectBuilder` and missing hash code will result into failure."
+  "body": "All binary objects must have their hash codes set in order to be used as keys. An attempt of any action with a key created with `BinaryObjectBuilder` and missing hash code will result into error."
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "body": "Default logic of `equals` comparison for binary objects created with `BinaryObjectBuilder` is the same as with those serialized from non binary form.",
+  "title": "Way of creating a binary object does not affect its equality comparison logic"
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Changing Default Binary Equals and Hash Code Logic"
+}
+[/block]
+Starting with Ignite 1.8, there's a way to explicitly specify 
 [block:api-header]
 {
   "type": "basic",
