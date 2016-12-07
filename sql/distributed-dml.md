@@ -14,7 +14,7 @@
 * [Two-step and Local Operations](#two-step-and-local-operations)
   - [Local operations](#section-local-operations)
   - [Two-step operations](#section-two-step-operations)
-  - [Two-step operations concurrency](#update-and-delete-concurrency)
+  - [UPDATE and DELETE Concurrency](#update-and-delete-concurrency)
 * [Hashing of Non Primitive Keys](#hashing-of-non-primitive-keys)
   - [Rationale](#section-rationale)
   - [Binary Identity Resolver interface](#section-binary-identity-resolver-interface)
