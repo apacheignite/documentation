@@ -41,7 +41,7 @@ For example, default startSize = 1'500'000, partNumber = 1024, refSize = 4, part
 ## Entry memory usage
 
 Actual entry memory usage depends on many factors such as JVM implementation and startup parameters, marshaller implementation, cache atomicity and memory mode. And certainly the key and the value objects itself.
-Follow calculations have been done for the most common case: Oracle HotSpot Server JVM 64-bit, Binary Marshaller, `ATOMIC` cache mode, and very simple key and value objects.
+Following calculations have been done for the most common case: Oracle HotSpot Server JVM 64-bit, Binary Marshaller, `ATOMIC` cache mode, and very simple key and value objects.
 [block:code]
 {
   "codes": [
