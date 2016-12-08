@@ -38,9 +38,10 @@ Memory usage for every JVM with running Ignite instances is made with following 
 For example, default startSize = 1'500'000, partNumber = 1024, refSize = 4, partSize = 2048 (the nearest bigger 2^N for 1'500'000/1024), overhead = 2K x 1K x 4 = 8 Mb.
 - About 10 Mb for atomic cache queue delete history controlled by the system property `IgniteSystemProperties.IGNITE_ATOMIC_CACHE_DELETE_HISTORY_SIZE`.
 
-## Memory Capacity Planning Example
+## Entry memory usage
 
-Let's take for example the following scenario:
+Actual entry memory usage depends on many factors such as JVM implementation and startup parameters, marshaller implementation, cache atomicity and memory mode. And certainly the key and the value objects itself.
+Follow calculations have been done for the most common case: Oracle HotSpot Server JVM, Binary Marshaller, `ATOMIC` cache mode.
 [block:callout]
 {
   "type": "success",
