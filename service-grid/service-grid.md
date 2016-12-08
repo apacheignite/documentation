@@ -46,7 +46,7 @@ Ignite allows you to control how many instances of your service should be deploy
 [block:callout]
 {
   "type": "warning",
-  "body": "Note that it's required that all nodes have service classes deployed locally, otherwise Service Grid will not be fully-functional. Peer-deployment is not supported for services."
+  "body": "Note, that by default it's required to have a Service class in the classpath of all the cluster nodes. [Peer class loading](doc:zero-deployment) (P2P class loading) is not supported for Service Grid. Learn more from [services deployment management](https://apacheignite.readme.io/docs/service-grid#deployment-management) section on how to overcome this default requirement."
 }
 [/block]
 
