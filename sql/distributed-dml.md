@@ -346,7 +346,8 @@ These run **SELECT**s in map-reduce manner as explained in [Distributed Queries]
 [block:callout]
 {
   "type": "success",
-  "body": "All settings related with distrubuted joins, etc., are propagated from original `SqlFieldsQuery` to new one when doing a two-step **SELECT**, so that the user has more fine-grained control over its execution."
+  "body": "All settings related with distrubuted joins, etc., are propagated from original `SqlFieldsQuery` to new one when doing a two-step **SELECT**, so that the user has more fine-grained control over its execution.",
+  "title": "Fine query settings are honored by DML too"
 }
 [/block]
 
