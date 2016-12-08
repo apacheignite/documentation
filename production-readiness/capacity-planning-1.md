@@ -41,7 +41,24 @@ For example, default startSize = 1'500'000, partNumber = 1024, refSize = 4, part
 ## Entry memory usage
 
 Actual entry memory usage depends on many factors such as JVM implementation and startup parameters, marshaller implementation, cache atomicity and memory mode. And certainly the key and the value objects itself.
-Follow calculations have been done for the most common case: Oracle HotSpot Server JVM, Binary Marshaller, `ATOMIC` cache mode.
+Follow calculations have been done for the most common case: Oracle HotSpot Server JVM, Binary Marshaller, `ATOMIC` cache mode, and very simple key and value objects.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "private static class CacheKey {\n\n  public long value;\n\n  @Override\n  public boolean equals(Object obj) {...}\n\n  @Override\n  public int hashCode() {...}\n}\n\n// POJO\n// 32-bit JVM - 16 bytes\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 24 bytes\n\n// BinaryMarshaller output byte[34]\n// 32-bit JVM - 48 bytes\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 56 bytes",
+      "language": "java",
+      "name": "CacheKey"
+    },
+    {
+      "code": "private static class CacheValue {\n\n  public long value;\n\n  public Object obj = null;\n}\n\n// 32-bit JVM - 20 bytes\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 32 bytes\n\n// BinaryMarshaller output byte[40]\n// 32-bit JVM - 52 bytes\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 64 bytes",
+      "language": "java",
+      "name": "CacheValue"
+    }
+  ]
+}
+[/block]
+
 [block:callout]
 {
   "type": "success",
