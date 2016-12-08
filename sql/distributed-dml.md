@@ -371,7 +371,7 @@ But DML engine also computes hash code for binary objects created with `BinaryOb
 [block:callout]
 {
   "type": "info",
-  "body": "When no `BinaryIdentityResolver` is set for a binary type in configuration, and keys (or values) are built from scratch by DML engine (i.e. column values for particular fields of key and/or value are given), [BinaryArrayIdentityResolver](doc:binary-marshaller/#section-binaryarrayidentityresolver) is used **both for hashing and equality comparisons**."
+  "body": "When no `BinaryIdentityResolver` is set for a binary type in configuration, and keys (or values) are built from scratch by DML engine (i.e. column values for particular fields of key and/or value are given), [BinaryArrayIdentityResolver](doc:binary-marshaller#section-binaryarrayidentityresolver) is used **both for hashing and equality comparisons**."
 }
 [/block]
 
