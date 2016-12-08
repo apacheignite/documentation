@@ -51,7 +51,7 @@ Following calculations have been done for the most common case: Oracle HotSpot S
       "name": "CacheKey"
     },
     {
-      "code": "private static class CacheValue {\n\n  public long value;\n\n  public Object obj = null;\n}\n\n// 32-bit JVM - 20 bytes\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 32 bytes\n\n// BinaryMarshaller output byte[40]\n// 32-bit JVM - 52 bytes\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 64 bytes",
+      "code": "private static class CacheValue {\n\n  public long value;\n\n  public Object obj = null;\n}\n\n// POJO\n// 32-bit JVM - 20 bytes\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 32 bytes\n\n// BinaryMarshaller output byte[40]\n// 32-bit JVM - 52 bytes\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 64 bytes",
       "language": "java",
       "name": "CacheValue"
     }
