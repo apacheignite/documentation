@@ -94,6 +94,13 @@ You could see that additional overhead arises from serializing key and value obj
 
 [block:callout]
 {
+  "type": "info",
+  "body": "Note, that unlike regular database indices, Ignite indices take constant overhead per entry independently of entry size."
+}
+[/block]
+
+[block:callout]
+{
   "type": "success",
   "body": "- 5,000,000 entries\n- 868 bytes per object (ONHEAP_TIERED w/UseCompressedOops enabled, one index)\n- 1 backup\n- 4 nodes",
   "title": "Example Specification"
