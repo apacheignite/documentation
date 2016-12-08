@@ -102,12 +102,12 @@ You could see that additional overhead arises from serializing key and value obj
 [block:callout]
 {
   "type": "success",
-  "body": "- 5,000,000 entries\n- 868 bytes per object (ONHEAP_TIERED w/UseCompressedOops enabled, one index)\n- 1 backup\n- 4 nodes",
+  "body": "- 5,000,000 entries (given CacheKey & CacheValue for example)\n- 868 bytes per object (ONHEAP_TIERED w/UseCompressedOops enabled, one index)\n- 1 backup\n- 4 nodes",
   "title": "Example Specification"
 }
 [/block]
 - Entries memory usage = entry size x number of entries per node x 2 (one primary and one backup copy);
- 728 x 1'250'000 x 2 = 2'170'000'000 = 2069 Mb;
+ 868 x 1'250'000 x 2 = 2'170'000'000 = 2069 Mb;
 
 - Cache size = 2 Mb + internal storage + delete history;
 Internal storage = 8192 * 1024 * 4 = 32 Mb;
