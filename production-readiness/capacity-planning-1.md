@@ -14,15 +14,15 @@ When preparing and planning for a system capacity planning is an integral part o
   "title": "Calculating Memory Usage"
 }
 [/block]
-- Calculate primary data size: multiply the size of one entry in bytes by the total number of entries
-- If you have backups, multiply by their number
-- Indexes also require memory. Basic use cases will add a 30% increase
-- Add around 20MB per cache. (This value can be reduced if you explicitly set `IgniteSystemProperties.IGNITE_ATOMIC_CACHE_DELETE_HISTORY_SIZE` to a smaller value than default.)
-- Add around 200-300MB per node for internal memory and reasonable amount of memory for JVM and GC to operate efficiently
+Memory usage for every JVM with running Ignite instances is made with following parts:
+- Minimum 150 Mb for internal memory of the JVM with common Ignite overhead;
+- About 50 Mb per every running Ignite instance under the JVM;
+- About 20 Mb per cache (this size could be decreased, see instructions below);
+- Combined size of all cache entries (primary and backup) stored on this node; the size of an entry depends on many factors and is not the same as you expect for simple Java objects (see the table below).
 [block:callout]
 {
-  "type": "info",
-  "body": "GridGain will typically add around 200 bytes overhead to each entry.",
+  "type": "warning",
+  "body": "When calculating number of partitioned cache entries may be kept on a node, take into account that the affinity function may not distribute all entries among nodes equally.",
   "title": ""
 }
 [/block]
