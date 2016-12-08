@@ -32,5 +32,5 @@ To execute the queries, you can leverage all APIs that were specifically created
 * [Performance and Debugging](doc:performance-and-debugging)
 
 ##SQL Grid Integrations and Tools
-* [Appache Zeppelin](https://apacheignite-mix.readme.io/v1.8/docs/apache-zeppelin)
-* [PHP PDO](https://apacheignite-mix.readme.io/v1.8/docs/php-pdo)
+* [Appache Zeppelin](https://apacheignite-mix.readme.io/docs/apache-zeppelin)
+* [PHP PDO](https://apacheignite-mix.readme.io/docs/php-pdo)
