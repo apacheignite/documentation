@@ -26,6 +26,8 @@ Memory usage for every JVM with running Ignite instances is made with following 
   "title": ""
 }
 [/block]
+## Cache memory usage
+
 
 
 ## Memory Capacity Planning Example
