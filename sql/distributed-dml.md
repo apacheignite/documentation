@@ -17,7 +17,6 @@
   - [Two-step operations](#section-two-step-operations)
 * [Hashing of Non Primitive Binary Keys](#hashing-of-non-primitive-binary-keys)
 * [Known Limitations](#known-limitations)
-  - [Batching in JDBC driver](#section-batching-in-jdbc-driver)
   - [Scope of subqueries in WHERE](#section-scope-of-subqueries-in-where)
   - [UPDATE is not supported for key or its fields](#section-update-is-not-supported-for-key-or-its-fields)
   - [No EXPLAIN for DML operations](#section-no-explain-for-dml-operations)
