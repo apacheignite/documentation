@@ -85,7 +85,7 @@ A resolver that hashes and compares only values of specified fields - much like 
 }
 [/block]
 In the vast majority of use-cases there is no need to additionally configure binary objects. `BinaryObject` marshaller is enabled by default when no other marshaller is set to IgniteConfiguration.
-In a case when you need to override default type and field IDs calculation, or to plug in `BinarySerializer`, or customize `equals`/`hashCode` logic as described in previous section, a `BinaryConfiguration` object should be set to `IgniteConfiguration`. This object allows to specify a global name mapper, a global ID mapper and a global binary serializer as well as specify per-type mappers and serializers. Wildcards are supported for per-type configuration, in this case provided configuration will be applied to all types matching type name template.
+In a case when you need to override default type and field IDs calculation, or to plug in `BinarySerializer`, or customize `equals`/`hashCode` logic as described [in previous section](#changing-default-binary-equals-and-hash-code-behav), a `BinaryConfiguration` object should be set to `IgniteConfiguration`. This object allows to specify a global name mapper, a global ID mapper and a global binary serializer as well as specify per-type mappers and serializers. Wildcards are supported for per-type configuration, in this case provided configuration will be applied to all types matching type name template.
 [block:code]
 {
   "codes": [
