@@ -21,16 +21,16 @@ Apache Ignite was officially tested on:
     "h-0": "Name",
     "h-1": "Value",
     "0-0": "JDK",
-    "0-1": "Oracle JDK 7 and above",
+    "0-1": "Oracle JDK 7 and above\nOpen JDK 7 and above\nIBM JDK 7 and above",
     "1-0": "OS",
-    "2-0": "Network",
-    "1-1": "Linux (any flavor),\nMac OSX (10.6 and up)\nWindows (XP and up), \nWindows Server (2008 and up)",
-    "2-1": "No restrictions (10G recommended)",
-    "3-0": "Hardware",
-    "3-1": "No restrictions"
+    "2-0": "ISA",
+    "1-1": "Linux (any flavor),\nMac OSX (10.6 and up)\nWindows (XP and up), \nWindows Server (2008 and up)\nOracle Solaris",
+    "2-1": "x86, x64, SPARC, PowerPC",
+    "3-0": "Network",
+    "3-1": "No restrictions (10G recommended)"
   },
   "cols": 2,
-  "rows": 3
+  "rows": 4
 }
 [/block]
 
@@ -51,7 +51,7 @@ If you downloaded the source package, you can build the binary using the followi
 {
   "codes": [
     {
-      "code": "# Unpack the source package\n$ unzip -q apache-ignite-1.3.0-incubating-src.zip\n$ cd apache-ignite-1.3.0-incubating-src\n \n# Build In-Memory Data Fabric release (without LGPL dependencies)\n$ mvn clean package -DskipTests\n \n# Build In-Memory Data Fabric release (with LGPL dependencies)\n$ mvn clean package -DskipTests -Prelease,lgpl\n \n# Build In-Memory Hadoop Accelerator release\n# (optionally specify version of hadoop to use)\n$ mvn clean package -DskipTests -Dignite.edition=hadoop [-Dhadoop.version=X.X.X]",
+      "code": "# Unpack the source package\n$ unzip -q apache-ignite-{version}-src.zip\n$ cd apache-ignite-{version}-src\n \n# Build In-Memory Data Fabric release (without LGPL dependencies)\n$ mvn clean package -DskipTests\n \n# Build In-Memory Data Fabric release (with LGPL dependencies)\n$ mvn clean package -DskipTests -Prelease,lgpl\n \n# Build In-Memory Hadoop Accelerator release\n# (optionally specify version of hadoop to use)\n$ mvn clean package -DskipTests -Dignite.edition=hadoop [-Dhadoop.version=X.X.X]",
       "language": "shell"
     }
   ]

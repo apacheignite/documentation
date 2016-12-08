@@ -51,7 +51,7 @@ You need MS Visual Studio 2010 or later to be able to build ODBC driver on Windo
 {
   "type": "warning",
   "title": "",
-  "body": "If you are using VS 2015 or later (MSVC 14.0 or later), you need to add `legacy_stdio_definitions.lib` as an additional library for odbc project to successfully it due to breaking change made by MS."
+  "body": "If you are using VS 2015 or later (MSVC 14.0 or later), you need to add `legacy_stdio_definitions.lib` as an additional library to `odbc` project linker's settings in order to be able to build the project. To add this library to the linker input in the IDE, open the context menu for the project node, choose `Properties`, then in the `Project Properties` dialog box, choose `Linker`, and edit the `Linker Input` to add `legacy_stdio_definitions.lib` to the semi-colon-separated list."
 }
 [/block]
 Once the build process is over you can find `odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release`.

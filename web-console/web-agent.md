@@ -1,4 +1,4 @@
-Ignite Web Agent is a standalone Java application that allows to establish connection between Ignite Grid and Ignite Web Console. Ignite Web Agent communicates with cluster nodes via a REST interface and connects to Ignite Web Console via web-socket.
+Ignite Web Agent is a standalone Java application that allows to establish connection between Ignite Grid and Ignite Web Console. Ignite Web Agent communicates with cluster nodes via a REST interface and connects to the Ignite Web Console via web-socket.
 
 Two main functions of Ignite Web Agent:
 * Proxy between Ignite Web Console and Ignite Grid for SQL queries execution purposes.
@@ -9,11 +9,11 @@ Two main functions of Ignite Web Agent:
   "title": "Usage"
 }
 [/block]
-Ignite Web Agent zip ships with `ignite-web-agent.{sh|bat}` script that used for agent start.
+Ignite Web Agent zip ships with `ignite-web-agent.{sh|bat}` script that is used to start the agent.
 [block:callout]
 {
   "type": "info",
-  "body": "* In order to communicate with Web Agent, an Ignite node should be started with REST server mode enabled (move `ignite-rest-http` folder from `lib/optional/` to `lib/`).\n* Configure Web Agent's `serverURI` property in a way that it refers to Ignite node's REST server URI.",
+  "body": "* In order to communicate with Web Agent, an Ignite node should be started with REST server mode enabled (move `ignite-rest-http` folder from `lib/optional/` to `lib/`).\n* Configure the Web Agent's `serverURI` property in a way that it refers to the Ignite node's REST server URI.",
   "title": "Requirements"
 }
 [/block]
@@ -25,7 +25,7 @@ Ignite Web Agent zip ships with `ignite-web-agent.{sh|bat}` script that used for
 }
 [/block]
 ###Configuration file
-By default Ignite Web Agent makes an attempt to load configuration settings from `default.properties` file. The content of the file has to follow a simple line-oriented format as described [here](#http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html).
+By default, Ignite Web Agent makes an attempt to load configuration settings from `default.properties` file. The content of the file has to follow a simple line-oriented format as described [here](#http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html).
 
 Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
 [block:code]
@@ -40,7 +40,7 @@ Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
 }
 [/block]
 ###Command line options
-To get help execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat} --help` in terminal.
+To get help, execute `ignite-web-agent.{sh|bat} -h` or  `ignite-web-agent.{sh|bat} --help` in terminal.
 
 Available options with they descriptions:
 * `-h`, `--help` - Print this help message

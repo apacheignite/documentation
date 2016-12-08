@@ -92,7 +92,7 @@ Here are some basic JCache atomic operation examples.
   "title": "EntryProcessor"
 }
 [/block]
-Whenever doing `puts` and `updates` in cache, you are usually sending full state object state across the network. `EntryProcessor` allows for processing data directly on primary nodes, often transferring only the deltas instead of the full state. 
+Whenever doing `puts` and `updates` in cache, you are usually sending full object state across the network. `EntryProcessor` allows for processing data directly on primary nodes, often transferring only the deltas instead of the full state. 
 
 Moreover, you can embed your own logic into `EntryProcessors`, for example, taking previous cached value and incrementing it by 1.
 [block:code]

@@ -20,13 +20,18 @@ Apache Ignite<sup>tm</sup> In-Memory Data Fabric is a high-performance, integrat
 You can view Ignite as a collection of independent, well-integrated, in-memory components geared to improve performance and scalability of your application. Some of these components include:
 
   * [Advanced Clustering](doc:cluster)
-  * [Data Grid (JCache)](doc:data-grid) 
+  * [Data Grid](doc:data-grid) 
+  * [SQL Grid](doc:sql-grid) 
   * [Streaming & CEP](doc:streaming--cep) 
   * [Compute Grid](doc:compute-grid) 
   * [Service Grid](doc:service-grid)
-  * [Ignite File System](doc:igfs)
+  * [Ignite File System](https://apacheignite-fs.readme.io/docs/in-memory-file-system)
   * [Distributed Data Structures](doc:queue-and-set) 
   * [Distributed Messaging](doc:messaging) 
   * [Distributed Events](doc:events) 
-  * [Hadoop Accelerator](doc:hadoop-accelerator)
-  * [Spark Shared RDDs](doc:shared-rdd)
+  * [Hadoop Accelerator](https://apacheignite-fs.readme.io/docs/hadoop-accelerator)
+  * [Spark Shared RDDs](https://apacheignite-fs.readme.io/docs/ignite-for-spark)
+
+In addition to Spark and Hadoop, Ignite integrates with a variety of other technologies and products. The integrations are intended to simplify coupling of Apache Ignite and other technologies, used in your applications or services, in order to either perform a transition to Apache Ignite smoothly or to boost an existed solution by plugging Ignite into it.
+
+The rest of existed integrations are covered under dedicated [documentation domain](https://apacheignite-mix.readme.io/docs/getting-started).

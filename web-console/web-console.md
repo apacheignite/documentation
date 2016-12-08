@@ -6,20 +6,21 @@
   "title": "Overview"
 }
 [/block]
-Ignite Web Console is an interactive configuration wizard, management and monitoring tool that allows you to:
+[Ignite Web Console](https://console.gridgain.com/) is an interactive configuration wizard, management and monitoring tool that allows you to:
 * Create and download various configurations to use for your Apache Ignite cluster.
 * Automatically construct Apache Ignite's SQL metadata from any RDBMS schemas.
-* Provide management and monitoring capabilities that presently let you executing SQL queries over your in-memory caches as well as viewing their execution plans, in-memory schemas and streaming charts.
+* Execute SQL queries over your in-memory caches.
+*  View query execution plans, in-memory schemas and streaming charts.
 [block:api-header]
 {
   "type": "basic",
   "title": "Demo Mode"
 }
 [/block]
-The one can use Web Console's demo mode for evolution purposes. To enable this mode you need to click on `Start demo` button, located in the top menu, and wait while a popup screen appears providing you additional steps.
+You can use the Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
 
 ## Importing a domain model from a database
-In this mode an instance of in-memory H2 database will be started on connected Ignite Web Agent.
+In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent.
 How to evaluate:
   * Go to Ignite Web Console `Domain model` screen.
   * Click `Import from database`. You should see a modal window with the demo description.
@@ -30,7 +31,7 @@ How to evaluate:
 
 ## SQL Demonstration
 How to evaluate:
-In this mode three server and one client nodes will be started. Several caches will be created and populated with data.
+In this mode, three server and one client nodes will be started. Several caches will be created and populated with data.
  * Click `SQL` in Ignite Web Console top menu.
  * `Demo` notebook with preconfigured queries will be opened.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
@@ -41,4 +42,4 @@ For example:
 `INNER JOIN "CarCache".Car c ON (p.id) = (c.parkingId)`
 `GROUP BY P.NAME`
  * Click `Execute` button. You should get some data in table.
- * Click charts buttons to see auto generated charts.
+ * Click `charts` buttons to see auto generated charts.

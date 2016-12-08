@@ -1,5 +1,9 @@
 * [Basic Concepts](#basic-concepts)
 * [BinaryObject Equality](r#binaryobject-equality)
+* [Changing Default Binary Equals and Hash Code Behavior](#changing-default-binary-equals-and-hash-code-behav)
+  - [Binary Identity Resolver Interface](#section-binary-identity-resolver-interface)
+  - [BinaryArrayIdentityResolver](#section-binaryarrayidentityresolver)
+  - [BinaryFieldIdentityResolver](#section-binaryfieldidentityresolver)
 * [Configuring Binary Objects](#configuring-binary-objects)
 * [BinaryObject Cache API](#binaryobject-cache-api)
 * [Modifying Binary Objects Using BinaryObjectBuilder](#modifying-binary-objects-using-binaryobjectbuilder)
@@ -32,11 +36,11 @@ The `IgniteBinary` facade, which can be obtained from an instance of Ignite, con
   "title": "BinaryObject Equality"
 }
 [/block]
-When an object is translated to the binary format, Ignite captures it's hash code and stores it alongside with the binary object fields. This way a proper and consistent hash code can be provided on all nodes in a cluster for any object. For the `equals` comparison, Ignite relies on binary representation of the serialized object.
+When an object is translated to the binary format, Ignite captures it's hash code and stores it alongside with the binary object fields. This way a proper and consistent hash code can be provided on all nodes in a cluster for any object. For the `equals` comparison, Ignite by default relies on binary representation of the serialized object.
 [block:callout]
 {
   "type": "warning",
-  "body": "Note that since `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized",
+  "body": "Note that since _by default_ `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized\n * Effectively breaks `equals`/`hashCode` contract when hash code is taken from non binary object's form as described above (in this case hash code is computed by logic in user's class while `equals` still compares objects as if it had also hashed them)",
   "title": "Binary Equals"
 }
 [/block]
@@ -44,17 +48,50 @@ When an object is translated to the binary format, Ignite captures it's hash cod
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuring Binary Objects"
+  "title": "Changing Default Binary Equals and Hash Code Behavior"
 }
 [/block]
-In the vast majority of use-cases there is no need to additionally configure binary objects. `BinaryObject` marshaller is enabled by default when no other marshaller is set to IgniteConfiguration.
-In a case when you need to override default type and field IDs calculation or to plug in `BinarySerializer`, a `BinaryConfiguration` object should be set to `IgniteConfiguration`. This object allows to specify a global name mapper, a global ID mapper and a global binary serializer as well as specify per-type mappers and serializers. Wildcards are supported for per-type configuration, in this case provided configuration will be applied to all types matching type name template.
+Starting with Ignite 1.8, there's a way to explicitly specify the way to compute hash code for a binary object and corresponding equality comparison logic - to free yourself from need to specify hash codes for builder explicitly, or to bypass drawbacks of default behavior mentioned in the balloon in above section [BinaryObject Equality](#binaryobject-equality).
+
+##Binary Identity Resolver interface
+This interface defines the way of hashing binary objects and comparing them for equality. Therefore, it's quite simple:
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <property name=\"binaryConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.BinaryConfiguration\">\n            <property name=\"nameMapper\" ref=\"globalNameMapper\"/>\n          \n            <property name=\"idMapper\" ref=\"globalIdMapper\"/>\n\n            <property name=\"typeConfigurations\">\n                <list>\n                    <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n                        <property name=\"typeName\" value=\"org.apache.ignite.examples.*\"/>\n                        <property name=\"serializer\" ref=\"exampleSerializer\"/>\n                    </bean>\n                </list>\n            </property>\n        </bean>\n    </property>\n...",
-      "language": "java",
+      "code": "public interface BinaryIdentityResolver {\n    /**\n     * Compute hash code for binary object.\n     */\n    public int hashCode(BinaryObject obj);\n\n    /**\n     * Compare two binary objects for equality.\n     */\n    public boolean equals(@Nullable BinaryObject o1, @Nullable BinaryObject o2);\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+For your binary objects, you can introduce a custom implementation of that interface, or use one of those bundled with Ignite. Resolver can be set on a per type basis - configuration example will be given in section [Configuring Binary Objects](#configuring-binary-objects). Let's have a closer look at default implementations.
+
+##BinaryArrayIdentityResolver
+Simple resolver that does not require any configuration. It encompasses default logic - hash code is computed based on contents of byte array representing given object's field values, and `equals` compares contents of those arrays. As stated above, this implementation is fields order dependent and thus is not guaranteed to hash objects that are equal from the user's perspective in the same way, let alone compare them for equality in the same way.
+[block:callout]
+{
+  "type": "warning",
+  "title": "BinaryArrayIdentityResolver does not hash binary objects by default",
+  "body": "`BinaryArrayIdentityResolver` is the one that performs equality comparison in absence of a resolver set in configuration. Please note that nevertheless it does not hash anything by default - when no resolver is set for type in configuration, and binary objects either bear hash codes computed by their non-binary form counterparts, or those explicitly specified via `BinaryObjectBuilder` as described below in section [Modifying Binary Objects Using BinaryObjectBuilder](#modifying-binary-objects-using-binaryobjectbuilder)."
+}
+[/block]
+##BinaryFieldIdentityResolver
+A resolver that hashes and compares only values of specified fields - much like IDE generated `equals` and `hashCode` do. With this resolver, fields traversal order is determined by configuration, hence it's more stable and predictable than the previous one. Its disadvantage is necessity to configure its fields list, while `BinaryArrayIdentityResolver` does not require any configuration at all. Configuration example is shown in the next section.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuring Binary Objects"
+}
+[/block]
+In the vast majority of use-cases there is no need to additionally configure binary objects. `BinaryObject` marshaller is enabled by default when no other marshaller is set to IgniteConfiguration.
+In a case when you need to override default type and field IDs calculation, or to plug in `BinarySerializer`, or customize `equals`/`hashCode` logic as described [in previous section](#changing-default-binary-equals-and-hash-code-behav), a `BinaryConfiguration` object should be set to `IgniteConfiguration`. This object allows to specify a global name mapper, a global ID mapper and a global binary serializer as well as specify per-type mappers and serializers. Wildcards are supported for per-type configuration, in this case provided configuration will be applied to all types matching type name template.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <property name=\"binaryConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.BinaryConfiguration\">\n            <property name=\"nameMapper\" ref=\"globalNameMapper\"/>\n          \n            <property name=\"idMapper\" ref=\"globalIdMapper\"/>\n\n            <property name=\"typeConfigurations\">\n                <list>\n                    <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n                        <property name=\"typeName\" value=\"org.apache.ignite.examples.*\"/>\n                        <property name=\"serializer\" ref=\"exampleSerializer\"/>\n                    </bean>\n                      \n                    <!-- Example of custom binary id resolver configuration -->\n                    <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n                        <property name=\"typeName\" value=\"org.apache.ignite.binex.CustomHashedType\" />\n                        <property name=\"identityResolver\">\n                            <bean class=\"org.apache.ignite.binex.CustomIdentityResolver\" />\n                        </property>\n                    </bean>\n\n                    <!-- Example of fields based binary id resolver configuration -->\n                    <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n                        <property name=\"typeName\" value=\"org.apache.ignite.binex.FieldsHashedType\" />\n                        <property name=\"identityResolver\">\n                            <bean class=\"org.apache.ignite.binary.BinaryFieldIdentityResolver\">\n                                <property name=\"fieldNames\">\n                                    <list>\n                                        <value>firstField</value>\n                                        <value>secondField</value>\n                                    </list>\n                                </property>\n                            </bean>\n                        </property>\n                    </bean>\n                </list>\n            </property>\n        </bean>\n    </property>\n...",
+      "language": "xml",
       "name": "Configuring Binary Types"
     }
   ]
