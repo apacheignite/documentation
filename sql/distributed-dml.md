@@ -365,8 +365,14 @@ These run **SELECT**s in map-reduce manner as explained in [Distributed Queries]
 [/block]
 When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then result of invoking its `hashCode` method is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
 
-Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is computed by its means regardless of the way binary object was created. 
+Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is computed by its means regardless of the way binary object was created.
 
+But DML engine also computes hash code for binary objects created with `BinaryObjectBuilder` even when there's no `BinaryIdentityResolver` set for a binary type in configuration - it does so because in this case there's no way for a user to specify hash code to builder manually.x
+[block:callout]
+{
+  "type": "info"
+}
+[/block]
 
 [block:api-header]
 {
