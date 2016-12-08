@@ -31,4 +31,7 @@ To execute the queries, you can leverage all APIs that were specifically created
 * [Geospatial Support](doc:geospatial-queries) 
 * [Performance and Debugging](doc:performance-and-debugging)
 * [SQL Grid Based Integrations and Tools](https://apacheignite-mix.readme.io/docs/overview-1)
-* [Integrations & Tools](https://apacheignite-mix.readme.io/docs/overview-1)
+
+##SQL Grid Integrations and Tools
+* [Appache Zeppeling](https://apacheignite-mix.readme.io/v1.8/docs/apache-zeppelin)
+* [PHP PDO](https://apacheignite-mix.readme.io/v1.8/docs/php-pdo)
