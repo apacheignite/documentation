@@ -35,6 +35,7 @@ Memory usage for every JVM with running Ignite instances is made with following 
 **refSize** - the size of the Java reference (4 bytes on 32-bit JVM and 64-bit with UseCompressedOops, or 8 bytes on 64-bit JVM without UseCompressedOops);
 **partSize** = 2^roundup(log_2(startSize/partNumber));
 **overhead** = partSize x partNumber x refSize.
+For example, default startSize = 1'500'000, partNumber = 1024, refSize = 4, partSize = 2048 (the nearest bigger 2^N for 1'500'000/1024), overhead = 2K x 1K x 4 = 8 Mb.
 
 ## Memory Capacity Planning Example
 
