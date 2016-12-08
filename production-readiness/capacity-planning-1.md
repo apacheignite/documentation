@@ -62,7 +62,7 @@ You could see that additional overhead arises from serializing key and value obj
 [block:parameters]
 {
   "data": {
-    "h-0": "Configuration",
+    "h-0": "Cache configuration",
     "h-1": "Entry overhead",
     "h-2": "First index overhead",
     "h-3": "Next index overhead",
