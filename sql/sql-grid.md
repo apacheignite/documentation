@@ -22,6 +22,7 @@ To execute the queries, you can leverage all APIs that were specifically created
 ##Features and Topics
 * [Distributed Queries](doc:sql-queries) 
 * [Local Queries](doc:local-queries) 
+* [Distributed DML](doc:dml) 
 * [Indexes](doc:indexes) 
 * [Miscellaneous Features](doc:miscellaneous-features) 
 * [Configuration Parameters](doc:configuration-parameters) 
@@ -30,3 +31,4 @@ To execute the queries, you can leverage all APIs that were specifically created
 * [Geospatial Support](doc:geospatial-queries) 
 * [Performance and Debugging](doc:performance-and-debugging)
 * [SQL Grid Based Integrations and Tools](https://apacheignite-mix.readme.io/docs/overview-1)
+* [Integrations & Tools](doc:integrations-1)
