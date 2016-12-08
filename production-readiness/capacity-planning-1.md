@@ -46,7 +46,7 @@ Follow calculations have been done for the most common case: Oracle HotSpot Serv
 {
   "codes": [
     {
-      "code": "private static class CacheKey {\n\n  public long value;\n\n  @Override\n  public boolean equals(Object obj) {...}\n\n  @Override\n  public int hashCode() {...}\n}\n\n// POJO\n// 32-bit JVM - 16 bytes\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 24 bytes\n\n// BinaryMarshaller output byte[34]\n// 32-bit JVM - 48 bytes\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 56 bytes",
+      "code": "private static class CacheKey {\n\n  public long value;\n}\n\n// POJO\n// 32-bit JVM - 16 bytes\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 24 bytes\n\n// BinaryMarshaller output byte[34]\n// 32-bit JVM - 48 bytes\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 56 bytes",
       "language": "java",
       "name": "CacheKey"
     },
