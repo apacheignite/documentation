@@ -26,6 +26,12 @@ Memory usage for every JVM with running Ignite instances is made with following 
   "title": ""
 }
 [/block]
+dfgdfgdfg
+[block:api-header]
+{
+  "type": "basic"
+}
+[/block]
 ## Memory Capacity Planning Example
 
 Let's take for example the following scenario:
@@ -64,8 +70,6 @@ With 32 cores over 4 large AWS instances the following benchmarks were recorded:
   "body": "- PUT/GET: 26k/sec\n- PUT (TRANSACTIONAL): 68k/sec\n- PUT (TRANSACTIONAL - PESSIMISTIC): 20k/sec\n- PUT (TRANSACTIONAL - OPTIMISTIC): 44k/sec\n- SQL Query: 72k/sec"
 }
 [/block]
-
-
 [More results here](http://www.gridgain.com/resources/benchmarks/ignite-vs-hazelcast-benchmarks)
 [block:api-header]
 {
