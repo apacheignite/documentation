@@ -32,7 +32,7 @@ Memory usage for every JVM with running Ignite instances is made with following 
 - 8 Mb for internal entry storage for default `CacheConfiguration.getStartSize()` value approximated to the nearest bigger value of power of two; see the formula below:
 **startSize** - the value of `CacheConfiguration.getStartSize()`;
 **partNumber** - the value of `AffinityFunction.partitions()`;
-**refSize** - the size of the Java reference (4 bytes on 32-bit JVM and 64-bit with UseCompressedOops, or 8 bytes on 64-bit JVM without UseCompressedOops);
+**refSize** - the size of the Java reference (4 bytes on 32-bit JVM and 64-bit w/UseCompressedOops enabled, or 8 bytes on 64-bit JVM w/UseCompressedOops disabled);
 **partSize** = 2 ^ roundup( log_2( startSize / partNumber ) );
 **overhead** = partSize x partNumber x refSize.
 For example, default startSize = 1'500'000, partNumber = 1024, refSize = 4, partSize = 2048 (the nearest bigger 2^N for 1'500'000/1024), overhead = 2K x 1K x 4 = 8 Mb.
@@ -95,23 +95,24 @@ You could see that additional overhead arises from serializing key and value obj
 [block:callout]
 {
   "type": "success",
-  "body": "- 2,000,000 objects\n- 1,024 bytes per object (1 KB)\n- 1 backup\n- 4 nodes",
+  "body": "- 5,000,000 entries\n- 868 bytes per object (ONHEAP_TIERED w/UseCompressedOops enabled, one index)\n- 1 backup\n- 4 nodes",
   "title": "Example Specification"
 }
 [/block]
-- Total number of objects X object size X 2 (one primary and one backup copy for each object):
-2,000,000 x 1,024 x 2 = 4,096,000,000 bytes
+- Entries memory usage = entry size x number of entries per node x 2 (one primary and one backup copy);
+ 728 x 1'250'000 x 2 = 2'170'000'000 = 2069 Mb;
 
-- Considering indexes:
-4,096,000,000 + (4,096,000,000 x 30%) = 5,078 MB
+- Cache size = 2 Mb + internal storage + delete history;
+Internal storage = 8192 * 1024 * 4 = 32 Mb;
+Delete history = 10 Mb
+2 + 32 + 10 = 44 Mb
 
-- Approximate additional memory required by the platform:
-300 MB x 4 = 1,200 MB
+- JVM + Ignite instance = 200 Mb
 
-- Total size:
-5,078 + 1,200 = 6,278 MB
+- Total memory usage per node:
+2069 + 44 + 200 = 2313 Mb
 
-Hence the anticipated total memory consumption would be just over ~ 6 GB
+Hence the anticipated total memory consumption would be just over ~ 9 GB
 [block:api-header]
 {
   "type": "basic",
