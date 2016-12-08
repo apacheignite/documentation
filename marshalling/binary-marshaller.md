@@ -79,12 +79,12 @@ This interface defines the way of hashing binary objects and comparing them for 
 For your binary objects, you can introduce a custom implementation of that interface, or use one of those bundled with Ignite. Resolver can be set on a per type basis - configuration example will be given in section [Configuring Binary Objects](#configuring-binary-objects). Let's have a closer look at default implementations.
 
 ##BinaryArrayIdentityResolver
-Default resolver used when none is set for a type in configuration. It encompasses default/pre 1.8 logic - hash code is computed based on contents of byte array representing given object's field values, and `equals` compares contents of those arrays. Just like before 1.8 and as stated above, this implementation is fields order dependent and thus is not guaranteed to hash objects that are equal from the user's perspective in the same way, let alone compare them for equality in the same way.
+Simple resolver that does not require any configuration. It encompasses default logic - hash code is computed based on contents of byte array representing given object's field values, and `equals` compares contents of those arrays. As stated above, this implementation is fields order dependent and thus is not guaranteed to hash objects that are equal from the user's perspective in the same way, let alone compare them for equality in the same way.
 [block:callout]
 {
-  "type": "warning",
-  "title": "BinaryArrayIdentityResolver hashing is NOT used by default in BinaryObjectBuilder",
-  "body": "`BinaryArrayIdentityResolver` computes hash code in absence of a resolver set in configuration only when a binary object is created from a non binary form - `BinaryObjectBuilder` **does not** compute any hash code if resolver is not set for a type in configuration."
+  "type": "info",
+  "title": "",
+  "body": "`BinaryArrayIdentityResolver` is the one that performs equality comparison in absence of a resolver set in configuration only when a binary object is created from a non binary form."
 }
 [/block]
 ##BinaryFieldIdentityResolver
