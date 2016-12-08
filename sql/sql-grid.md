@@ -30,7 +30,6 @@ To execute the queries, you can leverage all APIs that were specifically created
 * [ODBC Driver](doc:odbc-driver) 
 * [Geospatial Support](doc:geospatial-queries) 
 * [Performance and Debugging](doc:performance-and-debugging)
-* [SQL Grid Based Integrations and Tools](https://apacheignite-mix.readme.io/docs/overview-1)
 
 ##SQL Grid Integrations and Tools
 * [Appache Zeppelin](https://apacheignite-mix.readme.io/v1.8/docs/apache-zeppelin)
