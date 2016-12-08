@@ -126,6 +126,67 @@ Minimalistic version of `ignite-jdbc.xml` configuration file can look like:
 [block:api-header]
 {
   "type": "basic",
+  "title": "Modifying data with DML"
+}
+[/block]
+Starting with 1.8.0, Ignite supports DML operations - namely, **INSERT**, **MERGE**, **UPDATE**, and **DELETE**. More information on them is in [DML doc](doc:dml), here we'll showcase their usage from JDBC driver using model class `Person` from above and different methods from JDBC `Statement` and `PreparedStatement` interfaces.
+
+##INSERT
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Insert a Person with a Long key\nPreparedStatement stmt = conn.prepareStatement(\"INSERT INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)\");\n \nstmt.setInt(1, 1);\nstmt.setString(2, \"John Smith\");\nstmt.setInt(3, 25);\n \nboolean res = stmt.execute();\n\n// Has to be false as we've executed non query operation\nSystem.out.println(res);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+##MERGE
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Merge a Person with a Long key\nPreparedStatement stmt = conn.prepareStatement(\"MERGE INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)\");\n \nstmt.setInt(1, 1);\nstmt.setString(2, \"John Smith\");\nstmt.setInt(3, 25);\n \nint res = stmt.executeUpdate();\n\n// Has to be 1\nSystem.out.println(res);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+##UPDATE
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Merge a Person with a Long key\nint res = conn.createStatement().executeUpdate(\"UPDATE Person SET age = age + 1 WHERE age = 25\");\n\n// Will print number of affected items\nSystem.out.println(res);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+##DELETE
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Merge a Person with a Long key\nboolean res = conn.createStatement().execute(\"DELETE FROM Person WHERE age = 25\");\n\n// Has to be false as we've executed non query operation\nSystem.out.println(res);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "danger",
+  "title": "Batch updates are not supported",
+  "body": "This most likely will change in the near future via performing query rewriting prior to sending query task to Ignite cluster."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Backward compatibility"
 }
 [/block]
