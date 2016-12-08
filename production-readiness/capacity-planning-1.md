@@ -28,7 +28,9 @@ Memory usage for every JVM with running Ignite instances is made with following 
 [/block]
 ## Cache memory usage
 
-
+- About 2 Mb of basic internal cache objects;
+- 8 Mb for internal entry storage for default CacheConfiguration.getStartSize() value approximated to the nearest bigger value of power of two.
+-- 123
 
 ## Memory Capacity Planning Example
 
