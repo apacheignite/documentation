@@ -110,7 +110,7 @@ You could see that additional overhead arises from serializing key and value obj
  868 x 1'250'000 x 2 = 2'170'000'000 = 2069 Mb;
 
 - Cache size = 2 Mb + internal storage + delete history;
-Internal storage = 8192 * 1024 * 4 = 32 Mb;
+Internal storage = 8192 x 1024 x 4 = 32 Mb;
 Delete history = 10 Mb
 2 + 32 + 10 = 44 Mb
 
