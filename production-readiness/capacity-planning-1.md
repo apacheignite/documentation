@@ -46,14 +46,9 @@ Following calculations have been done for the most common case: Oracle HotSpot S
 {
   "codes": [
     {
-      "code": "private static class CacheKey {\n\n  public long value;\n}\n\n// POJO\n// 32-bit JVM - 16 bytes\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 24 bytes\n\n// BinaryMarshaller output byte[34]\n// 32-bit JVM - 48 bytes\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 56 bytes",
+      "code": "private static class CacheKey {\n\n  public long value;\n\n// POJO\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 24 bytes\n\n// BinaryMarshaller output byte[34]\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 56 bytes\n}\n\nprivate static class CacheValue {\n\n  public long value;\n\n  public Object obj = null;\n\n// POJO\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 32 bytes\n\n// BinaryMarshaller output byte[40]\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 64 bytes}\n",
       "language": "java",
-      "name": "CacheKey"
-    },
-    {
-      "code": "private static class CacheValue {\n\n  public long value;\n\n  public Object obj = null;\n}\n\n// POJO\n// 32-bit JVM - 20 bytes\n// 64-bit JVM +UseCompressedOops - 24 bytes\n// 64-bit JVM -UseCompressedOops - 32 bytes\n\n// BinaryMarshaller output byte[40]\n// 32-bit JVM - 52 bytes\n// 64-bit JVM +UseCompressedOops - 56 bytes\n// 64-bit JVM -UseCompressedOops - 64 bytes",
-      "language": "java",
-      "name": "CacheValue"
+      "name": "Example key and value"
     }
   ]
 }
