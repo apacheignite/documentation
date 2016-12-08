@@ -1,18 +1,96 @@
-ODBC Driver internally uses Fields queries to retrieve data from the Apache Ignite cache. This means that by ODBC you can only access those fields that are [accessible for SQL queries](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
+* [Overview](#overview)
+* [Configuring Ignite Cluster](#configuring-ignite-cluster)
+* [Connecting to the Cluster](#connecting-to-the-cluster)
+* [Querying Data](#querying-data)
+* [Inserting Data](#inserting-data)
+* [Updating Data](#updating-data)
+* [Deleting Data](#deleting-data)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
+This page elaborates on how to connect to an Ignite cluster and execute a variety of SQL queries using Ignite's ODBC driver. 
 
-Below you can see an example of two classes that can be queried by the ODBC Driver:
+At the implementation layer, Ignite's ODBC driver uses Ignite SQL Fields queries to retrieve data from  Apache Ignite Data Grid. This means that from ODBC side you can access only those fields that are [defined in cluster's configuration](/docs/sql-queries#section-making-fields-visible-for-sql-queries).
+
+Moreover, starting from Ignite 1.8, the ODBC driver supports DML (Data Modification Layer) which means that you can not only request data but modify Ignite Data Grid content as well using an ODBC connection.
+[block:callout]
+{
+  "type": "success",
+  "body": "Refer to [ODBC Example](https://github.com/apache/ignite/tree/master/modules/platforms/cpp/examples/odbc-example) that incorporates complete logic and exemplary queries shown below in the documentation."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Configuring Ignite Cluster"
+}
+[/block]
+As the first step, you need to set up a configuration that will be used by the cluster nodes. The configuration should include caches configurations as well with properly defined `QueryEntities` properties. `QueryEntities` are essential for the cases when an application (or the ODBC driver in our scenario) is going to query and modify data using SQL statements.
 [block:code]
 {
   "codes": [
     {
-      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person {\n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  public Long orgId;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private double salary;\n}",
-      "language": "java",
-      "name": "Person"
-    },
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xmlns:util=\"http://www.springframework.org/schema/util\"\n       xsi:schemaLocation=\"\n        http://www.springframework.org/schema/beans\n        http://www.springframework.org/schema/beans/spring-beans.xsd\n        http://www.springframework.org/schema/util\n        http://www.springframework.org/schema/util/spring-util.xsd\">\n  <bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n\n    <!-- Enabling ODBC. -->\n    <property name=\"odbcConfiguration\">\n      <bean class=\"org.apache.ignite.configuration.OdbcConfiguration\"/>\n    </property>\n\n    <!-- Configuring cache. -->\n    <property name=\"cacheConfiguration\">\n      <list>\n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          <property name=\"name\" value=\"Person\"/>\n          <property name=\"cacheMode\" value=\"PARTITIONED\"/>\n          <property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n          <property name=\"writeSynchronizationMode\" value=\"FULL_SYNC\"/>\n\n          <property name=\"queryEntities\">\n            <list>\n              <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                <property name=\"keyType\" value=\"java.lang.Long\"/>\n                <property name=\"valueType\" value=\"Person\"/>\n\n                <property name=\"fields\">\n                  <map>\n                    <entry key=\"firstName\" value=\"java.lang.String\"/>\n                    <entry key=\"lastName\" value=\"java.lang.String\"/>\n                    <entry key=\"salary\" value=\"java.lang.Double\"/>\n                  </map>\n                </property>\n                \n                <property name=\"indexes\">\n                    <list>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"salary\"/>\n                        </bean>\n                    </list>\n                </property>\n              </bean>\n            </list>\n          </property>\n        </bean>\n        \n        <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n          <property name=\"name\" value=\"Organization\"/>\n          <property name=\"cacheMode\" value=\"PARTITIONED\"/>\n          <property name=\"atomicityMode\" value=\"TRANSACTIONAL\"/>\n          <property name=\"writeSynchronizationMode\" value=\"FULL_SYNC\"/>\n\n          <property name=\"queryEntities\">\n            <list>\n              <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                <property name=\"keyType\" value=\"java.lang.Long\"/>\n                <property name=\"valueType\" value=\"Organization\"/>\n\n                <property name=\"fields\">\n                  <map>\n                    <entry key=\"name\" value=\"java.lang.String\"/>\n                  </map>\n                </property>\n                \n                <property name=\"indexes\">\n                    <list>\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"name\"/>\n                        </bean>\n                    </list>\n                </property>\n              </bean>\n            </list>\n          </property>\n        </bean>\n      </list>\n    </property>\n  </bean>\n</beans>\n",
+      "language": "xml",
+      "name": "XML"
+    }
+  ]
+}
+[/block]
+As you can see from the configuration, we defined two Ignite caches that will contain the data of  `Person` and `Organization` types. For both of the types, we listed specific fields and indexes that will be read or updated using SQL.
+[block:callout]
+{
+  "type": "info",
+  "body": "In addition to all the explicitly configured fields, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for example, when one of them is a primitive value and you want to filter out records by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`.",
+  "title": "Predefined Fields"
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "title": "OdbcConfiguration",
+  "body": "Make sure that `OdbcConfiguration` is explicitly set in the configuration. You can learn more about its importance by referring to [this](/docs/getting-started-18#cluster-configuration) documentation section."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Connecting to the Cluster"
+}
+[/block]
+After the cluster is configured and started, we can connect to it from the ODBC driver side. To do this, you need to prepare a valid connection string and pass it as a parameter to the ODBC driver at the connection time. Refer to [Connection String](doc:connecting-string) page for more details.
+
+Alternatively, you can also use a [pre-configured DSN](connection-string-and-dsn#configuring-dsn) for connection purposes as shown in the example below.
+[block:code]
+{
+  "codes": [
     {
-      "code": "/** All fields of the class will be visible in SQL. */\npublic class Organization {\n  @QuerySqlField\n  private Long id;\n\n  @QuerySqlField\n  private String name;\n}",
-      "language": "java",
-      "name": "Organization"
+      "code": "SQLHENV env;\n\n// Allocate an environment handle\nSQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);\n\n// Use ODBC ver 3\nSQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, reinterpret_cast<void*>(SQL_OV_ODBC3), 0);\n\nSQLHDBC dbc;\n\n// Allocate a connection handle\nSQLAllocHandle(SQL_HANDLE_DBC, env, &dbc);\n\n// Prepare the connection string\nSQLCHAR connectStr[] = \"DSN=My Ignite DSN\";\n\n// Connecting to Ignite Cluster.\nSQLRETURN ret = SQLDriverConnect(dbc, NULL, connectStr, SQL_NTS, NULL, 0, NULL, SQL_DRIVER_COMPLETE);\n\nif (!SQL_SUCCEEDED(ret))\n{\n  SQLCHAR sqlstate[7] = { 0 };\n  SQLINTEGER nativeCode;\n\n  SQLCHAR errMsg[BUFFER_SIZE] = { 0 };\n  SQLSMALLINT errMsgLen = static_cast<SQLSMALLINT>(sizeof(errMsg));\n\n  SQLGetDiagRec(SQL_HANDLE_DBC, dbc, 1, sqlstate, &nativeCode, errMsg, errMsgLen, &errMsgLen);\n  \n  std::cerr << \"Failed to connect to Apache Ignite: \" \n            << reinterpret_cast<char*>(sqlstate) << \": \"\n            << reinterpret_cast<char*>(errMsg) << \", \"\n            << \"Native error code: \" << nativeCode \n            << std::endl;\n\n  // Releasing allocated handles.\n  SQLFreeHandle(SQL_HANDLE_DBC, dbc);\n  SQLFreeHandle(SQL_HANDLE_ENV, env);\n  \n  return;\n}",
+      "language": "cplusplus"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Querying Data"
+}
+[/block]
+After everything is up and running, we're ready to execute SQL SELECT queries using the ODBC API.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query[] = \"SELECT firstName, lastName, salary, Organization.name FROM Person \"\n  \"INNER JOIN \\\"Organization\\\".Organization ON Person.orgId = Organization._key\";\nSQLSMALLINT queryLen = static_cast<SQLSMALLINT>(sizeof(queryLen));\n\nSQLRETURN ret = SQLExecDirect(stmt, query, queryLen);\n\nif (!SQL_SUCCEEDED(ret))\n{\n  SQLCHAR sqlstate[7] = { 0 };\n  SQLINTEGER nativeCode;\n\n  SQLCHAR errMsg[BUFFER_SIZE] = { 0 };\n  SQLSMALLINT errMsgLen = static_cast<SQLSMALLINT>(sizeof(errMsg));\n\n  SQLGetDiagRec(SQL_HANDLE_DBC, dbc, 1, sqlstate, &nativeCode, errMsg, errMsgLen, &errMsgLen);\n  \n  std::cerr << \"Failed to perfrom SQL query upon Apache Ignite: \" \n            << reinterpret_cast<char*>(sqlstate) << \": \"\n            << reinterpret_cast<char*>(errMsg) << \", \"\n            << \"Native error code: \" << nativeCode \n            << std::endl;\n}\nelse\n{\n  // Printing the result set.\n  struct OdbcStringBuffer\n  {\n    SQLCHAR buffer[BUFFER_SIZE];\n    SQLLEN resLen;\n  };\n  \n  // Getting a number of columns in the result set.\n  SQLSMALLINT columnsCnt = 0;\n  SQLNumResultCols(stmt, &columnsCnt);\n\n  // Allocating buffers for columns.\n  std::vector<OdbcStringBuffer> columns(columnsCnt);\n\n  // Binding colums. For simplicity we are going to use only\n  // string buffers here.\n  for (SQLSMALLINT i = 0; i < columnsCnt; ++i)\n    SQLBindCol(stmt, i + 1, SQL_C_CHAR, columns[i].buffer, BUFFER_SIZE, &columns[i].resLen);\n\n  // Fetching and printing data in a loop.\n  ret = SQLFetch(stmt);\n  while (SQL_SUCCEEDED(ret))\n  {\n    for (size_t i = 0; i < columns.size(); ++i)\n      std::cout << std::setw(16) << std::left << columns[i].buffer << \" \";\n\n    std::cout << std::endl;\n    \n    ret = SQLFetch(stmt);\n  }\n}\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);",
+      "language": "cplusplus"
     }
   ]
 }
@@ -21,36 +99,8 @@ Below you can see an example of two classes that can be queried by the ODBC Driv
 [block:callout]
 {
   "type": "info",
-  "title": "Predefined Fields",
-  "body": "In addition to all the fields marked with `@QuerySqlField` annotation, each table will have two special predefined fields: `_key` and `_val`, which represent links to whole key and value objects. This is useful, for example, when one of them is a primitive and you want to filter by its value. To do this, execute a query like `SELECT * FROM Person WHERE _key = 100`."
-}
-[/block]
-Now, lets try running a little example that will use ODBC to query some data from the Apache Ignite. First we need to modify our classes a little so we could use them in our example:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "/** All fields of the class will be visible in SQL. */\npublic class Person {\n  private static final AtomicLong ID_GEN = new AtomicLong();\n  \n\t@QuerySqlField\n  private long id;\n  \n  @QuerySqlField\n  public Long orgId;\n  \n  @QuerySqlField\n  private String name;\n  \n  @QuerySqlField\n  private double salary;\n  \n  public Person(Organization org, String name, double salary) {\n    id = ID_GEN.incrementAndGet();\n\n    orgId = org.id();\n\n    this.name = name;\n    this.salary = salary;\n  }\n}",
-      "language": "java",
-      "name": "Person"
-    },
-    {
-      "code": "/** All fields of the class will be visible in SQL. */\npublic class Organization {\n  private static final AtomicLong ID_GEN = new AtomicLong();\n  \n  @QuerySqlField\n  private Long id;\n\n  @QuerySqlField\n  private String name;\n  \n  public Organization(String name) {\n    id = ID_GEN.incrementAndGet();\n\n    this.name = name;\n  }\n}",
-      "language": "java",
-      "name": "Organization"
-    }
-  ]
-}
-[/block]
-Next we need to properly create and initialize caches upon which we are going to run queries:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "// Using deafault config.\ntry (Ignite ignite = Ignition.start(\"config/default-config.xml\")) {\n  CacheConfiguration<Long, Organization> orgCacheCfg = new CacheConfiguration<>(\"Organization\");\n\n  orgCacheCfg.setCacheMode(CacheMode.PARTITIONED); // Default.\n  ogCacheCfg.setIndexedTypes(Long.class, Organization.class);\n\n  CacheConfiguration<AffinityKey<Long>, Person> personCacheCfg = new CacheConfiguration<>(\"Person\");\n\n  personCacheCfg.setCacheMode(CacheMode.PARTITIONED); // Default.\n  personCacheCfg.setIndexedTypes(AffinityKey.class, Person.class);\n\n  // Populate cache.\n  try (\n    IgniteCache<Long, Organization> orgCache = ignite.getOrCreateCache(orgCacheCfg);\n    IgniteCache<AffinityKey<Long>, Person> personCache = ignite.getOrCreateCache(personCacheCfg)\n  ) {\n    orgCache.clear();\n\n    // Organizations.\n    Organization org1 = new Organization(\"ApacheIgnite\");\n    Organization org2 = new Organization(\"Other\");\n\n    orgCache.put(org1.id(), org1);\n    orgCache.put(org2.id(), org2);\n\n    personCache.clear();\n\n    // People.\n    Person p1 = new Person(org1, \"John Doe\", 2000);\n    Person p2 = new Person(org1, \"Jane Doe\", 1000);\n    Person p3 = new Person(org2, \"John Smith\", 1000);\n    Person p4 = new Person(org2, \"Jane Smith\", 2000);\n\n    // Note that in this example we use custom affinity key for Person objects\n    // to ensure that all persons are collocated with their organizations.\n    personCache.put(p1.key(), p1);\n    personCache.put(p2.key(), p2);\n    personCache.put(p3.key(), p3);\n    personCache.put(p4.key(), p4);\n  }\n  finally {\n    // Distributed cache could be removed from cluster only by #destroyCache() call.\n    ignite.destroyCache(\"Person\");\n    ignite.destroyCache(\"Organization\");\n  }\n}",
-      "language": "java"
-    }
-  ]
+  "body": "In the example above, we bind all columns to the `SQL_C_CHAR` columns. This means that all values are going to be converted to strings upon fetching. This is done for the sake of simplicity. Value conversion upon fetching can be pretty slow; so your default decision should be to fetch the value the same way as it is stored.",
+  "title": "Columns binding"
 }
 [/block]
 
@@ -58,7 +108,7 @@ Next we need to properly create and initialize caches upon which we are going to
 {
   "type": "info",
   "title": "Joins and Collocation",
-  "body": "Just like with [Cache SQL Queries](doc:cache-queries) used from `IgniteCache` API, joins on `PARTITIONED` caches will work correctly only if joined objects are stored in collocated mode. Refer to [Affinity Collocation](/docs/affinity-collocation#collocate-data-with-data) for more details."
+  "body": "Just like with [Cache SQL Queries](doc:cache-queries) that are executed using direct Ignite Java, .NET or C++ APIs, joins on `PARTITIONED` caches will work correctly only if joined objects are stored in collocated mode. Refer to [Affinity Collocation](/docs/affinity-collocation#collocate-data-with-data) for more details."
 }
 [/block]
 
@@ -66,7 +116,7 @@ Next we need to properly create and initialize caches upon which we are going to
 {
   "type": "info",
   "title": "Cross-Cache Queries",
-  "body": "Cache that the driver is connected to is treated as the default schema. To query across multiple caches, [Cross-Cache Query](/docs/cache-queries#cross-cache-queries) functionality can be used."
+  "body": "The cache that the driver is connected to is treated as the default schema. To query across multiple caches, [Cross-Cache Query](/docs/cache-queries#cross-cache-queries) functionality can be used."
 }
 [/block]
 
@@ -77,12 +127,74 @@ Next we need to properly create and initialize caches upon which we are going to
   "body": "Queries on `REPLICATED` caches will run directly only on one node, while queries on `PARTITIONED` caches are distributed across all cache nodes."
 }
 [/block]
-Finally, we can use ODBC API to run SQL query upon our data grid just like if it was ordinary database:
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Inserting Data"
+}
+[/block]
+To insert new data into the cluster, SQL `INSERT` statements can be used from the ODBC side.
 [block:code]
 {
   "codes": [
     {
-      "code": "#define BUFFER_SIZE 1024\n\nSQLHENV env;\n\n// Allocate an environment handle\nSQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);\n\n// We want ODBC 3 support\nSQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, reinterpret_cast<void*>(SQL_OV_ODBC3), 0);\n\nSQLHDBC dbc;\n\n// Allocate a connection handle\nSQLAllocHandle(SQL_HANDLE_DBC, env, &dbc);\n\n// Connection string\nSQLCHAR connectStr[] = \"DRIVER={Apache Ignite};SERVER=localhost;PORT=11443;CACHE=Person;\";\nSQLSMALLINT connectStrLen = static_cast<SQLSMALLINT>(sizeof(connectStr));\n\nSQLCHAR outStr[BUFFER_SIZE] = { 0 };\nSQLSMALLINT outStrLen = static_cast<SQLSMALLINT>(sizeof(outStr));;\n\n// Connecting to ODBC server.\nSQLRETURN ret = SQLDriverConnect(dbc, NULL, connectStr, connectStrLen, outStr, outStrLen, &outStrLen, SQL_DRIVER_COMPLETE);\n\nif (!SQL_SUCCEEDED(ret))\n{\n  SQLCHAR sqlstate[7] = { 0 };\n  SQLINTEGER nativeCode;\n\n  SQLCHAR errMsg[BUFFER_SIZE] = { 0 };\n  SQLSMALLINT errMsgLen = static_cast<SQLSMALLINT>(sizeof(errMsg));\n\n  SQLGetDiagRec(SQL_HANDLE_DBC, dbc, 1, sqlstate, &nativeCode, errMsg, errMsgLen, &errMsgLen);\n  \n  std::cerr << \"Failed to connect to Apache Ignite: \" \n            << reinterpret_cast<char*>(sqlstate) << \": \"\n            << reinterpret_cast<char*>(errMsg) << \", \"\n            << \"Native error code: \" << nativeCode \n            << std::endl;\n\n  // Releasing allocated handles.\n  SQLFreeHandle(SQL_HANDLE_DBC, dbc);\n  SQLFreeHandle(SQL_HANDLE_ENV, env);\n  \n  return;\n}\n\nSQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query[] = \"SELECT name, salary, Organization.name FROM Person \"\n  \"INNER JOIN \\\"Organization\\\".Organization ON Person.orgId = Organization.id\";\nSQLSMALLINT queryLen = static_cast<SQLSMALLINT>(sizeof(queryLen));\n\nret = SQLExecDirect(stmt, query, queryLen);\n\nif (!SQL_SUCCEEDED(ret))\n{\n  SQLCHAR sqlstate[7] = { 0 };\n  SQLINTEGER nativeCode;\n\n  SQLCHAR errMsg[BUFFER_SIZE] = { 0 };\n  SQLSMALLINT errMsgLen = static_cast<SQLSMALLINT>(sizeof(errMsg));\n\n  SQLGetDiagRec(SQL_HANDLE_DBC, dbc, 1, sqlstate, &nativeCode, errMsg, errMsgLen, &errMsgLen);\n  \n  std::cerr << \"Failed to perfrom SQL query upon Apache Ignite: \" \n            << reinterpret_cast<char*>(sqlstate) << \": \"\n            << reinterpret_cast<char*>(errMsg) << \", \"\n            << \"Native error code: \" << nativeCode \n            << std::endl;\n}\nelse\n{\n  // Printing results.\n  \n  struct OdbcStringBuffer\n  {\n    SQLCHAR buffer[BUFFER_SIZE];\n    SQLLEN resLen;\n  };\n  \n  // Getting number of columns in result set.\n  SQLSMALLINT columnsCnt = 0;\n  SQLNumResultCols(stmt, &columnsCnt);\n\n  // Allocating buffers for columns.\n  std::vector<OdbcStringBuffer> columns(columnsCnt);\n\n  // Binding colums. For simplicity we are going to use only\n  // string buffers here.\n  for (SQLSMALLINT i = 0; i < columnsCnt; ++i)\n    SQLBindCol(stmt, i + 1, SQL_CHAR, columns[i].buffer, BUFFER_SIZE, &columns[i].resLen);\n\n  // Fetching and printing data in a loop.\n  ret = SQLFetch(stmt);\n  while (SQL_SUCCEEDED(ret))\n  {\n    for (size_t i = 0; i < columns.size(); ++i)\n      std::cout << std::setw(16) << std::left << columns[i].buffer << \" \";\n\n    std::cout << std::endl;\n    \n    ret = SQLFetch(stmt);\n  }\n}\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);\n\n// Disconneting from the server.\nSQLDisconnect(dbc);\n\n// Releasing allocated handles.\nSQLFreeHandle(SQL_HANDLE_DBC, dbc);\nSQLFreeHandle(SQL_HANDLE_ENV, env);",
+      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query[] =\n\t\"INSERT INTO Person (_key, orgId, firstName, lastName, resume, salary) \"\n\t\"VALUES (?, ?, ?, ?, ?, ?)\";\n\nSQLPrepare(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n// Binding columns.\nint64_t key = 0;\nint64_t orgId = 0;\nchar name[1024] = { 0 };\nSQLLEN nameLen = SQL_NTS;\ndouble salary = 0.0;\n\nSQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\nSQLBindParameter(stmt, 2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &orgId, 0, 0);\nSQLBindParameter(stmt, 3, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_VARCHAR,\tsizeof(name), sizeof(name), name, 0, &nameLen);\nSQLBindParameter(stmt, 4, SQL_PARAM_INPUT, SQL_C_DOUBLE, SQL_DOUBLE, 0, 0, &salary, 0, 0);\n\n// Filling cache.\nkey = 1;\norgId = 1;\nstrncpy(name, \"John\", sizeof(firstName));\nsalary = 2200.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 1;\nstrncpy(name, \"Jane\", sizeof(firstName));\nsalary = 1300.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 2;\nstrncpy(name, \"Richard\", sizeof(firstName));\nsalary = 900.0;\n\nSQLExecute(stmt);\nSQLMoreResults(stmt);\n\n++key;\norgId = 2;\nstrncpy(name, \"Mary\", sizeof(firstName));\nsalary = 2400.0;\n\nSQLExecute(stmt);\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);",
+      "language": "cplusplus"
+    }
+  ]
+}
+[/block]
+Next, we are going to insert additional organizations without the usage of prepared statements.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query1[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (1L, 'Some company')\";\nSQLExecDirect(stmt, query1, static_cast<SQLSMALLINT>(sizeof(query1)));\nSQLFreeStmt(stmt, SQL_CLOSE);\n\nSQLCHAR query2[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (2L, 'Some other company')\";\nSQLExecDirect(stmt, query2, static_cast<SQLSMALLINT>(sizeof(query2)));\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);",
+      "language": "cplusplus"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "title": "Error Checking",
+  "body": "The code above doesn't check an error return code for example simplicity purposes. However, make sure not to adhere to this practice in production."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Updating Data"
+}
+[/block]
+Let's now update the salary for some of the persons stored in the cluster using SQL `UPDATE` statement.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "void AdjustSalary(SQLHDBC dbc, int64_t key, double salary)\n{\n  SQLHSTMT stmt;\n\n  // Allocate a statement handle\n  SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\n  SQLCHAR query[] = \"UPDATE Person SET salary=? WHERE _key=?\";\n\n  SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_DOUBLE, SQL_DOUBLE, 0, 0, &salary, 0, 0);\n  SQLBindParameter(stmt, 2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\n\n  SQLExecDirect(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n  // Releasing statement handle.\n  SQLFreeHandle(SQL_HANDLE_STMT, stmt);\n}\n\n...\nAdjustSalary(dbc, 3, 1200.0);\nAdjustSalary(dbc, 1, 2500.0);",
+      "language": "cplusplus"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Deleting Data"
+}
+[/block]
+Finally, let's remove a few records with the help of SQL `DELETE` statement.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "void DeletePerson(SQLHDBC dbc, int64_t key)\n{\n  SQLHSTMT stmt;\n\n  // Allocate a statement handle\n  SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\n  SQLCHAR query[] = \"DELETE FROM Person WHERE _key=?\";\n\n  SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\n\n  SQLExecDirect(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n  // Releasing statement handle.\n  SQLFreeHandle(SQL_HANDLE_STMT, stmt);\n}\n\n...\nDeletePerson(dbc, 1);\nDeletePerson(dbc, 4);",
       "language": "cplusplus"
     }
   ]
