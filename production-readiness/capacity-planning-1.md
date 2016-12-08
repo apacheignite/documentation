@@ -26,12 +26,8 @@ Memory usage for every JVM with running Ignite instances is made with following 
   "title": ""
 }
 [/block]
-dfgdfgdfg
-[block:api-header]
-{
-  "type": "basic"
-}
-[/block]
+
+
 ## Memory Capacity Planning Example
 
 Let's take for example the following scenario:
