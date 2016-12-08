@@ -58,7 +58,7 @@ Follow calculations have been done for the most common case: Oracle HotSpot Serv
   ]
 }
 [/block]
-
+You could see that additional overhead arises from serializing key and value objects. The following table already contains that overhead, but actual value may vary for another objects (it even may be negative).
 [block:callout]
 {
   "type": "success",
