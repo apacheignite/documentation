@@ -67,9 +67,9 @@ For your binary objects, you can introduce a custom implementation of that inter
 Simple resolver that does not require any configuration. It encompasses default logic - hash code is computed based on contents of byte array representing given object's field values, and `equals` compares contents of those arrays. As stated above, this implementation is fields order dependent and thus is not guaranteed to hash objects that are equal from the user's perspective in the same way, let alone compare them for equality in the same way.
 [block:callout]
 {
-  "type": "info",
-  "title": "",
-  "body": "`BinaryArrayIdentityResolver` is the one that performs equality comparison in absence of a resolver set in configuration only when a binary object is created from a non binary form."
+  "type": "warning",
+  "title": "BinaryArrayIdentityResolver does not hash binary objects by default",
+  "body": "`BinaryArrayIdentityResolver` is the one that performs equality comparison in absence of a resolver set in configuration only when a binary object is created from a non binary form. Please note that nevertheless it does not hash anything by default - when no resolver is set for type in configuration, and binary objects either bear hash codes computed by their non-binary form counterparts, or those explicitly specified via `BinaryObjectBuilder` as described below in section [Modifying Binary Objects Using BinaryObjectBuilder](#modifying-binary-objects-using-binaryobjectbuilder)."
 }
 [/block]
 ##BinaryFieldIdentityResolver
