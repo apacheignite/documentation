@@ -73,7 +73,7 @@ Simple resolver that does not require any configuration. It encompasses default 
 {
   "type": "warning",
   "title": "BinaryArrayIdentityResolver does not hash binary objects by default",
-  "body": "`BinaryArrayIdentityResolver` is the one that performs equality comparison in absence of a resolver set in configuration only when a binary object is created from a non binary form. Please note that nevertheless it does not hash anything by default - when no resolver is set for type in configuration, and binary objects either bear hash codes computed by their non-binary form counterparts, or those explicitly specified via `BinaryObjectBuilder` as described below in section [Modifying Binary Objects Using BinaryObjectBuilder](#modifying-binary-objects-using-binaryobjectbuilder)."
+  "body": "`BinaryArrayIdentityResolver` is the one that performs equality comparison in absence of a resolver set in configuration. Please note that nevertheless it does not hash anything by default - when no resolver is set for type in configuration, and binary objects either bear hash codes computed by their non-binary form counterparts, or those explicitly specified via `BinaryObjectBuilder` as described below in section [Modifying Binary Objects Using BinaryObjectBuilder](#modifying-binary-objects-using-binaryobjectbuilder)."
 }
 [/block]
 ##BinaryFieldIdentityResolver
