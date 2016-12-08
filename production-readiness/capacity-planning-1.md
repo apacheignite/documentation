@@ -41,7 +41,7 @@ For example, default startSize = 1'500'000, partNumber = 1024, refSize = 4, part
 ## Entry memory usage
 
 Actual entry memory usage depends on many factors such as JVM implementation and startup parameters, marshaller implementation, cache atomicity and memory mode. And certainly the key and the value objects itself.
-Follow calculations have been done for the most common case: Oracle HotSpot Server JVM, Binary Marshaller, `ATOMIC` cache mode, and very simple key and value objects.
+Follow calculations have been done for the most common case: Oracle HotSpot Server JVM 64-bit, Binary Marshaller, `ATOMIC` cache mode, and very simple key and value objects.
 [block:code]
 {
   "codes": [
@@ -58,7 +58,40 @@ Follow calculations have been done for the most common case: Oracle HotSpot Serv
   ]
 }
 [/block]
-You could see that additional overhead arises from serializing key and value objects. The following table already contains that overhead, but actual value may vary for another objects (it even may be negative).
+You could see that additional overhead arises from serializing key and value objects. The following table already contains that overhead, but actual value may vary for another objects (it even may be negative for complex Java objects).
+[block:parameters]
+{
+  "data": {
+    "h-0": "Configuration",
+    "h-1": "Entry overhead",
+    "h-2": "First index overhead",
+    "h-3": "Next index overhead",
+    "0-0": "ONHEAP_TIERED +UseCompressedOops",
+    "1-0": "ONHEAP_TIERED -UseCompressedOops",
+    "2-0": "ONHEAP_TIERED with off-heap indices",
+    "3-0": "OFFHEAP_VALUES",
+    "4-0": "OFFHEAP_TIERED",
+    "0-1": "340",
+    "0-2": "140",
+    "0-3": "40",
+    "1-1": "490",
+    "1-2": "230",
+    "1-3": "90",
+    "2-1": "320",
+    "2-2": "270",
+    "2-3": "90",
+    "3-1": "230",
+    "3-2": "-",
+    "3-3": "-",
+    "4-1": "170",
+    "4-2": "230",
+    "4-3": "70"
+  },
+  "cols": 4,
+  "rows": 5
+}
+[/block]
+
 [block:callout]
 {
   "type": "success",
