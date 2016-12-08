@@ -36,23 +36,8 @@ When an object is translated to the binary format, Ignite captures it's hash cod
 [block:callout]
 {
   "type": "warning",
-  "body": "Note that since _by default_ `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized\n * Effectively breaks `equals`/`hashCode` contract when hash code is taken from non binary object's form (in this case hash code is computed by logic in user's class while `equals` still compares objects as if it had also hashed them)",
+  "body": "Note that since _by default_ `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized\n * Effectively breaks `equals`/`hashCode` contract when hash code is taken from non binary object's form as described above (in this case hash code is computed by logic in user's class while `equals` still compares objects as if it had also hashed them)",
   "title": "Binary Equals"
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "BinaryObjectBuilder: Hash Code Harness"
-}
-[/block]
-When a `BinaryObject` is created with `BinaryObjectBuilder` by specifying field values and type name or id, hash code for it is specified via builder's method `hashCode(int)` bearing a parameter.
-[block:callout]
-{
-  "type": "warning",
-  "title": "Hash code must be explicitly set with BinaryObjectBuilder",
-  "body": "All binary objects must have their hash codes set in order to be used as keys. An attempt of any action with a key created with `BinaryObjectBuilder` and missing hash code will result into error."
 }
 [/block]
 
