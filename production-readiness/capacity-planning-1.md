@@ -34,7 +34,7 @@ Memory usage for every JVM with running Ignite instances is made with following 
 **partNumber** - the value of AffinityFunction.partitions();
 **refSize** - the size of the Java reference (4 bytes on 32-bit JVM and 64-bit with UseCompressedOops, or 8 bytes on 64-bit JVM without UseCompressedOops);
 **partSize** = 2^roundup(log_2(startSize/partNumber));
-**overhead** = partSize * partNumber * refSize.
+**overhead** = partSize x partNumber x refSize.
 
 ## Memory Capacity Planning Example
 
