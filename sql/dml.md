@@ -1,37 +1,51 @@
-* [Basic Concepts](#basic-concepts)
-  - [Put new items to cache](#section-put-new-items-to-cache)
-  - [Modify existing cache items](#section-modify-existing-cache-items)
-  - [DML API](#section-dml-api)
-  - [Special columns](#section-special-columns)
-  - [Field values override](#section-field-values-override)
-* [Configuration](#configuration)
-* [DML Operations](#dml-operations)
-  - [MERGE](#section-merge)
-  - [INSERT](#section-insert)
-  - [UPDATE](#section-update)
-      + [Field value overrides with UPDATE](#section-field-value-overrides-with-update-)
-  - [DELETE](#section-delete)
-* [UPDATE and DELETE Concurrency](#update-and-delete-concurrency)
-* [Two-step and Local Operations](#two-step-and-local-operations)
-  - [Local operations](#section-local-operations)
-  - [Two-step operations](#section-two-step-operations)
-* [Hashing of Non Primitive Binary Keys](#hashing-of-non-primitive-binary-keys)
-* [Known Limitations](#known-limitations)
-  - [Subqueries in WHERE are not distributed(#section-subqueries-in-where-are-not-distributed)
-  - [UPDATE is not supported for key or its fields](#section-update-is-not-supported-for-key-or-its-fields)
-  - [No EXPLAIN for DML operations](#section-no-explain-for-dml-operations)
-
-Since 1.8.0, Ignite is capable not only of querying data from cache, but also of modifying it. Supported operations include **MERGE** (a.k.a. upsert), **INSERT**, **UPDATE**, and **DELETE**, and each of them maps to a specific cache operation.
-
-Let's have a closer look at basic concepts and how operations work.
+* [Overview](#overview)
+  
 [block:api-header]
 {
   "type": "basic",
-  "title": "Basic Concepts"
+  "title": "Overview"
 }
 [/block]
-Four DML operations mentioned above can be split in two small groups: the ones that put new items to cache (that would be **MERGE** and **INSERT**) and those that modify existing items (**UPDATE** and **DELETE**). Let's discuss the former group first.
+Apache Ignite SQL Grid allows not only selecting data that resides in Data Grid using SQL ANSI-99 syntax but it makes it possible to modify that data with well-known DML statements like INSERT, UPDATE or DELETE. By taking advantage of this ability, you can work with Apache Ignite In-Memory Data Fabric as with an in-memory distributed database fully relying on its SQL capabilities. 
 
+[block:callout]
+{
+  "type": "info",
+  "title": "SQL ANSI-99 Compliance",
+  "body": "DML queries, as well as all the `SELECT` queries, are SQL ANSI-99 compliant."
+}
+[/block]
+Since all the data is stored in Data Grid in a form of key-value entries, all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)` at some stage of a DML query execution.
+
+Let's have a deep look on how all these DML statements are implemented in practice and can be used by your application.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "DML Statements"
+}
+[/block]
+In general, all the DML statements can be divided into two groups. The ones that add new entries into a cache (`INSERT` and `MERGE`) and those which modify existed data (`UPDATE` and `DELETE`).
+
+To execute these statements in Java you need to use existed `SqlFieldsQuery` API that is described in [this section](https://apacheignite.readme.io/docs/sql-queries#section-sqlfieldsqueries) in terms of its usage for `SELECT` queries. The API is used by DML operations the same way as for read-only queries except that `QueryCursor<List<?>>`, that is returned by a `SqlFieldsQuery` as a result of DML statement execution, contains a single-item `List<?>` of `long` type and that item signifies a number of cache items that were affected by the DML statement.
+[block:callout]
+{
+  "type": "info",
+  "title": "Alternative APIs",
+  "body": "DML API is not limited by Java APIs only. You can connect to an Ignite cluster using ODBC or JDBC drivers and execute DML queries from their side. Learn more about additional APIs from the pages listed below:\n* [JDBC Driver](doc:jdbc-driver) \n* [ODBC Driver](doc:quering-data)"
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "public class Person {\n  @QuerySqlField\n\tprivate final String firstName;\n  \n  @QuerySqlField\n  private final String secondName;\n  \n  public Person(String firstName, String secondName) {\n  \tthis.firstName = firstName;\n    this.secondName = secondName;\n  }\n}",
+      "language": "java",
+      "name": "Person"
+    }
+  ]
+}
+[/block]
 ##Put new items to cache
 Both **MERGE** and **INSERT** put new key-value pairs to cache, and their syntax is nearly identical as you will see soon. The difference between them is semantic.
 
@@ -46,23 +60,10 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 ##Modify existing cache items
 **UPDATE** and **DELETE** are the operations responsible for this, with former updating values in cache (per field or replacing them completely), and the latter removing entries from the cache. They both include **WHERE** clause that allows the user to specify which rows exactly must be modified.
 
-##DML API
-API almost has not changed due to DML operations introduction - no new classes specific to DML queries and their results have been added, the only changes made are configuration related. Therefore, to execute a DML query, all you need is a good old `SqlFieldsQuery`. Its result will be `QueryCursor<List<?>>`, which is also unchanged, **but** this cursor for a DML query will have single "row" (represented by `List<?>`) and that list will have single `long` element that signifies **number of affected cache items**.
-
 ##Special columns
 As you may know, each Ignite's SQL table has two special columns - those are `_key` and `_val`. They correspond to complete key and value respectively, although of course the table most likely has also the columns corresponding to particular fields of key or value.
 Suppose we have such class (we'll use it in examples below as well):
-[block:code]
-{
-  "codes": [
-    {
-      "code": "public class Person {\n  @QuerySqlField\n\tprivate final String firstName;\n  \n  @QuerySqlField\n  private final String secondName;\n  \n  public Person(String firstName, String secondName) {\n  \tthis.firstName = firstName;\n    this.secondName = secondName;\n  }\n}",
-      "language": "java",
-      "name": "Model Person class"
-    }
-  ]
-}
-[/block]
+
 Therefore, the simplest way to put an item into cache via DML is as follows:
 [block:code]
 {
