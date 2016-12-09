@@ -6,7 +6,7 @@
  * [MERGE](dml#section-merge)
  * [INSERT](dml#section-insert)
  * [UPDATE](dml#section-update)
- * [DELETE](dml#section-merge)
+ * [DELETE](dml#section-delete)
 
 
   
