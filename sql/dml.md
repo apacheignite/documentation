@@ -120,6 +120,19 @@ The example below shows how to achieve this.
   ]
 }
 [/block]
+## HashCode and Equals 
+
+When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then result of invoking its `hashCode` method is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
+
+Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is ultimately computed by its means regardless of the way binary object was created.
+
+But DML engine also computes hash code for binary objects created with `BinaryObjectBuilder` **even when there's no `BinaryIdentityResolver` set for a binary type in configuration** - it does so because in this case there's no way for a user to specify hash code to builder manually.
+[block:callout]
+{
+  "type": "info",
+  "body": "When no `BinaryIdentityResolver` is set for a binary type in configuration, and keys (or values) are built from scratch by DML engine (i.e. column values for particular fields of key and/or value are present in DML query), [BinaryArrayIdentityResolver](doc:binary-marshaller#section-binaryarrayidentityresolver) is used **both for hashing and equality comparisons**."
+}
+[/block]
 ##Put new items to cache
 Both **MERGE** and **INSERT** put new key-value pairs to cache, and their syntax is nearly identical as you will see soon. The difference between them is semantic.
 
@@ -354,24 +367,6 @@ These run **SELECT**s in map-reduce manner as explained in [Distributed Queries]
   "type": "success",
   "body": "All settings related with distrubuted joins, etc., are propagated from original `SqlFieldsQuery` to new one when doing a two-step **SELECT**, so that the user has more fine-grained control over its execution.",
   "title": "Fine query settings are honored by DML too"
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Hashing of Non Primitive Binary Keys"
-}
-[/block]
-When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then result of invoking its `hashCode` method is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
-
-Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is ultimately computed by its means regardless of the way binary object was created.
-
-But DML engine also computes hash code for binary objects created with `BinaryObjectBuilder` **even when there's no `BinaryIdentityResolver` set for a binary type in configuration** - it does so because in this case there's no way for a user to specify hash code to builder manually.
-[block:callout]
-{
-  "type": "info",
-  "body": "When no `BinaryIdentityResolver` is set for a binary type in configuration, and keys (or values) are built from scratch by DML engine (i.e. column values for particular fields of key and/or value are present in DML query), [BinaryArrayIdentityResolver](doc:binary-marshaller#section-binaryarrayidentityresolver) is used **both for hashing and equality comparisons**."
 }
 [/block]
 
