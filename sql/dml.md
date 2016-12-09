@@ -3,6 +3,7 @@
 * [Basic Configuration](#basic-configuration)
 * [Advanced Configuration](#advanced-configuration)
 * [DML Operations](#dml-operations)
+ *[MERGE](dml#section-merge)
 
 
   
