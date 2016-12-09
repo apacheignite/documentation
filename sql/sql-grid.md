@@ -2,23 +2,23 @@ In-Memory SQL Grid adds in-memory distributed database capabilities to Apache Ig
 
 SQL Grid fully supports all SQL and DML commands including SELECT, UPDATE, INSERT, MERGE and DELETE queries. 
 
-To execute the queries, you can leverage all APIs that were specifically created for Java, .NET or C++ programming languages or, alternatively, you can connect to an Ignite cluster using Ignite's JDBC and ODBC driver and execute the queries directly from a favorite programming language or analytical tool.
-
 [block:image]
 {
   "images": [
     {
       "image": [
-        "https://files.readme.io/c6442b5-sql_grid.png",
-        "sql_grid.png",
-        467,
-        334,
-        "#e1e4e4"
+        "https://files.readme.io/ee4c650-SQL-Grid-Diagram_v4.png",
+        "SQL-Grid-Diagram_v4.png",
+        800,
+        662,
+        "#f86947"
       ]
     }
   ]
 }
 [/block]
+There are several ways to connect to an Ignite cluster and start working with its data. The most generic one is to use common JDBC or ODBC APIs relying on corresponding Ignite's drivers. This approach is truly cross-platform and allows you connecting from analytical tools like Tableau or programming languages like PHP or Ruby. Alternatively, you can work with SQL Grid using Java, .NET and C++ native APIs that were deliberately created for this programming languages.
+
 ##Features and Topics
 * [Distributed Queries](doc:sql-queries) 
 * [Local Queries](doc:local-queries) 
