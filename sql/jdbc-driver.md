@@ -7,7 +7,7 @@
   "title": "JDBC Connection"
 }
 [/block]
-Ignite is shipped with a JDBC driver that allows you to retrieve distributed data from caches using standard SQL queries and the JDBC API. 
+Ignite is shipped with a JDBC driver that allows you to retrieve distributed data from caches using standard SQL queries and update the data using DML statements like `INSERT`, `UPDATE` or `DELETE` directly from the JDBC API side. 
 
 In Ignite, the JDBC connection URL has the following pattern:
 [block:code]
@@ -111,32 +111,14 @@ If you have instances of this class in a cache, you can query individual fields 
   ]
 }
 [/block]
-Minimalistic version of `ignite-jdbc.xml` configuration file can look like:
+Moreover, you can modify the data with the usage of DML statements.
+
+##INSERT 
 [block:code]
 {
   "codes": [
     {
-      "code": "<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xsi:schemaLocation=\"\n        http://www.springframework.org/schema/beans\n        http://www.springframework.org/schema/beans/spring-beans.xsd\">\n    <bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n        <property name=\"clientMode\" value=\"true\"/>\n\n        <property name=\"peerClassLoadingEnabled\" value=\"true\"/>\n\n        <!-- Configure TCP discovery SPI to provide list of initial nodes. -->\n        <property name=\"discoverySpi\">\n            <bean class=\"org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi\">\n                <property name=\"ipFinder\">\n                    <bean class=\"org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder\"/>\n                </property>\n            </bean>\n        </property>\n    </bean>\n</beans>",
-      "language": "xml"
-    }
-  ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Modifying data with DML"
-}
-[/block]
-Starting with 1.8.0, Ignite supports DML operations - namely, **INSERT**, **MERGE**, **UPDATE**, and **DELETE**. More information on them is in [DML doc](doc:dml), here we'll showcase their usage from JDBC driver using model class `Person` from above and different methods from JDBC `Statement` and `PreparedStatement` interfaces.
-
-##INSERT
-[block:code]
-{
-  "codes": [
-    {
-      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Insert a Person with a Long key\nPreparedStatement stmt = conn.prepareStatement(\"INSERT INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)\");\n \nstmt.setInt(1, 1);\nstmt.setString(2, \"John Smith\");\nstmt.setInt(3, 25);\n \nboolean res = stmt.execute();\n\n// Has to be false as we've executed non query operation\nSystem.out.println(res);",
+      "code": "// Insert a Person with a Long key.\nPreparedStatement stmt = conn.prepareStatement(\"INSERT INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)\");\n \nstmt.setInt(1, 1);\nstmt.setString(2, \"John Smith\");\nstmt.setInt(3, 25);\n\nstmt.execute();",
       "language": "java"
     }
   ]
@@ -147,7 +129,7 @@ Starting with 1.8.0, Ignite supports DML operations - namely, **INSERT**, **MERG
 {
   "codes": [
     {
-      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Merge a Person with a Long key\nPreparedStatement stmt = conn.prepareStatement(\"MERGE INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)\");\n \nstmt.setInt(1, 1);\nstmt.setString(2, \"John Smith\");\nstmt.setInt(3, 25);\n \nint res = stmt.executeUpdate();\n\n// Has to be 1\nSystem.out.println(res);",
+      "code": "// Merge a Person with a Long key.\nPreparedStatement stmt = conn.prepareStatement(\"MERGE INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)\");\n \nstmt.setInt(1, 1);\nstmt.setString(2, \"John Smith\");\nstmt.setInt(3, 25);\n \nstmt.executeUpdate();",
       "language": "java"
     }
   ]
@@ -158,7 +140,7 @@ Starting with 1.8.0, Ignite supports DML operations - namely, **INSERT**, **MERG
 {
   "codes": [
     {
-      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Merge a Person with a Long key\nint res = conn.createStatement().executeUpdate(\"UPDATE Person SET age = age + 1 WHERE age = 25\");\n\n// Will print number of affected items\nSystem.out.println(res);",
+      "code": "// Update a Person.\nconn.createStatement().\n  executeUpdate(\"UPDATE Person SET age = age + 1 WHERE age = 25\");",
       "language": "java"
     }
   ]
@@ -169,18 +151,21 @@ Starting with 1.8.0, Ignite supports DML operations - namely, **INSERT**, **MERG
 {
   "codes": [
     {
-      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n \n// Merge a Person with a Long key\nboolean res = conn.createStatement().execute(\"DELETE FROM Person WHERE age = 25\");\n\n// Has to be false as we've executed non query operation\nSystem.out.println(res);",
+      "code": "conn.createStatement().execute(\"DELETE FROM Person WHERE age = 25\");",
       "language": "java"
     }
   ]
 }
 [/block]
-
-[block:callout]
+A minimalistic version of `ignite-jdbc.xml` configuration file might look like the one below:
+[block:code]
 {
-  "type": "danger",
-  "title": "Batch updates are not supported",
-  "body": "This most likely will change in the near future via performing query rewriting prior to sending query task to Ignite cluster."
+  "codes": [
+    {
+      "code": "<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xsi:schemaLocation=\"\n        http://www.springframework.org/schema/beans\n        http://www.springframework.org/schema/beans/spring-beans.xsd\">\n    <bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n        <property name=\"clientMode\" value=\"true\"/>\n\n        <property name=\"peerClassLoadingEnabled\" value=\"true\"/>\n\n        <!-- Configure TCP discovery SPI to provide list of initial nodes. -->\n        <property name=\"discoverySpi\">\n            <bean class=\"org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi\">\n                <property name=\"ipFinder\">\n                    <bean class=\"org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder\"/>\n                </property>\n            </bean>\n        </property>\n    </bean>\n</beans>",
+      "language": "xml"
+    }
+  ]
 }
 [/block]
 
