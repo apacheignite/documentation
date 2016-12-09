@@ -179,7 +179,7 @@ The difference between `MERGE` and `INSERT` commands is that the latter adds onl
 
 If a single key-value pair is being added into a cache then, eventually, an `INSERT` statement will be converted into a `cache.putIfAbsent(...)` operation. In other cases, when multiple key-value pairs are inserted the DML engine creates `EntryProcessor` for each pair and uses `cache.invokeAll(...)` to propagate the data into a cache.
 
-The examples below show how to insert a data set with a `INSERT` command by either providing  a list of entries or injecting a result of a subquery execution. 
+The examples below show how to insert a data set with an `INSERT` command by either providing  a list of entries or injecting a result of a subquery execution. 
 [block:code]
 {
   "codes": [
