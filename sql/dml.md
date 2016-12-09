@@ -137,20 +137,6 @@ But DML engine also computes hash code for binary objects created with `BinaryOb
 }
 [/block]
 
-
-##Field values override
-When `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" + \t\t\t\t\t\t\t\t \"_val) VALUES(?, ?, ?)\").setArgs(1L, \"Mike\", new Person(\"John\",  \t\t\t\t\t\t\t \"Smith\")));",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-then DML engine will take `Person` named **John Smith** and passed as a query argument as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`. This behavior holds for all DML operations that build keys and/or values to put to cache - namely, **MERGE**, **INSERT**, and **UPDATE**.
 [block:api-header]
 {
   "type": "basic",
@@ -209,7 +195,8 @@ The modification is performed with the usage of `cache.invokeAll(...)` operation
   "codes": [
     {
       "code": "cache.query(new SqlFieldsQuery(\"UPDATE Person set lastName = ? \" +\n         \"WHERE _key >= ?\").setArgs(\"Jones\", 2L));",
-      "language": "java"
+      "language": "java",
+      "name": "UPDATE"
     }
   ]
 }
@@ -222,6 +209,41 @@ The modification is performed with the usage of `cache.invokeAll(...)` operation
   "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity), so now there's no way to update a key without removing it first."
 }
 [/block]
+##DELETE
+Winner in straightforwardness: simply filters keys for which **WHERE** condition holds true and removes them, performing **SELECT** to find those keys - just like with **UPDATE**, that **SELECT** may be distributed two-step or local. (More on this will follow below.). Example:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\ncache.put(2L, new Person(\"Sarah\", \"Jones\");\n\ncache.query(new SqlFieldsQuery(\"DELETE FROM Person \" +\n         \"WHERE _key >= ?\").setArgs(2L)); // Sorry Sarah...",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Inner implementation of cache modifications is also quite similar to **UPDATE** - after **SELECT**, `EntryProcessor`s are created for each found key which are then run via `invokeAll` and then updates cache entry is nobody got ahead of it (to determine that, the value present in cache at the time of **SELECT** is compared for equality with that being there at the time of `EntryProcessor` execution).
+
+Behavior in case of concurrent modification of cache entries will be described further below.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Values' Fields Overriding Specificities"
+}
+[/block]
+##Field values override
+When `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" + \t\t\t\t\t\t\t\t \"_val) VALUES(?, ?, ?)\").setArgs(1L, \"Mike\", new Person(\"John\",  \t\t\t\t\t\t\t \"Smith\")));",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+then DML engine will take `Person` named **John Smith** and passed as a query argument as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`. This behavior holds for all DML operations that build keys and/or values to put to cache - namely, **MERGE**, **INSERT**, and **UPDATE**.
+
 ###Field value overrides with **UPDATE**
 As stated in section [field values override](#section-field-values-override), **UPDATE** also honors value of `_val` column while processing rows. But, in contrary with **MERGE** and **INSERT**, **UPDATE** always deals only with existing entries - and that's why there's some value to `_val` column whose fields are modified by values for other columns (if any). For example, if we do this:
 [block:code]
@@ -248,22 +270,6 @@ then resulting person will be **Mike Smith**, because **UPDATE** takes existing 
 }
 [/block]
 will set the value for key `1L` to **Mike Jones** because new value for `_val` column is present (**Sarah Jones**) and it's taken as basis for the new key. It also can be positioned anywhere in updated columns list compared to values of individual fields.
-
-##DELETE
-Winner in straightforwardness: simply filters keys for which **WHERE** condition holds true and removes them, performing **SELECT** to find those keys - just like with **UPDATE**, that **SELECT** may be distributed two-step or local. (More on this will follow below.). Example:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\ncache.put(2L, new Person(\"Sarah\", \"Jones\");\n\ncache.query(new SqlFieldsQuery(\"DELETE FROM Person \" +\n         \"WHERE _key >= ?\").setArgs(2L)); // Sorry Sarah...",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-Inner implementation of cache modifications is also quite similar to **UPDATE** - after **SELECT**, `EntryProcessor`s are created for each found key which are then run via `invokeAll` and then updates cache entry is nobody got ahead of it (to determine that, the value present in cache at the time of **SELECT** is compared for equality with that being there at the time of `EntryProcessor` execution).
-
-Behavior in case of concurrent modification of cache entries will be described further below.
 [block:api-header]
 {
   "type": "basic",
