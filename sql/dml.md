@@ -34,6 +34,34 @@ To execute these statements in Java you need to use existed `SqlFieldsQuery` API
   "body": "DML API is not limited by Java APIs only. You can connect to an Ignite cluster using ODBC or JDBC drivers and execute DML queries from their side. Learn more about additional APIs from the pages listed below:\n* [JDBC Driver](doc:jdbc-driver) \n* [ODBC Driver](doc:quering-data)"
 }
 [/block]
+##Configuration
+
+If your caches use only primitive/SQL types as keys **OR** if you do not use `BinaryMarshaller`, then you basically have nothing to worry about - you can use DML operations right out of the box without any configuration changes.
+[block:callout]
+{
+  "type": "info",
+  "title": "SQL data types",
+  "body": "They include:\n- primitives and their wrappers - except `char` and `Character`,\n- `String`s,\n- `BigDecimal`s,\n- **non wrapped** byte arrays - `byte[]`,\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`,\n- and `java.util.UUID`.\n\nPlease refer to `GridQueryProcessor#SQL_TYPES` constant for the list of types."
+}
+[/block]
+**But**, if you use complex keys and binary marshaller, and your keys and/or values are classless on server (and, probably, client) nodes, i.e. are described as a `QueryEntity` with explicitly stated fields and their types, then you must tell Ignite which columns correspond to keys and which belong to values. New configuration param `QueryEntitty#keyFields` is responsible for that. It's a `Set<String>` which contains names of fields that corresponds to **key**.
+
+As stated above, this new field is in no way mandatory if you don't use DML and is overall honored only if the key is of non SQL type. Here's how to configure Ignite for DML in code and via XML - it's pretty simple and the only thing that needs to be updated is `QueryEntity` section:
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Don't mind cacheConfig method - let's just assume it creates new cache config\n// which has all params set besides QueryEntities.\nCacheConfiguration cacheCfg = cacheConfig(\"cache\");\n\nQueryEntity entity = new QueryEntity(\"Key\", \"Person\");\n\nLinkedHashMap<String, String> flds = new LinkedHashMap<>();\n\nflds.put(\"intKeyField\", Integer.class.getName());\nflds.put(\"strKeyField\", String.class.getName());\n\nflds.put(\"firstName\", String.class.getName());\nflds.put(\"secondName\", String.class.getName());\n\nentity.setFields(flds);\n\n// The following block is what you need to add to make DML work -\n// all the rest you probably had set even before DML\n\n// Look, the same names can be seen in 'flds' above\nSet<String> keyFlds = new HashSet<>();\nkeyFlds.add(\"intKeyField\");\nkeyFlds.add(\"strKeyField\");\n\nentity.setKeyFields(keyFlds);\n\n// End of new settings, nothing else here is DML related\n\nentity.setIndexes(Collections.<QueryIndex>emptyList());\n\ncacheCfg.setQueryEntities(Collections.singletonList(entity));\n\nignite.createCache(cacheCfg);",
+      "language": "java"
+    },
+    {
+      "code": "<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xsi:schemaLocation=\"http://www.springframework.org/schema/beans\n        http://www.springframework.org/schema/beans/spring-beans.xsd\">\n\n<bean id=\"ignite.cfg\"\n      class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n\t<property name=\"cacheConfiguration\">\n  \t\t<list>\n  \t\t\t<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n  \t\t\t\t<!-- The rest of configuration is omitted for clarity -->\n  \t\t\t\t<property name=\"queryEntities\">\n  \t\t\t\t\t<list>\n                        <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                            <property name=\"keyType\" value=\"Key\"/>\n                            <property name=\"valueType\" value=\"Person\"/>\n\n                            <property name=\"fields\">\n                                <map>\n                                    <entry key=\"intKeyField\" value=\"java.lang.Integer\"/>\n                                    <entry key=\"strKeyField\" value=\"java.lang.String\"/>\n\n                                    <entry key=\"firstName\" value=\"java.lang.String\"/>\n                                    <entry key=\"secondName\" value=\"java.lang.String\"/>\n                                </map>\n                            </property>\n\n                            <!-- Note that fields with such names\n                            are present in fields list above -->\n                            <property name=\"keyFields\">\n                                <list>\n                                    <value>intKeyField</value>\n                                    <value>strKeyField</value>\n                                </list>\n                            </property>\n                        </bean>\n  \t\t\t\t\t</list>\n  \t\t\t\t</property>\n  \t\t\t</bean>\n  \t\t</list>\n\t</property>\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
 
 [block:code]
 {
@@ -107,37 +135,6 @@ then DML engine will take `Person` named **John Smith** and passed as a query ar
 {
   "type": "basic",
   "title": "Configuration"
-}
-[/block]
-If your caches use only primitive/SQL types as keys **OR** if you do not use `BinaryMarshaller`, then you basically have nothing to worry about - you can use DML operations right out of the box without any configuration changes.
-[block:callout]
-{
-  "type": "info",
-  "title": "SQL data types",
-  "body": "They include:\n- primitives and their wrappers - except `char` and `Character`,\n- `String`s,\n- `BigDecimal`s,\n- **non wrapped** byte arrays - `byte[]`,\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`,\n- and `java.util.UUID`.\n\nPlease refer to `GridQueryProcessor#SQL_TYPES` constant for the list of types."
-}
-[/block]
-**But**, if you use complex keys and binary marshaller, and your keys and/or values are classless on server (and, probably, client) nodes, i.e. are described as a `QueryEntity` with explicitly stated fields and their types, then you must tell Ignite which columns correspond to keys and which belong to values. New configuration param `QueryEntitty#keyFields` is responsible for that. It's a `Set<String>` which contains names of fields that corresponds to **key**.
-[block:callout]
-{
-  "type": "warning",
-  "title": "",
-  "body": "It's assumed that all field names mentioned in `QueryEntitty#keyFields` are present as keys in `QueryEntitty#fields`, therefore, please pay attention to maintaining correct list of names in the former."
-}
-[/block]
-As stated above, this new field is in no way mandatory if you don't use DML and is overall honored only if the key is of non SQL type. Here's how to configure Ignite for DML in code and via XML - it's pretty simple and the only thing that needs to be updated is `QueryEntity` section:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "// Don't mind cacheConfig method - let's just assume it creates new cache config\n// which has all params set besides QueryEntities.\nCacheConfiguration cacheCfg = cacheConfig(\"cache\");\n\nQueryEntity entity = new QueryEntity(\"Key\", \"Person\");\n\nLinkedHashMap<String, String> flds = new LinkedHashMap<>();\n\nflds.put(\"intKeyField\", Integer.class.getName());\nflds.put(\"strKeyField\", String.class.getName());\n\nflds.put(\"firstName\", String.class.getName());\nflds.put(\"secondName\", String.class.getName());\n\nentity.setFields(flds);\n\n// The following block is what you need to add to make DML work -\n// all the rest you probably had set even before DML\n\n// Look, the same names can be seen in 'flds' above\nSet<String> keyFlds = new HashSet<>();\nkeyFlds.add(\"intKeyField\");\nkeyFlds.add(\"strKeyField\");\n\nentity.setKeyFields(keyFlds);\n\n// End of new settings, nothing else here is DML related\n\nentity.setIndexes(Collections.<QueryIndex>emptyList());\n\ncacheCfg.setQueryEntities(Collections.singletonList(entity));\n\nignite.createCache(cacheCfg);",
-      "language": "java"
-    },
-    {
-      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xsi:schemaLocation=\"http://www.springframework.org/schema/beans\n        http://www.springframework.org/schema/beans/spring-beans.xsd\">\n\n<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n\t<property name=\"cacheConfiguration\">\n  \t\t<list>\n  \t\t\t<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n  \t\t\t\t<!-- The rest of configuration is omitted for clarity -->\n  \t\t\t\t<property name=\"queryEntities\">\n  \t\t\t\t\t<list>\n                        <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                            <property name=\"keyType\" value=\"Key\" />\n                            <property name=\"valueType\" value=\"Person\" />\n\n                            <property name=\"fields\">\n                                <map>\n                                    <entry key=\"intKeyField\" value=\"java.lang.Integer\"/>\n                                    <entry key=\"strKeyField\" value=\"java.lang.String\"/>\n\n                                    <entry key=\"firstName\" value=\"java.lang.String\"/>\n                                    <entry key=\"secondName\" value=\"java.lang.String\"/>\n                                </map>\n                            </property>\n\n                            <!-- Note that fields with such names\n                            are present in fields list above -->\n                            <property name=\"keyFields\">\n                                <list>\n                                    <value>intKeyField</value>\n                                    <value>strKeyField</value>\n                                </list>\n                            </property>\n                        </bean>\n  \t\t\t\t\t</list>\n  \t\t\t\t</property>\n  \t\t\t</bean>\n  \t\t</list>\n\t</property>\n</bean>",
-      "language": "xml"
-    }
-  ]
 }
 [/block]
 
