@@ -36,7 +36,35 @@ To execute these statements in Java you need to use existed `SqlFieldsQuery` API
 [/block]
 ##Configuration
 
+To start using DML operations in Ignite you need to configure queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). Those are the fields that belong either to a cache key or value and you directly refer to them in a DML statement.
+
+In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields link to whole key and value objects stored in a cache and it's feasible to use them directly inside of DML statements as it's shown below:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "//Preparing cache configuration.\nCacheConfiguration<Long, Person> cfg = new CacheConfiguration<>(\"personCache\");\n      \n//Registering indexed/queryable types.\ncfg.setIndexedTypes(Long.class, Person.class);\n\n//Starting the cache.\nIgniteCache<Long, Person> cache = ignite.cache(cfg);\n\n// Inserting a new key-value pair referring to prefedined `_key` and `_value`\n// fields for Person type.\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, _val) VALUES(?, ?)\")\n\t.setArgs(1L, new Person(\"John\", \"Smith\")));",
+      "language": "java",
+      "name": "Insert Key and Value"
+    }
+  ]
+}
+[/block]
+However, there is a variety of scenarios when you prefer to work with individual fields rather than with a whole object value by executing queries like the following one:
+ 
 If your caches use only primitive/SQL types as keys **OR** if you do not use `BinaryMarshaller`, then you basically have nothing to worry about - you can use DML operations right out of the box without any configuration changes.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" + \t\t\t\t\t\t\t\t \"secondName) VALUES(?, ?, ?)\").setArgs(1L, \"John\", \"Smith\"));",
+      "language": "java",
+      "name": "Build value from individual fields"
+    }
+  ]
+}
+[/block]
+
 [block:callout]
 {
   "type": "info",
@@ -89,33 +117,9 @@ As long as SQL in case of Ignite is merely an interface to query or manipulate c
 **UPDATE** and **DELETE** are the operations responsible for this, with former updating values in cache (per field or replacing them completely), and the latter removing entries from the cache. They both include **WHERE** clause that allows the user to specify which rows exactly must be modified.
 
 ##Special columns
-As you may know, each Ignite's SQL table has two special columns - those are `_key` and `_val`. They correspond to complete key and value respectively, although of course the table most likely has also the columns corresponding to particular fields of key or value.
-Suppose we have such class (we'll use it in examples below as well):
 
-Therefore, the simplest way to put an item into cache via DML is as follows:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, _val) VALUES(?, ?)\")\n         .setArgs(1L, new Person(\"John\", \"Smith\")));",
-      "language": "java",
-      "name": "Insert explicit value as _val"
-    }
-  ]
-}
-[/block]
 However, DML engine is capable of building either cache key or value from individual field values - therefore, we could write the above query like this:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" + \t\t\t\t\t\t\t\t \"secondName) VALUES(?, ?, ?)\").setArgs(1L, \"John\", \"Smith\"));",
-      "language": "java",
-      "name": "Build value from individual fields"
-    }
-  ]
-}
-[/block]
+
 In this case, DML engine will build `Person` object or its binary version by itself and put it to cache.
 
 ##Field values override
@@ -153,7 +157,7 @@ SQL syntax example:
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"MERGE INTO Person(_key, firstName, \" +\n         \"secondName) values (1, 'John', 'Smith'), (5, 'Mary', 'Jones')\"));",
+      "code": "\nIgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"MERGE INTO Person(_key, firstName, \" +\n         \"secondName) values (1, 'John', 'Smith'), (5, 'Mary', 'Jones')\"));",
       "language": "java",
       "name": "Rows List"
     },
