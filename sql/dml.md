@@ -1,4 +1,5 @@
 * [Overview](#overview)
+
   
 [block:api-header]
 {
@@ -135,16 +136,7 @@ But DML engine also computes hash code for binary objects created with `BinaryOb
   "body": "When no `BinaryIdentityResolver` is set for a binary type in configuration, and keys (or values) are built from scratch by DML engine (i.e. column values for particular fields of key and/or value are present in DML query), [BinaryArrayIdentityResolver](doc:binary-marshaller#section-binaryarrayidentityresolver) is used **both for hashing and equality comparisons**."
 }
 [/block]
-##Put new items to cache
-Both **MERGE** and **INSERT** put new key-value pairs to cache, and their syntax is nearly identical as you will see soon. The difference between them is semantic.
 
-**MERGE** puts given pair(s) to cache without considering current presence of keys in the cache, which is identical to, say, MySQL's `INSERT ... ON DUPLICATE KEY UPDATE`.
-
-In its turn, **INSERT** puts only pairs for which the keys are not in cache yet - it's identical to semantic of **INSERT** in conventional RDBMSes.
-
-Both **MERGE** and **INSERT** may work in two modes - rows list based and subquery based. In first case, the user explicitly lists field values in tuples each of which then is converted to key-value pair and put to cache. In second case, first SQL SELECT is done, and then each row of its results serves as base tuple for new key-value pair.
-
-As long as SQL in case of Ignite is merely an interface to query or manipulate cache data, in the end all DML operations boil down to modifying key-value pairs that reside in cache. Thus, as all columns in Ignite's tables correspond either to key or to value, when a tuple (which is a "new row") is processed, key and value get instantiated and get their fields set based on what has been passed in tuple. After all tuples are well-formed, cache modifying operations are performed.
 
 ##Field values override
 When `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
@@ -167,58 +159,56 @@ then DML engine will take `Person` named **John Smith** and passed as a query ar
 [/block]
 ##MERGE
 
-**MERGE** is the most straightforward operation (except probably for **DELETE**) as it translates to cache **put**/**putAll** operation (depending on how many rows are listed in query, or how many rows have been returned by subquery).
+`MERGE` is one of the most straightforward operations because it's translated into `cache.put(...)` and `cache.putAll(...)` operations depending on a number of rows that should be inserted or updated as a part of the `MERGE` query.
 
-SQL syntax example:
+The examples below show how to update the data set with a `MERGE` command by either providing  a list of entries or injecting a result of a subquery execution. 
 [block:code]
 {
   "codes": [
     {
-      "code": "\nIgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"MERGE INTO Person(_key, firstName, \" +\n         \"secondName) values (1, 'John', 'Smith'), (5, 'Mary', 'Jones')\"));",
+      "code": "cache.query(new SqlFieldsQuery(\"MERGE INTO Person(_key, firstName, lastName)\" + \t\"values (1, 'John', 'Smith'), (5, 'Mary', 'Jones')\"));",
       "language": "java",
-      "name": "Rows List"
+      "name": "MERGE (List of Entries)"
     },
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"MERGE INTO someCache.Person(_key, firstName, secondName) (SELECT _key + 1000, firstName, secondName \" +\n   \t\"FROM anotherCache.Person WHERE _key > ? AND _key < ?)\").setArgs(100, 200);",
+      "code": "cache.query(new SqlFieldsQuery(\"MERGE INTO someCache.Person(_key, firstName, lastName) (SELECT _key + 1000, firstName, lastName \" +\n   \t\"FROM anotherCache.Person WHERE _key > ? AND _key < ?)\").setArgs(100, 200);",
       "language": "java",
-      "name": "Subquery"
+      "name": "MERGE (Subquery)"
     }
   ]
 }
 [/block]
-As you may see, there's two modes to **MERGE** - one that takes tuples corresponding to new rows and another that takes data to put to cache from subquery.
-
 ##INSERT
 
-**INSERT** is semantically different from **MERGE**, but still quite similar: it puts to cache only values whose keys are not present in cache. Besides that, they are nearly identical from user perspective. **INSERT** also supports rows based and subquery based operations:
+The difference between `MERGE` and `INSERT` commands is that the latter adds only those entries into a cache which keys are not there yet.  `INSERT` statement supports data addition in a form of a list of entries as well as a result of the subquery.
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" +\n         \"secondName) values (1, 'John', 'Smith'), (5, 'Mary', 'Jones')\"));",
+      "code": "cache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" +\n         \"lastName) values (1, 'John', 'Smith'), (5, 'Mary', 'Jones')\"));",
       "language": "java",
-      "name": "Rows list"
+      "name": "INSERT (List of Entries)"
     },
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO someCache.Person(_key, firstName, secondName) (SELECT _key + 1000, firstName, secondName \" +\n   \t\"FROM anotherCache.Person WHERE _key > ? AND _key < ?)\").setArgs(100, 200);",
+      "code": "cache.query(new SqlFieldsQuery(\"INSERT INTO someCache.Person(_key, firstName, lastName) (SELECT _key + 1000, firstName, secondName \" +\n   \t\"FROM anotherCache.Person WHERE _key > ? AND _key < ?)\").setArgs(100, 200);",
       "language": "java",
-      "name": "Subquery"
+      "name": "INSERT (Subquery)"
     }
   ]
 }
 [/block]
 ##UPDATE
 
-This operation updates values in cache on per field basis. First it generates and performs **SELECT** based on **UPDATE**'s **WHERE** criteria and then modifies existing values.
+This operation updates values in a cache on per field basis.
 
-Actual modification is under the hood performed via cache's well known `invokeAll` operations - upon results of **SELECT**, a bunch of `EntryProcessor`s is created, and each of them modifies corresponding values checking that nobody has interfered between **SELECT** and actual update. (This particular topic will be covered below.)
+Initially, SQL engine generates and executes a `SELECT` query based on `UPDATE's `WHERE` clause and only after that modifies existing values that satisfy the clause result.
 
-SQL syntax example:
+The modification is performed with the usage of `cache.invokeAll(...)` operation. Basically, it means that once the result of the `SELECT` query is ready, SQL Engine will prepare a number of `EntryProcessors` and will execute all of them using `cache.invokeAll(...)` operation. Next, while the data will be being modified using `EntryProcessors` additional checks will be performed to be sure  that nobody has interfered between the `SELECT` and the actual update.
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\ncache.put(2L, new Person(\"Sarah\", \"Jones\");\n\ncache.query(new SqlFieldsQuery(\"UPDATE Person set salary = ? \" +\n         \"WHERE _key >= ?\").setArgs(5000, 2L)); // Sorry John...",
+      "code": "cache.query(new SqlFieldsQuery(\"UPDATE Person set lastName = ? \" +\n         \"WHERE _key >= ?\").setArgs(\"Jones\", 2L));",
       "language": "java"
     }
   ]
@@ -228,8 +218,8 @@ SQL syntax example:
 [block:callout]
 {
   "type": "danger",
-  "title": "You can't modify key or its columns with an UPDATE query",
-  "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity), so now there's no way to update a key without removing it first. Probably this will change in the future."
+  "title": "Inability to modify key or its fields with an UPDATE query",
+  "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity), so now there's no way to update a key without removing it first."
 }
 [/block]
 ###Field value overrides with **UPDATE**
