@@ -122,7 +122,9 @@ The example below shows how to achieve this.
 [/block]
 ## HashCode Resolution and Equality Comparision for Custom Keys 
 
-After you created a custom complex When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then result of invoking its `hashCode` method is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
+After you created a custom key and defined its fields using `QueryEntity` as it's shown above you need to take care of the hash code resolution and equality comparison .
+
+If there's a class for the key, then a result its `hashCode` method invocation is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
 
 Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is ultimately computed by its means regardless of the way binary object was created.
 
