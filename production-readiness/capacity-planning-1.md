@@ -29,7 +29,9 @@ Memory usage for every JVM with running Ignite instances is made with following 
 ## Cache memory usage
 
 - About 2 Mb of basic internal cache objects;
-- 8 Mb for internal entry storage for default `CacheConfiguration.getStartSize()` value approximated to the nearest bigger value of power of two; see the formula below:
+- 8 Mb for internal entry storage for default value `CacheConfiguration.getStartSize()`
+Memory consumption could be decreased
+ approximated to the nearest bigger value of power of two; see the formula below:
 **startSize** - the value of `CacheConfiguration.getStartSize()`;
 **partNumber** - the value of `AffinityFunction.partitions()`;
 **refSize** - the size of the Java reference (4 bytes on 32-bit JVM and 64-bit w/UseCompressedOops enabled, or 8 bytes on 64-bit JVM w/UseCompressedOops disabled);
