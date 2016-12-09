@@ -175,7 +175,11 @@ The examples below show how to update the data set with a `MERGE` command by eit
 [/block]
 ##INSERT
 
-The difference between `MERGE` and `INSERT` commands is that the latter adds only those entries into a cache which keys are not there yet.  `INSERT` statement supports data addition in a form of a list of entries as well as a result of the subquery.
+The difference between `MERGE` and `INSERT` commands is that the latter adds only those entries into a cache which keys are not there yet. 
+
+If a single key-value pair is being added into a cache then, eventually, an `INSERT` statement will be converted into a `cache.putIfAbsent(...)` operation. In other cases, when multiple key-value pairs are inserted the DML engine creates `EntryProcessor` for each pair and uses `cache.invokeAll(...)` to propagate the data into a cache.
+
+The examples below show how to insert a data set with an `INSERT` command by either providing  a list of entries or injecting a result of a subquery execution. 
 [block:code]
 {
   "codes": [
