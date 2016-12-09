@@ -190,6 +190,8 @@ This operation updates values in a cache on per field basis.
 Initially, SQL engine generates and executes a `SELECT` query based on `UPDATE's `WHERE` clause and only after that modifies existing values that satisfy the clause result.
 
 The modification is performed with the usage of `cache.invokeAll(...)` operation. Basically, it means that once the result of the `SELECT` query is ready, SQL Engine will prepare a number of `EntryProcessors` and will execute all of them using `cache.invokeAll(...)` operation. Next, while the data will be being modified using `EntryProcessors` additional checks will be performed to be sure  that nobody has interfered between the `SELECT` and the actual update.
+
+This is simple example shows how to execute an `UPDATE` query in Apache Ignite.
 [block:code]
 {
   "codes": [
@@ -210,20 +212,24 @@ The modification is performed with the usage of `cache.invokeAll(...)` operation
 }
 [/block]
 ##DELETE
-Winner in straightforwardness: simply filters keys for which **WHERE** condition holds true and removes them, performing **SELECT** to find those keys - just like with **UPDATE**, that **SELECT** may be distributed two-step or local. (More on this will follow below.). Example:
+
+`DELETE` statements' execution is split into two phases and similar to the execution of `UPDATE` statements. 
+
+First, using a `SELECT` query SQL engine gathers those keys that satisfy the `WHERE` clause and have to be deleted. Next, after having all those keys at place, a number of `EntryProcessors` is created and executed with `cache.invokeAll(...)`. While the data will be being deleted this way, additional checks will be performed to be sure that nobody has interfered between the `SELECT` and the actual removal. 
+
+This is simple example shows how to execute a `DELETE` query in Apache Ignite.
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\ncache.put(2L, new Person(\"Sarah\", \"Jones\");\n\ncache.query(new SqlFieldsQuery(\"DELETE FROM Person \" +\n         \"WHERE _key >= ?\").setArgs(2L)); // Sorry Sarah...",
-      "language": "java"
+      "code": "cache.query(new SqlFieldsQuery(\"DELETE FROM Person \" +\n         \"WHERE _key >= ?\").setArgs(2L));",
+      "language": "java",
+      "name": "DELETE"
     }
   ]
 }
 [/block]
-Inner implementation of cache modifications is also quite similar to **UPDATE** - after **SELECT**, `EntryProcessor`s are created for each found key which are then run via `invokeAll` and then updates cache entry is nobody got ahead of it (to determine that, the value present in cache at the time of **SELECT** is compared for equality with that being there at the time of `EntryProcessor` execution).
 
-Behavior in case of concurrent modification of cache entries will be described further below.
 [block:api-header]
 {
   "type": "basic",
