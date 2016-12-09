@@ -38,7 +38,7 @@ To execute these statements in Java you need to use existed `SqlFieldsQuery` API
 [block:api-header]
 {
   "type": "basic",
-  "title": "Configuration"
+  "title": "Basic Configuration"
 }
 [/block]
 To start using DML operations in Ignite you would need to configure queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). Those are the fields that belong either to a cache key or value and you directly refer to them in a DML statement.
@@ -84,13 +84,21 @@ DML engine will be able to recreate a Person object from `firstName` and `lastNa
   ]
 }
 [/block]
- 
-If your caches use only primitive/SQL types as keys **OR** if you do not use `BinaryMarshaller`, then you basically have nothing to worry about - you can use DML operations right out of the box without any configuration changes.
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Advanced Configuration"
+}
+[/block]
+##Custom Keys
+
+If you use only predefined SQL data types for cache keys then there is no need to perform additional manipulation with DML related configuration. Those types are defined by `GridQueryProcessor#SQL_TYPES` constant and listed below.
 [block:callout]
 {
   "type": "info",
-  "title": "SQL data types",
-  "body": "They include:\n- primitives and their wrappers - except `char` and `Character`,\n- `String`s,\n- `BigDecimal`s,\n- **non wrapped** byte arrays - `byte[]`,\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`,\n- and `java.util.UUID`.\n\nPlease refer to `GridQueryProcessor#SQL_TYPES` constant for the list of types."
+  "title": "Predefined SQL Data Types",
+  "body": "- all the primitives and their wrappers except `char` and `Character`.\n- `String`.\n- `BigDecimal`.\n- `byte[]`.\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`.\n- `java.util.UUID`."
 }
 [/block]
 **But**, if you use complex keys and binary marshaller, and your keys and/or values are classless on server (and, probably, client) nodes, i.e. are described as a `QueryEntity` with explicitly stated fields and their types, then you must tell Ignite which columns correspond to keys and which belong to values. New configuration param `QueryEntitty#keyFields` is responsible for that. It's a `Set<String>` which contains names of fields that corresponds to **key**.
@@ -138,13 +146,6 @@ When `_key` (or `_val`) column value is given in DML query and that query also i
 }
 [/block]
 then DML engine will take `Person` named **John Smith** and passed as a query argument as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`. This behavior holds for all DML operations that build keys and/or values to put to cache - namely, **MERGE**, **INSERT**, and **UPDATE**.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Configuration"
-}
-[/block]
-
 [block:api-header]
 {
   "type": "basic",
