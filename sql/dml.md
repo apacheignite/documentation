@@ -120,9 +120,9 @@ The example below shows how to achieve this.
   ]
 }
 [/block]
-## HashCode and Equals 
+## HashCode Resolution and Equality Comparision for Custom Keys 
 
-When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then result of invoking its `hashCode` method is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
+After you created a custom complex When building a new (non primitive binary) key on **MERGE** or **INSERT**, newly built object must have a hash code for correct data layout and keys distribution among nodes. If there's a class for the key, then result of invoking its `hashCode` method is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
 
 Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is ultimately computed by its means regardless of the way binary object was created.
 
@@ -143,9 +143,6 @@ In its turn, **INSERT** puts only pairs for which the keys are not in cache yet 
 Both **MERGE** and **INSERT** may work in two modes - rows list based and subquery based. In first case, the user explicitly lists field values in tuples each of which then is converted to key-value pair and put to cache. In second case, first SQL SELECT is done, and then each row of its results serves as base tuple for new key-value pair.
 
 As long as SQL in case of Ignite is merely an interface to query or manipulate cache data, in the end all DML operations boil down to modifying key-value pairs that reside in cache. Thus, as all columns in Ignite's tables correspond either to key or to value, when a tuple (which is a "new row") is processed, key and value get instantiated and get their fields set based on what has been passed in tuple. After all tuples are well-formed, cache modifying operations are performed.
-
-##Modify existing cache items
-**UPDATE** and **DELETE** are the operations responsible for this, with former updating values in cache (per field or replacing them completely), and the latter removing entries from the cache. They both include **WHERE** clause that allows the user to specify which rows exactly must be modified.
 
 ##Field values override
 When `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
