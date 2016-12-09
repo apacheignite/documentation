@@ -138,7 +138,7 @@ If there's a class for the key, then a result its `hashCode` method invocation i
 
 Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is ultimately computed by its means regardless of the way binary object was created.
 
-But DML engine also computes hash code for binary objects created with `BinaryObjectBuilder` **even when there's no `BinaryIdentityResolver` set for a binary type in configuration** - it does so because in this case there's no way for a user to specify hash code to builder manually.
+But DML engine also computes hash code for binary objects created with `BinaryObjectBuilder` even when there's no `BinaryIdentityResolver` set for a binary type in configuration - it does so because in this case there's no way for a user to specify hash code to builder manually.
 [block:callout]
 {
   "type": "info",
