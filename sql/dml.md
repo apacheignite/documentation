@@ -41,7 +41,7 @@ To execute these statements in Java you need to use existed `SqlFieldsQuery` API
   "title": "Configuration"
 }
 [/block]
-To start using DML operations in Ignite you need to configure queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). Those are the fields that belong either to a cache key or value and you directly refer to them in a DML statement.
+To start using DML operations in Ignite you would need to configure queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). Those are the fields that belong either to a cache key or value and you directly refer to them in a DML statement.
 
 In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields link to whole key and value objects stored in a cache and it's feasible to use them directly inside of DML statements as it's shown below:
 [block:code]
@@ -55,26 +55,31 @@ In addition to all the fields marked with @QuerySqlField annotation or defined w
   ]
 }
 [/block]
-However, there is a variety of scenarios when you prefer to work with individual fields rather than with a whole object value by executing queries like the following one:
+However, it's clear that in a variety of scenarios you prefer to work with individual fields rather than with a whole object value by executing queries like the following one:
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(cacheCfg);\n\ncache.query(new SqlFieldsQuery(\n    \"INSERT INTO Person(_key, firstName, secondName) VALUES(?, ?, ?)\").\n    setArgs(1L, \"John\", \"Smith\"));",
+      "code": "IgniteCache<Long, Person> cache = ignite.cache(cacheCfg);\n\ncache.query(new SqlFieldsQuery(\n    \"INSERT INTO Person(_key, firstName, lastName) VALUES(?, ?, ?)\").\n    setArgs(1L, \"John\", \"Smith\"));",
       "language": "java",
       "name": ""
     }
   ]
 }
 [/block]
-DML engine will be able to recreate a Person object from `firstName` and `secondName` and put it into a cache but those fields have to be defined using `QueryEntity` or `@QuerySqlField` annotation as it's shown below:
+DML engine will be able to recreate a Person object from `firstName` and `lastName` and put it into a cache but those fields have to be defined using `QueryEntity` or `@QuerySqlField` annotation as it's shown below:
 [block:code]
 {
   "codes": [
     {
-      "code": "public class Person {\n  /** Field will be accessible from DML statements. */\n  @QuerySqlField\n\tprivate final String firstName;\n  \n  /** Field will be accessible from DML statements. */\n  @QuerySqlField\n  private final String secondName;\n  \n  /** Field will NOT be accessible from DML statements. */\n  private int age;\n  \n  public Person(String firstName, String secondName) {\n  \tthis.firstName = firstName;\n    this.secondName = secondName;\n  }\n}",
+      "code": "public class Person {\n  /** Field will be accessible from DML statements. */\n  @QuerySqlField\n\tprivate final String firstName;\n  \n  /** Indexed field that will be accessible from DML statements. */\n  @QuerySqlField (index = true)\n  private final String lastName;\n  \n  /** Field will NOT be accessible from DML statements. */\n  private int age;\n  \n  public Person(String firstName, String lastName) {\n  \tthis.firstName = firstName;\n    this.lastName = lastName;\n  }\n}",
       "language": "java",
-      "name": "Person"
+      "name": "@QuerySqlField Annotations Usage"
+    },
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <property name=\"name\" value=\"personCache\"/>\n    <!-- Configure query entities -->\n    <property name=\"queryEntities\">\n        <list>\n            <bean class=\"org.apache.ignite.cache.QueryEntity\">\n                <!-- Registering key's class. -->\n                <property name=\"keyType\" value=\"java.lang.Long\"/>\n              \n                <!-- Registering value's class. -->\n                <property name=\"valueType\"\n                          value=\"org.apache.ignite.examples.Person\"/>\n\n                <!-- \n                    Defining fields that will be accessible from DML side\n                -->\n                <property name=\"fields\">\n                    <map>\n                        <entry key=\"firstName\" value=\"java.lang.String\"/>\n                        <entry key=\"lastName\" value=\"java.lang.String\"/>\n                    </map>\n                </property>\n              \n               <!-- \n                    Defining which fields, listed above, will be treated as \n                    indexed fields as well.\n                -->\n                <property name=\"indexes\">\n                    <list>\n                        <!-- Single field (aka. column) index -->\n                        <bean class=\"org.apache.ignite.cache.QueryIndex\">\n                            <constructor-arg value=\"lastName\"/>\n                        </bean>\n                    </list>\n                </property>\n            </bean>\n        </list>\n    </property>\n</bean>",
+      "language": "xml",
+      "name": "QueryEntityType Usage"
     }
   ]
 }
