@@ -409,3 +409,10 @@ As mentioned in section [UPDATE](#section-update), updates to key or its fields 
 
 ##No EXPLAIN for DML operations
 Ignite performs DML operations in a very different way than a conventional RDBMS does. Therefore using H2's **EXPLAIN** output with DML operations as it's done with **SELECT**s does not look like a good solution. One possible approach is just to **EXPLAIN** the **SELECT** generated/used by DML operations (because in many cases there's one) - this will give insight on which indexes are used while executing DML operations. Probably this will be implemented in near future.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example"
+}
+[/block]
+Ignite includes ready-to-run `CacheQueryDmlExample` as a part of its [sources](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheQueryDmlExample.java).  The example demonstrates the usage of all the above-mentioned DML operations.
