@@ -7,8 +7,7 @@
  * [INSERT](dml#section-insert)
  * [UPDATE](dml#section-update)
  * [DELETE](dml#section-delete)
-
-
+*[Example](#example)
   
 [block:api-header]
 {
@@ -242,3 +241,11 @@ This is simple example shows how to execute a `DELETE` query in Apache Ignite.
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example"
+}
+[/block]
+Ignite includes ready-to-run `CacheQueryDmlExample` as a part of its [sources](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheQueryDmlExample.java).  The example demonstrates the usage of all the above-mentioned DML operations.
