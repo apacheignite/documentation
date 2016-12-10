@@ -7,7 +7,7 @@
  * [INSERT](dml#section-insert)
  * [UPDATE](dml#section-update)
  * [DELETE](dml#section-delete)
-*[Example](#example)
+* [Example](#example)
   
 [block:api-header]
 {
