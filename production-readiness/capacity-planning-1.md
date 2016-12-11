@@ -30,14 +30,36 @@ Memory usage for every JVM with running Ignite instances is made with following 
 
 - About 2 Mb of basic internal cache objects;
 - 8 Mb for internal entry storage for default value `CacheConfiguration.getStartSize()`
-Memory consumption could be decreased
- approximated to the nearest bigger value of power of two; see the formula below:
-**startSize** - the value of `CacheConfiguration.getStartSize()`;
-**partNumber** - the value of `AffinityFunction.partitions()`;
-**refSize** - the size of the Java reference (4 bytes on 32-bit JVM and 64-bit w/UseCompressedOops enabled, or 8 bytes on 64-bit JVM w/UseCompressedOops disabled);
-**partSize** = 2 ^ roundup( log_2( startSize / partNumber ) );
-**overhead** = partSize x partNumber x refSize.
-For example, default startSize = 1'500'000, partNumber = 1024, refSize = 4, partSize = 2048 (the nearest bigger 2^N for 1'500'000/1024), overhead = 2K x 1K x 4 = 8 Mb.
+Memory consumption could be decreased on smaller cache sizes by adopting this value
+[block:parameters]
+{
+  "data": {
+    "h-0": "Start size",
+    "h-1": "64-bit JVM +UseCompressedOops",
+    "h-2": "64-bit JVM -UseCompressedOops",
+    "0-0": "< 64k",
+    "5-0": "1M...2M",
+    "5-1": "8 Mb",
+    "5-2": "16 Mb",
+    "4-0": "512k...1M",
+    "4-1": "4 Mb",
+    "4-2": "8 Mb",
+    "3-0": "256k...512k",
+    "3-1": "2 Mb",
+    "3-2": "4 Mb",
+    "2-0": "128k...256k",
+    "2-1": "1 Mb",
+    "2-2": "2 Mb",
+    "1-0": "64k...128k",
+    "1-1": "512 kb",
+    "1-2": "1 Mb",
+    "0-1": "< 256 kb",
+    "0-2": "< 512 kb"
+  },
+  "cols": 3,
+  "rows": 6
+}
+[/block]
 - About 10 Mb for atomic cache queue delete history controlled by the system property `IgniteSystemProperties.IGNITE_ATOMIC_CACHE_DELETE_HISTORY_SIZE`.
 
 ## Entry memory usage
