@@ -152,8 +152,8 @@ You could see that additional overhead arises from serializing key and value obj
 - Entries memory usage = entry size x number of entries per node x 2 (one primary and one backup copy);
  868 x 1'250'000 x 2 = 2'170'000'000 = 2069 Mb;
 
-- Cache size = 2 Mb + internal storage + delete history;
-Internal storage = 4M...8M = 32 Mb;
+- Cache memory usage = 2 Mb + internal storage + delete history;
+Internal storage = cache size 4M...8M = 32 Mb;
 Delete history = 10 Mb
 2 + 32 + 10 = 44 Mb
 
