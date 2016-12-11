@@ -126,7 +126,9 @@ You could see that additional overhead arises from serializing key and value obj
     "4-4": "-",
     "4-6": "-",
     "5-4": "230",
-    "5-6": "70"
+    "5-6": "70",
+    "h-4": "First index overhead",
+    "h-6": "Next index overhead"
   },
   "cols": 7,
   "rows": 6
