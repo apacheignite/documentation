@@ -31,7 +31,7 @@ Memory usage for every JVM with running Ignite instances is made with following 
 Every cache instance takes additional overhead of sum:
 - About 2 Mb of basic internal cache objects;
 - 8 Mb for internal entry storage for default value `CacheConfiguration.getStartSize()`
-Memory consumption could be decreased on smaller cache sizes by adopting this value, see the table below;
+Memory consumption could be decreased on smaller cache sizes by adjusting this value, see the table below;
 - About 10 Mb for atomic cache queue delete history controlled by the system property `IgniteSystemProperties.IGNITE_ATOMIC_CACHE_DELETE_HISTORY_SIZE`.
 [block:parameters]
 {
