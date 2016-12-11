@@ -83,7 +83,7 @@ You could see that additional overhead arises from serializing key and value obj
   "data": {
     "h-0": "Cache configuration",
     "h-1": "Entry overhead",
-    "h-2": "",
+    "h-2": "##",
     "h-3": "First index overhead",
     "1-0": "ONHEAP_TIERED +UseCompressedOops",
     "2-0": "ONHEAP_TIERED -UseCompressedOops",
