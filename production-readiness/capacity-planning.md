@@ -19,13 +19,7 @@ Memory usage for every JVM with running Ignite instances is made with following 
 - About 50 Mb per every running Ignite instance under the JVM;
 - About 20 Mb per cache (this size could be decreased, see instructions below);
 - Combined size of all cache entries (primary and backup) stored on this node. The size of an entry depends on many factors and is not the same as you expect for simple Java objects (see the table below).
-[block:callout]
-{
-  "type": "warning",
-  "body": "When calculating number of partitioned cache entries may be kept on a node, take into account that the affinity function may not distribute all entries among nodes equally.",
-  "title": ""
-}
-[/block]
+
 ## Cache memory usage
 
 Every cache instance takes additional overhead of sum:
