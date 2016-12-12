@@ -12,7 +12,7 @@ To pull the Ignite docker container use the following command:
 {
   "codes": [
     {
-      "code": "# Pull latest version.\nsudo docker pull apacheignite/ignite\n\n# Pull ignite version 1.7.0\nsudo docker pull apacheignite/ignite:1.7.0",
+      "code": "# Pull latest version.\nsudo docker pull apacheignite/ignite\n\n# Pull ignite version {ignite-version}\nsudo docker pull apacheignite/ignite:{ignite-version}",
       "language": "shell"
     }
   ]
@@ -23,7 +23,7 @@ To run Ignite docker container using `docker run`:
 {
   "codes": [
     {
-      "code": "# Run latest version.\nsudo docker run -it --net=host \n-e \"CONFIG_URI=$CONFIG_URI\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite \n\n# Run ignite version 1.4.0\nsudo docker run -it --net=host \n-e \"CONFIG_URI=$CONFIG_URI\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite:1.4.0 ",
+      "code": "# Run latest version.\nsudo docker run -it --net=host \n-e \"CONFIG_URI=$CONFIG_URI\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite \n\n# Run ignite version {ignite-version}\nsudo docker run -it --net=host \n-e \"CONFIG_URI=$CONFIG_URI\" \n[-e \"OPTION_LIBS=$OPTION_LIBS\"]\n[-e \"JVM_OPTS=$JVM_OPTS\"]\n...\napacheignite/ignite:{ignite-version}",
       "language": "shell"
     }
   ]
