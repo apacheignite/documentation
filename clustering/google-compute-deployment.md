@@ -53,6 +53,14 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
+
+[block:callout]
+{
+  "type": "success",
+  "title": "Preferred Ignite Version",
+  "body": "IGNITE_VERSION attribute can vary depending on an Apache Ignite version of interest."
+}
+[/block]
 7. Fill the required fields and run instances.
 8. Connect to the instances.
 9. To access the execution progress you need to know a `container id`. The following command will show the `container id`:
