@@ -89,6 +89,14 @@ or search image in `Community AMIs` by `Apache Ignite` keywords:
   ]
 }
 [/block]
+
+[block:callout]
+{
+  "type": "success",
+  "title": "Preferred Ignite Version",
+  "body": "IGNITE_VERSION attribute can vary depending on an Apache Ignite version of interest."
+}
+[/block]
 5. On the Tag Instance, set the value for `Name` tag. For example `ignite-node`
 6. Review and run instances.
 7. Connect to the instances [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
