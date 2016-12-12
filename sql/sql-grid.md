@@ -17,7 +17,7 @@ SQL Grid fully supports all SQL and DML commands including SELECT, UPDATE, INSER
   ]
 }
 [/block]
-There are several ways to connect to an Ignite cluster and start working with its data. The most generic one is to use common JDBC or ODBC APIs relying on corresponding Ignite's drivers. This approach is truly cross-platform and allows you connecting from analytical tools like Tableau or programming languages like PHP or Ruby. Alternatively, you can work with SQL Grid using Java, .NET and C++ native APIs that were deliberately created for this programming languages.
+The In-Memory SQL Grid allows users to interact with the GridGain platform not only with the usage of natively developed APIs for Java, .NET and C++ but also using standard SQL commands through the GridGain JDBC or ODBC APIs. This provides true cross-platform connectivity from languages such as PHP, Ruby and more.
 
 ##Features and Topics
 * [Distributed Queries](doc:sql-queries) 
