@@ -1,4 +1,4 @@
-The Apache Ignite image allows you to set up a simple Apache Ignite cluster using the Google Compute Console. Installing via the image allows you to quickly deploy a Apache Ignite cluster.
+The Apache Ignite image allows you to set up a simple Apache Ignite cluster using the Google Compute Console. Installing via the image allows you to quickly deploy an Apache Ignite cluster.
 [block:api-header]
 {
   "type": "basic",
@@ -16,12 +16,12 @@ The Apache Ignite image allows you to set up a simple Apache Ignite cluster usin
   ]
 }
 [/block]
-For information please refer to [cloud.google.com](https://cloud.google.com/compute/docs/images#import_an_image)
+For more information, please refer to [cloud.google.com](https://cloud.google.com/compute/docs/images#import_an_image)
 
 2. Go to `Google Compute Console`.
 3. Go to `Compute->Compute Engine->VM` instances and click on `New instance`.
 4. Click on `Change` button in section `Boot disk`.
-5. Go to `Custom images` and choose imported image. On the screenshot the image is with `ignite-name` name.
+5. Go to `Custom images` and choose the imported image. On the screenshot below, you can see image with `ignite-name` name.
 [block:image]
 {
   "images": [
@@ -37,7 +37,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
-6. Click on `Management, disk, networking, access & security options` and add any of the following configuration parameters.
+6. Click on `Management, disk, networking, access & security options` and add any of the following configuration parameters -
 [block:parameters]
 {
   "data": {
@@ -70,7 +70,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   "rows": 5
 }
 [/block]
-
+as shown in the figure below:
 [block:image]
 {
   "images": [
@@ -91,7 +91,7 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
 {
   "type": "success",
   "title": "Preferred Ignite Version",
-  "body": "IGNITE_VERSION attribute can vary depending on an Apache Ignite version of interest."
+  "body": "IGNITE_VERSION attribute can vary depending on the Apache Ignite version of interest."
 }
 [/block]
 7. Fill the required fields and run instances.
