@@ -5,7 +5,7 @@ Docker allows to package Ignite deployment with all the dependencies into a stan
   "title": "Start Ignite Docker Container"
 }
 [/block]
-For running docker container, you need to pull and start a docker image. By default, the latest version is downloaded. You can see a full list of tags here: [https://hub.docker.com](https://hub.docker.com/r/apacheignite/ignite/tags)
+For running docker container, you need to pull and start a docker image. By default, the latest version is downloaded. You can see a full list of tags [here](https://hub.docker.com/r/apacheignite/ignite/tags)
 
 To pull the Ignite docker container use the following command:
 [block:code]
