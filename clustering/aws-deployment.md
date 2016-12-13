@@ -40,7 +40,7 @@ or search the image in `Community AMIs` by using `Apache Ignite` keyword:
 [/block]
 2. Choose an `Instance Type`.
 3. Go to `Configure Instance` and expand `Advanced Details` section.
-4. Add any of the following configuration parameters:
+4. Add any of the following configuration parameters-
 [block:parameters]
 {
   "data": {
@@ -73,7 +73,7 @@ or search the image in `Community AMIs` by using `Apache Ignite` keyword:
   "rows": 5
 }
 [/block]
-
+as shown in the image below:
 [block:image]
 {
   "images": [
