@@ -37,7 +37,22 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
   ]
 }
 [/block]
-6. Click on `Management, disk, networking, access & security options` and add any of the configuration parameters for the Ignite docker container.
+6. Click on `Management, disk, networking, access & security options` and add any of the following configuration parameters.
+[block:parameters]
+{
+  "data": {
+    "h-0": "Name",
+    "h-1": "Description",
+    "h-2": "Default",
+    "h-3": "Example",
+    "0-0": "`CONFIG_URI`",
+    "0-1": "URL to the Ignite configuration file (can also be relative to the  META-INF folder on the class path). The downloaded config file will be saved to ./ignite-config.xml"
+  },
+  "cols": 4,
+  "rows": 5
+}
+[/block]
+
 [block:image]
 {
   "images": [
