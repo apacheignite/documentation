@@ -63,7 +63,8 @@ For information please refer to [cloud.google.com](https://cloud.google.com/comp
     "4-3": "1.7.0",
     "3-3": "`http://central.maven.org/maven2/io/undertow/undertow-servlet/1.3.10.Final/undertow-servlet-1.3.10.Final.jar,http://central.maven.org/maven2/io/undertow/undertow-build-config/1.0.0.Beta24/undertow-build-config-1.0.0.Beta24.jar`",
     "2-3": "`-Xms1g -Xmx1g -server -XX:+AggressiveOpts -XX:MaxPermSize=256m`",
-    "1-3": "`ignite-aws,ignite-aop`"
+    "1-3": "`ignite-aws,ignite-aop`",
+    "0-3": "`https://raw.githubusercontent.com/apache/ignite/\nmaster/examples/config/example-cache.xml`"
   },
   "cols": 4,
   "rows": 5
