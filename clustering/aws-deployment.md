@@ -1,11 +1,11 @@
-The Apache Ignite AMI (Amazon Machine Image) allows you to set up a simple Apache Ignite cluster using the Amazon Web Services EC2 Management Console. Installing via the AMI allows you to quickly deploy a Apache Ignite cluster.
+The Apache Ignite AMI (Amazon Machine Image) allows you to set up a simple Apache Ignite cluster using the Amazon Web Services EC2 Management Console. Installing via the AMI allows you to quickly deploy an Apache Ignite cluster.
 [block:api-header]
 {
   "type": "basic",
   "title": "Amazon EC2 Deployment"
 }
 [/block]
-1. Choose the required region and click on link in table below.
+1. Choose the required region and click on the link in the table below
 [block:parameters]
 {
   "data": {
@@ -22,7 +22,7 @@ The Apache Ignite AMI (Amazon Machine Image) allows you to set up a simple Apach
   "rows": 3
 }
 [/block]
-or search image in `Community AMIs` by `Apache Ignite` keywords:
+or search the image in `Community AMIs` by using `Apache Ignite` keyword:
 [block:image]
 {
   "images": [
