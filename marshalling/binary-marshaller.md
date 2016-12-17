@@ -1,6 +1,6 @@
 * [Basic Concepts](#basic-concepts)
 * [BinaryObject Equality](r#binaryobject-equality)
-* [Changing Default Binary Equals and Hash Code Behavior](#changing-default-binary-equals-and-hash-code-behav)
+* [Handling Hash Code Generation and Equals Execution](#handling-hash-code-generation-and-equals-execution)
   - [Binary Identity Resolver Interface](#section-binary-identity-resolver-interface)
   - [BinaryArrayIdentityResolver](#section-binaryarrayidentityresolver)
   - [BinaryFieldIdentityResolver](#section-binaryfieldidentityresolver)
@@ -48,7 +48,7 @@ When an object is translated to the binary format, Ignite captures it's hash cod
 [block:api-header]
 {
   "type": "basic",
-  "title": "Changing Default Binary Equals and Hash Code Behavior"
+  "title": "Handling Hash Code Generation and Equals Execution"
 }
 [/block]
 Starting with Ignite 1.8, there's a way to explicitly specify the way to compute hash code for a binary object and corresponding equality comparison logic - to free yourself from need to specify hash codes for builder explicitly, or to bypass drawbacks of default behavior mentioned in the balloon in above section [BinaryObject Equality](#binaryobject-equality).
