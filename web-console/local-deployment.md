@@ -11,15 +11,8 @@ In order to deploy Ignite Web Console locally, you should install:
 
 * MongoDB (version >=3.2.x) follow instructions from site [http://docs.mongodb.org/manual/installation](http://docs.mongodb.org/manual/installation)
 * NodeJS (version >=6.5.x) using installer from site [https://nodejs.org/en/download/current](https://nodejs.org/en/download/current) for your OS.
-
-Download the following dependencies:
-* For backend:
-`cd $IGNITE_HOME/modules/web-console/backend`
-`npm install --no-optional`
-
-* For frontend:
-`cd $IGNITE_HOME/modules/web-console/frontend `
-`npm install --no-optional`
+*Change directory '$IGNITE_HOME/modules/web-console/src/main/js'.
+*Run "npm install --no-optional" in terminal for download dependencies.
 [block:api-header]
 {
   "type": "basic",
@@ -30,7 +23,7 @@ To build Ignite Web Agent from sources, run the following command from `$IGNITE_
 `mvn clean package -pl :ignite-web-agent -am -P web-console -DskipTests=true`
 
 Once the build process is over, you can find `ignite-web-agent-x.x.x.zip` in: 
-`$IGNITE_HOME/modules/web-console/web-agent/target`
+`$IGNITE_HOME/modules/web-agent/target`
 [block:api-header]
 {
   "type": "basic",
@@ -39,9 +32,9 @@ Once the build process is over, you can find `ignite-web-agent-x.x.x.zip` in:
 [/block]
 To run Ignite Web Console in development mode, you need to:
 * Configure MongoDB to run as service or in terminal start MongoDB by executing `mongod` command
-* Copy `ignite-web-agent-x.x.x.zip` to `$IGNITE_HOME/modules/web-console/backend/agent_dists` folder
-* In new terminal change directory to `$IGNITE_HOME/modules/web-console/backend`.
-If needed run `npm install --no-optional` (if dependencies changed) and run `npm start` to start backend
-* In new terminal change directory to '$IGNITE_HOME/modules/web-console/frontend'.
+* Copy `ignite-web-agent-x.x.x.zip` to `$IGNITE_HOME/modules/web-console/src/main/js/serve/agent_dists` folder
+* In new terminal change directory to `$IGNITE_HOME/modules/web-console/src/main/js`.
+If needed run `npm install --no-optional` (if dependencies changed) and run `node serve` to start backend
+* In new terminal change directory to '$IGNITE_HOME/modules/web-console/src/main/js'.
 If needed run `npm install --no-optional` (if dependencies changed) and start webpack in development mode `npm run dev`
 * In browser open: http://localhost:9000
