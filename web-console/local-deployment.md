@@ -11,8 +11,8 @@ In order to deploy Ignite Web Console locally, you should install:
 
 * MongoDB (version >=3.2.x) follow instructions from site [http://docs.mongodb.org/manual/installation](http://docs.mongodb.org/manual/installation)
 * NodeJS (version >=6.5.x) using installer from site [https://nodejs.org/en/download/current](https://nodejs.org/en/download/current) for your OS.
-*Change directory '$IGNITE_HOME/modules/web-console/src/main/js'.
-*Run "npm install --no-optional" in terminal for download dependencies.
+* Change directory '$IGNITE_HOME/modules/web-console/src/main/js'.
+* Run "npm install --no-optional" in terminal for download dependencies.
 [block:api-header]
 {
   "type": "basic",
