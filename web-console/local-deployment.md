@@ -35,6 +35,6 @@ To run Ignite Web Console in development mode, you need to:
 * Copy `ignite-web-agent-x.x.x.zip` to `$IGNITE_HOME/modules/web-console/src/main/js/serve/agent_dists` folder
 * In new terminal change directory to `$IGNITE_HOME/modules/web-console/src/main/js`.
 If needed run `npm install --no-optional` (if dependencies changed) and run `node serve` to start backend
-* In new terminal change directory to '$IGNITE_HOME/modules/web-console/src/main/js'.
+* In new terminal change directory to `$IGNITE_HOME/modules/web-console/src/main/js`.
 If needed run `npm install --no-optional` (if dependencies changed) and start webpack in development mode `npm run dev`
 * In browser open: http://localhost:9000
