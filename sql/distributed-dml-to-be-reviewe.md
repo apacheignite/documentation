@@ -256,7 +256,7 @@ After the statement shown below gets executed the final Person's value will be "
   ]
 }
 [/block]
-This is similar to the execution of the query like that where `_val` appears before in the statement string.
+This is similar to the execution of the query like the one below where `_val` appears before in the statement string.
 [block:code]
 {
   "codes": [
