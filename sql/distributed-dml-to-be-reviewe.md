@@ -25,9 +25,9 @@ Apache Ignite SQL Grid allows not only selecting data that resides in Data Grid 
   "body": "DML queries, as well as all the `SELECT` queries, are SQL ANSI-99 compliant."
 }
 [/block]
-Since all the data is stored in Data Grid in a form of key-value entries, all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)` at some stage of a DML query execution.
+Since all the data is stored in Data Grid in a form of key-value entries, all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)` in some stage of a DML query execution.
 
-Let's have a deep look at how all these DML statements are implemented in practice and can be used by your application.
+Let's have a deep look at how all these DML statements are implemented and can be used by your application.
 [block:api-header]
 {
   "type": "basic",
@@ -36,12 +36,12 @@ Let's have a deep look at how all these DML statements are implemented in practi
 [/block]
 In general, all the DML statements can be divided into two groups. The ones that add new entries into a cache (`INSERT` and `MERGE`) and those which modify existed data (`UPDATE` and `DELETE`).
 
-To execute these statements in Java you need to use existed `SqlFieldsQuery` API that is described in [this section](https://apacheignite.readme.io/docs/sql-queries#section-sqlfieldsqueries) in terms of its usage for `SELECT` queries. The API is used by DML operations the same way as for read-only queries except that `QueryCursor<List<?>>`, that is returned by a `SqlFieldsQuery` as a result of DML statement execution, contains a single-item `List<?>` of `long` type and that item signifies a number of cache items that were affected by the DML statement.
+To execute these statements in Java you need to use existed `SqlFieldsQuery` API, that is described in [this section](https://apacheignite.readme.io/docs/sql-queries#section-sqlfieldsqueries) in terms of its usage for `SELECT` queries. The API is used by DML operations the same way as for read-only queries except that `QueryCursor<List<?>>`, that is returned by a `SqlFieldsQuery` as a result of DML statement execution, contains a single-item `List<?>` of `long` type and that item signifies a number of cache items that were affected by the DML statement.
 [block:callout]
 {
   "type": "info",
   "title": "Alternative APIs",
-  "body": "DML API is not limited by Java APIs only. You can connect to an Ignite cluster using ODBC or JDBC drivers and execute DML queries from their side. Learn more about additional APIs from the pages listed below:\n* [JDBC Driver](doc:jdbc-driver) \n* [ODBC Driver](doc:quering-data)"
+  "body": "DML API is not limited by Java APIs only. You can connect to an Ignite cluster using ODBC or JDBC drivers and execute DML queries from there. Learn more about additional APIs from the pages listed below:\n* [JDBC Driver](doc:jdbc-driver) \n* [ODBC Driver](doc:quering-data)"
 }
 [/block]
 
