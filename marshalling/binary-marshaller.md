@@ -1,9 +1,7 @@
 * [Basic Concepts](#basic-concepts)
-* [BinaryObject Equality](r#binaryobject-equality)
 * [Handling Hash Code Generation and Equals Execution](#handling-hash-code-generation-and-equals-execution)
-  - [Binary Identity Resolver Interface](#section-binary-identity-resolver-interface)
-  - [BinaryArrayIdentityResolver](#section-binaryarrayidentityresolver)
-  - [BinaryFieldIdentityResolver](#section-binaryfieldidentityresolver)
+  - [Binary Identity Resolver](#section-binary-identity-resolver-interface)
+  - [Binary Field Identity Resolver](#section-binary-field-identity-resolver)
 * [Configuring Binary Objects](#configuring-binary-objects)
 * [BinaryObject Cache API](#binaryobject-cache-api)
 * [Modifying Binary Objects Using BinaryObjectBuilder](#modifying-binary-objects-using-binaryobjectbuilder)
@@ -72,7 +70,7 @@ The identity resolver is set using `BinaryTypeConfiguration` object. The example
   ]
 }
 [/block]
-##BinaryFieldIdentityResolver
+##Binary Field Identity Resolver
 
 This type of identity resolvers uses values of specific object's fields for hash code calculation and for equality comparison. The resolver can be used instead of default `BinaryArrayIdentityResolver` in cases when you don't want to depend on the order the fields are serialized. `BinaryFieldIdentityResolver` uses only those fields that are listed in its configuration and traverse them in the order they are defined at the time when the hash code has to be generated or the object has to be compared to the other.
 [block:code]
