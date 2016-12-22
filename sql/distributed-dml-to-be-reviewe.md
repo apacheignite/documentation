@@ -65,7 +65,7 @@ In addition to all the fields marked with @QuerySqlField annotation or defined w
   ]
 }
 [/block]
-However, it's clear that in a variety of scenarios you prefer to work with individual fields rather than with a whole object value by executing queries like the following one:
+However, in a majority of use cases you prefer to work with individual fields rather than with a whole object value by executing queries like the following one:
 [block:code]
 {
   "codes": [
