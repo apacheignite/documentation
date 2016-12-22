@@ -103,7 +103,7 @@ DML engine will be able to recreate a Person object from `firstName` and `lastNa
 [/block]
 ##Custom Keys
 
-If you use only predefined SQL data types for cache keys then there is no need to perform additional manipulation with DML related configuration. Those types are defined by `GridQueryProcessor#SQL_TYPES` constant and listed below.
+If you use only predefined SQL data types for cache keys then there is no need to perform additional manipulation with DML related configuration. Those data types are defined by `GridQueryProcessor#SQL_TYPES` constant and listed below.
 [block:callout]
 {
   "type": "info",
@@ -112,7 +112,7 @@ If you use only predefined SQL data types for cache keys then there is no need t
 }
 [/block]
 However, once you decide to introduce a custom complex key and refer to its fields from DML statements you have to:
-- Define those fields in the `QueryEntity` the same way as you set fields of a value object type.
+- Define those fields in the `QueryEntity` the same way as you set fields for the value object.
 - Use the new configuration parameter `QueryEntitty.setKeyFields(..)` to distinguish key's fields from value's fields.
 
 The example below shows how to achieve this.
@@ -134,7 +134,7 @@ The example below shows how to achieve this.
 
 After you created a custom key and defined its fields using `QueryEntity` as it's shown above you need to take care of the hash code resolution and equality comparison .
 
-If there's a class for the key, then a result its `hashCode` method invocation is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
+If key's class is available in the runtime, then a result of `hashCode` method invocation is used serialized along with the key value and placed into the cache.
 
 Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is ultimately computed by its means regardless of the way binary object was created.
 
