@@ -60,7 +60,7 @@ This interface allows customizing the way the hash code generation logic works a
   ]
 }
 [/block]
-The identity resolver is set using `BinaryTypeConfiguration` object.
+The identity resolver is set using `BinaryTypeConfiguration` object. The example below shows how to do that.
 [block:code]
 {
   "codes": [
@@ -73,7 +73,8 @@ The identity resolver is set using `BinaryTypeConfiguration` object.
 }
 [/block]
 ##BinaryFieldIdentityResolver
-A resolver that hashes and compares only values of specified fields - much like IDE generated `equals` and `hashCode` do. With this resolver, fields traversal order is determined by configuration, hence it's more stable and predictable than the previous one. Its disadvantage is necessity to configure its fields list, while `BinaryArrayIdentityResolver` does not require any configuration at all. Configuration example is shown in the next section.
+
+This type of identity resolvers uses specific object's fields for hash code calculation and for equality comparison. The resolver can be used instead of default `BinaryArrayIdentityResolver` The or fields traversal order is determined by configuration, hence it's more stable and predictable than the previous one. Its disadvantage is necessity to configure its fields list, while `BinaryArrayIdentityResolver` does not require any configuration at all. Configuration example is shown in the next section.
 [block:api-header]
 {
   "type": "basic",
