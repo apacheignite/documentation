@@ -7,8 +7,10 @@
  * [INSERT](dml#section-insert)
  * [UPDATE](dml#section-update)
  * [DELETE](dml#section-delete)
+* [Modifications Order](#modifications-order)
+* [Concurrent Modifications](#concurrent-modifications)
+* [Known Limitation](#known-limitations)
 * [Example](#example)
-  
 [block:api-header]
 {
   "type": "basic",
@@ -24,9 +26,9 @@ Apache Ignite SQL Grid allows not only selecting data that resides in Data Grid 
   "body": "DML queries, as well as all the `SELECT` queries, are SQL ANSI-99 compliant."
 }
 [/block]
-Since all the data is stored in Data Grid in a form of key-value entries, all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)` at some stage of a DML query execution.
+Since all the data is stored in Data Grid in a form of key-value entries, all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)` in some stage of a DML query execution.
 
-Let's have a deep look at how all these DML statements are implemented in practice and can be used by your application.
+Let's have a deep look at how all these DML statements are implemented and can be used by your application.
 [block:api-header]
 {
   "type": "basic",
@@ -35,12 +37,12 @@ Let's have a deep look at how all these DML statements are implemented in practi
 [/block]
 In general, all the DML statements can be divided into two groups. The ones that add new entries into a cache (`INSERT` and `MERGE`) and those which modify existed data (`UPDATE` and `DELETE`).
 
-To execute these statements in Java you need to use existed `SqlFieldsQuery` API that is described in [this section](https://apacheignite.readme.io/docs/sql-queries#section-sqlfieldsqueries) in terms of its usage for `SELECT` queries. The API is used by DML operations the same way as for read-only queries except that `QueryCursor<List<?>>`, that is returned by a `SqlFieldsQuery` as a result of DML statement execution, contains a single-item `List<?>` of `long` type and that item signifies a number of cache items that were affected by the DML statement.
+To execute these statements in Java you need to use existed `SqlFieldsQuery` API, that is described in [this section](https://apacheignite.readme.io/docs/sql-queries#section-sqlfieldsqueries) in terms of its usage for `SELECT` queries. The API is used by DML operations the same way as for read-only queries except that `QueryCursor<List<?>>`, that is returned by a `SqlFieldsQuery` as a result of DML statement execution, contains a single-item `List<?>` of `long` type and that item signifies a number of cache items that were affected by the DML statement.
 [block:callout]
 {
   "type": "info",
   "title": "Alternative APIs",
-  "body": "DML API is not limited by Java APIs only. You can connect to an Ignite cluster using ODBC or JDBC drivers and execute DML queries from their side. Learn more about additional APIs from the pages listed below:\n* [JDBC Driver](doc:jdbc-driver) \n* [ODBC Driver](doc:quering-data)"
+  "body": "DML API is not limited by Java APIs only. You can connect to an Ignite cluster using ODBC or JDBC drivers and execute DML queries from there. Learn more about additional APIs from the pages listed below:\n* [JDBC Driver](doc:jdbc-driver) \n* [ODBC Driver](doc:quering-data)"
 }
 [/block]
 
@@ -52,7 +54,7 @@ To execute these statements in Java you need to use existed `SqlFieldsQuery` API
 [/block]
 To start using DML operations in Ignite you would need to configure queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). Those are the fields that belong either to a cache key or value and you directly refer to them in a DML statement.
 
-In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields link to whole key and value objects stored in a cache and it's feasible to use them directly inside of DML statements as it's shown below:
+In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields reference to whole key and value objects stored in a cache and it's feasible to use them directly inside of DML statements as it's shown below:
 [block:code]
 {
   "codes": [
@@ -64,7 +66,7 @@ In addition to all the fields marked with @QuerySqlField annotation or defined w
   ]
 }
 [/block]
-However, it's clear that in a variety of scenarios you prefer to work with individual fields rather than with a whole object value by executing queries like the following one:
+However, in a majority of use cases you prefer to work with concrete fields rather than with a whole object value by executing queries like the one below:
 [block:code]
 {
   "codes": [
@@ -102,7 +104,7 @@ DML engine will be able to recreate a Person object from `firstName` and `lastNa
 [/block]
 ##Custom Keys
 
-If you use only predefined SQL data types for cache keys then there is no need to perform additional manipulation with DML related configuration. Those types are defined by `GridQueryProcessor#SQL_TYPES` constant and listed below.
+If you use only predefined SQL data types for cache keys then there is no need to perform additional manipulation with DML related configuration. Those data types are defined by `GridQueryProcessor#SQL_TYPES` constant and listed below.
 [block:callout]
 {
   "type": "info",
@@ -111,7 +113,7 @@ If you use only predefined SQL data types for cache keys then there is no need t
 }
 [/block]
 However, once you decide to introduce a custom complex key and refer to its fields from DML statements you have to:
-- Define those fields in the `QueryEntity` the same way as you set fields of a value object type.
+- Define those fields in the `QueryEntity` the same way as you set fields for the value object.
 - Use the new configuration parameter `QueryEntitty.setKeyFields(..)` to distinguish key's fields from value's fields.
 
 The example below shows how to achieve this.
@@ -131,20 +133,9 @@ The example below shows how to achieve this.
 [/block]
 ## HashCode Resolution and Equality Comparision for Custom Keys 
 
-After you created a custom key and defined its fields using `QueryEntity` as it's shown above you need to take care of the hash code resolution and equality comparison .
+After you created a custom key and defined its fields using `QueryEntity` as it's shown above you need to take care of the way the hash code is calculated for the key and the way the key is compared with others.
 
-If there's a class for the key, then a result its `hashCode` method invocation is used for its binary representation. It happens when `IgniteBinary#toBinary` is called - implicitly or explicitly.
-
-Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is ultimately computed by its means regardless of the way binary object was created.
-
-But DML engine also computes hash code for binary objects created with `BinaryObjectBuilder` even when there's no `BinaryIdentityResolver` set for a binary type in configuration - it does so because in this case there's no way for a user to specify hash code to builder manually.
-[block:callout]
-{
-  "type": "info",
-  "body": "When no `BinaryIdentityResolver` is set for a binary type in configuration, and keys (or values) are built from scratch by DML engine (i.e. column values for particular fields of key and/or value are present in DML query), [BinaryArrayIdentityResolver](doc:binary-marshaller#section-binaryarrayidentityresolver) is used **both for hashing and equality comparisons**."
-}
-[/block]
-
+By default [BinaryArrayIdentityResolver](http://apacheignite.gridgain.org/v1.8/docs/binary-marshaller#handling-hash-code-generation-and-equals-execution) is used for the hash code calculation and equality comparison of all the objects that are serialized and stored or transferred in Ignite. The same resolver will be used for your custom complex keys unless you change it to [BinaryFieldIdentityResolver](http://apacheignite.gridgain.org/docs/binary-marshaller#section-binary-field-identity-resolver), that is more suitable for keys used in DML statements, or switch to your custom resolver.
 [block:api-header]
 {
   "type": "basic",
@@ -155,7 +146,7 @@ But DML engine also computes hash code for binary objects created with `BinaryOb
 
 `MERGE` is one of the most straightforward operations because it's translated into `cache.put(...)` and `cache.putAll(...)` operations depending on a number of rows that should be inserted or updated as a part of the `MERGE` query.
 
-The examples below show how to update a data set with a `MERGE` command by either providing  a list of entries or injecting a result of a subquery execution. 
+The examples below show how to update the data set with a `MERGE` command by either providing  a list of entries or injecting a result of a subquery execution. 
 [block:code]
 {
   "codes": [
@@ -242,6 +233,139 @@ This is simple example shows how to execute a `DELETE` query in Apache Ignite.
 }
 [/block]
 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Modifications Order"
+}
+[/block]
+If a DML statement inserts/updates the whole value referring to `_val` field and at the same time tries to modify a field that belongs to `_val` then the order the changes are applied is the following:
+- The `_val` is updated/inserted first.
+- The field gets updated.
+
+The order never changes regardless of the fact how you define it in the DML statement.
+
+After the statement shown below gets executed the final Person's value will be "Mike Smith" ignoring the fact that `_val` field appears after `firstName` in the query.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "cache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, _val)\" +\n           \" VALUES(?, ?, ?)\").setArgs(1L, \"Mike\", new Person(\"John\", \"Smith\")));",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+This is similar to the execution of the query like the one below where `_val` appears before in the statement string.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "cache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, _val, firstName)\" +\n           \" VALUES(?, ?, ?)\").setArgs(1L, new Person(\"John\", \"Smith\"), \"Mike\"));",
+      "language": "java",
+      "name": "Java"
+    }
+  ]
+}
+[/block]
+The order the changes are applied for `_val` and its fields is the same for `INSERT`, `UPDATE` and `MERGE` statements.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Concurrent Modifications"
+}
+[/block]
+As it's explained above, `UPDATE` and `DELETE` statements generate `SELECT` queries internally in order to get a set of the cache entries that have to be modified as a result of the statement execution. The keys from the set are not locked and there is a chance that the values that belong to the keys will be modified by other queries concurrently. A special technique is implemented by DML engine that, first, avoids locking of the keys and, second, guarantees that the values will be up-to-date at the time they will be updated by a DML statement.
+
+Basically, the engine detects a subset of the cache entries which were modified concurrently and re-executes the `SELECT` statement limiting its scope to the modified keys only.
+
+Let's say the following `UPDATE` statement is being executed.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Adding the cache entry.\ncache.put(1, new Person(\"John\", \"Smith\");\n          \n// Updating the entry.          \ncache.query(new SqlFieldsQuery(\"UPDATE Person set firstName = ? \" +\n         \"WHERE lastName = ?\").setArgs(\"Mike\", \"Smith\"));",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Before `firstName` and `lastName` are updated the DML engine will generate the `SELECT` query to get cache entries that satisfy `UPDATE` statement `WHERE` clause. The statement will be the following.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SELECT _key, _value, \"Mike\" from Person WHERE lastName = \"Smith\"",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+Right after that the entry that was retrieved​ with the `SELECT` can be updated concurrently.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "cache.put(1, new Person(\"Sarah\", \"Connor\"))",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+The DML engine will find out that the entry with key `1` was modified at the update phase of `UPDATE` query execution. After that it will stop the update and will re-execute a modified version the `SELECT` query in order to get latest entries' values:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SELECT _key, _value, \"Mike\" from Person WHERE secondName = \"Smith\"\n    AND _key IN (SELECT * FROM TABLE(KEY long = [ 1 ]))",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+This query will be executed only for outdated keys. In our example there is only one key that is `1`.
+
+This process will repeat until DML engine is sure at the update phase that all the entries that are going to be updated are up-to-date. The maximum number of attempts is equal to `4`. Presently there is no configuration parameter that changes this value.
+[block:callout]
+{
+  "type": "info",
+  "body": "DML engine doesn't re-execute the `SELECT` query for entries that are deleted concurrently​. The query is re-executed only for the entries that are still in the cache."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Known Limitations"
+}
+[/block]
+##Subqueries in WHERE clause
+
+Presently, subqueries used in `INSERT` and `MERGE` statements might be distributed if needed as well as `SELECT` queries automatically generated by `UPDATE` and `DELETE` statements. 
+
+However, if a subquery is executed as a part of  `WHERE` clause then it will not be distributed. For instance, the subquery that is used as a part of `IN` operator below will be executed over local data set only.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "DELETE FROM Person WHERE _key IN (SELECT _key FROM \"otherCache\".Person p WHERE p.salary > 2000)",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "success",
+  "body": "This limitation will be removed in the nearest Apache Ignite releases."
+}
+[/block]
+##EXPLAIN support for DML statements
+
+Presently `EXPLAIN` is not supported for DML operations.
+
+One possible approach is to execute `EXPLAIN` for the `SELECT` automatically generated (`UPDATE`, `DELETE`) or used (`INSERT`, `MERGE`) by DML statements. This will give an insight on the indexes that are used while a DML operation is executed.
 [block:api-header]
 {
   "type": "basic",
