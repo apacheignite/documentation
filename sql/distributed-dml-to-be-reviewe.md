@@ -7,6 +7,7 @@
  * [INSERT](dml#section-insert)
  * [UPDATE](dml#section-update)
  * [DELETE](dml#section-delete)
+* [Modifications Order](#modifications-order)
 
 
   
