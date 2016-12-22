@@ -8,6 +8,7 @@
  * [UPDATE](dml#section-update)
  * [DELETE](dml#section-delete)
 * [Modifications Order](#modifications-order)
+* [Concurrent Modifications](#concurrent-modifications)
 
 
   
