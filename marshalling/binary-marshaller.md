@@ -74,7 +74,19 @@ The identity resolver is set using `BinaryTypeConfiguration` object. The example
 [/block]
 ##BinaryFieldIdentityResolver
 
-This type of identity resolvers uses specific object's fields for hash code calculation and for equality comparison. The resolver can be used instead of default `BinaryArrayIdentityResolver` The or fields traversal order is determined by configuration, hence it's more stable and predictable than the previous one. Its disadvantage is necessity to configure its fields list, while `BinaryArrayIdentityResolver` does not require any configuration at all. Configuration example is shown in the next section.
+This type of identity resolvers uses values of specific object's fields for hash code calculation and for equality comparison. The resolver can be used instead of default `BinaryArrayIdentityResolver` in cases when you don't want to depend on the order the fields are serialized. `BinaryFieldIdentityResolver` uses only those fields that are listed in its configuration and traverse them in the order they are defined at the time when the hash code has to be generated or the object has to be compared to the other.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ....  \n  <property name=\"binaryConfiguration\">\n    <bean class=\"org.apache.ignite.configuration.BinaryConfiguration\">\n      <!-- Listing specific configuration for binary types -->\n      <property name=\"typeConfigurations\">\n        <list>\n          <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n            <property name=\"typeName\" value=\"org.app.Person\" />\n            \n            <!-- Setting BinaryFieldIdentityResolver for Person type -->\n            <property name=\"identityResolver\">\n              <bean class=\"org.apache.ignite.binary.BinaryFieldIdentityResolver\">\n                <!-- \n\t\t\t\t\t\t\t\t    Listing the fields which values will be used for the hash\n \t\t\t\t\t\t\t\t\t\tcalculation and equality comparision.\n\t\t\t\t\t\t\t\t-->\n                <property name=\"fieldNames\">\n                  <list>\n                     <value>id</value>\n                     <value>firstName</value>\n                  </list>\n                </property>\n              </bean>\n            </property>\n          </bean>\n        </list>\n      </property>\n    </bean>\n  </property>",
+      "language": "xml",
+      "name": "Binary Field Identity Resolver"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
