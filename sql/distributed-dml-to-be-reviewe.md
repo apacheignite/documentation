@@ -9,9 +9,8 @@
  * [DELETE](dml#section-delete)
 * [Modifications Order](#modifications-order)
 * [Concurrent Modifications](#concurrent-modifications)
-
-
-  
+* [Known Limitation](#known-limitations)
+* [Example](#example)
 [block:api-header]
 {
   "type": "basic",
