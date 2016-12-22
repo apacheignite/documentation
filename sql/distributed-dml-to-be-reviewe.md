@@ -272,49 +272,47 @@ The order the changes are applied for `_val` and its fields is the same for `INS
 [block:api-header]
 {
   "type": "basic",
-  "title": "UPDATE and DELETE Concurrency"
+  "title": "Concurrent Modifications"
 }
 [/block]
-As explained above, **UPDATE** and **DELETE** first perform **SELECT** and then modify filtered items - this may be viewed as a map-reduce of some sort by itself. No data is blocked after **SELECT**, and therefore it's possible that someone else's operation slips between **SELECT** and actual data modification thus probably rendering **SELECT** results invalid.
+As it's explained above, `UPDATE` and `DELETE` statements generate `SELECT` queries internally in order to get a set of the cache entries that have to be modified as a result of the statement execution. The keys from the set are not locked and there is a chance that the values that belong to the keys will be modified by other queries concurrently. A special technique is implemented by DML engine that, first, avoids locking of the keys and, second, guarantees that the values will be up-to-date at the time they will be updated by a DML statement.
 
-For example, if someone does a cache `put` while data is filtered *but not yet processed* by **UPDATE**, then value is not the same as it was during **SELECT**, and we don't know if it's still right to modify filtered item as long as **WHERE**'s criteria could have stopped holding true for it. To check for such situations, DML engine's entry processors check that current value stored in cache entry is equal (Java's `equals` wise) to that present in cache during **SELECT**.
+Basically, the engine detects a subset of the cache entries which were modified concurrently and re-executes the `SELECT` statement limiting its scope to the modified keys only.
 
-If some keys were modified concurrently, all of them are collected, and a **query re-run** is performed automatically. A re-run rewrites original query appending to its **WHERE** additional criteria **which limits its scope with the keys that failed to be updated previously.
-
-Say, if we had such query
+Let's say the following `UPDATE` statement is being executed.
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\n\ncache.query(new SqlFieldsQuery(\"UPDATE Person set firstName = ? \" +\n         \"WHERE secondName = ?\").setArgs(\"Mike\", \"Smith\"));",
+      "code": "// Adding the cache entry.\ncache.put(1, new Person(\"John\", \"Smith\");\n          \n// Updating the entry.          \ncache.query(new SqlFieldsQuery(\"UPDATE Person set firstName = ? \" +\n         \"WHERE lastName = ?\").setArgs(\"Mike\", \"Smith\"));",
       "language": "java"
     }
   ]
 }
 [/block]
-then it would generate such **SELECT** under the hood...
+Before `firstName` and `lastName` are updated the DML engine will generate the `SELECT` query to get cache entries that satisfy `UPDATE` statement `WHERE` clause. The statement will be the following.
 [block:code]
 {
   "codes": [
     {
-      "code": "SELECT _key, _value, \"Mike\" from Person WHERE secondName = \"Smith\"",
+      "code": "SELECT _key, _value, \"Mike\" from Person WHERE lastName = \"Smith\"",
       "language": "sql"
     }
   ]
 }
 [/block]
-And, if between running that **SELECT** and data modification someone had managed to interfere with this:
+Right after that the entry that was retrieved​ with the `SELECT` can be updated concurrently.
 [block:code]
 {
   "codes": [
     {
-      "code": "ignite.cache(\"personCache\").put(1L, new Person(\"Sarah\", \"Jones\"))",
+      "code": "cache.put(1, new Person(\"Sarah\", \"Connor\"))",
       "language": "java"
     }
   ]
 }
 [/block]
-then we would find **Sarah Jones** and not **John Smith** when DML engine's entry processor attempted to modify entry's value by setting it to **Mike Smith**. On a re-run, **SELECT** would look like this:
+The DML engine will find out that the entry with key `1` was modified at the update phase of `UPDATE` query execution. After that it will stop the update and will re-execute a modified version the `SELECT` query in order to get latest entries' values:
 [block:code]
 {
   "codes": [
@@ -325,18 +323,16 @@ then we would find **Sarah Jones** and not **John Smith** when DML engine's entr
   ]
 }
 [/block]
-Note the part after **AND**: this query preserves original condition and protects any unrelated entries from being changed by limiting its own scope with only particular set of keys (ones for which it failed before).
+This query will be executed only for outdated keys. In our example there is only one key that is `1`.
 
-If this query returns nothing for some key, then original criteria does not hold for that key anymore (`1` in our example), and no modification attempts are made for that key further.
-
-However, if some key gets **SELECT**ed again, DML engine attempts to modify its value again. And, of course, it could fail once more. Should that happen, a re-run is done again (of course, excluding those keys from previous re-run that have been processed successfully), and the process repeats, shrinking set of target keys with each attempt.
+This process will repeat until DML engine is sure at the update phase that all the entries that are going to be updated are up-to-date. The maximum number of attempts is equal to `4`. Presently there is no configuration parameter that changes this value.
 [block:callout]
 {
   "type": "info",
-  "body": "Should at some point entry disappear from the cache at all, no further attempts to do anything with it are made - in other words, a re-run is made only for the keys that are still present in cache, gone entries are ignored."
+  "body": "DML engine doesn't re-execute the `SELECT` query for entries that are deleted concurrently​. The query is re-executed only for the entries that are still in the cache."
 }
 [/block]
-Currently Ignite shall make at most **four** consecutive attempts to execute DML query as explained above - that is an initial attempt and at most three re-runs, if needed. Number of attempts is currently "hard coded" and probably some configuration param will be added in the future to set that, or maybe some set of predefined policies to control that behavior.
+
 [block:api-header]
 {
   "type": "basic",
