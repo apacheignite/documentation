@@ -33,28 +33,23 @@ The `IgniteBinary` facade, which can be obtained from an instance of Ignite, con
 [block:api-header]
 {
   "type": "basic",
-  "title": "BinaryObject Equality"
-}
-[/block]
-When an object is translated to the binary format, Ignite captures it's hash code and stores it alongside with the binary object fields. This way a proper and consistent hash code can be provided on all nodes in a cluster for any object. For the `equals` comparison, Ignite by default relies on binary representation of the serialized object.
-[block:callout]
-{
-  "type": "warning",
-  "body": "Note that since _by default_ `equals` works by comparing serialized forms of objects, it:\n * Compares all the fields in an object\n * Depends on the order in which fields are serialized\n * Effectively breaks `equals`/`hashCode` contract when hash code is taken from non binary object's form as described above (in this case hash code is computed by logic in user's class while `equals` still compares objects as if it had also hashed them)",
-  "title": "Binary Equals"
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
   "title": "Handling Hash Code Generation and Equals Execution"
 }
 [/block]
-Starting with Ignite 1.8, there's a way to explicitly specify the way to compute hash code for a binary object and corresponding equality comparison logic - to free yourself from need to specify hash codes for builder explicitly, or to bypass drawbacks of default behavior mentioned in the balloon in above section [BinaryObject Equality](#binaryobject-equality).
+By default when an object is serialized into the binary format, Ignite captures it's hash code and stores it alongside with the binary object fields. This way a proper and consistent hash code can be provided on all nodes in a cluster for any object. For the `equals` comparison, Ignite by default relies on binary representation of the serialized object comparing the whole byte array byte-by-byte.
 
-##Binary Identity Resolver interface
-This interface defines the way of hashing binary objects and comparing them for equality. Therefore, it's quite simple:
+However, this default implementation has a number of specificities: 
+ * Compares all the fields in an object
+ * Depends on the order in which fields are serialized
+ * Effectively breaks `equals`/`hashCode` contract when hash code is taken from non-binary object's form as described above (in this case hash code is computed by logic in user's class while `equals` still compares objects as if it had also hashed them)
+
+This default behavior is implemented by `BinaryArrayIdentityResolver` that is set globally for every object that serialized into the binary format.
+
+If the default approach is not suitable then you can customize it by implementing `BinaryIdentityResolver` or using alternate `BinaryFieldIdentityResolver` implementation. 
+
+##Binary Identity Resolver
+
+This interface allows customizing the way the hash code generation logic works and the way binary objects are checked for equality.
 [block:code]
 {
   "codes": [
@@ -65,15 +60,16 @@ This interface defines the way of hashing binary objects and comparing them for 
   ]
 }
 [/block]
-For your binary objects, you can introduce a custom implementation of that interface, or use one of those bundled with Ignite. Resolver can be set on a per type basis - configuration example will be given in section [Configuring Binary Objects](#configuring-binary-objects). Let's have a closer look at default implementations.
-
-##BinaryArrayIdentityResolver
-Simple resolver that does not require any configuration. It encompasses default logic - hash code is computed based on contents of byte array representing given object's field values, and `equals` compares contents of those arrays. As stated above, this implementation is fields order dependent and thus is not guaranteed to hash objects that are equal from the user's perspective in the same way, let alone compare them for equality in the same way.
-[block:callout]
+The identity resolver is set using `BinaryTypeConfiguration` object.
+[block:code]
 {
-  "type": "warning",
-  "title": "BinaryArrayIdentityResolver does not hash binary objects by default",
-  "body": "`BinaryArrayIdentityResolver` is the one that performs equality comparison in absence of a resolver set in configuration. Please note that nevertheless it does not hash anything by default - when no resolver is set for type in configuration, and binary objects either bear hash codes computed by their non-binary form counterparts, or those explicitly specified via `BinaryObjectBuilder` as described below in section [Modifying Binary Objects Using BinaryObjectBuilder](#modifying-binary-objects-using-binaryobjectbuilder)."
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ....  \n  <property name=\"binaryConfiguration\">\n    <bean class=\"org.apache.ignite.configuration.BinaryConfiguration\">\n      <!-- Listing specific configuration for binary types -->\n      <property name=\"typeConfigurations\">\n        <list>\n          <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n            <!-- Defining types that will used the custom resolver. -->\n            <property name=\"typeName\" value=\"org.app.model.*\"/>\n            \n            <!-- Setting the custom resolver for the types -->\n            <property name=\"identityResolver\">\n              <bean class=\"org.app.example.MyCustomIdentityResolver\"/>\n            </property>\n          </bean>\n          \n          <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n              <property name=\"typeName\" value=\"org.app.Person\" />\n            \n              <!-- Setting specific resolver for Person type -->\n              <property name=\"identityResolver\">\n                  <bean class=\"org.app.example.CustomPersonIdentityResolver\"/>\n              </property>\n          </bean>\n        </list>\n      </property>\n    </bean>\n  </property>",
+      "language": "xml",
+      "name": "Custom Identity Resolver Configuration"
+    }
+  ]
 }
 [/block]
 ##BinaryFieldIdentityResolver
