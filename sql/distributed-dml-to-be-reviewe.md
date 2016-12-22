@@ -53,7 +53,7 @@ To execute these statements in Java you need to use existed `SqlFieldsQuery` API
 [/block]
 To start using DML operations in Ignite you would need to configure queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). Those are the fields that belong either to a cache key or value and you directly refer to them in a DML statement.
 
-In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields link to whole key and value objects stored in a cache and it's feasible to use them directly inside of DML statements as it's shown below:
+In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields reference to whole key and value objects stored in a cache and it's feasible to use them directly inside of DML statements as it's shown below:
 [block:code]
 {
   "codes": [
