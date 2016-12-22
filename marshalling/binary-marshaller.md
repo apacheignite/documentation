@@ -1,6 +1,6 @@
 * [Basic Concepts](#basic-concepts)
 * [Handling Hash Code Generation and Equals Execution](#handling-hash-code-generation-and-equals-execution)
-  - [Binary Identity Resolver](#section-binary-identity-resolver-interface)
+  - [Binary Identity Resolver](#section-binary-identity-resolver)
   - [Binary Field Identity Resolver](#section-binary-field-identity-resolver)
 * [Configuring Binary Objects](#configuring-binary-objects)
 * [BinaryObject Cache API](#binaryobject-cache-api)
