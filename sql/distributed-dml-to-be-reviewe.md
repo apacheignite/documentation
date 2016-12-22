@@ -132,20 +132,9 @@ The example below shows how to achieve this.
 [/block]
 ## HashCode Resolution and Equality Comparision for Custom Keys 
 
-After you created a custom key and defined its fields using `QueryEntity` as it's shown above you need to take care of the hash code resolution and equality comparison .
+After you created a custom key and defined its fields using `QueryEntity` as it's shown above you need to take care of the way the hash code is calculated for the key and the way the key is compared with others.
 
-If key's class is available in the runtime, then a result of `hashCode` method invocation is used serialized along with the key value and placed into the cache.
-
-Also, when a `BinaryIdentityResolver` is set for a binary type in configuration as shown in [this section of Binary Marshaller doc](doc:binary-marshaller#changing-default-binary-equals-and-hash-code-behav), hash code is ultimately computed by its means regardless of the way binary object was created.
-
-But DML engine also computes hash code for binary objects created with `BinaryObjectBuilder` even when there's no `BinaryIdentityResolver` set for a binary type in configuration - it does so because in this case there's no way for a user to specify hash code to builder manually.
-[block:callout]
-{
-  "type": "info",
-  "body": "When no `BinaryIdentityResolver` is set for a binary type in configuration, and keys (or values) are built from scratch by DML engine (i.e. column values for particular fields of key and/or value are present in DML query), [BinaryArrayIdentityResolver](doc:binary-marshaller#section-binaryarrayidentityresolver) is used **both for hashing and equality comparisons**."
-}
-[/block]
-
+By default [BinaryArrayIdentityResolver](http://apacheignite.gridgain.org/v1.8/docs/binary-marshaller#handling-hash-code-generation-and-equals-execution) is used for the hash code calculation and equality comparison of all the objects that are serialized and stored or transferred in Ignite. The same resolver will be used for your custom complex keys unless you change it to [BinaryFieldIdentityResolver](http://apacheignite.gridgain.org/docs/binary-marshaller#section-binary-field-identity-resolver), that is more suitable for keys used in DML statements, or switch to your custom resolver.
 [block:api-header]
 {
   "type": "basic",
@@ -357,33 +346,6 @@ However, if some key gets **SELECT**ed again, DML engine attempts to modify its 
 }
 [/block]
 Currently Ignite shall make at most **four** consecutive attempts to execute DML query as explained above - that is an initial attempt and at most three re-runs, if needed. Number of attempts is currently "hard coded" and probably some configuration param will be added in the future to set that, or maybe some set of predefined policies to control that behavior.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Two-step and Local Operations"
-}
-[/block]
-**INSERT** and **MERGE** queries are capable of retrieving data for new cache keys and values from subqueries which are **SELECT**s declared by the user. **UPDATE** and **DELETE** queries  filter items that should be affected by them by running a **SELECT** query which, in case of **UPDATE**, also computes new values for updated columns. And, as explained [here](doc:distributed-queries) and [here](doc:local-queries), there are **distributed** and **local** queries. That said, **SELECT** for any DML operation (if any) may either be distributed (aka *two-step*) and local.
-
-##Local operations
-**SELECT** will run locally in precisely the same cases as stated in [Local Queries](doc:local-queries) doc - you can either:
-
-- force this flag in `SqlFieldsQuery`,
-- or execute a query on `LOCAL` cache,
-- or execute it against a `REPLICATED` cache on a node where the cache is deployed.
-
-Still, **actual data modification affects whole cache**, distributed or not, just as it would when doing an ordinary cache `put`, `replace`, or whatever.
-
-##Two-step operations
-These run **SELECT**s in map-reduce manner as explained in [Distributed Queries](doc:sql-queries) doc. **Actual data modification still affects whole cache.** 
-[block:callout]
-{
-  "type": "success",
-  "body": "All settings related with distrubuted joins, etc., are propagated from original `SqlFieldsQuery` to new one when doing a two-step **SELECT**, so that the user has more fine-grained control over its execution.",
-  "title": "Fine query settings are honored by DML too"
-}
-[/block]
-
 [block:api-header]
 {
   "type": "basic",
