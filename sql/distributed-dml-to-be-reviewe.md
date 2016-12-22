@@ -362,8 +362,11 @@ However, if a subquery is executed as a part of  `WHERE` clause then it will not
   "body": "This limitation will be removed in the nearest Apache Ignite releases."
 }
 [/block]
-##No EXPLAIN for DML operations
-Ignite performs DML operations in a very different way than a conventional RDBMS does. Therefore using H2's **EXPLAIN** output with DML operations as it's done with **SELECT**s does not look like a good solution. One possible approach is just to **EXPLAIN** the **SELECT** generated/used by DML operations (because in many cases there's one) - this will give insight on which indexes are used while executing DML operations. Probably this will be implemented in near future.
+##EXPLAIN support for DML statements
+
+Presently `EXPLAIN` is not supported for DML operations.
+
+One possible approach is to execute `EXPLAIN` for the `SELECT` automatically generated (`UPDATE`, `DELETE`) or used (`INSERT`, `MERGE`) by DML statements. This will give an insight on the indexes that are used while a DML operation is executed.
 [block:api-header]
 {
   "type": "basic",
