@@ -235,49 +235,39 @@ This is simple example shows how to execute a `DELETE` query in Apache Ignite.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Values' Fields Overriding Specificities"
+  "title": "Modifications Order"
 }
 [/block]
-##Field values override
-When `_key` (or `_val`) column value is given in DML query and that query also includes individual values from key (or value) columns correspondingly, first `_key` (or `_val`) column value is taken, and then individual field values are overridden, if any. For example, if we issue the following query,
+If a DML statement inserts/updates the whole value referring to `_val` field and at the same time tries to modify a field that belongs to `_val` then the order the changes are applied is the following:
+- The `_val` is updated/inserted first.
+- The field gets updated.
+
+The order never changes regardless of the fact how you define it in the DML statement.
+
+After the statement shown below gets executed the final Person's value will be "Mike Smith" ignoring the fact that `_val` field appears after `firstName` in the query.
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, \" + \t\t\t\t\t\t\t\t \"_val) VALUES(?, ?, ?)\").setArgs(1L, \"Mike\", new Person(\"John\",  \t\t\t\t\t\t\t \"Smith\")));",
+      "code": "cache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, firstName, _val)\" +\n           \" VALUES(?, ?, ?)\").setArgs(1L, \"Mike\", new Person(\"John\", \"Smith\")));",
       "language": "java"
     }
   ]
 }
 [/block]
-then DML engine will take `Person` named **John Smith** and passed as a query argument as the basis and set value of `firstName` field to **Mike**, and resulting `Person` will be **Mike Smith**, even though `_val` column in the query is mentioned _after_ `firstName`. This behavior holds for all DML operations that build keys and/or values to put to cache - namely, **MERGE**, **INSERT**, and **UPDATE**.
-
-###Field value overrides with **UPDATE**
-As stated in section [field values override](#section-field-values-override), **UPDATE** also honors value of `_val` column while processing rows. But, in contrary with **MERGE** and **INSERT**, **UPDATE** always deals only with existing entries - and that's why there's some value to `_val` column whose fields are modified by values for other columns (if any). For example, if we do this:
+This is similar to the execution of the query like that where `_val` appears before in the statement string.
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\n\ncache.query(new SqlFieldsQuery(\"UPDATE Person set firstName = ? \" +\n         \"WHERE _key = 1\").setArgs(\"Mike\"));",
+      "code": "cache.query(new SqlFieldsQuery(\"INSERT INTO Person(_key, _val, firstName)\" +\n           \" VALUES(?, ?, ?)\").setArgs(1L, new Person(\"John\", \"Smith\"), \"Mike\"));",
       "language": "java",
-      "name": "UPDATE field values override example 1"
+      "name": "Java"
     }
   ]
 }
 [/block]
-then resulting person will be **Mike Smith**, because **UPDATE** takes existing `_val` (**John Smith**) and updates its `firstName` field. And the following query
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<Long, Person> cache = ignite.cache(\"personCache\");\n\ncache.put(1L, new Person(\"John\", \"Smith\");\n\ncache.query(new SqlFieldsQuery(\"UPDATE Person set firstName = ?, \" +\n         \"_val = ? WHERE _key = 1\").setArgs(\"Mike\", new Person(\"Sarah\",\n         \"Jones\")));",
-      "language": "java",
-      "name": "UPDATE field values override example 2"
-    }
-  ]
-}
-[/block]
-will set the value for key `1L` to **Mike Jones** because new value for `_val` column is present (**Sarah Jones**) and it's taken as basis for the new key. It also can be positioned anywhere in updated columns list compared to values of individual fields.
+The order the changes are applied for `_val` and its fields is the same for `INSERT`, `UPDATE` and `MERGE` statements.
 [block:api-header]
 {
   "type": "basic",
