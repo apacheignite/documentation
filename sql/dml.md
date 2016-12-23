@@ -350,7 +350,7 @@ For instance, if there is a query like that
 {
   "codes": [
     {
-      "code": "DELETE FROM Person WHERE _key IN (SELECT personId FROM \"salary\".Salary s WHERE s.amount > 2000)",
+      "code": "DELETE FROM Person WHERE _key IN\n    (SELECT personId FROM \"salary\".Salary s WHERE s.amount > 2000)",
       "language": "sql"
     }
   ]
@@ -361,7 +361,7 @@ then DML engine will generate the `SELECT` query in order to get a list of entri
 {
   "codes": [
     {
-      "code": "SELECT _key, _val FROM Person WHERE _key IN (SELECT personId FROM \"salary\".Salary s WHERE s.amount > 2000)",
+      "code": "SELECT _key, _val FROM Person WHERE _key IN\n    (SELECT personId FROM \"salary\".Salary s WHERE s.amount > 2000)",
       "language": "sql"
     }
   ]
