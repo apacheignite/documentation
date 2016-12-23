@@ -1,0 +1,1 @@
+Although usually `UPDATE` and `DELETE` operations require performing
