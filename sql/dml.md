@@ -1,4 +1,4 @@
-* [Overview](#overview)
+* [Overview](doc:overview)
 * [DML API](#dml-api)
 * [Basic Configuration](#basic-configuration)
 * [Advanced Configuration](#advanced-configuration)
