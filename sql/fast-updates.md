@@ -4,7 +4,7 @@
   "title": "Overview"
 }
 [/block]
-This document is about deep optimization technique used by Ignite to speed up particular class of DML statements.
+This document is about deep optimization technique used by Ignite to speed up DML statements of particular kind.
 
 Although usually `UPDATE` and `DELETE` operations require performing a `SELECT` in order to filter keys and values to be processed later, in some cases that may be avoided and may lead to significant performance gains by effectively translating DML statements into cache operations without any additional overhead. Let's see why that happens and how this may be achieved.
 [block:api-header]
