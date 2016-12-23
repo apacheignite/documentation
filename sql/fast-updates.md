@@ -95,4 +95,4 @@ For simplicity, above example use primitive types both for key and value, althou
 `DELETE` statements follow the same optimization rules - the main thing to consider is the kind of filtering:
 - `_key` and, optionally, `_val` columns,
 - equality comparison for both key and value,
-- no expressions in condition and new value for `_val` (in case of `UPDATE`).
+- no expressions in condition.
