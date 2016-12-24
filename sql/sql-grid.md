@@ -33,4 +33,5 @@ The In-Memory SQL Grid allows users to interact with the GridGain platform not o
 
 ##SQL Grid Integrations and Tools
 * [Appache Zeppelin](https://apacheignite-mix.readme.io/docs/apache-zeppelin)
+* [Tableau](https://apacheignite-mix.readme.io/docs/tableau)
 * [PHP PDO](https://apacheignite-mix.readme.io/docs/php-pdo)
