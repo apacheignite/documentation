@@ -64,12 +64,16 @@ select name from Person where sex='M' and age = 30`. This way indexes will be us
 [block:api-header]
 {
   "type": "basic",
-  "title": "Overview"
+  "title": "Fast DML Operations"
 }
 [/block]
-This document is about deep optimization technique used by Ignite to speed up DML statements of particular kind.
+Usually `UPDATE` and `DELETE` statements require performing a `SELECT` query in order to prepare a set of cache entries to be processed later. In some situations, this can be avoided leading to significant performance gains by direct translation of DML statements into specific cache operations.
 
-Although usually `UPDATE` and `DELETE` operations require performing a `SELECT` in order to filter keys and values to be processed later, in some cases that may be avoided and may lead to significant performance gains by effectively translating DML statements into cache operations without any additional overhead. Let's see why that happens and how this may be achieved.
+To summarize the content of  [distributed DML](doc:dml) section The reasons why `UPDATE` and `DELETE` usually require performing a `SELECT` are as follows:
+
+1. A complex filter is present in `WHERE` condition - we really have to perform some work to figure out entries that will be affected by DML statement as query does not tell us as it is what has to be affected.
+2. _(valid only for `UPDATE`)_ Statement contains expressions - even if our `WHERE` is simple and directly points to the cache entry to be modified, and even more so if it's not, new column values could be computed by some functions or expressions. We have to run a `SELECT` to evaluate all of those in this case.
+3. _(valid only for `UPDATE`)_ Distinct fields of cache entry value are updated - we have to retrieve current value for a given key first, then modify it thus making new value object, then put it back to cache.
 [block:api-header]
 {
   "type": "basic",
