@@ -1,7 +1,8 @@
 The following page covers these topics:
 * [Using EXPLAIN](#using-explain-statement)
 * [Using H2 Debug Console](#using-h2-debug-console)
-* [Performance and Usability Considerations](#performance-and-usability-considerations)
+* [Performance and Usability Considerations](#sql-performance-and-usability-considerations)
+* [Advanced DML Optimizations](#advanced-dml-optimizations)
 
 To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.readme.io/docs/indexes#indexes-tradeoffs).
 [block:api-header]
@@ -49,7 +50,7 @@ When developing with Ignite sometimes it is useful to check if your tables and i
 [block:api-header]
 {
   "type": "basic",
-  "title": "Performance and Usability Considerations"
+  "title": "SQL Performance and Usability Considerations"
 }
 [/block]
 There are few common pitfalls that should be noticed when running SQL queries.
