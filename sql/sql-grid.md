@@ -29,7 +29,7 @@ The In-Memory SQL Grid allows users to interact with the GridGain platform not o
 * [JDBC Driver](doc:jdbc-driver) 
 * [ODBC Driver](doc:odbc-driver) 
 * [Geospatial Support](doc:geospatial-queries) 
-* [Performance and Debugging](doc:performance-and-debugging)
+* [Performance and Debugging](doc:sql-performance-and-debugging)
 
 ##SQL Grid Integrations and Tools
 * [Appache Zeppelin](https://apacheignite-mix.readme.io/docs/apache-zeppelin)
