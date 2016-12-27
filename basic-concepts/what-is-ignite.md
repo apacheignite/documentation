@@ -17,7 +17,6 @@ Apache Ignite<sup>tm</sup> In-Memory Data Fabric is a high-performance, integrat
 }
 [/block]
 ##Features
-
 You can view Ignite as a collection of independent, well-integrated, in-memory components geared to improve performance and scalability of your application. Some of these components include:
 
   * [Advanced Clustering](doc:cluster)
