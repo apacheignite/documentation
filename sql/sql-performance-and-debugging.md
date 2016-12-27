@@ -64,91 +64,51 @@ select name from Person where sex='M' and age = 30`. This way indexes will be us
 [block:api-header]
 {
   "type": "basic",
-  "title": "Fast DML Operations"
+  "title": "Advanced DML Optimizations"
 }
 [/block]
 Usually `UPDATE` and `DELETE` statements require performing a `SELECT` query in order to prepare a set of cache entries to be processed later. In some situations, this can be avoided leading to significant performance gains by direct translation of DML statements into specific cache operations.
 
-To summarize the content of [distributed DML](doc:dml) section, these are the reasons why `UPDATE` and `DELETE` automatically executed a `SELECT` query:
+To summarize the content of [distributed DML](doc:dml) section, these are the reasons why `UPDATE` and `DELETE` automatically execute a `SELECT` query:
 
-1. A complex filter is present in `WHERE` condition - we really have to perform some work to figure out entries that will be affected by DML statement as query does not tell us as it is what has to be affected.
-2. _(valid only for `UPDATE`)_ Statement contains expressions - even if our `WHERE` is simple and directly points to the cache entry to be modified, and even more so if it's not, new column values could be computed by some functions or expressions. We have to run a `SELECT` to evaluate all of those in this case.
-3. _(valid only for `UPDATE`)_ Distinct fields of cache entry value are updated - we have to retrieve current value for a given key first, then modify it thus making new value object, then put it back to cache.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "What Makes a Fast Operation?"
-}
-[/block]
-In accordance with the previous section, within the context of this document we call a *fast update* an `UPDATE` or `DELETE` operation that:
+1. A complex filtering is used in the `WHERE` clause of `UPDATE` or `DELETE` statement. This happens when a sophisticated and advanced entires filtering is used and DML engine need to do extra work in order to prepare the list of the entries that will be updated by the DML statement. 
+2. An `UPDATE` statement contains an expression. Even if the `WHERE` clause is simple and points to a cache entry to be modified directly with the usage of `_key` or `_value`, the execution result of an expression might result in new fields values. This is why DML engine has to execute the `SELECT` in order to evaluate expression's execution result.
+3. An `UPDATE` statement modifies specific fields belonging to a cache entry. DML engine needs to retrieve a current cache entry first, modify it and put back into the cache. 
 
-1. Does not require performing a `SELECT`.
-2. Updates single cache entry.
-3. Directly maps query "as is" to a cache operation.
+## Executing DML faster
 
-For above to be possible, such operation has to satisfy following criteria:
+To execute a DML operation in the fastest way the following requirements must be met:
+1. A DML operation must not trigger the `SELECT` query execution.
+2. The operation has to adjust a single cache entry.
 
-1. Filter only by key equality, and, *optionally*, value equality - no other conditions must be present.
-2. Filtering arguments for both key and value (if it's present) must be either present explicitly in query string as a constant, or must be taken from query params - in other words, `WHERE` part of a fast operation can't contain any function calls or expressions that need to be evaluated, as either would take making a `SELECT`, and that's what a fast operation strives to avoid.
-3. _(valid only for `UPDATE`)_ Set only `_val` column explicitly and no other columns - this condition provides for the lack of need to `SELECT` previous value and modify its fields.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Example"
-}
-[/block]
-Let's see an example:
+The following rules has to be followed in order to satisfy the requirements above: 
+1. Filter out cache entries with the usage of `_key` and `_val` keywords only.
+2. These arguments have to be used explicitly in a DML statements. Cache entries's fields or expressions mustn't be accessed and executed.
+3. If an `UPDATE` statement is executed then it has to update the whole cache entry (`_val`) rather than specific fields.
+
+Let's look into the following example.
 [block:code]
 {
   "codes": [
     {
-      "code": "IgniteCache<Integer, Integer> intCache = getIntCache();\n\nintCache.query(new SqlFieldsQuery(\"UPDATE Person SET _val = ?3 WHERE _key = ?1 and _val = ?2\").setArgs(7, 1, 2));",
+      "code": "cache.query(new SqlFieldsQuery(\"UPDATE Person SET _val = ?3\" +\n    \" WHERE _key = ?1 and _val = ?2\").setArgs(7, 1, 2));",
       "language": "java"
     }
   ]
 }
 [/block]
-As you may see, this `UPDATE` statement
-- explicitly tells us which cache entry has to be updated (by specifying `_key` that does not need to be computed but rather is provided directly),
-- sets `_val` explicitly again with directly provided value thus freeing us from necessity to `SELECT` and modify existing value,
-- imposts additional condition onto `_val` - cache contents will be modified only if current value for given key is equal to that of given parameter.
+The `UPDATE` statement does this:
+- Explicitly tells which cache entry needs to be updated by specifying `_key` the entry belongs to and entry's expected value (`_val`).
+- Updates the whole cache entry's value  with the usage of `_val` keyword.
 
-And thus it is effectively executed as following cache operation - please mind param indexes in previous code snippet to see for yourself that `7` corresponds to key while `1` and `2` correspond to expected old and new values for that key respectively.
+As a result the DML engine will execute the cache operation below as-is/
 [block:code]
 {
   "codes": [
     {
-      "code": "intCache.replace(7, 1, 2);",
+      "code": "cache.replace(7, 1, 2);",
       "language": "java"
     }
   ]
 }
 [/block]
-As said before, `_val` bound is optional, so query snippet could look like this
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<Integer, Integer> intCache = getIntCache();\n\nintCache.query(new SqlFieldsQuery(\"UPDATE Person SET _val = ?2 WHERE \" +\n \"_key = ?1\").setArgs(7, 2));",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-And it would the be directly mapped to
-[block:code]
-{
-  "codes": [
-    {
-      "code": "intCache.replace(7, 2);",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-For simplicity, above example use primitive types both for key and value, although of course either could be an object.
-
-`DELETE` statements follow the same optimization rules - the main thing to consider is the kind of filtering:
-- `_key` and, optionally, `_val` columns,
-- equality comparison for both key and value,
-- no expressions in condition.
