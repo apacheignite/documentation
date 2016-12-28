@@ -24,10 +24,10 @@ Load balancing component balances job distribution among cluster nodes. In Ignit
   "title": "Round-Robin Load Balancing"
 }
 [/block]
-`RoundRobinLoadBalancingSpi` iterates through nodes in round-robin fashion and picks the next sequential node. Two modes of operation are supported: per-task and global.
+`RoundRobinLoadBalancingSpi` iterates through nodes in round-robin fashion and picks the next sequential node. Two modes of operation are supported: per-task and global. Global mode is used be default.
 
 ##Per-Task Mode
-When configured in per-task mode, implementation will pick a random node at the beginning of every task execution and then sequentially iterate through all nodes in topology starting from the picked node. This is the default configuration For cases when split size is equal to the number of nodes, this mode guarantees that all nodes will participate in the split.
+When configured in per-task mode, implementation will pick a random node at the beginning of every task execution and then sequentially iterate through all nodes in topology starting from the picked node. For cases when split size is equal to the number of nodes, this mode guarantees that all nodes will participate in the split.
 
 ##Global Mode
 When configured in global mode, a single sequential queue of nodes is maintained for all tasks and the next node in the queue is picked every time. In this mode (unlike in per-task mode) it is possible that even if split size may be equal to the number of nodes, some jobs within the same task will be assigned to the same node whenever multiple tasks are executing concurrently.
