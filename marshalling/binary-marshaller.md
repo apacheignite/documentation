@@ -39,7 +39,7 @@ By default when an object is serialized into the binary format, Ignite captures 
 However, this default implementation has a number of specificities: 
  * Compares all the fields in an object.
  * Depends on the order in which fields are serialized.
- * Effectively breaks `equals`/`hashCode` contract when the hash code is taken from the non-binary object's form as described above (in this case, hash code is computed by logic in user's class while `equals` still compares objects as if it had also hashed them)
+ * Effectively breaks `equals`/`hashCode` contract when the hash code is taken from the non-binary object's form as described above (in this case, hash code is computed by the logic in user's class while `equals` still compares objects as if it had also hashed them).
 
 This default behavior is implemented by `BinaryArrayIdentityResolver` that is set globally for every object that serialized into the binary format.
 
