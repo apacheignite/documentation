@@ -37,13 +37,13 @@ The `IgniteBinary` facade, which can be obtained from an instance of Ignite, con
 By default when an object is serialized into the binary format, Ignite captures it's hash code and stores it alongside with the binary object fields. This way a proper and consistent hash code can be provided on all nodes in a cluster for any object. For the `equals` comparison, Ignite by default relies on binary representation of the serialized object comparing the whole byte array byte-by-byte.
 
 However, this default implementation has a number of specificities: 
- * Compares all the fields in an object
- * Depends on the order in which fields are serialized
- * Effectively breaks `equals`/`hashCode` contract when hash code is taken from non-binary object's form as described above (in this case hash code is computed by logic in user's class while `equals` still compares objects as if it had also hashed them)
+ * Compares all the fields in an object.
+ * Depends on the order in which fields are serialized.
+ * Effectively breaks `equals`/`hashCode` contract when the hash code is taken from the non-binary object's form as described above (in this case, hash code is computed by logic in user's class while `equals` still compares objects as if it had also hashed them)
 
 This default behavior is implemented by `BinaryArrayIdentityResolver` that is set globally for every object that serialized into the binary format.
 
-If the default approach is not suitable then you can customize it by implementing `BinaryIdentityResolver` or using alternate `BinaryFieldIdentityResolver` implementation. 
+If the default approach is not suitable, then you can customize it by implementing `BinaryIdentityResolver` or using alternate `BinaryFieldIdentityResolver` implementation. 
 
 ##Binary Identity Resolver
 
