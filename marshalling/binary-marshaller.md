@@ -42,7 +42,7 @@ If the default approach is not suitable, then you can customize it by implementi
 
 ##Binary Identity Resolver
 
-This interface allows customizing the way the hash code generation logic works and the way binary objects are checked for equality.
+This interface allows customizing the way the hash code generation logic works and the way binary objects are compared for equality.
 [block:code]
 {
   "codes": [
@@ -67,12 +67,12 @@ The identity resolver is set using `BinaryTypeConfiguration` object. The example
 [/block]
 ##Binary Field Identity Resolver
 
-This type of identity resolvers uses values of specific object's fields for hash code calculation and for equality comparison. The resolver can be used instead of default `BinaryArrayIdentityResolver` in cases when you don't want to depend on the order the fields are serialized. `BinaryFieldIdentityResolver` uses only those fields that are listed in its configuration and traverse them in the order they are defined at the time when the hash code has to be generated or the object has to be compared to the other.
+This type of identity resolvers use values of specific object's fields for hash code calculation and for equality comparison. The resolver can be used instead of the default `BinaryArrayIdentityResolver` in cases when you do not want the comparison result to depend on the order the fields are serialized. At the time hash code generation or object comparison, `BinaryFieldIdentityResolver` uses only those fields that are listed in the configuration and traverses them in the order they are defined in the configuration.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ....  \n  <property name=\"binaryConfiguration\">\n    <bean class=\"org.apache.ignite.configuration.BinaryConfiguration\">\n      <!-- Listing specific configuration for binary types -->\n      <property name=\"typeConfigurations\">\n        <list>\n          <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n            <property name=\"typeName\" value=\"org.app.Person\" />\n            \n            <!-- Setting BinaryFieldIdentityResolver for Person type -->\n            <property name=\"identityResolver\">\n              <bean class=\"org.apache.ignite.binary.BinaryFieldIdentityResolver\">\n                <!-- \n\t\t\t\t\t\t\t\t    Listing the fields which values will be used for the hash\n \t\t\t\t\t\t\t\t\t\tcalculation and equality comparision.\n\t\t\t\t\t\t\t\t-->\n                <property name=\"fieldNames\">\n                  <list>\n                     <value>id</value>\n                     <value>firstName</value>\n                  </list>\n                </property>\n              </bean>\n            </property>\n          </bean>\n        </list>\n      </property>\n    </bean>\n  </property>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ....  \n  <property name=\"binaryConfiguration\">\n    <bean class=\"org.apache.ignite.configuration.BinaryConfiguration\">\n      <!-- Listing specific configuration for binary types -->\n      <property name=\"typeConfigurations\">\n        <list>\n          <bean class=\"org.apache.ignite.binary.BinaryTypeConfiguration\">\n            <property name=\"typeName\" value=\"org.app.Person\" />\n            \n            <!-- Setting BinaryFieldIdentityResolver for Person type -->\n            <property name=\"identityResolver\">\n              <bean class=\"org.apache.ignite.binary.BinaryFieldIdentityResolver\">\n                <!-- \n\t\t\t\t\t\t\t\t    List of fields, whose values will be used for hash\n \t\t\t\t\t\t\t\t\t\tcalculation and equality comparision.\n\t\t\t\t\t\t\t\t-->\n                <property name=\"fieldNames\">\n                  <list>\n                     <value>id</value>\n                     <value>firstName</value>\n                  </list>\n                </property>\n              </bean>\n            </property>\n          </bean>\n        </list>\n      </property>\n    </bean>\n  </property>",
       "language": "xml",
       "name": "Binary Field Identity Resolver"
     }
