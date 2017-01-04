@@ -25,7 +25,7 @@ All `broadcast(...)` methods broadcast a given job to all nodes in the cluster o
       "name": "broadcast"
     },
     {
-      "code": "final Ignite ignite = Ignition.ignite();\n\n// Limit broadcast to remote nodes only and \n// enable asynchronous mode.\nIgniteCompute compute = ignite.compute(ignite.cluster().forRemotes()).withAsync();\n\n// Print out hello message on remote nodes in the cluster group.\ncompute.broadcast(() -> System.out.println(\"Hello Node: \" + ignite.cluster().localNode().id()));\n\nComputeTaskFuture<?> fut = compute.future():\n\nfut.listenAsync(f -> System.out.println(\"Finished sending broadcast job.\"));",
+      "code": "final Ignite ignite = Ignition.ignite();\n\n// Limit broadcast to remote nodes only and \n// enable asynchronous mode.\nIgniteCompute compute = ignite.compute(ignite.cluster().forRemotes()).withAsync();\n\n// Print out hello message on remote nodes in the cluster group.\ncompute.broadcast(() -> System.out.println(\"Hello Node: \" + ignite.cluster().localNode().id()));\n\nComputeTaskFuture<?> fut = compute.future():\n\nfut.listen(f -> System.out.println(\"Finished sending broadcast job.\"));",
       "language": "java",
       "name": "async broadcast"
     },
@@ -35,7 +35,7 @@ All `broadcast(...)` methods broadcast a given job to all nodes in the cluster o
       "name": "java7 broadcast"
     },
     {
-      "code": "final Ignite ignite = Ignition.ignite();\n\n// Limit broadcast to remote nodes only and \n// enable asynchronous mode.\nIgniteCompute compute = ignite.compute(ignite.cluster.forRemotes()).withAsync();\n\n// Print out hello message on remote nodes in the cluster group.\ncompute.broadcast(\n    new IgniteRunnable() {\n        @Override public void run() {\n            // Print ID of remote node on remote node.\n            System.out.println(\">>> Hello Node: \" + ignite.cluster().localNode().id());\n        }\n    }\n);\n\nComputeTaskFuture<?> fut = compute.future():\n\nfut.listenAsync(new IgniteInClosure<? super ComputeTaskFuture<?>>() {\n    public void apply(ComputeTaskFuture<?> fut) {\n        System.out.println(\"Finished sending broadcast job to cluster.\");\n    }\n});",
+      "code": "final Ignite ignite = Ignition.ignite();\n\n// Limit broadcast to remote nodes only and \n// enable asynchronous mode.\nIgniteCompute compute = ignite.compute(ignite.cluster.forRemotes()).withAsync();\n\n// Print out hello message on remote nodes in the cluster group.\ncompute.broadcast(\n    new IgniteRunnable() {\n        @Override public void run() {\n            // Print ID of remote node on remote node.\n            System.out.println(\">>> Hello Node: \" + ignite.cluster().localNode().id());\n        }\n    }\n);\n\nComputeTaskFuture<?> fut = compute.future():\n\nfut.listen(new IgniteInClosure<? super ComputeTaskFuture<?>>() {\n    public void apply(ComputeTaskFuture<?> fut) {\n        System.out.println(\"Finished sending broadcast job to cluster.\");\n    }\n});",
       "language": "java",
       "name": "java7 async broadcast"
     }
@@ -64,7 +64,7 @@ All `call(...)` and `run(...)` methods execute either individual jobs or collect
       "name": "run"
     },
     {
-      "code": "Collection<IgniteCallable<Integer>> calls = new ArrayList<>();\n \n// Iterate through all words in the sentence and create callable jobs.\nfor (String word : \"Count characters using callable\".split(\" \"))\n    calls.add(word::length);\n\n// Enable asynchronous mode.\nIgniteCompute asyncCompute = ignite.compute().withAsync();\n\n// Asynchronously execute collection of callables on the cluster.\nasyncCompute.call(calls);\n\nasyncCompute.future().listenAsync(fut -> {\n    // Total number of characters.\n    int total = fut.get().stream().mapToInt(Integer::intValue).sum(); \n  \n    System.out.println(\"Total number of characters: \" + total);\n});",
+      "code": "Collection<IgniteCallable<Integer>> calls = new ArrayList<>();\n \n// Iterate through all words in the sentence and create callable jobs.\nfor (String word : \"Count characters using callable\".split(\" \"))\n    calls.add(word::length);\n\n// Enable asynchronous mode.\nIgniteCompute asyncCompute = ignite.compute().withAsync();\n\n// Asynchronously execute collection of callables on the cluster.\nasyncCompute.call(calls);\n\nasyncCompute.future().listen(fut -> {\n    // Total number of characters.\n    int total = fut.get().stream().mapToInt(Integer::intValue).sum(); \n  \n    System.out.println(\"Total number of characters: \" + total);\n});",
       "language": "java",
       "name": "async call"
     },
@@ -103,7 +103,7 @@ A closure is a block of code that encloses its body and any outside variables us
       "name": "apply"
     },
     {
-      "code": "// Enable asynchronous mode.\nIgniteCompute asyncCompute = ignite.compute().withAsync();\n\n// Execute closure on all cluster nodes.\n// If the number of closures is less than the number of \n// parameters, then Ignite will create as many closures \n// as there are parameters.\nCollection<Integer> res = asyncCompute.apply(\n    String::length,\n    Arrays.asList(\"How many characters\".split(\" \"))\n);\n     \nasyncCompute.future().listenAsync(fut -> {\n    // Total number of characters.\n    int total = fut.get().stream().mapToInt(Integer::intValue).sum(); \n  \n    System.out.println(\"Total number of characters: \" + total);\n});",
+      "code": "// Enable asynchronous mode.\nIgniteCompute asyncCompute = ignite.compute().withAsync();\n\n// Execute closure on all cluster nodes.\n// If the number of closures is less than the number of \n// parameters, then Ignite will create as many closures \n// as there are parameters.\nCollection<Integer> res = asyncCompute.apply(\n    String::length,\n    Arrays.asList(\"How many characters\".split(\" \"))\n);\n     \nasyncCompute.future().listen(fut -> {\n    // Total number of characters.\n    int total = fut.get().stream().mapToInt(Integer::intValue).sum(); \n  \n    System.out.println(\"Total number of characters: \" + total);\n});",
       "language": "java",
       "name": "async apply"
     },
