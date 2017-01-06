@@ -17,7 +17,7 @@ SQL Grid fully supports all SQL and DML commands including SELECT, UPDATE, INSER
   ]
 }
 [/block]
-The In-Memory SQL Grid allows users to interact with the GridGain platform not only with the usage of natively developed APIs for Java, .NET and C++ but also using standard SQL commands through the GridGain JDBC or ODBC APIs. This provides true cross-platform connectivity from languages such as PHP, Ruby and more.
+The In-Memory SQL Grid allows users to interact with the Ignite platform not only with the usage of natively developed APIs for Java, .NET and C++ but also using standard SQL commands through the Ignite JDBC or ODBC APIs. This provides a true cross-platform connectivity from languages such as PHP, Ruby and more.
 
 ##Features and Topics
 * [Distributed Queries](doc:sql-queries) 
