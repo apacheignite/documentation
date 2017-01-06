@@ -2,7 +2,7 @@ Apache Ignite supports advanced indexing capabilities allowing you to define a s
 
 Indexes in Ignite are kept in a distributed fashion the same way as cache data sets. Each node that stores a specific subset of data keeps and maintains indexes corresponding to this data as well.
 
-From this documentation page you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
+From this documentation page, you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
 
 * [Annotation Based Configuration](#annotation-based-configuration)
  * [Registering Indexed Types](#section-registering-indexed-types)
@@ -19,7 +19,7 @@ From this documentation page you'll learn how to define and manage indexes as we
 [/block]
 Indexes, as well as queryable fields, can be configured from code with the usage of `@QuerySqlField` annotation.
 
-As it's shown in the example below desired fields have to be marked with this annotation in advance. 
+As shown in the example below, desired fields should be marked with this annotation in advance. 
 [block:code]
 {
   "codes": [
