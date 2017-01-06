@@ -1,4 +1,4 @@
-There is a number of SQL queries related properties that you can adjust in order to influence on queries execution behavior.
+There are a number of SQL queries related properties that you can adjust in order to influence the query execution behavior.
 
 The properties are divided into global ones that are exposed over `CacheConfiguration` and affect all the queries that will be executed over this cache and per-query properties.
 
