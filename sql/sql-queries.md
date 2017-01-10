@@ -1,6 +1,6 @@
 * [Overview](#overview)
 * [How SQL Queries Work](#how-sql-queries-work)
-* [Queries Types](#queries-types)
+* [Query Types](#query-types)
 * [Cross-Cache Queries](#cross-cache-queries)
 * [Distributed Joins](#distributed-joins)
 * [Example](#example)
@@ -50,7 +50,7 @@ Second, if a query is executed over a `PARTITIONED` cache, then the execution fl
 [block:api-header]
 {
   "type": "basic",
-  "title": "Queries Types"
+  "title": "Query Types"
 }
 [/block]
 There are two general types of SQL queries that are available at Java API level - `SqlQuery` and `SqlFieldsQuery` respectively. 
