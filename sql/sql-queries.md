@@ -10,9 +10,9 @@
   "title": "Overview"
 }
 [/block]
-Ignite supports free-form SQL queries truly without any limitations. The SQL syntax is ANSI-99 compliant which literally means that you can use any kind of SQL functions, aggregations, groupings or joins, defined by the specification, as a part of an SQL query.
+Ignite supports free-form SQL queries without any limitations. The SQL syntax is ANSI-99 compliant which means that you can use any kind of SQL functions, aggregations, groupings or joins, defined by the specification, as a part of an SQL query.
 
-Furthermore, the queries are fully distributed. The SQL engine is capable not only of mapping a query to specific nodes and reducing their responses into a final result set but it's also able to join data sets stored in different caches and even on various nodes. Lastly, it worth to mention, that the engine does this in a fault-tolerant fashion guaranteeing that you will never get an incomplete or wrong result due to a topology change event, that happens when a new node joins the cluster or an old one leaves it.
+Furthermore, the queries are fully distributed. The SQL engine is capable of not only mapping a query to specific nodes and reducing their responses into a final result set, it is also able to join data sets stored in different caches and even on various nodes. Lastly, it worth to mention, that the engine does this in a fault-tolerant fashion guaranteeing that you will never get an incomplete or wrong result due to a topology change event, that happens when a new node joins the cluster or an old one leaves it.
 [block:api-header]
 {
   "type": "basic",
