@@ -43,7 +43,7 @@ Second, if a query is executed over a `PARTITIONED` cache, then the execution fl
 {
   "type": "info",
   "title": "Execution Flow of Cross-Cache Queries",
-  "body": "The execution flow of cross-cache or join queries is not different from the one described for the `PARTITIONED` cache above and will covered later as a part of this documentation."
+  "body": "The execution flow of cross-cache or join queries is not different from the one described for the `PARTITIONED` cache above and will be covered later as part of this documentation."
 }
 [/block]
 
