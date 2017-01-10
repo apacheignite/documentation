@@ -23,7 +23,7 @@ Apache Ignite SQL Grid component is tightly coupled with [H2 Database](http://ww
 
 An embedded H2 instance is always started as a part of an Apache Ignite node process whenever `ignite-indexing` module is added to the node's classpath. Ignite leverages from H2's SQL query parser and optimizer as well as the execution planner. Lastly, H2 executes a query locally on a particular node (a distributed query is mapped to the node or the query is executed in `LOCAL` mode) and passes a local result to a distributed Ignite SQL engine for further processing. 
 
-However, the data as well as indexes, are always stored on Ignite Data Grid side. In addition, it's Ignite responsibility to make queries workable in a distributed and fault-tolerant way which is not supported by H2 in general. 
+However, the data, as well as indexes, are always stored on the Ignite Data Grid side. Additionally, Ignite executes queries in a distributed and fault-tolerant manner which is not supported by H2.
 
 In principle, there are two main ways of how a query is executed by Apache Ignite SQL Grid:
 
