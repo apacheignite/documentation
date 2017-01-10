@@ -104,7 +104,7 @@ Instead of selecting the whole object, you can choose to select only specific fi
   "title": "Cross-Cache Queries"
 }
 [/block]
-The data can be queried from multiple caches as a part of single `SqlQuery` or `SqlFieldsQuery`. In this case, cache names act as schema names in conventional RDBMS like SQL queries. The name of the cache, that is used to create an instance of either `SqlQuery` or `SqlFieldsQuery`,  will be used as a default schema name and does not need to be explicitly specified. The rest of the objects, that are stored in different caches and will be queried as well, has to be prefixed with the names of their caches (additional schemas names).
+Data can be queried from multiple caches as part of a single `SqlQuery` or `SqlFieldsQuery` query. In this case, cache names act as schema names in conventional RDBMS like SQL queries. The name of the cache, that is used to create an instance of either `SqlQuery` or `SqlFieldsQuery`,  will be used as a default schema name and does not need to be explicitly specified. The rest of the objects, that are stored in different caches and will be queried as well, have to be prefixed with the names of their caches (additional schemas names).
 [block:code]
 {
   "codes": [
@@ -116,7 +116,7 @@ The data can be queried from multiple caches as a part of single `SqlQuery` or `
   ]
 }
 [/block]
-In the example above an instance of `SqlFieldsQuery` is created from `personCache` which name is treated as a default schema name right after that. This is why `Person` object is accessed without explicitly specified schema name (`from Person as p`). As for `Organization` object, since it's stored in a separate cache named `orgCache`, the name of this cache must be set as a schema name explicitly in the query (`"orgCache".Organization as org`).
+In the example above, an instance of `SqlFieldsQuery` is created from `personCache` whose name is treated as a default schema name right after that. This is why `Person` object is accessed without explicitly specified schema name (`from Person as p`). As for `Organization` object, since it's stored in a separate cache named `orgCache`, the name of this cache must be set as a schema name explicitly in the query (`"orgCache".Organization as org`).
 [block:callout]
 {
   "type": "info",
