@@ -93,7 +93,7 @@ Instead of selecting the whole object, you can choose to select only specific fi
 [block:callout]
 {
   "type": "warning",
-  "body": "Before specific fields can be accessed inside of `SqlQuery` or `SqlFieldsQuery` they have to be annotated at a POJO level or defined in a `QueryEntity` so that the SQL engines becomes aware of them. Refer to [indexes](doc:indexes) related documentation that covers this in a nutshell.",
+  "body": "Before specific fields can be accessed inside of `SqlQuery` or `SqlFieldsQuery`, they have to be annotated at a POJO level or defined in a `QueryEntity` so that the SQL engines becomes aware of them. Refer to [indexes](doc:indexes) documentation that covers this topic.",
   "title": "Queryable Fields Definition"
 }
 [/block]
