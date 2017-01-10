@@ -154,6 +154,33 @@ Note that in `PESSIMISTIC` mode, the order of locking is important. Moreover, Ig
 [block:api-header]
 {
   "type": "basic",
+  "title": "Optimistic Transactions"
+}
+[/block]
+In `OPTIMISTIC` transactions, entry locks are acquired on primary nodes during the `prepare` step, then promoted to backup nodes and released once the transaction is committed. The locks are never acquired if the transaction is rolled back by user and no commit attempt was made. The following isolation levels can be configured with `OPTIMISTIC` concurrency mode:
+
+ * `READ_COMMITTED` -  Changes that should be applied to the cache are collected on the originating node and applied upon the transaction commit. Transaction data is read without a lock and is never cached in the transaction. The data may be read from a backup node if this is allowed in the cache configuration. In this isolation you can have so-called Non-Repeatable Reads because a concurrent transaction can change the data when you are reading the data twice in your transaction. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
+ 
+ * `REPEATABLE_READ`  - Transactions at this isolation level work similar to `OPTIMISTIC` `READ_COMMITTED` transactions with only one difference - read values are cached on the originating node and all subsequent reads are guaranteed to be local. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
+ 
+ * `SERIALIZABLE`  - Stores an entry version upon first read access. Ignite will fail a transaction at the commit stage if the Ignite engine detects that at least one of the entries used as  part of the initiated transaction has been modified. This is achieved by internally checking the version of an entry remembered in a transaction to the one actually in the grid at the time of commit. In short, this means that if Ignite detects that there is a conflict at the commit stage of a transaction, we fail such a transaction throwing `TransactionOptimisticException` & rolling back any changes made. User should handle this exception and retry the transaction.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteTransactions txs = ignite.transactions();\n\n// Start transaction in optimistic mode with serializable isolation level.\nwhile (true) {\n    try (Transaction tx =  \n         ignite.transactions().txStart(TransactionConcurrency.OPTIMISTIC,\n                                       TransactionIsolation.SERIALIZABLE)) {\n\t \t\t\t// Modify cache entires as part of this transacation.\n  \t\t\t....\n        \n  \t\t\t// commit transaction.  \n  \t\t\ttx.commit();\n\n      \t// Transaction succeeded. Leave the while loop.\n      \tbreak;\n    }\n    catch (TransactionOptimisticException e) {\n    \t\t// Transaction has failed. Retry.\n    }\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)) since the value of the entry could be important to the logic within the initiated transaction.
+
+Note that the key order is important for `READ_COMMITTED` and `REPEATABLE_READ` transactions since the locks are still acquired sequentially in these modes.
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Deadlock Detection"
 }
 [/block]
@@ -199,32 +226,6 @@ Note that if there are too few iterations, you may get an incomplete deadlock-re
 }
 [/block]
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Optimistic Transactions"
-}
-[/block]
-In `OPTIMISTIC` transactions, entry locks are acquired on primary nodes during the `prepare` step, then promoted to backup nodes and released once the transaction is committed. The locks are never acquired if the transaction is rolled back by user and no commit attempt was made. The following isolation levels can be configured with `OPTIMISTIC` concurrency mode:
-
- * `READ_COMMITTED` -  Changes that should be applied to the cache are collected on the originating node and applied upon the transaction commit. Transaction data is read without a lock and is never cached in the transaction. The data may be read from a backup node if this is allowed in the cache configuration. In this isolation you can have so-called Non-Repeatable Reads because a concurrent transaction can change the data when you are reading the data twice in your transaction. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
- 
- * `REPEATABLE_READ`  - Transactions at this isolation level work similar to `OPTIMISTIC` `READ_COMMITTED` transactions with only one difference - read values are cached on the originating node and all subsequent reads are guaranteed to be local. This mode combination does not check if the entry value has been modified since the first read or write access and never raises an optimistic exception.
- 
- * `SERIALIZABLE`  - Stores an entry version upon first read access. Ignite will fail a transaction at the commit stage if the Ignite engine detects that at least one of the entries used as  part of the initiated transaction has been modified. This is achieved by internally checking the version of an entry remembered in a transaction to the one actually in the grid at the time of commit. In short, this means that if Ignite detects that there is a conflict at the commit stage of a transaction, we fail such a transaction throwing `TransactionOptimisticException` & rolling back any changes made. User should handle this exception and retry the transaction.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteTransactions txs = ignite.transactions();\n\n// Start transaction in optimistic mode with serializable isolation level.\nwhile (true) {\n    try (Transaction tx =  \n         ignite.transactions().txStart(TransactionConcurrency.OPTIMISTIC,\n                                       TransactionIsolation.SERIALIZABLE)) {\n\t \t\t\t// Modify cache entires as part of this transacation.\n  \t\t\t....\n        \n  \t\t\t// commit transaction.  \n  \t\t\ttx.commit();\n\n      \t// Transaction succeeded. Leave the while loop.\n      \tbreak;\n    }\n    catch (TransactionOptimisticException e) {\n    \t\t// Transaction has failed. Retry.\n    }\n}",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-Another important point to note here is that a transaction will still fail even if an entry that was simply read (with no modify, cache.put(...)) since the value of the entry could be important to the logic within the initiated transaction.
-
-Note that the key order is important for `READ_COMMITTED` and `REPEATABLE_READ` transactions since the locks are still acquired sequentially in these modes.
 [block:api-header]
 {
   "type": "basic",
