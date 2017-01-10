@@ -77,7 +77,7 @@ There are two general types of SQL queries that are available at Java API level 
 [/block]
 ## SqlFieldsQueries
 
-Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose, Ignite implements a concept of `fields queries`. Basically, `SqlFieldsQuery` accepts a conventional ANSI-99 SQL query as its constructor​ parameter and executes it right away, as it's shown in the example below.  
+Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose, Ignite implements a concept of `fields queries`. Basically, `SqlFieldsQuery` accepts a conventional ANSI-99 SQL query as its constructor​ parameter and executes it, as shown in the example below.  
 [block:code]
 {
   "codes": [
