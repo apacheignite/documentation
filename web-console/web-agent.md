@@ -49,3 +49,58 @@ Available options with they descriptions:
 * `-n`, `--node-uri` - URI for connect to Ignite REST server, default value: `http://localhost:8080`
 * `-s`, `--server-uri` - URI for connect to Ignite Web Console, default value: `http://localhost:3001`
 * `-t`, `--tokens` - User's security tokens
+[block:api-header]
+{
+  "type": "basic",
+  "title": "HTTP proxy configuration"
+}
+[/block]
+Agent should be run with following options to use HTTP proxy:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "JVM_OPTS=\"-Dhttp.proxyHost=<proxy-username>:<proxy-password>@<proxy-hostname> -Dhttp.proxyPort=<proxy-port>\" ./ignite-web-agent.sh",
+      "language": "shell",
+      "name": null
+    }
+  ]
+}
+[/block]
+Detailed description http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
+[block:api-header]
+{
+  "type": "basic",
+  "title": "HTTPS proxy configuration"
+}
+[/block]
+Agent should be run with following options to use HTTPS proxy:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "JVM_OPTS=\"-Dhttps.proxyHost=<proxy-username>:<proxy-password>@<proxy-hostname> -Dhttps.proxyPort=<proxy-port>\" ./ignite-web-agent.sh",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Detailed description http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
+[block:api-header]
+{
+  "type": "basic",
+  "title": "SOCKS proxy configuration"
+}
+[/block]
+Agent should be run with following options to use SOCKS proxy:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "JVM_OPTS=\"-DsocksProxyHost=<proxy-hostname> -DsocksProxyPort=<proxy-port> -Djava.net.socks.username=<proxy-username> -Djava.net.socks.password=<proxy-password>\" ./ignite-web-agent.sh",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Detailed description http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
