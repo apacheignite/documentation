@@ -53,7 +53,7 @@ Second, if a query is executed over a `PARTITIONED` cache, then the execution fl
   "title": "Query Types"
 }
 [/block]
-There are two general types of SQL queries that are available at Java API level - `SqlQuery` and `SqlFieldsQuery` respectively. 
+There are two general types of SQL queries that are available at Java API level - `SqlQuery` and `SqlFieldsQuery`. 
 [block:callout]
 {
   "type": "info",
