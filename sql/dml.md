@@ -64,7 +64,7 @@ In addition to all the fields marked with @QuerySqlField annotation or defined w
   ]
 }
 [/block]
-If you prefer to work with concrete fields rather than the whole object value,  you execute a query like the one shown below:
+If you prefer to work with concrete fields rather than the whole object value,  you can execute a query like the one shown below:
 [block:code]
 {
   "codes": [
