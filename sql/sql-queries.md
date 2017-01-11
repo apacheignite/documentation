@@ -104,7 +104,7 @@ Instead of selecting the whole object, you can choose to select only specific fi
   "title": "Cross-Cache Queries"
 }
 [/block]
-Data can be queried from multiple caches as part of a single `SqlQuery` or `SqlFieldsQuery` query. In this case, cache names act as schema names in conventional RDBMS like SQL queries. The name of the cache, that is used to create an instance of either `SqlQuery` or `SqlFieldsQuery`,  will be used as a default schema name and does not need to be explicitly specified. The rest of the objects, that are stored in different caches and will be queried as well, have to be prefixed with the names of their caches (additional schemas names).
+Data can be queried from multiple caches as part of a single `SqlQuery` or `SqlFieldsQuery` query. In this case, cache names act as schema names in conventional RDBMS like SQL queries. The name of the cache that is used to create an instance of either `SqlQuery` or `SqlFieldsQuery` will be used as a default schema name and does not need to be explicitly specified. The rest of the objects, that are stored in different caches and will be queried, have to be prefixed with the names of their caches (additional schemas names).
 [block:code]
 {
   "codes": [
