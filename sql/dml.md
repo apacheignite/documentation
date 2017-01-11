@@ -64,7 +64,7 @@ In addition to all the fields marked with @QuerySqlField annotation or defined w
   ]
 }
 [/block]
-However, in a majority of use cases, you prefer to work with concrete fields rather than with a whole object value by executing queries like the one below:
+If you prefer to work with concrete fields rather than with a whole object value,  you execute a query like the one shown below:
 [block:code]
 {
   "codes": [
@@ -76,7 +76,7 @@ However, in a majority of use cases, you prefer to work with concrete fields rat
   ]
 }
 [/block]
-DML engine will be able to recreate a Person object from `firstName` and `lastName` and put it into a cache but those fields have to be defined using `QueryEntity` or `@QuerySqlField` annotation as it's shown below:
+DML engine will be able to recreate a Person object from `firstName` and `lastName`, and put it into a cache but those fields have to be defined using `QueryEntity` or `@QuerySqlField` annotation. For example:
 [block:code]
 {
   "codes": [
