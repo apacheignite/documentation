@@ -23,7 +23,7 @@ Apache Ignite SQL Grid component is tightly coupled with [H2 Database](http://ww
 
 An embedded H2 instance is always started as a part of an Apache Ignite node process whenever `ignite-indexing` module is added to the node's classpath. Ignite leverages from H2's SQL query parser and optimizer as well as the execution planner. Lastly, H2 executes a query locally on a particular node (a distributed query is mapped to the node or the query is executed in `LOCAL` mode) and passes a local result to a distributed Ignite SQL engine for further processing. 
 
-However, the data, as well as indexes, are always stored on the Ignite Data Grid side. Additionally, Ignite executes queries in a distributed and fault-tolerant manner which is not supported by H2.
+However, the data, as well as the indexes, are always stored in the Ignite Data Grid. Additionally, Ignite executes queries in a distributed and fault-tolerant manner which is not supported by H2.
 
 Theoretically, Ignite SQL Grid executes queries in two ways:
 
@@ -104,7 +104,7 @@ Instead of selecting the whole object, you can choose to select only specific fi
   "title": "Cross-Cache Queries"
 }
 [/block]
-Data can be queried from multiple caches as part of a single `SqlQuery` or `SqlFieldsQuery` query. In this case, cache names act as schema names in conventional RDBMS like SQL queries. The name of the cache that is used to create an instance of either `SqlQuery` or `SqlFieldsQuery` will be used as a default schema name and does not need to be explicitly specified. The rest of the objects, that are stored in different caches and will be queried, have to be prefixed with the names of their caches (additional schemas names).
+Data can be queried from multiple caches as part of a single `SqlQuery` or `SqlFieldsQuery` query. In this case, cache names act as schema names in conventional RDBMS like SQL queries. The name of the cache that is used to create an `IgniteCache` instance, that is used to execute the query, will be used as a default schema name and does not need to be explicitly specified. The rest of the objects, that are stored in different caches and will be queried, have to be prefixed with the names of their caches (additional schemas names).
 [block:code]
 {
   "codes": [
