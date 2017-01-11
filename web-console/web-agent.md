@@ -52,10 +52,18 @@ Available options with they descriptions:
 [block:api-header]
 {
   "type": "basic",
-  "title": "HTTP proxy configuration"
+  "title": "Proxy configuration"
 }
 [/block]
-Agent should be run with following options to use HTTP proxy:
+Proxy can be configured by passing system properties in `JVM_OPTS` environment variable to agent.
+
+Detailed description for each property can be found in documentation: http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
+
+## HTTP
+`http.proxyHost` - The hostname, or address, of the proxy server 
+`http.proxyPort` - The port number of the proxy server.
+
+For using proxy with authentication need set `http.proxyHost` using following pattern: `<proxy-username>:<proxy-password>@<proxy-hostname>`
 [block:code]
 {
   "codes": [
@@ -67,14 +75,11 @@ Agent should be run with following options to use HTTP proxy:
   ]
 }
 [/block]
-Detailed description http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
-[block:api-header]
-{
-  "type": "basic",
-  "title": "HTTPS proxy configuration"
-}
-[/block]
-Agent should be run with following options to use HTTPS proxy:
+## HTTPS
+`https.proxyHost` - The hostname, or address, of the proxy server 
+`https.proxyPort` - The port number of the proxy server.
+
+For using proxy with authentication need set `https.proxyHost` using following pattern: `<proxy-username>:<proxy-password>@<proxy-hostname>`
 [block:code]
 {
   "codes": [
@@ -85,14 +90,13 @@ Agent should be run with following options to use HTTPS proxy:
   ]
 }
 [/block]
-Detailed description http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
-[block:api-header]
-{
-  "type": "basic",
-  "title": "SOCKS proxy configuration"
-}
-[/block]
-Agent should be run with following options to use SOCKS proxy:
+## SOCKS
+`socksProxyHost ` - The hostname, or address, of the proxy server.
+`socksProxyPort ` - The port number of the proxy server.
+
+For using proxy with authentication:
+`java.net.socks.username` - Username.
+`java.net.socks.password` - Password.
 [block:code]
 {
   "codes": [
@@ -103,4 +107,3 @@ Agent should be run with following options to use SOCKS proxy:
   ]
 }
 [/block]
-Detailed description http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html

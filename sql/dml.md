@@ -17,7 +17,7 @@
   "title": "Overview"
 }
 [/block]
-Apache Ignite SQL Grid allows not only selecting data that resides in Data Grid using SQL ANSI-99 syntax but it makes it possible to modify that data with well-known DML statements like INSERT, UPDATE or DELETE. By taking advantage of this ability, you can work with Apache Ignite In-Memory Data Fabric as with an in-memory distributed database fully relying on its SQL capabilities. 
+Apache Ignite SQL Grid not only allows selecting data from the Data Grid, using SQL ANSI-99 syntax, it makes it possible to modify that data with well-known DML statements like INSERT, UPDATE, or DELETE. By taking advantage of this ability, you can work with Apache Ignite In-Memory Data Fabric as with an in-memory distributed database fully relying on its SQL capabilities. 
 
 [block:callout]
 {
@@ -26,18 +26,16 @@ Apache Ignite SQL Grid allows not only selecting data that resides in Data Grid 
   "body": "DML queries, as well as all the `SELECT` queries, are SQL ANSI-99 compliant."
 }
 [/block]
-Since all the data is stored in Data Grid in a form of key-value entries, all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)` in some stage of a DML query execution.
-
-Let's have a deep look at how all these DML statements are implemented and can be used by your application.
+Ignite stores all the data in memory in the form of key-value pairs and hence all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)`. Let's take a deep look at how the DML statements are implemented in Ignite.
 [block:api-header]
 {
   "type": "basic",
   "title": "DML API"
 }
 [/block]
-In general, all the DML statements can be divided into two groups. The ones that add new entries into a cache (`INSERT` and `MERGE`) and those which modify existed data (`UPDATE` and `DELETE`).
+In general, all the DML statements can be divided into two groups - Those that add new entries into a cache (`INSERT` and `MERGE`), and those that modify the existing data (`UPDATE` and `DELETE`).
 
-To execute these statements in Java you need to use existed `SqlFieldsQuery` API, that is described in [this section](https://apacheignite.readme.io/docs/sql-queries#section-sqlfieldsqueries) in terms of its usage for `SELECT` queries. The API is used by DML operations the same way as for read-only queries except that `QueryCursor<List<?>>`, that is returned by a `SqlFieldsQuery` as a result of DML statement execution, contains a single-item `List<?>` of `long` type and that item signifies a number of cache items that were affected by the DML statement.
+To execute these statements in Java, you need to use existed `SqlFieldsQuery` API, that is described in [this section](https://apacheignite.readme.io/docs/sql-queries#section-sqlfieldsqueries) in terms of its usage for `SELECT` queries. The API is used by DML operations the same way as for read-only queries except that `QueryCursor<List<?>>`, that is returned by a `SqlFieldsQuery` as a result of DML statement execution, contains a single-item `List<?>` of `long` type and that item signifies a number of cache items that were affected by the DML statement.
 [block:callout]
 {
   "type": "info",
@@ -52,9 +50,9 @@ To execute these statements in Java you need to use existed `SqlFieldsQuery` API
   "title": "Basic Configuration"
 }
 [/block]
-To start using DML operations in Ignite you would need to configure queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). Those are the fields that belong either to a cache key or value and you directly refer to them in a DML statement.
+To start using DML operations in Ignite you would need to configure queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). 
 
-In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields reference to whole key and value objects stored in a cache and it's feasible to use them directly inside of DML statements as it's shown below:
+In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields provide reference to key-value entries stored in a cache and can be used directly inside of DML statements as shown below:
 [block:code]
 {
   "codes": [
@@ -66,7 +64,7 @@ In addition to all the fields marked with @QuerySqlField annotation or defined w
   ]
 }
 [/block]
-However, in a majority of use cases you prefer to work with concrete fields rather than with a whole object value by executing queries like the one below:
+However, in a majority of use cases, you prefer to work with concrete fields rather than with a whole object value by executing queries like the one below:
 [block:code]
 {
   "codes": [
