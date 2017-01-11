@@ -190,9 +190,9 @@ This operation updates values in a cache on per field basis.
 
 Initially, SQL engine generates and executes a `SELECT` query based on the `UPDATE WHERE` clause and only after that it modifies the existing values that satisfy the clause result.
 
-The modification is performed via `cache.invokeAll(...)` operation. Basically, it means that once the result of the `SELECT` query is ready, SQL Engine will prepare a number of `EntryProcessors` and will execute all of them using `cache.invokeAll(...)` operation. While the data is being modified using `EntryProcessors`, additional checks will be performed to make sure that nobody has interfered between the `SELECT` and the actual update.
+The modification is performed via `cache.invokeAll(...)` operation. Basically, it means that once the result of the `SELECT` query is ready, SQL Engine will prepare a number of `EntryProcessor` and will execute all of them using `cache.invokeAll(...)` operation. While the data is being modified using `EntryProcessors`, additional checks will be performed to make sure that nobody has interfered between the `SELECT` and the actual update.
 
-The example below shows how to execute an `UPDATE` query in Apache Ignite.
+The following example shows how to execute an `UPDATE` query in Apache Ignite.
 [block:code]
 {
   "codes": [
@@ -216,9 +216,9 @@ The example below shows how to execute an `UPDATE` query in Apache Ignite.
 
 `DELETE` statements' execution is split into two phases and similar to the execution of `UPDATE` statements. 
 
-First, using a `SELECT` query SQL engine gathers those keys that satisfy the `WHERE` clause and have to be deleted. Next, after having all those keys at place, a number of `EntryProcessors` is created and executed with `cache.invokeAll(...)`. While the data will be being deleted this way, additional checks will be performed to be sure that nobody has interfered between the `SELECT` and the actual removal. 
+First, using a `SELECT` query SQL engine gathers those keys that satisfy the `WHERE` clause and have to be deleted. Next, after having all those keys in place, it creates a number of `EntryProcessor`  and executes them with `cache.invokeAll(...)`. While the data is being deleted, additional checks will be performed to make sure that nobody has interfered between the `SELECT` and the actual removal of the data. 
 
-This is simple example shows how to execute a `DELETE` query in Apache Ignite.
+The following example shows how to execute a `DELETE` query in Apache Ignite.
 [block:code]
 {
   "codes": [
