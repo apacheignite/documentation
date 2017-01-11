@@ -129,7 +129,7 @@ The example below shows how to achieve this.
   ]
 }
 [/block]
-## HashCode Resolution and Equality Comparision for Custom Keys 
+## HashCode Resolution and Equality Comparison for Custom Keys 
 
 After creating a custom key and defining its fields using `QueryEntity`, you need to take care of the way the hash code is calculated for the key, and the way the key is compared with others.
 
