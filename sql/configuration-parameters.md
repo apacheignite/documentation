@@ -36,7 +36,7 @@ The properties are divided into global ones that are exposed over `CacheConfigur
     "h-2": "Default Value",
     "h-3": "Supported Query Type",
     "0-0": "`setCollocated(...)`",
-    "0-1": "Collocation flag is used for optimization purposes. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node Ignite can make significant performance and network optimizations by grouping data on remote nodes.",
+    "0-1": "Collocation flag is used for optimization purposes of queries with GROUP BY statements. Whenever Ignite executes a distributed query, it sends sub-queries to individual cluster members. If you know in advance that the elements of your query selection are collocated together on the same node and you group by collocated key (primary or affinity key), then Ignite can make significant performance and network optimizations by grouping data on remote nodes.",
     "0-2": "`false`",
     "1-0": "`setDistributedJoins(...)`",
     "1-1": "Enables distributed non-collocated mode for a given query.",
