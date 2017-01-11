@@ -208,7 +208,7 @@ The example below shows how to execute an `UPDATE` query in Apache Ignite.
 [block:callout]
 {
   "type": "danger",
-  "title": "Inability to modify key or its fields with an UPDATE query",
+  "title": "Inability to modify a key or its fields with an UPDATE query",
   "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity), so now there's no way to update a key without removing it first."
 }
 [/block]
