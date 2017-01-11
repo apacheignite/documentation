@@ -188,11 +188,11 @@ The examples below show how to insert a data set with an `INSERT` command by eit
 
 This operation updates values in a cache on per field basis.
 
-Initially, SQL engine generates and executes a `SELECT` query based on `UPDATE's `WHERE` clause and only after that modifies existing values that satisfy the clause result.
+Initially, SQL engine generates and executes a `SELECT` query based on the `UPDATE WHERE` clause and only after that it modifies the existing values that satisfy the clause result.
 
-The modification is performed with the usage of `cache.invokeAll(...)` operation. Basically, it means that once the result of the `SELECT` query is ready, SQL Engine will prepare a number of `EntryProcessors` and will execute all of them using `cache.invokeAll(...)` operation. Next, while the data will be being modified using `EntryProcessors` additional checks will be performed to be sure  that nobody has interfered between the `SELECT` and the actual update.
+The modification is performed via `cache.invokeAll(...)` operation. Basically, it means that once the result of the `SELECT` query is ready, SQL Engine will prepare a number of `EntryProcessors` and will execute all of them using `cache.invokeAll(...)` operation. While the data is being modified using `EntryProcessors`, additional checks will be performed to make sure that nobody has interfered between the `SELECT` and the actual update.
 
-This is simple example shows how to execute an `UPDATE` query in Apache Ignite.
+The example below shows how to execute an `UPDATE` query in Apache Ignite.
 [block:code]
 {
   "codes": [
