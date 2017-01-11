@@ -121,7 +121,7 @@ In the example above, an instance of `SqlFieldsQuery` is created from `personCac
 {
   "type": "info",
   "title": "Changing Schema Name",
-  "body": "If you prefer to use a schema name that is different from a cache name then you can take advantage of `CacheConfiguration.setSqlSchema(...)` method."
+  "body": "If you prefer to use a schema name that is different from a cache name, then you can take advantage of `CacheConfiguration.setSqlSchema(...)` method."
 }
 [/block]
 
