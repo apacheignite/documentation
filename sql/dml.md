@@ -102,7 +102,7 @@ DML engine will be able to recreate a Person object from `firstName` and `lastNa
 [/block]
 ##Custom Keys
 
-If you use only predefined SQL data types for cache keys then there is no need to perform additional manipulation with DML related configuration. Those data types are defined by `GridQueryProcessor#SQL_TYPES` constant and listed below.
+If you use only predefined SQL data types for cache keys, then there is no need to perform additional manipulation with DML related configuration. Those data types are defined by `GridQueryProcessor#SQL_TYPES` constant and listed below.
 [block:callout]
 {
   "type": "info",
@@ -110,9 +110,9 @@ If you use only predefined SQL data types for cache keys then there is no need t
   "body": "- all the primitives and their wrappers except `char` and `Character`.\n- `String`.\n- `BigDecimal`.\n- `byte[]`.\n- `java.util.Date`, `java.sql.Date`, `java.sql.Timestamp`.\n- `java.util.UUID`."
 }
 [/block]
-However, once you decide to introduce a custom complex key and refer to its fields from DML statements you have to:
+However, once you decide to introduce a custom complex key and refer to its fields from DML statements, you have to:
 - Define those fields in the `QueryEntity` the same way as you set fields for the value object.
-- Use the new configuration parameter `QueryEntitty.setKeyFields(..)` to distinguish key's fields from value's fields.
+- Use the new configuration parameter `QueryEntity.setKeyFields(..)` to distinguish key fields from value fields.
 
 The example below shows how to achieve this.
 [block:code]
