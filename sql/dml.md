@@ -142,7 +142,7 @@ By default, [BinaryArrayIdentityResolver](http://apacheignite.gridgain.org/v1.8/
 [/block]
 ##MERGE
 
-`MERGE` is one of the most straightforward operations because it's translated into `cache.put(...)` and `cache.putAll(...)` operations depending on a number of rows that should be inserted or updated as a part of the `MERGE` query.
+`MERGE` is one of the most straightforward operations because it is translated into `cache.put(...)` and `cache.putAll(...)` operations depending on the number of rows that need to be inserted or updated as part of the `MERGE` query.
 
 The examples below show how to update the data set with a `MERGE` command by either providing  a list of entries or injecting a result of a subquery execution. 
 [block:code]
