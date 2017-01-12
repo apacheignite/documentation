@@ -235,13 +235,13 @@ The following example shows how to execute a `DELETE` query in Apache Ignite.
   "title": "Modifications Order"
 }
 [/block]
-If a DML statement inserts/updates the whole value referring to `_val` field and at the same time tries to modify a field that belongs to `_val` then the order the changes are applied is the following:
+If a DML statement inserts/updates the whole value referring to `_val` field and at the same time tries to modify a field that belongs to `_val`, then the order the changes are applied is the following:
 - The `_val` is updated/inserted first.
 - The field gets updated.
 
-The order never changes regardless of the fact how you define it in the DML statement.
+The order never changes regardless of how you define it in the DML statement.
 
-After the statement shown below gets executed the final Person's value will be "Mike Smith" ignoring the fact that `_val` field appears after `firstName` in the query.
+After the statement shown below gets executed, the final Person's value will be "Mike Smith", ignoring the fact that `_val` field appears after `firstName` in the query.
 [block:code]
 {
   "codes": [
@@ -264,14 +264,14 @@ This is similar to the execution of the query like the one below where `_val` ap
   ]
 }
 [/block]
-The order the changes are applied for `_val` and its fields is the same for `INSERT`, `UPDATE` and `MERGE` statements.
+The order in which the changes are applied for `_val` and its fields is the same for `INSERT`, `UPDATE` and `MERGE` statements.
 [block:api-header]
 {
   "type": "basic",
   "title": "Concurrent Modifications"
 }
 [/block]
-As it's explained above, `UPDATE` and `DELETE` statements generate `SELECT` queries internally in order to get a set of the cache entries that have to be modified as a result of the statement execution. The keys from the set are not locked and there is a chance that the values that belong to the keys will be modified by other queries concurrently. A special technique is implemented by DML engine that, first, avoids locking of the keys and, second, guarantees that the values will be up-to-date at the time they will be updated by a DML statement.
+As explained above, `UPDATE` and `DELETE` statements generate `SELECT` queries internally in order to get a set of the cache entries that have to be modified. The keys from the set are not locked and there is a chance that their values will be modified by other queries concurrently. A special technique is implemented by DML engine that, first, avoids locking of the keys and, second, guarantees that the values will be up-to-date at the time they will be updated by a DML statement.
 
 Basically, the engine detects a subset of the cache entries which were modified concurrently and re-executes the `SELECT` statement limiting its scope to the modified keys only.
 
