@@ -142,7 +142,7 @@ By default, [BinaryArrayIdentityResolver](http://apacheignite.gridgain.org/v1.8/
 
 `MERGE` is one of the most straightforward operations because it is translated into `cache.put(...)` and `cache.putAll(...)` operations depending on the number of rows that need to be inserted or updated as part of the `MERGE` query.
 
-The examples below show how to update the data set with a `MERGE` command by either providing  a list of entries or injecting a result of a subquery execution. 
+The examples below show how to update the data set with a `MERGE` command by either providing  a list of entries, or injecting a result of a subquery execution. 
 [block:code]
 {
   "codes": [
@@ -212,7 +212,7 @@ The following example shows how to execute an `UPDATE` query in Apache Ignite.
 [/block]
 ##DELETE
 
-`DELETE` statements' execution is split into two phases and similar to the execution of `UPDATE` statements. 
+`DELETE` statements' execution is split into two phases and is similar to the execution of `UPDATE` statements. 
 
 First, using a `SELECT` query SQL engine gathers those keys that satisfy the `WHERE` clause and have to be deleted. Next, after having all those keys in place, it creates a number of `EntryProcessor`  and executes them with `cache.invokeAll(...)`. While the data is being deleted, additional checks will be performed to make sure that nobody has interfered between the `SELECT` and the actual removal of the data. 
 
