@@ -50,7 +50,7 @@ To execute DML statements in Java, you need to use the same Ignite API that is u
   "title": "Basic Configuration"
 }
 [/block]
-To start using DML operations in Ignite, you would need to configure all queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). 
+To start using DML operations in Ignite, you would need to configure all queryable fields using [QueryEntity based approach](https://apacheignite.readme.io/docs/indexes#queryentity-based-configuration) or [@QuerySqlField annotations](https://apacheignite.readme.io/docs/indexes#annotation-based-configuration). For example:
 [block:code]
 {
   "codes": [
