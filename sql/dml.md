@@ -35,7 +35,7 @@ Ignite stores all the data in memory in the form of key-value pairs and hence al
 [/block]
 In general, all the DML statements can be divided into two groups - Those that add new entries into a cache (`INSERT` and `MERGE`), and those that modify the existing data (`UPDATE` and `DELETE`).
 
-To execute DML statements in Java, you need to use the same Ignite API that is used for `SELECT` queries -  [`SqlFieldsQuery` API](doc:sql-queries#section-sqlfieldsqueries). This API is used by DML operations the same way as read-only queries, where `SqlFieldsQuery` returns `QueryCursor<List<?>>`. The only difference is that as a result of a DML statement execution, `QueryCursor<List<?>>` contains a single-item `List<?>` of `long` type that signifies the number of cache items that were affected by the DML statement, whereas as a result of a `SELECT` statement execution,             `QueryCursor<List<?>>`  will contain a list of items retrieved from the cache. 
+To execute DML statements in Java, you need to use the same Ignite API that is used for `SELECT` queries -  [`SqlFieldsQuery` API](doc:sql-queries#section-sqlfieldsqueries). This API is used by DML operations the same way as read-only queries, where `SqlFieldsQuery` returns `QueryCursor<List<?>>`. The only difference is that as a result of a DML statement execution, `QueryCursor<List<?>>` contains a single-item `List<?>` of `long` type that signifies the number of cache items that were affected by the DML statement, whereas as a result of a `SELECT` statement,         `QueryCursor<List<?>>`  will contain a list of items retrieved from the cache. 
 [block:callout]
 {
   "type": "info",
