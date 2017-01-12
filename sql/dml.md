@@ -100,7 +100,7 @@ Note that the DML engine will be able to recreate a Person object from `firstNam
 [/block]
 ##Custom Keys
 
-If you use only predefined SQL data types for cache keys, then there is no need to perform additional manipulation with DML related configuration. Those data types are defined by `GridQueryProcessor.SQL_TYPES` constant and listed below.
+If you use only predefined SQL data types for cache keys, then there is no need to perform additional manipulation with DML related configuration. Those data types are defined by `GridQueryProcessor.SQL_TYPES` constant, as listed below.
 [block:callout]
 {
   "type": "info",
