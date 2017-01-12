@@ -67,7 +67,7 @@ To start using DML operations in Ignite, you would need to configure all queryab
   ]
 }
 [/block]
-In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields provide reference to key-value entries stored in a cache and can be used directly inside of DML statements. For example:
+In addition to all the fields marked with @QuerySqlField annotation or defined with `QueryEntity`, there will be two special predefined fields `_key` and `_val` for every object type registered in SQL Grid. These predefined fields provide reference to key-value entries stored in a cache and can be used directly inside of DML statements.
 [block:code]
 {
   "codes": [
