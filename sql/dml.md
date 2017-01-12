@@ -35,6 +35,8 @@ Ignite stores all the data in memory in the form of key-value pairs and hence al
 [/block]
 In general, all the DML statements can be divided into two groups - Those that add new entries into a cache (`INSERT` and `MERGE`), and those that modify the existing data (`UPDATE` and `DELETE`).
 
+To execute DML statements in Java, you need to use the same API that is used for `SELECT` queries -  [`SqlFieldsQuery` API](doc:sql-queries#section-sqlfieldsqueries).
+
 To execute these statements in Java, you need to use existed `SqlFieldsQuery` API, that is described in [this section](https://apacheignite.readme.io/docs/sql-queries#section-sqlfieldsqueries) in terms of its usage for `SELECT` queries. The API is used by DML operations the same way as for read-only queries except that `QueryCursor<List<?>>`, that is returned by a `SqlFieldsQuery` as a result of DML statement execution, contains a single-item `List<?>` of `long` type and that item signifies a number of cache items that were affected by the DML statement.
 [block:callout]
 {
