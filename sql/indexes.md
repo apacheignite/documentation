@@ -1,9 +1,4 @@
-Apache Ignite supports advanced indexing capabilities allowing you to define a single field (aka. column) or group indexes with various parameters, to manage indexes location putting them either in Java heap or off-heap spaces and so on so forth.
-
-Indexes in Ignite are kept in a distributed fashion the same way as cache data sets. Each node that stores a specific subset of data keeps and maintains indexes corresponding to this data as well.
-
-From this documentation page, you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
-
+* [Overview](#overview)
 * [Annotation Based Configuration](#annotation-based-configuration)
  * [Registering Indexed Types](#section-registering-indexed-types)
  * [Group Indexes](#section-group-indexes)
@@ -11,6 +6,17 @@ From this documentation page, you'll learn how to define and manage indexes as w
 * [SkipList Based and Snapshotable Indexes](#skiplist-based-and-snapshotable-indexes)
 * [Off-Heap SQL Indexes](#off-heap-sql-indexes)
 * [Indexes Tradeoffs](#indexes-tradeoffs)
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
+Apache Ignite supports advanced indexing capabilities allowing you to define a single field (aka. column) or group indexes with various parameters, to manage indexes location putting them either in Java heap or off-heap spaces and so on so forth.
+
+Indexes in Ignite are kept in a distributed fashion the same way as cache data sets. Each node that stores a specific subset of data keeps and maintains indexes corresponding to this data as well.
+
+From this documentation page, you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
 [block:api-header]
 {
   "type": "basic",
