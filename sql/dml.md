@@ -239,9 +239,7 @@ If a DML statement inserts/updates the whole value referring to `_val` field and
 - The `_val` is updated/inserted first.
 - The field gets updated.
 
-The order never changes regardless of how you define it in the DML statement.
-
-After the statement shown below gets executed, the final Person's value will be "Mike Smith", ignoring the fact that `_val` field appears after `firstName` in the query.
+The order never changes regardless of how you define it in the DML statement. For example, after the statement shown below gets executed, the final Person's value will be "Mike Smith", ignoring the fact that `_val` field appears after `firstName` in the query.
 [block:code]
 {
   "codes": [
