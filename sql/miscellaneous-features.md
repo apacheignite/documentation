@@ -19,7 +19,7 @@ The first approach is to set a query execution timeout for a specific `SqlQuery`
   ]
 }
 [/block]
-The second approach in regards to the query cancellation is to halt the query with the usage of `QueryCursor.close()`.
+The second approach in regards to the query cancellation is to halt the query by using `QueryCursor.close()`.
 [block:code]
 {
   "codes": [
