@@ -269,7 +269,7 @@ The order in which the changes are applied for `_val` and its fields is the same
   "title": "Concurrent Modifications"
 }
 [/block]
-As explained above, `UPDATE` and `DELETE` statements generate `SELECT` queries internally in order to get a set of the cache entries that have to be modified. The keys from the set are not locked and there is a chance that their values will be modified by other queries concurrently. A special technique is implemented by DML engine that, first, avoids locking of the keys and, second, guarantees that the values will be up-to-date at the time they will be updated by a DML statement.
+As explained above, `UPDATE` and `DELETE` statements generate `SELECT` queries internally in order to get a set of cache entries that have to be modified. The keys from the set are not locked and there is a chance that their values will be modified by other queries concurrently. A special technique is implemented by the DML engine that, first, avoids locking of keys and, second, guarantees that the values will be up-to-date at the time they will be updated by a DML statement.
 
 Basically, the engine detects a subset of the cache entries which were modified concurrently and re-executes the `SELECT` statement limiting its scope to the modified keys only.
 
@@ -284,7 +284,7 @@ Let's say the following `UPDATE` statement is being executed.
   ]
 }
 [/block]
-Before `firstName` and `lastName` are updated the DML engine will generate the `SELECT` query to get cache entries that satisfy `UPDATE` statement `WHERE` clause. The statement will be the following.
+Before `firstName` and `lastName` are updated, the DML engine will generate the `SELECT` query to get cache entries that satisfy the`UPDATE` statement's `WHERE` clause. The statement will be the following.
 [block:code]
 {
   "codes": [
@@ -295,7 +295,7 @@ Before `firstName` and `lastName` are updated the DML engine will generate the `
   ]
 }
 [/block]
-Right after that the entry that was retrieved​ with the `SELECT` can be updated concurrently.
+Right after that, the entry that was retrieved​ with the `SELECT` can be updated concurrently.
 [block:code]
 {
   "codes": [
@@ -306,7 +306,7 @@ Right after that the entry that was retrieved​ with the `SELECT` can be update
   ]
 }
 [/block]
-The DML engine will find out that the entry with key `1` was modified at the update phase of `UPDATE` query execution. After that it will stop the update and will re-execute a modified version the `SELECT` query in order to get latest entries' values:
+The DML engine will find out that the entry with key `1` was modified at the update phase of `UPDATE` query execution. After that, it will stop the update and will re-execute a modified version the `SELECT` query in order to get latest entries' values:
 [block:code]
 {
   "codes": [
@@ -319,11 +319,11 @@ The DML engine will find out that the entry with key `1` was modified at the upd
 [/block]
 This query will be executed only for outdated keys. In our example there is only one key that is `1`.
 
-This process will repeat until DML engine is sure at the update phase that all the entries that are going to be updated are up-to-date. The maximum number of attempts is equal to `4`. Presently there is no configuration parameter that changes this value.
+This process will repeat until the DML engine is sure at the update phase that all the entries that are going to be updated are up-to-date. The maximum number of attempts is equal to `4`. Presently there is no configuration parameter that can change this value.
 [block:callout]
 {
   "type": "info",
-  "body": "DML engine doesn't re-execute the `SELECT` query for entries that are deleted concurrently​. The query is re-executed only for the entries that are still in the cache."
+  "body": "DML engine does not re-execute the `SELECT` query for entries that are deleted concurrently​. The query is re-executed only for the entries that are still in the cache."
 }
 [/block]
 
