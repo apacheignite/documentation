@@ -111,7 +111,7 @@ For instance, in `Person` class below we have field `age` which belongs to an in
 [/block]
 Indexes and queryable fields can also be configured with `org.apache.ignite.cache.QueryEntity` class which is convenient for Spring XML based configuration.
 
-All the concepts that are discussed as a part of annotation based configuration above are valid for query entities based approach. Event more, types which fields are configured with `@QuerySqlField` and registered with `CacheConfiguration.setIndexedTypes` method are internally turned into query entities.
+All the concepts that are discussed as a part of annotation based configuration above are valid for QueryEntity based approach. Furthermore, types whose fields are configured with `@QuerySqlField` and are registered with `CacheConfiguration.setIndexedTypes` method are internally turned into query entities.
 
 The example below shows how you can define a single field and group indexes as well as queryable fields.
 [block:code]
