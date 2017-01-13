@@ -235,7 +235,7 @@ The following example shows how to execute a `DELETE` query in Apache Ignite.
   "title": "Modifications Order"
 }
 [/block]
-If a DML statement inserts/updates the whole value referring to `_val` field and at the same time tries to modify a field that belongs to `_val`, then the order the changes are applied is the following:
+If a DML statement inserts/updates the whole value referring to `_val` field and at the same time tries to modify a field that belongs to `_val`, then the order in which the changes are applied is :
 - The `_val` is updated/inserted first.
 - The field gets updated.
 
