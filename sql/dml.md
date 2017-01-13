@@ -367,7 +367,7 @@ However, the subquery from `IN` clause (`SELECT personId FROM "salary".Salary ..
 
 Presently `EXPLAIN` is not supported for DML operations.
 
-One possible approach is to execute `EXPLAIN` for the `SELECT` automatically generated (`UPDATE`, `DELETE`) or used (`INSERT`, `MERGE`) by DML statements. This will give an insight on the indexes that are used while a DML operation is executed.
+One possible approach is to execute `EXPLAIN` for the `SELECT` that is automatically generated (`UPDATE`, `DELETE`) or used (`INSERT`, `MERGE`) by DML statements. This will give you an insight on the indexes that are used while a DML operation is executed.
 [block:api-header]
 {
   "type": "basic",
