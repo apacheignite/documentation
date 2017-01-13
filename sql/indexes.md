@@ -84,7 +84,7 @@ Note, that this method accepts only pairs of types - one for key class and anoth
 ## Group Indexes
 To set up a multi-field index that will allow accelerating queries with complex conditions, you can use `@QuerySqlField.Group` annotation. It is possible to put multiple `@QuerySqlField.Group` annotations into `orderedGroups` if you want a field to be a part of more than one group. 
 
-For instance, in `Person` class below we have field `age` which belongs to an indexed group named `"age_salary_idx"` with group order 0 and descending sort order. Also, in the same group, we have field `salary` with group order 3 and ascending sort order. Furthermore, field `salary` itself is a single column index (there is `index = true` parameter specified in addition to `orderedGroups` declaration). Group `order` does not have to be any particular number. It is needed just to sort fields inside of a particular group. 
+For instance, in `Person` class below we have field `age` which belongs to an indexed group named `"age_salary_idx"` with group order 0 and descending sort order. Also, in the same group, we have field `salary` with group order 3 and ascending sort order. Furthermore, field `salary` itself is a single column index (there is `index = true` parameter specified in addition to `orderedGroups` declaration). Group `order` does not have to be a particular number. It is needed just to sort fields inside of a particular group. 
 [block:code]
 {
   "codes": [
