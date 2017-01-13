@@ -214,7 +214,7 @@ The following example shows how to execute an `UPDATE` query in Apache Ignite.
 
 `DELETE` statements' execution is split into two phases and is similar to the execution of `UPDATE` statements. 
 
-First, using a `SELECT` query SQL engine gathers those keys that satisfy the `WHERE` clause and have to be deleted. Next, after having all those keys in place, it creates a number of `EntryProcessor`  and executes them with `cache.invokeAll(...)`. While the data is being deleted, additional checks will be performed to make sure that nobody has interfered between the `SELECT` and the actual removal of the data. 
+First, using a `SELECT` query, the SQL engine gathers those keys that satisfy the `WHERE` clause in the `DELETE` statement. Next, after having all those keys in place, it creates a number of `EntryProcessor`s  and executes them with `cache.invokeAll(...)`. While the data is being deleted, additional checks will be performed to make sure that nobody has interfered between the `SELECT` and the actual removal of the data. 
 
 The following example shows how to execute a `DELETE` query in Apache Ignite.
 [block:code]
