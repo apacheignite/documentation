@@ -144,7 +144,7 @@ For off-heap mode, discussed below, Ignite provides only one indexing implementa
   "title": "Off-Heap SQL Indexes"
 }
 [/block]
-Ignite supports placing of indexed data in off-heap memory. This makes sense for very large datasets since keeping data in Java heap can cause high GC activity and unacceptable response times. 
+Ignite supports placing indexed data in off-heap memory. This makes sense for very large datasets since keeping data in Java heap can cause high GC activity and unacceptable response times. 
 
 By default, Ignite stores SQL Indexes on heap. Ignite will store query indexes in off-heap memory if `CacheConfiguration.setMemoryMode` is configured to one of the off-heap memory modes - `OFFHEAP_TIERED` or `OFFHEAP_VALUES`, or `CacheConfiguration.setOffHeapMaxMemory` property is set to a value >= 0.
 
@@ -164,7 +164,7 @@ To improve the performance of SQL queries with off-heap mode enabled, you can tr
 {
   "type": "info",
   "title": "Indexing Implementation",
-  "body": "For off-heap mode Ignite provides only one indexing implementation which is a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf)."
+  "body": "For off-heap mode, Ignite provides only one indexing implementation which is a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf)."
 }
 [/block]
 
