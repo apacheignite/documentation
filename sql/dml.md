@@ -188,7 +188,7 @@ This operation updates values in a cache on per field basis.
 
 Initially, SQL engine generates and executes a `SELECT` query based on the `UPDATE WHERE` clause and only after that it modifies the existing values that satisfy the clause result.
 
-The modification is performed via `cache.invokeAll(...)` operation. Basically, it means that once the result of the `SELECT` query is ready, SQL Engine will prepare a number of `EntryProcessor` and will execute all of them using `cache.invokeAll(...)` operation. While the data is being modified using `EntryProcessors`, additional checks will be performed to make sure that nobody has interfered between the `SELECT` and the actual update.
+The modification is performed via `cache.invokeAll(...)` operation. Basically, it means that once the result of the `SELECT` query is ready, SQL Engine will prepare a number of `EntryProcessors` and will execute all of them using `cache.invokeAll(...)` operation. While the data is being modified using `EntryProcessors`, additional checks are performed to make sure that nobody has interfered between the `SELECT` and the actual update.
 
 The following example shows how to execute an `UPDATE` query in Apache Ignite.
 [block:code]
