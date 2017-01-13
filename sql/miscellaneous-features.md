@@ -68,7 +68,7 @@ A class that owns the custom SQL function has to be registered in a specific `Ca
   ]
 }
 [/block]
- After a cache with the configuration above is deployed, you're free to call the custom function from SQL queries like it's shown below.
+ After a cache with the configuration above is deployed, you're free to call the custom function from SQL queries as shown below.
 [block:code]
 {
   "codes": [
