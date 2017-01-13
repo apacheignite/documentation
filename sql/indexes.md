@@ -23,9 +23,7 @@ From this documentation page, you'll learn how to define and manage indexes as w
   "title": "Annotation Based Configuration"
 }
 [/block]
-Indexes, as well as queryable fields, can be configured from code with the usage of `@QuerySqlField` annotation.
-
-As shown in the example below, desired fields should be marked with this annotation in advance. 
+Indexes, as well as queryable fields, can be configured from code with the usage of `@QuerySqlField` annotation. As shown in the example below, desired fields should be marked with this annotation. 
 [block:code]
 {
   "codes": [
@@ -43,9 +41,9 @@ As shown in the example below, desired fields should be marked with this annotat
 [/block]
 Both `id` and `salary` are indexed fields. `id` field will be sorted in the ascending order (default) while `salary` in the descending order.
 
-If you don't want to index a field but still need to use it in query's `SELECT` or `WHERE` clauses, then the field has to be annotated as well omitting `index = true` parameter. Such a field is called as a queryable field. As an example, `name` is defined as a queryable field above.
+If you don't want to index a field but still need to use it in a SQL query, then the field has to be annotated as well omitting the `index = true` parameter. Such a field is called as a queryable field. As an example, `name` is defined as a queryable field above.
 
-Finally, `age` is neither queryable nor indexed field and it won't be accessible from SQL queries in Apache Ignite.
+Finally, `age` is neither queryable nor indexed field and won't be accessible from SQL queries in Apache Ignite.
 [block:callout]
 {
   "type": "info",
@@ -55,7 +53,7 @@ Finally, `age` is neither queryable nor indexed field and it won't be accessible
 [/block]
 ## Registering Indexed Types
 
-After indexed and queryable fields are defined they have to be registered in SQL engine along with object types they belong to.
+After indexed and queryable fields are defined they have to be registered in the SQL engine along with object types they belong to.
 
 To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method as it's shown in the example below.
 [block:code]
