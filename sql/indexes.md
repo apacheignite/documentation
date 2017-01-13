@@ -78,7 +78,7 @@ Note, that this method accepts only pairs of types - one for key class and anoth
 [block:callout]
 {
   "type": "info",
-  "body": "Beacuse of [Binary Marshaller](doc:binary-marshaller), there is no need to add classes of indexed types to the classpath of cluster nodes. SQL query engine is able to pick up values of indexed and queryable fields avoiding object deserialization."
+  "body": "Because of the [Binary Marshaller](doc:binary-marshaller), there is no need to add classes of indexed types to the classpath of cluster nodes. SQL query engine is able to pick up values of indexed and queryable fields avoiding object deserialization."
 }
 [/block]
 ## Group Indexes
