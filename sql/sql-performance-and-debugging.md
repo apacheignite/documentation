@@ -11,7 +11,7 @@ To learn more on indexes tradeoffs refer to [this documentation section](http://
   "title": "Using EXPLAIN Statement"
 }
 [/block]
-Ignite supports "EXPLAIN ..." syntax in for reading execution plans and query performance investigation purposes.  Note that a plan cursor will contain multiple rows: the last one will contain a query for reducing node, others are for map nodes.
+Ignite supports "EXPLAIN ..." syntax for reading execution plans and query performance investigation purposes.  Note that a plan cursor will contain multiple rows: the last one will contain a query for reducing node, others are for map nodes.
 [block:code]
 {
   "codes": [
@@ -30,7 +30,7 @@ http://www.h2database.com/html/performance.html#explain_plan
   "title": "Using H2 Debug Console"
 }
 [/block]
-When developing with Ignite sometimes it is useful to check if your tables and indexes look  correctly or run some local queries against embedded in node H2 database. For that purpose, Ignite has an ability to start H2 Console. To do that you can start a local node with `IGNITE_H2_DEBUG_CONSOLE` system property or an environment variable set to `true`. The console will be opened in your browser. Probably you will need to click `Refresh` button on the Console because it can be opened before database objects initialized. 
+When developing with Ignite, sometimes, it is useful to check if your tables and indexes look  correctly. It may also be useful to run some local queries against the embedded node in H2 database. For that purpose, Ignite has an ability to start H2 Console. To do that, you can start a local node with `IGNITE_H2_DEBUG_CONSOLE` system property or an environment variable set to `true`. The console will be opened in your browser. You may need to click the `Refresh` button on the Console because it can be opened before the database objects are initialized. 
 [block:image]
 {
   "images": [
