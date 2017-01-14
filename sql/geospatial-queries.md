@@ -47,7 +47,7 @@ Alternatively, you can download Apache Ignite from the [source releases](https:/
 [/block]
 The geospatial module is usable only for the objects of `com.vividsolutions.jts` type. 
 
-To configure indexes and or queryable​ fields of geometry types you need to use the same approaches that exist and used for non-geospatial types.  First, the indexes can be defined with the help of `org.apache.ignite.cache.QueryEntity` which is convenient for Spring XML based configurations. Second, you can achieve the same outcome by annotating indexes with `@QuerySqlField` annotations which will be converted `QueryEntities` internally.
+To configure indexes and/or queryable​ fields of geometric types, you need to use the same approached that is used for non-geospatial types.  First, the indexes can be defined with the help of `org.apache.ignite.cache.QueryEntity` which is convenient for Spring XML based configurations. Second, you can achieve the same outcome by annotating indexes with `@QuerySqlField` annotations which will be converted `QueryEntities` internally.
 [block:code]
 {
   "codes": [
