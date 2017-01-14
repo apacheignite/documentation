@@ -20,8 +20,8 @@ In Ignite, the JDBC connection URL has the following pattern:
   ]
 }
 [/block]
-* `<config_url>` is required and represents any valid URL which points to an Ignite configuration file for Ignite client node that will be started during connection establishing by JDBC driver. See [Clients and Servers](doc:clients-vs-servers) section for details.
-* `<params>` is an optional part and has the following format:
+* `<config_url>` is required and represents any valid URL which points to an Ignite configuration file for Ignite client node that will be started during connection establishing by the JDBC driver. See [Clients and Servers](doc:clients-vs-servers) section for details.
+* `<params>` is optional and has the following format:
 [block:code]
 {
   "codes": [
@@ -88,7 +88,7 @@ The following parameters are supported:
   "title": "Example"
 }
 [/block]
-Ignite JDBC driver automatically gets only those fields that you actually need from objects stored in cache. For example if you have a `Person` class declared like this:
+Ignite JDBC driver automatically gets only those fields that you actually need from objects stored in the cache. Let's say you have a `Person` class declared like this:
 [block:code]
 {
   "codes": [
@@ -99,7 +99,7 @@ Ignite JDBC driver automatically gets only those fields that you actually need f
   ]
 }
 [/block]
-If you have instances of this class in a cache, you can query individual fields (name, age or both) via standard JDBC API, like so:
+If you have instances of this class in a cache, you can query individual fields (name, age or both) via the standard JDBC API, like so:
 [block:code]
 {
   "codes": [
