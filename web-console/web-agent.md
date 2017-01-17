@@ -63,14 +63,21 @@ Detailed description for each property can be found in documentation: http://doc
 `http.proxyHost` - The hostname, or address, of the proxy server 
 `http.proxyPort` - The port number of the proxy server.
 
-For using proxy with authentication need set `http.proxyHost` using following pattern: `<proxy-username>:<proxy-password>@<proxy-hostname>`
+For using proxy with authentication need pass following system properties:
+`http.proxyUsername` - Username.
+`http.proxyPassword ` - Password.
 [block:code]
 {
   "codes": [
     {
-      "code": "JVM_OPTS=\"-Dhttp.proxyHost=<proxy-username>:<proxy-password>@<proxy-hostname> -Dhttp.proxyPort=<proxy-port>\" ./ignite-web-agent.sh",
+      "code": "JVM_OPTS=\"-Dhttp.proxyHost=<proxy-hostname> -Dhttp.proxyPort=<proxy-port> -Dhttps.proxyUsername=<proxy-username> -Dhttps.proxyPassword=<proxy-password>\" ./ignite-web-agent.sh",
       "language": "shell",
       "name": null
+    },
+    {
+      "code": "set JVM_OPTS=-Dhttp.proxyHost=<proxy-hostname> -Dhttp.proxyPort=<proxy-port> -Dhttps.proxyUsername=<proxy-username> -Dhttps.proxyPassword=<proxy-password>\n./ignite-web-agent.bat",
+      "language": "shell",
+      "name": "Cmd"
     }
   ]
 }
@@ -79,13 +86,20 @@ For using proxy with authentication need set `http.proxyHost` using following pa
 `https.proxyHost` - The hostname, or address, of the proxy server 
 `https.proxyPort` - The port number of the proxy server.
 
-For using proxy with authentication need set `https.proxyHost` using following pattern: `<proxy-username>:<proxy-password>@<proxy-hostname>`
+For using proxy with authentication need pass following system properties:
+`https.proxyUsername` - Username.
+`https.proxyPassword ` - Password.
 [block:code]
 {
   "codes": [
     {
-      "code": "JVM_OPTS=\"-Dhttps.proxyHost=<proxy-username>:<proxy-password>@<proxy-hostname> -Dhttps.proxyPort=<proxy-port>\" ./ignite-web-agent.sh",
+      "code": "JVM_OPTS=\"-Dhttps.proxyHost=<proxy-hostname> -Dhttps.proxyPort=<proxy-port> -Dhttps.proxyUsername=<proxy-username> -Dhttps.proxyPassword=<proxy-password>\" ./ignite-web-agent.sh",
       "language": "shell"
+    },
+    {
+      "code": "set JVM_OPTS=-Dhttps.proxyHost=<proxy-hostname> -Dhttps.proxyPort=<proxy-port> -Dhttps.proxyUsername=<proxy-username> -Dhttps.proxyPassword=<proxy-password>\n./ignite-web-agent.bat",
+      "language": "text",
+      "name": "Cmd"
     }
   ]
 }
@@ -103,6 +117,11 @@ For using proxy with authentication:
     {
       "code": "JVM_OPTS=\"-DsocksProxyHost=<proxy-hostname> -DsocksProxyPort=<proxy-port> -Djava.net.socks.username=<proxy-username> -Djava.net.socks.password=<proxy-password>\" ./ignite-web-agent.sh",
       "language": "shell"
+    },
+    {
+      "code": "set JVM_OPTS= -DsocksProxyHost=<proxy-hostname> -DsocksProxyPort=<proxy-port> -Djava.net.socks.username=<proxy-username> -Djava.net.socks.password=<proxy-password>\n./ignite-web-agent.bat",
+      "language": "text",
+      "name": "Cmd"
     }
   ]
 }

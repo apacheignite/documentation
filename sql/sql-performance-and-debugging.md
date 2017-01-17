@@ -72,13 +72,13 @@ Usually `UPDATE` and `DELETE` statements require performing a `SELECT` query in 
 
 To summarize the content of [distributed DML](doc:dml) section, these are the reasons why `UPDATE` and `DELETE` automatically execute a `SELECT` query:
 
-1. A complex filtering is used in the `WHERE` clause of `UPDATE` or `DELETE` statement. This happens when a sophisticated and advanced entires filtering is used and DML engine need to do extra work in order to prepare the list of the entries that will be updated by the DML statement. 
-2. An `UPDATE` statement contains an expression. Even if the `WHERE` clause is simple and points to a cache entry to be modified directly with the usage of `_key` or `_value`, the execution result of an expression might result in new fields values. This is why DML engine has to execute the `SELECT` in order to evaluate expression's execution result.
-3. An `UPDATE` statement modifies specific fields belonging to a cache entry. DML engine needs to retrieve a current cache entry first, modify it and put back into the cache. 
+1. A complex filtering is used in the `WHERE` clause of `UPDATE` or `DELETE` statement. This happens when a sophisticated and advanced filtering of entries is used and the DML engine needs to do extra work in order to prepare the list of the entries that will be updated by the DML statement. 
+2. An `UPDATE` statement contains an expression. Even if the `WHERE` clause is simple and points to a cache entry to be modified directly with the usage of `_key` or `_value`, the execution of an expression might result in new fields' values. This is why DML engine has to execute the `SELECT` in order to evaluate the expression's execution result.
+3. An `UPDATE` statement modifies specific fields belonging to a cache entry. The DML engine needs to retrieve a current cache entry first, modify it, and put it back into the cache. 
 
 ## Executing DML faster
 
-To execute a DML operation in the fastest way the following requirements must be met:
+To execute a DML operation in the fastest way, the following requirements must be met:
 1. A DML operation must not trigger the `SELECT` query execution.
 2. The operation has to adjust a single cache entry.
 
