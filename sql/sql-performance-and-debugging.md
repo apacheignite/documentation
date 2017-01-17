@@ -84,8 +84,8 @@ To execute a DML operation in the fastest way, the following requirements must b
 
 The following rules has to be followed in order to satisfy the requirements above: 
 1. Filter out cache entries with the usage of `_key` and `_val` keywords only.
-2. These arguments have to be used explicitly in a DML statements. Cache entries's fields or expressions mustn't be accessed and executed.
-3. If an `UPDATE` statement is executed then it has to update the whole cache entry (`_val`) rather than specific fields.
+2. These arguments have to be used explicitly in a DML statement. Cache entries' fields or expressions must not be accessed and executed.
+3. If an `UPDATE` statement is executed, then it has to update the whole cache entry (`_val`) rather than specific fields.
 
 Let's look into the following example.
 [block:code]
@@ -98,11 +98,11 @@ Let's look into the following example.
   ]
 }
 [/block]
-The `UPDATE` statement does this:
+The `UPDATE` statement does the following:
 - Explicitly tells which cache entry needs to be updated by specifying `_key` the entry belongs to and entry's expected value (`_val`).
-- Updates the whole cache entry's value  with the usage of `_val` keyword.
+- Updates the whole cache entry's value by using `_val` keyword.
 
-As a result the DML engine will execute the cache operation below as-is/
+As a result, the DML engine will execute the cache operation below as-is:
 [block:code]
 {
   "codes": [
