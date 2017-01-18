@@ -87,7 +87,7 @@ The following modules are available:
 [block:api-header]
 {
   "type": "basic",
-  "title": "LGPL dependencies"
+  "title": "LGPL Dependencies"
 }
 [/block]
 The following Ignite modules have LGPL dependencies and therefore can't be deployed on Maven Central repository:
