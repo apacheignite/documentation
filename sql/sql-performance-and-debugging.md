@@ -53,7 +53,7 @@ When developing with Ignite, sometimes, it is useful to check if your tables and
   "title": "SQL Performance and Usability Considerations"
 }
 [/block]
-There are few common pitfalls that should be considered when running SQL queries.
+There are a few common pitfalls that should be considered when running SQL queries.
 
 1. If the query is using **OR** operator, then indexes may not be used as expected. For example, for the query `select name from Person where sex='M' and (age = 20 or age = 30)`, index on field `sex` will be used instead of index on field `age` although the former will result in more rows being selected from the data set. As a workaround for this issue, you can rewrite the query with UNION ALL (notice that UNION without ALL will return DISTINCT rows, which will change the query semantics and introduce additional performance penalty). For Example:
  `select name from Person where sex='M' and age = 20 
