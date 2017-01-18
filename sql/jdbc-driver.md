@@ -20,7 +20,7 @@ In Ignite, the JDBC connection URL has the following pattern:
   ]
 }
 [/block]
-* `<config_url>` is required and represents any valid URL which points to an Ignite configuration file for Ignite client node that will be started within the Ignite JDBC Driver when it tries to establish a connection with the cluster. See [Clients and Servers](doc:clients-vs-servers) section for details.
+* `<config_url>` is required and represents any valid URL which points to an Ignite configuration file for Ignite client node. This node will be started within the Ignite JDBC Driver when it (JDBC driver) tries to establish a connection with the cluster.
 * `<params>` is optional and has the following format:
 [block:code]
 {
@@ -55,6 +55,14 @@ The following parameters are supported:
   },
   "cols": 3,
   "rows": 5
+}
+[/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "See [Clients and Servers](doc:clients-vs-servers) section for details.",
+  "title": "Client vs Server Nodes"
 }
 [/block]
 
