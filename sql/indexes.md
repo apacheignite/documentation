@@ -53,7 +53,7 @@ Finally, `age` is neither queryable nor indexed field and won't be accessible fr
 [/block]
 ## Registering Indexed Types
 
-After indexed and queryable fields are defined they have to be registered in the SQL engine along with object types they belong to.
+After indexed and queryable fields are defined, they have to be registered in the SQL engine along with the object types they belong to.
 
 To tell Ignite which types should be indexed, key-value pairs can be passed into `CacheConfiguration.setIndexedTypes` method as it's shown in the example below.
 [block:code]
