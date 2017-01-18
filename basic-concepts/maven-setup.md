@@ -1,7 +1,7 @@
 * [Overview](#overview)
 * [Common Dependencies](#common-dependencies)
 * [Importing Individual Modules A La Carte](#importing-individual-modules-a-la-carte)
-* [LGPL dependencies](#lgpl-dependencies)
+* [LGPL Dependencies](#lgpl-dependencies)
 [block:api-header]
 {
   "type": "basic",
