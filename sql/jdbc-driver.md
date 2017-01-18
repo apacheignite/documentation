@@ -20,7 +20,7 @@ In Ignite, the JDBC connection URL has the following pattern:
   ]
 }
 [/block]
-* `<config_url>` is required and represents any valid URL which points to an Ignite configuration file for Ignite client node. This node will be started within the Ignite JDBC Driver when it (JDBC driver) tries to establish a connection with the cluster.
+* `<config_url>` is required and represents any valid URL which points to an Ignite configuration file for Ignite client node. This node will be started within the Ignite JDBC Driver when it (JDBC driver) tries to establish a connection with the cluster. The JDBC driver will forward the SQL queries, sent by the user application, to the cluster via the client node.
 * `<params>` is optional and has the following format:
 [block:code]
 {
@@ -61,7 +61,7 @@ The following parameters are supported:
 [block:callout]
 {
   "type": "info",
-  "body": "By default, all Ignite nodes are started as server nodes, and client mode needs to be explicitly enabled. However, the JDBC driver always starts a node in client mode. See [Clients and Servers](doc:clients-vs-servers) section for details.",
+  "body": "By default, all Ignite nodes are started as server nodes, and client mode needs to be explicitly enabled. However, regardless of the configuration, the JDBC driver always starts a node in client mode. See [Clients and Servers](doc:clients-vs-servers) section for details.",
   "title": "Client vs Server Nodes"
 }
 [/block]
