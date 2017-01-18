@@ -61,7 +61,7 @@ The following parameters are supported:
 [block:callout]
 {
   "type": "info",
-  "body": "See [Clients and Servers](doc:clients-vs-servers) section for details.",
+  "body": "By default, all Ignite nodes are started as server nodes, and client mode needs to be explicitly enabled. However, the JDBC driver always starts a node in client mode. See [Clients and Servers](doc:clients-vs-servers) section for details.",
   "title": "Client vs Server Nodes"
 }
 [/block]
