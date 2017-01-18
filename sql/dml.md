@@ -207,7 +207,7 @@ The following example shows how to execute an `UPDATE` query in Apache Ignite.
 {
   "type": "danger",
   "title": "Inability to modify a key or its fields with an UPDATE query",
-  "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity). Hence, there is no way to update a key without removing it from cache. For example, for the following query:\n\nUPDATE  _key = 11 where _key = 10;\n\nmay result in the following cache operations:\n\nval = get(10);\nput(11, val);\nremove(10);"
+  "body": "The reason behind that is that the state of the key determines internal data layout and its consistency (key's hashing and affinity, indexes integrity). Hence, there is no way to update a key without removing it from cache. For example, the following query:\n\nUPDATE  _key = 11 where _key = 10;\n\nmay result in the following cache operations:\n\nval = get(10);\nput(11, val);\nremove(10);"
 }
 [/block]
 ##DELETE
