@@ -70,7 +70,7 @@ Here you can provide an object array (Object[]) of any length as a parameter and
   "title": "Advanced DML Optimizations"
 }
 [/block]
-Usually `UPDATE` and `DELETE` statements require performing a `SELECT` query in order to prepare a set of cache entries to be processed later. In some situations, this can be avoided leading to significant performance gains by direct translation of DML statements into specific cache operations.
+Usually, `UPDATE` and `DELETE` statements require performing a `SELECT` query in order to prepare a set of cache entries to be processed later. In some situations, this can be avoided leading to significant performance gains by direct translation of DML statements into specific cache operations.
 
 To summarize the content of [distributed DML](doc:dml) section, these are the reasons why `UPDATE` and `DELETE` automatically execute a `SELECT` query:
 
