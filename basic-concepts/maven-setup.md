@@ -33,7 +33,7 @@ Ignite data fabric comes with one mandatory dependency on `ignite-core.jar`.
   ]
 }
 [/block]
-However, in many cases may wish to have more dependencies, for example, if you want to use Spring configuration or SQL queries.
+However, in many cases, you may wish to have more dependencies, for example, if you want to use Spring configuration or SQL queries.
 
 Here are the most commonly used optional modules:
   * ignite-indexing (optional, add if you need SQL indexing)
@@ -95,7 +95,7 @@ The following Ignite modules have LGPL dependencies and therefore can't be deplo
 * `ignite-geospatial`
 * `ignite-schedule`
 
-To use these modules you will need to build them from sources manually and add to your project. For example, to install `ignite-hibernate` into your local repository, run this command in the Ignite source package:
+To use these modules, you will need to build them from sources manually and add them to your project. For example, to install `ignite-hibernate` into your local repository, run this command in the Ignite source package:
 [block:code]
 {
   "codes": [
