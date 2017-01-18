@@ -66,7 +66,7 @@ To tell Ignite which types should be indexed, key-value pairs can be passed into
   ]
 }
 [/block]
-Note, that this method accepts only pairs of types - one for key class and another for value class. Primitives are passed as boxed types.
+Note that this method accepts only pairs of types - one for key class and another for value class. Primitives are passed as boxed types.
 [block:callout]
 {
   "type": "info",
