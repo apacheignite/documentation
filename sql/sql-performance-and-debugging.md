@@ -60,7 +60,8 @@ There are a few common pitfalls that should be considered when running SQL queri
 UNION ALL 
 select name from Person where sex='M' and age = 30`. 
 
-2. If the query contains **IN** operator, then it has two problems: it is impossible to provide variable list of parameters (you have to specify the exact list in query like `where id in (?, ?, ?)`, but you can not write it like `where id in ?` and pass array or collection) and this query will not use index. To workaround both problems you can rewrite the query in the following way: `select p.name from Person p join table(id bigint = ?) i on p.id = i.id`. Here you can provide object array (Object[]) of any length as a parameter and the query will use index on field `id`. Note that primitive arrays (int[], long[], etc..) can not be used with this syntax, you have to pass array of boxed primitives.
+2. If the query contains **IN** operator, you may face two issues: First, it is impossible to provide variable list of parameters. You have to specify the exact list in the query, for example, `where id in (?, ?, ?)`. You can not write - `where id in ?` and pass array or collection. Second, this query will not use indexes. As a workaround to both the problems, you can rewrite the query in the following way: `select p.name from Person p join table(id bigint = ?) i on p.id = i.id`. 
+Here you can provide an object array (Object[]) of any length as a parameter and the query will use index on field `id`. Note that primitive arrays (int[], long[], etc..) can not be used with this syntax, you can only pass an array of boxed primitives.
 
 
 [block:api-header]
