@@ -70,12 +70,12 @@ For using proxy with authentication need pass following system properties:
 {
   "codes": [
     {
-      "code": "JVM_OPTS=\"-Dhttp.proxyHost=<proxy-hostname> -Dhttp.proxyPort=<proxy-port> -Dhttps.proxyUsername=<proxy-username> -Dhttps.proxyPassword=<proxy-password>\" ./ignite-web-agent.sh",
+      "code": "JVM_OPTS=\"-Dhttp.proxyHost=<proxy-hostname> -Dhttp.proxyPort=<proxy-port> -Dhttp.proxyUsername=<proxy-username> -Dhttp.proxyPassword=<proxy-password>\" ./ignite-web-agent.sh",
       "language": "shell",
       "name": null
     },
     {
-      "code": "set JVM_OPTS=-Dhttp.proxyHost=<proxy-hostname> -Dhttp.proxyPort=<proxy-port> -Dhttps.proxyUsername=<proxy-username> -Dhttps.proxyPassword=<proxy-password>\n./ignite-web-agent.bat",
+      "code": "set JVM_OPTS=-Dhttp.proxyHost=<proxy-hostname> -Dhttp.proxyPort=<proxy-port> -Dhttp.proxyUsername=<proxy-username> -Dhttp.proxyPassword=<proxy-password>\n./ignite-web-agent.bat",
       "language": "shell",
       "name": "Cmd"
     }
