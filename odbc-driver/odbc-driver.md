@@ -10,7 +10,7 @@
   "title": "Overview"
 }
 [/block]
-Ignite includes ODBC driver that allows you both select and modify data stored in a distributed cache using standard SQL queries and native ODBC API.
+Ignite includes ODBC driver that allows you both select and modify data, stored in a distributed cache, using standard SQL queries and native ODBC API.
 
 For detailed info on ODBC please refer to [ODBC Programmer's Reference](https://msdn.microsoft.com/en-us/library/ms714177.aspx).
 
