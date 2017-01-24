@@ -7,6 +7,7 @@
 * [Amazon S3 Based Discovery](doc:cluster-config#amazon-s3-based-discovery)
 * [Google Cloud Storage Based Discovery](doc:cluster-config#google-cloud-storage-based-discovery)
 * [JDBC Based Discovery](doc:cluster-config#jdbc-based-discovery)
+* [Shared File System Based Discovery](doc:cluster-config#shared-file-system-based-discovery)
 * [ZooKeeper Based Discovery](doc:cluster-config#zookeeper-based-discovery)
 * [Failure Detection Timeout](doc:cluster-config#failure-detection-timeout)
 * [Configuration](doc:cluster-config#configuration)
