@@ -169,7 +169,7 @@ Refer to [Google Cloud Configuration](https://apacheignite-mix.readme.io/docs/go
   "title": "JDBC Based Discovery"
 }
 [/block]
-You can have your database be a common shared storage of initial IP addresses. In this nodes will write their IP addresses to a database on startup. This is done via `TcpDiscoveryJdbcIpFinder`.
+You can have your database be a common shared storage of initial IP addresses. With this IP finder nodes will write their IP addresses to a database on startup. This is done via `TcpDiscoveryJdbcIpFinder`.
 [block:code]
 {
   "codes": [
@@ -180,6 +180,30 @@ You can have your database be a common shared storage of initial IP addresses. I
     {
       "code": "TcpDiscoverySpi spi = new TcpDiscoverySpi();\n\n// Configure your DataSource.\nDataSource someDs = MySampleDataSource(...);\n\nTcpDiscoveryJdbcIpFinder ipFinder = new TcpDiscoveryJdbcIpFinder();\n\nipFinder.setDataSource(someDs);\n\nspi.setIpFinder(ipFinder);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Override default discovery SPI.\ncfg.setDiscoverySpi(spi);\n \n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Shared File System Based Discovery"
+}
+[/block]
+A shared file system can be used as a storage for nodes' IP addresses. The nodes will write their IP addresses to the file system on startup. This behavior is supported by `TcpDiscoverySharedFsIpFinder`.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n  <property name=\"discoverySpi\">\n    <bean class=\"org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi\">\n      <property name=\"ipFinder\">\n        <bean class=\"org.apache.ignite.spi.discovery.tcp.ipfinder.sharedfs.TcpDiscoverySharedFsIpFinder\">\n          <property name=\"path\" ref=\"/var/ignite/addresses\"/>\n        </bean>\n      </property>\n    </bean>\n  </property>\n</bean>",
+      "language": "xml",
+      "name": "XML"
+    },
+    {
+      "code": "// Configuring discovery SPI.\nTcpDiscoverySpi spi = new TcpDiscoverySpi();\n\n// Configuring IP finder.\nTcpDiscoverySharedFsIpFinder ipFinder = new TcpDiscoverySharedFsIpFinder();\n\nipFinder.setPath(\"/var/ignite/addresses\");\n\nspi.setIpFinder(ipFinder);\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n \n// Override default discovery SPI.\ncfg.setDiscoverySpi(spi);\n \n// Start Ignite node.\nIgnition.start(cfg);",
+      "language": "java",
+      "name": "Java"
     }
   ]
 }
