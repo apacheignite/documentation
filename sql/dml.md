@@ -26,7 +26,7 @@ Apache Ignite SQL Grid not only allows selecting data from the Data Grid, using 
   "body": "DML queries, as well as all the `SELECT` queries, are SQL ANSI-99 compliant."
 }
 [/block]
-Ignite stores all the data in memory in form of key-value pairs and hence all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)`. Let's take a deep look at how the DML statements are implemented in Ignite.
+Ignite stores all the data in memory in form of key-value pairs and hence all the DML related operations are converted into corresponding cache key-value based commands like `cache.put(...)` or `cache.invokeAll(...)`. Let's take a deeper look at how the DML statements are implemented in Ignite.
 [block:api-header]
 {
   "type": "basic",
