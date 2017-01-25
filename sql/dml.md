@@ -361,7 +361,7 @@ the DML engine will generate the `SELECT` query in order to get a list of entrie
   ]
 }
 [/block]
-However, the subquery from `IN` clause (`SELECT personId FROM "salary".Salary ...`) will not be further distributed and will be executed over the local data set presented on a cluster node.
+However, the subquery from `IN` clause (`SELECT personId FROM "salary".Salary ...`) will not be distributed further and will be executed over the local data set presented on a cluster node.
 
 ##EXPLAIN support for DML statements
 
