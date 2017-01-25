@@ -295,7 +295,7 @@ Before `firstName` and `lastName` are updated, the DML engine will generate the 
   ]
 }
 [/block]
-Right after that, the entry that was retrieved​ with the `SELECT` can be updated concurrently.
+Right after that, the entry that was retrieved​ with the `SELECT` statement can be updated concurrently.
 [block:code]
 {
   "codes": [
