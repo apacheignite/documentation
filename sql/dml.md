@@ -323,7 +323,7 @@ This process will repeat until the DML engine is sure at the update phase that a
 [block:callout]
 {
   "type": "info",
-  "body": "DML engine does not re-execute the `SELECT` query for entries that are deleted concurrently​. The query is re-executed only for the entries that are still in the cache."
+  "body": "DML engine does not re-execute the `SELECT` query for entries that are deleted concurrently​. The query is re-executed only for entries that are still in the cache."
 }
 [/block]
 
