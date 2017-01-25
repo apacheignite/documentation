@@ -374,4 +374,4 @@ One possible approach is to execute `EXPLAIN` for the `SELECT`query that is auto
   "title": "Example"
 }
 [/block]
-Ignite includes ready-to-run `CacheQueryDmlExample` as a part of its [sources](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheQueryDmlExample.java).  The example demonstrates the usage of all the above-mentioned DML operations.
+Ignite distribution includes ready-to-run `CacheQueryDmlExample` as a part of its [sources](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheQueryDmlExample.java). This example demonstrates the usage of all the above-mentioned DML operations.
