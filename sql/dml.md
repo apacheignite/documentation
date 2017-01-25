@@ -317,7 +317,7 @@ The DML engine will find out that the entry with key `1` was modified at the upd
   ]
 }
 [/block]
-This query will be executed only for outdated keys. In our example there is only one key that is `1`.
+This query will be executed only for outdated keys. In our example, there is only one key that is `1`.
 
 This process will repeat until the DML engine is sure at the update phase that all the entries that are going to be updated are up-to-date. The maximum number of attempts is equal to `4`. Presently there is no configuration parameter that can change this value.
 [block:callout]
