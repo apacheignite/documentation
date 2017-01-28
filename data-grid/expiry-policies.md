@@ -58,3 +58,22 @@ Also, it is possible to change or set Expiry Policy for individual operations on
 }
 [/block]
 This policy will be used for each operation invoked on the returned cache instance.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Eager TTL"
+}
+[/block]
+Entries that are expired can be removed from cache either eagerly or when they are touched by different cache operations. If there is at least one cache configured with eager TTL enabled, Ignite will create a single thread to clean up expired entries in background.
+
+Eager TTL can be enabled or disabled via `CacheConfiguration.eagerTtl` property (default value is `true`):
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n    <property name=\"eagerTtl\" value=\"true\"/>\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
