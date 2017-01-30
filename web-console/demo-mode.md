@@ -43,7 +43,40 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   ]
 }
 [/block]
-Once the IgniteWeb Agent is started, you can checkout predefined cluster and caches, run SQL queries on a demo database, as well as monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
+3. Once the IgniteWeb Agent is started, go back to your web browser. You can now:
+a. Checkout predefined cluster and caches. 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/857edc8-summary.png",
+        "summary.png",
+        1141,
+        1168,
+        "#eeebe9"
+      ]
+    }
+  ]
+}
+[/block]
+b. Run SQL queries on the demo database 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/5b5cdc8-sql-queries.png",
+        "sql-queries.png",
+        1147,
+        1195,
+        "#539ac3"
+      ]
+    }
+  ]
+}
+[/block]
+c. Monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
 [block:image]
 {
   "images": [
@@ -62,7 +95,7 @@ Once the IgniteWeb Agent is started, you can checkout predefined cluster and cac
 [/block]
 ## Importing a domain model from a database
 In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent.
-How to evaluate:
+**How to evaluate:**
   * Go to Ignite Web Console `Domain model` screen.
   * Click `Import from database`. You should see a modal window with the demo description.
   * Click `Next` button. You should see list of available schemas.
@@ -71,7 +104,7 @@ How to evaluate:
   * Select some of them and click `Save`.
 
 ## SQL Demonstration
-How to evaluate:
+**How to evaluate:**
 In this mode, three server and one client nodes will be started. Several caches will be created and populated with data.
  * Click `SQL` in Ignite Web Console top menu.
  * `Demo` notebook with preconfigured queries will be opened.
