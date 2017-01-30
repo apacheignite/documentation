@@ -1,7 +1,7 @@
 * [Starting Demo Mode](#section-starting-demo-mode)
  * [Configure clusters and caches](#section-1-configure-clusters-and-caches)
- * [Import domain model](#section-2-import-domain-model-from-database)
- * [Run SQL queries](#section-3-run-sql-queries-on-demo-database)
+ * [Import domain model](#section-2-import-domain-model)
+ * [Run SQL queries](#section-3-run-sql-queries)
  * [Monitor the cluster](#section-4-monitor-the-cluster)
 * [Screencast](#section-screencast)
 
@@ -70,7 +70,7 @@ You can click on `Clusters` and `Caches`, on the side bar menu of the web consol
   ]
 }
 [/block]
-## 2. Import domain model from database
+## 2. Import domain model
 
 In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent. To evaluate:
   * Go to Ignite Web Console `Domain model` screen.
@@ -94,11 +94,11 @@ In this mode, an instance of the in-memory H2 database will be started on the co
   ]
 }
 [/block]
-## 3. Run SQL queries on demo database 
+## 3. Run SQL queries
 In this mode, three server and one client nodes will be started. Several caches will be created and populated with data. To evaluate:
  * Click  on `Queries` tab in Ignite Web Console top menu.
  * `SQL Demo` notebook with preconfigured queries will open.
- * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
+ * You can execute any SQL queries, on the demo database, for tables: `Country, Department, Employee, Parking, Car`.
 
 **Example**
  Enter the following SQL statement:
