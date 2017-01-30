@@ -101,8 +101,7 @@ c. Monitor the cluster and view various heap, CPU, and other useful node and cac
 }
 [/block]
 
-In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent.
-## How to evaluate:
+In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent. To evaluate:
   * Go to Ignite Web Console `Domain model` screen.
   * Click `Import from database`. You should see a modal window with the demo description.
   * Click `Next` button. You should see list of available schemas.
@@ -116,16 +115,22 @@ In this mode, an instance of the in-memory H2 database will be started on the co
 }
 [/block]
 
-In this mode, three server and one client nodes will be started. Several caches will be created and populated with data.
-## How to evaluate:
+In this mode, three server and one client nodes will be started. Several caches will be created and populated with data. To evaluate:
  * Click `Queries` in Ignite Web Console top menu.
  * `SQL Demo` notebook with preconfigured queries will open.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
 
 For example:
  * Enter SQL statement:
-`SELECT p.name, count(*) AS cnt FROM "ParkingCache".Parking p`
-`INNER JOIN "CarCache".Car c ON (p.id) = (c.parkingId)`
-`GROUP BY P.NAME`
- * Click `Execute` button. You should get some data in table.
- * Click `charts` buttons to see auto generated charts.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SELECT p.name, count(*) AS cnt FROM \"ParkingCache\".Parking p`\n`INNER JOIN \"CarCache\".Car c ON (p.id) = (c.parkingId)`\n`GROUP BY P.NAME",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+* Click the `Execute` button. You should get some data in the table.
+* Click `charts` buttons to see auto generated charts.
