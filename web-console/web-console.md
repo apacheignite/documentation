@@ -63,7 +63,8 @@ Once the IgniteWeb Agent is started, you can monitor the cluster and view variou
         1145,
         1201,
         "#f1e9e3"
-      ]
+      ],
+      "border": true
     }
   ]
 }
