@@ -19,4 +19,4 @@
   ]
 }
 [/block]
-You can use the Web Console in [Demo mode](doc:demo-mode) or [deploy on your system environment](doc:local-deployment).
+You can use the Web Console in [Demo mode](doc:demo-mode) for evaluation purposes, or [deploy locally] (doc:local-deployment) on your system environment.
