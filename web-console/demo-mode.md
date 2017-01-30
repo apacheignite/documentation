@@ -1,6 +1,6 @@
 * [Starting Demo Mode](#section-starting-demo-mode)
- * [Importing a domain model from a database](#section-importing-a-domain-model-from-a-database)
- * [SQL Demonstration](#section-sql-demonstration)
+* [Importing a domain model from a database](#section-importing-a-domain-model-from-a-database)
+* [SQL Demonstration](#section-sql-demonstration)
 
 [block:api-header]
 {
@@ -97,7 +97,7 @@ c. Monitor the cluster and view various heap, CPU, and other useful node and cac
 [block:api-header]
 {
   "type": "basic",
-  "title": "Importing a domain model from a database"
+  "title": "Importing a Domain Model From a Database"
 }
 [/block]
 
