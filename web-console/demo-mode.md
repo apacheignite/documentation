@@ -32,7 +32,7 @@ You can use the Web Console's demo mode for **evaluation purposes**. To enable t
   ]
 }
 [/block]
-2. Open the command shell and, assuming you are in Ignite Web Agent installation folder, run the following command: 
+2. Open the command shell and, assuming you are in `ignite-web-agent` installation folder, run the following command: 
 [block:code]
 {
   "codes": [
