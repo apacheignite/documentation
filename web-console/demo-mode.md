@@ -118,8 +118,8 @@ In this mode, an instance of the in-memory H2 database will be started on the co
 
 In this mode, three server and one client nodes will be started. Several caches will be created and populated with data.
 ## How to evaluate:
- * Click `SQL` in Ignite Web Console top menu.
- * `Demo` notebook with preconfigured queries will be opened.
+ * Click `Queries` in Ignite Web Console top menu.
+ * `SQL Demo` notebook with preconfigured queries will open.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
 
 For example:
