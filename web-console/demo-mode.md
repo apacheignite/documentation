@@ -1,8 +1,8 @@
 * [Starting Demo Mode](#section-starting-demo-mode)
- * [Configure Clusters and Caches](#section--configure-clusters-and-caches)
- * [Import Domain Model](#section--import-domain-model)
- * [Run SQL Queries](#section--run-sql-queries)
- * [Monitor the Cluster](#section--monitor-the-cluster)
+ * [Configure Clusters and Caches](#section--configure-clusters-and-caches-)
+ * [Import Domain Model](#section--import-domain-model-)
+ * [Run SQL Queries](#section--run-sql-queries-)
+ * [Monitor the Cluster](#section--monitor-the-cluster-)
 * [Screencast](#section-screencast)
 
 [block:api-header]
