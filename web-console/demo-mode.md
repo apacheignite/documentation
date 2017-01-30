@@ -121,7 +121,7 @@ In this mode, three server and one client nodes will be started. Several caches 
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
 
 ##Example
- * Enter SQL statement:
+ * Enter the following SQL statement:
 [block:code]
 {
   "codes": [
