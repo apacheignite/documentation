@@ -18,7 +18,28 @@
 }
 [/block]
 You can use the Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
+[block:callout]
+{
+  "type": "info",
+  "body": "For the simplicity of this guide, an already deployed instance of Ignite Web Console is used. The instance is hosted on GridGain infrastructure and GridGain embeds its logo as a part of the console interface. You'll see the logo on the screenshots below. Note that you're free to deploy Ignite Web Console on an alternative infrastructure and use other logo."
+}
+[/block]
 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/037ccba-download-web-agent.png",
+        "download-web-agent.png",
+        691,
+        399,
+        "#ebebeb"
+      ]
+    }
+  ]
+}
+[/block]
 ## Importing a domain model from a database
 In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent.
 How to evaluate:
