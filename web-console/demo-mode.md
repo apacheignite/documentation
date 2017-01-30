@@ -93,19 +93,31 @@ c. Monitor the cluster and view various heap, CPU, and other useful node and cac
   ]
 }
 [/block]
-## Importing a domain model from a database
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Importing a domain model from a database"
+}
+[/block]
+
 In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent.
-**How to evaluate:**
+## How to evaluate:
   * Go to Ignite Web Console `Domain model` screen.
   * Click `Import from database`. You should see a modal window with the demo description.
   * Click `Next` button. You should see list of available schemas.
   * Click `Next` button. You should see list of available tables.
   * Click `Next` button. You should see import options.
   * Select some of them and click `Save`.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "SQL Demonstration"
+}
+[/block]
 
-## SQL Demonstration
-**How to evaluate:**
 In this mode, three server and one client nodes will be started. Several caches will be created and populated with data.
+## How to evaluate:
  * Click `SQL` in Ignite Web Console top menu.
  * `Demo` notebook with preconfigured queries will be opened.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
