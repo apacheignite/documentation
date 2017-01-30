@@ -139,16 +139,13 @@ The web console proved monitoring capabilities that allows you to view various h
 }
 [/block]
 
-
-
-
-[block:code]
+[block:api-header]
 {
-  "codes": [
-    {
-      "code": "",
-      "language": "text"
-    }
-  ]
+  "type": "basic",
+  "title": "Screencast"
 }
+[/block]
+
+[block:embed]
+{}
 [/block]
