@@ -94,7 +94,7 @@ In this mode, an instance of the in-memory H2 database will be started on the co
   ]
 }
 [/block]
-## 3. Run SQL queries on the demo database 
+## 3. Run SQL queries on demo database 
 In this mode, three server and one client nodes will be started. Several caches will be created and populated with data. To evaluate:
  * Click  on `Queries` tab in Ignite Web Console top menu.
  * `SQL Demo` notebook with preconfigured queries will open.
