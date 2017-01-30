@@ -60,7 +60,7 @@ Checkout predefined cluster and caches.
   ]
 }
 [/block]
-* Run SQL queries on a demo database 
+* Run SQL queries on the demo database 
 [block:image]
 {
   "images": [
