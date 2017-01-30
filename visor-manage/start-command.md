@@ -75,7 +75,7 @@ Starts topology defined in 'start-nodes.ini' file. Existing nodes are stopped.
     {
       "code": "# section with settings for host 1\n[host1]\n# ip address or host name\nhost=192.168.1.1\n# ssh port\nport=22\n# ssh login\nuname=userName\n# ssh password\npasswd=password\n# ssh key path\nkey=~/.ssh/id_rsa\n# start node count\nnodes=1\n# ignite home path\nigniteHome=/usr/lib/ignite\n# ignite config path\ncfg=/examples/exmaple-ignite.xml\n# ignite node start script\nscript=/bin/ignite.sh\n",
       "language": "text",
-      "name": "topology_specification.ini"
+      "name": "start-nodes.ini"
     }
   ]
 }
