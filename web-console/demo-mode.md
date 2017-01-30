@@ -120,7 +120,7 @@ In this mode, three server and one client nodes will be started. Several caches 
  * `SQL Demo` notebook with preconfigured queries will open.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
 
-For example:
+##Example
  * Enter SQL statement:
 [block:code]
 {
