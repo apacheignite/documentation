@@ -21,7 +21,8 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
 [block:callout]
 {
   "type": "info",
-  "body": "For the simplicity of this guide, an already deployed instance of Ignite Web Console is used. The instance is hosted on GridGain infrastructure and GridGain embeds its logo as a part of the console interface. You'll see the logo on the screenshots below. Note that you're free to deploy Ignite Web Console on an alternative infrastructure and use other logo."
+  "body": "For the simplicity of this guide, an already deployed instance of Ignite Web Console is used. The instance is hosted on GridGain infrastructure and GridGain embeds its logo as a part of the console interface. You'll see the logo on the screenshots below. Note that you're free to deploy Ignite Web Console on an [alternative infrastructure](doc:local-deployment) and use other logo.",
+  "title": "Web Console Hosting and Logo"
 }
 [/block]
 
