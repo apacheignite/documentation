@@ -43,7 +43,7 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   ]
 }
 [/block]
-Once the IgniteWeb Agent is started, you can monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
+Once the IgniteWeb Agent is started, you can check out predefined cluster and caches, run SQL queries on a demo database, as well as monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
 [block:image]
 {
   "images": [
