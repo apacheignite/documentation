@@ -27,7 +27,7 @@ Ignite Web Agent zip ships with `ignite-web-agent.{sh|bat}` script that is used 
 ###Configuration file
 By default, Ignite Web Agent makes an attempt to load configuration settings from `default.properties` file. The content of the file has to follow a simple line-oriented format as described [here](#http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html).
 
-Available entries names: `tokens`, `server-uri`, `node-uri`, `driver-folder`
+Available entries' names are: `tokens`, `server-uri`, `node-uri`, `driver-folder`
 [block:code]
 {
   "codes": [
