@@ -65,7 +65,8 @@ You can click on `Clusters` and `Caches`, on the side bar menu of the web consol
         1141,
         1168,
         "#eeebe9"
-      ]
+      ],
+      "border": true
     }
   ]
 }
@@ -89,7 +90,8 @@ In this mode, an instance of the in-memory H2 database will be started on the co
         1139,
         1063,
         "#a23745"
-      ]
+      ],
+      "border": true
     }
   ]
 }
@@ -124,7 +126,8 @@ In this mode, three server and one client nodes will be started. Several caches 
         1147,
         1195,
         "#539ac3"
-      ]
+      ],
+      "border": true
     }
   ]
 }
