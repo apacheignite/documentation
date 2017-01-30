@@ -43,8 +43,8 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   ]
 }
 [/block]
-Once the IgniteWeb Agent is started, you can 
-*Checkout predefined cluster and caches. 
+3. Once the IgniteWeb Agent is started, you can 
+* Checkout predefined cluster and caches. 
 [block:image]
 {
   "images": [
