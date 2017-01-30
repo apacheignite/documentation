@@ -38,7 +38,7 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   "codes": [
     {
       "code": "./ignite-web-agent.sh",
-      "language": "text"
+      "language": "shell"
     }
   ]
 }
