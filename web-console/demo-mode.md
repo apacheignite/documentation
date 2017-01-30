@@ -87,7 +87,7 @@ In this mode, an instance of the in-memory H2 database will be started on the co
 [/block]
 ## Run SQL queries on the demo database 
 In this mode, three server and one client nodes will be started. Several caches will be created and populated with data. To evaluate:
- * Click `Queries` in Ignite Web Console top menu.
+ * Click  on `Queries` tab in Ignite Web Console top menu.
  * `SQL Demo` notebook with preconfigured queries will open.
  * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
 
@@ -121,7 +121,7 @@ In this mode, three server and one client nodes will be started. Several caches 
 }
 [/block]
 ## Monitor the cluster 
-The web console proved monitoring capabilities that allows you to view various heap, CPU, and other useful node and cache metrics. It also allows you to run garbage collection or view thread dump for selected nodes.
+The web console proved monitoring capabilities that allows you to view various heap, CPU, and other useful node and cache metrics. It also allows you to run garbage collection or view thread dump for selected nodes. To use Web Console Monitoring, Click on the `Monitoring` tab in Ignite Web Console top menu.
 [block:image]
 {
   "images": [
