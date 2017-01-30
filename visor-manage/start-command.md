@@ -8,8 +8,7 @@
 [/block]
 Starts or restarts nodes on remote host.
 ```start -f=<path> {-m=<num>} {-r}```
-```start -h=<hostname> {-p=<num>} {-u=<username>} {-pw=<password>} {-k=<path>}```
-    ```{-n=<num>} {-g=<path>} {-c=<path>} {-s=<path>} {-m=<num>} {-r}```
+```start -h=<hostname> {-p=<num>} {-u=<username>} {-pw=<password>} {-k=<path>} {-n=<num>} {-g=<path>} {-c=<path>} {-s=<path>} {-m=<num>} {-r}```
 Alert options:
 * ```-f=<path>``` Path to INI file that contains topology specification. 
 Topology specification file can contain the next properties:
