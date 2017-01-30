@@ -147,5 +147,11 @@ The web console proved monitoring capabilities that allows you to view various h
 [/block]
 
 [block:embed]
-{}
+{
+  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FV-o3IFVnk5k%3Ffeature%3Doembed&url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DV-o3IFVnk5k&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FV-o3IFVnk5k%2Fhqdefault.jpg&key=02466f963b9b4bb8845a05b53d3235d7&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" frameborder=\"0\" allowfullscreen></iframe>",
+  "url": "https://www.youtube.com/watch?v=V-o3IFVnk5k&feature=youtu.be",
+  "title": "Apache Ignite Web Console Monitoring",
+  "favicon": "https://s.ytimg.com/yts/img/favicon-vflz7uhzw.ico",
+  "image": "https://i.ytimg.com/vi/V-o3IFVnk5k/hqdefault.jpg"
+}
 [/block]
