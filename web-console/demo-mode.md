@@ -1,6 +1,6 @@
 * [Starting Demo Mode](#section-starting-demo-mode)
 * [Importing a domain model from a database](#section-importing-a-domain-model-from-a-database)
-* [SQL Demonstration](#section-sql-demonstration)
+* [SQL Queries](#section-sql-queries)
 
 [block:api-header]
 {
@@ -112,7 +112,7 @@ In this mode, an instance of the in-memory H2 database will be started on the co
 [block:api-header]
 {
   "type": "basic",
-  "title": "SQL Demonstration"
+  "title": "SQL Queries"
 }
 [/block]
 
