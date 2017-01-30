@@ -25,7 +25,23 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   "title": "Web Console Hosting and Logo"
 }
 [/block]
-1. Download and unzip Ignite Web Agent. From the command shell, run the following command: 
+1. Download and unzip Ignite Web Agent. 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/037ccba-download-web-agent.png",
+        "download-web-agent.png",
+        691,
+        399,
+        "#ebebeb"
+      ]
+    }
+  ]
+}
+[/block]
+2. From the command shell, run the following command: 
 [block:code]
 {
   "codes": [
@@ -42,11 +58,11 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   "images": [
     {
       "image": [
-        "https://files.readme.io/037ccba-download-web-agent.png",
-        "download-web-agent.png",
-        691,
-        399,
-        "#ebebeb"
+        "https://files.readme.io/d817397-start-ignite-web-agent.png",
+        "start-ignite-web-agent.png",
+        1353,
+        92,
+        "#1d1115"
       ]
     }
   ]
