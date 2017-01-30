@@ -1,14 +1,14 @@
 * [Starting Demo Mode](#section-starting-demo-mode)
 * [Importing a domain model from a database](#section-importing-a-domain-model-from-a-database)
 * [SQL Demonstration](#section-sql-demonstration)
-
+You can use the Web Console's demo mode for evaluation purposes. 
 [block:api-header]
 {
   "type": "basic",
   "title": "Starting Demo Mode"
 }
 [/block]
-You can use the Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
+To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
 [block:callout]
 {
   "type": "info",
