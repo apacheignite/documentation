@@ -25,6 +25,17 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   "title": "Web Console Hosting and Logo"
 }
 [/block]
+1. Download and unzip Ignite Web Agent. From the command shell, run the following command: 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "./ignite-web-agent.sh",
+      "language": "text"
+    }
+  ]
+}
+[/block]
 
 [block:image]
 {
