@@ -1,8 +1,8 @@
 * [Starting Demo Mode](#section-starting-demo-mode)
- * [Configure clusters and caches](#section-1-configure-clusters-and-caches)
- * [Import domain model](#section-2-import-domain-model)
- * [Run SQL queries](#section-3-run-sql-queries)
- * [Monitor the cluster](#section-4-monitor-the-cluster)
+ * [Configure Clusters and Caches](#section-1-configure-clusters-and-caches)
+ * [Import Domain Model](#section-2-import-domain-model)
+ * [Run SQL Queries](#section-3-run-sql-queries)
+ * [Monitor the Cluster](#section-4-monitor-the-cluster)
 * [Screencast](#section-screencast)
 
 [block:api-header]
@@ -53,7 +53,7 @@ Once the IgniteWeb Agent is started, you can go back to your web browser where y
   "type": "basic"
 }
 [/block]
-## 1. Configure clusters and caches
+## 1. Configure Clusters and Caches
 You can click on `Clusters` and `Caches`, on the side bar menu of the web console, to set and view various configurations for Ignite. Click on `Summary` to download these configurations in XML, and Java. A ready-to-use Maven based project can also be downloaded from this page.
 [block:image]
 {
@@ -70,7 +70,7 @@ You can click on `Clusters` and `Caches`, on the side bar menu of the web consol
   ]
 }
 [/block]
-## 2. Import domain model
+## 2. Import Domain Model
 
 In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent. To evaluate:
   * Go to Ignite Web Console `Domain model` screen.
@@ -94,7 +94,7 @@ In this mode, an instance of the in-memory H2 database will be started on the co
   ]
 }
 [/block]
-## 3. Run SQL queries
+## 3. Run SQL Queries
 In this mode, three server and one client nodes will be started. Several caches will be created and populated with data. To evaluate:
  * Click  on `Queries` tab in Ignite Web Console top menu.
  * `SQL Demo` notebook with preconfigured queries will open.
@@ -129,7 +129,7 @@ In this mode, three server and one client nodes will be started. Several caches 
   ]
 }
 [/block]
-## 4. Monitor the cluster 
+## 4. Monitor the Cluster 
 The web console proved monitoring capabilities that allows you to view various heap, CPU, and other useful node and cache metrics. It also allows you to run garbage collection or view thread dump for selected nodes. To evaluate, click on the `Monitoring` tab in Ignite Web Console top menu.
 [block:image]
 {
