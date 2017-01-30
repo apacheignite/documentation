@@ -1,8 +1,8 @@
 * [Starting Demo Mode](#section-starting-demo-mode)
-* [Configure clusters and caches](#section-1-configure-clusters-and-caches)
-* [Import domain model from database](#section-2-import-domain-model-from-database)
-* [Run SQL queries on the demo database](#section-3-run-sql-queries-on-the-demo-database)
-* [Monitor the cluster](#section-4-monitor-the-cluster)
+ * [Configure clusters and caches](#section-1-configure-clusters-and-caches)
+ * [Import domain model from database](#section-2-import-domain-model-from-database)
+ * [Run SQL queries on the demo database](#section-3-run-sql-queries-on-the-demo-database)
+ * [Monitor the cluster](#section-4-monitor-the-cluster)
 * [Screencast](#section-screencast)
 
 [block:api-header]
