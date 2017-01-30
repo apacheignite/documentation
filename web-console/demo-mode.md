@@ -8,7 +8,7 @@
   "title": "Starting Demo Mode"
 }
 [/block]
-You can use the Web Console's demo mode for **evaluation purposes**. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
+You can use the Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
 [block:callout]
 {
   "type": "info",
@@ -44,7 +44,8 @@ You can use the Web Console's demo mode for **evaluation purposes**. To enable t
 }
 [/block]
 3. Once the IgniteWeb Agent is started, you can go back to your web browser and:
-a. Checkout predefined cluster and caches. 
+## a. Checkout predefined cluster and caches
+You can click on **Clusters** and **Caches**, on the side bar menu of the web console, to set and view various configurations for Ignite. Click on **Summary** to download these configurations in XML, and Java. A ready-to-use Maven based project can also be downloaded from this page.
 [block:image]
 {
   "images": [
@@ -60,7 +61,26 @@ a. Checkout predefined cluster and caches.
   ]
 }
 [/block]
-b. Run SQL queries on the demo database 
+## b. Run SQL queries on the demo database 
+In this mode, three server and one client nodes will be started. Several caches will be created and populated with data. To evaluate:
+ * Click `Queries` in Ignite Web Console top menu.
+ * `SQL Demo` notebook with preconfigured queries will open.
+ * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
+
+**Example**
+ * Enter the following SQL statement:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SELECT p.name, count(*) AS cnt FROM \"ParkingCache\".Parking p`\n`INNER JOIN \"CarCache\".Car c ON (p.id) = (c.parkingId)`\n`GROUP BY P.NAME",
+      "language": "text"
+    }
+  ]
+}
+[/block]
+* Click the `Execute` button. You should get some data in the table.
+* Click `charts` buttons to see auto generated charts.
 [block:image]
 {
   "images": [
@@ -108,29 +128,16 @@ In this mode, an instance of the in-memory H2 database will be started on the co
   * Click `Next` button. You should see list of available tables.
   * Click `Next` button. You should see import options.
   * Select some of them and click `Save`.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "SQL Queries"
-}
-[/block]
 
-In this mode, three server and one client nodes will be started. Several caches will be created and populated with data. To evaluate:
- * Click `Queries` in Ignite Web Console top menu.
- * `SQL Demo` notebook with preconfigured queries will open.
- * You can execute any SQL queries for tables: `Country, Department, Employee, Parking, Car`.
 
-##Example
- * Enter the following SQL statement:
+
 [block:code]
 {
   "codes": [
     {
-      "code": "SELECT p.name, count(*) AS cnt FROM \"ParkingCache\".Parking p`\n`INNER JOIN \"CarCache\".Car c ON (p.id) = (c.parkingId)`\n`GROUP BY P.NAME",
+      "code": "",
       "language": "text"
     }
   ]
 }
 [/block]
-* Click the `Execute` button. You should get some data in the table.
-* Click `charts` buttons to see auto generated charts.
