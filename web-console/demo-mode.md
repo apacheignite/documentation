@@ -67,7 +67,7 @@ You can click on **Clusters** and **Caches**, on the side bar menu of the web co
   ]
 }
 [/block]
-## Import Domain Model From Database
+## Import domain model from database
 
 In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent. To evaluate:
   * Go to Ignite Web Console `Domain model` screen.
