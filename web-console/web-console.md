@@ -44,7 +44,7 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
 }
 [/block]
 3. Once the IgniteWeb Agent is started, you can:
-Checkout predefined cluster and caches. 
+* Run SQL queries on the demo database Checkout predefined cluster and caches. 
 [block:image]
 {
   "images": [
@@ -65,7 +65,13 @@ Checkout predefined cluster and caches.
 {
   "images": [
     {
-      "image": []
+      "image": [
+        "https://files.readme.io/5b5cdc8-sql-queries.png",
+        "sql-queries.png",
+        1147,
+        1195,
+        "#539ac3"
+      ]
     }
   ]
 }
