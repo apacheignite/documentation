@@ -120,7 +120,8 @@ In this mode, three server and one client nodes will be started. Several caches 
   ]
 }
 [/block]
-## Monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
+## Monitor the cluster 
+The web console proved monitoring capabilities that allows you to view various heap, CPU, and other useful node and cache metrics. It also allows you to run garbage collection or view thread dump for selected nodes.
 [block:image]
 {
   "images": [
