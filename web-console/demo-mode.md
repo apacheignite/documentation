@@ -43,8 +43,8 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   ]
 }
 [/block]
-3. Once the IgniteWeb Agent is started, you can go back to your web browser and:
-## a. Checkout predefined cluster and caches
+3. Once the IgniteWeb Agent is started, you can go back to your web browser where you can:
+## Checkout predefined cluster and caches
 You can click on **Clusters** and **Caches**, on the side bar menu of the web console, to set and view various configurations for Ignite. Click on **Summary** to download these configurations in XML, and Java. A ready-to-use Maven based project can also be downloaded from this page.
 [block:image]
 {
@@ -61,7 +61,25 @@ You can click on **Clusters** and **Caches**, on the side bar menu of the web co
   ]
 }
 [/block]
-## b. Run SQL queries on the demo database 
+## Import Domain Model From Database
+
+In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent. To evaluate:
+  * Go to Ignite Web Console `Domain model` screen.
+  * Click `Import from database`. You should see a modal window with the demo description.
+  * Click `Next` button. You should see list of available schemas.
+  * Click `Next` button. You should see list of available tables.
+  * Click `Next` button. You should see import options.
+  * Select some of them and click `Save`.
+[block:image]
+{
+  "images": [
+    {
+      "image": []
+    }
+  ]
+}
+[/block]
+## Run SQL queries on the demo database 
 In this mode, three server and one client nodes will be started. Several caches will be created and populated with data. To evaluate:
  * Click `Queries` in Ignite Web Console top menu.
  * `SQL Demo` notebook with preconfigured queries will open.
@@ -96,7 +114,7 @@ In this mode, three server and one client nodes will be started. Several caches 
   ]
 }
 [/block]
-c. Monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
+## Monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
 [block:image]
 {
   "images": [
@@ -114,20 +132,6 @@ c. Monitor the cluster and view various heap, CPU, and other useful node and cac
 }
 [/block]
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Importing a Domain Model From a Database"
-}
-[/block]
-
-In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent. To evaluate:
-  * Go to Ignite Web Console `Domain model` screen.
-  * Click `Import from database`. You should see a modal window with the demo description.
-  * Click `Next` button. You should see list of available schemas.
-  * Click `Next` button. You should see list of available tables.
-  * Click `Next` button. You should see import options.
-  * Select some of them and click `Save`.
 
 
 
