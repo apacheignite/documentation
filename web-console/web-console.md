@@ -64,7 +64,7 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
         92,
         "#1d1115"
       ],
-      "sizing": "80"
+      "sizing": "full"
     }
   ]
 }
