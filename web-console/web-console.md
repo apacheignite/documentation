@@ -43,7 +43,7 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   ]
 }
 [/block]
-3. Once the IgniteWeb Agent is started, Go back to your web browser. You can now:
+3. Once the IgniteWeb Agent is started, go back to your web browser. You can now:
 a. Checkout predefined cluster and caches. 
 [block:image]
 {
