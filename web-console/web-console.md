@@ -53,7 +53,21 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
 }
 [/block]
 Once the IgniteWeb Agent is started, you can monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
-
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/79a6424-monitoring.png",
+        "monitoring.png",
+        1145,
+        1201,
+        "#f1e9e3"
+      ]
+    }
+  ]
+}
+[/block]
 ## Importing a domain model from a database
 In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent.
 How to evaluate:
