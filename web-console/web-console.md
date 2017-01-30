@@ -1,20 +1,11 @@
-* [Overview](#overview)
-* [Demo Mode](#demo-mode)
+* [Starting Demo Mode](#section-starting-demo-mode)
+ * [Importing a domain model from a database](#section-importing-a-domain-model-from-a-database)
+ * [SQL Demonstration](#section-sql-demonstration)
+
 [block:api-header]
 {
   "type": "basic",
-  "title": "Overview"
-}
-[/block]
-[Ignite Web Console](https://console.gridgain.com/) is an interactive configuration wizard, management and monitoring tool that allows you to:
-* Create and download various configurations to use for your Apache Ignite cluster.
-* Automatically construct Apache Ignite's SQL metadata from any RDBMS schemas.
-* Execute SQL queries over your in-memory caches.
-*  View query execution plans, in-memory schemas and streaming charts.
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Demo Mode"
+  "title": "Starting Demo Mode"
 }
 [/block]
 You can use the Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
@@ -47,12 +38,39 @@ You can use the Web Console's demo mode for evaluation purposes. To enable this 
   "codes": [
     {
       "code": "./ignite-web-agent.sh",
-      "language": "text"
+      "language": "shell"
     }
   ]
 }
 [/block]
-Once the IgniteWeb Agent is started, you can monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
+Once the IgniteWeb Agent is started, you can 
+*Checkout predefined cluster and caches. 
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/857edc8-summary.png",
+        "summary.png",
+        1141,
+        1168,
+        "#eeebe9"
+      ]
+    }
+  ]
+}
+[/block]
+* Run SQL queries on a demo database 
+[block:image]
+{
+  "images": [
+    {
+      "image": []
+    }
+  ]
+}
+[/block]
+* Monitor the cluster and view various heap, CPU, and other useful node and cache metrics.
 [block:image]
 {
   "images": [
