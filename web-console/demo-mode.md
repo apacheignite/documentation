@@ -1,5 +1,6 @@
-*[Importing a domain model from a database](#section-importing-a-domain-model-from-a-database)
-*[SQL Demonstration](#section-sql-demonstration)
+* [Importing a domain model from a database](#section-importing-a-domain-model-from-a-database)
+* [SQL Demonstration](#section-sql-demonstration)
+
 [block:api-header]
 {
   "type": "basic",
