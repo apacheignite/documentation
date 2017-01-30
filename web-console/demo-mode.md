@@ -72,15 +72,21 @@ You can click on `Clusters` and `Caches`, on the side bar menu of the web consol
 In this mode, an instance of the in-memory H2 database will be started on the connected Ignite Web Agent. To evaluate:
   * Go to Ignite Web Console `Domain model` screen.
   * Click `Import from database`. You should see a modal window with the demo description.
-  * Click `Next` button. You should see list of available schemas.
-  * Click `Next` button. You should see list of available tables.
-  * Click `Next` button. You should see import options.
+  * Click `Next` button to see a list of available schemas.
+  * Click `Next` button to see a list of available tables.
+  * Click `Next` button to see import options.
   * Select some of them and click `Save`.
 [block:image]
 {
   "images": [
     {
-      "image": []
+      "image": [
+        "https://files.readme.io/fbf02ed-domain-model.png",
+        "domain-model.png",
+        1139,
+        1063,
+        "#a23745"
+      ]
     }
   ]
 }
