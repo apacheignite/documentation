@@ -1,6 +1,6 @@
 * [Starting Demo Mode](#section-starting-demo-mode)
-* [Importing a domain model from a database](#section-importing-a-domain-model-from-a-database)
-* [SQL Queries](#section-sql-queries)
+ * [Configure clusters and caches](#section-importing-a-domain-model-from-a-database)
+ * [SQL Queries](#section-sql-queries)
 
 [block:api-header]
 {
@@ -50,7 +50,7 @@ Once the IgniteWeb Agent is started, you can go back to your web browser where y
   "type": "basic"
 }
 [/block]
-## 1. Checkout predefined cluster and caches
+## 1. Configure clusters and caches
 You can click on `Clusters` and `Caches`, on the side bar menu of the web console, to set and view various configurations for Ignite. Click on `Summary` to download these configurations in XML, and Java. A ready-to-use Maven based project can also be downloaded from this page.
 [block:image]
 {
