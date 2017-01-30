@@ -51,7 +51,7 @@ Once the IgniteWeb Agent is started, you can go back to your web browser where y
 }
 [/block]
 ## Checkout predefined cluster and caches
-You can click on **Clusters** and **Caches**, on the side bar menu of the web console, to set and view various configurations for Ignite. Click on **Summary** to download these configurations in XML, and Java. A ready-to-use Maven based project can also be downloaded from this page.
+You can click on `Clusters` and `Caches`, on the side bar menu of the web console, to set and view various configurations for Ignite. Click on `Summary` to download these configurations in XML, and Java. A ready-to-use Maven based project can also be downloaded from this page.
 [block:image]
 {
   "images": [
