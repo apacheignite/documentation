@@ -11,7 +11,7 @@
   "title": "Starting Demo Mode"
 }
 [/block]
-You can use the Web Console's demo mode for evaluation purposes. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
+You can use Ignite Web Console's demo mode to evaluate its various features that help configure and manage an Ignite cluster. To enable this mode, you need to click on the `Start demo` button located in the top menu, and wait for a popup screen to appear that provides additional steps.
 [block:callout]
 {
   "type": "info",
