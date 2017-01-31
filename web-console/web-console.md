@@ -4,6 +4,7 @@
 * Execute SQL queries over your in-memory caches.
 *  View query execution plans, in-memory schemas and streaming charts.
 
+Ignite Web Console is a web application that can be deployed on your system environment.
 [block:image]
 {
   "images": [
