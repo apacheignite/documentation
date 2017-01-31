@@ -13,7 +13,7 @@ You can use Ignite Web Console's demo mode to explore and evaluate its various f
   "title": "Starting Demo Mode"
 }
 [/block]
-To enable the demo mode, click on the `Start demo` button located in the top menu.
+To enable the demo mode, click on the `Start demo` button located in the top menu of the [Web Console](https://console.gridgain.com/).
 [block:callout]
 {
   "type": "info",
