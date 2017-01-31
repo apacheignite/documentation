@@ -51,6 +51,23 @@ To enable the demo mode, click on the `Start demo` button located in the top men
   ]
 }
 [/block]
+
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/ca768c5-start-ignite-web-agent.png",
+        "start-ignite-web-agent.png",
+        1356,
+        261,
+        "#221518"
+      ],
+      "border": true
+    }
+  ]
+}
+[/block]
 Once the IgniteWeb Agent is started, you can go back to your web browser where you can:
 
 [block:api-header]
