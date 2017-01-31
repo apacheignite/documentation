@@ -19,8 +19,6 @@
   ]
 }
 [/block]
-Ignite Web Console is a web application that can be deployed on your system environment.
-
 * [Demo mode](doc:demo-mode) 
 * [Local Deployment](doc:local-deployment)
 * [Web Agent](doc:web-agent) 
