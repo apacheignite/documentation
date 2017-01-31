@@ -19,4 +19,9 @@
   ]
 }
 [/block]
-You can use the Web Console in [Demo mode](doc:demo-mode) for evaluation purposes, or [deploy locally](doc:local-deployment) on your system environment.
+Ignite Web Console is a web application that can be deployed on your system environment. For demo purposes, check out [Ignite Web Console](https://console.gridgain.com/) hosted by GridGain.
+
+* [Demo mode](doc:demo-mode) 
+* [Local Deployment](doc:local-deployment)
+* [Web Agent](doc:web-agent) 
+* [RDBMS Integration](https://apacheignite-mix.readme.io/docs/web-console)
