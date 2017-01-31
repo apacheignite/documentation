@@ -19,7 +19,7 @@
   ]
 }
 [/block]
-Ignite Web Console is a web application that can be deployed on your system environment. For demo purposes, check out [Ignite Web Console](https://console.gridgain.com/) hosted by GridGain.
+Ignite Web Console is a web application that can be deployed on your system environment.
 
 * [Demo mode](doc:demo-mode) 
 * [Local Deployment](doc:local-deployment)
