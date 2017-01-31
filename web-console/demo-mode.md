@@ -133,7 +133,7 @@ In this mode, three server and one client nodes will be started. Several caches 
 }
 [/block]
 ## **Monitor the Cluster **
-The web console proved monitoring capabilities that allows you to view various heap, CPU, and other useful node and cache metrics. It also allows you to run garbage collection or view thread dump for selected nodes. To evaluate, click on the `Monitoring` tab in Ignite Web Console top menu.
+The web console proved monitoring capabilities that allows you to view various heap, CPU, and other useful node and cache metrics. It also allows you to run garbage collection or view thread dump for selected nodes. To evaluate, click on the `Monitoring` tab on the Ignite Web Console top menu.
 [block:image]
 {
   "images": [
