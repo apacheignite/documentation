@@ -18,6 +18,13 @@
   ]
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "For the simplicity of this guide, an already deployed instance of Ignite Web Console is used. The instance is hosted on GridGain infrastructure and GridGain embeds its logo as a part of the console interface. You may see the logo on the screenshots through this guide. Note that you're free to deploy Ignite Web Console on an [alternative infrastructure](doc:local-deployment) and use other logo."
+}
+[/block]
 Ignite ships with Ignite Web console that allows configuring all the cluster properties and import schema from a database for integrating with persistence stores. Ignite Web Console will connect to the specified database and generate all the required OR-mapping configuration (XML and pure Java) and Java domain model POJOs.
 
 * [Demo Mode](doc:demo-mode) 
