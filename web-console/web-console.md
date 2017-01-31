@@ -20,7 +20,7 @@ Ignite Web Console is a web application that can be deployed on your system envi
   ]
 }
 [/block]
-* [Demo mode](doc:demo-mode) 
+* [Demo Mode](doc:demo-mode) 
 * [Local Deployment](doc:local-deployment)
 * [Web Agent](doc:web-agent) 
 * [RDBMS Integration](https://apacheignite-mix.readme.io/docs/web-console)
