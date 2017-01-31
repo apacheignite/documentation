@@ -27,7 +27,7 @@
   "title": "Web Console Hosting and Logo"
 }
 [/block]
-Ignite ships with **Ignite Web console**, a web application, that can be deployed on your system environment. Ignite Web Console that allows configuring all the cluster properties and import schema from a database for integrating with persistence stores. It can connect to the specified database and generate all the required OR-mapping configuration (XML and pure Java) and Java domain model POJOs.
+Ignite ships with **Ignite Web console**, a web application that can be deployed on your system environment. Ignite Web Console that allows configuring all the cluster properties and import schema from a database for integrating with persistence stores. It can connect to the specified database and generate all the required OR-mapping configuration (XML and pure Java) and Java domain model POJOs.
 
 * [Demo Mode](doc:demo-mode) 
 * [Local Deployment](doc:local-deployment)
