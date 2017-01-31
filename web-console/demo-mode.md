@@ -137,7 +137,7 @@ In this mode, three server and one client nodes will be started. Several caches 
 }
 [/block]
 * Click the `Execute` button. You should get some data in the table.
-* Click `charts` buttons to see auto generated charts.
+* Click on `charts` buttons to see auto generated charts.
 [block:image]
 {
   "images": [
