@@ -2,9 +2,6 @@
  * [Configure Clusters and Caches](#section--configure-clusters-and-caches-)
  * [Import Domain Model](#section--import-domain-model-)
  * [Run SQL Queries](#section--run-sql-queries-)
- * [Monitor the Cluster](#section--monitor-the-cluster-)
-* [Screencast](#section-screencast)
-
 
 You can use Ignite Web Console's demo mode to explore and evaluate its various features that help configure and manage an Ignite cluster. In this mode, you can check out predefined clusters, caches, and domain models. An instance of a pre-populated H2 database is started on which you can run various SQL queries and view data charts. You can also monitor various cache and node metrics as well as CPU and Heap usage for the demo cluster.
 [block:api-header]
@@ -132,40 +129,5 @@ In this mode, three server and one client nodes will be started. Several caches 
       "border": true
     }
   ]
-}
-[/block]
-## **Monitor the Cluster **
-The web console proved monitoring capabilities that allows you to view various heap, CPU, and other useful node and cache metrics. It also allows you to run garbage collection or view thread dump for selected nodes. To evaluate, click on `Monitoring` tab on the Ignite Web Console top menu.
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/79a6424-monitoring.png",
-        "monitoring.png",
-        1145,
-        1201,
-        "#f1e9e3"
-      ],
-      "border": true
-    }
-  ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Screencast"
-}
-[/block]
-
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FV-o3IFVnk5k%3Ffeature%3Doembed&url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DV-o3IFVnk5k&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FV-o3IFVnk5k%2Fhqdefault.jpg&key=02466f963b9b4bb8845a05b53d3235d7&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" frameborder=\"0\" allowfullscreen></iframe>",
-  "url": "https://www.youtube.com/watch?v=V-o3IFVnk5k&feature=youtu.be",
-  "title": "Apache Ignite Web Console Monitoring",
-  "favicon": "https://s.ytimg.com/yts/img/favicon-vflz7uhzw.ico",
-  "image": "https://i.ytimg.com/vi/V-o3IFVnk5k/hqdefault.jpg"
 }
 [/block]
