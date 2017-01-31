@@ -9,7 +9,7 @@
   "title": "Overview"
 }
 [/block]
-You can use Ignite Web Console's demo mode to explore and evaluate its various features that help configure and manage an Ignite cluster. In this mode, you can check out predefined clusters, caches, and domain models. An instance of a pre-populated H2 database is started on which you can run various SQL queries and view data charts. You can also monitor various cache and node metrics as well as CPU and Heap usage for the demo cluster.
+You can use Ignite Web Console's demo mode to explore and evaluate its various features that help configure and manage an Ignite cluster. In this mode, you can check out predefined clusters, caches, and domain models. An instance of a pre-populated H2 database is started on which you can run various SQL queries and view data charts. The web console also features cluster monitoring functionality (available as GridGain plugin) that shows various cache and node metrics as well as CPU and Heap usage.
 [block:api-header]
 {
   "type": "basic",
