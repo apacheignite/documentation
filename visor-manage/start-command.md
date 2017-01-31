@@ -10,28 +10,17 @@ Starts or restarts nodes on remote host.
 ```start -f=<path> {-m=<num>} {-r}```
 ```start -h=<hostname> {-p=<num>} {-u=<username>} {-pw=<password>} {-k=<path>} {-n=<num>} {-g=<path>} {-c=<path>} {-s=<path>} {-m=<num>} {-r}```
 Alert options:
-* ```-f=<path>``` Path to INI file that contains topology specification. 
-Topology specification file can contain the next properties:
-    * ```[host name]```
-    Name of section with properties for specified host.
-    * ```host```
-    IP address or host name
-    * ```port```
-    SSH port
-    * ```uname```
-    SSH login
-    * ```passwd=password```
-    SSH password
-    * ```key```
-    SSH key path
-    * ```nodes```
-    Start node count
-    * ```igniteHome```
-    Ignite home path
-    * ```cfg```
-    Ignite config path
-    * ```script```
-    Ignite node start script
+* ```-f=<path>``` Path to INI file that contains topology specification with following properties:
+    * ```[host name]``` Name of section with properties for specified host.
+    * ```host=<hostname>``` IP address or host name
+    * ```port=<num>``` SSH port
+    * ```uname=<username>``` SSH login
+    * ```passwd=<password>```SSH password
+    * ```key=<path>``` SSH key file path
+    * ```nodes=<num>``` Start node count
+    * ```igniteHome=<path>``` Ignite home path
+    * ```cfg=<path>``` Ignite config path
+    * ```script=<path>``` Ignite node start script
 * ```-h=<hostname>``` Hostname where to start nodes.
 Can define several hosts if their IPs are sequential.
 Example of range is 192.168.1.100~150, which means all IPs from 192.168.1.100 to 192.168.1.150 inclusively.
@@ -61,13 +50,14 @@ By default, if flag is not present, existing nodes will be left as is.
   "title": "Examples"
 }
 [/block]
+Starts three nodes with default configuration (password authentication):
 ```start "-h=10.1.1.10 -u=uname -pw=passwd -n=3"```
-Starts three nodes with default configuration (password authentication).
-```start "-h=192.168.1.100~104 -u=uname -k=/home/uname/.ssh/is_rsa -n=5"```
-Starts 25 nodes on 5 hosts (5 nodes per host) with default configuration (key-based authentication).
-```start "-f=start-nodes.ini -r"```
-Starts topology defined in 'start-nodes.ini' file. Existing nodes are stopped.
 
+Starts 25 nodes on 5 hosts (5 nodes per host) with default configuration (using key-based authentication):
+```start "-h=192.168.1.100~104 -u=uname -k=/home/uname/.ssh/is_rsa -n=5"```
+
+Starts topology defined in 'start-nodes.ini' file. Existing nodes are stopped:
+```start "-f=start-nodes.ini -r"```
 [block:code]
 {
   "codes": [
