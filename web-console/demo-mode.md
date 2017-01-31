@@ -1,8 +1,14 @@
+* [Overview](#section-overview)
 * [Starting Demo Mode](#section-starting-demo-mode)
  * [Configure Clusters and Caches](#section--configure-clusters-and-caches-)
  * [Import Domain Model](#section--import-domain-model-)
  * [Run SQL Queries](#section--run-sql-queries-)
-
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 You can use Ignite Web Console's demo mode to explore and evaluate its various features that help configure and manage an Ignite cluster. In this mode, you can check out predefined clusters, caches, and domain models. An instance of a pre-populated H2 database is started on which you can run various SQL queries and view data charts. You can also monitor various cache and node metrics as well as CPU and Heap usage for the demo cluster.
 [block:api-header]
 {
