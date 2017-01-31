@@ -3,8 +3,6 @@
 * Automatically construct Apache Ignite's SQL metadata from any RDBMS schemas.
 * Execute SQL queries over your in-memory caches.
 *  View query execution plans, in-memory schemas and streaming charts.
-
-Ignite Web Console is a web application that can be deployed on your system environment.
 [block:image]
 {
   "images": [
@@ -20,6 +18,8 @@ Ignite Web Console is a web application that can be deployed on your system envi
   ]
 }
 [/block]
+Ignite ships with Ignite Web console that allows configuring all the cluster properties and import schema from a database for integrating with persistence stores. Ignite Web Console will connect to the specified database and generate all the required OR-mapping configuration (XML and pure Java) and Java domain model POJOs.
+
 * [Demo Mode](doc:demo-mode) 
 * [Local Deployment](doc:local-deployment)
 * [Web Agent](doc:web-agent) 
