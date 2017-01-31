@@ -68,7 +68,7 @@ To enable the demo mode, click on the `Start demo` button located in the top men
   ]
 }
 [/block]
-Once the IgniteWeb Agent is started, you can go back to your web browser where you can:
+Once the Ignite Web Agent is started, you can go back to your web browser where you can:
 
 [block:api-header]
 {
