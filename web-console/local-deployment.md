@@ -13,11 +13,11 @@ In order to deploy Ignite Web Console locally, you should install:
 * NodeJS (version >=6.5.x) using installer from site [https://nodejs.org/en/download/current](https://nodejs.org/en/download/current) for your OS.
 
 Download the following dependencies:
-*For backend:
+* For backend:
 `cd $IGNITE_HOME/modules/web-console/backend`
 `npm install --no-optional`
 
-*For frontend:
+* For frontend:
 `cd $IGNITE_HOME/modules/web-console/frontend `
 `npm install --no-optional`
 [block:api-header]
