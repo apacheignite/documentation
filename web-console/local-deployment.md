@@ -38,10 +38,8 @@ Once the build process is over, you can find `ignite-web-agent-x.x.x.zip` in:
 }
 [/block]
 To run Ignite Web Console in development mode, you need to:
-* Configure MongoDB to run as service or in terminal start MongoDB by executing `mongod` command
-* Copy `ignite-web-agent-x.x.x.zip` to `$IGNITE_HOME/modules/web-console/backend/agent_dists` folder
-* In new terminal change directory to `$IGNITE_HOME/modules/web-console/backend`.
-If needed run `npm install --no-optional` (if dependencies changed) and run `npm start` to start backend
-* In new terminal change directory to '$IGNITE_HOME/modules/web-console/frontend'.
-If needed run `npm install --no-optional` (if dependencies changed) and start webpack in development mode `npm run dev`
-* In browser open: http://localhost:9000
+* Configure MongoDB to run as service or start MongoDB by executing `mongod` command in terminal.
+* Copy `ignite-web-agent-x.x.x.zip` to `$IGNITE_HOME/modules/web-console/backend/agent_dists` folder.
+* Through the terminal, change the directory to `$IGNITE_HOME/modules/web-console/backend` directory. If needed, run `npm install --no-optional` (if dependencies have changed) and run `npm start` to start the backend.
+* Through another terminal, change the directory to '$IGNITE_HOME/modules/web-console/frontend'. If needed run `npm install --no-optional` (if dependencies have changed) and run `npm run dev` to start webpack in development mode. 
+* In a browser, open: http://localhost:9000
