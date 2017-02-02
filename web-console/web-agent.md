@@ -3,6 +3,22 @@ Ignite Web Agent is a standalone Java application that allows to establish conne
 The two main functions of Ignite Web Agent are:
 * Proxy between Ignite Web Console and Ignite Grid for SQL queries execution purposes.
 * Proxy between Ignite Web Console and a RDBMS for metadata collection in order to prepare Ignite's `CacheTypeMetadata` configuration.
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/640aa08-web-agent.png",
+        "web-agent.png",
+        587,
+        129,
+        "#ced6d7"
+      ]
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
