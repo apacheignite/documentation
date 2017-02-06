@@ -27,7 +27,7 @@
   "title": "Model"
 }
 [/block]
-
+To speed the creation of your configuration files, the GridGain Web Console allows you to automatically import the database schema from any current RDBMS. GridGain and Apache Ignite support virtually any RDBMS including Oracle, SAP, MySQL, PostgreSQL and many more.
 [block:image]
 {
   "images": [
