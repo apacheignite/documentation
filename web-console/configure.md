@@ -10,11 +10,11 @@
   "images": [
     {
       "image": [
-        "https://files.readme.io/238e4e4-cluster.png",
+        "https://files.readme.io/b6eb965-cluster.png",
         "cluster.png",
-        1178,
-        1215,
-        "#f2f2f2"
+        1155,
+        1220,
+        "#efeeec"
       ]
     }
   ]
