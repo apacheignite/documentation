@@ -4,12 +4,7 @@ Using the Ignite Web Console, you can configure:
   * [Caches](#section-caches)
   * [IGFS](#section-igfs)
   * [Summary](section-summary) 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Overview"
-}
-[/block]
+
 Apache Ignite Web Console is an interactive configuration wizard which helps you create and download configuration files and code snippets for your Apache Ignite projects.  It allows you to quickly configure Ignite clusters, caches, import domain model and generate OR-mapping configuration POJO's. 
 [block:api-header]
 {
