@@ -4,7 +4,7 @@
   "title": "Clusters"
 }
 [/block]
-
+Using the Ignite Web Console, you can set various general and advanced level configurations for your Ignite cluster. These configurations are created in Spring XML and Java, and can be downloaded for you convenience. 
 [block:image]
 {
   "images": [
@@ -27,7 +27,7 @@
   "title": "Model"
 }
 [/block]
-To speed the creation of your configuration files, the GridGain Web Console allows you to automatically import the database schema from any current RDBMS. GridGain and Apache Ignite support virtually any RDBMS including Oracle, SAP, MySQL, PostgreSQL and many more.
+To speed the creation of your configuration files, the Ignite Web Console allows you to automatically import the database schema from any current RDBMS. GridGain and Apache Ignite support virtually any RDBMS including Oracle, SAP, MySQL, PostgreSQL and many more.
 [block:image]
 {
   "images": [
