@@ -1,4 +1,9 @@
-Apache Ignite Web Console is an interactive configuration wizard which helps you create and download configuration files and code snippets for your Apache Ignite projects.  It allows you to quickly configure Ignite clusters, caches, import domain model and generate OR-mapping configuration POJO's. 
+Apache Ignite Web Console is an interactive configuration wizard which helps you create and download configuration files and code snippets for your Apache Ignite projects.  It allows you to quickly configure Ignite clusters, caches, import domain model and generate OR-mapping configuration POJO's. Using the Ignite Web Console, you can configure:
+[Clusters](doc:section#
+[Model]
+[Caches]
+[IGFS]
+[Summary]
 [block:api-header]
 {
   "type": "basic",
