@@ -15,7 +15,8 @@ Using the Ignite Web Console, you can set various general and advanced level con
         1155,
         1220,
         "#efeeec"
-      ]
+      ],
+      "border": true
     }
   ]
 }
@@ -38,7 +39,8 @@ To speed the creation of your configuration files, the Ignite Web Console allows
         1159,
         1073,
         "#f0f0ef"
-      ]
+      ],
+      "border": true
     }
   ]
 }
@@ -61,7 +63,8 @@ To speed the creation of your configuration files, the Ignite Web Console allows
         1151,
         1037,
         "#f0f0ef"
-      ]
+      ],
+      "border": true
     }
   ]
 }
@@ -84,7 +87,8 @@ To speed the creation of your configuration files, the Ignite Web Console allows
         1149,
         1051,
         "#f0f0f0"
-      ]
+      ],
+      "border": true
     }
   ]
 }
@@ -107,7 +111,8 @@ Using the Web Console Summary feature, you can download a ready-to-use Maven bas
         1141,
         1168,
         "#eeebe9"
-      ]
+      ],
+      "border": true
     }
   ]
 }
