@@ -96,7 +96,7 @@ To speed the creation of your configuration files, the Ignite Web Console allows
   "title": "Summary"
 }
 [/block]
-Using the Web Console Summary feature, you can download Ignite configurations in XML and Java, as well as Java domain model POJOs that you can copy into your project. A ready-to-use Maven based project can also be downloaded from this page.
+Using the Web Console Summary feature, you can download Ignite configurations in XML and Java, as well as Java domain model POJOs that you can copy into your project. You can also download a ready-to-use Maven based project, or obtain a Docker file with instructions to create an Apache Ignite Docker image.
 [block:image]
 {
   "images": [
