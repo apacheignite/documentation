@@ -1,5 +1,4 @@
-Using the Ignite Web Console, you can configure:
-  * [Clusters](#section-clusters)
+* [Clusters](#section-clusters)
   * [Model](#section-model)
   * [Caches](#section-caches)
   * [IGFS](#section-igfs)
