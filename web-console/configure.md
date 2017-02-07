@@ -52,7 +52,7 @@ To speed the creation of your configuration files, the Ignite Web Console allows
   "title": "Caches"
 }
 [/block]
-
+The Ignite Web Console facilitates creating and configuring Ignite caches. You can configure memory settings, persistence, as well as various advanced level settings for multiple caches associated with your Ignite cluster.
 [block:image]
 {
   "images": [
