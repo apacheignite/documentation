@@ -129,3 +129,10 @@ Using the Web Console Summary feature, you can download a ready-to-use Maven bas
   ]
 }
 [/block]
+
+[block:callout]
+{
+  "type": "info",
+  "body": "You can use Ignite Web Console's demo mode to explore and evaluate its various features. For convenience purposes, you can try an [already deployed instance](https://console.gridgain.com/) of Ignite Web Console."
+}
+[/block]
