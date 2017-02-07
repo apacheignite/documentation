@@ -112,7 +112,7 @@ You can you configure Ignite In-Memory File System that allows you to work with 
   "title": "Summary"
 }
 [/block]
-Using the Web Console Summary feature, you can download a ready-to-use Maven based project that contains Ignite configurations in XML and Java as well as JAVA domain model POJO's. You can also copy these configurations and POJO's into your existing project. The Web Console also generates a Docker file with instructions to create an Apache Ignite Docker image.
+Using the Web Console Summary feature, you can download a ready-to-use Maven based project that contains Ignite configurations in XML and Java, as well as JAVA domain model POJO's. You can also copy these configurations and POJO's into your existing project. The Web Console also generates a Docker file with instructions to create an Apache Ignite Docker image.
 [block:image]
 {
   "images": [
