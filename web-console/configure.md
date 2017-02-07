@@ -76,7 +76,7 @@ The Ignite Web Console facilitates creating and configuring Ignite caches. You c
   "title": "IGFS"
 }
 [/block]
-
+You can you configure Ignite In-Memory File System that allows you to work with files and directories over existing cache infrastructure. IGFS can either work as purely in-memory file system, or delegate to another file system (e.g. various Hadoop file system implementations) acting as a caching layer. Additionally, IGFS provides API to execute map-reduce tasks over file system data.
 [block:image]
 {
   "images": [
