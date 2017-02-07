@@ -2,7 +2,7 @@
 * [Model](#section-model)
 * [Caches](#section-caches)
 * [IGFS](#section-igfs)
-* [Configurations Summary](section-configurations-summary) 
+* [Configurations Summary](#section-configurations-summary) 
 [block:api-header]
 {
   "type": "basic",
