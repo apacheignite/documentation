@@ -96,7 +96,7 @@ To speed the creation of your configuration files, the Ignite Web Console allows
   "title": "Summary"
 }
 [/block]
-
+Using the Web Console Summary feature you can download the configurations in XML and Java. A ready-to-use Maven based project can also be downloaded from this page.
 [block:image]
 {
   "images": [
