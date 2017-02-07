@@ -9,7 +9,7 @@
   "title": "Overview"
 }
 [/block]
-Under the **Configure** tab of the Web Console, you can create configuration files and code snippets for your Apache Ignite projects. You can efficiently configure Ignite clusters, caches, import domain model from any RDBMS, that supports JDBC driver, and generate OR-mapping configuration POJO's. 
+Under the **Configure** tab of the Web Console, you can create configuration files and code snippets for your Apache Ignite projects. You can efficiently configure Ignite clusters, caches, import domain model from any RDBMS, that supports JDBC driver, and generate OR-mapping configuration and POJO's. 
 [block:api-header]
 {
   "type": "basic",
