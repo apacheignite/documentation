@@ -28,7 +28,7 @@ Using the Ignite Web Console, you can set various general and advanced level con
   "title": "Model"
 }
 [/block]
-To speed the creation of your configuration files, the Ignite Web Console allows you to automatically import the database schema from any current RDBMS. Apache Ignite supports virtually any RDBMS including Oracle, SAP, MySQL, PostgreSQL and many more.
+To speed the creation of your configuration files, the Ignite Web Console allows you to connect to the database and import schemas, configure indexed types, and automatically generate all the required XML OR-mapping configuration and Java domain model POJOs that you can easily download and copy into your project. Ignite can integrate with any RDBMS that supports JDBC driver - Oracle, PostgreSQL, Microsoft SQL Server, and MySQL.
 [block:image]
 {
   "images": [
