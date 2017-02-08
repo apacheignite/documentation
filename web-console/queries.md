@@ -15,7 +15,7 @@ You can connect your Ignite cluster with the Web Console and run SQL queries on 
   ]
 }
 [/block]
-Ignite supports free-form SQL queries without any limitations. The SQL syntax is ANSI-99 compliant which means that you can use any kind of SQL functions, aggregations, groupings or joins.
+Ignite supports free-form SQL queries without any limitations. The SQL syntax is ANSI-99 compliant which means that you can use any kind of SQL functions, aggregations, groupings or joins. You can create any number of queries on the same page.
 [block:image]
 {
   "images": [
