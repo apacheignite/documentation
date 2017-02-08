@@ -73,15 +73,15 @@ Available options with they descriptions:
 [/block]
 Proxy can be configured by passing system properties in `JVM_OPTS` environment variable to agent.
 
-Detailed description for each property can be found in documentation: http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
+Detailed description for each property can be found in the documentation: http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
 
 ## HTTP
-`http.proxyHost` - The hostname, or address, of the proxy server 
-`http.proxyPort` - The port number of the proxy server.
+`http.proxyHost` - Hostname or address of the proxy server 
+`http.proxyPort` - Port number of the proxy server
 
-For using proxy with authentication need pass following system properties:
-`http.proxyUsername` - Username.
-`http.proxyPassword ` - Password.
+For using proxy with authentication, you need to provide following system properties:
+`http.proxyUsername` - Username
+`http.proxyPassword ` - Password
 [block:code]
 {
   "codes": [
@@ -99,12 +99,12 @@ For using proxy with authentication need pass following system properties:
 }
 [/block]
 ## HTTPS
-`https.proxyHost` - The hostname, or address, of the proxy server 
-`https.proxyPort` - The port number of the proxy server.
+`https.proxyHost` - Hostname or address of the proxy server 
+`https.proxyPort` - Port number of the proxy server
 
-For using proxy with authentication need pass following system properties:
-`https.proxyUsername` - Username.
-`https.proxyPassword ` - Password.
+For using proxy with authentication, you need to provide the following system properties:
+`https.proxyUsername` - Username
+`https.proxyPassword ` - Password
 [block:code]
 {
   "codes": [
@@ -121,12 +121,12 @@ For using proxy with authentication need pass following system properties:
 }
 [/block]
 ## SOCKS
-`socksProxyHost ` - The hostname, or address, of the proxy server.
-`socksProxyPort ` - The port number of the proxy server.
+`socksProxyHost ` - Hostname or address of the proxy server 
+`socksProxyPort ` - Port number of the proxy server
 
-For using proxy with authentication:
-`java.net.socks.username` - Username.
-`java.net.socks.password` - Password.
+For using proxy with authentication, you need to provide the following system properties:
+`java.net.socks.username` - Username
+`java.net.socks.password` - Password
 [block:code]
 {
   "codes": [
