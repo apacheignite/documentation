@@ -1,3 +1,4 @@
+You can connect your Ignite cluster with the Web Console and run SQL queries on the data stored in Ignite caches. The results can viewed in tabular form or graphs. The Web Console also provides metadata for all the caches associated with the cluster.
 [block:image]
 {
   "images": [
@@ -14,7 +15,7 @@
   ]
 }
 [/block]
-
+Ignite supports free-form SQL queries without any limitations. The SQL syntax is ANSI-99 compliant which means that you can use any kind of SQL functions, aggregations, groupings or joins.
 [block:image]
 {
   "images": [
@@ -31,7 +32,7 @@
   ]
 }
 [/block]
-
+Here is how the above query would look like as a pie chart:
 [block:image]
 {
   "images": [
