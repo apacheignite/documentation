@@ -16,7 +16,7 @@ Under the **Configure** tab of the Web Console, you can efficiently create confi
   "title": "Clusters"
 }
 [/block]
-Using the Ignite Web Console, you can set various general and advanced level configurations for your Ignite cluster. For your convenience, the Web Console creates these configurations in Spring XML and Java, which can be downloaded and copied into your project.
+Using the Ignite Web Console, you can set various general and advanced level configurations for the Ignite cluster. For your convenience, the Web Console creates these configurations in Spring XML and Java, which can be downloaded and copied into your project.
 [block:image]
 {
   "images": [
