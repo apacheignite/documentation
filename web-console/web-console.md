@@ -27,6 +27,7 @@
 }
 [/block]
 Ignite ships with **Ignite Web console** - a web application that can be deployed on your system environment. It allows configuring all the cluster properties and import schema from a database for integrating with persistence stores. It can connect to the specified database and generate all the required OR-mapping configuration (XML and pure Java) and Java domain model POJOs. The web console also features cluster monitoring functionality (available separately as GridGain plugin) that shows various cache and node metrics as well as CPU and heap usage. 
+
 Refer to the following pages to learn more:
 
 * [Ignite Web Agent](doc:web-agent) 
