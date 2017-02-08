@@ -1,3 +1,13 @@
+* [Overview](#section-overview)
+* [Usage](#section-usage)
+* [Configuration](#section-configuration)
+* [Proxy Configuration](#section-proxy-configuration) 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Overview"
+}
+[/block]
 Ignite Web Agent is a standalone Java application that allows to establish connection between Ignite Grid and Ignite Web Console. Ignite Web Agent communicates with cluster nodes via a REST interface and connects to the Ignite Web Console via web-socket.
 
 The two main functions of Ignite Web Agent are:
@@ -68,7 +78,7 @@ Available options with they descriptions:
 [block:api-header]
 {
   "type": "basic",
-  "title": "Proxy configuration"
+  "title": "Proxy Configuration"
 }
 [/block]
 Proxy can be configured by passing system properties in `JVM_OPTS` environment variable to the web agent.
