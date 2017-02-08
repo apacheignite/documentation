@@ -62,7 +62,7 @@ To speed the creation of your configuration files, the Ignite Web Console allows
 {
   "type": "success",
   "title": "Automatic RDBMS Integration",
-  "body": "[RDBMS integration](https://apacheignite-mix.readme.io/docs/web-console) section provides a step-by-step guide that shows how a scheme of an existing database can be easily imported with Ignite Web Console and turned into a respective Apache Ignite configuration. Even more, once this is done you are free to download an auto-generated project that includes all the sources needed to connect to the database from Apache Ignite side and start moving data back and forth."
+  "body": "[RDBMS integration](https://apacheignite-mix.readme.io/docs/web-console) section provides a step-by-step guide on how to import an existing database schema, using Ignite Web Console, and automatically generate corresponding Apache Ignite configurations. Moreover, once this is done, you are free to download an auto-generated project that includes all the sources required to connect to the database from an Ignite cluster and start moving data back and forth."
 }
 [/block]
 
