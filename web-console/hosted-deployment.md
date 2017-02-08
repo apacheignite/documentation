@@ -1,4 +1,4 @@
-Before building and deploying your local instance of Ignite Web Console you can give a shot to the [Ignite Web Console instance hosted](https://console.gridgain.com) by GridGain. By taking advantage of this hosted deployment, you can check all existing capabilities in action in a matter of minutes:
+Before building and deploying your local instance of Ignite Web Console, you can give a shot to the [Ignite Web Console instance hosted](https://console.gridgain.com) by GridGain. By taking advantage of this hosted deployment, you can check all existing capabilities in action in a matter of minutes:
   
 [block:image]
 {
