@@ -58,13 +58,21 @@ To speed the creation of your configuration files, the Ignite Web Console allows
 }
 [/block]
 
+[block:callout]
+{
+  "type": "success",
+  "title": "Automatic RDBMS Integration",
+  "body": "[RDBMS integration](https://apacheignite-mix.readme.io/docs/web-console) section provides a step-by-step guide that shows how a scheme of an existing database can be easily imported with Ignite Web Console and turned into a respective Apache Ignite configuration. Even more, once this is done you are free to download an auto-generated project that includes all the sources needed to connect to the database from Apache Ignite side and start moving data back and forth."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
   "title": "Caches"
 }
 [/block]
-The Ignite Web Console facilitates creating and configuring Ignite caches. You can configure memory settings, persistence, as well as various advanced level settings for multiple caches associated with your Ignite cluster.
+The Ignite Web Console facilitates creating and configuring Ignite caches. You can configure memory settings, persistence, as well as various advanced level settings for multiple caches associated with your Apache Ignite cluster.
 [block:image]
 {
   "images": [
@@ -103,6 +111,14 @@ You can you configure Ignite In-Memory File System that allows you to work with 
       "border": true
     }
   ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "success",
+  "title": "IGFS",
+  "body": "To learn more about IGFS capabilities refer to [this](https://apacheignite-fs.readme.io/docs/in-memory-file-system) documentation page."
 }
 [/block]
 
