@@ -118,7 +118,7 @@ You can you configure Ignite In-Memory File System that allows you to work with 
 {
   "type": "success",
   "title": "IGFS",
-  "body": "To learn more about IGFS capabilities refer to [this](https://apacheignite-fs.readme.io/docs/in-memory-file-system) documentation page."
+  "body": "To learn more about IGFS capabilities, refer to [this](https://apacheignite-fs.readme.io/docs/in-memory-file-system) documentation page."
 }
 [/block]
 
