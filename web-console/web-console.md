@@ -33,5 +33,7 @@ Refer to the following pages to learn more:
 * [Ignite Web Agent](doc:web-agent) 
 * [Local Deployment](doc:local-deployment)
 * [Hosted Deployment](doc:hosted-deployment) 
+* [Cluster Configuration](doc:cluster-config) 
+* [Queries Execution](doc:queries) 
 * [Demo Mode](doc:demo-mode) 
 * [RDBMS Integration](https://apacheignite-mix.readme.io/docs/web-console)
