@@ -71,7 +71,7 @@ Available options with they descriptions:
   "title": "Proxy configuration"
 }
 [/block]
-Proxy can be configured by passing system properties in `JVM_OPTS` environment variable to agent.
+Proxy can be configured by passing system properties in `JVM_OPTS` environment variable to the web agent.
 
 Detailed description for each property can be found in the documentation: http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
 
