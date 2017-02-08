@@ -53,7 +53,7 @@ Here is the query result as a pie chart:
 [block:callout]
 {
   "type": "info",
-  "body": "You can use Ignite Web Console's demo mode to explore and evaluate its various features. Note that Ignite Web Console can be [deployed locally](doc:loacl-deployment) on your system environment. However, for convenience purposes, you can try an [already deployed instance](https://console.gridgain.com/) of Ignite Web Console.",
+  "body": "You can use Ignite Web Console's demo mode to explore and evaluate its various features. Note that Ignite Web Console can be [deployed locally](doc:local-deployment) on your system environment. However, for convenience purposes, you can try an [already deployed instance](https://console.gridgain.com/) of Ignite Web Console.",
   "title": "Ignite Web Console Demo"
 }
 [/block]
