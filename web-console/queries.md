@@ -1,4 +1,4 @@
-You can connect your Ignite cluster with the Web Console and run SQL queries on the data stored in Ignite caches. The results can viewed in tabular form or graphs. The Web Console also provides metadata for all the caches associated with the cluster.
+You can connect your Ignite cluster with the Web Console and run SQL queries on your in-memory cache. You can also view the execution plan, in-memory schema, and streaming charts for your cluster.
 [block:image]
 {
   "images": [
@@ -15,7 +15,7 @@ You can connect your Ignite cluster with the Web Console and run SQL queries on 
   ]
 }
 [/block]
-Ignite supports free-form SQL queries without any limitations. The SQL syntax is ANSI-99 compliant which means that you can use any kind of SQL functions, aggregations, groupings or joins. You can create any number of queries on the same page.
+Ignite supports free-form SQL queries without any limitations. The SQL syntax is ANSI-99 compliant which means that you can use any kind of SQL functions, aggregations, groupings or joins. You can create any number of queries on the same page. The results can viewed in tabular form or graphs. 
 [block:image]
 {
   "images": [
