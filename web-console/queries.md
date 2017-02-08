@@ -32,7 +32,7 @@ Ignite supports free-form SQL queries without any limitations. The SQL syntax is
   ]
 }
 [/block]
-Here is how the above query would look like as a pie chart:
+Here is the query result as a pie chart:
 [block:image]
 {
   "images": [
