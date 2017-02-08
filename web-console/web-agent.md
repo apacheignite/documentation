@@ -24,7 +24,7 @@ The two main functions of Ignite Web Agent are:
         116,
         "#cfd0d8"
       ],
-      "caption": "apache_ignite_web_agent"
+      "caption": ""
     }
   ]
 }
