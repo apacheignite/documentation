@@ -230,7 +230,7 @@ Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot
 }
 [/block]
 ## Transactional SQL
-Presently SQL queries don't take into account transactional boundaries which mean that you can expect dirty reads if an SQL query is executed in parallel with Ignite distributed transactions. For instance, if a transaction atomically changes balances of two accounts, then a concurrent SQL query can see a partially committed transaction. 
+Presently, SQL queries do not take into account transactional boundaries. This means that you can expect dirty reads if an SQL query is executed in parallel with Ignite distributed transactions. For instance, if a transaction atomically changes balances of two accounts, then a concurrent SQL query can see a partially committed transaction. 
 [block:callout]
 {
   "type": "success",
