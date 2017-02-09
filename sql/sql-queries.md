@@ -225,6 +225,22 @@ Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot
 [block:api-header]
 {
   "type": "basic",
+  "title": "Known Limitations"
+}
+[/block]
+## Transactional SQL
+Presently SQL queries don't take into account transactional boundaries which mean that you can expect dirty reads if an SQL query is executed in parallel with Ignite distributed transactions. For instance, if a transaction atomically changes balances of two accounts, then a concurrent SQL query can see a partially committed transaction. 
+[block:callout]
+{
+  "type": "success",
+  "title": "Multiversion Concurrence Control (MVCC)",
+  "body": "Once Apache Ignite SQL Grid is empowered with MVCC the transactional SQL limitation mentioned above will be no longer true. MVCC development is tracked in [this JIRA ticket](https://issues.apache.org/jira/browse/IGNITE-3478)."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Example"
 }
 [/block]
