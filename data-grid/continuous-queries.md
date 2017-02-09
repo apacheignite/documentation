@@ -3,6 +3,7 @@
  * [Remote Filter](#section-remote-filter)
  * [Local Listener](#section-local-listener)
 * [Events Delivery Guarantees](#events-delivery-guarantees)
+* [Example](#example)
 [block:api-header]
 {
   "type": "basic",
@@ -55,7 +56,7 @@ Continuous query implementation guarantees exactly once delivery of an event to 
 
 It's feasible since every backup node(s) maintains an update queue in addition to the primary node. If the primary node crashes or a topology is changed for some other reason, then every backup node flushes content of its internal queue to the client making sure that there will be no event that was not delivered to the client's local listener. 
 
-To avoid duplicate notifications, in cases when all backup nodes flush their queues to the client, Ignite manages a per-partition update counter. Once an entry in some partition is updated, counter for this partition is incremented on both primary and backups. The value of this counter is also sent along with the event notification to the client, which also maintains the copy of this mapping. If at some moment the client receives an update with the counter less than in its local map, this update is treated as a duplicate and discarded.
+To avoid duplicate notifications, in cases when all backup nodes flush their queues to the client, Ignite manages a per-partition update counter. Once an entry in some partition is updated, a counter for this partition is incremented on both primary and backups. The value of this counter is also sent along with the event notification to the client, which also maintains the copy of this mapping. If at some moment the client receives an update with the counter less than in its local map, this update is treated as a duplicate and discarded.
 
 Once the client confirms that an event is received, the primary and backup nodes remove a record for this event from their backup queues.
 [block:api-header]
