@@ -1,4 +1,4 @@
-* [ContinuousQuery API](#continuousquery-api)
+* [Continuous Queries](#continuous-ueries)
  * [Initial Query](#section-initial-query)
  * [Remote Filter](#section-remote-filter)
  * [Local Listener](#section-local-listener)
@@ -7,7 +7,7 @@
 [block:api-header]
 {
   "type": "basic",
-  "title": "ContinuousQuery API"
+  "title": "Continuous Queries"
 }
 [/block]
 Continuous queries enable you to listen to the data modifications happened on Ignite's distributed caches side. Once a continuous query is started you'll get notified of all the modifications happened to the data set according to the query filter if any.
