@@ -1,4 +1,4 @@
-* [Continuous Queries](#docs/continuous-queries#section-continuous-queries)
+* [Continuous Queries](#section-continuous-queries)
  * [Initial Query](#section-initial-query)
  * [Remote Filter](#section-remote-filter)
  * [Local Listener](#section-local-listener)
