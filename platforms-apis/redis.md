@@ -5,7 +5,7 @@ Starting from version 1.8.0 the following commands are supported by Ignite clien
 - [PING](http://redis.io/commands/ping)
 - [QUIT](http://redis.io/commands/quit)
 - [GET](http://redis.io/commands/get)
-- [MGET](http://redis.io/commands/mget) (*limitation: not null values returned for non-existing keys*)
+- [MGET](http://redis.io/commands/mget) (*limitation: null values are not included in the query results for non-existing keys*)
 - [SET](http://redis.io/commands/set) (*limitation: without key expiration*)
 - [MSET](http://redis.io/commands/mset)
 - [INCR](http://redis.io/commands/incr)
