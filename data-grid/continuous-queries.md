@@ -58,3 +58,10 @@ It's feasible since every backup node(s) maintains an update queue in addition t
 To avoid duplicate notifications, in cases when all backup nodes flush their queues to the client, Ignite manages a per-partition update counter. Once an entry in some partition is updated, counter for this partition is incremented on both primary and backups. The value of this counter is also sent along with the event notification to the client, which also maintains the copy of this mapping. If at some moment the client receives an update with the counter less than in its local map, this update is treated as a duplicate and discarded.
 
 Once the client confirms that an event is received, the primary and backup nodes remove a record for this event from their backup queues.
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Example"
+}
+[/block]
+A complete example that demonstrates the usage of continuous queries, covered under this documentation section, is delivered as a part of every Apache Ignite distribution and named `CacheContinuousQueryExample`. The example is [available](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheContinuousQueryExample.java) in Git Hub as well.
