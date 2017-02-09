@@ -2,8 +2,8 @@
  * [Initial Query](#section-initial-query)
  * [Remote Filter](#section-remote-filter)
  * [Local Listener](#section-local-listener)
-* [Events Delivery Guarantees](#events-delivery-guarantees)
-* [Example](#example)
+* [Events Delivery Guarantees](#section-events-delivery-guarantees)
+* [Example](#section-example)
 [block:api-header]
 {
   "type": "basic",
