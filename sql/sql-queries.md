@@ -3,6 +3,7 @@
 * [Query Types](#query-types)
 * [Cross-Cache Queries](#cross-cache-queries)
 * [Distributed Joins](#distributed-joins)
+* [Known Limitations](#known-limitations)
 * [Example](#example)
 [block:api-header]
 {
