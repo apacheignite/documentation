@@ -235,7 +235,7 @@ Presently SQL queries don't take into account transactional boundaries which mea
 {
   "type": "success",
   "title": "Multiversion Concurrence Control (MVCC)",
-  "body": "Once Apache Ignite SQL Grid is empowered with MVCC the transactional SQL limitation mentioned above will be no longer true. MVCC development is tracked in [this JIRA ticket](https://issues.apache.org/jira/browse/IGNITE-3478)."
+  "body": "Once Apache Ignite SQL Grid is empowered with MVCC, the transactional SQL limitation mentioned above will be eliminated. MVCC development is tracked in [this JIRA ticket](https://issues.apache.org/jira/browse/IGNITE-3478)."
 }
 [/block]
 
