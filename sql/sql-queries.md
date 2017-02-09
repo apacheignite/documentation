@@ -245,4 +245,4 @@ Presently, SQL queries do not take into account transactional boundaries. This m
   "title": "Example"
 }
 [/block]
-A complete example that demonstrates the usage distributed queries, covered under this documentation section, is delivered as a part of every Apache Ignite distribution and name `CacheQueryExample`. The example is [available](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheQueryExample.java) in Git Hub as well.
+A complete example that demonstrates the usage distributed queries, covered under this documentation section, is delivered as a part of every Apache Ignite distribution and named `CacheQueryExample`. The example is [available](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheQueryExample.java) in Git Hub as well.
