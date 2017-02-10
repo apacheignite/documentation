@@ -363,6 +363,16 @@ the DML engine will generate the `SELECT` query in order to get a list of entrie
 [/block]
 However, the subquery from `IN` clause (`SELECT personId FROM "salary".Salary ...`) will not be distributed further and will be executed over the local data set present on a cluster node.
 
+##Transactional Support
+
+Presently, DML is not transactional. If a DML operation is executed as a part of an Ignite transaction then it will not be enlisted in the transaction and will be executed right away.
+[block:callout]
+{
+  "type": "success",
+  "body": "Once Apache Ignite SQL Grid is empowered with MVCC, DML will become fully transactional. MVCC development is tracked in [this JIRA ticket](https://issues.apache.org/jira/browse/IGNITE-3478).",
+  "title": "Multiversion Concurrency Control (MVCC)"
+}
+[/block]
 ##EXPLAIN support for DML statements
 
 Presently, `EXPLAIN` is not supported for DML operations.
