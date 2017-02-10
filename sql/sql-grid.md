@@ -30,8 +30,3 @@ The In-Memory SQL Grid allows users to interact with the Ignite platform not onl
 * [ODBC Driver](doc:odbc-driver) 
 * [Geospatial Support](doc:geospatial-queries) 
 * [Performance and Debugging](doc:sql-performance-and-debugging)
-
-##SQL Grid Integrations and Tools
-* [Appache Zeppelin](https://apacheignite-mix.readme.io/docs/apache-zeppelin)
-* [Tableau](https://apacheignite-mix.readme.io/docs/tableau)
-* [PHP PDO](https://apacheignite-mix.readme.io/docs/php-pdo)
