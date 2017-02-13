@@ -35,5 +35,5 @@ In addition to Spark and Hadoop, Ignite integrates with a variety of other techn
 
 The rest of existed integrations are covered under dedicated [documentation domain](https://apacheignite-mix.readme.io/docs/getting-started).
 
-#Book
+##Book
 Learn even more from [High-Performance in-memory computing with Apache Ignite](https://leanpub.com/ignite) book.
