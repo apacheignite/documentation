@@ -13,7 +13,7 @@
         "#ebe8e9"
       ],
       "border": true,
-      "sizing": "smart"
+      "sizing": "80"
     }
   ]
 }
