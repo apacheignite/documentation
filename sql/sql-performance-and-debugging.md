@@ -68,7 +68,7 @@ Example:
 {
   "codes": [
     {
-      "code": "new SqlFieldsQuery(\"select * from Person p join table(id bigint = ?) i on p.id = i.id\").setArgs(new Object[]{ new Integer[] {2, 3, 4} }))",
+      "code": "new SqlFieldsQuery(\n  \"select * from Person p join table(id bigint = ?) i on p.id = i.id\").setArgs(new Object[]{ new Integer[] {2, 3, 4} }))",
       "language": "java"
     }
   ]

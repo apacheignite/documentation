@@ -88,7 +88,7 @@ For JDK 1.8 we recommend to use G1 garbage collector and below you can see 10GB 
   "body": "Use the latest versions of Oracle JDK 8 or Open JDK 8 if you decide to use G1 collector since it has been being constantly improved."
 }
 [/block]
-If by some reason G1 doesn't suite well for your case or JDK 7 is used then you can refer to the following CMS based settings as a good point to start with JVM tuning (10GB heap example for machine with 64 CPUs):
+If G1 does not suit your case, or you are using JDK 7, then you can refer to the following CMS based settings as a good starting point for JVM tuning (10GB heap example for machine with 64 CPUs):
 [block:code]
 {
   "codes": [
