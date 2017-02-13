@@ -1,6 +1,42 @@
 [Ignite Web Console](https://ignite.apache.org/addons.html#web-console) is an interactive configuration wizard, management and monitoring tool that allows you to:
 * Create and download various configurations to use for your Apache Ignite cluster.
+
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/e1cd52d-cluster.png",
+        "cluster.png",
+        1155,
+        1220,
+        "#efeeec"
+      ],
+      "border": true,
+      "sizing": "80"
+    }
+  ]
+}
+[/block]
 * Automatically construct Apache Ignite's SQL metadata from any RDBMS schemas.
+
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/16d8b74-model.png",
+        "model.png",
+        1159,
+        1073,
+        "#f0f0ef"
+      ],
+      "border": true,
+      "sizing": "80"
+    }
+  ]
+}
+[/block]
 * Execute SQL queries over your in-memory caches and view the execution plans.
 [block:image]
 {
@@ -13,7 +49,8 @@
         1406,
         "#5d9cc3"
       ],
-      "border": true
+      "border": true,
+      "sizing": "80"
     }
   ]
 }
