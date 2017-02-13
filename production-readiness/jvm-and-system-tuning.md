@@ -130,7 +130,7 @@ As a solution you can increase pages flushing to disk from defaul 30 seconds to 
 {
   "codes": [
     {
-      "code": "\n  sysctl –w vm.dirty_writeback_centisecs = 500\n  sysctl –w vm.dirty_expire_centisecs = 500\n",
+      "code": "\n  sysctl –w vm.dirty_writeback_centisecs=500\n  sysctl –w vm.dirty_expire_centisecs=500\n",
       "language": "shell"
     }
   ]

@@ -63,6 +63,28 @@ select name from Person where sex='M' and age = 30`.
 2. If the query contains an **IN** operator, there can be two issues: First, it is impossible to provide variable list of parameters. That means that you have to specify the exact list in the query, for example, `where id in (?, ?, ?)`. You cannot write - `where id in ?` and pass an array or collection. Second, this query will not use indexes. As a workaround to both the problems, you can rewrite the query in the following way: `select p.name from Person p join table(id bigint = ?) i on p.id = i.id`. 
 Here you can provide an object array (Object[]) of any length as a parameter and the query will use index on field `id`. Note that primitive arrays (int[], long[], etc..) can not be used with this syntax, you can only pass an array of boxed primitives.
 
+Example:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "new SqlFieldsQuery(\"select * from Person p join table(id bigint = ?) i on p.id = i.id\").setArgs(new Object[]{ new Integer[] {2, 3, 4} }))",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Which is converted in to the following SQL:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "select * from \"cache-name\".Person p join table(id bigint = (2,3,4)) i on p.id = i.id",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
 
 [block:api-header]
 {
