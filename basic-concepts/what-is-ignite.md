@@ -34,3 +34,10 @@ You can view Ignite as a collection of independent, well-integrated, in-memory c
 In addition to Spark and Hadoop, Ignite integrates with a variety of other technologies and products. The integrations are intended to simplify coupling of Apache Ignite and other technologies, used in your applications or services, in order to either perform a transition to Apache Ignite smoothly or to boost an existed solution by plugging Ignite into it.
 
 The rest of existed integrations are covered under dedicated [documentation domain](https://apacheignite-mix.readme.io/docs/getting-started).
+
+#Book
+[block:html]
+{
+  "html": "[<img src=\"https://github.com/srecon/ignite-book-code-samples/blob/master/imgpsh_fullsize-3nd.png\">](https://leanpub.com/ignite)"
+}
+[/block]
