@@ -13,7 +13,7 @@
         "#efeeec"
       ],
       "border": true,
-      "sizing": "80"
+      "sizing": "smart"
     }
   ]
 }
@@ -32,7 +32,7 @@
         "#f0f0ef"
       ],
       "border": true,
-      "sizing": "80"
+      "sizing": "smart"
     }
   ]
 }
@@ -50,7 +50,7 @@
         "#5d9cc3"
       ],
       "border": true,
-      "sizing": "80"
+      "sizing": "smart"
     }
   ]
 }
