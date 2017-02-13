@@ -21,7 +21,7 @@ You can view Ignite as a collection of independent, well-integrated, in-memory c
   * [Advanced Clustering](doc:cluster)
   * [Data Grid](doc:data-grid) 
   * [SQL Grid](doc:sql-grid) 
-  * [Streaming & CEP](doc:streaming--cep) 
+  * [Streaming & CEP](doc:streaming- -cep) 
   * [Compute Grid](doc:compute-grid) 
   * [Service Grid](doc:service-grid)
   * [Ignite File System](https://apacheignite-fs.readme.io/docs/in-memory-file-system)
@@ -36,8 +36,4 @@ In addition to Spark and Hadoop, Ignite integrates with a variety of other techn
 The rest of existed integrations are covered under dedicated [documentation domain](https://apacheignite-mix.readme.io/docs/getting-started).
 
 #Book
-[block:html]
-{
-  "html": "[<img src=\"https://github.com/srecon/ignite-book-code-samples/blob/master/imgpsh_fullsize-3nd.png\">](https://leanpub.com/ignite)"
-}
-[/block]
+Learn even more from [High-Performance in-memory computing with Apache Ignite](https://leanpub.com/ignite) book.
