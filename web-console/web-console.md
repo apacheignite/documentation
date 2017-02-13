@@ -6,11 +6,11 @@
   "images": [
     {
       "image": [
-        "https://files.readme.io/14d262e-cluster-small.png",
-        "cluster-small.png",
-        300,
-        317,
-        "#efedee"
+        "https://files.readme.io/1816c4a-cluster-small-2.png",
+        "cluster-small-2.png",
+        450,
+        475,
+        "#ebe8e9"
       ],
       "border": true,
       "sizing": "smart"
