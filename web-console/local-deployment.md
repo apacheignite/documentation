@@ -43,5 +43,5 @@ To run Ignite Web Console in development mode, you need to:
 * Through the terminal, change the directory to `$IGNITE_HOME/modules/web-console/backend` directory. 
 If needed, run `npm install --no-optional` (if dependencies have changed) and run `npm start` to start the backend.
 * Through another terminal, change the directory to '$IGNITE_HOME/modules/web-console/frontend'. 
-If needed run `npm install --no-optional` (if dependencies have changed) and run `npm run dev` to start webpack in development mode. 
+If needed, run `npm install --no-optional` (if dependencies have changed) and run `npm run dev` to start webpack in development mode. 
 * In a browser, open: http://localhost:9000
