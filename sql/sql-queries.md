@@ -99,6 +99,14 @@ Instead of selecting the whole object, you can choose to select only specific fi
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "title": "Accessing Entry's Key and Value",
+  "body": "Use `_key` and `_value` keywords in an SQL query in order to compare to an entry's complete key or value rather than to individual fields. Apply the same keywords if you need to return a key or a value as a result of an SQL query execution."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
