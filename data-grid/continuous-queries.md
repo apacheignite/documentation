@@ -10,7 +10,7 @@
   "title": "Continuous Queries"
 }
 [/block]
-Continuous queries enable you to listen to the data modifications happened on Ignite's distributed caches side. Once a continuous query is started you'll get notified of all the modifications happened to the data set according to the query filter if any.
+Continuous queries enable you to listen to data modifications occurring on Ignite caches. Once a continuous query is started, you will get notified of all the data changes that fall into your query filter if any.
 
 Continuous queries functionality is available via `ContinuousQuery` class that is elaborated below.
 
