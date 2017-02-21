@@ -16,15 +16,15 @@ Continuous queries functionality is available via `ContinuousQuery` class that i
 
 ## Initial Query
 
-Whenever a continuous query is prepared for execution, you have an option to specify an initial query that will be executed before the continuous query gets registered in the cluster and before you start to receive the updates.
+Whenever a continuous query is prepared for execution, you have an option to specify an initial query that will be executed before the continuous query gets registered in the cluster and you start to receive the updates.
 
 The initial query can be set with `ContinuousQuery.setInitialQuery(Query)` method and can be of any query type: [Scan](/docs/cache-queries#section-scan-queries), [SQL](doc:sql-grid) , or [TEXT](/docs/cache-queries#text-queries).
 
 ## Remote Filter
 
-This filter is executed on primary and backup nodes for a given key and evaluates whether an update should be propagated as an event to query's local listener.
+This filter is executed on primary and backup nodes for a given key and evaluates whether an update should be propagated as an event to the query's local listener.
 
-If the filter returns `true`, then the local listener will be notified. Otherwise, the notification will be skipped. Updates filtering on specific primary and backup nodes, on which they occur, allows to reduce unnecessary network traffic for between primary/backup nodes and local listeners executed on an application side.
+If the filter returns `true`, then the local listener will be notified. Otherwise, the notification will be skipped. Updates filtering on specific primary and backup nodes, on which they occur, allows to reduce unnecessary network traffic between primary/backup nodes and local listeners executed on the application side.
 
 Remote filter can be set via `ContinuousQuery.setRemoteFilter(CacheEntryEventFilter<K, V>)` method.
 
