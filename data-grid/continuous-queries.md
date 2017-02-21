@@ -65,4 +65,4 @@ Once the client confirms that an event is received, the primary and backup nodes
   "title": "Example"
 }
 [/block]
-A complete example demonstrating the usage of continuous queries is delivered as a part of every Apache Ignite distribution and named `CacheContinuousQueryExample`. The example is [available](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheContinuousQueryExample.java) in Git Hub as well.
+A complete example demonstrating the usage of continuous queries is delivered as a part of every Apache Ignite distribution and named `CacheContinuousQueryExample`. The example is available in [GitHub](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/CacheContinuousQueryExample.java) as well.
