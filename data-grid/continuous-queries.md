@@ -16,7 +16,7 @@ Continuous queries functionality is available via `ContinuousQuery` class that i
 
 ## Initial Query
 
-Whenever a continuous query is prepared for the execution, you have an option to specify an initial query that will be executed before the continuous query will be registered in the cluster and before you will receive the updates.
+Whenever a continuous query is prepared for execution, you have an option to specify an initial query that will be executed before the continuous query gets registered in the cluster and before you start to receive the updates.
 
 The initial query can be set with `ContinuousQuery.setInitialQuery(Query)` method and can be of any query type: [Scan](/docs/cache-queries#section-scan-queries), [SQL](doc:sql-grid) , or [TEXT](/docs/cache-queries#text-queries).
 
