@@ -9,9 +9,9 @@
 [/block]
 When working in distributed environments, sometimes you need to have a guarantee that you always will pick the same node, regardless of the cluster topology changes. Such nodes are usually called **leaders**. 
 
-In many systems electing cluster leaders usually has to do with data consistency and is generally handled via collecting votes from cluster members. Since in Ignite the data consistency is handled by data grid affinity function (e.g. [Rendezvous Hashing](http://en.wikipedia.org/wiki/Rendezvous_hashing)), picking leaders in traditional sense for data consistency outside of the data grid is not really needed.
+In many systems, electing cluster leaders usually have to do with data consistency and is handled via collecting votes from cluster members. Since in Ignite the data consistency is handled by data grid affinity function (e.g. [Rendezvous Hashing](http://en.wikipedia.org/wiki/Rendezvous_hashing)), picking leaders in the traditional sense for data consistency outside of the data grid is not needed.
 
-However, you may still wish to have a *coordinator* node for certain tasks. For this purpose, Ignite lets you automatically always pick either oldest or youngest nodes in the cluster.
+However, you may still wish to have a *coordinator* node for certain tasks. For this purpose, Ignite lets you automatically always pick either the oldest or the youngest node in the cluster.
 [block:callout]
 {
   "type": "warning",
