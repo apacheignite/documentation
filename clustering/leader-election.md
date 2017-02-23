@@ -46,7 +46,7 @@ Here is an example of how to select [Cluster Group](doc:cluster-group) with only
   "title": "Youngest Node"
 }
 [/block]
-Youngest node, unlike the oldest node, constantly changes every time a new node joins a cluster. However, sometimes it may still become handy, especially if you need to execute some task only on the newly joined node.
+The youngest node, unlike the oldest node, constantly changes every time a new node joins a cluster. However, sometimes it may still become handy, especially if you need to execute some task only on the newly joined node.
 
 Here is an example of how to select [Cluster Group](doc:cluster-groups) with only the youngest node in it.
 [block:code]
