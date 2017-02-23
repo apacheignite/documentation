@@ -47,14 +47,14 @@ User version is specified in `META-INF/ignite.xml` file of your class path as fo
   ]
 }
 [/block]
-By default, all Ignite startup scripts (ignite.sh or ignite.bat) pick up user version from `IGNITE_HOME/config/userversion` folder. Usually, it is just enough to update user version under that folder. However, in case of GAR or JAR deployment, you should remember to provide `META-INF/ignite.xml` file with the desired user version in it.
+By default, all Ignite startup scripts (ignite.sh or ignite.bat) pick up the user version from `IGNITE_HOME/config/userversion` folder. Usually, it is just enough to update the user version under that folder. However, in case of GAR or JAR deployment, you should remember to provide `META-INF/ignite.xml` file with the desired user version in it.
 [block:api-header]
 {
   "type": "basic",
   "title": "Configuration"
 }
 [/block]
-Following configuration parameters for peer class loading can be optionally configured in `IgniteConfiguration`:
+The following configuration parameters for peer class loading can be optionally configured in `IgniteConfiguration`:
 [block:parameters]
 {
   "data": {
