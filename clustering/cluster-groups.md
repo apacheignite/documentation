@@ -17,7 +17,7 @@ In Ignite all nodes are equal by design, so you don't have to start any node in 
 [block:callout]
 {
   "type": "success",
-  "body": "Note that `IgniteCluster` interface is also a cluster group which includes all nodes in the cluster."
+  "body": "Note that `IgniteCluster` interface is also a cluster group which includes all the nodes in the cluster."
 }
 [/block]
 You can limit job execution, service deployment, messaging, events, and other tasks to run only within some cluster group. For example, here is how to broadcast a job only to remote nodes (excluding the local node).
