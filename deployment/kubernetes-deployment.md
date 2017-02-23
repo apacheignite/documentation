@@ -201,9 +201,88 @@ Finally, let's define a YAML configuration for Ignite pods:
 }
 [/block]
 As you can see the configuration defines a couple of environment variables (`OPTION_LIBS` and `CONFIG_URIL`) that will be processed by special shell script used by Ignite's docker image. The full list of docker image's configuration parameters is available on [Docker Deployment](doc:docker-deployment) page.
+
+Next, go ahead and deploy Ignite pods in Kubernetes using the configuration​ above:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl create -f ignite-deployment.yaml",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Check that Ignite pods are up and running:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl get pods",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Pick a name of one of the pods available 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "NAME                              READY     STATUS    RESTARTS   AGE\nignite-cluster-3454482164-d4m6g   1/1       Running   0          25m\nignite-cluster-3454482164-w0xtx   1/1       Running   0          25m",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+and get the logs from it making sure that both Ignite pods were able to discover each other and form the cluster:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl logs ignite-cluster-3454482164-d4m6g",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
   "title": "Adjusting Ignite Cluster Size"
+}
+[/block]
+You can adjust Apache Ignite cluster size on the fly using standard Kubernetes API. For instance, if you want to scale out the cluster from 2 to 5 nodes then the command below can help with this:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl scale --replicas=5 -f ignite-deployment.yaml",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Double check the cluster was scaled out successfully:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl get pods",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+The output has to show that know you have 5 Ignite pods up and running:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "NAME                              READY     STATUS    RESTARTS   AGE\nignite-cluster-3454482164-d4m6g   1/1       Running   0          34m\nignite-cluster-3454482164-ktkrr   1/1       Running   0          58s\nignite-cluster-3454482164-r20f8   1/1       Running   0          58s\nignite-cluster-3454482164-vf8kh   1/1       Running   0          58s\nignite-cluster-3454482164-w0xtx   1/1       Running   0          34m",
+      "language": "text"
+    }
+  ]
 }
 [/block]
