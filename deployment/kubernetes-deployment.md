@@ -175,7 +175,7 @@ Make sure that the PersistentVolumeClaim gets created and was bound to the Persi
 {
   "codes": [
     {
-      "code": "kubectl get pvc ignite-volume-claim\n\nNAME                  STATUS    VOLUME          CAPACITY   ACCESSMODES   AGE\nignite-volume-claim   Bound     ignite-volume   1Gi        RWO           2m\n\nkubectl get pv ignite-volume\nNAME            CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM                         REASON    AGE\nignite-volume   1Gi        RWO           Retain          Bound     default/ignite-volume-claim             13m",
+      "code": "kubectl get pvc ignite-volume-claim\n\nNAME                  STATUS    VOLUME          CAPACITY   ACCESSMODES   AGE\nignite-volume-claim   Bound     ignite-volume   1Gi        RWO           2m\n\nkubectl get pv ignite-volume\n\nNAME            CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM                         REASON    AGE\nignite-volume   1Gi        RWO           Retain          Bound     default/ignite-volume-claim             13m",
       "language": "shell"
     }
   ]
