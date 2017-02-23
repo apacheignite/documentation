@@ -8,7 +8,7 @@
 [/block]
 `CommunicationSpi` provides basic plumbing to send and receive grid messages and is utilized for all distributed grid operations, such as task execution, monitoring data exchange, distributed event querying and others. Ignite provides `TcpCommunicationSpi` as the default implementation of `CommunicationSpi`, that uses the TCP/IP to communicate with other nodes. 
 
-To enable communication with other nodes, `TcpCommunicationSpi` adds `TcpCommunicationSpi.ATTR_ADDRS` and `TcpCommunicationSpi.ATTR_PORT` local node attributes. At startup, this SPI tries to start listening to local port specified by `TcpCommunicationSpi.setLocalPort(int)` method. If local port is occupied, then SPI will automatically increment the port number until it can successfully bind for listening. `TcpCommunicationSpi.setLocalPortRange(int)` configuration parameter controls maximum number of ports that SPI will try before it fails. 
+To enable communication with other nodes, `TcpCommunicationSpi` adds `TcpCommunicationSpi.ATTR_ADDRS` and `TcpCommunicationSpi.ATTR_PORT` local node attributes. At start up, this SPI tries to start listening to the local port specified by the `TcpCommunicationSpi.setLocalPort(int)` method. If the local port is occupied, then the SPI will automatically increment the port number until it can successfully bind for listening. The `TcpCommunicationSpi.setLocalPortRange(int)` configuration parameter controls the maximum number of ports that the SPI will try before it fails. 
 [block:callout]
 {
   "type": "info",
