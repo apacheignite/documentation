@@ -44,9 +44,9 @@ You can limit job execution, service deployment, messaging, events, and other ta
   "title": "Predefined Cluster Groups"
 }
 [/block]
-You can create cluster groups based on any predicate. For convenience Ignite comes with some predefined cluster groups.
+You can create cluster groups based on any predicate. For convenience, Ignite comes with some predefined cluster groups.
 
-Here are examples of some cluster groups available on `ClusterGroup` interface.
+Here are some examples of cluster groups available on the `ClusterGroup` interface.
 [block:code]
 {
   "codes": [
