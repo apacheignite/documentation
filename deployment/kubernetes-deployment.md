@@ -1,3 +1,9 @@
+* [Overview](#overview)
+* [Kubernetes IP finder](#kubernetes-ip-finder)
+* [Kubernetes Ignite Lookup Service](#kubernetes-ignite-lookup-service)
+* [Sharing Ignite Cluster Configuration](#sharing-ignite-cluster-configuration)
+* [Ignite Pods Deployment](#ignite-pods-deployment)
+* [Adjusting Ignite Cluster Size](#adjusting-ignite-cluster-size)
 [block:api-header]
 {
   "type": "basic",
