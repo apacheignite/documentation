@@ -26,6 +26,14 @@ To enable Apache Ignite nodes auto-discovery in Kubernetes you need to enable `T
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "title": "Kubernetes IP finder",
+  "body": "Learn more about Kubernetes IP finder and Apache Ignite nodes auto-discovery in Kuberentes referring to [this](https://apacheignite-mix.readme.io/docs/kubernetes-discovery) documentation."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
