@@ -26,7 +26,7 @@ In this mode, classes get un-deployed when all master nodes leave the cluster
 ## CONTINUOUS
 In `CONTINUOUS` mode, the classes do not get un-deployed when master nodes leave the grid. Un-deployment only happens when a class user version changes. The advantage of this approach is that it allows tasks coming from different master nodes that share the same instances of user resources (see Resource Injection) on worker nodes. This allows for all tasks executing on worker nodes to reuse, for example, the same instances of connection pools or caches. When using this mode, you can startup multiple stand-alone worker nodes, define user resources on master nodes and have them initialized once on worker nodes regardless of which master node they came from. In comparison to the `ISOLATED` deployment mode which has a scope of a single class loader on a single master node, `CONTINUOUS` mode broadens the deployment scope to all master nodes which is specifically useful in production.
 
-In this mode, classes do not get un-deployed even if all master nodes leave the cluster.
+In this mode, classes do not get un-deployed even if all the master nodes leave the cluster.
 [block:api-header]
 {
   "type": "basic",
