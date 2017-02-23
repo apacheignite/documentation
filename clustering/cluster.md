@@ -95,7 +95,7 @@ Here is an example of getting some metrics, including average CPU load and used 
   "title": "Local Cluster Node"
 }
 [/block]
-Local grid node is an instance of the `ClusterNode` representing *this* Ignite node. 
+The local grid node is an instance of the `ClusterNode` representing *this* Ignite node. 
 
 Here is an example of how to get a local node:
 [block:code]
