@@ -12,7 +12,7 @@ To enable communication with other nodes, `TcpCommunicationSpi` adds `TcpCommuni
 [block:callout]
 {
   "type": "info",
-  "body": "Port range comes very handy when starting multiple grid nodes on the same machine or even in the same VM. In this case all nodes can be brought up without a single change in configuration.",
+  "body": "Port range comes very handy when starting multiple grid nodes on the same machine or even in the same VM. In this case, all nodes can be brought up without a single change in the configuration.",
   "title": "Local Port Range"
 }
 [/block]
