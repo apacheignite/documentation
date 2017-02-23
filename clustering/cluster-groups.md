@@ -102,7 +102,7 @@ Here are some examples of cluster groups available in the `ClusterGroup` interfa
 [/block]
 The unique characteristic of Ignite is that all grid nodes are equal. There are no master or server nodes, and there are no worker or client nodes either. All nodes are equal from Ignite’s point of view - however, users can configure nodes to be masters and workers, or clients and data nodes. 
 
-All cluster nodes on startup automatically register all environment and system properties as node attributes. However, users can choose to assign their own node attributes through configuration:
+All cluster nodes, on startup, automatically register all the environment and system properties as node attributes. However, users can choose to assign their own node attributes through Ignite configuration:
 [block:code]
 {
   "codes": [
