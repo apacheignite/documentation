@@ -10,10 +10,10 @@
   "title": "Overview"
 }
 [/block]
-Specifics of peer-class-loading behavior are controlled by different deployment modes. Particularly, the un-deployment behavior in cases when originating node leaves grid depends on the deployment mode. Other aspects, governed by deployment mode, are user resources management and class versions management. In the sections below we describe each deployment mode in more detail.
+Specifics of peer-class-loading behavior are controlled by different deployment modes. Particularly, the un-deployment behavior in cases when the originating node leaves grid depends on the deployment mode. Other aspects, governed by deployment mode, are user resources management and class versions management. In the sections below we describe each deployment mode in more detail.
 
 ## PRIVATE and ISOLATED
-Classes deployed within the same class loader on master node, will still share the same class loader remotely on worker nodes. However, tasks deployed from different master nodes will not share the same class loader on worker nodes, which is useful in development when different developers can be working on different versions of the same classes. 
+Classes deployed within the same class loader on the master node, will still share the same class loader remotely on worker nodes. However, tasks deployed from different master nodes will not share the same class loader on worker nodes, which is useful in development when different developers can be working on different versions of the same classes. 
 There is no difference in PRIVATE and ISOLATED deployment modes since `@UserResource` annotation has been removed. Both constants were kept for backward-compatibility reasons and one of them is likely to be removed in the future major release.
 
 In this mode, classes get un-deployed when the master node leaves the cluster.
@@ -24,7 +24,7 @@ This is the default deployment mode. In this mode, classes from different master
 In this mode, classes get un-deployed when all the master nodes leave the cluster
 
 ## CONTINUOUS
-In `CONTINUOUS` mode, the classes do not get un-deployed when master nodes leave the grid. Un-deployment only happens when a class user version changes. The advantage of this approach is that it allows tasks coming from different master nodes that share the same instances of user resources (see Resource Injection) on worker nodes. This allows for all tasks executing on worker nodes to reuse, for example, the same instances of connection pools or caches. When using this mode, you can startup multiple stand-alone worker nodes, define user resources on master nodes and have them initialized once on worker nodes regardless of which master node they came from. In comparison to the `ISOLATED` deployment mode which has a scope of a single class loader on a single master node, `CONTINUOUS` mode broadens the deployment scope to all master nodes which is specifically useful in production.
+In `CONTINUOUS` mode, the classes do not get un-deployed when master nodes leave the grid. Un-deployment only happens when a class user version changes. The advantage of this approach is that it allows tasks coming from different master nodes that share the same instances of user resources (see Resource Injection) on worker nodes. This allows for all tasks executing on worker nodes to reuse, for example, the same instances of connection pools or caches. When using this mode, you can start up multiple stand-alone worker nodes, define user resources on master nodes and have them initialized once on worker nodes regardless of which master node they came from. In comparison to the `ISOLATED` deployment mode which has a scope of a single class loader on a single master node, `CONTINUOUS` mode broadens the deployment scope to all master nodes which is specifically useful in production.
 
 In this mode, classes do not get un-deployed even if all the master nodes leave the cluster.
 [block:api-header]
