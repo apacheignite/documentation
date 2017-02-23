@@ -9,7 +9,7 @@
   "title": "IgniteCluster"
 }
 [/block]
-Cluster functionality is provided via `IgniteCluster` interface. You can get an instance of `IgniteCluster` from `Ignite` as follows:
+Cluster functionality is provided via the `IgniteCluster` interface. You can get an instance of `IgniteCluster` from `Ignite` as follows:
 [block:code]
 {
   "codes": [
@@ -20,7 +20,7 @@ Cluster functionality is provided via `IgniteCluster` interface. You can get an 
   ]
 }
 [/block]
-Through `IgniteCluster` interface you can:
+Through the `IgniteCluster` interface you can:
  * Start and stop remote cluster nodes
  * Get a list of all cluster members
  * Create logical [Cluster Groups](doc:cluster-groups)
@@ -37,7 +37,7 @@ The `ClusterNode` interface has a very concise API and deals only with the node 
   "title": "Cluster Node Attributes"
 }
 [/block]
-All cluster nodes on startup automatically register all environment and system properties as node attributes. However, users can choose to assign their own node attributes in the configuration:
+All cluster nodes on startup automatically register all the environment and system properties as node attributes. However, users can choose to assign their own node attributes in the configuration:
 [block:code]
 {
   "codes": [
@@ -73,9 +73,9 @@ The following example shows how to get the nodes where "worker" attribute has be
   "title": "Cluster Node Metrics"
 }
 [/block]
-Ignite automatically collects metrics for all cluster nodes. Metrics are collected in the background and are updated with every heartbeat message exchanged between cluster nodes.
+Ignite automatically collects metrics for all the nodes in the cluster. Metrics are collected in the background and are updated with every heartbeat message exchanged between the cluster nodes.
 
-Node metrics are available via `ClusterMetrics` interface which contains over 50 various metrics (note that the same metrics are available for [Cluster Groups](doc:cluster-groups)  as well).
+Node metrics are available via the `ClusterMetrics` interface which contains over 50 various metrics (note that the same metrics are available for [Cluster Groups](doc:cluster-groups)  as well).
 
 Here is an example of getting some metrics, including average CPU load and used heap, for the local node:
 [block:code]
