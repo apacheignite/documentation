@@ -96,6 +96,57 @@ The output should be similar to the one below:
   "title": "Sharing Ignite Cluster Configuration"
 }
 [/block]
+Before you start deploying first Ignite pods in Kubernetes using Apache Ignite [docker image](https://apacheignite.readme.io/docs/docker-deployment) you need to find a way on how to pass `example-kube.xml` prepared above to that docker image.
+
+There are several approaches you can use. Here it will be shown how you can share the Ignite cluster configuration via a shared Kubernetes PersistentVolume.
+
+Let's suppose you have some shared directory named `/data/ignite` that can be accessed by any Ignite pod. Go to this directory and copy `example-kube.xml` there.
+
+Create a PersistentVolume configuration that will be backed by your real storage and will refer to `/data/ignite` directory.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kind: PersistentVolume\napiVersion: v1\nmetadata:\n  name: ignite-volume\n  labels:\n    type: local\nspec:\n  capacity:\n    storage: 1Gi\n  accessModes:\n    - ReadWriteOnce\n  hostPath:\n    path: \"/data/ignite\"",
+      "language": "yaml",
+      "name": "ignite-volume.xml"
+    }
+  ]
+}
+[/block]
+ Deploy the volume using the command below:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl create -f ignite-volume.yaml",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Check that the volume was deployed and available for usage:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl get pv ignite-volume",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+The output should be similar to the one below:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "NAME            CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS      CLAIM     REASON    AGE\nignite-volume   1Gi        RWO           Retain          Available                       3m",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 
 [block:api-header]
 {
