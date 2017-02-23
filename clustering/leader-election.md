@@ -26,7 +26,7 @@ However, you may still wish to have a *coordinator* node for certain tasks. For 
   "title": "Oldest Node"
 }
 [/block]
-Oldest node has a property that it remains constant whenever new nodes are added. The only time when the oldest node in the cluster changes is when it leaves the cluster or crashes.
+The oldest node has a property that it remains constant whenever new nodes are added. The only time when the oldest node in the cluster changes is when it leaves the cluster or crashes.
 
 Here is an example of how to select [Cluster Group](doc:cluster-group) with only the oldest node in it.
 [block:code]
