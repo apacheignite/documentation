@@ -48,7 +48,7 @@ All cluster nodes on startup automatically register all environment and system p
   ]
 }
 [/block]
-Following example shows how to get the nodes where "worker" attribute has been set.
+The following example shows how to get the nodes where "worker" attribute has been set.
 [block:code]
 {
   "codes": [
