@@ -181,14 +181,26 @@ Make sure that the PersistentVolumeClaim gets created and was bound to the Persi
   ]
 }
 [/block]
-
+Now, it's time to prepare a Kubernetes deployment configuration for Ignite pods and deploy them
 [block:api-header]
 {
   "type": "basic",
   "title": "Ignite Pods Deployment"
 }
 [/block]
-
+Finally, let's define a YAML configuration for Ignite pods:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# An example of a Kubernetes configuration for Ignite pods deployment.\napiVersion: extensions/v1beta1\nkind: Deployment\nmetadata:\n  # Custom Ignite cluster's name.\n  name: ignite-cluster\nspec:\n  # A number of Ignite pods to be started by Kubernetes initially.\n  replicas: 2\n  template:\n    metadata:\n      labels:\n        # This label has to be added to the selector's section of \n        # ignite-service.yaml so that the Kubernetes Ignite lookup service\n        # can easily track all Ignite pods available deployed so far.\n        app: ignite\n    spec:\n      volumes:\n        # Custom name for the storage that holds Ignite's configuration\n        # which is example-kube.xml.\n        - name: ignite-storage\n          persistentVolumeClaim:\n           # Must be equal to the PersistentVolumeClaim created before.\n           claimName: ignite-volume-claim\t\n      containers:\n        # Custom Ignite pod name.\n      - name: ignite-node\n        # Ignite Docker image. Kubernetes IP finder is supported starting from\n        # Apache Ignite 1.9.\n        image: apacheignite/ignite:1.9\n        env:\n        # Ignite's Docker image parameter. Adding the jar file that\n        # contain TcpDiscoveryKubernetesIpFinder implementation.\n        - name: OPTION_LIBS\n          value: ignite-kubernetes\n        # Ignite's Docker image parameter. Passing the Ignite configuration\n        # to use for an Ignite pod.\n        - name: CONFIG_URI\n          value: file:////data/ignite/example-kube.xml\n        ports:\n        # Ports to open.\n        # Might be optional depending on your Kubernetes environment.\n        - containerPort: 11211 # REST port number.\n        - containerPort: 47100 # communication SPI port number.\n        - containerPort: 47500 # discovery SPI port number.\n        - containerPort: 49112 # JMX port number.\n        volumeMounts:\n        # Mounting the storage with the Ignite configuration.\n        - mountPath: \"/data/ignite\"\n          name: ignite-storage\n          \n",
+      "language": "yaml",
+      "name": "ignite-deployment.xml"
+    }
+  ]
+}
+[/block]
+As you can see the configuration defines a couple of environment variables (`OPTION_LIBS` and `CONFIG_URIL`) that will be processed by special shell script used by Ignite's docker image. The full list of docker image's configuration parameters is available on [Docker Deployment](doc:docker-deployment) page.
 [block:api-header]
 {
   "type": "basic",
