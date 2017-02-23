@@ -147,6 +147,40 @@ The output should be similar to the one below:
   ]
 }
 [/block]
+Finally, create a PersistentVolumeClaim that will be automatically bound to the PersistentVolume initiated above:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kind: PersistentVolumeClaim\napiVersion: v1\nmetadata:\n  name: ignite-volume-claim\nspec:\n  accessModes:\n    - ReadWriteOnce\n  resources:\n    requests:\n      storage: 1Gi",
+      "language": "yaml",
+      "name": "ignite-volume-claim.yaml"
+    }
+  ]
+}
+[/block]
+Create the PersistentVolumeClaim using the configuration above:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl create -f ignite-volume-claim.yaml ",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Make sure that the PersistentVolumeClaim gets created and was bound to the PersistentVolume that stores `example-kube.xml` configuration.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl get pvc ignite-volume-claim\n\nNAME                  STATUS    VOLUME          CAPACITY   ACCESSMODES   AGE\nignite-volume-claim   Bound     ignite-volume   1Gi        RWO           2m\n\nkubectl get pv ignite-volume\nNAME            CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM                         REASON    AGE\nignite-volume   1Gi        RWO           Retain          Bound     default/ignite-volume-claim             13m",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 
 [block:api-header]
 {
