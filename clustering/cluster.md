@@ -37,7 +37,7 @@ The `ClusterNode` interface has a very concise API and deals only with the node 
   "title": "Cluster Node Attributes"
 }
 [/block]
-All cluster nodes on startup automatically register all environment and system properties as node attributes. However, users can choose to assign their own node attributes through configuration:
+All cluster nodes on startup automatically register all environment and system properties as node attributes. However, users can choose to assign their own node attributes in the configuration:
 [block:code]
 {
   "codes": [
