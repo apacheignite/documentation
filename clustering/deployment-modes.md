@@ -16,12 +16,12 @@ Specifics of peer-class-loading behavior are controlled by different deployment 
 Classes deployed within the same class loader on master node, will still share the same class loader remotely on worker nodes. However, tasks deployed from different master nodes will not share the same class loader on worker nodes, which is useful in development when different developers can be working on different versions of the same classes. 
 There is no difference in PRIVATE and ISOLATED deployment modes since `@UserResource` annotation has been removed. Both constants were kept for backward-compatibility reasons and one of them is likely to be removed in the future major release.
 
-In this mode, classes get un-deployed when master node leaves the cluster.
+In this mode, classes get un-deployed when the master node leaves the cluster.
 
 ## SHARED
 This is the default deployment mode. In this mode, classes from different master nodes with the same user version will share the same class loader on worker nodes. Classes will be un-deployed whenever all master nodes leave grid or user version changes. This mode allows classes coming from different master nodes to share the same instances of user resources on remote nodes (see below). This method is specifically useful in production as, in comparison to `ISOLATED` mode, which has a scope of a single class loader on a single master node, `SHARED` mode broadens the deployment scope to all master nodes.
 
-In this mode, classes get un-deployed when all master nodes leave the cluster
+In this mode, classes get un-deployed when all the master nodes leave the cluster
 
 ## CONTINUOUS
 In `CONTINUOUS` mode, the classes do not get un-deployed when master nodes leave the grid. Un-deployment only happens when a class user version changes. The advantage of this approach is that it allows tasks coming from different master nodes that share the same instances of user resources (see Resource Injection) on worker nodes. This allows for all tasks executing on worker nodes to reuse, for example, the same instances of connection pools or caches. When using this mode, you can startup multiple stand-alone worker nodes, define user resources on master nodes and have them initialized once on worker nodes regardless of which master node they came from. In comparison to the `ISOLATED` deployment mode which has a scope of a single class loader on a single master node, `CONTINUOUS` mode broadens the deployment scope to all master nodes which is specifically useful in production.
