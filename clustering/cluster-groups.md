@@ -131,7 +131,7 @@ All cluster nodes, on startup, automatically register all the environment and sy
   "body": "Node attributes are available via `ClusterNode.attribute(\"propertyName\")` method."
 }
 [/block]
-Following example shows how to get the nodes where "worker" attribute has been set.
+The following example shows how to get the nodes where "worker" attribute has been set.
 [block:code]
 {
   "codes": [
