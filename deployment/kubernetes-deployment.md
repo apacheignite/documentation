@@ -30,7 +30,7 @@ To enable Apache Ignite nodes auto-discovery in Kubernetes you need to enable `T
 {
   "type": "info",
   "title": "Kubernetes IP finder",
-  "body": "Learn more about Kubernetes IP finder and Apache Ignite nodes auto-discovery in Kuberentes referring to [this](https://apacheignite-mix.readme.io/docs/kubernetes-discovery) documentation."
+  "body": "Learn more about Kubernetes IP finder and Apache Ignite nodes auto-discovery in Kuberentes environment referring to [this documentation page](https://apacheignite-mix.readme.io/docs/kubernetes-discovery)."
 }
 [/block]
 
@@ -38,6 +38,55 @@ To enable Apache Ignite nodes auto-discovery in Kubernetes you need to enable `T
 {
   "type": "basic",
   "title": "Kubernetes Ignite Lookup Service"
+}
+[/block]
+Kubernetes IP finder requires us to configure and deploy a special Kubernetes service that will provide the IP finder with the list of IP addresses of all Ignite pods (nodes) running so far.
+
+Every time a new Ignite pod is started the IP finder will connect to the service using Kubernetes API and will take the list of existing Ignite pods' addresses from there. Having these addresses the new node will be able to discover the rest of the cluster nodes and finally join the Apache Ignite cluster.
+
+Let's configure the service this way
+[block:code]
+{
+  "codes": [
+    {
+      "code": "apiVersion: v1\nkind: Service\nmetadata:\n  # Name of Ignite Service used by Kubernetes IP finder. \n  # The name must be equal to TcpDiscoveryKubernetesIpFinder.serviceName.\n  name: ignite\nspec:\n  clusterIP: None # custom value.\n  ports:\n    - port: 9042 # custom value.\n  selector:\n    # Must be equal to one of the labels set in Ignite pods'\n    # deployement configuration.\n    app: ignite",
+      "language": "yaml",
+      "name": "ignite-service.yaml"
+    }
+  ]
+}
+[/block]
+and deploy it right after that in Kubernetes using a command below:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "kubectl create -f ignite-service.yaml",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+Make sure the service is up and running:
+[block:code]
+{
+  "codes": [
+    {
+      "code": " kubectl get svc ignite",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+The output should be similar to the one below:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "NAME      CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE\nignite    None         <none>        9042/TCP   29s",
+      "language": "shell"
+    }
+  ]
 }
 [/block]
 
