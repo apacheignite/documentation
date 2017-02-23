@@ -37,7 +37,7 @@ In some cases, it is useful to disable certificate validation on the client side
   ]
 }
 [/block]
-If security is configured then the logs will include `communication encrypted=on`
+If security is configured, then the logs will include `communication encrypted=on`
 [block:code]
 {
   "codes": [
