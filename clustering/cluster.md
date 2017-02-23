@@ -30,7 +30,7 @@ Through `IgniteCluster` interface you can:
   "title": "ClusterNode"
 }
 [/block]
-The `ClusterNode` interface has very concise API and deals only with the node as a logical network endpoint in the topology: its globally unique ID, the node metrics, its static attributes set by the user and a few other parameters.
+The `ClusterNode` interface has a very concise API and deals only with the node as a logical network endpoint in the topology: its globally unique ID, the node metrics, its static attributes set by the user and a few other parameters.
 [block:api-header]
 {
   "type": "basic",
