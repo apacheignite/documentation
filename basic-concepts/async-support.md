@@ -9,7 +9,7 @@
   "title": "Overview"
 }
 [/block]
-All distributed methods on all Ignite APIs can be executed either synchronously or asynchronously. However, instead of having a duplicate asynchronous method for every synchronous one (like `get()` and `getAsync()`, or `put()` and `putAsync()`, etc.), Ignite chose a more elegant approach, where methods don't have to be duplicated.
+All distributed methods on all Ignite APIs can be executed either synchronously or asynchronously. However, instead of having a duplicate asynchronous method for every synchronous one (like `get()` and `getAsync()`, or `put()` and `putAsync()`, etc.), Ignite chose a more elegant approach where methods don't have to be duplicated.
 [block:api-header]
 {
   "type": "basic",
