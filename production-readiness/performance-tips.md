@@ -87,7 +87,7 @@ If you use `PARTITIONED` cache and the data loss is not critical for you (for ex
   "title": "Tune Off-Heap Memory"
 }
 [/block]
-If you plan to allocate large amounts of memory to your JVM for data caching (usually more than 10GB of memory), then your application will most likely suffer from prolonged lock-the-world GC pauses which can significantly hurt latencies. To avoid GC pauses use off-heap memory to cache data - essentially your data is still cached in memory, but JVM does not know about it and GC is not affected. To enable off-heap storage with unlimited size, use the following configuration:
+If you plan to allocate large amounts of memory to your JVM for data caching (usually more than 10GB of memory), then your application will most likely suffer from prolonged lock-the-world GC pauses which can significantly hurt latencies. To avoid GC pauses, use off-heap memory to cache the data - essentially, your data is still cached in the memory, but the JVM does not know about it and GC is not affected. To enable off-heap storage with unlimited size, use the following configuration:
 [block:code]
 {
   "codes": [
