@@ -25,7 +25,7 @@ Ignite In-Memory Data Grid performance and throughput vastly depends on the feat
   "title": "Disable Internal Events Notification"
 }
 [/block]
-Ignite has rich event system to notify users about various events, including cache modification, eviction, compaction, topology changes, and a lot more. Since thousands of events per second are generated, it creates an additional load on the system. This can lead to significant performance degradation. Therefore, it is highly recommended to enable only those events that your application logic requires. By default, event notifications are disabled.
+Ignite has a rich event system to notify users about various events, including cache modification, eviction, compaction, topology changes, and lot more. Since thousands of events per second are generated, it creates an additional load on the system. This can lead to significant performance degradation. Therefore, it is highly recommended to enable only those events that your application logic requires. By default, event notifications are disabled.
 [block:code]
 {
   "codes": [
