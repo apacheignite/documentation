@@ -61,7 +61,7 @@ The above configuration will save you from log₂(10⁸) − log₂(1024) ≈ 16
   "title": "Turn Off Backups"
 }
 [/block]
-If you use `PARTITIONED` cache, and the data loss is not critical for you (for example, when you have a backing cache store), consider disabling backups for `PARTITIONED` cache. When backups are enabled, the cache engine has to maintain a remote copy of each entry, which requires network exchange and is time-consuming. To disable backups, use the following configuration:
+If you use `PARTITIONED` cache and the data loss is not critical for you (for example, when you have a backing cache store), consider disabling backups for `PARTITIONED` cache. When backups are enabled, the cache engine has to maintain a remote copy of each entry, which requires network exchange and is time-consuming. To disable backups, use the following configuration:
 [block:code]
 {
   "codes": [
