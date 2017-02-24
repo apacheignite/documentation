@@ -78,7 +78,7 @@ Whenever creating caches in Ignite, either in XML or via any of the `Ignite.crea
   "title": "Computing on Clients or Servers"
 }
 [/block]
-By default `IgniteCompute` will execute jobs on all the server nodes. However, you can choose to execute jobs only on server nodes or only on client nodes by creating a corresponding cluster group.
+By default, `IgniteCompute` will execute jobs on all the server nodes. However, you can choose to execute jobs only on server nodes or only on client nodes by creating a corresponding cluster group.
 [block:code]
 {
   "codes": [
@@ -102,9 +102,9 @@ By default `IgniteCompute` will execute jobs on all the server nodes. However, y
   "title": "Managing Slow Clients"
 }
 [/block]
-In many deployments client nodes are launched outside of the main cluster on slower machines with worse network. In these scenarios it is possible that servers will generate load (such as continuous queries notification, for example) that clients will not be able to handle, resulting in growing queue of outbound messages on servers. This may eventually cause either out-of-memory situation on server or blocking the whole cluster if back-pressure control is enabled. 
+In many deployments, client nodes are launched outside of the main cluster on slower machines with worse network. In these scenarios, it is possible that servers will generate load (such as continuous queries notification, for example) that clients will not be able to handle resulting in growing queue of outbound messages on servers. This may eventually cause either an out-of-memory situation on the server or block the whole cluster if the back-pressure control is enabled. 
 
-To manage these situations, you can configure the maximum number of allowed outgoing messages for client nodes. If the size of outbound queue exceeds this value, such a client node will be disconnected from the cluster preventing global slowdown.
+To manage these situations, you can configure the maximum number of allowed outgoing messages for client nodes. If the size of the outbound queue exceeds this value, the client node will be disconnected from the cluster, preventing global slowdown.
 
 Examples below show how to configure slow client queue limit in code and XML configuration.
 [block:code]
