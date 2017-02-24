@@ -196,11 +196,11 @@ However, to start a client node without a running server node,  you can force se
   ]
 }
 [/block]
-In this case discovery will happen as if all the nodes in topology were server nodes.
+In this case, discovery will happen as if all the nodes in topology were server nodes.
 [block:callout]
 {
   "type": "warning",
   "title": "",
-  "body": "In this case, all addresses used by the discovery SPI on all nodes should be mutually reachable in order for the discovery to work properly."
+  "body": "Note that in this case, all addresses used by the discovery SPI on all the nodes should be mutually reachable in order for the discovery to work properly."
 }
 [/block]
