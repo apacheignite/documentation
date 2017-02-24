@@ -24,7 +24,7 @@ Ignite is JVM-based. Single JVM represents one or more logical Ignite nodes (mos
 [/block]
 The `Ignition` class starts individual Ignite nodes in the network topology. Note that a physical server (like a computer on the network) can have multiple Ignite nodes running on it.
 
-Here is how you can start grid node locally with all defaults
+Here is how you can start a grid node locally with all the defaults:
 [block:code]
 {
   "codes": [
