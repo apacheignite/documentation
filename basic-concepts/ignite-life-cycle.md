@@ -65,7 +65,7 @@ Sometimes you need to perform certain actions before or after an Ignite node sta
   ]
 }
 [/block]
-`GridLifeCycleBean` can also configured programmatically the following way:
+`LifeCycleBean` can also configured programmatically the following way:
 [block:code]
 {
   "codes": [
