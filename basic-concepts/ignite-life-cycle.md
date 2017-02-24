@@ -54,7 +54,7 @@ The path to the configuration file can be absolute or relative to either `IGNITE
   "title": "LifecycleBean"
 }
 [/block]
-Sometimes you need to perform certain actions before or after an Ignite node starts or stops. This can be done by implementing the `LifecycleBean` interface, and specifying the implementation bean in `lifecycleBeans` property of `IgniteConfiguration` in the spring XML file:
+Sometimes you need to perform certain actions before or after the Ignite node starts or stops. This can be done by implementing the `LifecycleBean` interface, and specifying the implementation bean in `lifecycleBeans` property of `IgniteConfiguration` in the spring XML file:
 [block:code]
 {
   "codes": [
