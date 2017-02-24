@@ -236,7 +236,7 @@ JCache standard requires cache providers to support store-by-value semantics whi
 [block:callout]
 {
   "type": "warning",
-  "body": "Ignite uses java.util.logging.Logger (JUL). If you are using the jul-to-slf4j bridge, you may want to pay particular attention to the JUL log-level for ignite; if you for some reason have org.apache at DEBUG you may have your final logger at INFO. This means ignite will spend a 10x overhead generating log messages that will be subsequently thrown away once they cross the bridge. JUL has a default level of \"INFO\" out of the box. Setting a quick breakpoint in org.apache.ignite.logger.java.JavaLogger#isDebugEnabled should reveal if your JUL subsystem is producing debug level logs.",
+  "body": "Ignite uses java.util.logging.Logger (JUL). If you use the jul-to-slf4j bridge, you may want to pay particular attention to the JUL log-level for Ignite.  If you have org.apache at DEBUG level, you may have your final logger at INFO. This means that Ignite will spend a 10x overhead generating log messages that will be subsequently thrown away once they cross the bridge. JUL has a default level of \"INFO\" out of the box. Setting a quick breakpoint in org.apache.ignite.logger.java.JavaLogger#isDebugEnabled should reveal if your JUL subsystem is producing debug level logs.",
   "title": "Ensure logging is correctly set up if using jul-to-slf4j bridge"
 }
 [/block]
