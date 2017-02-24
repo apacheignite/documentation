@@ -18,7 +18,7 @@ All distributed methods on all Ignite APIs can be executed either synchronously 
 [/block]
 `IgniteAsyncSupport` interface adds asynchronous mode to many Ignite APIs. For example, `IgniteCompute`, `IgniteServices`, `IgniteCache`, and `IgniteTransactions` all extend `IgniteAsyncSupport` interface.
 
-To enable asynchronous mode, you should call `withAsync()` method which will return an instance of the same API, but now with asynchronous behavior enabled. 
+To enable asynchronous mode, you should call `withAsync()` method which will return an instance of the same API with asynchronous behavior enabled. 
 [block:callout]
 {
   "type": "info",
