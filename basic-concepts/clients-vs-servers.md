@@ -137,12 +137,12 @@ The examples below show how to configure a slow client queue limit in code and X
 [/block]
 Client nodes can get disconnected from the cluster in several cases:
 *  When a client node cannot re-establish the connection with the server node due to network issues.
-* Connection with the server node was broken for some time; the client node is able to re-establish the connection with the server, but server already dropped the client node since the server did not receive client heartbeats
+* Connection with the server node was broken for some time; the client node is able to re-establish the connection with the server, but the server already dropped the client node since the server did not receive client heartbeats
 * Slow clients can be kicked out by server nodes.
 
-When a client determines that it is disconnected from the cluster, it assigns a new node 'id' to itself and tries to reconnect to the cluster. Note that this has side effect - the 'id' property of the local `ClusterNode` will change in case of client reconnection. This means that any application logic that relied on the 'id' value may be affected.
+When a client determines that it is disconnected from the cluster, it assigns a new node 'id' to itself and tries to reconnect to the cluster. Note that this has a side effect - the 'id' property of the local `ClusterNode` will change in case of a client reconnection. This means that any application logic that relied on the 'id' value may be affected.
 
-While a client is in a disconnected state and an attempt to reconnect is in progress, the Ignite API throws  a special exception - `IgniteClientDisconnectedException`. This exception provides `future` which will be completed when the client reconnects with the cluster (`IgniteCache` API throws `CacheException` which has `IgniteClientDisconnectedException` as its cause). This `future` can also be obtained using the `IgniteCluster.clientReconnectFuture()` method.
+While a client is in a disconnected state and an attempt to reconnect is in progress, the Ignite API throws a special exception - `IgniteClientDisconnectedException`. This exception provides a `future` which will be completed when the client reconnects with the cluster (`IgniteCache` API throws `CacheException` which has `IgniteClientDisconnectedException` as its cause). This `future` can also be obtained using the `IgniteCluster.clientReconnectFuture()` method.
 
 Also, there are special events for client reconnection (these events are local, i.e. they are fired only on the client node):
 * EventType.EVT_CLIENT_NODE_DISCONNECTED
