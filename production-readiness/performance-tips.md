@@ -43,7 +43,7 @@ Ignite has a rich event system to notify users about various events, including c
   "title": "Tune Cache Start Size"
 }
 [/block]
-In terms of size and capacity, Ignite's internal cache map acts exactly like a normal Java HashMap: it has some initial capacity (which is pretty small by default), which doubles as data arrives. The process of internal cache map resizing is CPU-intensive and time-consuming, and if you load a huge dataset into cache (which is a normal use case), the map will have to resize a lot of times. To avoid that, you can specify the initial cache map capacity, comparable to the expected size of your dataset. This will save a lot of CPU resources during the load time, because the map won't have to resize. For example, if you expect to load 100 million entries into cache, you can use the following configuration:
+In terms of size and capacity, Ignite's internal cache map acts exactly like a normal Java HashMap: it has some initial capacity (which is pretty small by default), which doubles as data arrives. The process of internal cache map resizing is CPU-intensive and time-consuming, and if you load a huge dataset into the cache (which is a typical use case), the map will have to resize a lot of times. To avoid that, you can specify the initial cache map capacity, comparable to the expected size of your dataset. This will save a lot of CPU resources during the load time because the map won't have to resize. For example, if you expect to load 100 million entries into the cache, you can use the following configuration:
 [block:code]
 {
   "codes": [
