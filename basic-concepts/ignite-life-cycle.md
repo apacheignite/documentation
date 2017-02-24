@@ -47,14 +47,14 @@ You can also start an Ignite node by passing a configuration file:
 }
 [/block]
 
-Path to configuration file can be absolute, or relative to either `IGNITE_HOME` (Ignite installation folder) or `META-INF` folder in your classpath.
+The path to the configuration file can be absolute or relative to either `IGNITE_HOME` (Ignite installation folder) or `META-INF` folder in your classpath.
 [block:api-header]
 {
   "type": "basic",
   "title": "LifecycleBean"
 }
 [/block]
-Sometimes you need to perform certain actions before or after the Ignite node starts or stops. This can be done by implementing `LifecycleBean` interface, and specifying the implementation bean in `lifecycleBeans` property of `IgniteConfiguration` in the spring XML file:
+Sometimes you need to perform certain actions before or after an Ignite node starts or stops. This can be done by implementing the `LifecycleBean` interface, and specifying the implementation bean in `lifecycleBeans` property of `IgniteConfiguration` in the spring XML file:
 [block:code]
 {
   "codes": [
