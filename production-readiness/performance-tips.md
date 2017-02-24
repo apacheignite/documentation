@@ -123,7 +123,7 @@ Swap storage is disabled by default. However, in your configuration it might be 
   "title": "Tune Eviction Policy"
 }
 [/block]
-Evictions are disabled by default. If you do need to use evictions to make sure that data in cache does not overgrow beyond allowed memory limits, consider choosing the proper eviction policy.  An example of setting the LRU eviction policy with maximum size of 100000 entries is shown below:
+Evictions are disabled by default. If you do need to use evictions to make sure that data in cache does not overgrow beyond allowed memory limits, consider choosing the proper eviction policy.  An example of setting the LRU eviction policy with a maximum size of 100000 entries is shown below:
 [block:code]
 {
   "codes": [
