@@ -182,7 +182,7 @@ By default, Ignite has it's main thread pool size set to 2 times the available C
   "title": "Use Collocated Computations"
 }
 [/block]
-Ignite enables you to execute MapReduce computations in memory. However, most computations usually work on some data which is cached on remote grid nodes. Loading that data from remote nodes is very expensive in most cases and it is a lot more cheaper to send the computation to the node where the data is. The easiest way to do it is to use `IgniteCompute.affinityRun()` method or `@CacheAffinityMapped` annotation. There are other ways, including `Affinity.mapKeysToNodes()` methods. The topic of collocated computations is covered in much detail in [Affinity Collocation](doc:affinity-collocation), which contains proper code examples.
+Ignite enables you to execute MapReduce computations in memory. However, most computations usually work on some data which is cached on remote grid nodes. Loading that data from remote nodes is very expensive in most cases. It is a lot cheaper to send the computation to the node where the data resides. The easiest way to do it is to use  the `IgniteCompute.affinityRun()` method or the `@CacheAffinityMapped` annotation. There are other ways, including `Affinity.mapKeysToNodes()` methods. The topic of collocated computations is covered in much detail in the [Affinity Collocation](doc:affinity-collocation) section which contains proper code examples.
 [block:api-header]
 {
   "type": "basic",
