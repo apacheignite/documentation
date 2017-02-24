@@ -35,7 +35,7 @@ You can configure a node to be either a client or a server via `IgniteConfigurat
   ]
 }
 [/block]
-Alternatively, for convenience, you can also enable or disable the client mode on the `Ignition` class itself, to allow clients and servers reuse the same configuration.
+Alternatively, for convenience, you can also enable or disable the client mode on the `Ignition` class to allow clients and servers reuse the same configuration.
 [block:code]
 {
   "codes": [
