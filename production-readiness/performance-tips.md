@@ -203,7 +203,7 @@ If you can send 10 bigger jobs instead of 100 smaller jobs, you should always ch
   "title": "Tune Garbage Collection"
 }
 [/block]
-If you are seeing spikes in your throughput due to Garbage Collection (GC), then you should tune JVM settings. The following JVM settings have proven to provide fairly smooth throughput without large spikes:
+If you see spikes in your throughput due to Garbage Collection (GC), then you should tune the JVM settings as shown below that provide relatively smooth throughput:
 [block:code]
 {
   "codes": [
@@ -221,7 +221,7 @@ If you are seeing spikes in your throughput due to Garbage Collection (GC), then
   "title": "Do Not Copy Value On Read"
 }
 [/block]
-JCache standard requires cache providers to support store-by-value semantics, which means that when you read a value from the cache, you don't get the reference to the object that is actually stored, but rather a copy of this object. Ignite behaves this way by default, but it's possible override this behavior via `CacheConfiguration.copyOnRead` configuration property:
+JCache standard requires cache providers to support store-by-value semantics which means that when you read a value from the cache, you don't get the reference to the object that is actually stored, but rather a copy of this object. Ignite behaves this way by default, but it's possible to override this behavior via the `CacheConfiguration.copyOnRead` configuration property:
 [block:code]
 {
   "codes": [
