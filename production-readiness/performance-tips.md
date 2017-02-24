@@ -189,14 +189,14 @@ Ignite enables you to execute MapReduce computations in memory. However, most co
   "title": "Use Data Streamer"
 }
 [/block]
-If you need to upload lots of data into cache, use `IgniteDataStreamer` to do it. Data streamer will properly batch the updates prior to sending them to remote nodes and will properly control number of parallel operations taking place on each node to avoid thrashing. Generally it provides performance of 10x than doing a bunch of single-threaded updates. See [Data Loading](doc:data-loading) section for more detailed description and examples.
+If you need to upload lots of data into cache, use `IgniteDataStreamer` to do it. Data streamer will properly batch the updates before sending them to remote nodes and will properly control the number of parallel operations taking place on each node to avoid thrashing. It provides 10x better performance than doing a bunch of single-threaded updates. See [Data Loading](doc:data-loading) section for more details  and examples.
 [block:api-header]
 {
   "type": "basic",
   "title": "Batch Up Your Messages"
 }
 [/block]
-If you can send 10 bigger jobs instead of 100 smaller jobs, you should always choose to send bigger jobs. This will reduce the amount of jobs going across the network and may significantly improve performance. The same regards cache entries - always try to use API methods, that take collections of keys or values, instead of passing them one-by-one.
+If you can send 10 bigger jobs instead of 100 smaller jobs, you should always choose to send bigger jobs. This will reduce the number of jobs going across the network and may significantly improve the performance. Similarly, for cache entries, always try to use API methods that take collections of keys or values instead of passing them one-by-one.
 [block:api-header]
 {
   "type": "basic",
