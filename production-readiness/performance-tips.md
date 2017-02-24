@@ -54,7 +54,7 @@ In terms of size and capacity, Ignite's internal cache map acts exactly like a n
   ]
 }
 [/block]
-The above configuration will save you from log₂(10⁸) − log₂(1024) ≈ 16 cache map resizes (1024 is an initial map capacity by default). Remember, that each subsequent resize will be on average 2 times longer than the previous one.
+The above configuration will save you from log₂(10⁸) − log₂(1024) ≈ 16 cache map resizes (1024 is an initial map capacity by default). Remember that each subsequent resize will be, on average, 2 times longer than the previous one.
 [block:api-header]
 {
   "type": "basic",
