@@ -35,7 +35,7 @@ Here is how you can start a grid node locally with all the defaults:
   ]
 }
 [/block]
-or by passing a configuration file:
+You can also start an Ignite node by passing a configuration file:
 [block:code]
 {
   "codes": [
