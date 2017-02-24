@@ -7,14 +7,14 @@
   "title": "Overview"
 }
 [/block]
-Ignite allows dependency injection of pre-defined Ignite resources, and supports field-based as well as method-based injection. Any resources with the proper annotations will be injected into the corresponding task, job, closure or SPI before it is initialized.
+Ignite allows dependency injection of pre-defined Ignite resources, and supports field-based as well as method-based injection. Resources with proper annotations will be injected into the corresponding task, job, closure or SPI before it is initialized.
 [block:api-header]
 {
   "type": "basic",
   "title": "Field Based and Method Based"
 }
 [/block]
-You can inject resources by either annotating a field or a method. In case you annotate a field, Ignite simply sets the value of the field at injection time (disregarding an access modifier of the field). If you annotate a method with resource annotation, it should accept an input parameter of type corresponding to an injected resource. If it does, then the method is invoked at injection time with the appropriate resource passed as input argument.
+You can inject resources by either annotating a field or a method. In case you annotate a field, Ignite simply sets the value of the field at injection time (disregarding an access modifier of the field). If you annotate a method with resource annotation, it should accept an input parameter of the type corresponding to an injected resource. If it does, then the method is invoked at injection time with the appropriate resource passed as an input argument.
 [block:code]
 {
   "codes": [
