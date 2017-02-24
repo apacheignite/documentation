@@ -134,17 +134,17 @@ Evictions are disabled by default. If you do need to use evictions to make sure 
   ]
 }
 [/block]
-Regardless of which eviction policy you use, cache performance will depend on the maximum amount of entries in cache allowed by eviction policy - if cache size overgrows this limit, the evictions start to occur.
+Regardless of which eviction policy you use, cache performance will depend on the maximum amount of entries in cache allowed by the eviction policy - if cache size overgrows this limit, the evictions start to occur.
 [block:api-header]
 {
   "type": "basic",
   "title": "Tune Cache Data Rebalancing"
 }
 [/block]
-When a new node joins topology, existing nodes relinquish primary or back up ownership of some keys to the new node so that keys remain equally balanced across the grid at all times. This may require additional resources and hit cache performance. To tackle this possible problem, consider tweaking the following parameters:
-  * Configure rebalance batch size, appropriate for your network. Default is 512KB which means that by default rebalance messages will be about 512KB. However, you may need to set this value to be higher or lower based on your network performance.
-  * Configure rebalance throttling to unload the CPU. If your data sets are large and there are a lot of messages to send, the CPU or network can get over-consumed, which consecutively may slow down the application performance. In this case you should enable data rebalance throttling which helps tune the amount of time to wait between rebalance messages to make sure that rebalancing process does not have any negative performance impact. Note that application will continue to work properly while rebalancing is still in progress.
-  * Configure rebalance thread pool size. As opposite to previous point, sometimes you may need to make rebalancing faster by engaging more CPU cores. This can be done by increasing the number of threads in rebalance thread pool (by default, there are only 2 threads in pool).
+When a new node joins topology, existing nodes relinquish primary or backup ownership of some keys to the new node so that keys remain equally balanced across the grid at all times. This may require additional resources and affect cache performance. To tackle this possible problem, consider tweaking the following parameters:
+  * Configure rebalance batch size, appropriate for your network. The default is 512KB which means that by default rebalance messages will be about 512KB. However, you may need to set this value to be higher or lower based on your network performance.
+  * Configure rebalance throttling to unload the CPU. If your data sets are large and there are a lot of messages to send, the CPU or network can get over-consumed, which consecutively may slow down the application performance. In this case, you should enable data rebalance throttling which helps tune the amount of time to wait between rebalance messages to make sure that rebalancing process does not have any negative performance impact. Note that application will continue to work properly while rebalancing is still in progress.
+  * Configure rebalance thread pool size. Contrary to the previous point, sometimes you may need to make rebalancing faster by engaging more CPU cores. This can be done by increasing the number of threads in rebalance thread pool (by default, there are only 2 threads in the pool).
 
 Below is an example of setting all of the above parameters in cache configuration:
 [block:code]
