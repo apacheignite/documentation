@@ -106,7 +106,7 @@ In many deployments, client nodes are launched outside of the main cluster on sl
 
 To manage these situations, you can configure the maximum number of allowed outgoing messages for client nodes. If the size of the outbound queue exceeds this value, the client node will be disconnected from the cluster, preventing global slowdown.
 
-Examples below show how to configure slow client queue limit in code and XML configuration.
+The examples below show how to configure a slow client queue limit in code and XML configuration.
 [block:code]
 {
   "codes": [
