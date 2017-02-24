@@ -87,7 +87,7 @@ An implementation of `LifecycleBean` may look like the following:
   ]
 }
 [/block]
-You can inject Ignite instance and other useful resources into a `LifecycleBean` implementation. Please refer to [Resource Injection](/docs/resource-injection) section for more information.
+You can inject an Ignite instance and other useful resources into a `LifecycleBean` implementation. Please refer to [Resource Injection](/docs/resource-injection) section for more information.
 [block:api-header]
 {
   "type": "basic",
