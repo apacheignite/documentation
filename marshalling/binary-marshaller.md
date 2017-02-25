@@ -53,7 +53,7 @@ This interface allows customizing the way the hash code generation logic works a
   ]
 }
 [/block]
-The identity resolver is set using `BinaryTypeConfiguration` object. The example below shows how to do that.
+An identity resolver is set using the `BinaryTypeConfiguration` object. The following example shows how this can be done.
 [block:code]
 {
   "codes": [
