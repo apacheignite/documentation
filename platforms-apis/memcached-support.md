@@ -17,7 +17,7 @@ You can connect to Ignite using a Memcached client in one of the following langu
   "title": "PHP"
 }
 [/block]
-To connect to Ignite using PHP client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
+To connect to Ignite using a PHP client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
 
 1\. Start Ignite cluster with cache configured. For example :
 [block:code]
@@ -48,7 +48,7 @@ To connect to Ignite using PHP client for Memcached, you need to [download Ignit
   "title": "Java"
 }
 [/block]
-To connect to Ignite using Java client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
+To connect to Ignite using a Java client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
 
 1\. Start Ignite cluster with cache configured. For example:
 [block:code]
@@ -79,7 +79,7 @@ To connect to Ignite using Java client for Memcached, you need to [download Igni
   "title": "Python"
 }
 [/block]
-To connect to Ignite using Python client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
+To connect to Ignite using a Python client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
 
 1\. Start Ignite cluster with cache configured. For example:
 [block:code]
@@ -110,7 +110,7 @@ To connect to Ignite using Python client for Memcached, you need to [download Ig
   "title": "Ruby"
 }
 [/block]
-To connect to Ignite using Ruby client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
+To connect to Ignite using a Ruby client for Memcached, you need to [download Ignite](https://ignite.incubator.apache.org/download.html) and - 
 
 1\. Start Ignite cluster with cache configured. For example:
 [block:code]
