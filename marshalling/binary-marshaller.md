@@ -67,7 +67,7 @@ An identity resolver is set using the `BinaryTypeConfiguration` object. The foll
 [/block]
 ##Binary Field Identity Resolver
 
-This type of identity resolvers use values of specific object's fields for hash code calculation and for equality comparison. The resolver can be used instead of the default `BinaryArrayIdentityResolver` in cases when you do not want the comparison result to depend on the order the fields are serialized. At the time of hash code generation or object comparison, `BinaryFieldIdentityResolver` uses only those fields that are listed in the configuration and traverses them in the order they are defined in the configuration.
+This type of identity resolvers use values of the specific object's fields for hash code calculation and for equality comparison. The resolver can be used instead of the default `BinaryArrayIdentityResolver` in cases when you do not want the comparison result to depend on the order the fields are serialized. At the time of hash code generation or object comparison, `BinaryFieldIdentityResolver` uses only those fields that are listed in the configuration and traverses them in the order they are defined in the configuration.
 [block:code]
 {
   "codes": [
