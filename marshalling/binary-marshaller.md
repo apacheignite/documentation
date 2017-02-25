@@ -86,9 +86,9 @@ This type of identity resolvers use values of the specific object's fields for h
   "title": "Configuring Binary Objects"
 }
 [/block]
-In the vast majority of use cases there is no need to additionally configure binary objects. 
+In the vast majority of use cases, there is no need to additionally configure binary objects. 
 
-However, in a case when you need to override the default type and field IDs calculation, or to plug in `BinarySerializer`, or customize `equals`/`hashCode` logic as described  in the previous section, a `BinaryConfiguration` object should be set to `IgniteConfiguration`. This object allows to specify a global name mapper, a global ID mapper and a global binary serializer as well as specify per-type mappers and serializers. Wildcards are supported for per-type configuration, in this case provided configuration will be applied to all types matching type name template.
+However, in a case when you need to override the default type and field IDs calculation, or to plug in `BinarySerializer`, or customize `equals`/`hashCode` logic as described in the previous section, a `BinaryConfiguration` object should be set to `IgniteConfiguration`. This object allows to specify a global name mapper, a global ID mapper, and a global binary serializer as well as specify per-type mappers and serializers. Wildcards are supported for per-type configuration, in this case, the provided configuration will be applied to all types matching type name template.
 [block:code]
 {
   "codes": [
