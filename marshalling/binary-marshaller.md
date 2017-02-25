@@ -107,7 +107,7 @@ However, in a case when you need to override the default type and field IDs calc
   "title": "BinaryObject Cache API"
 }
 [/block]
-By default Ignite works with deserialized values as it is the most common use-case. To enable `BinaryObject` processing, a user needs to obtain an instance of `IgniteCache` using `withKeepBinary()` method. When enabled, this flag will ensure that objects returned from the cache will be in `BinaryObject` format, when possible. The same will stand for values being passed to `EntryProcessor` and `CacheInterceptor`.
+By default, Ignite works with deserialized values as it is the most common use-case. To enable `BinaryObject` processing, a user needs to obtain an instance of `IgniteCache` using `withKeepBinary()` method. When enabled, this flag will ensure that objects returned from the cache will be in `BinaryObject` format, when possible. The same will stand for values being passed to the `EntryProcessor` and `CacheInterceptor`.
 [block:callout]
 {
   "type": "info",
