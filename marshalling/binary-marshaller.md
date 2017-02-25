@@ -27,7 +27,7 @@ Binary objects can be used only when default binary marshaller is used (i.e. no 
   "title": "Restrictions"
 }
 [/block]
-The `IgniteBinary` facade, which can be obtained from an instance of Ignite, contains all necessary methods to work with binary objects.
+The `IgniteBinary` facade, which can be obtained from an instance of Ignite, contains all the necessary methods to work with binary objects.
 [block:api-header]
 {
   "type": "basic",
