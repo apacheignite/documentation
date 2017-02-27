@@ -365,11 +365,11 @@ However, the subquery from `IN` clause (`SELECT personId FROM "salary".Salary ..
 
 ##Transactional Support
 
-Presently, DML is not transactional. If a DML operation is executed as a part of an Ignite transaction then it will not be enlisted in the transaction and will be executed right away.
+Presently, DML supports the atomic mode only meaning that if there is a DML query that is executed as a part of an Ignite transaction then it will not be enlisted in the transaction and will be executed right away.
 [block:callout]
 {
   "type": "success",
-  "body": "Once Apache Ignite SQL Grid is empowered with MVCC, DML will become fully transactional. MVCC development is tracked in [this JIRA ticket](https://issues.apache.org/jira/browse/IGNITE-3478).",
+  "body": "Once Apache Ignite SQL Grid is empowered with MVCC, DML operations will be enlisted in distributed transactions. MVCC development is tracked in [this JIRA ticket](https://issues.apache.org/jira/browse/IGNITE-3478).",
   "title": "Multiversion Concurrency Control (MVCC)"
 }
 [/block]
