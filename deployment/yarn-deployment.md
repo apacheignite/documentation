@@ -63,7 +63,7 @@ For running Ignite Application requires YARN and Hadoop cluster are configured a
   ]
 }
 [/block]
-5. Retrieve logs from browser. To look through Ignite logs click on `Logs` for any containers.
+5. Retrieve logs from the browser. To look through Ignite logs, click on `Logs` for any containers.
 [block:image]
 {
   "images": [
