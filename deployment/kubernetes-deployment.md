@@ -36,7 +36,7 @@ To enable Apache Ignite nodes auto-discovery in Kubernetes, you need to enable `
 {
   "type": "info",
   "title": "Kubernetes IP finder",
-  "body": "Learn more about Kubernetes IP finder and Apache Ignite nodes auto-discovery in Kuberentes environment referring to [this documentation page](https://apacheignite-mix.readme.io/docs/kubernetes-discovery)."
+  "body": "To learn more about Kubernetes IP finder and Apache Ignite nodes auto-discovery in Kuberentes environment, refer to [this documentation page](https://apacheignite-mix.readme.io/docs/kubernetes-discovery)."
 }
 [/block]
 
@@ -46,7 +46,7 @@ To enable Apache Ignite nodes auto-discovery in Kubernetes, you need to enable `
   "title": "Kubernetes Ignite Lookup Service"
 }
 [/block]
-Kubernetes IP finder requires us to configure and deploy a special Kubernetes service that will provide the IP finder with the list of IP addresses of all Ignite pods (nodes) running so far.
+Kubernetes IP finder requires users to configure and deploy a special Kubernetes service that will provide the IP finder with the list of IP addresses of all the Ignite pods (nodes) running so far.
 
 Every time a new Ignite pod is started the IP finder will connect to the service using Kubernetes API and will take the list of existing Ignite pods' addresses from there. Having these addresses the new node will be able to discover the rest of the cluster nodes and finally join the Apache Ignite cluster.
 
