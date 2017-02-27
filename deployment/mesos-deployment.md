@@ -78,7 +78,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
   ]
 }
 [/block]
-5. Open Mesos console at `http://<master-ip>:5050`. If everything works OK then tasks with name like `Ignite node N` should have state `RUNNING`. In this example N=4. See example `marathon.json` file - "IGNITE_NODE_COUNT": "4"
+5. Open Mesos console at `http://<master-ip>:5050`. If everything works OK, then tasks with name like `Ignite node N` should have state `RUNNING`. In this example N=4. See example `marathon.json` file - "IGNITE_NODE_COUNT": "4"
 [block:image]
 {
   "images": [
