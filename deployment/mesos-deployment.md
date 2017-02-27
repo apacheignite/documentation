@@ -26,7 +26,7 @@ Deploying Apache Ignite cluster typically involves downloading the Apache Ignite
   "title": "Running Ignite Mesos Framework"
 }
 [/block]
-For running Ignite Mesos Framework requires Apache Mesos Cluster configured and running. For information on how to set up a Mesos cluster please refer to https://docs.mesosphere.com/getting-started/datacenter/install/.
+Running Ignite Mesos Framework requires Apache Mesos Cluster configured and running. For information on how to set up a Mesos cluster, please refer to https://docs.mesosphere.com/getting-started/datacenter/install/.
 [block:callout]
 {
   "type": "warning",
