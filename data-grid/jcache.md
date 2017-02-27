@@ -42,7 +42,7 @@ You can get an instance of `IgniteCache` directly from `Ignite`:
 }
 [/block]
 ## Dynamic Cache
-You can also create an instance of the cache on the fly, in which case Ignite will create and deploy the cache across all server cluster members that match cache node filter. After a dynamic cache has been started, it will be also automatically deployed on all newly joined server cluster members that match cache node filter.
+You can also create an instance of the cache on the fly, in which case Ignite will create and deploy the cache across all server cluster members that match cache node filter. After a dynamic cache has been started, it will also be automatically deployed on all the newly joined server cluster members that match the cache node filter.
 [block:code]
 {
   "codes": [
