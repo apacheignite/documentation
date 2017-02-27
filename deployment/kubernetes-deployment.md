@@ -1,5 +1,5 @@
 * [Overview](#overview)
-* [Kubernetes IP finder](#kubernetes-ip-finder)
+* [Kubernetes IP Finder](#kubernetes-ip-finder)
 * [Kubernetes Ignite Lookup Service](#kubernetes-ignite-lookup-service)
 * [Sharing Ignite Cluster Configuration](#sharing-ignite-cluster-configuration)
 * [Ignite Pods Deployment](#ignite-pods-deployment)
@@ -12,11 +12,11 @@
 [/block]
 Apache Ignite cluster can be easily deployed in and maintained by [Kubernetes](https://kubernetes.io) which is an open-source system for automating deployment, scaling, and management of containerized applications.
 
-This getting started guide walks you through the actions needed to be done if plan to deploy an Apache Ignite cluster in Kubernetes environment.
+This getting started guide walks you through how to deploy an Apache Ignite cluster in Kubernetes environment.
 [block:api-header]
 {
   "type": "basic",
-  "title": "Kubernetes IP finder"
+  "title": "Kubernetes IP Finder"
 }
 [/block]
 To enable Apache Ignite nodes auto-discovery in Kubernetes you need to enable `TcpDiscoveryKubernetesIpFinder` in the nodes' cluster configuration. Let's introduce this configuration by naming it as `example-kube.xml` and defining as follows:
