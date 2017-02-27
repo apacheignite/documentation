@@ -95,7 +95,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
   ]
 }
 [/block]
-6. Mesos allows to retrieve tasks' logs from browser. To look through Ignite logs click on `Sandbox` in the Active Tasks table.
+6. Mesos allows to retrieve tasks' logs from the browser. To look through the Ignite logs, click on `Sandbox` in the Active Tasks table.
 [block:image]
 {
   "images": [
