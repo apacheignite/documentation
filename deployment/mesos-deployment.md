@@ -95,7 +95,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
   ]
 }
 [/block]
-6. Mesos allows to retrieve tasks' logs from the browser. To look through the Ignite logs, click on `Sandbox` in the Active Tasks table.
+6. Mesos allows to retrieve tasks' logs from the browser. To look through Ignite logs, click on `Sandbox` in the Active Tasks table.
 [block:image]
 {
   "images": [
@@ -164,7 +164,7 @@ where `properties.prop` is a property file. If file is not provided then the fra
   ]
 }
 [/block]
-3. In order to make sure that Apache Mesos Framework deployed correctly, do the following. Open Mesos console at `http://<master-ip>:5050`. If everything works OK then tasks with name like `Ignite node N` should have state `RUNNING`. In this example N=1. See example `properties.prop` file - "IGNITE_NODE_COUNT": "1"
+3. In order to make sure that Apache Mesos Framework is deployed correctly, do the following. Open Mesos console at `http://<master-ip>:5050`. If everything works OK, then tasks with name like `Ignite node N` should have state `RUNNING`. In this example N=1. See example `properties.prop` file - "IGNITE_NODE_COUNT": "1"
 [block:image]
 {
   "images": [
@@ -181,7 +181,7 @@ where `properties.prop` is a property file. If file is not provided then the fra
   ]
 }
 [/block]
-4. Mesos allows to retrieve tasks' logs from browser. To look through Ignite logs click on `Sandbox`.
+4. Mesos allows to retrieve tasks' logs from browser. To look through Ignite logs, click on `Sandbox`.
 [block:image]
 {
   "images": [
