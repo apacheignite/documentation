@@ -19,7 +19,7 @@ This getting started guide walks you through how to deploy an Apache Ignite clus
   "title": "Kubernetes IP Finder"
 }
 [/block]
-To enable Apache Ignite nodes auto-discovery in Kubernetes you need to enable `TcpDiscoveryKubernetesIpFinder` in the nodes' cluster configuration. Let's introduce this configuration by naming it as `example-kube.xml` and defining as follows:
+To enable Apache Ignite nodes auto-discovery in Kubernetes, you need to enable `TcpDiscoveryKubernetesIpFinder` in `IgniteConfiguration`. Let's create an example configuration file called `example-kube.xml` and define the IP finder configuration as follows:
 [block:code]
 {
   "codes": [
