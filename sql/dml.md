@@ -365,7 +365,7 @@ However, the subquery from `IN` clause (`SELECT personId FROM "salary".Salary ..
 
 ##Transactional Support
 
-Presently, DML supports the atomic mode only meaning that if there is a DML query that is executed as a part of an Ignite transaction then it will not be enlisted in the transaction and will be executed right away.
+Presently, DML supports the atomic mode only meaning that if there is a DML query that is executed as a part of an Ignite transaction then it will not be enlisted in the transaction's writing queue and will be executed right away.
 [block:callout]
 {
   "type": "success",
