@@ -61,7 +61,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
   ]
 }
 [/block]
-4. In order to make sure that Apache Mesos Framework deployed correctly, do the following. Open Marathon UI  at `http://<marathon-ip>:8080`. Make sure that exists application with name `ignition` and its status is `Running`.
+4. In order to make sure that Apache Mesos Framework is deployed correctly, do the following. Open Marathon UI  at `http://<marathon-ip>:8080`. Make sure that an application with the name `ignition` exists and its status is `Running`.
 [block:image]
 {
   "images": [
