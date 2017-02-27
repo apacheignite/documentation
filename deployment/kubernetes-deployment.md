@@ -206,7 +206,7 @@ Finally, let's define a YAML configuration for Ignite pods:
   ]
 }
 [/block]
-As you can see the configuration defines a couple of environment variables (`OPTION_LIBS` and `CONFIG_URIL`) that will be processed by special shell script used by Ignite's docker image. The full list of docker image's configuration parameters is available on [Docker Deployment](doc:docker-deployment) page.
+As you can see, the configuration defines a couple of environment variables (`OPTION_LIBS` and `CONFIG_URIL`) that will be processed by a special shell script used by Ignite's docker image. The full list of docker image's configuration parameters is available on [Docker Deployment](doc:docker-deployment) page.
 
 Next, go ahead and deploy Ignite pods in Kubernetes using the configuration​ above:
 [block:code]
@@ -241,7 +241,7 @@ Pick a name of one of the pods available
   ]
 }
 [/block]
-and get the logs from it making sure that both Ignite pods were able to discover each other and form the cluster:
+and get the logs from it making sure that both Ignite pods were able to discover each other and from the cluster:
 [block:code]
 {
   "codes": [
@@ -259,7 +259,7 @@ and get the logs from it making sure that both Ignite pods were able to discover
   "title": "Adjusting Ignite Cluster Size"
 }
 [/block]
-You can adjust Apache Ignite cluster size on the fly using standard Kubernetes API. For instance, if you want to scale out the cluster from 2 to 5 nodes then the command below can help with this:
+You can adjust Apache Ignite cluster size on the fly using the standard Kubernetes API. For instance, if you want to scale out the cluster from 2 to 5 nodes then the command below can be used:
 [block:code]
 {
   "codes": [
@@ -281,7 +281,7 @@ Double check the cluster was scaled out successfully:
   ]
 }
 [/block]
-The output has to show that know you have 5 Ignite pods up and running:
+The output should show that you now have 5 Ignite pods up and running:
 [block:code]
 {
   "codes": [
