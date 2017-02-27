@@ -238,12 +238,13 @@ Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot
 }
 [/block]
 ## Transactional SQL
-Presently, SQL queries do not take into account transactional boundaries. This means that you can expect dirty reads if an SQL query is executed in parallel with Ignite distributed transactions. For instance, if a transaction atomically changes balances of two accounts, then a concurrent SQL query can see a partially committed transaction. 
+
+Presently, SQL queries support the atomic mode only meaning that if there is a transaction that has already committed value A but that is still committing value B then an SQL query, running in parallel, will see A but will not see B. 
 [block:callout]
 {
   "type": "success",
   "title": "Multiversion Concurrence Control (MVCC)",
-  "body": "Once Apache Ignite SQL Grid is empowered with MVCC, the transactional SQL limitation mentioned above will be eliminated. MVCC development is tracked in [this JIRA ticket](https://issues.apache.org/jira/browse/IGNITE-3478)."
+  "body": "Once Apache Ignite SQL Grid is empowered with MVCC, the SQL Grid will support transactional mode as well. MVCC development is tracked in [this JIRA ticket](https://issues.apache.org/jira/browse/IGNITE-3478)."
 }
 [/block]
 
