@@ -46,11 +46,11 @@ To enable Apache Ignite nodes auto-discovery in Kubernetes, you need to enable `
   "title": "Kubernetes Ignite Lookup Service"
 }
 [/block]
-Kubernetes IP finder requires users to configure and deploy a special Kubernetes service that will provide the IP finder with the list of IP addresses of all the Ignite pods (nodes) running so far.
+Kubernetes IP finder requires users to configure and deploy a special Kubernetes service that will provide the IP finder with a list of IP addresses of all the alive Ignite pods (nodes).
 
-Every time a new Ignite pod is started the IP finder will connect to the service using Kubernetes API and will take the list of existing Ignite pods' addresses from there. Having these addresses the new node will be able to discover the rest of the cluster nodes and finally join the Apache Ignite cluster.
+Every time a new Ignite pod is started, the IP finder will connect to the service using the Kubernetes API and will take the list of the existing Ignite pods' addresses from there. Having these addresses, the new node will be able to discover the rest of the cluster nodes and finally join the Apache Ignite cluster.
 
-Let's configure the service this way
+Let's configure the service the following way:
 [block:code]
 {
   "codes": [
@@ -62,7 +62,7 @@ Let's configure the service this way
   ]
 }
 [/block]
-and deploy it right after that in Kubernetes using a command below:
+and deploy it in Kubernetes using the command below:
 [block:code]
 {
   "codes": [
@@ -102,13 +102,13 @@ The output should be similar to the one below:
   "title": "Sharing Ignite Cluster Configuration"
 }
 [/block]
-Before you start deploying first Ignite pods in Kubernetes using Apache Ignite [docker image](https://apacheignite.readme.io/docs/docker-deployment) you need to find a way on how to pass `example-kube.xml` prepared above to that docker image.
+Before you start deploying Ignite pods in Kubernetes using Apache Ignite [docker image](https://apacheignite.readme.io/docs/docker-deployment), you need to find a way on how to pass `example-kube.xml` (prepared above) to that docker image.
 
-There are several approaches you can use. Here it will be shown how you can share the Ignite cluster configuration via a shared Kubernetes PersistentVolume.
+There are several approaches you can use. Here, we show you how to share the Ignite cluster configuration via a shared Kubernetes `PersistentVolume`.
 
 Let's suppose you have some shared directory named `/data/ignite` that can be accessed by any Ignite pod. Go to this directory and copy `example-kube.xml` there.
 
-Create a PersistentVolume configuration that will be backed by your real storage and will refer to `/data/ignite` directory.
+Create a `PersistentVolume` configuration that will be backed by your real storage and will refer to the `/data/ignite` directory.
 [block:code]
 {
   "codes": [
@@ -153,7 +153,7 @@ The output should be similar to the one below:
   ]
 }
 [/block]
-Finally, create a PersistentVolumeClaim that will be automatically bound to the PersistentVolume initiated above:
+Finally, create a `PersistentVolumeClaim` that will be automatically bound to the `PersistentVolume` initiated above:
 [block:code]
 {
   "codes": [
@@ -176,7 +176,7 @@ Create the PersistentVolumeClaim using the configuration above:
   ]
 }
 [/block]
-Make sure that the PersistentVolumeClaim gets created and was bound to the PersistentVolume that stores `example-kube.xml` configuration.
+Make sure that the `PersistentVolumeClaim` gets created and was bound to the `PersistentVolume` that stores `example-kube.xml` configuration.
 [block:code]
 {
   "codes": [
