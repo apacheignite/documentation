@@ -29,7 +29,7 @@ To run Ignite docker container using `docker run`, use the following command:
   ]
 }
 [/block]
-The configuration parameters are passed through the environment variables in docker container. The following configuration parameters are available:
+The following configuration parameters can be passed as environment variables in the docker container:
 [block:parameters]
 {
   "data": {
