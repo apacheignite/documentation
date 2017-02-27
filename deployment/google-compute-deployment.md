@@ -107,7 +107,7 @@ as shown in the figure below:
   ]
 }
 [/block]
-10. Show logs:
+10. The following command will show the logs:
 [block:code]
 {
   "codes": [
@@ -118,7 +118,7 @@ as shown in the figure below:
   ]
 }
 [/block]
- 11. Enter the docker container:
+ 11. Use the following command to enter the docker container:
 [block:code]
 {
   "codes": [
