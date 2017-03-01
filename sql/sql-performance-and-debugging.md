@@ -49,6 +49,12 @@ When developing with Ignite, sometimes, it is useful to check if your tables and
 
 [block:api-header]
 {
+  "title": "Query parallelism"
+}
+[/block]
+Test
+[block:api-header]
+{
   "type": "basic",
   "title": "SQL Performance and Usability Considerations"
 }
