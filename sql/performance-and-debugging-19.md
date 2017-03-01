@@ -89,20 +89,7 @@ Which is converted in to the following SQL:
 
 [block:api-header]
 {
-  "type": "basic",
-  "title": "Advanced DML Optimizations"
-}
-[/block]
-Usually, `UPDATE` and `DELETE` statements require performing a `SELECT` query in order to prepare a set of cache entries to be processed later. In some situations, this can be avoided leading to significant performance gains by direct translation of DML statements into specific cache operations.
-
-To summarize the content of the [distributed DML](doc:dml) section, following are the reasons why `UPDATE` and `DELETE` automatically execute a `SELECT` query:
-
-1. A complex filtering is used in the `WHERE` clause of `UPDATE` or `DELETE` statement. This happens when a sophisticated and advanced filtering of entries is used and the DML engine needs to do extra work in order to prepare the list of the entries that will be updated by the DML statement. 
-2. An `UPDATE` statement contains an expression. Even if the `WHERE` clause is simple and points to a cache entry to be modified directly with the usage of `_key` or `_value`, the execution of an expression might result in new fields' values. This is why DML engine has to execute the `SELECT` in order to evaluate the expression's execution result.
-3. An `UPDATE` statement modifies specific fields belonging to a cache entry. The DML engine needs to retrieve a current cache entry first, modify it, and put it back into the cache. 
-
-[block:api-header]
-{
+"type": "basic",
   "title": "Query Parallelism"
 }
 [/block]
@@ -137,6 +124,20 @@ If a query contains `JOINs` all participating caches must have the same degree o
   "body": "Currently this property affects all queries executed on the given cache. While providing speedup to heavy OLAP queries, this option may slowdown other simple queries. This behavior will be improved in further versions."
 }
 [/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Advanced DML Optimizations"
+}
+[/block]
+Usually, `UPDATE` and `DELETE` statements require performing a `SELECT` query in order to prepare a set of cache entries to be processed later. In some situations, this can be avoided leading to significant performance gains by direct translation of DML statements into specific cache operations.
+
+To summarize the content of the [distributed DML](doc:dml) section, following are the reasons why `UPDATE` and `DELETE` automatically execute a `SELECT` query:
+
+1. A complex filtering is used in the `WHERE` clause of `UPDATE` or `DELETE` statement. This happens when a sophisticated and advanced filtering of entries is used and the DML engine needs to do extra work in order to prepare the list of the entries that will be updated by the DML statement. 
+2. An `UPDATE` statement contains an expression. Even if the `WHERE` clause is simple and points to a cache entry to be modified directly with the usage of `_key` or `_value`, the execution of an expression might result in new fields' values. This is why DML engine has to execute the `SELECT` in order to evaluate the expression's execution result.
+3. An `UPDATE` statement modifies specific fields belonging to a cache entry. The DML engine needs to retrieve a current cache entry first, modify it, and put it back into the cache. 
 
 ## Executing DML faster
 
