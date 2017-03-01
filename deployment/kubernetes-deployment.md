@@ -4,7 +4,7 @@
 * [Sharing Ignite Cluster Configuration](#sharing-ignite-cluster-configuration)
 * [Ignite Pods Deployment](#ignite-pods-deployment)
 * [Adjusting Ignite Cluster Size](#adjusting-ignite-cluster-size)
-f
+
 [block:api-header]
 {
   "type": "basic",
