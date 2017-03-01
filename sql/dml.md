@@ -1,5 +1,4 @@
 * [Overview](#overview)
-* [Overview2](#overview2)
 * [DML API](#dml-api)
 * [Basic Configuration](#basic-configuration)
 * [Advanced Configuration](#advanced-configuration)
@@ -16,12 +15,6 @@
 {
   "type": "basic",
   "title": "Overview"
-}
-[/block]
-
-[block:api-header]
-{
-  "title": "Overview2"
 }
 [/block]
 Apache Ignite SQL Grid not only allows selecting data from the Data Grid, using SQL ANSI-99 syntax, it makes it possible to modify that data with well-known DML statements like INSERT, UPDATE, or DELETE. By taking advantage of this ability, you can work with Apache Ignite In-Memory Data Fabric as with an in-memory distributed database fully relying on its SQL capabilities. 
