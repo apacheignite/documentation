@@ -2,6 +2,7 @@ The following page covers these topics:
 * [Using EXPLAIN](#using-explain-statement)
 * [Using H2 Debug Console](#using-h2-debug-console)
 * [SQL Performance and Usability Considerations](#sql-performance-and-usability-considerations)
+* [Query Parallelism](#query-parallelism)
 * [Advanced DML Optimizations](#advanced-dml-optimizations)
 
 To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.readme.io/docs/indexes#indexes-tradeoffs).
@@ -102,12 +103,10 @@ To summarize the content of the [distributed DML](doc:dml) section, following ar
 
 [block:api-header]
 {
-  "title": "Query parallelism"
+  "title": "Query Parallelism"
 }
 [/block]
-By de 
- 
-fault query is executed in a single thread on each participating node. This approach is optimal for queries returning small result sets involving index search. E.g.:
+By default, an SQL query is executed in a single thread on each participating Ignite node. This approach is optimal for queries returning small result sets involving index search. E.g.:
 [block:code]
 {
   "codes": [
@@ -118,7 +117,7 @@ fault query is executed in a single thread on each participating node. This appr
   ]
 }
 [/block]
-Certain queries may benefit from being executed in several threads. This relates to queries with table scans and aggregations, which is often the case for OLAP workloads. E.g.:
+Certain queries might benefit from being executed in multiple threads. This relates to queries with table scans and aggregations, which is often the case for OLAP workloads. E.g.:
 [block:code]
 {
   "codes": [
@@ -129,8 +128,8 @@ Certain queries may benefit from being executed in several threads. This relates
   ]
 }
 [/block]
-You can control query parallelism through `CacheConfiguration.queryParallelism` property, which defines how many threads will execute a query on a map node. 
-If query contains `JOINs` all participating caches must have the same degree of parallelism.
+You can control query parallelism through `CacheConfiguration.queryParallelism` property, which defines a number of threads that will be used to execute a query on a single node. 
+If a query contains `JOINs` all participating caches must have the same degree of parallelism.
 [block:callout]
 {
   "type": "warning",
