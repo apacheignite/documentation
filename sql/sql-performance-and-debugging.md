@@ -2,7 +2,6 @@ The following page covers these topics:
 * [Using EXPLAIN](#using-explain-statement)
 * [Using H2 Debug Console](#using-h2-debug-console)
 * [SQL Performance and Usability Considerations](#sql-performance-and-usability-considerations)
-* [Query Parallelism](#query-parallelism)
 * [Advanced DML Optimizations](#advanced-dml-optimizations)
 
 To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.readme.io/docs/indexes#indexes-tradeoffs).
@@ -48,12 +47,6 @@ When developing with Ignite, sometimes, it is useful to check if your tables and
 }
 [/block]
 
-[block:api-header]
-{
-  "title": "Query parallelism"
-}
-[/block]
-Test
 [block:api-header]
 {
   "type": "basic",
