@@ -91,7 +91,38 @@ Which is converted in to the following SQL:
   "title": "Query parallelism"
 }
 [/block]
-You can control query parallelism.
+By default query is executed in a single thread on each participating node. This approach is optimal for queries returning small result sets involving index search. E.g.:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "select * from Person where p.id = ?",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+Certain queries may benefit from being executed in several threads. This relates to queries with table scans and aggregations, which is often the case for OLAP workloads. E.g.:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "select SUM(salary) from Person",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+You can control query parallelism through `CacheConfiguration.queryParallelism` property, which defines how many threads will execute a query on a map node. 
+If query contains `JOINs` all participating caches must have the same degree of parallelism.
+[block:callout]
+{
+  "type": "warning",
+  "title": "Use with care",
+  "body": "Currently this property affects all queries executed on the given cache. While providing speedup to heavy OLAP queries, this option may slowdown other simple queries. This behavior will be improved in further versions."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
