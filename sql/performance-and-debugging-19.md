@@ -4,7 +4,7 @@ The following page covers these topics:
 * [SQL Performance and Usability Considerations](#sql-performance-and-usability-considerations)
 * [Query Parallelism](#query-parallelism)
 * [Advanced DML Optimizations](#advanced-dml-optimizations)
-f
+
 To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.readme.io/docs/indexes#indexes-tradeoffs).
 [block:api-header]
 {
