@@ -88,6 +88,12 @@ Which is converted in to the following SQL:
 
 [block:api-header]
 {
+  "title": "Query parallelism"
+}
+[/block]
+You can control query parallelism.
+[block:api-header]
+{
   "type": "basic",
   "title": "Advanced DML Optimizations"
 }
