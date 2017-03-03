@@ -7,10 +7,10 @@
  * [INSERT](dml#section-insert)
  * [UPDATE](dml#section-update)
  * [DELETE](dml#section-delete)
-* [Data streaming with SQL](#)
+* 
 * [Modifications Order](#modifications-order)
 * [Concurrent Modifications](#concurrent-modifications)
-* [Known Limitations](#known-limitations)
+* [Known Limitation](#known-limitations)
 * [Example](#example)
 [block:api-header]
 {
@@ -232,6 +232,12 @@ The following example shows how to execute a `DELETE` query in Apache Ignite.
 
 [block:api-header]
 {
+  "title": "Data Streaming"
+}
+[/block]
+Starting with version 1.9, Ignite is able to load data in bulk via SQL and JDBC. To achieve that, a `DataStramer` is used under the hood. This way of loading data into Ignite allows you to use well known concepts such as JDBC and SQL while getting all benefits of Ignite streaming. Please see more details about this mode and how to turn this in [streaming related section of JDBC Driver docs](doc:jdbc-driver-19#data-streaming).
+[block:api-header]
+{
   "type": "basic",
   "title": "Modifications Order"
 }
@@ -264,12 +270,6 @@ This is similar to the execution of the query like the one below where `_val` ap
 }
 [/block]
 The order in which the changes are applied for `_val` and its fields is the same for `INSERT`, `UPDATE` and `MERGE` statements.
-[block:api-header]
-{
-  "title": "Data streaming with SQL"
-}
-[/block]
-
 [block:api-header]
 {
   "type": "basic",
