@@ -126,7 +126,7 @@ The connection created in such way **does not permit any SQL operations besides 
 {
   "type": "info",
   "title": "Stream flush",
-  "body": "By default, streamed data is flushed only **on connection close**, so if you need that to happen more often, please set flush timeout accordingly via `streamingFlushFrequency` connection param. Still, if your app needs to know precisely the moment when all data definitely is in cache, just wait until standard JDBC `Connection`'s close completes for an Ignite connection."
+  "body": "By default, streamed data is flushed only **on connection close**, so if you need that to happen more often, please set flush timeout accordingly via `streamingFlushFrequency` connection param. Still, if your app needs to know precisely the moment when all data definitely is in cache, just wait until standard JDBC `Connection`'s close completes for an Ignite connection as shown in the following example."
 }
 [/block]
 
