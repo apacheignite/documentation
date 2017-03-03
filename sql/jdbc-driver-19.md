@@ -1,4 +1,5 @@
 * [JDBC Connection](#jdbc-connection)
+* [Data Streaming](#data-streaming)
 * [Example](#example)
 * [Backward Compatibility](#backward-compatibility)
 [block:api-header]
@@ -107,7 +108,7 @@ The following parameters are supported:
 
 [block:api-header]
 {
-  "title": "Data streaming"
+  "title": "Data Streaming"
 }
 [/block]
 Ignite is able to load data in bulk via SQL by associating a *data streamer* with JDBC connection and feeding all incoming data to it. To achieve that, it's enough to set `streaming` param to `true` for a connection like this:
