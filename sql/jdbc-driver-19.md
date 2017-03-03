@@ -110,7 +110,7 @@ The following parameters are supported:
   "title": "Data streaming"
 }
 [/block]
-Ignite is able to load data in bulk via SQL by associating a *data streamer* with JDBC connection and feeding all incoming data to it. To achieve that, it's enough to set `streaming` param to `true` for a connection:
+Ignite is able to load data in bulk via SQL by associating a *data streamer* with JDBC connection and feeding all incoming data to it. To achieve that, it's enough to set `streaming` param to `true` for a connection like this:
 [block:code]
 {
   "codes": [
