@@ -121,7 +121,7 @@ Ignite is able to load data in bulk via SQL by associating a *data streamer* wit
   ]
 }
 [/block]
-The connection created in such a way *does not permit any operations besides `INSERT`*.
+The connection created in such a way **does not permit any operations besides `INSERT`**.
 [block:api-header]
 {
   "type": "basic",
