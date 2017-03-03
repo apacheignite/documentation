@@ -7,7 +7,7 @@
  * [INSERT](dml#section-insert)
  * [UPDATE](dml#section-update)
  * [DELETE](dml#section-delete)
-* 
+* [Data Streaming](distributed-dml-19#data-streaming)
 * [Modifications Order](#modifications-order)
 * [Concurrent Modifications](#concurrent-modifications)
 * [Known Limitation](#known-limitations)
