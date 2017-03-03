@@ -230,12 +230,14 @@ The following example shows how to execute a `DELETE` query in Apache Ignite.
 }
 [/block]
 
-[block:api-header]
+[block:callout]
 {
-  "title": "Data Streaming"
+  "type": "info",
+  "title": "Streaming Mode",
+  "body": "Using Ignite JDBC driver you can achieve fast data preloading in a so-called streaming mode. Learn more about this mode referring to the [streaming related section of JDBC Driver documentation](doc:jdbc-driver-19#data-streaming)."
 }
 [/block]
-Starting with version 1.9, Ignite is able to load data in bulk via SQL and JDBC. To achieve that, a `DataStramer` is used under the hood. This way of loading data into Ignite allows you to use well known concepts such as JDBC and SQL while getting all benefits of Ignite streaming. Please see more details about this mode and how to turn this in [streaming related section of JDBC Driver docs](doc:jdbc-driver-19#data-streaming).
+
 [block:api-header]
 {
   "type": "basic",
