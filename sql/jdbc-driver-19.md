@@ -1,5 +1,5 @@
 * [JDBC Connection](#jdbc-connection)
-* [Data Streaming](#data-streaming)
+* [Streaming Mode](#data-streaming)
 * [Example](#example)
 * [Backward Compatibility](#backward-compatibility)
 [block:api-header]
@@ -57,16 +57,16 @@ The following parameters are supported:
     "5-1": "Turns on bulk data load mode via `INSERT` statements for this connection.",
     "5-2": "false",
     "6-0": "`streamingAllowOverwrite`",
-    "6-1": "Tells Ignite to overwrite values for existing keys on duplication instead of skipping them. Refer to [IgniteDataStreamer JavaDoc](https://ignite.apache.org/releases/1.8.0/javadoc/org/apache/ignite/IgniteDataStreamer.html) for more details.",
+    "6-1": "Tells Ignite to overwrite values for existing keys on duplication instead of skipping them.",
     "6-2": "false",
     "7-0": "`streamingFlushFrequency`",
-    "7-1": "Timeout, in _milliseconds_, that data streamer should use to flush data. By default, *the data is flushed on connection close*. Refer to [IgniteDataStreamer JavaDoc](https://ignite.apache.org/releases/1.8.0/javadoc/) for more details.",
+    "7-1": "Timeout, in _milliseconds_, that data streamer should use to flush data. By default, *the data is flushed on connection close*.",
     "7-2": "0",
     "8-0": "`streamingPerNodeBufferSize`",
-    "8-1": "Data streamer's per node buffer size. Refer to [IgniteDataStreamer JavaDoc](https://ignite.apache.org/releases/1.8.0/javadoc/org/apache/ignite/IgniteDataStreamer.html) for more details.",
+    "8-1": "Data streamer's per node buffer size.",
     "8-2": "1024",
     "9-0": "`streamingPerNodeParallelOperations`",
-    "9-1": "Data streamer's per node parallel operations number. Refer to [IgniteDataStreamer JavaDoc](https://ignite.apache.org/releases/1.8.0/javadoc/org/apache/ignite/IgniteDataStreamer.html) for more details.",
+    "9-1": "Data streamer's per node parallel operations number.",
     "9-2": "16"
   },
   "cols": 3,
@@ -108,27 +108,29 @@ The following parameters are supported:
 
 [block:api-header]
 {
-"type": "basic",
-  "title": "Data Streaming"
+  "type": "basic",
+  "title": "Streaming Mode"
 }
 [/block]
-Ignite is able to load data in bulk via SQL by associating a *data streamer* with JDBC connection and feeding all incoming data to it. To achieve that, it's enough to set `streaming` param to `true` for a connection like this:
+It's feasible to add data into an Ignite cluster in a streaming mode (bulk mode) using the JDBC driver. In this mode the driver instantiates `IgniteDataStreamer` internally and feeds data to it. To activate this mode, add `streaming` parameter set to `true` to a JDBC connection string:
 [block:code]
 {
   "codes": [
     {
-      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@file:///etc/config/ignite-jdbc.xml\");",
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Opening connection in the streaming mode.\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@file:///etc/config/ignite-jdbc.xml\");",
       "language": "java"
     }
   ]
 }
 [/block]
-The connection created in such way **does not permit any SQL operations besides `INSERT`**, so the suggested pattern to use data streaming in your app is just to create a separate connection for bulk data load. Currently, Ignite JDBC driver has 5 connection params that affect the work of data streamer, please see their names and description in the table above together with those for other params. Those params cover basically all settings of a classic `IgniteDataStreamer` and allow you to do fine tuning of the streamer according to your needs. Please refer to [Data Streamers](doc:data-streamers) section of Ignite docs for more info on how to configure a streamer.
+Presently, the streaming mode is supported for INSERT operations only which is good for the use case when you need to achieve fast data preloading into a cache. The JDBC driver defines multiple connection parameters that affect the behavior of the streaming mode. The parameters are listed in the parameters table above.
+
+The parameters cover almost all settings of a general `IgniteDataStreamer` and allow you to do fine tuning of the streamer according to your needs. Please refer to [Data Streamers](doc:data-streamers) section of Ignite docs for more info on how to configure the streamer.
 [block:callout]
 {
   "type": "info",
-  "title": "Stream flush",
-  "body": "By default, streamed data is flushed only **on connection close**, so if you need that to happen more often, please set flush timeout accordingly via `streamingFlushFrequency` connection param. Still, if your app needs to know precisely the moment when all data definitely is in cache, just wait until standard JDBC `Connection`'s close completes for an Ignite connection as shown in the following example."
+  "title": "Time Based Flushing",
+  "body": "By default, the data is flushed when either a connection is closed or  `streamingPerNodeBufferSize` is met. If you need to flush the data in a time manner then adjust `streamingFlushFrequency` parameter."
 }
 [/block]
 
@@ -136,7 +138,7 @@ The connection created in such way **does not permit any SQL operations besides 
 {
   "codes": [
     {
-      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@file:///etc/config/ignite-jdbc.xml\");\n\nPreparedStatement stmt = conn.prepareStatement(\"INSERT INTO Person(_key, name, \t\t\t\tage) VALUES(CAST(? as BIGINT), ?, ?)\");\n\n// Let's load ourselves a bunch of John Smiths\nfor (int i = 1; i < 100000; i++) {\n      // Insert a Person with a Long key.\n      stmt.setInt(1, i);\n      stmt.setString(2, \"John Smith\");\n      stmt.setInt(3, 25);\n  \n  \t\tstmt.execute();\n}\n\nconn.close();\n\n// Beyond this point, all data is guaranteed to be in the cache.",
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Opening a connection in the streaming mode and time based flushing set.\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@streamingFlushFrequency=1000@file:///etc/config/ignite-jdbc.xml\");\n\nPreparedStatement stmt = conn.prepareStatement(\"INSERT INTO Person(_key, name, \t\t\t\tage) VALUES(CAST(? as BIGINT), ?, ?)\");\n\n// Adding the data.\nfor (int i = 1; i < 100000; i++) {\n      // Inserting a Person object with a Long key.\n      stmt.setInt(1, i);\n      stmt.setString(2, \"John Smith\");\n      stmt.setInt(3, 25);\n  \n  \t\tstmt.execute();\n}\n\nconn.close();\n\n// Beyond this point, all data is guaranteed to be flushed into the cache.",
       "language": "java"
     }
   ]
