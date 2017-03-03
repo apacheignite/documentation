@@ -51,10 +51,25 @@ The following parameters are supported:
     "3-2": "false",
     "4-0": "`distributedJoins`",
     "4-1": "Allows use distributed joins for non collocated data.",
-    "4-2": "false"
+    "4-2": "false",
+    "5-0": "`streaming`",
+    "5-1": "Turns on bulk data load mode via `INSERT` statements for this connection.",
+    "5-2": "false",
+    "6-0": "`streamingAllowOverwrite`",
+    "6-1": "Tells Ignite to overwrite values for existing keys on duplication instead of skipping them.",
+    "6-2": "false",
+    "7-0": "`streamingFlushFrequency`",
+    "7-1": "Timeout, in _milliseconds_, that data streamer should use to flush data. By default, *the data is flushed on connection close*.",
+    "7-2": "0",
+    "8-0": "`streamingPerNodeBufferSize`",
+    "8-1": "Data streamer per node buffer size.",
+    "8-2": "1024",
+    "9-0": "`streamingPerNodeParallelOperations`",
+    "9-1": "Data streamer per node parallel operations number.",
+    "9-2": "16"
   },
   "cols": 3,
-  "rows": 5
+  "rows": 10
 }
 [/block]
 
@@ -90,6 +105,23 @@ The following parameters are supported:
 }
 [/block]
 
+[block:api-header]
+{
+  "title": "Data streaming"
+}
+[/block]
+Ignite is able to load data in bulk via SQL by associating a *data streamer* with JDBC connection and feeding all incoming data to it. To achieve that, it's enough to set `streaming` param to `true` for a connection:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@file:///etc/config/ignite-jdbc.xml\");",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+The connection created in such a way *does not permit any operations besides `INSERT`*.
 [block:api-header]
 {
   "type": "basic",
