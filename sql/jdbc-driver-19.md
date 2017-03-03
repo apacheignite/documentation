@@ -121,7 +121,26 @@ Ignite is able to load data in bulk via SQL by associating a *data streamer* wit
   ]
 }
 [/block]
-The connection created in such a way **does not permit any operations besides `INSERT`**.
+The connection created in such way **does not permit any SQL operations besides `INSERT`**, so the suggested pattern to use data streaming in your app is just to create a separate connection for bulk data load. Currently, Ignite JDBC driver has 5 connection params that affect the work of data streamer, please see their names and description in the table above together with those for other params. Those params cover basically all settings of a classic `IgniteDataStreamer` and allow you to do fine tuning of the streamer according to your needs. Please refer to [Data Streamers](doc:data-streamers) section of Ignite docs for more info on how to configure a streamer.
+[block:callout]
+{
+  "type": "info",
+  "title": "Stream flush",
+  "body": "By default, streamed data is flushed only **on connection close**, so if you need that to happen more often, please set flush timeout accordingly via `streamingFlushFrequency` connection param. Still, if your app needs to know precisely the moment when all data definitely is in cache, just wait until standard JDBC `Connection`'s close completes for an Ignite connection."
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Open JDBC connection (cache name is not specified, which means that we use default cache).\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@file:///etc/config/ignite-jdbc.xml\");\n\nPreparedStatement stmt = conn.prepareStatement(\"INSERT INTO Person(_key, name, \t\t\t\tage) VALUES(CAST(? as BIGINT), ?, ?)\");\n\n// Let's load ourselves a bunch of John Smiths\nfor (int i = 1; i < 100000; i++) {\n      // Insert a Person with a Long key.\n      stmt.setInt(1, i);\n      stmt.setString(2, \"John Smith\");\n      stmt.setInt(3, 25);\n  \n  \t\tstmt.execute();\n}\n\nconn.close();\n\n// Beyond this point, all data is guaranteed to be in the cache.",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
