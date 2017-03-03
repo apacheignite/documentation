@@ -108,6 +108,7 @@ The following parameters are supported:
 
 [block:api-header]
 {
+"type": "basic",
   "title": "Data Streaming"
 }
 [/block]
