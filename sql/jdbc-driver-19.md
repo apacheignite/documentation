@@ -1,5 +1,5 @@
 * [JDBC Connection](#jdbc-connection)
-* [Streaming Mode](#data-streaming)
+* [Streaming Mode](#streaming-mode)
 * [Example](#example)
 * [Backward Compatibility](#backward-compatibility)
 [block:api-header]
@@ -54,7 +54,7 @@ The following parameters are supported:
     "4-1": "Allows use distributed joins for non collocated data.",
     "4-2": "false",
     "5-0": "`streaming`",
-    "5-1": "Turns on bulk data load mode via `INSERT` statements for this connection.",
+    "5-1": "Turns on bulk data load mode via `INSERT` statements for this connection. Refer to [Streaming Mode](#streaming-mode) section for more details.",
     "5-2": "false",
     "6-0": "`streamingAllowOverwrite`",
     "6-1": "Tells Ignite to overwrite values for existing keys on duplication instead of skipping them.",
