@@ -89,11 +89,11 @@ Which is converted in to the following SQL:
 
 [block:api-header]
 {
-"type": "basic",
+  "type": "basic",
   "title": "Query Parallelism"
 }
 [/block]
-By default, an SQL query is executed in a single thread on each participating Ignite node. This approach is optimal for queries returning small result sets involving index search. E.g.:
+By default, an SQL query is executed in a single thread on each participating Ignite node. This approach is optimal for queries returning small result sets involving index search. For example:
 [block:code]
 {
   "codes": [
@@ -104,7 +104,7 @@ By default, an SQL query is executed in a single thread on each participating Ig
   ]
 }
 [/block]
-Certain queries might benefit from being executed in multiple threads. This relates to queries with table scans and aggregations, which is often the case for OLAP workloads. E.g.:
+Certain queries might benefit from being executed in multiple threads. This relates to queries with table scans and aggregations, which is often the case for OLAP workloads. For example:
 [block:code]
 {
   "codes": [
@@ -115,8 +115,8 @@ Certain queries might benefit from being executed in multiple threads. This rela
   ]
 }
 [/block]
-You can control query parallelism through `CacheConfiguration.queryParallelism` property, which defines a number of threads that will be used to execute a query on a single node. 
-If a query contains `JOINs` all participating caches must have the same degree of parallelism.
+You can control query parallelism through `CacheConfiguration.queryParallelism` property which defines the number of threads that will be used to execute a query on a single node. 
+If a query contains `JOINs`, then all the participating caches must have the same degree of parallelism.
 [block:callout]
 {
   "type": "warning",
