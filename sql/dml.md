@@ -229,6 +229,14 @@ The following example shows how to execute a `DELETE` query in Apache Ignite.
 }
 [/block]
 
+[block:callout]
+{
+  "type": "info",
+  "title": "Streaming Mode",
+  "body": "Using Ignite JDBC driver you can achieve fast data preloading in a so-called streaming mode. Learn more about this mode referring to the [streaming related section of JDBC Driver documentation](doc:jdbc-driver#data-streaming)."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
