@@ -2,6 +2,7 @@ The following page covers these topics:
 * [Using EXPLAIN](#using-explain-statement)
 * [Using H2 Debug Console](#using-h2-debug-console)
 * [SQL Performance and Usability Considerations](#sql-performance-and-usability-considerations)
+* [Query Parallelism](#query-parallelism)
 * [Advanced DML Optimizations](#advanced-dml-optimizations)
 
 To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.readme.io/docs/indexes#indexes-tradeoffs).
@@ -30,7 +31,7 @@ http://www.h2database.com/html/performance.html#explain_plan
   "title": "Using H2 Debug Console"
 }
 [/block]
-When developing with Ignite, sometimes, it is useful to check if your tables and indexes look  correctly. It may also be useful to run some local queries against the embedded node in H2 database. For that purpose, Ignite has an ability to start H2 Console. To do that, you can start a local node with `IGNITE_H2_DEBUG_CONSOLE` system property or an environment variable set to `true`. The console will be opened in your browser. You may need to click the `Refresh` button on the Console because it can be opened before the database objects are initialized. 
+When developing with Ignite, sometimes, it is useful to check if your tables and indexes look  correctly. It may also be helpful to run some local queries against the embedded node in H2 database. For that purpose, Ignite has an ability to start H2 Console. To do that, you can start a local node with `IGNITE_H2_DEBUG_CONSOLE` system property or an environment variable set to `true`. The console will be opened in your browser. You may need to click the `Refresh` button on the Console because it can be opened before the database objects are initialized. 
 [block:image]
 {
   "images": [
@@ -60,8 +61,8 @@ There are a few common pitfalls that should be considered when running SQL queri
 UNION ALL 
 select name from Person where sex='M' and age = 30`. 
 
-2. If the query contains an **IN** operator, there can be two issues: First, it is impossible to provide variable list of parameters. That means that you have to specify the exact list in the query, for example, `where id in (?, ?, ?)`. You cannot write - `where id in ?` and pass an array or collection. Second, this query will not use indexes. As a workaround to both the problems, you can rewrite the query in the following way: `select p.name from Person p join table(id bigint = ?) i on p.id = i.id`. 
-Here you can provide an object array (Object[]) of any length as a parameter and the query will use index on field `id`. Note that primitive arrays (int[], long[], etc..) can not be used with this syntax, you can only pass an array of boxed primitives.
+2. If the query contains an **IN** operator, there can be two issues: First, it is impossible to provide a variable list of parameters. That means that you have to specify the exact list in the query, for example, `where id in (?, ?, ?)`. You cannot write - `where id in ?` and pass an array or collection. Second, this query will not use indexes. As a workaround to both the problems, you can rewrite the query in the following way: `select p.name from Person p join table(id bigint = ?) i on p.id = i.id`. 
+Here you can provide an object array (Object[]) of any length as a parameter and the query will use the index on the field `id`. Note that primitive arrays (int[], long[], etc..) can not be used with this syntax, you can only pass an array of boxed primitives.
 
 Example:
 [block:code]
@@ -89,10 +90,48 @@ Which is converted in to the following SQL:
 [block:api-header]
 {
   "type": "basic",
+  "title": "Query Parallelism"
+}
+[/block]
+By default, an SQL query is executed in a single thread on each participating Ignite node. This approach is optimal for queries returning small result sets involving index search. For example:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "select * from Person where p.id = ?",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+Certain queries might benefit from being executed in multiple threads. This relates to queries with table scans and aggregations, which is often the case for OLAP workloads. For example:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "select SUM(salary) from Person",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+You can control query parallelism through `CacheConfiguration.queryParallelism` property which defines the number of threads that will be used to execute a query on a single node. 
+If a query contains `JOINs`, then all the participating caches must have the same degree of parallelism.
+[block:callout]
+{
+  "type": "warning",
+  "title": "Use with care",
+  "body": "Currently this property affects all queries executed on the given cache. While providing speedup to heavy OLAP queries, this option may slowdown other simple queries. This behavior will be improved in further versions."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
   "title": "Advanced DML Optimizations"
 }
 [/block]
-Usually, `UPDATE` and `DELETE` statements require performing a `SELECT` query in order to prepare a set of cache entries to be processed later. In some situations, this can be avoided leading to significant performance gains by direct translation of DML statements into specific cache operations.
+Usually, `UPDATE` and `DELETE` statements require performing a `SELECT` query in order to prepare a set of cache entries to be processed later. In some situations, this can be avoided by direct translation of DML statements into specific cache operations, leading to a significant performance gain.
 
 To summarize the content of the [distributed DML](doc:dml) section, following are the reasons why `UPDATE` and `DELETE` automatically execute a `SELECT` query:
 
@@ -106,7 +145,7 @@ To execute a DML operation in the fastest way, the following requirements must b
 1. A DML operation must not trigger the `SELECT` query execution.
 2. The operation has to adjust a single cache entry.
 
-The following rules has to be followed in order to satisfy the requirements above: 
+The following rules have to be followed in order to satisfy the requirements above: 
 1. Filter out cache entries with the usage of `_key` and `_val` keywords only.
 2. These arguments have to be used explicitly in a DML statement. Cache entries' fields or expressions must not be accessed and executed.
 3. If an `UPDATE` statement is executed, then it has to update the whole cache entry (`_val`) rather than specific fields.
