@@ -4,6 +4,7 @@
 * [Sharing Ignite Cluster Configuration](#sharing-ignite-cluster-configuration)
 * [Ignite Pods Deployment](#ignite-pods-deployment)
 * [Adjusting Ignite Cluster Size](#adjusting-ignite-cluster-size)
+
 [block:api-header]
 {
   "type": "basic",
@@ -207,7 +208,13 @@ Finally, let's define a YAML configuration for Ignite pods:
 }
 [/block]
 As you can see, the configuration defines a couple of environment variables (`OPTION_LIBS` and `CONFIG_URIL`) that will be processed by a special shell script used by Ignite's docker image. The full list of docker image's configuration parameters is available on [Docker Deployment](doc:docker-deployment) page.
-
+[block:callout]
+{
+  "type": "info",
+  "body": "Kubernetes is supported in Apache Ignite 1.9 and later versions. Makes sure to use a docker image with a valid version.",
+  "title": "Ignite Docker Image Version"
+}
+[/block]
 Next, go ahead and deploy Ignite pods in Kubernetes using the configuration​ above:
 [block:code]
 {

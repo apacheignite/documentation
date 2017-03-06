@@ -8,6 +8,7 @@
 * [Google Cloud Storage Based Discovery](doc:cluster-config#google-cloud-storage-based-discovery)
 * [JDBC Based Discovery](doc:cluster-config#jdbc-based-discovery)
 * [Shared File System Based Discovery](doc:cluster-config#shared-file-system-based-discovery)
+* [Kubernetes Service Based Discovery](#kubernetes-service-based-discovery)
 * [ZooKeeper Based Discovery](doc:cluster-config#zookeeper-based-discovery)
 * [Failure Detection Timeout](doc:cluster-config#failure-detection-timeout)
 * [Configuration](doc:cluster-config#configuration)
@@ -210,6 +211,13 @@ A shared file system can be used as a storage for nodes' IP addresses. The nodes
 }
 [/block]
 
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Kubernetes Service Based Discovery"
+}
+[/block]
+Refer to [Kubernetes Discovery](https://apacheignite-mix.readme.io/docs/kubernetes-discovery) documentation.
 [block:api-header]
 {
   "type": "basic",
