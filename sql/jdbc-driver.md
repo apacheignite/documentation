@@ -1,4 +1,5 @@
 * [JDBC Connection](#jdbc-connection)
+* [Streaming Mode](#streaming-mode)
 * [Example](#example)
 * [Backward Compatibility](#backward-compatibility)
 [block:api-header]
@@ -51,10 +52,25 @@ The following parameters are supported:
     "3-2": "false",
     "4-0": "`distributedJoins`",
     "4-1": "Allows use distributed joins for non collocated data.",
-    "4-2": "false"
+    "4-2": "false",
+    "5-0": "`streaming`",
+    "5-1": "Turns on bulk data load mode via `INSERT` statements for this connection. Refer to [Streaming Mode](#streaming-mode) section for more details.",
+    "5-2": "false",
+    "6-0": "`streamingAllowOverwrite`",
+    "6-1": "Tells Ignite to overwrite values for existing keys on duplication instead of skipping them. Refer to [Streaming Mode](#streaming-mode) section for more details.",
+    "6-2": "false",
+    "7-0": "`streamingFlushFrequency`",
+    "7-1": "Timeout, in _milliseconds_, that data streamer should use to flush data. By default, *the data is flushed on connection close*. Refer to [Streaming Mode](#streaming-mode) section for more details.",
+    "7-2": "0",
+    "8-0": "`streamingPerNodeBufferSize`",
+    "8-1": "Data streamer's per node buffer size. Refer to [Streaming Mode](#streaming-mode) section for more details.",
+    "8-2": "1024",
+    "9-0": "`streamingPerNodeParallelOperations`",
+    "9-1": "Data streamer's per node parallel operations number. Refer to [Streaming Mode](#streaming-mode) section for more details.",
+    "9-2": "16"
   },
   "cols": 3,
-  "rows": 5
+  "rows": 10
 }
 [/block]
 
@@ -87,6 +103,45 @@ The following parameters are supported:
   "type": "info",
   "title": "Replicated vs Partitioned Caches",
   "body": "Queries on `REPLICATED` caches will run directly only on one node, while queries on `PARTITIONED` caches are distributed across all cache nodes."
+}
+[/block]
+
+[block:api-header]
+{
+  "type": "basic",
+  "title": "Streaming Mode"
+}
+[/block]
+It's feasible to add data into an Ignite cluster in a streaming mode (bulk mode) using the JDBC driver. In this mode the driver instantiates `IgniteDataStreamer` internally and feeds data to it. To activate this mode, add `streaming` parameter set to `true` to a JDBC connection string:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Opening connection in the streaming mode.\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@file:///etc/config/ignite-jdbc.xml\");",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Presently, the streaming mode is supported for INSERT operations only which is good for the use case when you need to achieve fast data preloading into a cache. The JDBC driver defines multiple connection parameters that affect the behavior of the streaming mode. The parameters are listed in the parameters table above.
+
+The parameters cover almost all settings of a general `IgniteDataStreamer` and allow you to do fine tuning of the streamer according to your needs. Please refer to [Data Streamers](doc:data-streamers) section of Ignite docs for more info on how to configure the streamer.
+[block:callout]
+{
+  "type": "info",
+  "title": "Time Based Flushing",
+  "body": "By default, the data is flushed when either a connection is closed or  `streamingPerNodeBufferSize` is met. If you need to flush the data in a time manner then adjust `streamingFlushFrequency` parameter."
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Opening a connection in the streaming mode and time based flushing set.\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@streamingFlushFrequency=1000@file:///etc/config/ignite-jdbc.xml\");\n\nPreparedStatement stmt = conn.prepareStatement(\"INSERT INTO Person(_key, name, \t\t\t\tage) VALUES(CAST(? as BIGINT), ?, ?)\");\n\n// Adding the data.\nfor (int i = 1; i < 100000; i++) {\n      // Inserting a Person object with a Long key.\n      stmt.setInt(1, i);\n      stmt.setString(2, \"John Smith\");\n      stmt.setInt(3, 25);\n  \n  \t\tstmt.execute();\n}\n\nconn.close();\n\n// Beyond this point, all data is guaranteed to be flushed into the cache.",
+      "language": "java"
+    }
+  ]
 }
 [/block]
 
