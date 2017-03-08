@@ -211,7 +211,7 @@ As you can see, the configuration defines a couple of environment variables (`OP
 [block:callout]
 {
   "type": "info",
-  "body": "Kubernetes is supported in Apache Ignite 1.9 and later versions. Makes sure to use a docker image with a valid version.",
+  "body": "Kubernetes is supported in Apache Ignite 1.9 and later versions. Makes sure to use a docker image with a valid version. You can find a full list of tags [here](https://hub.docker.com/r/apacheignite/ignite/tags).",
   "title": "Ignite Docker Image Version"
 }
 [/block]
