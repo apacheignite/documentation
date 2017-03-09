@@ -220,7 +220,7 @@ As you can see, the configuration defines a couple of environment variables (`OP
 {
   "type": "success",
   "title": "Ignite Configuration Shared over HTTP",
-  "body": "If it's tricky for you to share the Apache Ignite configuration via `PersistentVolumeClaim` then you can upload it to an HTTP server and pass set the link as a value of `CONFIG_URI` parameters."
+  "body": "If it's tricky for you to share the Apache Ignite configuration via `PersistentVolumeClaim` then you can upload it to an HTTP server and set the link as a value of `CONFIG_URI` parameter."
 }
 [/block]
 Next, go ahead and deploy Ignite pods in Kubernetes using the configuration​ above:
