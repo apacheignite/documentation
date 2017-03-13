@@ -70,7 +70,7 @@ For such cases, Ignite offers an option to perform an asynchronous persistent st
   "body": "Batch store operations are usually more efficient than a sequence of single store operations. One can exploit this feature by enabling batch operations in the write-behind mode. Update sequences of similar types (put or remove) can be grouped to a single batch. For example, sequential cache puts of (key1, value1), (key2, value2), (key3, value3) will be batched into a single `CacheStore.putAll(...)` operation."
 }
 [/block]
-Write-behind caching can be enabled via `CacheConfiguration.setWriteBehindEnabled(boolean)` configuration property. See [configuration](#configuration) section below for a full list of configuration properties that allow to customize the behavior of write-behind caching.
+Write-behind caching can be enabled via the `CacheConfiguration.setWriteBehindEnabled(boolean)` configuration property. See [configuration](#configuration) section below for a full list of configuration properties that allow to customize the behavior of write-behind caching.
 [block:api-header]
 {
   "type": "basic",
