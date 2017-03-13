@@ -242,9 +242,9 @@ Use the `CacheJdbcBlobStoreFactory` factory to pass `CacheJdbcBlobStore` to `Cac
   "title": "CacheJdbcPojoStore"
 }
 [/block]
-`CacheJdbcPojoStore` of CacheStore backed by JDBC and POJO via reflection. This implementation stores objects in underlying database using java beans mapping description via reflection.
+`CacheJdbcPojoStore` of CacheStore is backed by JDBC and POJO via reflection. This implementation stores objects in the underlying database using java beans mapping description via reflection.
 
-Use `CacheJdbcPojoStoreFactory` factory to pass `CacheJdbcPojoStore` to `CacheConfiguration`.
+Use the `CacheJdbcPojoStoreFactory` factory to pass `CacheJdbcPojoStore` to `CacheConfiguration`.
 [block:code]
 {
   "codes": [
@@ -263,10 +263,10 @@ Use `CacheJdbcPojoStoreFactory` factory to pass `CacheJdbcPojoStore` to `CacheCo
   "title": "CacheHibernateBlobStore"
 }
 [/block]
-`CacheHibernateBlobStore` implementation backed by Hibernate. This implementation
- stores objects in underlying database in `BLOB` format.
+`CacheHibernateBlobStore` implementation is backed by Hibernate. This implementation
+ stores objects in the underlying database in `BLOB` format.
 
-Use `CacheHibernateBlobStoreFactory` factory to pass `CacheHibernateBlobStore` to `CacheConfiguration`.
+Use the `CacheHibernateBlobStoreFactory` factory to pass `CacheHibernateBlobStore` to `CacheConfiguration`.
 [block:code]
 {
   "codes": [
