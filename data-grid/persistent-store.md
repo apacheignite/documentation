@@ -77,12 +77,12 @@ Write-behind caching can be enabled via the `CacheConfiguration.setWriteBehindEn
   "title": "CacheStore"
 }
 [/block]
-`CacheStore` interface in Ignite is used to write and load data to and from the underlying data store. In addition to standard JCache loading and storing methods, it also introduces end-of-transaction demarcation and ability to bulk load a cache from the underlying data store.
+`CacheStore` interface in Ignite is used to write and load data to and from the underlying data store. In addition to the standard JCache loading and storing methods, it also introduces end-of-transaction demarcation and the ability to bulk load a cache from the database.
 
 ## loadCache()
-`CacheStore.loadCache()` method allows for cache loading even without passing all the keys that need to be loaded. It is generally used for hot-loading the cache on startup, but can be also called at any point after the cache has been started.
+`CacheStore.loadCache()` method allows for cache loading without passing all the keys that need to be loaded. It is generally used for hot-loading the cache on startup, but can be also called at any point after the cache has been started.
 
-`IgniteCache.loadCache()` method will delegate to `CacheStore.loadCache()` method on every cluster member that is running the cache. To invoke loading only on the local cluster node, use `IgniteCache.localLoadCache()` method.
+`IgniteCache.loadCache()` method will delegate to `CacheStore.loadCache()` method on every cluster member that is running the cache. To invoke loading only on the local cluster node, use the `IgniteCache.localLoadCache()` method.
 [block:callout]
 {
   "type": "info",
@@ -126,9 +126,9 @@ In case of `ATOMIC` caches, method `sessionEnd()` is called after completion of 
   "title": "CacheStoreSession"
 }
 [/block]
-The main purpose of cache store session is to hold the context between multiple store invocations whenever `CacheStore` is used in a cache transaction. For example, if using JDBC, you can store the ongoing database connection via `CacheStoreSession.attach()` method. You can then commit this connection in the `CacheStore#sessionEnd(boolean)` method.
+The main purpose of cache store session is to hold the context between multiple store invocations whenever `CacheStore` is used in a cache transaction. For example, if using JDBC, you can store the ongoing database connection via the `CacheStoreSession.attach()` method. You can then commit this connection in the `CacheStore#sessionEnd(boolean)` method.
 
-`CacheStoreSession` can be injected into your cache store implementation via `@GridCacheStoreSessionResource` annotation.
+`CacheStoreSession` can be injected into your cache store implementation via the `@GridCacheStoreSessionResource` annotation.
 [block:api-header]
 {
   "type": "basic",
@@ -164,7 +164,7 @@ Below are a couple of different possible cache store implementations. Note that 
   "title": "Configuration"
 }
 [/block]
-Following configuration parameters can be used to enable and configure **write-behind** caching via `CacheConfiguration`:
+The following configuration parameters can be used to enable and configure **write-behind** caching via `CacheConfiguration`:
 [block:parameters]
 {
   "data": {
@@ -195,7 +195,7 @@ Following configuration parameters can be used to enable and configure **write-b
 [block:callout]
 {
   "type": "warning",
-  "body": "For distributed cache configuration `Factory` should be serializable."
+  "body": "For distributed cache configuration, `Factory` should be serializable."
 }
 [/block]
 
@@ -220,8 +220,8 @@ Following configuration parameters can be used to enable and configure **write-b
   "title": "CacheJdbcBlobStore"
 }
 [/block]
-`CacheJdbcBlobStore` implementation backed by JDBC. This implementation stores objects in underlying database in `BLOB` format. The `Store` will create table `ENTRIES` in the database to store data. Table will have key and val fields.
-If custom DDL and DML statements are provided, table and field names have to be consistent for all statements and sequence of parameters have to be preserved.
+`CacheJdbcBlobStore` implementation is backed by JDBC. This implementation stores objects in the underlying database in the `BLOB` format. The `Store` will create table `ENTRIES` in the database to store the data. The table will have `key` and `val` fields.
+If custom DDL and DML statements are provided, then table and field names should be consistent for all the statements, and sequence of parameters should be preserved.
 
 Use `CacheJdbcBlobStoreFactory` factory to pass `CacheJdbcBlobStore` to `CacheConfiguration`.
 [block:code]
