@@ -151,7 +151,7 @@ The parameters cover almost all settings of a general `IgniteDataStreamer` and a
   "title": "Example"
 }
 [/block]
-Ignite JDBC driver automatically gets only those fields that you actually need from objects stored in the cache. Let's say you have a `Person` class declared like this:
+Ignite JDBC driver automatically gets only those fields that you actually need from the objects stored in cache. Let's say you have a `Person` class declared like this:
 [block:code]
 {
   "codes": [
