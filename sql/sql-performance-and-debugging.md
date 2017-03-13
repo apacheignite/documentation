@@ -115,13 +115,13 @@ Certain queries might benefit from being executed in multiple threads. This rela
   ]
 }
 [/block]
-You can control query parallelism through `CacheConfiguration.queryParallelism` property which defines the number of threads that will be used to execute a query on a single node. 
+You can control query parallelism through the `CacheConfiguration.queryParallelism` property which defines the number of threads that will be used to execute a query on a single node. 
 If a query contains `JOINs`, then all the participating caches must have the same degree of parallelism.
 [block:callout]
 {
   "type": "warning",
   "title": "Use with care",
-  "body": "Currently this property affects all queries executed on the given cache. While providing speedup to heavy OLAP queries, this option may slowdown other simple queries. This behavior will be improved in further versions."
+  "body": "Currently, this property affects all queries executed on the given cache. While providing speedup to heavy OLAP queries, this option may slowdown other simple queries. This behavior will be improved in further versions."
 }
 [/block]
 
