@@ -223,7 +223,7 @@ The following configuration parameters can be used to enable and configure **wri
 `CacheJdbcBlobStore` implementation is backed by JDBC. This implementation stores objects in the underlying database in the `BLOB` format. The `Store` will create table `ENTRIES` in the database to store the data. The table will have `key` and `val` fields.
 If custom DDL and DML statements are provided, then table and field names should be consistent for all the statements, and sequence of parameters should be preserved.
 
-Use `CacheJdbcBlobStoreFactory` factory to pass `CacheJdbcBlobStore` to `CacheConfiguration`.
+Use the `CacheJdbcBlobStoreFactory` factory to pass `CacheJdbcBlobStore` to `CacheConfiguration`.
 [block:code]
 {
   "codes": [
