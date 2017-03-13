@@ -112,7 +112,7 @@ The following parameters are supported:
   "title": "Streaming Mode"
 }
 [/block]
-It's feasible to add data into an Ignite cluster in a streaming mode (bulk mode) using the JDBC driver. In this mode the driver instantiates `IgniteDataStreamer` internally and feeds data to it. To activate this mode, add `streaming` parameter set to `true` to a JDBC connection string:
+It's feasible to add data into an Ignite cluster in a streaming mode (bulk mode) using the JDBC driver. In this mode, the driver instantiates `IgniteDataStreamer` internally and feeds data to it. To activate this mode, add `streaming` parameter set to `true` to a JDBC connection string:
 [block:code]
 {
   "codes": [
@@ -123,14 +123,14 @@ It's feasible to add data into an Ignite cluster in a streaming mode (bulk mode)
   ]
 }
 [/block]
-Presently, the streaming mode is supported for INSERT operations only which is good for the use case when you need to achieve fast data preloading into a cache. The JDBC driver defines multiple connection parameters that affect the behavior of the streaming mode. The parameters are listed in the parameters table above.
+Presently, the streaming mode is supported only for INSERT operations which is good for the use case when you need to achieve fast data preloading into a cache. The JDBC driver defines multiple connection parameters that affect the behavior of the streaming mode. The parameters are listed in the parameters table above.
 
-The parameters cover almost all settings of a general `IgniteDataStreamer` and allow you to do fine tuning of the streamer according to your needs. Please refer to [Data Streamers](doc:data-streamers) section of Ignite docs for more info on how to configure the streamer.
+The parameters cover almost all settings of a general `IgniteDataStreamer` and allow you to fine tune the streamer according to your needs. Please refer to the [Data Streamers](doc:data-streamers) section of Ignite docs for more information on how to configure the streamer.
 [block:callout]
 {
   "type": "info",
   "title": "Time Based Flushing",
-  "body": "By default, the data is flushed when either a connection is closed or  `streamingPerNodeBufferSize` is met. If you need to flush the data in a time manner then adjust `streamingFlushFrequency` parameter."
+  "body": "By default, the data is flushed when either a connection is closed or  `streamingPerNodeBufferSize` is met. If you need to flush the data in a timely manner, then adjust the `streamingFlushFrequency` parameter."
 }
 [/block]
 
