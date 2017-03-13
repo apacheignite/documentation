@@ -54,11 +54,11 @@ To configure read-through and write-through, you need to implement the `CacheSto
 [/block]
 In a simple write-through mode, each cache put and remove operation will involve a corresponding request to the persistent store and therefore the overall duration of the cache update might be relatively long. Additionally, an intensive cache update rate can cause an extremely high storage load.
 
-For such cases, Ignite offers an option to perform an asynchronous persistent store update also known as **write-behind**. The key concept of this approach is to accumulate updates and then asynchronously flush them to persistent store as a bulk operation. The actual data persistence can be triggered by time-based events (the maximum time that data entry can reside in the queue is limited), by queue-size events (the queue is flushed when it’s size reaches some particular point), or by using both of them in combination in which case either event will trigger the flush.
+For such cases, Ignite offers an option to perform an asynchronous persistent store update also known as **write-behind**. The key concept of this approach is to accumulate updates and then asynchronously flush them to the underlying database as a bulk operation. The actual data persistence can be triggered by time-based events (the maximum time that data entry can reside in the queue is limited), by queue-size events (the queue is flushed when it’s size reaches some particular point), or by using both of them in combination in which case either event will trigger the flush.
 [block:callout]
 {
   "type": "info",
-  "body": "With the write-behind approach only the last update to an entry will be written to the underlying storage. If cache entry with key key1 is sequentially updated with values value1, value2, and value3 respectively, then only single store request for (key1, value3) pair will be propagated to the persistent storage.",
+  "body": "With the write-behind approach, only the last update to an entry will be written to the underlying storage. If a cache entry with key key1 is sequentially updated with values value1, value2, and value3 respectively, then only a single store request for (key1, value3) pair will be propagated to the persistent store.",
   "title": "Update Sequence"
 }
 [/block]
@@ -67,7 +67,7 @@ For such cases, Ignite offers an option to perform an asynchronous persistent st
 {
   "type": "info",
   "title": "Update Performance",
-  "body": "Batch store operations are usually more efficient than a sequence of single store operations, so one can exploit this feature by enabling batch operations in write-behind mode. Update sequences of similar types (put or remove) can be grouped to a single batch. For example, sequential cache puts of (key1, value1), (key2, value2), (key3, value3) will be batched into a single `CacheStore.putAll(...)` operation."
+  "body": "Batch store operations are usually more efficient than a sequence of single store operations. One can exploit this feature by enabling batch operations in the write-behind mode. Update sequences of similar types (put or remove) can be grouped to a single batch. For example, sequential cache puts of (key1, value1), (key2, value2), (key3, value3) will be batched into a single `CacheStore.putAll(...)` operation."
 }
 [/block]
 Write-behind caching can be enabled via `CacheConfiguration.setWriteBehindEnabled(boolean)` configuration property. See [configuration](#configuration) section below for a full list of configuration properties that allow to customize the behavior of write-behind caching.
