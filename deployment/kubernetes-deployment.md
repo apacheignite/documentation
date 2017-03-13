@@ -107,7 +107,7 @@ Before you start deploying Ignite pods in Kubernetes using Apache Ignite [docker
 
 There are several approaches you can use. Here, we show you how to share the Ignite cluster configuration via a shared Kubernetes `PersistentVolume`.
 
-Let's suppose you have some shared directory named `/data/ignite` that can be accessed by any Ignite pod. Go to this directory and copy `example-kube.xml` there.
+Let's suppose that you have some shared directory named `/data/ignite` which can be accessed by any Ignite pod. Go to this directory and copy `example-kube.xml` there.
 
 Create a `PersistentVolume` configuration that will be backed by your real storage and will refer to the `/data/ignite` directory.
 [block:code]
