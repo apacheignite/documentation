@@ -138,7 +138,7 @@ The parameters cover almost all settings of a general `IgniteDataStreamer` and a
 {
   "codes": [
     {
-      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Opening a connection in the streaming mode and time based flushing set.\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@streamingFlushFrequency=1000@file:///etc/config/ignite-jdbc.xml\");\n\nPreparedStatement stmt = conn.prepareStatement(\n  \"INSERT INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)\");\n\n// Adding the data.\nfor (int i = 1; i < 100000; i++) {\n      // Inserting a Person object with a Long key.\n      stmt.setInt(1, i);\n      stmt.setString(2, \"John Smith\");\n      stmt.setInt(3, 25);stmt.execute();\n}\n\nconn.close();\n\n// Beyond this point, all data is guaranteed to be flushed into the cache.",
+      "code": "// Register JDBC driver.\nClass.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n \n// Opening a connection in the streaming mode and time based flushing set.\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://streaming=true@streamingFlushFrequency=1000@file:///etc/config/ignite-jdbc.xml\");\n\nPreparedStatement stmt = conn.prepareStatement(\n  \"INSERT INTO Person(_key, name, age) VALUES(CAST(? as BIGINT), ?, ?)\");\n\n// Adding the data.\nfor (int i = 1; i < 100000; i++) {\n      // Inserting a Person object with a Long key.\n      stmt.setInt(1, i);\n      stmt.setString(2, \"John Smith\");\n      stmt.setInt(3, 25);\n  \n      stmt.execute();\n}\n\nconn.close();\n\n// Beyond this point, all data is guaranteed to be flushed into the cache.",
       "language": "java"
     }
   ]
