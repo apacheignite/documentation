@@ -150,7 +150,7 @@ Next, we are going to insert additional organizations without the usage of prepa
 {
   "codes": [
     {
-      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query1[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (1L, 'Some company')\";\nSQLExecDirect(stmt, query1, static_cast<SQLSMALLINT>(sizeof(query1)));\nSQLFreeStmt(stmt, SQL_CLOSE);\n\nSQLCHAR query2[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name) VALUES (2L, 'Some other company')\";\nSQLExecDirect(stmt, query2, static_cast<SQLSMALLINT>(sizeof(query2)));\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);",
+      "code": "SQLHSTMT stmt;\n\n// Allocate a statement handle\nSQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\nSQLCHAR query1[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name)\n    VALUES (1L, 'Some company')\";\n\nSQLExecDirect(stmt, query1, static_cast<SQLSMALLINT>(sizeof(query1)));\n\nSQLFreeStmt(stmt, SQL_CLOSE);\n\nSQLCHAR query2[] = \"INSERT INTO \\\"Organization\\\".Organization (_key, name)\n    VALUES (2L, 'Some other company')\";\n\n  SQLExecDirect(stmt, query2, static_cast<SQLSMALLINT>(sizeof(query2)));\n\n// Releasing statement handle.\nSQLFreeHandle(SQL_HANDLE_STMT, stmt);",
       "language": "cplusplus"
     }
   ]
@@ -176,7 +176,7 @@ Let's now update the salary for some of the persons stored in the cluster using 
 {
   "codes": [
     {
-      "code": "void AdjustSalary(SQLHDBC dbc, int64_t key, double salary)\n{\n  SQLHSTMT stmt;\n\n  // Allocate a statement handle\n  SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\n  SQLCHAR query[] = \"UPDATE Person SET salary=? WHERE _key=?\";\n\n  SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_DOUBLE, SQL_DOUBLE, 0, 0, &salary, 0, 0);\n  SQLBindParameter(stmt, 2, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\n\n  SQLExecDirect(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n  // Releasing statement handle.\n  SQLFreeHandle(SQL_HANDLE_STMT, stmt);\n}\n\n...\nAdjustSalary(dbc, 3, 1200.0);\nAdjustSalary(dbc, 1, 2500.0);",
+      "code": "void AdjustSalary(SQLHDBC dbc, int64_t key, double salary)\n{\n  SQLHSTMT stmt;\n\n  // Allocate a statement handle\n  SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\n  SQLCHAR query[] = \"UPDATE Person SET salary=? WHERE _key=?\";\n\n  SQLBindParameter(stmt, 1, SQL_PARAM_INPUT,\n      SQL_C_DOUBLE, SQL_DOUBLE, 0, 0, &salary, 0, 0);\n  \n  SQLBindParameter(stmt, 2, SQL_PARAM_INPUT, SQL_C_SLONG,\n      SQL_BIGINT, 0, 0, &key, 0, 0);\n\n  SQLExecDirect(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n  // Releasing statement handle.\n  SQLFreeHandle(SQL_HANDLE_STMT, stmt);\n}\n\n...\nAdjustSalary(dbc, 3, 1200.0);\nAdjustSalary(dbc, 1, 2500.0);",
       "language": "cplusplus"
     }
   ]
@@ -194,7 +194,7 @@ Finally, let's remove a few records with the help of SQL `DELETE` statement.
 {
   "codes": [
     {
-      "code": "void DeletePerson(SQLHDBC dbc, int64_t key)\n{\n  SQLHSTMT stmt;\n\n  // Allocate a statement handle\n  SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\n  SQLCHAR query[] = \"DELETE FROM Person WHERE _key=?\";\n\n  SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT, 0, 0, &key, 0, 0);\n\n  SQLExecDirect(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n  // Releasing statement handle.\n  SQLFreeHandle(SQL_HANDLE_STMT, stmt);\n}\n\n...\nDeletePerson(dbc, 1);\nDeletePerson(dbc, 4);",
+      "code": "void DeletePerson(SQLHDBC dbc, int64_t key)\n{\n  SQLHSTMT stmt;\n\n  // Allocate a statement handle\n  SQLAllocHandle(SQL_HANDLE_STMT, dbc, &stmt);\n\n  SQLCHAR query[] = \"DELETE FROM Person WHERE _key=?\";\n\n  SQLBindParameter(stmt, 1, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_BIGINT,\n      0, 0, &key, 0, 0);\n\n  SQLExecDirect(stmt, query, static_cast<SQLSMALLINT>(sizeof(query)));\n\n  // Releasing statement handle.\n  SQLFreeHandle(SQL_HANDLE_STMT, stmt);\n}\n\n...\nDeletePerson(dbc, 1);\nDeletePerson(dbc, 4);",
       "language": "cplusplus"
     }
   ]
