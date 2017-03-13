@@ -54,7 +54,7 @@ To configure read-through and write-through, you need to implement the `CacheSto
 [/block]
 In a simple write-through mode, each cache put and remove operation will involve a corresponding request to the persistent store and therefore the overall duration of the cache update might be relatively long. Additionally, an intensive cache update rate can cause an extremely high storage load.
 
-For such cases, Ignite offers an option to perform an asynchronous persistent store update also known as **write-behind**. The key concept of this approach is to accumulate updates and then asynchronously flush them to the underlying data store as a bulk operation. The actual data persistence can be triggered by time-based events (the maximum time that data entry can reside in the queue is limited), by queue-size events (the queue is flushed when it’s size reaches some particular point), or by using both of them in combination in which case either event will trigger the flush.
+For such cases, Ignite offers an option to perform an asynchronous persistent store update also known as **write-behind**. The key concept of this approach is to accumulate updates and then asynchronously flush them to the underlying database as a bulk operation. The actual data persistence can be triggered by time-based events (the maximum time that data entry can reside in the queue is limited), by queue-size events (the queue is flushed when it’s size reaches some particular point), or by using both of them in combination in which case either event will trigger the flush.
 [block:callout]
 {
   "type": "info",
