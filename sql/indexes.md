@@ -13,7 +13,13 @@
 }
 [/block]
 Presently, Apache Ignite allows defining a schema using the [annotation based](#annotation-based-configuration) or [QueryEntities based](#queryentity-based-configuration) approaches. Every specific schema is bound to an Ignite cache which name is used as the schema name in SQL queries by default.
-
+[block:callout]
+{
+  "type": "info",
+  "title": "Data Definition Language Support",
+  "body": "DDL statements are planned to be supported in the nearest Apache Ignite releases. Having this feature done it will be feasible to define schemas, indexes and manage them by standard SQL commands like CREATE/ALTER/DROP TABLE or CREATE/DROP INDEX."
+}
+[/block]
 Apache Ignite supports advanced indexing capabilities allowing you to define a single field (aka. column) or group indexes with various parameters, to manage indexes location putting them either in Java heap or off-heap spaces and so on so forth.
 
 Indexes in Ignite are kept in a distributed fashion the same way as cache data sets. Each node that stores a specific subset of data keeps and maintains indexes corresponding to this data as well.
