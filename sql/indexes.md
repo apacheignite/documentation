@@ -12,11 +12,13 @@
   "title": "Overview"
 }
 [/block]
+Presently, Apache Ignite allows defining a schema using the [annotation based](#annotation-based-configuration) or [QueryEntities based](#annotation-based-configuration) approaches. Every specific schema is bound to an Ignite cache which name is used as the schema name in SQL queries by default.
+
 Apache Ignite supports advanced indexing capabilities allowing you to define a single field (aka. column) or group indexes with various parameters, to manage indexes location putting them either in Java heap or off-heap spaces and so on so forth.
 
 Indexes in Ignite are kept in a distributed fashion the same way as cache data sets. Each node that stores a specific subset of data keeps and maintains indexes corresponding to this data as well.
 
-From this documentation page, you'll learn how to define and manage indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
+From this documentation page, you'll learn how to define schemas including indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
 [block:api-header]
 {
   "type": "basic",
