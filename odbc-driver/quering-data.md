@@ -54,7 +54,7 @@ As you can see from the configuration, we defined two Ignite caches that will co
 {
   "type": "warning",
   "title": "OdbcConfiguration",
-  "body": "Make sure that `OdbcConfiguration` is explicitly set in the configuration. You can learn more about its importance by referring to [this](/docs/getting-started-18#cluster-configuration) documentation section."
+  "body": "Make sure that `OdbcConfiguration` is explicitly set in the configuration. You can learn more about its importance by referring to [this](/docs/odbc-driver#cluster-configuration) documentation section."
 }
 [/block]
 
