@@ -106,7 +106,13 @@ The output should be similar to the one below:
 Before you start deploying Ignite pods in Kubernetes using Apache Ignite [docker image](https://apacheignite.readme.io/docs/docker-deployment), you need to find a way on how to pass `example-kube.xml` (prepared above) to that docker image.
 
 There are several approaches you can use. Here, we show you how to share the Ignite cluster configuration via a shared Kubernetes `PersistentVolume`.
-
+[block:callout]
+{
+  "type": "success",
+  "title": "Sharing the configuration via an HTTP server",
+  "body": "[Deploying Apache Ignite in Kubernetes on Microsoft Azure blog](https://dzone.com/articles/deploying-apache-ignite-in-kubernetes-on-microsoft) post explains how to share an Apache Ignite configuration over an HTTP server."
+}
+[/block]
 Let's suppose that you have some shared directory named `/data/ignite` which can be accessed by any Ignite pod. Go to this directory and copy `example-kube.xml` there.
 
 Create a `PersistentVolume` configuration that will be backed by your real storage and will refer to the `/data/ignite` directory.
