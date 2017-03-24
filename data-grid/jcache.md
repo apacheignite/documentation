@@ -88,8 +88,9 @@ Here are some basic JCache atomic operation examples.
 
 [block:callout]
 {
-  "type": "warning",
-  "body": "If batch operations (such as `IgniteCache#putAll`, `IgniteCache#invokeAll` and etc) are performed in parallel then keys should be ordered in the same way to avoid deadlock. Recommend to use TreeMap instead of HashMap. It guarantees consistent ordering and allows to avoid deadlock."
+  "type": "info",
+  "body": "If batch operations (such as `IgniteCache#putAll`, `IgniteCache#invokeAll` and etc) are performed in parallel then keys should be ordered in the same way to avoid deadlock. Recommend to use TreeMap instead of HashMap. It guarantees consistent ordering and allows to avoid deadlock.",
+  "title": "Deadlock"
 }
 [/block]
 
