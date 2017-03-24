@@ -8,3 +8,4 @@ Apache Ignite has a variety of integrations with well-known streaming products a
 * [Flink Streamer](https://apacheignite-mix.readme.io/docs/flink-streamer) 
 * [Twitter Streamer](https://apacheignite-mix.readme.io/docs/twitter-streamer) 
 * [Flume Sink](https://apacheignite-mix.readme.io/docs/flume-sink)
+* [ZeroMQ Streamer](https://apacheignite-mix.readme.io/docs/zeromq-streamer)
