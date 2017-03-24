@@ -14,7 +14,7 @@ Apache Ignite sets no deployment requirements and can be easily deployed on-prem
   ]
 }
 [/block]
-Refer to [network configuration](doc:network-config) section to learn more about Apache Ignite nodes' auto-discovery configuration for a variety of physical machines, cloud, and network environments.
+Refer to [cluster configuration](doc:cluster-config) section to learn more about Apache Ignite nodes' auto-discovery configuration for a variety of physical machines, cloud, and network environments.
 
 In addition, the getting started guides below can facilitate and accelerate the deployment in Kubernetes, Docker and other environments:
 * [Docker Deployment](doc:docker-deployment) 
