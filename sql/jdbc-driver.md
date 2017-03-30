@@ -1,7 +1,7 @@
 * [JDBC Connection](#jdbc-connection)
 * [Streaming Mode](#streaming-mode)
 * [Example](#example)
-* [Backward Compatibility](#backward-compatibility)
+* [Hostname Based JDBC Connection](#hostname-based-jdbc-connection)
 [block:api-header]
 {
   "type": "basic",
@@ -73,7 +73,7 @@ The following parameters are supported:
   "rows": 10
 }
 [/block]
-
+Presently, JDBC driver requires several jars to be added to the classpath of your application or SQL tool - go to `{apache_ignite_release}\libs` folder and import all the jars from there and under `ignite-indexing` and `ignite-spring` subfolders.
 [block:callout]
 {
   "type": "info",
@@ -235,10 +235,10 @@ A minimalistic version of `ignite-jdbc.xml` configuration file might look like t
 [block:api-header]
 {
   "type": "basic",
-  "title": "Backward compatibility"
+  "title": "Hostname Based JDBC Connection"
 }
 [/block]
-For previous versions of Ignite (prior 1.4) JDBC connection URL has the following pattern:
+For previous versions of Apache Ignite (prior 1.4) JDBC connection URL had the following pattern:
 [block:code]
 {
   "codes": [
@@ -249,4 +249,6 @@ For previous versions of Ignite (prior 1.4) JDBC connection URL has the followin
   ]
 }
 [/block]
-See the corresponding [documentation](https://apacheignite.readme.io/v1.3/docs/jdbc-driver) for details.
+You can still keep using this driver in a current Apache Ignite version if it's convenient for you. See the following [documentation](https://apacheignite.readme.io/v1.3/docs/jdbc-driver) for details.
+
+To use a driver from an application or SQL add `{apache_ignite_release}\libs\ignite-core-{version}.jar` to the classpath.
