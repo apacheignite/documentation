@@ -136,6 +136,8 @@ Once everything is ready, open terminal and navigate to the directory `%IGNITE_H
   ]
 }
 [/block]
+As a result, `ignite-odbc-amd64.msi` and `ignite-odbc-x86.msi` files should appear in the directory. You can use them to install your freshly built drivers.
+
 ## Building on Linux
 On a Linux-based operating system, you will need to install an ODBC Driver Manager of your choice to be able to build and use the Ignite ODBC Driver. The Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
 
