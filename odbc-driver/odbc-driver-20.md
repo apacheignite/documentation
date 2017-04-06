@@ -117,8 +117,25 @@ Once the build process is over, you can find `ignite.odbc.dll` in `%IGNITE_HOME%
 
 ## Building installers on Windows
 
-Once you have built driver binaries you may want to build installers for easier installation. Ignite uses [WiX Toolset](http://wixtoolset.org) to generate ODBC installers, so to build them you'll need to download and install WiX.
+Once you have built driver binaries you may want to build installers for easier installation. Ignite uses [WiX Toolset](http://wixtoolset.org) to generate ODBC installers, so to build them you'll need to download and install WiX. Make sure you have added `bin` directory of the WiX Toolset to your PATH variable.
 
+Once everything is ready, open terminal and navigate to the directory `%IGNITE_HOME%\platforms\cpp\odbc\install`. Execute the following commands one by one to build drivers:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "candle.exe ignite-odbc-amd64.wxs\nlight.exe -ext WixUIExtension ignite-odbc-amd64.wixobj",
+      "language": "shell",
+      "name": "64-bit driver"
+    },
+    {
+      "code": "candle.exe ignite-odbc-x86.wxs\nlight.exe -ext WixUIExtension ignite-odbc-x86.wixobj",
+      "language": "shell",
+      "name": "32-bit driver"
+    }
+  ]
+}
+[/block]
 ## Building on Linux
 On a Linux-based operating system, you will need to install an ODBC Driver Manager of your choice to be able to build and use the Ignite ODBC Driver. The Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
 
