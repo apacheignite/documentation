@@ -113,7 +113,11 @@ You will need MS Visual Studio 2010 or later to be able to build the ODBC driver
   "body": "If you are using VS 2015 or later (MSVC 14.0 or later), you need to add `legacy_stdio_definitions.lib` as an additional library to `odbc` project linker's settings in order to be able to build the project. To add this library to the linker input in the IDE, open the context menu for the project node, choose `Properties`, then in the `Project Properties` dialog box, choose `Linker`, and edit the `Linker Input` to add `legacy_stdio_definitions.lib` to the semi-colon-separated list."
 }
 [/block]
-Once the build process is over, you can find `ignite.odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release`.
+Once the build process is over, you can find `ignite.odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release` for the 64-bit version and in `%IGNITE_HOME%\platforms\cpp\project\vs\Win32\Release` for the 32-bit version.
+
+## Building installers on Windows
+
+Once you have built driver binaries you may want to build installers for easier installation. Ignite uses [WiX Toolset](http://wixtoolset.org) to generate ODBC installers, so to build them you'll need to download and install WiX.
 
 ## Building on Linux
 On a Linux-based operating system, you will need to install an ODBC Driver Manager of your choice to be able to build and use the Ignite ODBC Driver. The Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
@@ -151,7 +155,10 @@ The path should look like -  `/usr/local/lib/libignite-odbc.so`
 [/block]
 In order to use ODBC driver, you need to register it in your system so that your ODBC Driver Manager will be able to locate it.
 
-## Installing on Windows
+## Installing on Windows using installers
+
+
+
 For 32-bit Windows, you should use 32-bit version of the driver. For the
 64-bit Windows, you can use 64-bit driver as well as 32-bit. You may want to install both 32-bit and 64-bit drivers on 64-bit Windows to be able to use your driver from both 32-bit and 64-bit applications.
 
