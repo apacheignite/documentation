@@ -174,9 +174,7 @@ The path should look like -  `/usr/local/lib/libignite-odbc.so`
 [/block]
 In order to use ODBC driver, you need to register it in your system so that your ODBC Driver Manager will be able to locate it.
 
-## Installing on Windows using installers
-
-
+## Installing on Windows
 
 For 32-bit Windows, you should use 32-bit version of the driver. For the
 64-bit Windows, you can use 64-bit driver as well as 32-bit. You may want to install both 32-bit and 64-bit drivers on 64-bit Windows to be able to use your driver from both 32-bit and 64-bit applications.
