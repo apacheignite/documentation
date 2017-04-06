@@ -179,7 +179,15 @@ In order to use ODBC driver, you need to register it in your system so that your
 For 32-bit Windows, you should use 32-bit version of the driver. For the
 64-bit Windows, you can use 64-bit driver as well as 32-bit. You may want to install both 32-bit and 64-bit drivers on 64-bit Windows to be able to use your driver from both 32-bit and 64-bit applications.
 
-To install driver on Windows, you should first choose a directory on your
+### Installing using installers
+
+This is the easiest way and one should use it by default. Just launch installer for the version of the driver that you need and follow instructions:
+- 32-bit installer can be found at `%IGNITE_HOME%\platforms\cpp\bin\odbc\ignite-odbc-x86.msi`
+- 64-bit installer can be found at `%IGNITE_HOME%\platforms\cpp\bin\odbc\ignite-odbc-amd64.msi`
+
+### Installing manually
+
+To install driver on Windows manually, you should first choose a directory on your
 file system where your driver or drivers will be located. Once you have
 chosen the location, you have to put your driver there and ensure that all driver
 dependencies can be resolved as well, i.e., they can be found either in the %PATH% or
