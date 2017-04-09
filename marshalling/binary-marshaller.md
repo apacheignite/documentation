@@ -220,4 +220,4 @@ If you are using solely Java client and do not specify mappers in `BinaryConfigu
 
 If you are using .Net or C++ client and do not specify mappers in `BinaryConfiguration` then Ignite will use `BinaryBasicNameMapper` and `simpleName` property will be set to `true`, and `BinaryBasicIdMapper` and `lowerCase` property will be set to `true`. 
 
-By default there is no need to configure anything if you uses solely Java, .NET or C++. Mappers need to be configured if there is a tricky name conversion when platform interoperability is needed.
+By default, there is no need to configure anything if you use Java, .NET or C++. Mappers need to be configured if there is a tricky name conversion when platform interoperability is needed.
