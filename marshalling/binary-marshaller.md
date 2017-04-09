@@ -216,8 +216,8 @@ Ignite provides the following out-of-the-box mappers implementation:
 * `BinaryBasicNameMapper` - a basic implementation of `BinaryNameMapper` that returns a full or a simple name of given class depending on used `setSimpleName(boolean useSimpleName)` property.
 * `BinaryBasicIdMapper` - a basic implementation of `BinaryIdMapper`. It has `setLowerCase(boolean isLowerCase)` configuration property. If the property is set to `false` then a hash code of given type or field name will be returned. If the property is set to `true` then a hash code of given type or field name in lower case will be returned.
 
-If you are using solely Java client and do not specify mappers in `BinaryConfiguration` then Ignite will use `BinaryBasicNameMapper` and `simpleName` property will be set to `false`, and `BinaryBasicIdMapper` and `lowerCase` property will be set to `true`.
+If you are using solely Java client and do not specify mappers in `BinaryConfiguration`, then Ignite will use `BinaryBasicNameMapper` and `simpleName` property will be set to `false`, and `BinaryBasicIdMapper` and `lowerCase` property will be set to `true`.
 
-If you are using .Net or C++ client and do not specify mappers in `BinaryConfiguration` then Ignite will use `BinaryBasicNameMapper` and `simpleName` property will be set to `true`, and `BinaryBasicIdMapper` and `lowerCase` property will be set to `true`. 
+If you are using .Net or C++ client and do not specify mappers in `BinaryConfiguration`, then Ignite will use `BinaryBasicNameMapper` and `simpleName` property will be set to `true`, and `BinaryBasicIdMapper` and `lowerCase` property will be set to `true`. 
 
 By default, there is no need to configure anything if you use Java, .NET or C++. Mappers need to be configured if there is a tricky name conversion when platform interoperability is needed.
