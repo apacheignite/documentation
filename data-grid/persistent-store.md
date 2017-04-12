@@ -33,7 +33,7 @@ While Ignite allows you to configure the `CacheLoader` and `CacheWriter` separat
 {
   "type": "success",
   "title": "CacheJdbcPojoStore",
-  "body": "Ignite ships with its own `CacheJdbcPojoStore` which automatically maps Java POJOs to database schema. See [Automatic Persistence](doc:automatic-persistence) for more information."
+  "body": "Ignite ships with its own `CacheJdbcPojoStore` which automatically maps Java POJOs to database schema."
 }
 [/block]
 
