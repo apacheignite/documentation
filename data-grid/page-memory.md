@@ -31,13 +31,14 @@ Page memory is a manageable off-heap based memory architecture that splits all t
 
 Usually, a single data page stores multiple key-value entries in order to use the memory as efficient as possible and to deal with memory fragmentation. At the time when a new key-value entry is being added into a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry exceeds the fixed page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one page.
 
-A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry becomes bigger and its current page can't longer fit it then the page memory will search for a new page that has enough room to take the updated entry and will move the entry there. 
+A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can not longer fit it then the page memory will search for a new page that has enough room to take the updated entry and will move the entry there. 
 
 The overall page memory can consist of several separated memory regions with distinct settings as described in [memory policies](doc:page-memory#page-memory) section below but, by default, an Apache Ignite node sets up and initiates a single and expandable memory region that will be used by all the Apache Ignite caches defined in your configuration.
 
 ## Configuration
 
-To alter global page memory parameters use `org.apache.ignite.configuration.MemoryConfiguration` that is passed to `IgniteConfiguration`
+To alter global page memory settings such as page size use `org.apache.ignite.configuration.MemoryConfiguration` that is passed via `IgniteConfiguration.setMemoryConfiguration(...)` method. Below you can see all the available parameters:
+
 [block:api-header]
 {
   "type": "basic",
