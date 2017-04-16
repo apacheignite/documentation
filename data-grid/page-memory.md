@@ -33,9 +33,11 @@ Usually, a single data page stores multiple key-value entries in order to use th
 
 A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry becomes bigger and its current page can't longer fit it then the page memory will search for a new page that has enough room to take the updated entry and will move the entry there. 
 
-The overall page memory can consist of several separated memory regions with distinct settings as described in [memory policies](doc:page-memory#page-memory) section below but, by default, an Apache Ignite node sets up a single and expandable memory region that will keep both data and SQL indexes of all the Apache Ignite caches defined in your configuration.
+The overall page memory can consist of several separated memory regions with distinct settings as described in [memory policies](doc:page-memory#page-memory) section below but, by default, an Apache Ignite node sets up and initiates a single and expandable memory region that will be used by all the Apache Ignite caches defined in your configuration.
 
- 
+## Configuration
+
+To alter global page memory parameters use `org.apache.ignite.configuration.MemoryConfiguration` that is passed to `IgniteConfiguration`
 [block:api-header]
 {
   "type": "basic",
