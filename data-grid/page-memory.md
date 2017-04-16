@@ -1,3 +1,4 @@
+* [Overview](doc:page-memory#overview)
 * [Page Memory](doc:page-memory#page-memory)
 * [Data Page](doc:page-memory#data-page) 
 * [Index Page](doc:page-memory#index-page)
@@ -7,9 +8,13 @@
 [block:api-header]
 {
   "type": "basic",
-  "title": "Page Memory"
+  "title": "Overview"
 }
 [/block]
+Prior to Apache Ignite 2.0, the data grid's distributed key-value store was built on top and relied on three memory tiers - on-heap tier, off-heap tier, and swap tier. All these memory modes had some tier-specific disadvantages:
+
+* On-heap tier: data stored in this memory layer resided in the Java heap managed by Java VM. If the overall data set's size grew beyond 20 GB on a single Apache Ignite node then you could easily face long stop-the-wold garbage collection pauses that can be a significant performance hit or cause complete ejection of the node from the cluster. Considering that       
+
 Page Memory is an abstraction for working with pages in memory. Internally it interacts with a file store which is responsible for allocating page IDs, writing and reading of pages. One should distinguish a concept of a page and a page buffer.
 
 A page is a block of data of a fixed length with a unique identifier called FullPageId. 
