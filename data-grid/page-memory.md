@@ -64,6 +64,18 @@ To alter global page memory settings such as page size use `org.apache.ignite.co
   "rows": 5
 }
 [/block]
+An example below shows how to change page size and concurrency level parameters using `MemoryConfiguration`:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <property name=\"memoryConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n            <!-- Setting the concurrency level -->\n            <property name=\"concurrencyLevel\" value=\"4\"/>\n                \n            <!-- Setting the page size to 4 KB -->\n            <property name=\"pageSize\" value=\"4096\"/>\n        </bean>\n    </property>\n  \n  <!--- Additional settings ---->\n</bean>",
+      "language": "xml",
+      "name": ""
+    }
+  ]
+}
+[/block]
 
 [block:api-header]
 {
@@ -71,4 +83,3 @@ To alter global page memory settings such as page size use `org.apache.ignite.co
   "title": "Memory Policies"
 }
 [/block]
-TBD
