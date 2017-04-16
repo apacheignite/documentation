@@ -35,9 +35,30 @@ A key-value entry might not be bound to a specific page all the times. For insta
 
 The overall page memory can consist of several separated memory regions with distinct settings as described in [memory policies](doc:page-memory#page-memory) section below but, by default, an Apache Ignite node sets up and initiates a single and expandable memory region that will be used by all the Apache Ignite caches defined in your configuration.
 
-## Configuration
+## Configuration Parameters
 
 To alter global page memory settings such as page size use `org.apache.ignite.configuration.MemoryConfiguration` that is passed via `IgniteConfiguration.setMemoryConfiguration(...)` method. Below you can see all the available parameters:
+
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter Name",
+    "h-1": "Description",
+    "h-2": "Default Value",
+    "0-0": "`setPageSize`",
+    "0-1": "Sets default fixed page size.",
+    "0-2": "2 KB",
+    "1-0": "`setDefaultMemoryPolicyName`",
+    "1-1": "Sets default memory policy's name. By default every cache is bound to a memory region instantiated with this policy.\n\nRefer to [memory policies](doc:page-memory#page-memory) section to learn more about memory policies.",
+    "1-2": "`null`",
+    "2-0": "`setMemoryPolicies`",
+    "2-1": "Sets a list of all memory policies available in the cluster.\n\nRefer to [memory policies](doc:page-memory#page-memory) section to learn more about memory policies.",
+    "2-2": "A list with a single policy create with `MemoryConfiguration.createDefaultPolicyConfig()` method."
+  },
+  "cols": 3,
+  "rows": 5
+}
+[/block]
 
 [block:api-header]
 {
