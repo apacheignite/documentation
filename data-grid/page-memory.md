@@ -27,7 +27,11 @@ All the memory tiers listed above have been discontinued in Apache Ignite 2.0 in
   "title": "Page Memory"
 }
 [/block]
-TBD
+Page memory is a manageable off-heap memory layer that consists of memory pages of fixed size. Both data and SQL indexes are stored in respective memory pages that managed by Apache Ignite transparently to the end users.
+
+The overall page memory can consist of several separated memory regions with distinct settings as described in [memory policies](doc:page-memory#page-memory) section below but, by default, an Apache Ignite node sets up a single and expandable memory region that will store both data and SQL indexes of all the Apache Ignite caches defined in your configuration.
+
+ 
 [block:api-header]
 {
   "type": "basic",
