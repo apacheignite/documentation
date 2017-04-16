@@ -83,3 +83,6 @@ An example below shows how to change page size and concurrency level parameters 
   "title": "Memory Policies"
 }
 [/block]
+By default, the page memory initiates a single and expandable memory region that is used by all the caches configured and deployed in your cluster. However, there is a way to define multiple memory regions with various parameters and custom behavior relying on memory policies API.
+
+TBC
