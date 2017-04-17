@@ -141,3 +141,34 @@ Once Apache Ignite cluster is started with this configuration, the page memory w
 Refer to [memory policies example](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/MemoryPoliciesExample.java) to see how to configure and use multiple memory regions in your cluster.
 
 ## Configuration Parameters
+
+`org.apache.ignite.configuration.MemoryPolicyConfiguration` supports the following parameters:
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter Name",
+    "h-1": "Description",
+    "h-2": "Default Value",
+    "0-0": "`setName(...)`",
+    "0-1": "Unique memory policy name.",
+    "0-2": "Required parameter.",
+    "1-0": "`setSize(...)`",
+    "1-1": "Sets maximum memory region size defined by this memory policy.\n\nThe total size can not be less than 1 MB (TODO: double check) due to internal requirements.\n\nIf the overall memory usage goes beyond this parameter an out of memory exception will be thrown. To avoid this use an eviction algorithm or set this parameter to a bigger value.",
+    "1-2": "Required parameter.",
+    "2-0": "`setSwapFilePath(...)`",
+    "2-1": "A path to the memory-mapped file the memory region defined by this memory policy will be mapped to. Having this path set, allows relying on swapping capabilities of an underlying operating system for the memory region.",
+    "2-2": "Disabled by default.",
+    "3-0": "`setPageEvictionMode(...)`",
+    "3-1": "Sets one of the data pages eviction algorithms available for usage. Refer to [eviction policies](doc:evictions) for more details.",
+    "3-2": "`DataPageEvictionMode#DISABLED`",
+    "4-0": "`setEvictionThreshold(...)`",
+    "4-1": "A threshold for memory pages eviction initiation. For instance, if the threshold is 0.9 it means that the page memory will start the eviction only after 90% of the memory region (defined by this policy) is occupied.",
+    "4-2": "`0.9`",
+    "5-0": "`setEmptyPagesPoolSize(...)`",
+    "5-1": "TODO",
+    "5-2": "`100`"
+  },
+  "cols": 3,
+  "rows": 6
+}
+[/block]
