@@ -103,13 +103,24 @@ For instance, to configure a 500 MB memory region with data pages eviction enabl
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n   <!-- Page memory configuration -->   \n   <property name=\"memoryConfiguration\">\n      <bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n        <!-- Defining a custom memory policy. -->\n        <property name=\"memoryPolicies\">\n          <list>\n            <!-- 500 MB total size and RANDOM_2_LRU eviction algorithm. -->\n            <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n              <property name=\"name\" value=\"500MB_Region_Eviction\"/>\n              <!-- 500 MB total size. -->\n              <property name=\"size\" value=\"#{500 * 1024 * 1024}\"/>\n              <!-- Enabling data pages eviction. -->\n              <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n            </bean>\n          </list>\n        </property>\n      </bean>\n   </property>\n  \n  <!-- The rest of the configuration. -->  \n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n   <!-- Page memory configuration -->   \n   <property name=\"memoryConfiguration\">\n      <bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n        <!-- Defining a custom memory policy. -->\n        <property name=\"memoryPolicies\">\n          <list>\n            <!-- 500 MB total size and RANDOM_2_LRU eviction algorithm. -->\n            <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n              <property name=\"name\" value=\"500MB_Region_Eviction\"/>\n              <!-- 500 MB total size. -->\n              <property name=\"size\" value=\"#{500 * 1024 * 1024}\"/>\n              <!-- Enabling data pages eviction. -->\n              <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n            </bean>\n          </list>\n        </property>\n      </bean>\n   </property>\n  \n  <!-- The rest of the configuration. -->\n  <!-- ....... -->\n</bean>",
       "language": "xml"
     },
     {
       "code": "// Ignite configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n\n// Page memory configuration.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Creating a custom memory policy for a new memory region.\nMemoryPolicyConfiguration plCfg = new MemoryPolicyConfiguration();\n\n// Policy/region name.\nplCfg.setName(\"500MB_Region_Eviction\");\n\n// Setting region's size to 500 MB.\nplCfg.setSize(500 * 1024 * 1024);\n\n// Setting data pages eviction algorithm.\nplCfg.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);\n\n// Applying the memory policy.\nmemCfg.setMemoryPolicies(plCfg);\n        \n// Applying the new page memory configuration.\ncfg.setMemoryConfiguration(memCfg);",
       "language": "java",
       "name": "Java"
+    }
+  ]
+}
+[/block]
+Right after that, an Apache Ignite cache can be mapped to the memory region defined by the memory policy above. To achieve this, the name of the policy has to be passed as a parameter of `org.apache.ignite.configuration.CacheConfiguration.setMemoryPolicyName(...)` method: 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!-- Page memory and other configuration parameters. -->\n    <!-- ....... -->\n  \n    <property name=\"cacheConfiguration\">\n       <list>\n           <!-- Cache that is mapped to non-default memory region -->\n           <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n               <property name=\"name\" value=\"SampleCache\"/>\n               <property name=\"cacheMode\" value=\"PARTITIONED\"/>\n               <property name=\"atomicityMode\" value=\"ATOMIC\"/>\n               <!--\n                   Setting a memory policy name to bind to a specific\n                   memory region.\n               -->\n               <property name=\"memoryPolicyName\" value=\"500MB_Region_Eviction\"/>\n           </bean>\n       </list>\n    </property>\n    \n    <!-- The rest of the configuration. -->\n    <!-- ....... -->\n</bean>  ",
+      "language": "xml"
     }
   ]
 }
