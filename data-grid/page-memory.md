@@ -27,14 +27,24 @@ All the memory tiers listed above have been discontinued in Apache Ignite 2.0 in
   "title": "Page Memory"
 }
 [/block]
-Page memory is a manageable off-heap based memory architecture that splits all the memory available on pages of fixed size. Both data and SQL indexes are stored in respective memory pages that managed by Apache Ignite transparently to the end users. 
+Page memory is a manageable off-heap based memory architecture that splits all continuously allocated memory regions into pages of fixed size.
 
-Usually, a single data page stores multiple key-value entries in order to use the memory as efficient as possible and to deal with memory fragmentation. At the time when a new key-value entry is being added into a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry exceeds the fixed page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one page.
+Both key-value entries and SQL indexes are stored in memory pages of different types, that are called data pages and index pages respectively, and the pages as the whole page memory are managed by Apache Ignite transparently to the end users. 
 
-A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can not longer fit it then the page memory will search for a new page that has enough room to take the updated entry and will move the entry there. 
-
-The overall page memory can consist of several separated memory regions with distinct settings as described in [memory policies](doc:page-memory#memory-policies) section below but, by default, an Apache Ignite node sets up and initiates a single and expandable memory region that will be used by all the Apache Ignite caches defined in your configuration.
-
+Usually, a single data page stores multiple key-value entries in order to use the memory as efficient as possible and to avoid the memory fragmentation. At the time when a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry's total size exceeds the page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one data page.
+[block:callout]
+{
+  "type": "info",
+  "title": "Entry Ownership by Data Page",
+  "body": "A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can no longer fit it then the page memory will search for a new page that has enough room to take the updated entry and will move the entry there."
+}
+[/block]
+The page memory can encompass multiple continuous memory regions with distinct properties such as region size or an eviction policy (refer to [memory policies](doc:page-memory#memory-policies) section below). However, by default, an Apache Ignite node sets up and initiates a single continuous memory region that will be used by all the Apache Ignite caches defined in your configuration.
+[block:callout]
+{
+  "type": "info"
+}
+[/block]
 ## Configuration Parameters
 
 To alter global page memory settings such as page size use `org.apache.ignite.configuration.MemoryConfiguration` that is passed via `IgniteConfiguration.setMemoryConfiguration(...)` method. Below you can see all the available parameters:
