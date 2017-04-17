@@ -135,6 +135,6 @@ Once Apache Ignite cluster is started with this configuration, the page memory w
 {
   "type": "success",
   "title": "Changing Default Memory Region",
-  "body": "The default memory region is instantiated with the parameters of the memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some parameters of the default region then follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to `org.apache.ignite.configuration.MemoryConfiguration.setDefaultMemoryPolicyName(...)`"
+  "body": "The default memory region is instantiated with the parameters of the memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some parameters of the default region then follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to\n`org.apache.ignite.configuration.MemoryConfiguration.\nsetDefaultMemoryPolicyName(...)`"
 }
 [/block]
