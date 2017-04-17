@@ -58,7 +58,7 @@ To alter global page memory settings such as page size use `org.apache.ignite.co
     "1-2": "`null`",
     "2-0": "`setMemoryPolicies(...)`",
     "2-1": "Sets a list of all memory policies available in the cluster.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
-    "2-2": "A list with a single policy create with `MemoryConfiguration`'s `createDefaultPolicyConfig()` method.",
+    "2-2": "An empty array. A configuration that is used to create the default region is not stored there.",
     "3-0": "`setSystemCacheMemorySize(...)`",
     "3-1": "Sets size for Apache Ignite's internal system cache.\n\nTODO: what happens if the system cache exceeds a defined value.",
     "3-2": "100 MB",
