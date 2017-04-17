@@ -130,3 +130,11 @@ Right after that, an Apache Ignite cache can be mapped to the memory region defi
   ]
 }
 [/block]
+Once Apache Ignite cluster is started with this configuration, the page memory will allocate 500 MB memory region in addition to the default one and all the data as well as possible indexes, omitted in this example, of `SampleCache` will reside in that region. The rest of the caches you might have in your deployment will be bound to the default memory region unless you map them to another memory regions explicitly using the technique shown above.
+[block:callout]
+{
+  "type": "success",
+  "title": "Changing Default Memory Region",
+  "body": "The default memory region is instantiated with the parameters of the memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some parameters of the default region then follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to `org.apache.ignite.configuration.MemoryConfiguration.setDefaultMemoryPolicyName(...)`"
+}
+[/block]
