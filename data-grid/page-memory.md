@@ -121,6 +121,11 @@ Right after that, an Apache Ignite cache can be mapped to the memory region defi
     {
       "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!-- Page memory and other configuration parameters. -->\n    <!-- ....... -->\n  \n    <property name=\"cacheConfiguration\">\n       <list>\n           <!-- Cache that is mapped to non-default memory region -->\n           <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n              <!--\n                   Setting a memory policy name to bind to a specific\n                   memory region.\n               -->\n               <property name=\"memoryPolicyName\" value=\"500MB_Region_Eviction\"/>\n               <!-- Cache unique name. -->\n               <property name=\"name\" value=\"SampleCache\"/>\n             \n               <!-- Additional cache configuration parameters -->\n           </bean>\n       </list>\n    </property>\n    \n    <!-- The rest of the configuration. -->\n    <!-- ....... -->\n</bean>  ",
       "language": "xml"
+    },
+    {
+      "code": "// Ignite configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n\n// Page memory configuration and the rest of the configuration.\n// ....\n\n// Creating a cache configuration.\nCacheConfiguration cacheCfg = new CacheConfiguration();\n\n// Setting a memory policy name to bind to a specific memory region.\ncacheCfg.setMemoryPolicyName(\"500MB_Region_Eviction\");\n        \n// Setting the cache name.\ncacheCfg.setName(\"SampleCache\");\n\n// Applying the cache configuration.\ncfg.setCacheConfiguration(cacheCfg);",
+      "language": "java",
+      "name": "Java"
     }
   ]
 }
