@@ -40,11 +40,7 @@ Usually, a single data page stores multiple key-value entries in order to use th
 }
 [/block]
 The page memory can encompass multiple continuous memory regions with distinct properties such as region size or an eviction policy (refer to [memory policies](doc:page-memory#memory-policies) section below). However, by default, an Apache Ignite node sets up and initiates a single continuous memory region that will be used by all the Apache Ignite caches defined in your configuration.
-[block:callout]
-{
-  "type": "info"
-}
-[/block]
+
 ## Configuration Parameters
 
 To alter global page memory settings such as page size use `org.apache.ignite.configuration.MemoryConfiguration` that is passed via `IgniteConfiguration.setMemoryConfiguration(...)` method. Below you can see all the available parameters:
@@ -55,7 +51,7 @@ To alter global page memory settings such as page size use `org.apache.ignite.co
     "h-1": "Description",
     "h-2": "Default Value",
     "0-0": "`setPageSize(...)`",
-    "0-1": "Sets default fixed page size.",
+    "0-1": "Sets default page size.",
     "0-2": "2 KB",
     "1-0": "`setDefaultMemoryPolicyName(...)`",
     "1-1": "Sets default memory policy's name. By default every cache is bound to a memory region instantiated with this policy.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
