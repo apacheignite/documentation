@@ -94,6 +94,18 @@ An example below shows how to change page size and concurrency level parameters 
   "title": "Memory Policies"
 }
 [/block]
-By default, the page memory initiates a single and expandable memory region that is used by all the caches configured and deployed in your cluster. However, there is a way to define multiple memory regions with various parameters and custom behavior relying on memory policies API.
+By default, the page memory initiates a single continuous memory region that is used by all the caches configured and deployed in your cluster. However, there is a way to define multiple memory regions with various parameters and custom behavior relying on memory policies' API.
 
-TBC
+A memory policy is a set of configuration parameters, that are exposed through `org.apache.ignite.configuration.MemoryPolicyConfiguration`, like region size, an eviction policy, a swapping file and more.
+
+For instance, to configure a 500 MB memory region with data pages eviction enabled the following needs to be done:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n   <!-- Page memory configuration -->   \n   <property name=\"memoryConfiguration\">\n      <bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n        <!-- Defining a custom memory policy. -->\n        <property name=\"memoryPolicies\">\n          <list>\n            <!-- 500 MB total size and RANDOM_2_LRU eviction algorithm. -->\n            <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n              <property name=\"name\" value=\"500MB_Region_Eviction\"/>\n              <!-- 500 MB total size. -->\n              <property name=\"size\" value=\"#{20 * 1024 * 1024}\"/>\n              <!-- Enabling data pages eviction. -->\n              <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n            </bean>\n          </list>\n        </property>\n      </bean>\n   </property>\n  \n  <!-- The rest of the configuration. -->  \n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
