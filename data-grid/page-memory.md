@@ -78,6 +78,11 @@ An example below shows how to change page size and concurrency level parameters 
       "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <property name=\"memoryConfiguration\">\n        <bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n            <!-- Setting the concurrency level -->\n            <property name=\"concurrencyLevel\" value=\"4\"/>\n                \n            <!-- Setting the page size to 4 KB -->\n            <property name=\"pageSize\" value=\"4096\"/>\n        </bean>\n    </property>\n  \n  <!--- Additional settings ---->\n</bean>",
       "language": "xml",
       "name": ""
+    },
+    {
+      "code": "// Ignite configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n\n// Page memory configuration.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Altering the concurrency level.\nmemCfg.setConcurrencyLevel(4);\n\n// Changing the page size.\nmemCfg.setPageSize(4096);\n        \n// Applying the new page memory configuration.\ncfg.setMemoryConfiguration(memCfg);",
+      "language": "java",
+      "name": "Java"
     }
   ]
 }
