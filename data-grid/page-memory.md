@@ -160,7 +160,7 @@ Refer to [memory policies example](https://github.com/apache/ignite/blob/master/
     "2-2": "Disabled by default.",
     "3-0": "`setPageEvictionMode(...)`",
     "3-1": "Sets one of the data pages eviction algorithms available for usage. Refer to [eviction policies](doc:evictions) for more details.",
-    "3-2": "`DataPageEvictionMode#DISABLED`",
+    "3-2": "",
     "4-0": "`setEvictionThreshold(...)`",
     "4-1": "A threshold for memory pages eviction initiation. For instance, if the threshold is 0.9 it means that the page memory will start the eviction only after 90% of the memory region (defined by this policy) is occupied.",
     "4-2": "`0.9`",
