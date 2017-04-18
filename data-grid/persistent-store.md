@@ -12,6 +12,7 @@
 * [CacheJdbcBlobStore](#cachejdbcblobstore)
 * [CacheJdbcPojoStore](#cachejdbcpojostore)
 * [CacheHibernateBlobStore](#cachehibernateblobstore)
+* [Cassandra Cache Store](#cassandra-cache-store)
 [block:api-header]
 {
   "type": "basic",
@@ -278,3 +279,10 @@ Use the `CacheHibernateBlobStoreFactory` factory to pass `CacheHibernateBlobStor
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "title": "Cassandra Cache Store"
+}
+[/block]
+Refer to [Cassandra Cache Store](doc:cassandra-cache-store) documentation to see how use Cassandra as an Apache Ignite persistent store.
