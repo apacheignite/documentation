@@ -78,7 +78,7 @@ To alter global page memory settings such as page size use `org.apache.ignite.co
     "2-1": "Sets a list of all memory policies available in the cluster.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
     "2-2": "An empty array. A configuration that is used to create the default region is not stored there.",
     "3-0": "`setSystemCacheMemorySize(...)`",
-    "3-1": "Sets size for Apache Ignite's internal system cache.\n\nTODO: what happens if the system cache exceeds a defined value.",
+    "3-1": "Sets size for Apache Ignite's internal system cache.",
     "3-2": "100 MB",
     "4-0": "`setConcurrencyLevel(...)`",
     "4-1": "TODO",
@@ -116,7 +116,7 @@ By default, the page memory initiates a single continuous memory region that is 
 
 A memory policy is a set of configuration parameters, that are exposed through `org.apache.ignite.configuration.MemoryPolicyConfiguration`, like region size, an eviction policy, a swapping file and more.
 
-For instance, to configure a 500 MB memory region with data pages eviction enabled the following needs to be done:
+For instance, to configure a 500 MB memory region with data pages eviction we need to define the memory policy below:
 [block:code]
 {
   "codes": [
@@ -152,8 +152,8 @@ Once Apache Ignite cluster is started with this configuration, the page memory w
 [block:callout]
 {
   "type": "success",
-  "title": "Changing Default Memory Region",
-  "body": "The default memory region is instantiated with the parameters of the memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some parameters of the default region then follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to `org.apache.ignite.configuration.MemoryConfiguration.\nsetDefaultMemoryPolicyName(...)` method."
+  "title": "Changing Default Memory Policy",
+  "body": "The default memory region is instantiated with the parameters of the default memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some parameters of the default region then follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to `org.apache.ignite.configuration.MemoryConfiguration.\nsetDefaultMemoryPolicyName(...)` method."
 }
 [/block]
 Refer to [memory policies example](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/MemoryPoliciesExample.java) to see how to configure and use multiple memory regions in your cluster.
