@@ -1,6 +1,8 @@
 * [Overview](doc:page-memory#overview)
 * [Page Memory](doc:page-memory#page-memory)
 * [Memory Policies](doc:page-memory#memory-policies)
+* [Eviction Modes](doc:page-memory#eviction-modes)
+* [On-heap Caching](doc:page-memory#on-heap-caching)
 [block:api-header]
 {
   "type": "basic",
@@ -172,3 +174,18 @@ Refer to [memory policies example](https://github.com/apache/ignite/blob/master/
   "rows": 6
 }
 [/block]
+
+[block:api-header]
+{
+  "title": "Eviction Modes"
+}
+[/block]
+Memory policy allows setting up various eviction modes for data pages, that store key-value entries. To learn more about the available algorithms refer to [this](doc:evictions) documentation.
+[block:api-header]
+{
+  "title": "On-heap Caching"
+}
+[/block]
+The page memory is an off-heap memory that allocates all the memory regions outside of Java heap. However, there is a way to enable on-heap caching for cache entries stored in the page memory by setting `org.apache.ignite.configuration.CacheConfiguration.setOnheapCacheEnabled(...)` to `true`.
+
+TODO: why do we need this?
