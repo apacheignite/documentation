@@ -180,7 +180,7 @@ Refer to [memory policies example](https://github.com/apache/ignite/blob/master/
   "title": "Eviction Modes"
 }
 [/block]
-Memory policy allows setting up various eviction modes for data pages, that store key-value entries. To learn more about the available algorithms refer to [this](doc:evictions) documentation.
+Memory policy allows setting up various eviction modes for data pages that store key-value entries. To learn more about the available algorithms refer to [this](doc:evictions) documentation.
 [block:api-header]
 {
   "title": "On-heap Caching"
