@@ -182,8 +182,8 @@ For 32-bit Windows, you should use 32-bit version of the driver. For the
 ### Installing using installers
 
 This is the easiest way and one should use it by default. Just launch installer for the version of the driver that you need and follow instructions:
-- 32-bit installer can be found at `%IGNITE_HOME%\platforms\cpp\bin\odbc\ignite-odbc-x86.msi`
-- 64-bit installer can be found at `%IGNITE_HOME%\platforms\cpp\bin\odbc\ignite-odbc-amd64.msi`
+- 32-bit installer: `%IGNITE_HOME%\platforms\cpp\bin\odbc\ignite-odbc-x86.msi`
+- 64-bit installer: `%IGNITE_HOME%\platforms\cpp\bin\odbc\ignite-odbc-amd64.msi`
 
 ### Installing manually
 
