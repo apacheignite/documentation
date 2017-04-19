@@ -45,7 +45,7 @@ The benefits of the page memory are the following:
   "title": "Page Memory"
 }
 [/block]
-Page memory is a manageable off-heap based memory architecture that splits all continuously allocated memory regions into pages of fixed size.
+Page memory is a manageable off-heap based memory architecture that splits all continuously allocated memory slabs into pages of fixed size.
 
 Both key-value entries and SQL indexes are stored in memory pages of different types, that are called data pages and index pages respectively, and the pages as the whole page memory are managed by Apache Ignite transparently to the end users. 
 
@@ -57,7 +57,7 @@ Usually, a single data page stores multiple key-value entries in order to use th
   "body": "A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can no longer fit it then the page memory will search for a new page that has enough room to take the updated entry and will move the entry there."
 }
 [/block]
-The page memory can encompass multiple continuous memory regions with distinct properties such as region size or an eviction policy (refer to [memory policies](doc:page-memory#memory-policies) section below). However, by default, an Apache Ignite node sets up and initiates a single continuous memory region that will be used by all the Apache Ignite caches defined in your configuration.
+The page memory can encompass multiple continuous memory slabs with distinct properties such as slab size or an eviction policy (refer to [memory policies](doc:page-memory#memory-policies) section below). However, by default, an Apache Ignite node sets up and initiates a single continuous memory slab that will be used by all the Apache Ignite caches defined in your configuration.
 
 ## Configuration Parameters
 
@@ -72,7 +72,7 @@ To alter global page memory settings such as page size use `org.apache.ignite.co
     "0-1": "Sets default page size.",
     "0-2": "2 KB",
     "1-0": "`setDefaultMemoryPolicyName(...)`",
-    "1-1": "Sets default memory policy's name. By default every cache is bound to a memory region instantiated with this policy.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
+    "1-1": "Sets default memory policy's name. By default every cache is bound to a memory slab instantiated with this policy.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
     "1-2": "`null`",
     "2-0": "`setMemoryPolicies(...)`",
     "2-1": "Sets a list of all memory policies available in the cluster.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
@@ -112,11 +112,11 @@ An example below shows how to change page size and concurrency level parameters 
   "title": "Memory Policies"
 }
 [/block]
-By default, the page memory initiates a single continuous memory region that is used by all the caches configured and deployed in your cluster. However, there is a way to define multiple memory regions with various parameters and custom behavior relying on memory policies' API.
+By default, the page memory initiates a single continuous memory slab that is used by all the caches configured and deployed in your cluster. However, there is a way to define multiple memory slabs with various parameters and custom behavior relying on memory policies' API.
 
-A memory policy is a set of configuration parameters, that are exposed through `org.apache.ignite.configuration.MemoryPolicyConfiguration`, like region size, an eviction policy, a swapping file and more.
+A memory policy is a set of configuration parameters, that are exposed through `org.apache.ignite.configuration.MemoryPolicyConfiguration`, like slab size, an eviction policy, a swapping file and more.
 
-For instance, to configure a 500 MB memory region with data pages eviction we need to define the memory policy below:
+For instance, to configure a 500 MB memory slab with data pages eviction we need to define the memory policy below:
 [block:code]
 {
   "codes": [
@@ -125,19 +125,19 @@ For instance, to configure a 500 MB memory region with data pages eviction we ne
       "language": "xml"
     },
     {
-      "code": "// Ignite configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n\n// Page memory configuration.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Creating a custom memory policy for a new memory region.\nMemoryPolicyConfiguration plCfg = new MemoryPolicyConfiguration();\n\n// Policy/region name.\nplCfg.setName(\"500MB_Region_Eviction\");\n\n// Setting region's size to 500 MB.\nplCfg.setSize(500 * 1024 * 1024);\n\n// Setting data pages eviction algorithm.\nplCfg.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);\n\n// Applying the memory policy.\nmemCfg.setMemoryPolicies(plCfg);\n        \n// Applying the new page memory configuration.\ncfg.setMemoryConfiguration(memCfg);",
+      "code": "// Ignite configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n\n// Page memory configuration.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Creating a custom memory policy for a new memory slab.\nMemoryPolicyConfiguration plCfg = new MemoryPolicyConfiguration();\n\n// Policy/region name.\nplCfg.setName(\"500MB_Region_Eviction\");\n\n// Setting slab's size to 500 MB.\nplCfg.setSize(500 * 1024 * 1024);\n\n// Setting data pages eviction algorithm.\nplCfg.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);\n\n// Applying the memory policy.\nmemCfg.setMemoryPolicies(plCfg);\n        \n// Applying the new page memory configuration.\ncfg.setMemoryConfiguration(memCfg);",
       "language": "java",
       "name": "Java"
     }
   ]
 }
 [/block]
-Right after that, an Apache Ignite cache can be mapped to the memory region defined by the memory policy above. To achieve this, the name of the policy has to be passed as a parameter of `org.apache.ignite.configuration.CacheConfiguration.setMemoryPolicyName(...)` method: 
+Right after that, an Apache Ignite cache can be mapped to the slab defined by the memory policy above. To achieve this, the name of the policy has to be passed as a parameter of `org.apache.ignite.configuration.CacheConfiguration.setMemoryPolicyName(...)` method: 
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!-- Page memory and other configuration parameters. -->\n    <!-- ....... -->\n  \n    <property name=\"cacheConfiguration\">\n       <list>\n           <!-- Cache that is mapped to non-default memory region -->\n           <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n              <!--\n                   Setting a memory policy name to bind to a specific\n                   memory region.\n               -->\n               <property name=\"memoryPolicyName\" value=\"500MB_Region_Eviction\"/>\n               <!-- Cache unique name. -->\n               <property name=\"name\" value=\"SampleCache\"/>\n             \n               <!-- Additional cache configuration parameters -->\n           </bean>\n       </list>\n    </property>\n    \n    <!-- The rest of the configuration. -->\n    <!-- ....... -->\n</bean>  ",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!-- Page memory and other configuration parameters. -->\n    <!-- ....... -->\n  \n    <property name=\"cacheConfiguration\">\n       <list>\n           <!-- Cache that is mapped to non-default memory slab -->\n           <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n              <!--\n                   Setting a memory policy name to bind to a specific slab.\n               -->\n               <property name=\"memoryPolicyName\" value=\"500MB_Region_Eviction\"/>\n               <!-- Cache unique name. -->\n               <property name=\"name\" value=\"SampleCache\"/>\n             \n               <!-- Additional cache configuration parameters -->\n           </bean>\n       </list>\n    </property>\n    \n    <!-- The rest of the configuration. -->\n    <!-- ....... -->\n</bean>  ",
       "language": "xml"
     },
     {
@@ -148,15 +148,15 @@ Right after that, an Apache Ignite cache can be mapped to the memory region defi
   ]
 }
 [/block]
-Once Apache Ignite cluster is started with this configuration, the page memory will allocate 500 MB memory region in addition to the default one and all the data as well as possible indexes, omitted in this example, of `SampleCache` will reside in that region. The rest of the caches you might have in your deployment will be bound to the default memory region unless you map them to another memory regions explicitly using the technique shown above.
+Once Apache Ignite cluster is started with this configuration, the page memory will allocate 500 MB slab in addition to the default one and all the data as well as possible indexes, omitted in this example, of `SampleCache` will reside in that region. The rest of the caches you might have in your deployment will be bound to the default slab unless you map them to another memory slabs explicitly using the technique shown above.
 [block:callout]
 {
   "type": "success",
   "title": "Changing Default Memory Policy",
-  "body": "The default memory region is instantiated with the parameters of the default memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some parameters of the default region then follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to `org.apache.ignite.configuration.MemoryConfiguration.\nsetDefaultMemoryPolicyName(...)` method."
+  "body": "The default memory slab is instantiated with the parameters of the default memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some parameters of the default slab then follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to `org.apache.ignite.configuration.MemoryConfiguration.\nsetDefaultMemoryPolicyName(...)` method."
 }
 [/block]
-Refer to [memory policies example](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/MemoryPoliciesExample.java) to see how to configure and use multiple memory regions in your cluster.
+Refer to [memory policies example](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/MemoryPoliciesExample.java) to see how to configure and use multiple slabs in your cluster.
 
 ## Configuration Parameters
 
@@ -171,16 +171,16 @@ Refer to [memory policies example](https://github.com/apache/ignite/blob/master/
     "0-1": "Unique memory policy name.",
     "0-2": "Required parameter.",
     "1-0": "`setSize(...)`",
-    "1-1": "Sets maximum memory region size defined by this memory policy.\n\nThe total size can not be less than 1 MB (TODO: double check) due to internal requirements.\n\nIf the overall memory usage goes beyond this parameter an out of memory exception will be thrown. To avoid this use an eviction algorithm or set this parameter to a bigger value.",
+    "1-1": "Sets total slab size defined by this memory policy.\n\nThe total size can not be less than 1 MB due to internal requirements.\n\nIf the overall memory usage goes beyond this parameter an out of memory exception will be thrown. To avoid this use an eviction algorithm or set this parameter to a bigger value.",
     "1-2": "Required parameter.",
     "2-0": "`setSwapFilePath(...)`",
-    "2-1": "A path to the memory-mapped file the memory region defined by this memory policy will be mapped to. Having this path set, allows relying on swapping capabilities of an underlying operating system for the memory region.",
+    "2-1": "A path to the memory-mapped file the slab defined by this memory policy will be mapped to. Having this path set, allows relying on swapping capabilities of an underlying operating system for the slab.",
     "2-2": "Disabled by default.",
     "3-0": "`setPageEvictionMode(...)`",
     "3-1": "Sets one of the data pages eviction algorithms available for usage. Refer to [eviction policies](doc:evictions) for more details.",
     "3-2": "Disabled by default.",
     "4-0": "`setEvictionThreshold(...)`",
-    "4-1": "A threshold for memory pages eviction initiation. For instance, if the threshold is 0.9 it means that the page memory will start the eviction only after 90% of the memory region (defined by this policy) is occupied.",
+    "4-1": "A threshold for memory pages eviction initiation. For instance, if the threshold is 0.9 it means that the page memory will start the eviction only after 90% of the slab (defined by this policy) is occupied.",
     "4-2": "`0.9`",
     "5-0": "`setEmptyPagesPoolSize(...)`",
     "5-1": "TODO",
