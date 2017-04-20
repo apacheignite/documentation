@@ -19,7 +19,7 @@ The page-based eviction is configured via page memory policies and covered in th
   "title": "Page Memory Eviction Modes"
 }
 [/block]
-[Page Memory](doc:page-memory)] consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached.
+[Page Memory](doc:page-memory) consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached.
 
 To avoid possible pool exhaustion you might need to set one of data page eviction modes via  `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. Basically, the eviction modes track data pages usage and evict some of them according to a mode's implementation.
 
@@ -44,6 +44,8 @@ Random-LRU algorithm works this way:
 * Once a memory pool defined by a memory policy is configured, an off-heap array is allocated to track 'last usage' timestamp for every individual data page.
 * When a data page is accessed, its timestamp gets updated in the tracking array.
 * When it's time to evict some pages, the algorithm randomly chooses 5 indexes from the tracking array and evicts a page with the latest timestamp. If some of the indexes point to non-data pages (index or system pages) then the algorithm picks another.
+
+To get more details about the algorithm implementation refer to `DataPageEvictionMode` javadoc.
 [block:api-header]
 {
   "title": "On-heap Cache Eviction Policies"
