@@ -13,7 +13,7 @@ Presently, the beta version supports the following functionality:
 {
   "type": "success",
   "title": "ML Grid Roadmap",
-  "body": "In later releases, ML Grid will be empowered with distributed versions of the well-known algorithms used for machine learning tasks and predictive analysis. In addition, ML Grid API will be available for such programming languages as Python and Ruby."
+  "body": "In later releases, ML Grid will be empowered with distributed versions of the well-known algorithms used for machine learning tasks and predictive analysis. In addition, ML Grid API will be available for programming languages such as Python and Ruby."
 }
 [/block]
 
@@ -22,29 +22,26 @@ Presently, the beta version supports the following functionality:
   "title": "Getting Started"
 }
 [/block]
-The fast way to get started with ML Grid is to build and run the examples, study their output and code. ML examples are located in the examples folder of an Apache Ignite distribution. Here is a [direct GitHub link](https://github.com/apache/ignite/tree/master/examples/src/main/ml/org/apache/ignite/examples/ml/math) to them.
+The fastest way to get started with the ML Grid is to build and run the examples, study their output and code. ML examples are located in the `examples` folder of the Apache Ignite distribution. Here is a [direct GitHub link](https://github.com/apache/ignite/tree/master/examples/src/main/ml/org/apache/ignite/examples/ml/math) to them.
 
 Follow the steps below to try out the examples:
 * Make sure you're using Java 8 or later. ML Grid is not compatible with earliest Java versions.
 * Download Apache Ignite of version 2.0 or later.
-* Open `examples` project in an IDE like IntellijIdea or Eclipse.
-* Activate `ml` Maven profile at the time you'll be setting up the project.
+* Open `examples` project in an IDE like IntelliJ IDEA or Eclipse.
+* Activate `ml` Maven profile when setting up the project.
 * Go to `src\main\ml` folder in the IDE and run an ML Grid example.
  
-The examples does not require any special configuration. All ML Grid examples are supposed to launch, run and stop successfully without any user intervention and provide meaningful output into a console. An example for Tracer API is additionally supposed to launch a web browser and do some HTML output into a browser's window.
+The examples do not require any special configuration. All ML Grid examples are supposed to launch, run and stop successfully without any user intervention and provide meaningful output on the console. Additionally, an example for the Tracer API is supposed to launch a web browser and provide some HTML output.
 [block:api-header]
 {
   "title": "Build From Sources"
 }
 [/block]
-The latest Apache Ignite ML Grid jar is uploaded to Maven repository and, for instance, used in the examples mentioned above. If you need to take the jar and deploy it in a custom environment then it can be either downloaded from Maven or built from scratch. This section explains how to do the latter - to build ML Grid from sources.
- 
-The build procedure is the following:
-
+The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you need to take the jar and deploy it in a custom environment, then it can be either downloaded from Maven or built from scratch. To build ML Grid from sources:
 * Download the latest Apache Ignite source release.
 * Clean local Maven repo (this is to ensure that older Maven builds don’t impact my check).
 * Make sure you're using Java 8 or later. ML Grid is not compatible with earliest Java versions.
-* Build Apache Ignite Data Fabric from the projects root directory:
+* Build Apache Ignite Data Fabric from the project's root directory:
 [block:code]
 {
   "codes": [
