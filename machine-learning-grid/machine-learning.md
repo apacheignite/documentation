@@ -69,27 +69,3 @@ The build procedure is the following:
 * Locate ML Grid jar in the output directory.
 
 If needed, refer to DEVNOTES.txt in project root and readme files in ignite-ml for more details.
-
-
-#API usage reference in unit tests
-
-
-The most reliable way to learn how particular Ignite ML API is intended to be used is to find how this is done in respective unit tests. Unit tests were specifically designed with this use in mind and they cover vast majority of the package API.
-
-Running unit tests does not require any special configuration. All unit tests in Ignite ML package are supposed to launch and pass successfully without any user intervention.
-
-Some unit tests for Tracer API are additionally supposed to launch a web browser and do some HTML output into browser window.
-
-In order to execute all unit tests except for TracerTest launch MathImplMainTestSuite.
-
-You can also refer module javadocs for the explanation of the API packages, classes, and methods.
-
-
-#References
-
-
-JIRA: https://issues.apache.org/jira/browse/IGNITE-4572
-    Machine Learning: Develop distributed algebra support for dense and sparse data sets.
-
-Dev list: http://apache-ignite-developers.2346864.n4.nabble.com/Adding-ML-to-Ignite-IGNITE-4572-tp13936.html
-    Adding ML to Ignite, IGNITE-4572
