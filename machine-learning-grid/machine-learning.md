@@ -65,4 +65,4 @@ The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you
 [/block]
 6. Locate ML Grid jar in the output directory.
 
-If needed, refer to `DEVNOTES.txt` in the project's root folder and README files in the `ignite-ml` component for more details.
+If needed, refer to `DEVNOTES.txt` in the project's root folder and `README` files in the `ignite-ml` component for more details.
