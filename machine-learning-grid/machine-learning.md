@@ -8,7 +8,7 @@ Apache Ignite 2.0 release introduced a beta version of Apache Ignite Machine Lea
 Those who use (or have used) ML related features in libraries like [Apache Mahout](http://mahout.apache.org) and [Colt](https://en.wikipedia.org/wiki/Colt_(libraries) will find the API familiar. Apache Ignite ML Grid API was designed to make it easier for those already working with ML matters get used to it.
 
 Presently, the beta version supports the following functionality:
-*  Ability to perform vector and matrix algebra operations including local and distributed, dense and sparse logic.
+*  Ability to perform local and distributed vector and matrix algebra operations, use dense and sparse logic. The data structures can be stored in Java heap, off-heap or distributed Ignite caches.
 [block:callout]
 {
   "type": "success",
