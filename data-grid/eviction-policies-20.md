@@ -78,7 +78,9 @@ Random-2-LRU differs from Random-LRU only in a way that two latest access timest
   "title": "On-heap Cache Eviction Policies"
 }
 [/block]
-Eviction policies control the maximum number of elements that can be stored in a cache on-heap memory.  Whenever maximum on-heap cache size is reached, entries are evicted into [off-heap space](doc:off-heap-memory), if one is enabled. 
+[Page Memory](doc:page-memory) allows storing hot cache entries in Java heap if [on-heap caching](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching) feature is enabled via `CacheConfiguration.setOnheapCacheEnabled(...)`. Once the on-heap cache is turned on you might need to manage its grows and to do that use one of cache entries eviction policies described below.
+
+Eviction policies control the maximum number of elements that can be stored in a cache on-heap memory.  Whenever maximum on-heap cache size is reached, entries are evicted from Java heap. 
 
 Some eviction policies support batch eviction and eviction by memory size limit. If batch eviction is enabled than eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted. If eviction by memory size limit is enabled then eviction starts when size of cache entries in bytes becomes greater than the maximum memory size.
 [block:callout]
@@ -87,14 +89,7 @@ Some eviction policies support batch eviction and eviction by memory size limit.
   "body": "Batch eviction is supported only if maximum memory limit isn't set."
 }
 [/block]
-In Ignite eviction policies are pluggable and are controlled via `EvictionPolicy` interface. An implementation of eviction policy is notified of every cache change and defines the algorithm of choosing the entries to evict from cache. 
-[block:callout]
-{
-  "type": "info",
-  "body": "If your data set can fit in memory, then eviction policy will not provide any benefit and should be disabled, which is the default behavior."
-}
-[/block]
-
+In Apache Ignite eviction policies are pluggable and are controlled via `EvictionPolicy` interface. An implementation of eviction policy is notified of every cache change and defines the algorithm of choosing the entries to evict from on-heap cache of the page memory. 
 [block:api-header]
 {
   "type": "basic",
