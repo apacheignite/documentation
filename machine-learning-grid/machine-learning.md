@@ -52,7 +52,7 @@ The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you
   ]
 }
 [/block]
-* Build ML Grid from the project root directory:
+* Build ML Grid from the project's root directory:
 [block:code]
 {
   "codes": [
@@ -65,4 +65,4 @@ The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you
 [/block]
 * Locate ML Grid jar in the output directory.
 
-If needed, refer to `DEVNOTES.txt` in the project root folder and readme files in `ignite-ml` component for more details.
+If needed, refer to `DEVNOTES.txt` in the project's root folder and readme files in the `ignite-ml` component for more details.
