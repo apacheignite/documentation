@@ -25,10 +25,25 @@ To avoid possible pool exhaustion you might need to set one of data page evictio
 
 ## Random-LRU Mode
 
-To enable Random-LRU eviction algorithm  
-
-
-   
+To enable Random-LRU eviction algorithm pass `DataPageEvictionMode.RANDOM_LRU` value to a respective `MemoryPolicyConfiguration` as it's shown in the example below: 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 10 GB memory pool with RANDOM_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Pool_Eviction\"/>\n        <!-- Total size of 20 GB. -->\n        <property name=\"size\" value=\"#{20L * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 10 GB memory pool with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Pool_Eviction\");\n\n// Total size of 20 GB.\nmemPlc.setSize(20L * 1024 * 1024 * 1024);\n\n// Enabling RANDOM_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Random-LRU algorithm works this way:
+* Once a memory pool defined by a memory policy is configured, an off-heap array is allocated to track 'last usage' timestamp for every individual data page.
+* When a data page is accessed, its timestamp gets updated in the tracking array.
+* When it's time to evict some pages, the algorithm randomly chooses 5 indexes from the tracking array and evicts a page with the latest timestamp. If some of the indexes point to non-data pages (index or system pages) then the algorithm picks another.
 [block:api-header]
 {
   "title": "On-heap Cache Eviction Policies"
