@@ -1,5 +1,7 @@
 * [Overview](#overview)
 * [Page Memory Eviction Modes](#page-memory-eviction-modes)
+ * [Random-LRU Mode](#section-random-lru-mode)
+ * [Random-2-LRU Mode](#section-random-2-lru-mode)
 * [On-heap Cache Eviction Policies](#on-heap-cache-eviction-policies)
  * [Least Recently Used](#least-recently-used-lru)
  * [First In First Out](#first-in-first-out-fifo)
