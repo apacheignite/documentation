@@ -19,7 +19,16 @@ The page-based eviction is configured via page memory policies and covered in th
   "title": "Page Memory Eviction Modes"
 }
 [/block]
+[Page Memory](doc:page-memory)] consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached.
 
+To avoid possible pool exhaustion you might need to set one of data page eviction modes via  `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. Basically, the eviction modes track data pages usage and evict some of them according to a mode's implementation.
+
+## Random-LRU Mode
+
+To enable Random-LRU eviction algorithm  
+
+
+   
 [block:api-header]
 {
   "title": "On-heap Cache Eviction Policies"
