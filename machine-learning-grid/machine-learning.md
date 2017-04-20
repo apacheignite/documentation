@@ -28,7 +28,7 @@ Follow the steps below to try out the examples:
 * Make sure you're using Java 8 or later. ML Grid is not compatible with earliest Java versions.
 * Download Apache Ignite of version 2.0 or later.
 * Open `examples` project in an IDE like IntellijIdea or Eclipse.
-* Activate `ml` profile at the time you'll be setting up the project.
+* Activate `ml` Maven profile at the time you'll be setting up the project.
 * Go to `src\main\ml` folder in the IDE and run an ML Grid example.
  
 The examples does not require any special configuration. All ML Grid examples are supposed to launch, run and stop successfully without any user intervention and provide meaningful output into a console. An example for Tracer API is additionally supposed to launch a web browser and do some HTML output into a browser's window.
@@ -68,4 +68,4 @@ The build procedure is the following:
 [/block]
 * Locate ML Grid jar in the output directory.
 
-If needed, refer to DEVNOTES.txt in project root and readme files in ignite-ml for more details.
+If needed, refer to `DEVNOTES.txt` in the project root folder and readme files in `ignite-ml` component for more details.
