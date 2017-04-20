@@ -65,6 +65,14 @@ To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of 
 }
 [/block]
 Random-2-LRU differs from Random-LRU only in a way that two latest access timestamps are stored for every data page. At the eviction time, a minimum between two latest timestamps is taken for further comparison with minimums of other pages that chosen as eviction candidates. Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
+[block:callout]
+{
+  "type": "success",
+  "title": "Eviction Triggering",
+  "body": "By default, a data pages eviction algorithm is triggered when the total memory pool consumption gets to 90%. Use `MemoryPolicyConfiguration.setEvictionThreshold(...)` parameter if you need to initiate the eviction earlier or later."
+}
+[/block]
+
 [block:api-header]
 {
   "title": "On-heap Cache Eviction Policies"
