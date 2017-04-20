@@ -25,7 +25,7 @@ Presently, the beta version supports the following functionality:
 The fastest way to get started with the ML Grid is to build and run the examples, study their output and code. ML examples are located in the `examples` folder of the Apache Ignite distribution. Here is a [direct GitHub link](https://github.com/apache/ignite/tree/master/examples/src/main/ml/org/apache/ignite/examples/ml/math) to them.
 
 Follow the steps below to try out the examples:
-1. Make sure you're using Java 8 or later. ML Grid is not compatible with earliest Java versions.
+1. Make sure you're using Java 8 or later. ML Grid is not compatible with previous versions of Java.
 2. Download Apache Ignite of version 2.0 or later.
 3. Open `examples` project in an IDE like IntelliJ IDEA or Eclipse.
 4. Activate `ml` Maven profile when setting up the project.
