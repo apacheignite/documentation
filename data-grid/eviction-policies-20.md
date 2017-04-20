@@ -30,11 +30,11 @@ To enable Random-LRU eviction algorithm pass `DataPageEvictionMode.RANDOM_LRU` v
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 10 GB memory pool with RANDOM_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Pool_Eviction\"/>\n        <!-- Total size of 20 GB. -->\n        <property name=\"size\" value=\"#{20L * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 20 GB memory pool with RANDOM_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Pool_Eviction\"/>\n        <!-- Total size of 20 GB. -->\n        <property name=\"size\" value=\"#{20L * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 10 GB memory pool with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Pool_Eviction\");\n\n// Total size of 20 GB.\nmemPlc.setSize(20L * 1024 * 1024 * 1024);\n\n// Enabling RANDOM_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
+      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 20 GB memory pool with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Pool_Eviction\");\n\n// Total size of 20 GB.\nmemPlc.setSize(20L * 1024 * 1024 * 1024);\n\n// Enabling RANDOM_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
       "language": "java"
     }
   ]
@@ -45,7 +45,24 @@ Random-LRU algorithm works this way:
 * When a data page is accessed, its timestamp gets updated in the tracking array.
 * When it's time to evict some pages, the algorithm randomly chooses 5 indexes from the tracking array and evicts a page with the latest timestamp. If some of the indexes point to non-data pages (index or system pages) then the algorithm picks another.
 
-To get more details about the algorithm implementation refer to `DataPageEvictionMode` javadoc.
+## Random-2-LRU Mode
+
+To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of Random-LRU, pass `DataPageEvictionMode.RANDOM_2_LRU` value to a respective `MemoryPolicyConfiguration` as it's shown in the example below: 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 20 GB memory pool with RANDOM_2_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Pool_Eviction\"/>\n        <!-- Total size of 20 GB. -->\n        <property name=\"size\" value=\"#{20L * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_2_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 20 GB memory pool with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Pool_Eviction\");\n\n// Total size of 20 GB.\nmemPlc.setSize(20L * 1024 * 1024 * 1024);\n\n// Enabling RANDOM_2_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Random-2-LRU differs from Random-LRU only in a way that two latest access timestamps are stored for every data page. At the eviction time, a minimum between two latest timestamps is taken for further comparison with minimums of other pages that chosen as eviction candidates. Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
 [block:api-header]
 {
   "title": "On-heap Cache Eviction Policies"
