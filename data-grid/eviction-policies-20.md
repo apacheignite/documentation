@@ -1,8 +1,8 @@
 * [Overview](#overview)
-* [Least Recently Used](#least-recently-used-lru)
-* [First In First Out](#first-in-first-out-fifo)
-* [Sorted](#sorted)
-* [Random](#random)
+ * [Least Recently Used](#least-recently-used-lru)
+ * [First In First Out](#first-in-first-out-fifo)
+ * [Sorted](#sorted)
+ * [Random](#random)
 [block:api-header]
 {
   "type": "basic",
