@@ -22,39 +22,53 @@ Presently, the beta version supports the following functionality:
   "title": "Getting Started"
 }
 [/block]
-The fast way to get started with ML Grid is to build and run the examples, study their output and code. ML examples are located in the  examples module under ignite root, in package org.apache.ignite.examples.ml
+The fast way to get started with ML Grid is to build and run the examples, study their output and code. ML examples are located in the examples folder of an Apache Ignite distribution. Here is a [direct GitHub link](https://github.com/apache/ignite/tree/master/examples/src/main/ml/org/apache/ignite/examples/ml/math) to them.
 
-ML Grid is provided as source release. It requires Java 8.
+Follow the steps below to try out the examples:
+* Make sure you're using Java 8 or later. ML Grid is not compatible with earliest Java versions.
+* Download Apache Ignite of version 2.0 or later.
+* Open `examples` project in an IDE like IntellijIdea or Eclipse.
+* Activate `ml` profile at the time you'll be setting up the project.
+* Go to `src\main\ml` folder in the IDE and run an ML Grid example.
+ 
+The examples does not require any special configuration. All ML Grid examples are supposed to launch, run and stop successfully without any user intervention and provide meaningful output into a console. An example for Tracer API is additionally supposed to launch a web browser and do some HTML output into a browser's window.
+[block:api-header]
+{
+  "title": "Build From Sources"
+}
+[/block]
+The latest Apache Ignite ML Grid jar is uploaded to Maven repository and, for instance, used in the examples mentioned above. If you need to take the jar and deploy it in a custom environment then it can be either downloaded from Maven or built from scratch. This section explains how to do the latter - to build ML Grid from sources.
+ 
+The build procedure is the following:
 
-ML package can be obtained from Ignite project root in a module called “ml” (“ignite-ml”), package org.apache.ignite.ml
+* Download the latest Apache Ignite source release.
+* Clean local Maven repo (this is to ensure that older Maven builds don’t impact my check).
+* Make sure you're using Java 8 or later. ML Grid is not compatible with earliest Java versions.
+* Build Apache Ignite Data Fabric from the projects root directory:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "mvn clean install -DskipTests -Dmaven.javadoc.skip=true -P java8",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+* Build ML Grid from the project root directory:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "  mvn install -Pml -DskipTests -U -pl modules/ml -am",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
+* Locate ML Grid jar in the output directory.
 
-
-Running examples does not require any special configuration. All Ignite ML examples are supposed to launch, run and stop successfully without any user intervention and provide meaningful output into console.
-
-Example for Tracer API is additionally supposed to launch a web browser and do some HTML output into browser window.
-
-
-#Build details
-
-
-If needed, refer DEVNOTES.txt file in project root and readme files in ignite-ml and examples modules for more details.
-
-The way used for command line build check in a local copy of ignite-2.0 branch commit [9e7421f] is as follows:
-
-1. clean local Maven repo
-   (this is to ensure that older Maven builds don’t impact my check)
-
-2. build and local install all ignite from project root directory
-  mvn clean install -DskipTests -Dmaven.javadoc.skip=true -P java8
-
-3. build and local install ML from project root directory
-  mvn install -Pml -DskipTests -U -pl modules/ml -am
-
-4. build examples
-  cd examples
-  mvn clean package -DskipTests -Pml
-
-The same codebase was used to verify that Ignite ML unit tests and examples run as documented in this guide.
+If needed, refer to DEVNOTES.txt in project root and readme files in ignite-ml for more details.
 
 
 #API usage reference in unit tests
