@@ -65,4 +65,15 @@ The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you
 [/block]
 6. Locate the ML Grid jar in your local Maven repository under the path `{user_dir}/.m2/repository/org/apache/ignite/ignite-ml/{ignite-version}/ignite-ml-{ignite-version}.jar`.
 
+8. If you need to build the ML Grid examples from sources execute the commands below:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "cd examples\nmvn clean package -DskipTests -Pml",
+      "language": "shell"
+    }
+  ]
+}
+[/block]
 If needed, refer to `DEVNOTES.txt` in the project's root folder and `README` files in the `ignite-ml` component for more details.
