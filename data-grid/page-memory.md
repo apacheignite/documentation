@@ -81,8 +81,8 @@ To alter global page memory settings such as page size use `org.apache.ignite.co
     "3-1": "Sets size for Apache Ignite's internal system cache.",
     "3-2": "100 MB",
     "4-0": "`setConcurrencyLevel(...)`",
-    "4-1": "TODO",
-    "4-2": "TODO"
+    "4-1": "Sets the number of concurrent segments in Apache Ignite internal page mapping tables",
+    "4-2": "A total number of available CPUs times 4."
   },
   "cols": 3,
   "rows": 5
@@ -183,7 +183,7 @@ Refer to [memory policies example](https://github.com/apache/ignite/blob/master/
     "4-1": "A threshold for memory pages eviction initiation. For instance, if the threshold is 0.9 it means that the page memory will start the eviction only after 90% of the slab (defined by this policy) is occupied.",
     "4-2": "`0.9`",
     "5-0": "`setEmptyPagesPoolSize(...)`",
-    "5-1": "TODO",
+    "5-1": "Specifies the minimal number of empty pages to be present in reuse lists for this memory policy. This parameter ensures that Apache Ignite will be able to successfully evict old data entries when the size of a (key, value) pair is slightly larger than page size / 2.\n\nIncrease this parameter if a cache can contain very big entries (total size of pages in this pool should be enough to contain largest cache entry).",
     "5-2": "`100`"
   },
   "cols": 3,
