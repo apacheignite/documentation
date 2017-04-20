@@ -3,7 +3,9 @@
   "title": "Overview"
 }
 [/block]
-Apache Ignite 2.0 release introduced a beta version of Apache Ignite Machine Learning Grid (ML Grid) which is a distributed machine learning library built on top of Apache Ignite Data Fabric.
+Apache Ignite 2.0 release introduced a beta version of Apache Ignite Machine Learning Grid (ML Grid) which is a distributed machine learning library built on top of highly optimized and scalable Apache Ignite Data Fabric.
+
+Those who used ML related features in libraries like [Apache Mahout](http://mahout.apache.org) and [Colt](https://en.wikipedia.org/wiki/Colt_(libraries)) will find the API generally familiar. Apache Ignite ML Grid API was designed to make it easier for those already working with ML matters get used to it.
 
 Presently, the beta version supports the following functionality:
 *  An ability to perform vector and matrix algebra operations including local and distributed, dense and sparse logic.
@@ -14,22 +16,16 @@ Presently, the beta version supports the following functionality:
   "body": "In the future, ML Grid will be empowered with distributed versions of the well-known algorithms used for machine learning tasks and predictive analysis. In addition, ML Grid API will be available for such programming languages as Python and Ruby."
 }
 [/block]
-This guide walks you through how to build and get started using Ignite ML.
-
-
-Ignite ML is provided as source release. It requires Java 8.
-
-As of now package
-
-Readers who used ML related features in libraries like Apache Mahout and Colt (https://en.wikipedia.org/wiki/Colt_(libraries)) will find the API generally familiar. Ignite ML API was designed to make it easier for those already working with ML matters get used to.
-
-ML package can be obtained from Ignite project root in a module called “ml” (“ignite-ml”), package org.apache.ignite.ml
 
 [block:api-header]
 {
   "title": "Getting Started"
 }
 [/block]
+ML Grid is provided as source release. It requires Java 8.
+
+ML package can be obtained from Ignite project root in a module called “ml” (“ignite-ml”), package org.apache.ignite.ml
+
 The fast way to get started with Ignite ML is to build and run the examples, study their output and code. ML examples are located in examples module under ignite root, in package org.apache.ignite.examples.ml
 
 Running examples does not require any special configuration. All Ignite ML examples are supposed to launch, run and stop successfully without any user intervention and provide meaningful output into console.
