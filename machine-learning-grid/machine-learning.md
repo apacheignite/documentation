@@ -41,7 +41,7 @@ The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you
 1. Download the latest Apache Ignite source release.
 2. Clean local Maven repo (this is to ensure that older Maven builds don’t impact my check).
 3. Make sure you're using Java 8 or later. 
-4. Build Apache Ignite Data Fabric from the project's root directory:
+4. Build and install Apache Ignite Data Fabric from the project's root directory:
 [block:code]
 {
   "codes": [
@@ -52,7 +52,7 @@ The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you
   ]
 }
 [/block]
-5. Build ML Grid from the project's root directory:
+5. Build and install ML Grid from the project's root directory:
 [block:code]
 {
   "codes": [
@@ -63,6 +63,6 @@ The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you
   ]
 }
 [/block]
-6. Locate the ML Grid jar file in the output directory.
+6. Locate the ML Grid jar (`ignite-ml-{version}.jar`) in your local Maven repository.
 
 If needed, refer to `DEVNOTES.txt` in the project's root folder and `README` files in the `ignite-ml` component for more details.
