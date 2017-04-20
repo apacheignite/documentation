@@ -11,6 +11,14 @@
   "title": "Overview"
 }
 [/block]
+There are two distinct data eviction concepts that are supported in Apache Ignite and used for different purposes - page-based eviction for the off-heap [page memory](doc:page-memory) and cache entries based eviction for the optional [page memory's on-heap cache](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching).
+
+The page-based eviction is configured via page memory policies and covered in 
+[block:api-header]
+{
+  "title": "Page Memory Eviction Modes"
+}
+[/block]
 Eviction policies control the maximum number of elements that can be stored in a cache on-heap memory.  Whenever maximum on-heap cache size is reached, entries are evicted into [off-heap space](doc:off-heap-memory), if one is enabled. 
 
 Some eviction policies support batch eviction and eviction by memory size limit. If batch eviction is enabled than eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted. If eviction by memory size limit is enabled then eviction starts when size of cache entries in bytes becomes greater than the maximum memory size.
