@@ -40,7 +40,7 @@ The examples do not require any special configuration. All ML Grid examples are 
 The latest Apache Ignite ML Grid jar is uploaded to the Maven repository. If you need to take the jar and deploy it in a custom environment, then it can be either downloaded from Maven or built from scratch. To build ML Grid from sources:
 1. Download the latest Apache Ignite source release.
 2. Clean local Maven repo (this is to ensure that older Maven builds don’t impact my check).
-3. Make sure you're using Java 8 or later. ML Grid is not compatible with earlier Java versions.
+3. Make sure you're using Java 8 or later. ML Grid is not compatible with earlier versions of Java.
 4. Build Apache Ignite Data Fabric from the project's root directory:
 [block:code]
 {
