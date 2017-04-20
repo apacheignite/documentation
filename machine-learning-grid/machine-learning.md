@@ -22,11 +22,12 @@ Presently, the beta version supports the following functionality:
   "title": "Getting Started"
 }
 [/block]
+The fast way to get started with ML Grid is to build and run the examples, study their output and code. ML examples are located in the  examples module under ignite root, in package org.apache.ignite.examples.ml
+
 ML Grid is provided as source release. It requires Java 8.
 
 ML package can be obtained from Ignite project root in a module called “ml” (“ignite-ml”), package org.apache.ignite.ml
 
-The fast way to get started with Ignite ML is to build and run the examples, study their output and code. ML examples are located in examples module under ignite root, in package org.apache.ignite.examples.ml
 
 Running examples does not require any special configuration. All Ignite ML examples are supposed to launch, run and stop successfully without any user intervention and provide meaningful output into console.
 
