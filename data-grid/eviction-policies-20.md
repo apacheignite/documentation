@@ -3,8 +3,8 @@
  * [Random-LRU Mode](#section-random-lru-mode)
  * [Random-2-LRU Mode](#section-random-2-lru-mode)
 * [On-heap Cache Eviction Policies](#on-heap-cache-eviction-policies)
- * [Least Recently Used](#section-least-recently-used-lru)
- * [First In First Out](#section-first-in-first-out-fifo)
+ * [Least Recently Used](#section-least-recently-used-lru-)
+ * [First In First Out](#section-first-in-first-out-fifo-)
  * [Sorted](#section-sorted)
  * [Random](#section-random)
 [block:api-header]
