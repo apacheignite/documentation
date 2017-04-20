@@ -13,7 +13,7 @@ Presently, the beta version supports the following functionality:
 {
   "type": "success",
   "title": "ML Grid Roadmap",
-  "body": "In the future, ML Grid will be empowered with distributed versions of the well-known algorithms used for machine learning tasks and predictive analysis. In addition, ML Grid API will be available for such programming languages as Python and Ruby."
+  "body": "In later releases, ML Grid will be empowered with distributed versions of the well-known algorithms used for machine learning tasks and predictive analysis. In addition, ML Grid API will be available for such programming languages as Python and Ruby."
 }
 [/block]
 
