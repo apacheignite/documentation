@@ -138,7 +138,7 @@ Below is an example that leverages from this capability:
 {
   "codes": [
     {
-      "code": "SELECT * FROM table1 USE_INDEX(index_age)\n  WHERE salary > 150000 AND age < 35;",
+      "code": "SELECT * FROM Person USE_INDEX(index_age)\n  WHERE salary > 150000 AND age < 35;",
       "language": "sql"
     }
   ]
