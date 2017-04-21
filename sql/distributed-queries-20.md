@@ -39,12 +39,20 @@ First, if a query is executed against a `REPLICATED` cache on a node where the c
 Second, if a query is executed over a `PARTITIONED` cache, then the execution flow will be the following:
 * The query will be parsed and split into multiple map queries and a single reduce query.
 * All the map queries are executed on all the data nodes where cache data resides.
-* All the nodes provide result sets of local execution to the query initiator (reducing node) that, in turn, will accomplish the reduce phase by properly merging provided result sets.
+* All the nodes provide result sets of local execution to the query initiator (reducer) that, in turn, will accomplish the reduce phase by properly merging provided result sets.
 [block:callout]
 {
   "type": "info",
   "title": "Execution Flow of Cross-Cache Queries",
-  "body": "The execution flow of cross-cache or join queries is not different from the one described for the `PARTITIONED` cache above and will be covered later as part of this documentation."
+  "body": "The execution flow of cross-cache queries or queries with joins is not different from the one described for the `PARTITIONED` cache above and will be covered later as part of this documentation."
+}
+[/block]
+
+[block:callout]
+{
+  "type": "success",
+  "body": "SQL queries with ORDER BY clause do not require loading the whole result set to a query initiator (reducer) node in order to complete the sorting. Instead, every node, where a query will be mapped to, will sort its own part of the overall result set and the reducer will do the merge in a streaming fashion. \n\nThe same optimization is implemented for sorted GROUP BY queries - there is no need to load the whole result set to the reducer in order to do the grouping before giving it to an application. In Apache Ignite partial result sets from the individual nodes can be streamed, merged, aggregated and returned to the application gradually.",
+  "title": "Handling of Result Sets With ORDER BY and GROUP BY"
 }
 [/block]
 
