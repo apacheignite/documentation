@@ -131,14 +131,14 @@ If a query contains `JOINs`, then all the participating caches must have the sam
   "title": "Index Hints"
 }
 [/block]
-Index hints are useful in scenarios when it's known that one index is more selective for certain queries than another and it's needed to instruct the query optimizer to choose a more efficient execution plan.  To do this trick in Apache Ignite use `USE_INDEX(index_list)` statement that tells Ignite to take only one of the named indexes for query execution.
+Index hints are useful in scenarios when it's known that one index is more selective for certain queries than another and it's needed to instruct the query optimizer to choose a more efficient execution plan.  To do this trick in Apache Ignite use `USE INDEX(indexA,...,indexN)` statement that tells Ignite to take only one of the named indexes provided for query execution.
 
 Below is an example that leverages from this capability:
 [block:code]
 {
   "codes": [
     {
-      "code": "SELECT * FROM Person USE_INDEX(index_age)\n  WHERE salary > 150000 AND age < 35;",
+      "code": "SELECT * FROM Person USE INDEX(index_age)\n  WHERE salary > 150000 AND age < 35;",
       "language": "sql"
     }
   ]
