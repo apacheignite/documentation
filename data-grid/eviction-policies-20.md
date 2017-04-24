@@ -45,11 +45,11 @@ To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` 
 Random-LRU algorithm works the following way:
 * Once a memory pool defined by a memory policy is configured, an off-heap array is allocated to track 'last usage' timestamp for every individual data page.
 * When a data page is accessed, its timestamp gets updated in the tracking array.
-* When it's time to evict some pages, the algorithm randomly chooses 5 indexes from the tracking array and evicts a page with the latest timestamp. If some of the indexes point to non-data pages (index or system pages) then the algorithm picks another.
+* When it's time to evict some pages, the algorithm randomly chooses 5 indexes from the tracking array and evicts a page with the latest timestamp. If some of the indexes point to non-data pages (index or system pages), then the algorithm picks another page.
 
 ## Random-2-LRU Mode
 
-To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of Random-LRU, pass `DataPageEvictionMode.RANDOM_2_LRU` value to a respective `MemoryPolicyConfiguration` as it's shown in the example below: 
+To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of Random-LRU, pass `DataPageEvictionMode.RANDOM_2_LRU` value to a respective `MemoryPolicyConfiguration` as shown in the example below: 
 [block:code]
 {
   "codes": [
