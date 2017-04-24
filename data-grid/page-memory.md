@@ -46,7 +46,21 @@ The benefits of the page memory are the following:
 }
 [/block]
 Page memory is a manageable off-heap based memory architecture that splits all continuously allocated memory slabs into pages of fixed size.
-
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/0aa5c62-image1.JPG",
+        "image1.JPG",
+        3264,
+        2448,
+        "#cdc8c4"
+      ]
+    }
+  ]
+}
+[/block]
 Both key-value entries and SQL indexes are stored in memory pages of different types, that are called data pages and index pages respectively, and the pages as the whole page memory are managed by Apache Ignite transparently to the end users. 
 
 Usually, a single data page stores multiple key-value entries in order to use the memory as efficient as possible and to avoid the memory fragmentation. At the time when a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry's total size exceeds the page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one data page.
