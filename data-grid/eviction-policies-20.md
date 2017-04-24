@@ -13,9 +13,9 @@
   "title": "Overview"
 }
 [/block]
-There are two distinct data eviction concepts that are supported in Apache Ignite and used for different purposes - page-based eviction for the off-heap [page memory](doc:page-memory) and cache entries based eviction for the optional [page memory's on-heap cache](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching).
+Apache Ignite supports two distinct data eviction policies - page-based eviction for the off-heap [page memory](doc:page-memory) and cache entries based eviction for the optional [page memory's on-heap cache](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching). 
 
-The page-based eviction is configured via page memory policies and covered in the next section below while the entries based eviction can be enabled with eviction policies that are explained in [on-heap cache eviction policies](#on-heap-cache-eviction-policies) part of the documentation.
+The page-based eviction is configured via page memory policies, as explained in the next section below.  The entries based eviction can be enabled with eviction policies that are explained in [on-heap cache eviction policies](#on-heap-cache-eviction-policies) part of the documentation.
 [block:api-header]
 {
   "title": "Page Memory Eviction Modes"
