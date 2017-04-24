@@ -1,5 +1,5 @@
 * [Overview](#overview)
-* Page-Based Eviction](#section-page-based-eviction)
+* [Page-Based Eviction](#section-page-based-eviction)
  * [Random-LRU Mode](#section-random-lru-mode)
  * [Random-2-LRU Mode](#section-random-2-lru-mode)
 * [On-heap Cache Eviction Policies](#on-heap-cache-eviction-policies)
