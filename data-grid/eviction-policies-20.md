@@ -45,7 +45,7 @@ To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` 
 Random-LRU algorithm works the following way:
 * Once a memory pool defined by a memory policy is configured, an off-heap array is allocated to track 'last usage' timestamp for every individual data page.
 * When a data page is accessed, its timestamp gets updated in the tracking array.
-* When it's time to evict some pages, the algorithm randomly chooses 5 indexes from the tracking array and evicts a page with the latest timestamp. If some of the indexes point to non-data pages (index or system pages), then the algorithm picks another page.
+* When it's time to evict a page, the algorithm randomly chooses 5 indexes from the tracking array and evicts the page with the least recent timestamp. If some of the indexes point to non-data pages (index or system pages), then the algorithm picks another page.
 
 ## Random-2-LRU Mode
 
@@ -64,7 +64,7 @@ To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of 
   ]
 }
 [/block]
-Random-2-LRU differs from Random-LRU only in a way that two latest access timestamps are stored for every data page. At the eviction time, a minimum between two latest timestamps is taken for further comparison with minimums of other pages that chosen as eviction candidates. Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
+The way Random-2-LRU differs from Random-LRU is that in the former two most recent access timestamps are stored for every data page. At the time of eviction, a minimum between two latest timestamps is taken for further comparison with minimums of other pages that are chosen as eviction candidates. Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
 [block:callout]
 {
   "type": "success",
