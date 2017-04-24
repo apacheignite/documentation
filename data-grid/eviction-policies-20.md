@@ -1,5 +1,5 @@
 * [Overview](#overview)
-* [Page Memory Eviction Modes](#page-memory-eviction-modes)
+* Page-Based Evicton](#page-based-eviction)
  * [Random-LRU Mode](#section-random-lru-mode)
  * [Random-2-LRU Mode](#section-random-2-lru-mode)
 * [On-heap Cache Eviction Policies](#on-heap-cache-eviction-policies)
@@ -18,7 +18,7 @@ Apache Ignite supports two distinct data eviction policies - **page-based evicti
 Page-based eviction is configured via page memory policies, as explained in the next section below.  Cache entries based eviction can be enabled by using the eviction policies explained in the [on-heap cache eviction policies](#on-heap-cache-eviction-policies) section of this document.
 [block:api-header]
 {
-  "title": "Page Memory Eviction Modes"
+  "title": "Page-Based Eviction"
 }
 [/block]
 [Page Memory](doc:page-memory) consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached.
@@ -75,7 +75,7 @@ Random-2-LRU differs from Random-LRU only in a way that two latest access timest
 
 [block:api-header]
 {
-  "title": "On-heap Cache Eviction Policies"
+  "title": "On-Heap Cache Entries Based Eviction"
 }
 [/block]
 [Page Memory](doc:page-memory) allows storing hot cache entries in Java heap if [on-heap caching](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching) feature is enabled via `CacheConfiguration.setOnheapCacheEnabled(...)`. Once the on-heap cache is turned on you might need to manage its grows and to do that use one of cache entries eviction policies described below.
