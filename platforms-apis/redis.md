@@ -1,4 +1,4 @@
-Ignite is partially [Redis](http://redis.io/) compliant and enables users to store and retrieve distributed data from Ignite cache using any Redis compatible client.
+Ignite is partially [Redis](http://redis.io/) compliant and enables users to store and retrieve distributed data from Apache Ignite caches using any Redis compatible client.
 
 Starting from version 1.8.0 the following commands are supported by Ignite client:
 - [ECHO](http://redis.io/commands/echo)
