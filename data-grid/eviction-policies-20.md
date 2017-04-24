@@ -13,7 +13,9 @@
   "title": "Overview"
 }
 [/block]
-Apache Ignite supports two distinct data eviction policies - **page-based eviction** for the [off-heap page memory](doc:page-memory) and **cache entries based eviction** for the optional [page memory's on-heap cache](doc:page-memory#section-on-heap-caching). 
+Apache Ignite supports two distinct data eviction policies -
+  * **page-based eviction** for the [off-heap page memory](doc:page-memory). 
+  * **cache entries based eviction** for the optional [page memory's on-heap cache](doc:page-memory#section-on-heap-caching). 
 [block:api-header]
 {
   "title": "Page-Based Eviction"
