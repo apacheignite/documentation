@@ -2,7 +2,7 @@
 * [Page-Based Eviction](#section-page-based-eviction)
  * [Random-LRU Mode](#section-random-lru-mode)
  * [Random-2-LRU Mode](#section-random-2-lru-mode)
-* [On-heap Cache Eviction Policies](#on-heap-cache-eviction-policies)
+* [On-Heap Cache Entries Based Eviction](#on-heap-cache-entries-based-eviction)
  * [Least Recently Used](#section-least-recently-used-lru-)
  * [First In First Out](#section-first-in-first-out-fifo-)
  * [Sorted](#section-sorted)
