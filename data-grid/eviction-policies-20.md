@@ -14,14 +14,12 @@
 }
 [/block]
 Apache Ignite supports two distinct data eviction policies - **page-based eviction** for the [off-heap page memory](doc:page-memory) and **cache entries based eviction** for the optional [page memory's on-heap cache](doc:page-memory#section-on-heap-caching). 
-
-Page-based eviction is configured via page memory policies, as explained in the next section below.  Cache entries based eviction can be enabled by using the eviction policies explained in the [on-heap cache eviction policies](#on-heap-cache-eviction-policies) section of this document.
 [block:api-header]
 {
   "title": "Page-Based Eviction"
 }
 [/block]
-[Page Memory](doc:page-memory) consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached.
+Page-based eviction is configured via page memory policies. [Page Memory](doc:page-memory) consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached.
 
 To avoid possible pool exhaustion, you might need to set one of the data page eviction modes via  the `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. The eviction modes track data pages usage and evict some of them according to a mode's implementation.
 
