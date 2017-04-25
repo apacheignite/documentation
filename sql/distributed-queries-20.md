@@ -86,7 +86,7 @@ There are two general types of SQL queries that are available at Java API level 
 [/block]
 ## SqlFieldsQueries
 
-Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose, Ignite implements a concept of `fields queries`. Basically, `SqlFieldsQuery` accepts a conventional ANSI-99 SQL query as its constructor​ parameter and executes it, as shown in the example below.  
+Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose, Ignite implements a concept of `fields queries`. `SqlFieldsQuery` accepts a conventional ANSI-99 SQL query as its constructor​ parameter and executes it, as shown in the example below.  
 [block:code]
 {
   "codes": [
@@ -98,7 +98,7 @@ Instead of selecting the whole object, you can choose to select only specific fi
   ]
 }
 [/block]
-If a field is of a Java enum type then you can pass the field's value as a parameter via standard `?` keyword or use enum's literal or ordinal value directly as it's shown in the example below:
+If a field is of a Java enum type, then you can pass the field's value as a parameter via standard `?` keyword or use enum's literal or ordinal value directly, as shown in the example below:
 
 [block:code]
 {
@@ -123,7 +123,7 @@ If a field is of a Java enum type then you can pass the field's value as a param
 {
   "type": "info",
   "title": "Accessing Entry's Key and Value",
-  "body": "Use `_key` and `_value` keywords in an SQL query in order to compare to an entry's complete key or value rather than to individual fields. Apply the same keywords if you need to return a key or a value as a result of an SQL query execution.\n\nAt the same time, if a key or value is of a primitive type (int, String, Date, etc.) then it will be added to a result set of `SELECT * FROM ...` like query automatically."
+  "body": "Use `_key` and `_value` keywords in a SQL query in order to compare to an entry's complete key or value rather than to individual fields. Apply the same keywords if you need to return a key or a value as a result of an SQL query execution.\n\nAt the same time, if a key or value is of a primitive type (int, String, Date, etc.) then it will be added to a result set of `SELECT * FROM ...` like query automatically."
 }
 [/block]
 
