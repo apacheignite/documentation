@@ -98,18 +98,6 @@ Instead of selecting the whole object, you can choose to select only specific fi
   ]
 }
 [/block]
-If a field is of a Java enum type, then you can pass the field's value as a parameter via standard `?` keyword or use enum's literal or ordinal value directly, as shown in the example below:
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "// SQL query with the field of Java enum type.\nSqlFieldsQuery sql = new SqlFieldsQuery(\n  \"SELECT name FROM Person WHERE role = 'DEVELOPER' or role = 2\");\n",
-      "language": "java"
-    }
-  ]
-}
-[/block]
 
 [block:callout]
 {
