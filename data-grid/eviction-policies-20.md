@@ -24,7 +24,7 @@ Apache Ignite supports two distinct data eviction policies -
 Page-based eviction is configured via [page memory policies](doc:page-memory#section-memory-policies). [Page Memory](doc:page-memory) consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached. To avoid possible pool exhaustion, you may need to set one of the data page eviction modes - `Random-LRU` or `Random-2-LRU` via the `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. The eviction modes track data pages usage and evict some of them according to a mode's implementation.
 
 ##  Random-LRU
-To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` value to a respective `MemoryPolicyConfiguration` as shown in the example below: 
+To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` value to a respective `MemoryPolicyConfiguration`, as shown in the example below: 
 [block:code]
 {
   "codes": [
@@ -45,7 +45,7 @@ Random-LRU algorithm works the following way:
 * When it's time to evict a page, the algorithm randomly chooses 5 indexes from the tracking array and evicts the page with the least recent timestamp. If some of the indexes point to non-data pages (index or system pages), then the algorithm picks another page.
 
 ## Random-2-LRU
-To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of Random-LRU, pass `DataPageEvictionMode.RANDOM_2_LRU` value to a respective `MemoryPolicyConfiguration` as shown in the example below: 
+To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of Random-LRU, pass `DataPageEvictionMode.RANDOM_2_LRU` value to a respective `MemoryPolicyConfiguration`, as shown in the example below: 
 [block:code]
 {
   "codes": [
