@@ -78,11 +78,11 @@ The way Random-2-LRU differs from Random-LRU is that in the former two most rece
   "title": "On-Heap Cache Entries Based Eviction"
 }
 [/block]
-[Page Memory](doc:page-memory) allows storing hot cache entries in Java heap if [on-heap caching](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching) feature is enabled via `CacheConfiguration.setOnheapCacheEnabled(...)`. Once the on-heap cache is turned on you might need to manage its grows and to do that use one of cache entries eviction policies described below.
+[Page Memory](doc:page-memory) allows storing hot cache entries in Java heap if [on-heap caching](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching) feature is enabled via `CacheConfiguration.setOnheapCacheEnabled(...)`. Once the on-heap cache is turned on, you can use one of cache entries eviction policies to manage the growing on-heap cache.
 
-Eviction policies control the maximum number of elements that can be stored in a cache on-heap memory.  Whenever maximum on-heap cache size is reached, entries are evicted from Java heap. 
+Eviction policies control the maximum number of elements that can be stored in a cache's on-heap memory.  Whenever the maximum on-heap cache size is reached, entries are evicted from Java heap. 
 
-Some eviction policies support batch eviction and eviction by memory size limit. If batch eviction is enabled than eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted. If eviction by memory size limit is enabled then eviction starts when size of cache entries in bytes becomes greater than the maximum memory size.
+Some eviction policies support batch eviction and eviction by memory size limit. If batch eviction is enabled, then eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted. If eviction by memory size limit is enabled, then eviction starts when the size of cache entries in bytes become greater than the maximum memory size.
 [block:callout]
 {
   "type": "info",
