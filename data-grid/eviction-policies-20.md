@@ -21,9 +21,7 @@ Apache Ignite supports two distinct data eviction policies -
   "title": "Page-Based Eviction"
 }
 [/block]
-Page-based eviction is configured via page memory policies. [Page Memory](doc:page-memory) consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached.
-
-To avoid possible pool exhaustion, you might need to set one of the data page eviction modes via  the `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. The eviction modes track data pages usage and evict some of them according to a mode's implementation.
+Page-based eviction is configured via page memory policies. [Page Memory](doc:page-memory) consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached. To avoid possible pool exhaustion, you might need to set one of the data page eviction modes via  the `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. The eviction modes track data pages usage and evict some of them according to a mode's implementation.
 
 ##  Random-LRU
 To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` value to a respective `MemoryPolicyConfiguration` as shown in the example below: 
