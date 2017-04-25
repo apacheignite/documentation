@@ -64,7 +64,17 @@ To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of 
   ]
 }
 [/block]
-In Random-2-LRU two most recent access timestamps are stored for every data page. At the time of eviction, a minimum between two latest timestamps is taken for further comparison with minimums of other pages that are chosen as eviction candidates. Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
+In Random-2-LRU two most recent access timestamps are stored for every data page. At the time of eviction, the algorithm randomly chooses 5 indexes from the tracking array and a minimum between two latest timestamps is taken for further comparison with minimums of four other pages that are chosen as eviction candidates. 
+
+Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
+[block:callout]
+{
+  "type": "info",
+  "title": "Random-LRU vs. Random-2-LRU",
+  "body": "In Random-LRU eviction mode the most recent access timestamp is stored for a data page whereas in Random-2-LRU mode two most recent access timestamps are stored for every data page."
+}
+[/block]
+
 [block:callout]
 {
   "type": "success",
