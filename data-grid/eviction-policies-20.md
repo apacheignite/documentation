@@ -64,7 +64,7 @@ To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of 
   ]
 }
 [/block]
-The way Random-2-LRU differs from Random-LRU is that in the former two most recent access timestamps are stored for every data page. At the time of eviction, a minimum between two latest timestamps is taken for further comparison with minimums of other pages that are chosen as eviction candidates. Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
+In Random-2-LRU two most recent access timestamps are stored for every data page. At the time of eviction, a minimum between two latest timestamps is taken for further comparison with minimums of other pages that are chosen as eviction candidates. Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
 [block:callout]
 {
   "type": "success",
@@ -93,7 +93,7 @@ In Apache Ignite eviction policies are pluggable and are controlled via `Evictio
 
 ## Least Recently Used (LRU)
 
-LRU eviction policy is based on [Least Recently Used (LRU)](http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used) algorithm, which ensures that the least recently used entry (i.e. the entry that has not been touched the longest) gets evicted first. 
+LRU eviction policy is based on the [Least Recently Used (LRU)](http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used) algorithm, that ensures that the least recently used entry (i.e. the entry that has not been touched the longest) gets evicted first. 
 
 Supports batch eviction and eviction by memory size limit.
 [block:callout]
