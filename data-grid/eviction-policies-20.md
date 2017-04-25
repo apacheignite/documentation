@@ -145,9 +145,7 @@ Sorted eviction policy is similar to FIFO eviction policy with the difference th
 
 The default comparator uses cache entries' keys for comparison that imposes a requirement for keys to implement the `Comparable` interface. User can provide their own comparator implementation which can use keys, values or both for entries comparison.
 
-Supports batch eviction and eviction by memory size limit.
-
-This eviction policy is implemented by `SortedEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `SortedEvictionPolicy` and can be configured via `CacheConfiguration`. It supports batch eviction and eviction by memory size limit.
 [block:code]
 {
   "codes": [
@@ -163,8 +161,7 @@ This eviction policy is implemented by `SortedEvictionPolicy` and can be configu
 }
 [/block]
 ## Random
-
-Random eviction policy which randomly chooses entries to evict. This eviction policy is mainly used for debugging and benchmarking purposes.
+Random eviction policy randomly chooses entries to evict. This eviction policy is mainly used for debugging and benchmarking purposes.
 
 This eviction policy is implemented by `RandomEvictionPolicy` and can be configured via `CacheConfiguration`.
 [block:code]
