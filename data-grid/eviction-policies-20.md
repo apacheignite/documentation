@@ -69,7 +69,7 @@ The way Random-2-LRU differs from Random-LRU is that in the former two most rece
 {
   "type": "success",
   "title": "Eviction Triggering",
-  "body": "By default, a data pages eviction algorithm is triggered when the total memory pool consumption gets to 90%. Use `MemoryPolicyConfiguration.setEvictionThreshold(...)` parameter if you need to initiate the eviction earlier or later."
+  "body": "By default, a data page's eviction algorithm is triggered when the total memory pool consumption gets to 90%. Use `MemoryPolicyConfiguration.setEvictionThreshold(...)` parameter if you need to initiate the eviction earlier or later."
 }
 [/block]
 
