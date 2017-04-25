@@ -123,7 +123,7 @@ If a field is of a Java enum type, then you can pass the field's value as a para
 {
   "type": "info",
   "title": "Accessing Entry's Key and Value",
-  "body": "Use `_key` and `_value` keywords in a SQL query in order to compare to an entry's complete key or value rather than to individual fields. Apply the same keywords if you need to return a key or a value as a result of an SQL query execution. Additionally, if a key or value is of a primitive type (int, String, Date, etc.), then it will be automatically added to the result set of a query like - `SELECT * FROM ...`."
+  "body": "Use `_key` and `_value` keywords in a SQL query in order to compare to an entry's complete key or value rather than to individual fields. Apply the same keywords if you need to return a key or a value as a result of an SQL query execution. \nOn the other hand, if a key or value is of a primitive type (int, String, Date, etc.), then it will be automatically added to the result set of a query like - `SELECT * FROM ...`."
 }
 [/block]
 
