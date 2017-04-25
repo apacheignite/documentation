@@ -100,17 +100,14 @@ Some eviction policies support batch eviction and eviction by memory size limit.
 In Apache Ignite eviction policies are pluggable and are controlled via `EvictionPolicy` interface. An implementation of eviction policy is notified of every cache change and defines the algorithm of choosing the entries to evict from on-heap cache of the page memory. 
 
 ## Least Recently Used (LRU)
-
-LRU eviction policy is based on the [Least Recently Used (LRU)](http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used) algorithm, that ensures that the least recently used entry (i.e. the entry that has not been touched the longest) gets evicted first. 
-
-Supports batch eviction and eviction by memory size limit.
+LRU eviction policy, based on the [Least Recently Used (LRU)](http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used) algorithm, ensures that the least recently used entry (i.e. the entry that has not been touched for the longest time) gets evicted first. 
 [block:callout]
 {
   "type": "success",
   "body": "LRU eviction policy nicely fits most of the use cases for on-heap caching. Use it whenever in doubt."
 }
 [/block]
-This eviction policy is implemented by `LruEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `LruEvictionPolicy` and can be configured via `CacheConfiguration`. It supports batch eviction and eviction by memory size limit.
 [block:code]
 {
   "codes": [
@@ -126,12 +123,9 @@ This eviction policy is implemented by `LruEvictionPolicy` and can be configured
 }
 [/block]
 ## First In First Out (FIFO)
+FIFO eviction policy, based on the [First-In-First-Out (FIFO)](https://en.wikipedia.org/wiki/FIFO) algorithm, ensures that entry that has been in the on-heap cache for the longest time will be evicted first. It is different from `LruEvictionPolicy` because it ignores the access order of entries. 
 
-FIFO eviction policy is based on [First-In-First-Out (FIFO)](https://en.wikipedia.org/wiki/FIFO) algorithm which ensures that entry that has been in the on-heap cache the longest will be evicted first. It is different from `LruEvictionPolicy` because it ignores the access order of entries. 
-
-Supports batch eviction and eviction by memory size limit.
-
-This eviction policy is implemented by `FifoEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `FifoEvictionPolicy` and can be configured via `CacheConfiguration`. It supports batch eviction and eviction by memory size limit.
 [block:code]
 {
   "codes": [
@@ -147,10 +141,9 @@ This eviction policy is implemented by `FifoEvictionPolicy` and can be configure
 }
 [/block]
 ## Sorted
+Sorted eviction policy is similar to FIFO eviction policy with the difference that entries' order is defined by default or by user defined comparator and ensures that the minimal entry (i.e. the entry that has an integer key with the smallest value) gets evicted first.
 
-Sorted eviction policy is similar to FIFO eviciton policy with the difference that entries order is defined by default or user defined comparator and ensures that the minimal entry (i.e. the entry that has integer key with smallest value) gets evicted first.
-
-Default comparator uses cache entries keys for comparison that imposes a requirement for keys to implement `Comparable` interface. User can provide own comparator implementation which can use keys, values or both for entries comparison.
+The default comparator uses cache entries' keys for comparison that imposes a requirement for keys to implement the `Comparable` interface. User can provide their own comparator implementation which can use keys, values or both for entries comparison.
 
 Supports batch eviction and eviction by memory size limit.
 
