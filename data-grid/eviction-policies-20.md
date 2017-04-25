@@ -25,7 +25,7 @@ Page-based eviction is configured via page memory policies. [Page Memory](doc:pa
 
 To avoid possible pool exhaustion, you might need to set one of the data page eviction modes via  the `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. The eviction modes track data pages usage and evict some of them according to a mode's implementation.
 
-## Random-LRU Mode
+## Random-LRU
 
 To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` value to a respective `MemoryPolicyConfiguration` as shown in the example below: 
 [block:code]
@@ -47,7 +47,7 @@ Random-LRU algorithm works the following way:
 * When a data page is accessed, its timestamp gets updated in the tracking array.
 * When it's time to evict a page, the algorithm randomly chooses 5 indexes from the tracking array and evicts the page with the least recent timestamp. If some of the indexes point to non-data pages (index or system pages), then the algorithm picks another page.
 
-## Random-2-LRU Mode
+## Random-2-LRU
 
 To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of Random-LRU, pass `DataPageEvictionMode.RANDOM_2_LRU` value to a respective `MemoryPolicyConfiguration` as shown in the example below: 
 [block:code]
