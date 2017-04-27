@@ -69,18 +69,25 @@ Every memory region has the maximum size it can grow to. The region expands to i
   "body": "If a memory region is not limited explicitly via respective `MemoryPolicyConfiguration` then it can take up to 80% RAM available on your machine."
 }
 [/block]
-A memory chunk is a physical continuous block of memory obtained from an underlying operating system. The chunk is divided into 
+A memory chunk is a physical continuous byte array obtained from an underlying operating system. The chunk is divided into pages of fixed size. There are several types of pages that can reside in the chunk. Let's review all of them. 
   
+# Data Page
 
-Usually, a single data page stores multiple key-value entries in order to use the memory as efficient as possible and to avoid the memory fragmentation. At the time when a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry's total size exceeds the page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one data page.
+A data page stores cache entries you put into Apache Ignite caches from an application side. 
+
+Usually, a single data page holds multiple key-value entries in order to use the memory as efficient as possible and to avoid memory fragmentation. Basically, when a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry's total size exceeds the page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one data page.
 [block:callout]
 {
   "type": "info",
   "title": "Entry Ownership by Data Page",
-  "body": "A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can no longer fit it then the page memory will search for a new page that has enough room to take the updated entry and will move the entry there."
+  "body": "A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can no longer fit it then the page memory will search for a new data page that has enough room to take the updated entry and will move the entry there."
 }
 [/block]
+# Index Page
 
+# B+Tree Metadata and Structure
+
+# Free Lists Metadata and Structure
 
 ## Configuration Parameters
 
