@@ -39,22 +39,38 @@ The new memory architecture has the following benefits:
   "title": "Page Memory"
 }
 [/block]
-Page memory is a manageable off-heap based memory architecture that splits all continuously allocated memory slabs into pages of fixed size.
+Page memory is a manageable off-heap based memory architecture that is split into pages of fixed size. Let's take a look at the picture below and get to know more about this memory architecture.
 [block:image]
 {
   "images": [
     {
       "image": [
-        "https://files.readme.io/0aa5c62-image1.JPG",
-        "image1.JPG",
-        3264,
-        2448,
-        "#cdc8c4"
+        "https://files.readme.io/ad3ac88-Page-Memory-Diagram-v2.png",
+        "Page-Memory-Diagram-v2.png",
+        799,
+        749,
+        "#d0c7cd"
       ]
     }
   ]
 }
 [/block]
+# Memory Regions
+
+The whole page memory of an individual Apache Ignite node can consist of one or many memory regions. A memory region is a logical expandable area that is configured with [memory policy](doc:page-memory#memory-policies). The regions can vary in size, eviction policies and other parameters explained in memory policy section below.   
+
+# Memory Chunk
+
+Every memory region has the maximum size it can grow to. The region expands to its maximum boundary allocating continuous memory chunks.
+[block:callout]
+{
+  "type": "success",
+  "title": "Default Maximum Size",
+  "body": "If a memory region is not limited explicitly via respective `MemoryPolicyConfiguration` then it can take up to 80% RAM available on your machine."
+}
+[/block]
+A memory chunk is a physical 
+  
 Both key-value entries and SQL indexes are stored in memory pages of different types, that are called data pages and index pages respectively, and the pages as the whole page memory are managed by Apache Ignite transparently to the end users. 
 
 Usually, a single data page stores multiple key-value entries in order to use the memory as efficient as possible and to avoid the memory fragmentation. At the time when a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry's total size exceeds the page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one data page.
