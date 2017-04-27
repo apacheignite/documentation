@@ -55,11 +55,11 @@ Page memory is a manageable off-heap based memory architecture that is split int
   ]
 }
 [/block]
-# Memory Regions
+## Memory Regions
 
 The whole page memory of an individual Apache Ignite node can consist of one or many memory regions. A memory region is a logical expandable area that is configured with [memory policy](doc:page-memory#memory-policies). The regions can vary in size, eviction policies and other parameters explained in memory policy section below.   
 
-# Memory Chunk
+## Memory Chunk
 
 Every memory region has the maximum size it can grow to. The region expands to its maximum boundary allocating continuous memory chunks.
 [block:callout]
@@ -71,7 +71,7 @@ Every memory region has the maximum size it can grow to. The region expands to i
 [/block]
 A memory chunk is a physical continuous byte array obtained from an underlying operating system. The chunk is divided into pages of fixed size. There are several types of pages that can reside in the chunk. Let's review all of them. 
   
-# Data Page
+## Data Page
 
 A data page stores cache entries you put into Apache Ignite caches from an application side. 
 
@@ -83,11 +83,11 @@ Usually, a single data page holds multiple key-value entries in order to use the
   "body": "A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can no longer fit it then the page memory will search for a new data page that has enough room to take the updated entry and will move the entry there."
 }
 [/block]
-# Index Page
+## Index Page
 
-# B+Tree Metadata and Structure
+## B+Tree Metadata and Structure
 
-# Free Lists Metadata and Structure
+## Free Lists Metadata and Structure
 
 ## Configuration Parameters
 
