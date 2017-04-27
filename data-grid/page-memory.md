@@ -69,9 +69,8 @@ Every memory region has the maximum size it can grow to. The region expands to i
   "body": "If a memory region is not limited explicitly via respective `MemoryPolicyConfiguration` then it can take up to 80% RAM available on your machine."
 }
 [/block]
-A memory chunk is a physical 
+A memory chunk is a physical continuous block of memory obtained from an underlying operating system. The chunk is divided into 
   
-Both key-value entries and SQL indexes are stored in memory pages of different types, that are called data pages and index pages respectively, and the pages as the whole page memory are managed by Apache Ignite transparently to the end users. 
 
 Usually, a single data page stores multiple key-value entries in order to use the memory as efficient as possible and to avoid the memory fragmentation. At the time when a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry's total size exceeds the page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one data page.
 [block:callout]
@@ -81,7 +80,7 @@ Usually, a single data page stores multiple key-value entries in order to use th
   "body": "A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can no longer fit it then the page memory will search for a new page that has enough room to take the updated entry and will move the entry there."
 }
 [/block]
-The page memory can encompass multiple continuous memory slabs with distinct properties such as slab size or an eviction policy (refer to [memory policies](doc:page-memory#memory-policies) section below). However, by default, an Apache Ignite node sets up and initiates a single continuous memory slab that will be used by all the Apache Ignite caches defined in your configuration.
+
 
 ## Configuration Parameters
 
@@ -136,7 +135,7 @@ An example below shows how to change page size and concurrency level parameters 
   "title": "Memory Policies"
 }
 [/block]
-By default, the page memory initiates a single continuous memory slab that is used by all the caches configured and deployed in your cluster. However, there is a way to define multiple memory slabs with various parameters and custom behavior relying on memory policies' API.
+By default, the page memory initiates a single expandable memory region that can take up to 80% of all the memory available on a local machine. However, there is a way to define multiple memory regions with various parameters and custom behavior relying on memory policies' API.
 
 A memory policy is a set of configuration parameters, that are exposed through `org.apache.ignite.configuration.MemoryPolicyConfiguration`, like slab size, an eviction policy, a swapping file and more.
 
