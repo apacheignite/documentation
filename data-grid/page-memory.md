@@ -83,9 +83,17 @@ Usually, a single data page holds multiple key-value entries in order to use the
   "body": "A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can no longer fit it then the page memory will search for a new data page that has enough room to take the updated entry and will move the entry there."
 }
 [/block]
-## Index Page
+## B+Tree and Index Page
 
-## B+Tree Metadata and Structure
+SQL indexes that might be defined and used in your application are arranged and maintained in a form of B+Tree data structures. For every unique index, that is declared in an SQL schema, Apache Ignite instantiates and manages a dedicated B+Tree instance. 
+[block:callout]
+{
+  "type": "success",
+  "title": "Hash Index",
+  "body": "Cache entries keys are also referenced from B+Tree data structures. They're ordered by hash code value."
+}
+[/block]
+As it's shown in the picture above, the whole purpose of B+Tree is to link and order index pages that are allocated and stored in random physical locations of a memory chunk. An index page contains all the information 
 
 ## Free Lists Metadata and Structure
 
