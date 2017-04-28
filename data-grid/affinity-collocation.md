@@ -125,7 +125,7 @@ The code snippet below shows how to customize and set an affinity function:
 [block:callout]
 {
   "type": "info",
-  "body": "It is useful to arrange partitions in a cluster in such a way that primary and backup copies are not located on the same physical machine. To ensure this property, a user can set `excludeNeighbors` flag on both `RendezvousAffinityFunction` and `FairAffinityFunction`.\n\nSometimes it is also useful to have primary and backup copies of a partition on different racks. In this case, a user may assign a specific attribute to each node and then use `AffinityBackupFilter` property of `RendezvousAffinityFunction` to exclude nodes from the same rack that are candidates for backup copy assignment.",
+  "body": "It is useful to arrange partitions in a cluster in such a way that primary and backup copies are not located on the same physical machine. To ensure this property, a user can set `excludeNeighbors` flag on `RendezvousAffinityFunction`.\n\nSometimes it is also useful to have primary and backup copies of a partition on different racks. In this case, a user may assign a specific attribute to each node and then use `AffinityBackupFilter` property of `RendezvousAffinityFunction` to exclude nodes from the same rack that are candidates for backup copy assignment.",
   "title": "Crash-safe Affinity"
 }
 [/block]
