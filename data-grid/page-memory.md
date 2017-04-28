@@ -93,8 +93,15 @@ SQL indexes that might be defined and used in your application are arranged and 
   "body": "Cache entries keys are also referenced from B+Tree data structures. They're ordered by hash code value."
 }
 [/block]
-As it's shown in the picture above, the whole purpose of B+Tree is to link and order index pages that are allocated and stored in random physical locations of a memory chunk. An index page contains all the information 
+As it's shown in the picture above, the whole purpose of B+Tree is to link and order the index pages that are allocated and stored in random physical locations of the page memory. Internally, an index page contains all the information needed to locate index's value, cache entry offset in a data page an index refers to or references to another index pages in order to traverse the tree. 
 
+B+Tree Meta Page is needed to get to the root of a specific B+Tree and to its layers for efficient execution of range queries. For instance, when `myCache.get(keyA)` operation is executed it will trigger the following execution flow on a primary node:
+* Apache Ignite will find out a memory region `myCache` belongs to.
+* Inside of that memory region a meta page of a B+Tree that orders keys of `myCache` will be located.
+* Hash code of `keyA` will be calculated and an index page the key belongs to will be looked for.
+* If the corresponding index page is not found then it means the key-value pair doesn't exist in `myCache` and Apache Ignite return `null` as a result of `myCache.get(keyA)`.
+* If the index page exists then it will contain all the information needed to find a data page of the cache entry `keyA` refers to and return the value back to your application.
+ 
 ## Free Lists Metadata and Structure
 
 ## Configuration Parameters
