@@ -90,7 +90,7 @@ SQL indexes that might be defined and used in your application are arranged and 
 {
   "type": "success",
   "title": "Hash Index",
-  "body": "Cache entries keys are also referenced from B+Tree data structures. They're ordered by hash code value."
+  "body": "Cache entries' keys are also referenced from B+Tree data structures. They're ordered by hash code value."
 }
 [/block]
 As it's shown in the picture above, the whole purpose of B+Tree is to link and order the index pages that are allocated and stored in random physical locations of the page memory. Internally, an index page contains all the information needed to locate index's value, cache entry offset in a data page an index refers to or references to another index pages in order to traverse the tree. 
