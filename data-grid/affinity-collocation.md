@@ -111,7 +111,7 @@ The code snippet below shows how to customize and set an affinity function:
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n\t<property name=\"cacheConfiguration\">\n  \t<list>\n    \t<!-- Creating a cache configuration. -->\n      <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n      \t<property name=\"name\" value=\"myCache\"/>\n\n        <!-- Creating the affinity function with custom setting. -->\n        <property name=\"affinityFunction\">\n        \t<bean         class=\"org.apache.ignite.cache.affinity.rendezvous.RendezvousAffinityFunction\">\n        \t\t<property name=\"excludeNeighbors\" value=\"true\"/>\n            <property name=\"partitions\" value=\"2048\"/>\n          </bean>\n        </property>\n      </bean>\n    </list>\n  </property>\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n\t<property name=\"cacheConfiguration\">\n  \t<list>\n    \t<!-- Creating a cache configuration. -->\n      <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n      \t<property name=\"name\" value=\"myCache\"/>\n\n        <!-- Creating the affinity function with custom setting. -->\n        <property name=\"affinity\">\n        \t<bean         class=\"org.apache.ignite.cache.affinity.rendezvous.RendezvousAffinityFunction\">\n        \t\t<property name=\"excludeNeighbors\" value=\"true\"/>\n            <property name=\"partitions\" value=\"2048\"/>\n          </bean>\n        </property>\n      </bean>\n    </list>\n  </property>\n</bean>",
       "language": "xml"
     },
     {
