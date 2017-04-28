@@ -105,6 +105,23 @@ Affinity of a partition controls which grid node or nodes a partition will be ca
 Ignite is shipped with `RendezvousAffinityFunction` which allows a bit of discrepancy in partition-to-node mapping (i.e. some nodes may be responsible for a slightly larger number of partitions than others), however, it guarantees that when topology changes, partitions are migrated only to a joined node or only from a left node. No data exchange will happen between existing nodes in a cluster.
 
 Note that the cache affinity function does not directly map keys to nodes, it maps keys to partitions. A partition is simply a number from a limited set (0 to 1024 by default). After the keys are mapped to their partitions (i.e. they get their partition numbers), the existing partition-to-nodes mapping is used for current topology version. A key-to-partition mapping must not change over the time.
+
+The code snippet below shows how to customize and set an affinity function:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n\t<property name=\"cacheConfiguration\">\n  \t<list>\n    \t<!-- Creating a cache configuration. -->\n      <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n      \t<property name=\"name\" value=\"myCache\"/>\n\n        <!-- Creating the affinity function with custom setting. -->\n        <property name=\"affinityFunction\">\n        \t<bean         class=\"org.apache.ignite.cache.affinity.rendezvous.RendezvousAffinityFunction\">\n        \t\t<property name=\"excludeNeighbors\" value=\"true\"/>\n            <property name=\"partitions\" value=\"2048\"/>\n          </bean>\n        </property>\n      </bean>\n    </list>\n  </property>\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "// Preparing Apache Ignite node configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n        \n// Creating a cache configuration.\nCacheConfiguration cacheCfg = new CacheConfiguration(\"myCache\");\n\n// Creating the affinity function with custom setting.\nRendezvousAffinityFunction affFunc = new RendezvousAffinityFunction();\n        \naffFunc.setExcludeNeighbors(true);\n        \naffFunc.setPartitions(2048);\n\n// Applying the affinity function configuration.\ncacheCfg.setAffinity(affFunc);\n        \n// Setting the cache configuration.\ncfg.setCacheConfiguration(cacheCfg);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
 [block:callout]
 {
   "type": "info",
