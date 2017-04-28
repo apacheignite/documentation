@@ -99,7 +99,7 @@ B+Tree Meta Page is needed to get to the root of a specific B+Tree and to its la
 * Apache Ignite will find out a memory region `myCache` belongs to.
 * Inside of that memory region a meta page of a B+Tree that orders keys of `myCache` will be located.
 * Hash code of `keyA` will be calculated and an index page, the key belongs to, will be looked for.
-* If the corresponding index page is not found then it means the key-value pair doesn't exist in `myCache` and Apache Ignite return `null` as a result of `myCache.get(keyA)`.
+* If the corresponding index page is not found then it means the key-value pair doesn't exist in `myCache` and Apache Ignite will return `null` as a result of `myCache.get(keyA)`.
 * If the index page exists then it will contain all the information needed to find a data page of the cache entry `keyA` refers to and return the value back to your application.
  
 ## Free Lists Metadata and Structure
