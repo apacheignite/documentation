@@ -58,9 +58,12 @@ The properties are divided into global ones that are exposed over `CacheConfigur
     "3-2": "`false`",
     "6-0": "`setPartitions(...)`",
     "6-1": "Sets partitions for a query execution. The query will be executed only on nodes which are primary for specified partitions.",
-    "6-2": "`null`"
+    "6-2": "`null` (ignored)",
+    "8-0": "`setAlias(...)`",
+    "8-1": "Sets alias that can be used as table name in a query string.",
+    "8-2": "`null` (ignored)"
   },
   "cols": 3,
-  "rows": 8
+  "rows": 9
 }
 [/block]
