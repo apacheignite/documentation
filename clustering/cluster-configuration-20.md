@@ -246,27 +246,28 @@ If you're using [ZooKeeper](https://zookeeper.apache.org/) to coordinate your di
   "title": "Failure Detection Timeout"
 }
 [/block]
-Failure detection timeout is used to determine how long a cluster node should wait before considering a remote connection with other node failed. This timeout is the easiest way to tune discovery SPI's failure detection feature depending on the network and hardware conditions of your cluster.
+Failure detection timeout is used to determine how long a cluster node should wait before considering a remote connection with other node failed. This timeout is the easiest way to tune discovery SPI's failure detection feature depending on the network and hardware conditions of your environment.
 [block:callout]
 {
   "type": "warning",
-  "body": "The timeout automatically controls such configuration parameters of `TcpDiscoverySpi` as socket timeout, message acknowledgment timeout and others. If any of these parameters is set explicitly, then the failure timeout setting will be ignored."
+  "body": "The timeout automatically controls such configuration parameters of `TcpDiscoverySpi` as socket timeout, message acknowledgment timeout and others. If any of these parameters is set explicitly, then the failure timeout setting will be ignored.",
+  "title": ""
 }
 [/block]
-Failure detection timeout is configured with `IgniteConfiguration.setFailureDetectionTimeout(long failureDetectionTimeout)` method. Default value, that is equal to 10 seconds, is chosen in a way to make it possible for discovery SPI to work reliably on most of hardware and virtual deployments, but this has made failure detection time worse. However, for stable low-latency networks the parameter may be set to ~200 milliseconds in order to detect and react on failures quicker.       
+The failure detection timeout is configured with `IgniteConfiguration.setFailureDetectionTimeout(long)` for Apache Ignite server nodes and `IgniteConfiguration.setClientFailureDetectionTimeout(long)` for client nodes respectively. The default value, that is equal to 10 seconds for the server nodes and 30 seconds for the client nodes, is chosen in a way to make it possible for discovery SPI to work reliably on most of on-premise and containerized deployments. However, for stable low-latency networks, the parameter can be set to ~200 milliseconds in order to detect and react to​ failures quicker.       
 [block:api-header]
 {
   "type": "basic",
   "title": "Configuration"
 }
 [/block]
-Following configuration parameters can be optionally configured on `TcpDiscoverySpi`.
+Below you can see the most frequently used `TcpDiscoverySpi` configuration parameters. Refer to `TcpDiscoverySpi` javadoc to see the full list of configuration options.
 [block:parameters]
 {
   "data": {
     "0-0": "`setIpFinder(TcpDiscoveryIpFinder)`",
     "0-1": "IP finder that is used to share info about nodes IP addresses.",
-    "0-2": "`TcpDiscoveryMulticastIpFinder`\n\nProvided implementations can be used:\n`TcpDiscoverySharedFsIpFinder`\n`TcpDiscoveryS3IpFinder`\n`TcpDiscoveryJdbcIpFinder`\n`TcpDiscoveryVmIpFinder`",
+    "0-2": "`TcpDiscoveryMulticastIpFinder`\n\nSome of the implementations that can be used:\n`TcpDiscoverySharedFsIpFinder`\n`TcpDiscoveryS3IpFinder`\n`TcpDiscoveryJdbcIpFinder`\n`TcpDiscoveryVmIpFinder`",
     "h-0": "Setter Method",
     "h-1": "Description",
     "h-2": "Default",
@@ -284,45 +285,37 @@ Following configuration parameters can be optionally configured on `TcpDiscovery
     "3-1": "Local port range. \nLocal node will try to bind on first available port starting from local port up until local port + local port range.",
     "3-2": "100",
     "3-3": "100",
-    "4-0": "`setHeartbeatFrequency(long)`",
-    "4-1": "Delay in milliseconds between heartbeat issuing of heartbeat messages. \nSPI sends messages in configurable time interval to other nodes to notify them about its state.",
-    "4-3": "2000",
-    "4-2": "2000",
-    "5-0": "`setMaxMissedHeartbeats(int)`",
-    "5-1": "Number of heartbeat requests that could be missed before local node initiates status check.",
-    "5-3": "1",
-    "5-2": "1",
-    "6-0": "`setReconnectCount(int)`",
-    "6-1": "Number of times node tries to (re)establish connection to another node.",
-    "6-3": "2",
-    "6-2": "2",
-    "7-0": "`setNetworkTimeout(long)`",
-    "7-1": "Sets maximum network timeout in milliseconds to use for network operations.",
-    "7-2": "5000",
-    "7-3": "5000",
-    "8-0": "`setSocketTimeout(long)`",
-    "8-1": "Sets socket operations timeout. This timeout is used to limit connection time and write-to-socket time.",
-    "8-2": "2000",
-    "8-3": "2000",
-    "9-0": "`setAckTimeout(long)`",
-    "9-1": "Sets timeout for receiving acknowledgement for sent message. \nIf acknowledgement is not received within this timeout, sending is considered as failed and SPI tries to repeat message sending.",
-    "9-2": "2000",
-    "9-3": "2000",
-    "10-0": "`setJoinTimeout(long)`",
-    "10-1": "Sets join timeout. If non-shared IP finder is used and node fails to connect to any address from IP finder, node keeps trying to join within this timeout. If all addresses are still unresponsive, exception is thrown and node startup fails. \n0 means wait forever.",
-    "10-2": "0",
-    "10-3": "0",
-    "11-0": "`setThreadPriority(int)`",
-    "11-1": "Thread priority for threads started by SPI.",
-    "11-2": "0",
-    "11-3": "0",
-    "12-0": "`setStatisticsPrintFrequency(int)`",
-    "12-1": "Statistics print frequency in milliseconds. \n0 indicates that no print is required. If value is greater than 0 and log is not quiet then stats are printed out with INFO level once a period. This may be very helpful for tracing topology problems.",
-    "12-2": "true",
-    "12-3": "true",
-    "13-0": ""
+    "4-0": "`setReconnectCount(int)`",
+    "4-1": "Number of times node tries to (re)establish connection to another node.",
+    "4-3": "2",
+    "4-2": "2",
+    "5-0": "`setNetworkTimeout(long)`",
+    "5-1": "Sets maximum network timeout in milliseconds to use for network operations.",
+    "5-2": "5000",
+    "5-3": "5000",
+    "6-0": "`setSocketTimeout(long)`",
+    "6-1": "Sets socket operations timeout. This timeout is used to limit connection time and write-to-socket time.",
+    "6-2": "2000",
+    "6-3": "2000",
+    "7-0": "`setAckTimeout(long)`",
+    "7-1": "Sets timeout for receiving acknowledgement for sent message. \nIf acknowledgement is not received within this timeout, sending is considered as failed and SPI tries to repeat message sending.",
+    "7-2": "2000",
+    "7-3": "2000",
+    "8-0": "`setJoinTimeout(long)`",
+    "8-1": "Sets join timeout. If non-shared IP finder is used and node fails to connect to any address from IP finder, node keeps trying to join within this timeout. If all addresses are still unresponsive, exception is thrown and node startup fails. \n0 means wait forever.",
+    "8-2": "0",
+    "8-3": "0",
+    "9-0": "`setThreadPriority(int)`",
+    "9-1": "Thread priority for threads started by SPI.",
+    "9-2": "0",
+    "9-3": "0",
+    "10-0": "`setStatisticsPrintFrequency(int)`",
+    "10-1": "Statistics print frequency in milliseconds. \n0 indicates that no print is required. If value is greater than 0 and log is not quiet then stats are printed out with INFO level once a period. This may be very helpful for tracing topology problems.",
+    "10-2": "true",
+    "10-3": "true",
+    "11-0": ""
   },
   "cols": 3,
-  "rows": 13
+  "rows": 11
 }
 [/block]
