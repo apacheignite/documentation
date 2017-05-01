@@ -4,6 +4,7 @@ The following page covers these topics:
 * [SQL Performance and Usability Considerations](#sql-performance-and-usability-considerations)
 * [Query Parallelism](#query-parallelism)
 * [Index Hints](#index-hints)
+* 
 * [Advanced DML Optimizations](#advanced-dml-optimizations)
 
 To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.readme.io/docs/indexes#indexes-tradeoffs).
@@ -146,6 +147,12 @@ Below is an example that leverages from this capability:
 }
 [/block]
 
+[block:api-header]
+{
+  "title": "Querying Replicated Caches"
+}
+[/block]
+If a SQL query is executed over the data stored across replicated caches only, then you may want to set the `SqlQuery.setReplicatedOnly(...)` parameter to `true`. This is a special hint to the SQL engine that might produce a more effective execution plan for the query.
 [block:api-header]
 {
   "type": "basic",
