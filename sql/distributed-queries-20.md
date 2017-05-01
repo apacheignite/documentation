@@ -239,6 +239,14 @@ The following code snippet is provided from the [CacheQueryExample](https://gith
 }
 [/block]
 Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details.
+[block:callout]
+{
+  "type": "success",
+  "title": "JOINing Replicated Caches",
+  "body": "If a SQL query is executed over the data stored across replicated caches only then you may want to set `SqlQuery.setReplicatedOnly(...)` parameter to `true`. This is a special hint to the SQL engine that might produce a more effective execution plan for such a query."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
