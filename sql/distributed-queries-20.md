@@ -242,8 +242,8 @@ Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot
 [block:callout]
 {
   "type": "success",
-  "title": "JOINing Replicated Caches",
-  "body": "If a SQL query is executed over the data stored across replicated caches only then you may want to set `SqlQuery.setReplicatedOnly(...)` parameter to `true`. This is a special hint to the SQL engine that might produce a more effective execution plan for such a query."
+  "title": "Querying Replicated Caches",
+  "body": "If a SQL query is executed over the data stored across replicated caches only, then you may want to set the `SqlQuery.setReplicatedOnly(...)` parameter to `true`. This is a special hint to the SQL engine that might produce a more effective execution plan for the query."
 }
 [/block]
 
