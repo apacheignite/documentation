@@ -33,7 +33,7 @@ To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` 
       "language": "xml"
     },
     {
-      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 20 GB memory region with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Region_Eviction\");\n\n// Initial size is 5 GB.\nmemPlc.setInitialSize(5L * 1024 * 1024 * 1024);\n\n// Maximum size is 5 GB.\nmemPlc.setMaxSize(20L * 1024 * 1024 * 1024)\n\n// Enabling RANDOM_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
+      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 20 GB memory region with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Region_Eviction\");\n\n// Initial size is 5 GB.\nmemPlc.setInitialSize(5L * 1024 * 1024 * 1024);\n\n// Maximum size is 5 GB.\nmemPlc.setMaxSize(20L * 1024 * 1024 * 1024);\n\n// Enabling RANDOM_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
       "language": "java"
     }
   ]
@@ -54,7 +54,7 @@ To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of 
       "language": "xml"
     },
     {
-      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 20 GB memory region with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Region_Eviction\");\n\n// Initial size is 5 GB.\nmemPlc.setInitialSize(5L * 1024 * 1024 * 1024);\n\n// Maximum size is 5 GB.\nmemPlc.setMaxSize(20L * 1024 * 1024 * 1024)\n\n// Enabling RANDOM_2_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
+      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 20 GB memory region with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Region_Eviction\");\n\n// Initial size is 5 GB.\nmemPlc.setInitialSize(5L * 1024 * 1024 * 1024);\n\n// Maximum size is 5 GB.\nmemPlc.setMaxSize(20L * 1024 * 1024 * 1024);\n\n// Enabling RANDOM_2_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
       "language": "java"
     }
   ]
