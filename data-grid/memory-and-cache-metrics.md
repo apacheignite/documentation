@@ -89,5 +89,7 @@ The interface has a variety of metrics such as a total number of put and get ope
 
 There are several ways how you can the latest metrics snapshot of a specific cache:
 * `IgniteCache.metrics()` - gets metrics snapshot of the whole cluster where the cache is deployed.
-* `IgniteCache.metrics(ClusterGroup grp)` - gets metrics snapshot for Apache Ignite nodes that belong to a provided cluster group.
+* `IgniteCache.metrics(ClusterGroup grp)` - gets metrics snapshot for Apache Ignite nodes that belong to a passed cluster group.
 * `IgniteCache.localMetrics()` - gets local node's metrics snapshot for the cache.
+
+Alternatively, you can get an access to the cache metrics via `CacheMetricsMXBean` interface. You can connect to the bean from any JMX-compliant tool or API. If you need to work with the bean from your application use `IgniteCache.mxBean()` or `IgniteCache.localMxBean()` to get a bean reference.
