@@ -54,7 +54,7 @@ Call `Ignite.memoryMetrics()` method to get the latest metrics snapshot and iter
 
 Alternatively, the page memory state can be observed with `MemoryMetricsMXBean` interface. You can connect to the bean from any JMX-compliant tool or API.
 
-The JMX bean exposes the same set of metrics `MemoryMetrics` interface has and, at the same time, offers some new listed below:
+The JMX bean exposes the same set of metrics `MemoryMetrics` interface has and, at the same time, offers some new listed below. Some of these bean-specific methods will be added to `MemoryMetrics` interface in the future releases:
 [block:parameters]
 {
   "data": {
