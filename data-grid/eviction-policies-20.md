@@ -21,7 +21,7 @@ Apache Ignite supports two distinct data eviction policies -
   "title": "Page-Based Eviction"
 }
 [/block]
-Page-based eviction is configured via [page memory policies](doc:page-memory#section-memory-policies). [Page Memory](doc:page-memory) consists of one or more memory pools configured by `MemoryPolicyConfigurations`. By default, a pool constantly grows in size until its maximum size is reached. To avoid possible pool exhaustion, you may need to set one of the data page eviction modes - `Random-LRU` or `Random-2-LRU` via the `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. The eviction modes track data pages usage and evict some of them according to a mode's implementation.
+Page-based eviction is configured via [page memory policies](doc:page-memory#section-memory-policies). [Page Memory](doc:page-memory) consists of one or more memory regions configured by `MemoryPolicyConfigurations`. By default, a region constantly grows in size until its maximum size is reached. To avoid possible region exhaustion, you may need to set one of the data page eviction modes - `Random-LRU` or `Random-2-LRU` via the `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. The eviction modes track data pages usage and evict some of them according to a mode's implementation.
 
 ##  Random-LRU
 To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` value to a respective `MemoryPolicyConfiguration`, as shown in the example below: 
@@ -29,7 +29,7 @@ To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` 
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 20 GB memory pool with RANDOM_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Pool_Eviction\"/>\n        <!-- Total size of 20 GB. -->\n        <property name=\"size\" value=\"#{20L * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 20 GB memory region with RANDOM_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Region_Eviction\"/>\n      \t<!-- Initial size is 5 GB. -->\n      \t<property name=\"initialSize\" value=\"#{5 * 1024 * 1024 * 1024}\"/>\n        <!-- Maximum size is 20 GB. -->\n        <property name=\"maxSize\" value=\"#{20 * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {
@@ -40,7 +40,7 @@ To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` 
 }
 [/block]
 Random-LRU algorithm works the following way:
-* Once a memory pool defined by a memory policy is configured, an off-heap array is allocated to track 'last usage' timestamp for every individual data page.
+* Once a memory region defined by a memory policy is configured, an off-heap array is allocated to track 'last usage' timestamp for every individual data page.
 * When a data page is accessed, its timestamp gets updated in the tracking array.
 * When it's time to evict a page, the algorithm randomly chooses 5 indexes from the tracking array and evicts the page with the least recent timestamp. If some of the indexes point to non-data pages (index or system pages), then the algorithm picks another page.
 
@@ -50,7 +50,7 @@ To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of 
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 20 GB memory pool with RANDOM_2_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Pool_Eviction\"/>\n        <!-- Total size of 20 GB. -->\n        <property name=\"size\" value=\"#{20L * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_2_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 20 GB memory pool with RANDOM_2_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Region_Eviction\"/>\n      \t<!-- Initial size is 5 GB. -->\n      \t<property name=\"initialSize\" value=\"#{5 * 1024 * 1024 * 1024}\"/>\n        <!-- Maximum size is 20 GB. -->\n        <property name=\"maxSize\" value=\"#{20 * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_2_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {
@@ -75,7 +75,7 @@ Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data p
 {
   "type": "success",
   "title": "Eviction Triggering",
-  "body": "By default, a data page's eviction algorithm is triggered when the total memory pool consumption gets to 90%. Use `MemoryPolicyConfiguration.setEvictionThreshold(...)` parameter if you need to initiate the eviction earlier or later."
+  "body": "By default, a data page's eviction algorithm is triggered when the total memory region's consumption gets to 90%. Use `MemoryPolicyConfiguration.setEvictionThreshold(...)` parameter if you need to initiate the eviction earlier or later."
 }
 [/block]
 
