@@ -96,7 +96,11 @@ Apache Ignite ODBC Driver was officially tested on:
   "title": "Building ODBC Driver"
 }
 [/block]
-Ignite ODBC Driver is shipped with the source code as part of the Apache Ignite package and should be built before the usage. For instructions on how to download and set up Apache Ignite, please refer to [Getting Started](doc:getting-started) page.
+Apache Ignite is now shipped with pre-built installers for both 32- and 64-bit versions of the driver for Windows. So if you just want to install ODBC driver on Windows you may go straight to the [Installing ODBC Driver](#installing-odbc-driver) section for installation instructions.
+
+If you use Linux you will still need to build ODBC driver before you can install it. So if you are using Linux or if you still want to build the driver by yourself for Windows, then keep reading.
+
+Ignite ODBC Driver source code is shipped as part of the Apache Ignite package and it should be built before the usage. For instructions on how to download and set up Apache Ignite, please refer to [Getting Started](doc:getting-started) page.
 
 Since the ODBC Driver is written in C++, it is shipped as part of the Apache Ignite C++ and depends on some of the C++ libraries. More specifically, it depends on `utils` and `binary` Ignite libraries. It means that you will need to build them prior to building the ODBC driver itself.
 
@@ -109,7 +113,30 @@ You will need MS Visual Studio 2010 or later to be able to build the ODBC driver
   "body": "If you are using VS 2015 or later (MSVC 14.0 or later), you need to add `legacy_stdio_definitions.lib` as an additional library to `odbc` project linker's settings in order to be able to build the project. To add this library to the linker input in the IDE, open the context menu for the project node, choose `Properties`, then in the `Project Properties` dialog box, choose `Linker`, and edit the `Linker Input` to add `legacy_stdio_definitions.lib` to the semi-colon-separated list."
 }
 [/block]
-Once the build process is over, you can find `ignite.odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release`.
+Once the build process is over, you can find `ignite.odbc.dll` in `%IGNITE_HOME%\platforms\cpp\project\vs\x64\Release` for the 64-bit version and in `%IGNITE_HOME%\platforms\cpp\project\vs\Win32\Release` for the 32-bit version.
+
+## Building installers on Windows
+
+Once you have built driver binaries you may want to build installers for easier installation. Ignite uses [WiX Toolset](http://wixtoolset.org) to generate ODBC installers, so to build them you'll need to download and install WiX. Make sure you have added `bin` directory of the WiX Toolset to your PATH variable.
+
+Once everything is ready, open terminal and navigate to the directory `%IGNITE_HOME%\platforms\cpp\odbc\install`. Execute the following commands one by one to build drivers:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "candle.exe ignite-odbc-amd64.wxs\nlight.exe -ext WixUIExtension ignite-odbc-amd64.wixobj",
+      "language": "shell",
+      "name": "64-bit driver"
+    },
+    {
+      "code": "candle.exe ignite-odbc-x86.wxs\nlight.exe -ext WixUIExtension ignite-odbc-x86.wixobj",
+      "language": "shell",
+      "name": "32-bit driver"
+    }
+  ]
+}
+[/block]
+As a result, `ignite-odbc-amd64.msi` and `ignite-odbc-x86.msi` files should appear in the directory. You can use them to install your freshly built drivers.
 
 ## Building on Linux
 On a Linux-based operating system, you will need to install an ODBC Driver Manager of your choice to be able to build and use the Ignite ODBC Driver. The Apache Ignite ODBC Driver has been tested with [UnixODBC](http://www.unixodbc.org).
@@ -148,10 +175,19 @@ The path should look like -  `/usr/local/lib/libignite-odbc.so`
 In order to use ODBC driver, you need to register it in your system so that your ODBC Driver Manager will be able to locate it.
 
 ## Installing on Windows
+
 For 32-bit Windows, you should use 32-bit version of the driver. For the
 64-bit Windows, you can use 64-bit driver as well as 32-bit. You may want to install both 32-bit and 64-bit drivers on 64-bit Windows to be able to use your driver from both 32-bit and 64-bit applications.
 
-To install driver on Windows, you should first choose a directory on your
+### Installing using installers
+
+This is the easiest way and one should use it by default. Just launch installer for the version of the driver that you need and follow instructions:
+- 32-bit installer: `%IGNITE_HOME%\platforms\cpp\bin\odbc\ignite-odbc-x86.msi`
+- 64-bit installer: `%IGNITE_HOME%\platforms\cpp\bin\odbc\ignite-odbc-amd64.msi`
+
+### Installing manually
+
+To install driver on Windows manually, you should first choose a directory on your
 file system where your driver or drivers will be located. Once you have
 chosen the location, you have to put your driver there and ensure that all driver
 dependencies can be resolved as well, i.e., they can be found either in the %PATH% or
