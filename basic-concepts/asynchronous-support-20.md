@@ -11,13 +11,14 @@
 [/block]
 Most distributed operations on Ignite APIs can be executed either synchronously or asynchronously. Asynchronous method names end with `Async` suffix.
 
-Asynchronous operations return instance of `IgniteFuture` or it's subclass. You may either wait for result using one of `IgniteFuture.get()` methods, or register a closure which will be executed once operation is completed.
+Asynchronous operations return instance of `IgniteFuture` or it's subclass. You may either synchronously wait for result using one of `IgniteFuture.get()` methods, or register a closure which will be executed once operation is completed using using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods.
 [block:code]
 {
   "codes": [
     {
-      "code": "K get(V val);\nIgniteFuture<K> getAsync(V val);",
-      "language": "java"
+      "code": "K get(V val);\n\nIgniteFuture<K> getAsync(V val);",
+      "language": "java",
+      "name": "Example"
     }
   ]
 }
@@ -29,8 +30,12 @@ Asynchronous operations return instance of `IgniteFuture` or it's subclass. You 
 }
 [/block]
 Asynchronous operations can be found on the following interfaces:
-* A
-* B
+* `IgniteCompute`
+* `IgniteCache`
+* `Transaction`
+* `IgniteServices`
+* `IgniteMessaging`
+* `IgniteEvents`
 [block:api-header]
 {
   "title": "Listening and chaining futures"
@@ -39,7 +44,7 @@ Asynchronous operations can be found on the following interfaces:
 
 [block:callout]
 {
-  "type": "info",
+  "type": "warning",
   "title": "Method Return Values",
   "body": "Note, that if async mode is enabled, actual synchronously returned values of methods should be ignored. The only way to obtain a return value from an asynchronous operation is from the `future()` method."
 }
