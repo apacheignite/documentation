@@ -1,7 +1,7 @@
 * [Overview](#section-overview)
 * [Interfaces](#section-interfaces)
 * [Listening and chaining futures](#section-listening-and-chaining-futures)
-* [@IgniteAsyncSupported Annotation](#igniteasyncsupported)
+* [@IgniteAsyncSupported annotation](#igniteasyncsupported)
 [block:api-header]
 {
   "type": "basic",
@@ -60,3 +60,10 @@ One may register a closure which will be executed once operation is completed us
   "body": "If future is already completed, closures passed to `listen()` and `chain()` methods will be executed synchronously in the caller thread. \n\nIf future is not completed yet, closure will be executed asynchronously in completion thread. Typically it will be a thread from system pool for cache operations, or a thread from public pool for compute operations. Therefore, you should avoid synchronous cache and compute operations in listeners for asynchronous cache and compute operations (respectively). Otherwise it may lead to a deadlock."
 }
 [/block]
+
+[block:api-header]
+{
+  "title": "IgniteAsyncSupport"
+}
+[/block]
+In previous versions of Apache Ignite asynchronous operations was executed using `IgniteAsyncSupport` interface. This technique is considered deprecated and should not be used anymore. `IgniteAsyncSupport` will be removed in future releases.
