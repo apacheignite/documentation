@@ -40,6 +40,7 @@ Ignite data grid is lightning fast and is one of the fastest implementations of 
 }
 [/block]
 ##Features
+* [Page Memory](doc:page-memory) 
 * [JCache and Beyond](doc:jcache) 
 * [Cache Modes](doc:cache-modes) 
 * [Primary & Backup Copies](doc:primary-and-backup-copies) 
