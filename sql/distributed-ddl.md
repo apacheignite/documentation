@@ -1,14 +1,22 @@
 * [Overview](#section-overview)
 * [CREATE INDEX](#section-create-index)
 * [DROP INDEX](#section-drop-index)
-* [Native API](#section-native-api)
+* [Apache Ignite SQL API](#section-apache-ignite-sql-api)
 * [JDBC driver](#section-jdbc-driver)
 [block:api-header]
 {
   "title": "Overview"
 }
 [/block]
-It is possible to create and drop SQL indexes dynamically on existing tables. Both native SQL or JDBC/ODBC drivers could be used.
+Starting with Apache Ignite 2.0 it is possible to use Data Definition Language (DDL) statements for the sake of SQL indexes creation and removal in runtime. Both native Apache Ignite SQL APIs, as well as JDBC and ODBC drivers, can be used for a SQL schema modifications.
+[block:callout]
+{
+  "type": "success",
+  "title": "Full-fledged DDL Support",
+  "body": "In the future Apache Ignite releases, you can expect to see support for additional widely used DDL statements."
+}
+[/block]
+
 [block:api-header]
 {
   "title": "CREATE INDEX"
@@ -16,7 +24,9 @@ It is possible to create and drop SQL indexes dynamically on existing tables. Bo
 [/block]
 Syntax:
 `CREATE [SPATIAL] INDEX [IF NOT EXISTS] indexName ON tableName (indexColumn, ...)`
-`indexColumn := columnName [ASC|DESC]`
+`indexColumn := columnName [ASC|DESC]` where `tableName` is a name of the type stored in a distirbuted cache.
+
+Here is how a simple sorted index can be created:​
 [block:code]
 {
   "codes": [
@@ -28,7 +38,7 @@ Syntax:
   ]
 }
 [/block]
-
+To create a composite index use a command like the one below:
 [block:code]
 {
   "codes": [
@@ -40,7 +50,7 @@ Syntax:
   ]
 }
 [/block]
-
+Add `SPATIAL` keyword to define a geo-spatial index:
 [block:code]
 {
   "codes": [
@@ -74,10 +84,10 @@ Syntax:
 
 [block:api-header]
 {
-  "title": "Native API"
+  "title": "Apache Ignite SQL API"
 }
 [/block]
-DDL commands could be executed through `SqlFieldsQuery`.
+DDL commands could be executed via `SqlFieldsQuery` class as it's shown below:
 [block:code]
 {
   "codes": [
@@ -94,7 +104,7 @@ DDL commands could be executed through `SqlFieldsQuery`.
   "title": "JDBC driver"
 }
 [/block]
-Example below demonstrates how to create an index with Ignite JDBC driver.
+The example below demonstrates how to create an index with Apache Ignite JDBC driver.
 [block:code]
 {
   "codes": [
