@@ -38,7 +38,7 @@ Compute task could be routed to particular pool using `IgniteCompute.withExecuto
 {
   "codes": [
     {
-      "code": "public class OuterRunnable implements IgniteRunnable {    \n    @IgniteInstanceResource\n    private Ignite ignite;\n    \n    @Override public void run() {\n        // Execute nested runnable in custom executor.\n        ignite.compute().withExecutor(\"myPool\").run(new InnerRunnable());\n    }\n}",
+      "code": "public class OuterRunnable implements IgniteRunnable {    \n    @IgniteInstanceResource\n    private Ignite ignite;\n    \n    @Override public void run() {\n        // Synchronously execute InnerRunnable in custom executor.\n        ignite.compute().withExecutor(\"myPool\").run(new InnerRunnable());\n    }\n}",
       "language": "java",
       "name": "OuterRunnable"
     }
