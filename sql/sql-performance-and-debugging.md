@@ -3,6 +3,8 @@ The following page covers these topics:
 * [Using H2 Debug Console](#using-h2-debug-console)
 * [SQL Performance and Usability Considerations](#sql-performance-and-usability-considerations)
 * [Query Parallelism](#query-parallelism)
+* [Index Hints](#index-hints)
+* [Querying Replicated Caches](#querying-replicated-caches)
 * [Advanced DML Optimizations](#advanced-dml-optimizations)
 
 To learn more on indexes tradeoffs refer to [this documentation section](http://apacheignite.readme.io/docs/indexes#indexes-tradeoffs).
@@ -125,6 +127,32 @@ If a query contains `JOINs`, then all the participating caches must have the sam
 }
 [/block]
 
+[block:api-header]
+{
+  "title": "Index Hints"
+}
+[/block]
+Index hints are useful in scenarios when it's known that one index is more suitable for certain queries than another. They are also needed to instruct the query optimizer to choose a more efficient execution plan. To do this optimization in Apache Ignite, you can use
+ `USE INDEX(indexA,...,indexN)` statement that tells Ignite to apply only one of the named indexes provided for query execution.
+
+Below is an example that leverages from this capability:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "SELECT * FROM Person USE INDEX(index_age)\n  WHERE salary > 150000 AND age < 35;",
+      "language": "sql"
+    }
+  ]
+}
+[/block]
+
+[block:api-header]
+{
+  "title": "Querying Replicated Caches"
+}
+[/block]
+If a SQL query is executed over the data stored across replicated caches only, then you may want to set the `SqlQuery.setReplicatedOnly(...)` parameter to `true`. This is a special hint to the SQL engine that might produce a more effective execution plan for the query.
 [block:api-header]
 {
   "type": "basic",
