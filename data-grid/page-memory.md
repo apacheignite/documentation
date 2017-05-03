@@ -45,11 +45,11 @@ Page memory is a manageable off-heap based memory architecture that is split int
   "images": [
     {
       "image": [
-        "https://files.readme.io/ad3ac88-Page-Memory-Diagram-v2.png",
-        "Page-Memory-Diagram-v2.png",
-        799,
-        749,
-        "#d0c7cd"
+        "https://files.readme.io/0bf1bbf-Page-Memory-Diagram-v3.png",
+        "Page-Memory-Diagram-v3.png",
+        800,
+        787,
+        "#cfc5c7"
       ]
     }
   ]
@@ -57,7 +57,7 @@ Page memory is a manageable off-heap based memory architecture that is split int
 [/block]
 ## Memory Regions
 
-The whole page memory of an individual Apache Ignite node can consist of one or many memory regions. A memory region is a logical expandable area that is configured with [memory policy](doc:page-memory#memory-policies). The regions can vary in size, eviction policies and other parameters explained in memory policy section below.   
+The whole page memory of an individual Apache Ignite node can consist of one or many memory regions. A memory region is a logical expandable area that is configured with a [memory policy](doc:page-memory#memory-policies). The regions can vary in size, eviction policies and other parameters explained in the memory policy section below.   
 
 ## Memory Chunk
 
@@ -73,7 +73,7 @@ A memory chunk is a physical continuous byte array obtained from an underlying o
   
 ## Data Page
 
-A data page stores cache entries you put into Apache Ignite caches from an application side. 
+A data page stores cache entries you put into Apache Ignite caches from an application side (data pages are colored in green in the picture above).
 
 Usually, a single data page holds multiple key-value entries in order to use the memory as efficient as possible and to avoid memory fragmentation. Basically, when a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry's total size exceeds the page size configured via `MemoryConfiguration.setPageSize(..)` parameter then the entry will occupy more than one data page.
 [block:callout]
@@ -93,16 +93,29 @@ SQL indexes that might be defined and used in your application are arranged and 
   "body": "Cache entries' keys are also referenced from B+Tree data structures. They're ordered by hash code value."
 }
 [/block]
-As it's shown in the picture above, the whole purpose of B+Tree is to link and order the index pages that are allocated and stored in random physical locations of the page memory. Internally, an index page contains all the information needed to locate index's value, cache entry offset in a data page an index refers to or references to another index pages in order to traverse the tree. 
+As it's shown in the picture above, the whole purpose of B+Tree is to link and order the index pages that are allocated and stored in random physical locations of the page memory. Internally, an index page contains all the information needed to locate index's value, cache entry's offset in a data page an index refers to, references to another index pages in order to traverse the tree (index pages are colored in purple in the picture above). 
 
-B+Tree Meta Page is needed to get to the root of a specific B+Tree and to its layers for efficient execution of range queries. For instance, when `myCache.get(keyA)` operation is executed it will trigger the following execution flow on a primary node:
-* Apache Ignite will find out a memory region `myCache` belongs to.
+B+Tree Meta Page is needed to get to the root of a specific B+Tree and to its layers for efficient execution of range queries. For instance, when `myCache.get(keyA)` operation is executed it will trigger the following execution flow on an Apache Ignite node:
+* Apache Ignite will look for a memory region `myCache` belongs to.
 * Inside of that memory region a meta page of a B+Tree that orders keys of `myCache` will be located.
-* Hash code of `keyA` will be calculated and an index page, the key belongs to, will be looked for.
-* If the corresponding index page is not found then it means the key-value pair doesn't exist in `myCache` and Apache Ignite will return `null` as a result of the `myCache.get(keyA)` call.
-* If the index page exists then it will contain all the information needed to find a data page of the cache entry `keyA` refers to and return the value back to your application.
+* Hash code of `keyA` will be calculated and an index page, the key belongs to, will be searched for in the B+Tree.
+* If the corresponding index page is not found then it means the key-value pair doesn't exist in `myCache` and Apache Ignite will return `null` as a result of the `myCache.get(keyA)` operation.
+* If the index page exists then it will contain all the information needed to find a data page of the cache entry `keyA` refers to.
+* The cache entry is taken from the data page and returned to your application.
  
 ## Free Lists Metadata and Structure
+
+The execution flow from the previous section explains how a cache entry is being looked up in the page memory when you want to get it from your application. However, how does the page memory know where to put a new cache entry if an operation like `myCache.put(keyA, valueA)` is called?
+
+In this scenario, the page memory relies on free lists data structures. Basically, a free list is doubly linked list that stores references to memory pages of approximately equal free space left. For instance, there is a free list that stores all the data pages that have up to 75% free space left and a list that keeps track of the index pages with 25% capacity left. Data and index pages are tracked in separate free lists.
+
+Keeping this in mind, the execution flow of `myCache.put(keyA, valueA)` operation on an Apache Ignite node, that is a primary or backup one for the entry, will be more or less the following:
+* Apache Ignite will look for a memory region `myCache` belongs to.
+* Inside of that memory region a meta page of a B+Tree that orders keys of `myCache` will be located.
+* Hash code of `keyA` will be calculated and an index page, the key belongs to, will be searched for in the B+Tree.
+* If the index page is not found then it will be requested from one of the free lists depending on the index size. A targeted free list will be found by the help of a free list meta page. Once the index page is provided it will be added to the B+Tree structure.
+* If the index page doesn't already contain a data page the cache entry has to be placed into then the data page will be given by one of the free lists depending on the total cache entry size. A reference to the data page will be added from the index page.
+* The cache entry added into the data page.
 
 ## Configuration Parameters
 
