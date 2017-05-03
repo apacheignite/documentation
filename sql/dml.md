@@ -127,11 +127,7 @@ The example below shows how to achieve this.
   ]
 }
 [/block]
-## HashCode Resolution and Equality Comparison for Custom Keys 
 
-After creating a custom key and defining its fields using `QueryEntity`, you need to take care of the way the hash code is calculated for the key, and the way the key is compared with others.
-
-By default, [BinaryArrayIdentityResolver](http://apacheignite.gridgain.org/v1.8/docs/binary-marshaller#handling-hash-code-generation-and-equals-execution) is used for hash code calculation and equality comparison of all the objects that are serialized and stored or transferred in Ignite. The same resolver will be used for your custom complex keys unless you change it to [BinaryFieldIdentityResolver](http://apacheignite.gridgain.org/docs/binary-marshaller#section-binary-field-identity-resolver) which is more suitable for keys used in DML statements, or switch to your custom resolver.
 [block:api-header]
 {
   "type": "basic",
