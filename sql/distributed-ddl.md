@@ -1,5 +1,5 @@
 * [Overview](#section-overview)
-* [CREATE/DROP INDEX]((#section-create-drop-index)
+* [CREATE/DROP INDEX](#section-createdrop-index)
 [block:api-header]
 {
   "title": "Overview"
