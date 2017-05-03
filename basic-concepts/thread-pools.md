@@ -1,46 +1,65 @@
+* [Overview](#section-overview) 
+* [System Pool](#section-system-pool)
+* [Public Pool](#section-public-pool)
+* [Queries Pool](#section-queries-pool)
+* [Services Pool](#section-services-pool)
+* [Striped Pool](#section-striped-pool)
+* [Data Streamer Pool](#section-data-streamer-pool)
 * [Custom Thread Pools](#section-custom-thread-pools)
 [block:api-header]
 {
   "title": "Overview"
 }
 [/block]
-Apache Ignite creates and maintains a variety of Thread pools that are used for different purposes depending on an API that is being used. In this documentation, we list some of the most well-known internal pools and show how you can create a custom one.
+Apache Ignite creates and maintains a variety of Thread pools that are used for different purposes depending on an API that is being used. In this documentation, we list some of the most well-known internal pools and show how you can create a custom one. Refer to `IgniteConfiguration` javadoc to get the full list of all the pools available in Apache Ignite.
 [block:api-header]
 {
   "title": "System Pool"
 }
 [/block]
+The system pool processes all the cache related operations except for SQL and some other types of queries that go to the [queries pool](#section-queries-pool). Also, this pool is responsible for Ignite Compute tasks' cancellation operations processing.
 
+The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setSystemThreadPoolSize(...)` to change the pool size.
 [block:api-header]
 {
   "title": "Public Pool"
 }
 [/block]
+The public pool is a work-horse of Apache Ignite compute grid. All computations get and processed by this pool.  
 
+The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setPublicThreadPoolSize(...)` to change the pool size.
 [block:api-header]
 {
   "title": "Queries Pool"
 }
 [/block]
+The queries pool takes care of all SQL, Scan and SPI queries that are being sent and executed across the cluster.
 
+The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setQueryThreadPoolSize(...)` to change the pool size.
 [block:api-header]
 {
-  "title": "Service Thread Pool"
+  "title": "Services Pool"
 }
 [/block]
+Apache Ignite Service Grid calls go to the services' thread pool. Having dedicated pools for Ignite Service and Compute Grid components allows us to avoid threads starvation and deadlocks when a service implementation wants to call a computation or vice verse.
 
+The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setServiceThreadPoolSize(...)` to change the pool size.
 [block:api-header]
 {
   "title": "Striped Pool"
 }
 [/block]
+The striped pool helps to accelerate basic cache operations and transactions significantly by spreading the operations execution across multiple stripes that don't contend with each other.
 
+The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setStripedPoolSize(...)` to change the pool size.
 [block:api-header]
 {
-  "title": "Data Streamer Thread Pool"
+  "title": "Data Streamer Pool"
 }
 [/block]
+The data streamer pool processes all the messages and requests coming from `IgniteDataStreamer` and a variety of streaming adapters that use `IgniteDataStreamer` internally. 
 
+The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setDataStreamerThreadPoolSize(...)` to change the pool size.
 [block:api-header]
 {
   "title": "Custom Thread Pools"
