@@ -1,7 +1,7 @@
 * [Overview](#section-overview)
 * [Interfaces](#section-interfaces)
 * [Listening and chaining futures](#section-listening-and-chaining-futures)
-* [@IgniteAsyncSupported annotation](#igniteasyncsupported)
+* [IgniteAsyncSupport](#section-igniteasyncsupport)
 [block:api-header]
 {
   "type": "basic",
