@@ -4,9 +4,9 @@
   "title": "Custom Thread Pools"
 }
 [/block]
-It is possible to configure custom thread pools for compute tasks. This is useful if you want to synchronously execute one compute task from another without a risk of deadlock: just make sure that nested task is executed in another thread pool.
+It is possible to configure a custom thread pool for Ignite Compute tasks. This is useful if you want to execute one compute task from another synchronously avoiding deadlocks. To guarantee this, you need to make sure that a nested task is executed in a  thread pool different from the parent's tasks thread pool.
 
-Custom pool should be defined in configuration before node start and must have unique name.
+A custom pool is defined in `IgniteConfiguration` and has to have a unique name:
 [block:code]
 {
   "codes": [
