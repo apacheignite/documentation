@@ -94,7 +94,7 @@ DDL commands could be executed through `SqlFieldsQuery`.
   "title": "JDBC driver"
 }
 [/block]
-Example below demonstrates how to create and index with Ignite JDBC driver.
+Example below demonstrates how to create an index with Ignite JDBC driver.
 [block:code]
 {
   "codes": [
