@@ -1,134 +1,176 @@
 * [Overview](#overview)
-* [Least Recently Used](#least-recently-used-lru)
-* [First In First Out](#first-in-first-out-fifo)
-* [Sorted](#sorted)
-* [Random](#random)
+* [Page-Based Eviction](#section-page-based-eviction)
+ * [Random-LRU](#section-random-lru)
+ * [Random-2-LRU](#section-random-2-lru)
+* [On-Heap Cache Entries Based Eviction](#on-heap-cache-entries-based-eviction)
+ * [Least Recently Used](#section-least-recently-used-lru-)
+ * [First In First Out](#section-first-in-first-out-fifo-)
+ * [Sorted](#section-sorted)
+ * [Random](#section-random)
 [block:api-header]
 {
   "type": "basic",
   "title": "Overview"
 }
 [/block]
-Eviction policies control the maximum number of elements that can be stored in a cache on-heap memory.  Whenever maximum on-heap cache size is reached, entries are evicted into [off-heap space](doc:off-heap-memory), if one is enabled. 
+Apache Ignite supports two distinct data eviction policies -
+  * **page-based eviction** for the [off-heap page memory](doc:page-memory). 
+  * **cache entries based eviction** for the optional [page memory's on-heap cache](doc:page-memory#section-on-heap-caching). 
+[block:api-header]
+{
+  "title": "Page-Based Eviction"
+}
+[/block]
+Page-based eviction is configured via [page memory policies](doc:page-memory#section-memory-policies). [Page Memory](doc:page-memory) consists of one or more memory regions configured by `MemoryPolicyConfigurations`. By default, a region constantly grows in size until its maximum size is reached. To avoid possible region exhaustion, you may need to set one of the data page eviction modes - `Random-LRU` or `Random-2-LRU` via the `MemoryPolicyConfiguration.setPageEvictionMode(...)` configuration parameter. The eviction modes track data pages usage and evict some of them according to a mode's implementation.
 
-Some eviction policies support batch eviction and eviction by memory size limit. If batch eviction is enabled than eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted. If eviction by memory size limit is enabled then eviction starts when size of cache entries in bytes becomes greater than the maximum memory size.
+##  Random-LRU
+To enable Random-LRU eviction algorithm, pass `DataPageEvictionMode.RANDOM_LRU` value to a respective `MemoryPolicyConfiguration`, as shown in the example below: 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 20 GB memory region with RANDOM_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Region_Eviction\"/>\n      \t<!-- Initial size is 5 GB. -->\n      \t<property name=\"initialSize\" value=\"#{5 * 1024 * 1024 * 1024}\"/>\n        <!-- Maximum size is 20 GB. -->\n        <property name=\"maxSize\" value=\"#{20 * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 20 GB memory region with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Region_Eviction\");\n\n// Initial size is 5 GB.\nmemPlc.setInitialSize(5L * 1024 * 1024 * 1024);\n\n// Maximum size is 5 GB.\nmemPlc.setMaxSize(20L * 1024 * 1024 * 1024);\n\n// Enabling RANDOM_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+Random-LRU algorithm works the following way:
+* Once a memory region defined by a memory policy is configured, an off-heap array is allocated to track 'last usage' timestamp for every individual data page.
+* When a data page is accessed, its timestamp gets updated in the tracking array.
+* When it's time to evict a page, the algorithm randomly chooses 5 indexes from the tracking array and evicts the page with the least recent timestamp. If some of the indexes point to non-data pages (index or system pages), then the algorithm picks another page.
+
+## Random-2-LRU
+To enable Random-2-LRU eviction algorithm, which is a scan-resistant version of Random-LRU, pass `DataPageEvictionMode.RANDOM_2_LRU` value to a respective `MemoryPolicyConfiguration`, as shown in the example below: 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.MemoryConfiguration\">\n  <!-- Defining additional memory poolicies. -->\n  <property name=\"memoryPolicies\">\n    <list>\n      <!--\n          Defining a policy for 20 GB memory region with RANDOM_2_LRU eviction.\n      -->\n      <bean class=\"org.apache.ignite.configuration.MemoryPolicyConfiguration\">\n        <property name=\"name\" value=\"20GB_Region_Eviction\"/>\n      \t<!-- Initial size is 5 GB. -->\n      \t<property name=\"initialSize\" value=\"#{5 * 1024 * 1024 * 1024}\"/>\n        <!-- Maximum size is 20 GB. -->\n        <property name=\"maxSize\" value=\"#{20 * 1024 * 1024 * 1024}\"/>\n        <!-- Enabling RANDOM_2_LRU eviction. -->\n        <property name=\"pageEvictionMode\" value=\"RANDOM_2_LRU\"/>\n      </bean>\n    </list>\n    ...\n  </property>\n  ...\n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "// Defining additional memory poolicies.\nMemoryConfiguration memCfg = new MemoryConfiguration();\n\n// Defining a policy for 20 GB memory region with RANDOM_LRU eviction.\nMemoryPolicyConfiguration memPlc = new MemoryPolicyConfiguration();\n\nmemPlc.setName(\"20GB_Region_Eviction\");\n\n// Initial size is 5 GB.\nmemPlc.setInitialSize(5L * 1024 * 1024 * 1024);\n\n// Maximum size is 5 GB.\nmemPlc.setMaxSize(20L * 1024 * 1024 * 1024);\n\n// Enabling RANDOM_2_LRU eviction.\nmemPlc.setPageEvictionMode(DataPageEvictionMode.RANDOM_2_LRU);\n        \n// Setting the new memory policy.\nmemCfg.setMemoryPolicies(memPlc);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+In Random-2-LRU two most recent access timestamps are stored for every data page. At the time of eviction, the algorithm randomly chooses 5 indexes from the tracking array and a minimum between two latest timestamps is taken for further comparison with minimums of four other pages that are chosen as eviction candidates. 
+
+Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data page is accessed rarely, but accidentally accessed once, it's protected from eviction for a long time.
+[block:callout]
+{
+  "type": "info",
+  "title": "Random-LRU vs. Random-2-LRU",
+  "body": "In Random-LRU eviction mode the most recent access timestamp is stored for a data page whereas in Random-2-LRU mode two most recent access timestamps are stored for every data page."
+}
+[/block]
+
+[block:callout]
+{
+  "type": "success",
+  "title": "Eviction Triggering",
+  "body": "By default, a data page's eviction algorithm is triggered when the total memory region's consumption gets to 90%. Use `MemoryPolicyConfiguration.setEvictionThreshold(...)` parameter if you need to initiate the eviction earlier or later."
+}
+[/block]
+
+[block:api-header]
+{
+  "title": "On-Heap Cache Entries Based Eviction"
+}
+[/block]
+[Page Memory](doc:page-memory) allows storing hot cache entries in Java heap if [on-heap caching](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching) feature is enabled via `CacheConfiguration.setOnheapCacheEnabled(...)`. Once the on-heap cache is turned on, you can use one of cache entries eviction policies to manage the growing on-heap cache.
+
+Eviction policies control the maximum number of elements that can be stored in a cache's on-heap memory.  Whenever the maximum on-heap cache size is reached, entries are evicted from Java heap. 
+
+Some eviction policies support batch eviction and eviction by memory size limit. If batch eviction is enabled, then eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted. If eviction by memory size limit is enabled, then eviction starts when the size of cache entries in bytes become greater than the maximum memory size.
 [block:callout]
 {
   "type": "info",
   "body": "Batch eviction is supported only if maximum memory limit isn't set."
 }
 [/block]
-In Ignite eviction policies are pluggable and are controlled via `EvictionPolicy` interface. An implementation of eviction policy is notified of every cache change and defines the algorithm of choosing the entries to evict from cache. 
-[block:callout]
-{
-  "type": "info",
-  "body": "If your data set can fit in memory, then eviction policy will not provide any benefit and should be disabled, which is the default behavior."
-}
-[/block]
+In Apache Ignite eviction policies are pluggable and are controlled via `EvictionPolicy` interface. An implementation of eviction policy is notified of every cache change and defines the algorithm of choosing the entries to evict from on-heap cache of the page memory. 
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Least Recently Used (LRU)"
-}
-[/block]
-LRU eviction policy is based on [Least Recently Used (LRU)](http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used) algorithm, which ensures that the least recently used entry (i.e. the entry that has not been touched the longest) gets evicted first. 
-
-Supports batch eviction and eviction by memory size limit.
+## Least Recently Used (LRU)
+LRU eviction policy, based on the [Least Recently Used (LRU)](http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used) algorithm, ensures that the least recently used entry (i.e. the entry that has not been touched for the longest time) gets evicted first. 
 [block:callout]
 {
   "type": "success",
-  "body": "LRU eviction policy nicely fits most of the use cases for caching. Use it whenever in doubt."
+  "body": "LRU eviction policy nicely fits most of the use cases for on-heap caching. Use it whenever in doubt."
 }
 [/block]
-This eviction policy is implemented by `LruEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `LruEvictionPolicy` and can be configured via `CacheConfiguration`. It supports batch eviction and eviction by memory size limit.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- LRU eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.lru.LruEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n  \n  <!-- Enabling on-heap caching for this distributed cache. -->\n  <property name=\"onheapCacheEnabled\" value=\"true\"/>\n  \n  <property name=\"evictionPolicy\">\n  \t<!-- LRU eviction policy. -->\n    <bean class=\"org.apache.ignite.cache.eviction.lru.LruEvictionPolicy\">\n    \t<!-- Set the maximum cache size to 1 million (default is 100,000). -->\n      <property name=\"maxSize\" value=\"1000000\"/>\n    </bean>\n  </property>\n  \n    ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new LruEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Enabling on-heap caching for this distributed cache.\ncacheCfg.setOnheapCacheEnabled(true);\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new LruEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
 }
 [/block]
+## First In First Out (FIFO)
+FIFO eviction policy, based on the [First-In-First-Out (FIFO)](https://en.wikipedia.org/wiki/FIFO) algorithm, ensures that entry that has been in the on-heap cache for the longest time will be evicted first. It is different from `LruEvictionPolicy` because it ignores the access order of entries. 
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "First In First Out (FIFO)"
-}
-[/block]
-FIFO eviction policy is based on [First-In-First-Out (FIFO)](https://en.wikipedia.org/wiki/FIFO) algorithm which ensures that entry that has been in cache the longest will be evicted first. It is different from `LruEvictionPolicy` because it ignores the access order of entries. 
-
-Supports batch eviction and eviction by memory size limit.
-
-This eviction policy is implemented by `FifoEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `FifoEvictionPolicy` and can be configured via `CacheConfiguration`. It supports batch eviction and eviction by memory size limit.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- FIFO eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.fifo.FifoEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n  \n  <!-- Enabling on-heap caching for this distributed cache. -->\n  <property name=\"onheapCacheEnabled\" value=\"true\"/>\n  \n  <property name=\"evictionPolicy\">\n  \t<!-- FIFO eviction policy. -->\n    <bean class=\"org.apache.ignite.cache.eviction.fifo.FifoEvictionPolicy\">\n    \t<!-- Set the maximum cache size to 1 million (default is 100,000). -->\n      <property name=\"maxSize\" value=\"1000000\"/>\n    </bean>\n  </property>\n  \n    ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new FifoEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Enabling on-heap caching for this distributed cache.\ncacheCfg.setOnheapCacheEnabled(true);\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new FifoEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
 }
 [/block]
+## Sorted
+Sorted eviction policy is similar to FIFO eviction policy with the difference that entries' order is defined by default or by user defined comparator and ensures that the minimal entry (i.e. the entry that has an integer key with the smallest value) gets evicted first.
 
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Sorted"
-}
-[/block]
-Sorted eviction policy is similar to FIFO eviciton policy with the difference that entries order is defined by default or user defined comparator and ensures that the minimal entry (i.e. the entry that has integer key with smallest value) gets evicted first.
+The default comparator uses cache entries' keys for comparison that imposes a requirement for keys to implement the `Comparable` interface. User can provide their own comparator implementation which can use keys, values or both for entries comparison.
 
-Default comparator uses cache entries keys for comparison that imposes a requirement for keys to implement `Comparable` interface. User can provide own comparator implementation which can use keys, values or both for entries comparison.
-
-Supports batch eviction and eviction by memory size limit.
-
-This eviction policy is implemented by `SortedEvictionPolicy` and can be configured via `CacheConfiguration`.
+This eviction policy is implemented by `SortedEvictionPolicy` and can be configured via `CacheConfiguration`. It supports batch eviction and eviction by memory size limit.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- Sorted eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.sorted.SortedEvictionPolicy\">\n            <!-- Set the maximum cache size to 1 million (default is 100,000) and use default comparator. -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n  \n  <!-- Enabling on-heap caching for this distributed cache. -->\n  <property name=\"onheapCacheEnabled\" value=\"true\"/>\n  \n  <property name=\"evictionPolicy\">\n  \t<!-- Sorted eviction policy. -->\n    <bean class=\"org.apache.ignite.cache.eviction.sorted.SortedEvictionPolicy\">\n    \t<!--\n \t\t\t\t\tSet the maximum cache size to 1 million (default is 100,000)\n\t\t\t\t\tand use default comparator.\n\t\t\t-->\n      <property name=\"maxSize\" value=\"1000000\"/>\n    </bean>\n  </property>\n  \n  ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new SortedEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Enabling on-heap caching for this distributed cache.\ncacheCfg.setOnheapCacheEnabled(true);\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new SortedEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
 }
 [/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Random"
-}
-[/block]
-Random eviction policy which randomly chooses entries to evict. This eviction policy is mainly used for debugging and benchmarking purposes.
+## Random
+Random eviction policy randomly chooses entries to evict. This eviction policy is mainly used for debugging and benchmarking purposes.
 
 This eviction policy is implemented by `RandomEvictionPolicy` and can be configured via `CacheConfiguration`.
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n    ...\n    <property name=\"evictionPolicy\">\n        <!-- Random eviction policy. -->\n        <bean class=\"org.apache.ignite.cache.eviction.random.RandomEvictionPolicy\">            <!-- Set the maximum cache size to 1 million (default is 100,000). -->\n            <property name=\"maxSize\" value=\"1000000\"/>\n        </bean>\n    </property>\n    ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.cache.CacheConfiguration\">\n  <property name=\"name\" value=\"myCache\"/>\n  \n  <!-- Enabling on-heap caching for this distributed cache. -->\n  <property name=\"onheapCacheEnabled\" value=\"true\"/>\n  \n  <property name=\"evictionPolicy\">\n  \t<!-- Random eviction policy. -->\n    <bean class=\"org.apache.ignite.cache.eviction.random.RandomEvictionPolicy\">       \t<!-- Set the maximum cache size to 1 million (default is 100,000). -->\n      <property name=\"maxSize\" value=\"1000000\"/>\n    </bean>\n  </property>\n  \n    ...\n</bean>",
       "language": "xml"
     },
     {
-      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new RandomEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
+      "code": "CacheConfiguration cacheCfg = new CacheConfiguration();\n\ncacheCfg.setName(\"cacheName\");\n\n// Enabling on-heap caching for this distributed cache.\ncacheCfg.setOnheapCacheEnabled(true);\n\n// Set the maximum cache size to 1 million (default is 100,000).\ncacheCfg.setEvictionPolicy(new RandomEvictionPolicy(1000000));\n\nIgniteConfiguration cfg = new IgniteConfiguration();\n\ncfg.setCacheConfiguration(cacheCfg);\n\n// Start Ignite node.\nIgnition.start(cfg);",
       "language": "java"
     }
   ]
