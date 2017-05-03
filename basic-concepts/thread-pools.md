@@ -1,6 +1,7 @@
+* [Custom Thread Pools]
 [block:api-header]
 {
-  "title": "Custom thread pools"
+  "title": "Custom Thread Pools"
 }
 [/block]
 It is possible to configure custom thread pools for compute tasks. This is useful if you want to synchronously execute one compute task from another without a risk of deadlock: just make sure that nested task is executed in another thread pool.
