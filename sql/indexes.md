@@ -1,4 +1,5 @@
 * [Overview](#overview)
+* [DDL Based Configuration](#ddl-based-configuration)
 * [Annotation Based Configuration](#annotation-based-configuration)
  * [Registering Indexed Types](#section-registering-indexed-types)
  * [Group Indexes](#section-group-indexes)
@@ -25,6 +26,12 @@ Apache Ignite supports advanced indexing capabilities allowing you to define a s
 Indexes in Ignite are kept in a distributed fashion the same way as cache data sets. Each node that stores a specific subset of data keeps and maintains indexes corresponding to this data as well.
 
 From this documentation page, you'll learn how to define schemas including indexes as well as queryable fields using two available approaches and how to switch between specific indexing implementations supported by data fabric. 
+[block:api-header]
+{
+  "title": "DDL Based Configuration"
+}
+[/block]
+Use widely used DDL commands to create and alter indexes in runtime referring to [this documentation](https://apacheignite.readme.io/docs/distributed-ddl).
 [block:api-header]
 {
   "type": "basic",
