@@ -1,34 +1,31 @@
 * [Overview](#section-overview)
-* [Interfaces](#section-interfaces)
-* [Listening and chaining futures](#section-listening-and-chaining-futures)
-* [IgniteAsyncSupport](#section-igniteasyncsupport)
+* [Supported Interfaces](#section-supported-interfaces)
+* [Listeners and Chaining Futures](#section-listeners-and-chaining-futures)
 [block:api-header]
 {
   "type": "basic",
   "title": "Overview"
 }
 [/block]
-Most distributed operations on Ignite APIs can be executed either synchronously or asynchronously. Asynchronous method names end with `Async` suffix.
-
-Asynchronous operations return instance of `IgniteFuture` or it's subclass. You may either synchronously wait for result using one of `IgniteFuture.get()` methods, or register a closure which will be executed once operation is completed using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods.
+A majority of Apache Ignite APIs can be used in both synchronous or asynchronous fashion. The asynchronous methods' names end with `Async` suffix.
 [block:code]
 {
   "codes": [
     {
       "code": "K get(V val);\n\nIgniteFuture<K> getAsync(V val);",
       "language": "java",
-      "name": "Example"
+      "name": "Java"
     }
   ]
 }
 [/block]
-
+The asynchronous operations return an instance of `IgniteFuture` or one of its subclasses. You can wait for a result of an asynchronous operation by either calling a blocking `IgniteFuture.get()` method or register a closure using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods and wait while the closure gets called on the operation completion.
 [block:api-header]
 {
-  "title": "Interfaces"
+  "title": "Supported Interfaces"
 }
 [/block]
-Asynchronous operations can be found on the following interfaces:
+The interfaces listed below can be used in synchronous or asynchronous modes:
 * `IgniteCompute`
 * `IgniteCache`
 * `Transaction`
@@ -37,17 +34,17 @@ Asynchronous operations can be found on the following interfaces:
 * `IgniteEvents`
 [block:api-header]
 {
-  "title": "Listening and chaining futures"
+  "title": "Listeners and Chaining Futures"
 }
 [/block]
-One may register a closure which will be executed once operation is completed using using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods.
+To wait for a result of an asynchronous operation in the non-blocking fashion (`IgniteFuture.get()`) register a closure using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods. Once the operation gets completed the closure will be called as it's shown in the example below:
 [block:code]
 {
   "codes": [
     {
       "code": "IgniteCompute compute = ignite.compute();\n\n// Execute a closure asynchronously.\nIgniteFuture<String> fut = compute.callAsync(() -> {\n    return \"Hello World\";\n});\n\n// Listen for completion and print out the result.\nfut.listen(f -> System.out.println(\"Job result: \" + f.get()));",
       "language": "java",
-      "name": "Example"
+      "name": "Java"
     }
   ]
 }
@@ -56,14 +53,7 @@ One may register a closure which will be executed once operation is completed us
 [block:callout]
 {
   "type": "warning",
-  "title": "Thread executing continuation",
-  "body": "If future is already completed, closures passed to `listen()` and `chain()` methods will be executed synchronously in the caller thread. \n\nIf future is not completed yet, closure will be executed asynchronously in completion thread. Typically it will be a thread from system pool for cache operations, or a thread from public pool for compute operations. Therefore, you should avoid synchronous cache and compute operations in listeners for asynchronous cache and compute operations (respectively). Otherwise it may lead to a deadlock."
+  "title": "Closures Execution by Thread Pools",
+  "body": "If an asynchronous operation has been comp completed by the time a closure is passed to `IgniteFuture.listen()` or `IgniteFuture.chain()` methods, then the closure will be executed synchronously by the calling thread. \n\nOtherwise, the closure will be asynchronously upon the operation completion. Depending on a type of an operation,  the closure might be called by a thread from the system pool (asynchronous cache operations) or by a thread from the public pool (asynchronous Ignite Compute operations). Therefore, you should avoid calling synchronous cache and compute operations from the closure implementation. Otherwise, it might lead to a deadlock due to pools starvation."
 }
 [/block]
-
-[block:api-header]
-{
-  "title": "IgniteAsyncSupport"
-}
-[/block]
-In previous versions of Apache Ignite asynchronous operations was executed using `IgniteAsyncSupport` interface. This technique is considered deprecated and should not be used anymore. `IgniteAsyncSupport` will be removed in future releases.
