@@ -1,4 +1,4 @@
-* [Custom Thread Pools]
+* [Custom Thread Pools](#section-custom-thread-pools)
 [block:api-header]
 {
   "title": "Custom Thread Pools"
