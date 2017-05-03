@@ -1,6 +1,8 @@
 * [Overview](#section-overview)
 * [CREATE INDEX](#section-create-index)
 * [DROP INDEX](#section-drop-index)
+* [Native API](#section-native-api)
+* [JDBC driver](#section-jdbc-driver)
 [block:api-header]
 {
   "title": "Overview"
@@ -72,7 +74,7 @@ Syntax:
 
 [block:api-header]
 {
-  "title": "Native SQL API"
+  "title": "Native API"
 }
 [/block]
 DDL commands could be executed through `SqlFieldsQuery`.
@@ -92,7 +94,7 @@ DDL commands could be executed through `SqlFieldsQuery`.
   "title": "JDBC driver"
 }
 [/block]
-
+Example below demonstrates how to create and index with Ignite JDBC driver.
 [block:code]
 {
   "codes": [
