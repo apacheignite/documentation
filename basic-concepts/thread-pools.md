@@ -21,38 +21,38 @@ A custom pool is defined in `IgniteConfiguration` and has to have a unique name:
   ]
 }
 [/block]
-Compute task could be routed to particular pool using `IgniteCompute.withExecutor()` method.
+Now, let's assume the Ignite Compute task below has to be executed by a Thread from `myPool` defined above:
 [block:code]
 {
   "codes": [
     {
       "code": "public class InnerRunnable implements IgniteRunnable {    \n    @Override public void run() {\n        System.out.println(\"Hello from inner runnable!\");\n    }\n}",
       "language": "java",
-      "name": "InnerRunnable"
+      "name": "Java"
     }
   ]
 }
 [/block]
-
+To do that, you need to use `IgniteCompute.withExecutor()` executing the task right away or from an implementation of a parental task like it's shown below: 
 [block:code]
 {
   "codes": [
     {
       "code": "public class OuterRunnable implements IgniteRunnable {    \n    @IgniteInstanceResource\n    private Ignite ignite;\n    \n    @Override public void run() {\n        // Synchronously execute InnerRunnable in custom executor.\n        ignite.compute().withExecutor(\"myPool\").run(new InnerRunnable());\n    }\n}",
       "language": "java",
-      "name": "OuterRunnable"
+      "name": "Java"
     }
   ]
 }
 [/block]
-
+The parental task's execution might be triggered this way and, in this scenario, it will be executed by the public pool size:
 [block:code]
 {
   "codes": [
     {
       "code": "ignite.compute().run(new OuterRunnable());",
       "language": "java",
-      "name": "Execute OuterRunnable"
+      "name": "Java"
     }
   ]
 }
@@ -61,7 +61,7 @@ Compute task could be routed to particular pool using `IgniteCompute.withExecuto
 [block:callout]
 {
   "type": "warning",
-  "title": "Undefined executor",
-  "body": "If node doesn't have executor with particular name a warning will be printed to log and compute task will be executed in public thread pool in the same way as regular compute task."
+  "title": "Undefined Thread Pool",
+  "body": "If an Ignite Compute task is asked to be executed in a custom pool which is not defined on an Apache Ignite node, then a special warning message will be printed out to node's logs and the task will be picked up by the public pool for execution."
 }
 [/block]
