@@ -93,3 +93,10 @@ There are several ways how you can the latest metrics snapshot of a specific cac
 * `IgniteCache.localMetrics()` - gets local node's metrics snapshot for the cache.
 
 Alternatively, you can get an access to the cache metrics via `CacheMetricsMXBean` interface. You can connect to the bean from any JMX-compliant tool or API. If you need to work with the bean from your application use `IgniteCache.mxBean()` or `IgniteCache.localMxBean()` to get a bean reference.
+[block:callout]
+{
+  "type": "warning",
+  "title": "Enabling Cache Metrics",
+  "body": "To enable cache metrics gathering set `CacheConfiguration.setStatisticsEnabled(boolean)` to `true` for every cache you want to collect metrics for."
+}
+[/block]
