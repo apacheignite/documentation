@@ -14,6 +14,8 @@ It is possible to create and drop SQL indexes dynamically on existing tables. Bo
 [/block]
 CREATE [SPATIAL] INDEX [IF NOT EXISTS] **indexName** ON **tableName** (indexColumn, ...)
 indexColumn := **columnName** [ASC|DESC]
+
+Test
 [block:api-header]
 {
   "title": "DROP INDEX"
