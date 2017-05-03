@@ -6,13 +6,13 @@
   "title": "Overview"
 }
 [/block]
-It is possible to create and drop SQL indexes dynamically on existing tables. Both native SQL or JDBC/ODBC drivers could be used to achieve this.
+It is possible to create and drop SQL indexes dynamically on existing tables. Both native SQL or JDBC/ODBC drivers could be used.
 [block:api-header]
 {
   "title": "CREATE INDEX"
 }
 [/block]
-Synthax:
+Syntax:
 `CREATE [SPATIAL] INDEX [IF NOT EXISTS] indexName ON tableName (indexColumn, ...)`
 `indexColumn := columnName [ASC|DESC]`
 [block:code]
@@ -56,7 +56,7 @@ Synthax:
   "title": "DROP INDEX"
 }
 [/block]
-Synthax:
+Syntax:
 `DROP INDEX [IF EXISTS] indexName`
 [block:code]
 {
@@ -72,13 +72,34 @@ Synthax:
 
 [block:api-header]
 {
-  "title": "Using native SQL API"
+  "title": "Native SQL API"
 }
 [/block]
-TODO
+DDL commands could be executed through `SqlFieldsQuery`.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCache<PersonKey, Person> cache = ignite.cache(\"Person\");\n\nSqlFieldsQuery query = new SqlFieldsQuery(\"CREATE INDEX idx_person_name ON Person (name)\");\n\ncache.query(query).getAll();",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
-  "title": "Using JDBC driver"
+  "title": "JDBC driver"
 }
 [/block]
-TODO
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Class.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n\ntry (Statement stmt = conn.createStatement()) {\n    stmt.execute(\"CREATE INDEX idx_person_name ON Person (name)\");\n}",
+      "language": "java"
+    }
+  ]
+}
+[/block]
