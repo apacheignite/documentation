@@ -12,6 +12,7 @@ It is possible to create and drop SQL indexes dynamically on existing tables. Bo
   "title": "CREATE INDEX"
 }
 [/block]
+Synthax:
 `CREATE [SPATIAL] INDEX [IF NOT EXISTS] indexName ON tableName (indexColumn, ...)`
 `indexColumn := columnName [ASC|DESC]`
 [block:code]
@@ -55,6 +56,7 @@ It is possible to create and drop SQL indexes dynamically on existing tables. Bo
   "title": "DROP INDEX"
 }
 [/block]
+Synthax:
 `DROP INDEX [IF EXISTS] indexName`
 [block:code]
 {
