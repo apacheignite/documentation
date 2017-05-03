@@ -9,16 +9,34 @@
   "title": "Overview"
 }
 [/block]
-All distributed methods on all Ignite APIs can be executed either synchronously or asynchronously. However, instead of having a duplicate asynchronous method for every synchronous one (like `get()` and `getAsync()`, or `put()` and `putAsync()`, etc.), Ignite chose a more elegant approach where methods don't have to be duplicated.
-[block:api-header]
+Most distributed operations on Ignite APIs can be executed either synchronously or asynchronously. Asynchronous method names end with `Async` suffix.
+
+Asynchronous operations return instance of `IgniteFuture` or it's subclass. You may either wait for result using one of `IgniteFuture.get()` methods, or register a closure which will be executed once operation is completed.
+[block:code]
 {
-  "type": "basic",
-  "title": "IgniteAsyncSupport"
+  "codes": [
+    {
+      "code": "K get(V val);\nIgniteFuture<K> getAsync(V val);",
+      "language": "java"
+    }
+  ]
 }
 [/block]
-`IgniteAsyncSupport` interface adds asynchronous mode to many Ignite APIs. For example, `IgniteCompute`, `IgniteServices`, `IgniteCache`, and `IgniteTransactions` all extend `IgniteAsyncSupport` interface.
 
-To enable asynchronous mode, you should call `withAsync()` method which will return an instance of the same API with asynchronous behavior enabled. 
+[block:api-header]
+{
+  "title": "Interfaces"
+}
+[/block]
+Asynchronous operations can be found on the following interfaces:
+* A
+* B
+[block:api-header]
+{
+  "title": "Listening and chaining futures"
+}
+[/block]
+
 [block:callout]
 {
   "type": "info",
@@ -26,8 +44,7 @@ To enable asynchronous mode, you should call `withAsync()` method which will ret
   "body": "Note, that if async mode is enabled, actual synchronously returned values of methods should be ignored. The only way to obtain a return value from an asynchronous operation is from the `future()` method."
 }
 [/block]
-## Compute Grid Example
-The example below illustrates the difference between synchronous and asynchronous computations.
+
 [block:code]
 {
   "codes": [
@@ -39,7 +56,7 @@ The example below illustrates the difference between synchronous and asynchronou
   ]
 }
 [/block]
-Here is how you would make the above invocation asynchronous:
+
 [block:code]
 {
   "codes": [
@@ -74,19 +91,5 @@ Here is how you would make the above invocation asynchronous.
       "name": "Asynchronous"
     }
   ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "@IgniteAsyncSupported"
-}
-[/block]
-Not every method on Ignite APIs is distributed and therefore does not really require asynchronous mode. To avoid confusion about which method is distributed, i.e. can be asynchronous, and which is not, all distributed methods in Ignite are annotated with `@IgniteAsyncSupported` annotation.
-[block:callout]
-{
-  "type": "info",
-  "body": "Note that, although not really needed, in async mode you can still get the future for non-distributed operations as well.  However, this future will always be completed."
 }
 [/block]
