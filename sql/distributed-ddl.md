@@ -82,7 +82,7 @@ DDL commands could be executed through `SqlFieldsQuery`.
 {
   "codes": [
     {
-      "code": "IgniteCache<PersonKey, Person> cache = ignite.cache(\"Person\");\n\nSqlFieldsQuery query = new SqlFieldsQuery(\"CREATE INDEX idx_person_name ON Person (name)\");\n\ncache.query(query).getAll();",
+      "code": "IgniteCache<PersonKey, Person> cache = ignite.cache(\"Person\");\n\nSqlFieldsQuery query = new SqlFieldsQuery(\n    \"CREATE INDEX idx_person_name ON Person (name)\");\n\ncache.query(query).getAll();",
       "language": "java"
     }
   ]
@@ -99,7 +99,7 @@ Example below demonstrates how to create an index with Ignite JDBC driver.
 {
   "codes": [
     {
-      "code": "Class.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n\nConnection conn = DriverManager.getConnection(\"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n\ntry (Statement stmt = conn.createStatement()) {\n    stmt.execute(\"CREATE INDEX idx_person_name ON Person (name)\");\n}",
+      "code": "Class.forName(\"org.apache.ignite.IgniteJdbcDriver\");\n\nConnection conn = DriverManager.getConnection(\n    \"jdbc:ignite:cfg://file:///etc/config/ignite-jdbc.xml\");\n\ntry (Statement stmt = conn.createStatement()) {\n    stmt.execute(\"CREATE INDEX idx_person_name ON Person (name)\");\n}",
       "language": "java"
     }
   ]
