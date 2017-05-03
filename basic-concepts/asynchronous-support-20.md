@@ -10,7 +10,7 @@
 [/block]
 Most distributed operations on Ignite APIs can be executed either synchronously or asynchronously. Asynchronous method names end with `Async` suffix.
 
-Asynchronous operations return instance of `IgniteFuture` or it's subclass. You may either synchronously wait for result using one of `IgniteFuture.get()` methods, or register a closure which will be executed once operation is completed using using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods.
+Asynchronous operations return instance of `IgniteFuture` or it's subclass. You may either synchronously wait for result using one of `IgniteFuture.get()` methods, or register a closure which will be executed once operation is completed using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods.
 [block:code]
 {
   "codes": [
