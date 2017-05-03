@@ -1,6 +1,48 @@
 * [Custom Thread Pools](#section-custom-thread-pools)
 [block:api-header]
 {
+  "title": "Overview"
+}
+[/block]
+Apache Ignite creates and maintains a variety of Thread pools that are used for different purposes depending on an API that is being used. In this documentation, we list some of the most well-known internal pools and show how you can create a custom one.
+[block:api-header]
+{
+  "title": "System Pool"
+}
+[/block]
+
+[block:api-header]
+{
+  "title": "Public Pool"
+}
+[/block]
+
+[block:api-header]
+{
+  "title": "Queries Pool"
+}
+[/block]
+
+[block:api-header]
+{
+  "title": "Service Thread Pool"
+}
+[/block]
+
+[block:api-header]
+{
+  "title": "Striped Pool"
+}
+[/block]
+
+[block:api-header]
+{
+  "title": "Data Streamer Thread Pool"
+}
+[/block]
+
+[block:api-header]
+{
   "title": "Custom Thread Pools"
 }
 [/block]
