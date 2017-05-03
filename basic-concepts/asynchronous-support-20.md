@@ -1,7 +1,6 @@
-* [Overview](#overview)
-* [IgniteAsyncSupport](#igniteasyncsupport)
- * [Compute Grid Example](#section-compute-grid-example)
- * [Data Grid Example](#section-data-grid-example)
+* [Overview](#section-overview)
+* [Interfaces](#section-interfaces)
+* [Listening and chaining futures](#section-listening-and-chaining-futures)
 * [@IgniteAsyncSupported Annotation](#igniteasyncsupported)
 [block:api-header]
 {
