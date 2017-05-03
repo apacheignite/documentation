@@ -44,17 +44,26 @@ The properties are divided into global ones that are exposed over `CacheConfigur
     "2-0": "`setEnforceJoinOrder(...)`",
     "2-1": "Sets flag to enforce join order of tables in the query. If set to `true`  the query optimizer will not reorder tables in a join clause.",
     "2-2": "`false`",
-    "3-0": "`setLocal(...)`",
-    "3-1": "Forces query execution in purely local mode. Refer to [local queries](doc:local-queries) page for more details on this mode.",
+    "4-0": "`setLocal(...)`",
+    "4-1": "Forces query execution in purely local mode. Refer to [local queries](doc:local-queries) page for more details on this mode.",
+    "4-2": "`false`",
+    "5-0": "`setPageSize(...)`",
+    "5-1": "Defines a maximum number of entries that can be transferred in a single response chunk to a reducing node (query initiator).",
+    "5-2": "`1024`",
+    "7-0": "`setTimeout(...)`",
+    "7-1": "Sets the query execution timeout. Query will be automatically cancelled if the execution timeout is exceeded. Disabled by default. \n\nAvailable in Apache Ignite 1.8 and later versions.",
+    "7-2": "`0`",
+    "3-0": "`setReplicatedOnly(...)`",
+    "3-1": "If a SQL query is executed over the data stored across replicated caches only, then you may want to set this parameter to `true`. This is a special hint to the SQL engine that might produce a more effective execution plan for the query.",
     "3-2": "`false`",
-    "4-0": "`setPageSize(...)`",
-    "4-1": "Defines a maximum number of entries that can be transferred in a single response chunk to a reducing node (query initiator).",
-    "4-2": "`1024`",
-    "5-0": "`setTimeout(...)`",
-    "5-1": "Sets the query execution timeout. Query will be automatically cancelled if the execution timeout is exceeded. Disabled by default. \n\nAvailable in Apache Ignite 1.8 and later versions.",
-    "5-2": "`0`"
+    "6-0": "`setPartitions(...)`",
+    "6-1": "Sets partitions for a query execution. The query will be executed only on nodes which are primary for specified partitions.",
+    "6-2": "`null` (ignored)",
+    "8-0": "`setAlias(...)`",
+    "8-1": "Sets alias that can be used as table name in a query string.",
+    "8-2": "`null` (ignored)"
   },
   "cols": 3,
-  "rows": 6
+  "rows": 9
 }
 [/block]
