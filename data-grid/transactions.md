@@ -92,6 +92,14 @@ Here is an example of how transactions can be performed in Ignite:
 }
 [/block]
 
+[block:callout]
+{
+  "type": "success",
+  "title": "Transactional Methods",
+  "body": "Most of the methods exposed through `IgniteCache` API are fully transactional when this mode is enabled for a cache. However, there is a way to know precisely if a method satisfies ACID principle or not - look at the method signature and if you see it throws `TransactionException` then it can be safely used inside of a distributed transaction. Among such methods you will spot  `cache.put(...)`, `cache.get(...)`, `cache.invoke(...)` and much more."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
