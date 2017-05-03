@@ -1,92 +1,69 @@
-* [Overview](#overview)
-* [IgniteAsyncSupport](#igniteasyncsupport)
- * [Compute Grid Example](#section-compute-grid-example)
- * [Data Grid Example](#section-data-grid-example)
-* [@IgniteAsyncSupported Annotation](#igniteasyncsupported)
+* [Overview](#section-overview)
+* [Interfaces](#section-interfaces)
+* [Listening and chaining futures](#section-listening-and-chaining-futures)
+* [IgniteAsyncSupport](#section-igniteasyncsupport)
 [block:api-header]
 {
   "type": "basic",
   "title": "Overview"
 }
 [/block]
-All distributed methods on all Ignite APIs can be executed either synchronously or asynchronously. However, instead of having a duplicate asynchronous method for every synchronous one (like `get()` and `getAsync()`, or `put()` and `putAsync()`, etc.), Ignite chose a more elegant approach where methods don't have to be duplicated.
+Most distributed operations on Ignite APIs can be executed either synchronously or asynchronously. Asynchronous method names end with `Async` suffix.
+
+Asynchronous operations return instance of `IgniteFuture` or it's subclass. You may either synchronously wait for result using one of `IgniteFuture.get()` methods, or register a closure which will be executed once operation is completed using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "K get(V val);\n\nIgniteFuture<K> getAsync(V val);",
+      "language": "java",
+      "name": "Example"
+    }
+  ]
+}
+[/block]
+
 [block:api-header]
 {
-  "type": "basic",
+  "title": "Interfaces"
+}
+[/block]
+Asynchronous operations can be found on the following interfaces:
+* `IgniteCompute`
+* `IgniteCache`
+* `Transaction`
+* `IgniteServices`
+* `IgniteMessaging`
+* `IgniteEvents`
+[block:api-header]
+{
+  "title": "Listening and chaining futures"
+}
+[/block]
+One may register a closure which will be executed once operation is completed using using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCompute compute = ignite.compute();\n\n// Execute a closure asynchronously.\nIgniteFuture<String> fut = compute.callAsync(() -> {\n    return \"Hello World\";\n});\n\n// Listen for completion and print out the result.\nfut.listen(f -> System.out.println(\"Job result: \" + f.get()));",
+      "language": "java",
+      "name": "Example"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "title": "Thread executing continuation",
+  "body": "If future is already completed, closures passed to `listen()` and `chain()` methods will be executed synchronously in the caller thread. \n\nIf future is not completed yet, closure will be executed asynchronously in completion thread. Typically it will be a thread from system pool for cache operations, or a thread from public pool for compute operations. Therefore, you should avoid synchronous cache and compute operations in listeners for asynchronous cache and compute operations (respectively). Otherwise it may lead to a deadlock."
+}
+[/block]
+
+[block:api-header]
+{
   "title": "IgniteAsyncSupport"
 }
 [/block]
-`IgniteAsyncSupport` interface adds asynchronous mode to many Ignite APIs. For example, `IgniteCompute`, `IgniteServices`, `IgniteCache`, and `IgniteTransactions` all extend `IgniteAsyncSupport` interface.
-
-To enable asynchronous mode, you should call `withAsync()` method which will return an instance of the same API with asynchronous behavior enabled. 
-[block:callout]
-{
-  "type": "info",
-  "title": "Method Return Values",
-  "body": "Note, that if async mode is enabled, actual synchronously returned values of methods should be ignored. The only way to obtain a return value from an asynchronous operation is from the `future()` method."
-}
-[/block]
-## Compute Grid Example
-The example below illustrates the difference between synchronous and asynchronous computations.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCompute compute = ignite.compute();\n\n// Execute a job and wait for the result.\nString res = compute.call(() -> {\n  // Print hello world on some cluster node.\n\tSystem.out.println(\"Hello World\");\n  \n  return \"Hello World\";\n});",
-      "language": "java",
-      "name": "Synchronous"
-    }
-  ]
-}
-[/block]
-Here is how you would make the above invocation asynchronous:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "// Enable asynchronous mode.\nIgniteCompute asyncCompute = ignite.compute().withAsync();\n\n// Asynchronously execute a job.\nasyncCompute.call(() -> {\n  // Print hello world on some cluster node and wait for completion.\n\tSystem.out.println(\"Hello World\");\n  \n  return \"Hello World\";\n});\n\n// Get the future for the above invocation.\nIgniteFuture<String> fut = asyncCompute.future();\n\n// Asynchronously listen for completion and print out the result.\nfut.listen(f -> System.out.println(\"Job result: \" + f.get()));",
-      "language": "java",
-      "name": "Asynchronous"
-    }
-  ]
-}
-[/block]
-## Data Grid Example
-Here is the data grid example for synchronous and asynchronous invocations.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<String, Integer> cache = ignite.cache(\"mycache\");\n\n// Synchronously store value in cache and get previous value.\nInteger val = cache.getAndPut(\"1\", 1);",
-      "language": "java",
-      "name": "Synchronous"
-    }
-  ]
-}
-[/block]
-Here is how you would make the above invocation asynchronous.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "// Enable asynchronous mode.\nIgniteCache<String, Integer> asyncCache = ignite.cache(\"mycache\").withAsync();\n\n// Asynchronously store value in cache.\nasyncCache.getAndPut(\"1\", 1);\n\n// Get future for the above invocation.\nIgniteFuture<Integer> fut = asyncCache.future();\n\n// Asynchronously listen for the operation to complete.\nfut.listen(f -> System.out.println(\"Previous cache value: \" + f.get()));",
-      "language": "java",
-      "name": "Asynchronous"
-    }
-  ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "@IgniteAsyncSupported"
-}
-[/block]
-Not every method on Ignite APIs is distributed and therefore does not really require asynchronous mode. To avoid confusion about which method is distributed, i.e. can be asynchronous, and which is not, all distributed methods in Ignite are annotated with `@IgniteAsyncSupported` annotation.
-[block:callout]
-{
-  "type": "info",
-  "body": "Note that, although not really needed, in async mode you can still get the future for non-distributed operations as well.  However, this future will always be completed."
-}
-[/block]
+In previous versions of Apache Ignite asynchronous operations was executed using `IgniteAsyncSupport` interface. This technique is considered deprecated and should not be used anymore. `IgniteAsyncSupport` will be removed in future releases.
