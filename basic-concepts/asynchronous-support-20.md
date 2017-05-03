@@ -41,60 +41,23 @@ Asynchronous operations can be found on the following interfaces:
   "title": "Listening and chaining futures"
 }
 [/block]
+One may register a closure which will be executed once operation is completed using using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "IgniteCompute compute = ignite.compute();\n\n// Execute a closure asynchronously.\nIgniteFuture<String> fut = compute.callAsync(() -> {\n    return \"Hello World\";\n});\n\n// Listen for completion and print out the result.\nfut.listen(f -> System.out.println(\"Job result: \" + f.get()));",
+      "language": "java",
+      "name": "Example"
+    }
+  ]
+}
+[/block]
 
 [block:callout]
 {
   "type": "warning",
-  "title": "Method Return Values",
-  "body": "Note, that if async mode is enabled, actual synchronously returned values of methods should be ignored. The only way to obtain a return value from an asynchronous operation is from the `future()` method."
-}
-[/block]
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCompute compute = ignite.compute();\n\n// Execute a job and wait for the result.\nString res = compute.call(() -> {\n  // Print hello world on some cluster node.\n\tSystem.out.println(\"Hello World\");\n  \n  return \"Hello World\";\n});",
-      "language": "java",
-      "name": "Synchronous"
-    }
-  ]
-}
-[/block]
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "// Enable asynchronous mode.\nIgniteCompute asyncCompute = ignite.compute().withAsync();\n\n// Asynchronously execute a job.\nasyncCompute.call(() -> {\n  // Print hello world on some cluster node and wait for completion.\n\tSystem.out.println(\"Hello World\");\n  \n  return \"Hello World\";\n});\n\n// Get the future for the above invocation.\nIgniteFuture<String> fut = asyncCompute.future();\n\n// Asynchronously listen for completion and print out the result.\nfut.listen(f -> System.out.println(\"Job result: \" + f.get()));",
-      "language": "java",
-      "name": "Asynchronous"
-    }
-  ]
-}
-[/block]
-## Data Grid Example
-Here is the data grid example for synchronous and asynchronous invocations.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "IgniteCache<String, Integer> cache = ignite.cache(\"mycache\");\n\n// Synchronously store value in cache and get previous value.\nInteger val = cache.getAndPut(\"1\", 1);",
-      "language": "java",
-      "name": "Synchronous"
-    }
-  ]
-}
-[/block]
-Here is how you would make the above invocation asynchronous.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "// Enable asynchronous mode.\nIgniteCache<String, Integer> asyncCache = ignite.cache(\"mycache\").withAsync();\n\n// Asynchronously store value in cache.\nasyncCache.getAndPut(\"1\", 1);\n\n// Get future for the above invocation.\nIgniteFuture<Integer> fut = asyncCache.future();\n\n// Asynchronously listen for the operation to complete.\nfut.listen(f -> System.out.println(\"Previous cache value: \" + f.get()));",
-      "language": "java",
-      "name": "Asynchronous"
-    }
-  ]
+  "title": "Thread executing continuation",
+  "body": "If future is already completed, closures passed to `listen()` and `chain()` methods will be executed synchronously in the caller thread. \n\nIf future is not completed yet, closure will be executed asynchronously in completion thread. Typically it will be a thread from system pool for cache operations, or a thread from public pool for compute operations. Therefore, you should avoid synchronous cache and compute operations in listeners for asynchronous cache and compute operations (respectively). Otherwise it may lead to a deadlock."
 }
 [/block]
