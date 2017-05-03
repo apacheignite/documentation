@@ -61,6 +61,6 @@ Compute task could be routed to particular pool using `IgniteCompute.withExecuto
 {
   "type": "warning",
   "title": "Undefined executor",
-  "body": "If node doesn't have executor with particular name, a warning will be printed to log and compute task will be executed in public thread pool in the same way as regular compute task."
+  "body": "If node doesn't have executor with particular name a warning will be printed to log and compute task will be executed in public thread pool in the same way as regular compute task."
 }
 [/block]
