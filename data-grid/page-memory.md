@@ -201,7 +201,7 @@ Right after that, an Apache Ignite cache can be mapped to that region. To achiev
 {
   "codes": [
     {
-      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!-- Page memory and other configuration parameters. -->\n    <!-- ....... -->\n  \n    <property name=\"cacheConfiguration\">\n       <list>\n           <!-- Cache that is mapped to non-default memory slab -->\n           <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n              <!--\n                   Setting a memory policy name to bind to a specific slab.\n               -->\n               <property name=\"memoryPolicyName\" value=\"500MB_Region_Eviction\"/>\n               <!-- Cache unique name. -->\n               <property name=\"name\" value=\"SampleCache\"/>\n             \n               <!-- Additional cache configuration parameters -->\n           </bean>\n       </list>\n    </property>\n    \n    <!-- The rest of the configuration. -->\n    <!-- ....... -->\n</bean>  ",
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n    <!-- Page memory and other configuration parameters. -->\n    <!-- ....... -->\n  \n    <property name=\"cacheConfiguration\">\n       <list>\n           <!-- Cache that is mapped to non-default memory region. -->\n           <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n              <!--\n                   Setting a memory policy name to bind to a specific region.\n               -->\n               <property name=\"memoryPolicyName\" value=\"500MB_Region_Eviction\"/>\n               <!-- Cache unique name. -->\n               <property name=\"name\" value=\"SampleCache\"/>\n             \n               <!-- Additional cache configuration parameters -->\n           </bean>\n       </list>\n    </property>\n    \n    <!-- The rest of the configuration. -->\n    <!-- ....... -->\n</bean>  ",
       "language": "xml"
     },
     {
@@ -238,13 +238,13 @@ Refer to [memory policies example](https://github.com/apache/ignite/blob/master/
     "1-1": "Sets initial size of the memory region defined by this memory policy. When the used memory size exceeds this value, new chunks of memory will be allocated until maximum size is reached.",
     "1-2": "`256` MB",
     "3-0": "`setSwapFilePath(...)`",
-    "3-1": "A path to the memory-mapped file the slab defined by this memory policy will be mapped to. Having this path set, allows relying on swapping capabilities of an underlying operating system for the slab.",
+    "3-1": "A path to the memory-mapped file the memory region defined by this memory policy will be mapped to. Having this path set, allows relying on swapping capabilities of an underlying operating system for the region.",
     "3-2": "Disabled by default.",
     "4-0": "`setPageEvictionMode(...)`",
     "4-1": "Sets one of the data pages eviction algorithms available for usage. Refer to [eviction policies](doc:evictions) for more details.",
     "4-2": "Disabled by default.",
     "5-0": "`setEvictionThreshold(...)`",
-    "5-1": "A threshold for memory pages eviction initiation. For instance, if the threshold is 0.9 it means that the page memory will start the eviction only after 90% of the slab (defined by this policy) is occupied.",
+    "5-1": "A threshold for memory pages eviction initiation. For instance, if the threshold is 0.9 it means that the page memory will start the eviction only after 90% of the memory region (defined by this policy) is occupied.",
     "5-2": "`0.9`",
     "6-0": "`setEmptyPagesPoolSize(...)`",
     "6-1": "Specifies the minimal number of empty pages to be present in reuse lists for this memory policy. This parameter ensures that Apache Ignite will be able to successfully evict old data entries when the size of a (key, value) pair is slightly larger than page size / 2.\n\nIncrease this parameter if a cache can contain very big entries (total size of pages in this pool should be enough to contain largest cache entry).",
