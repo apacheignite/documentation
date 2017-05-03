@@ -128,22 +128,28 @@ To alter global page memory settings such as page size use `org.apache.ignite.co
     "h-2": "Default Value",
     "0-0": "`setPageSize(...)`",
     "0-1": "Sets default page size.",
-    "0-2": "2 KB",
+    "0-2": "`2` KB",
     "1-0": "`setDefaultMemoryPolicyName(...)`",
-    "1-1": "Sets default memory policy's name. By default every cache is bound to a memory slab instantiated with this policy.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
-    "1-2": "`null`",
-    "2-0": "`setMemoryPolicies(...)`",
-    "2-1": "Sets a list of all memory policies available in the cluster.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
-    "2-2": "An empty array. A configuration that is used to create the default region is not stored there.",
-    "3-0": "`setSystemCacheMemorySize(...)`",
-    "3-1": "Sets size for Apache Ignite's internal system cache.",
-    "3-2": "100 MB",
-    "4-0": "`setConcurrencyLevel(...)`",
-    "4-1": "Sets the number of concurrent segments in Apache Ignite internal page mapping tables",
-    "4-2": "A total number of available CPUs times 4."
+    "1-1": "Sets default memory policy's name. By default every cache is bound to a memory region instantiated with this policy.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
+    "1-2": "`default`",
+    "3-0": "`setMemoryPolicies(...)`",
+    "3-1": "Sets a list of all memory policies available in the cluster.\n\nRefer to [memory policies](doc:page-memory#memory-policies) section to learn more about memory policies.",
+    "3-2": "An empty array. A configuration that is used to create the default region is not stored there.",
+    "4-0": "`setSystemCacheInitialSize(...)`",
+    "4-1": "Sets initial size of a memory region reserved for system cache.",
+    "4-2": "`40` MB",
+    "6-0": "`setConcurrencyLevel(...)`",
+    "6-1": "Sets the number of concurrent segments in Apache Ignite internal page mapping tables",
+    "6-2": "A total number of available CPUs times 4.",
+    "2-0": "`setDefaultMemoryPolicySize(...)`",
+    "2-1": "Sets the size of the default memory region which is created automatically.\n\nIf the proper is not set then the default region can consume up to 80% of RAM available on a local machine.",
+    "2-2": "`80%` of RAM",
+    "5-0": "`setSystemCacheMaxSize(...)`",
+    "5-1": "Sets maximum size of a memory region reserved for system cache.\n\nThe total size should not be less than 10 MB due to internal data structures overhead.",
+    "5-2": "`100` MB"
   },
   "cols": 3,
-  "rows": 5
+  "rows": 7
 }
 [/block]
 An example below shows how to change page size and concurrency level parameters using `MemoryConfiguration`:
