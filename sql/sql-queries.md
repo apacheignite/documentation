@@ -39,12 +39,20 @@ First, if a query is executed against a `REPLICATED` cache on a node where the c
 Second, if a query is executed over a `PARTITIONED` cache, then the execution flow will be the following:
 * The query will be parsed and split into multiple map queries and a single reduce query.
 * All the map queries are executed on all the data nodes where cache data resides.
-* All the nodes provide result sets of local execution to the query initiator (reducing node) that, in turn, will accomplish the reduce phase by properly merging provided result sets.
+* All the nodes provide result sets of local execution to the query initiator (reducer) that, in turn, will accomplish the reduce phase by properly merging provided result sets.
 [block:callout]
 {
   "type": "info",
   "title": "Execution Flow of Cross-Cache Queries",
-  "body": "The execution flow of cross-cache or join queries is not different from the one described for the `PARTITIONED` cache above and will be covered later as a part of this documentation."
+  "body": "The execution flow of cross-cache queries or queries with joins is not different from the one described for the `PARTITIONED` cache above and will be covered later as part of this documentation."
+}
+[/block]
+
+[block:callout]
+{
+  "type": "success",
+  "body": "SQL queries with ORDER BY clause do not require loading the whole result set to a query initiator (reducer) node in order to complete the sorting. Instead, every node where a query will be mapped to will sort its own part of the overall result set and the reducer will do the merge in a streaming fashion. \n\nThe same optimization is implemented for sorted GROUP BY queries - there is no need to load the whole result set to the reducer in order to do the grouping before giving it to an application. In Apache Ignite, partial result sets from the individual nodes can be streamed, merged, aggregated, and returned to the application gradually.",
+  "title": "Handling of Result Sets With ORDER BY and GROUP BY"
 }
 [/block]
 
@@ -78,7 +86,7 @@ There are two general types of SQL queries that are available at Java API level 
 [/block]
 ## SqlFieldsQueries
 
-Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose, Ignite implements a concept of `fields queries`. Basically, `SqlFieldsQuery` accepts a conventional ANSI-99 SQL query as its constructor​ parameter and executes it, as shown in the example below.  
+Instead of selecting the whole object, you can choose to select only specific fields in order to minimize network and serialization overhead. For this purpose, Ignite implements a concept of `fields queries`. `SqlFieldsQuery` accepts a conventional ANSI-99 SQL query as its constructor​ parameter and executes it, as shown in the example below.  
 [block:code]
 {
   "codes": [
@@ -103,7 +111,7 @@ Instead of selecting the whole object, you can choose to select only specific fi
 {
   "type": "info",
   "title": "Accessing Entry's Key and Value",
-  "body": "Use `_key` and `_value` keywords in an SQL query in order to compare to an entry's complete key or value rather than to individual fields. Apply the same keywords if you need to return a key or a value as a result of an SQL query execution."
+  "body": "Use `_key` and `_value` keywords in a SQL query in order to compare to an entry's complete key or value rather than to individual fields. Apply the same keywords if you need to return a key or a value as a result of an SQL query execution. \nOn the other hand, if a key or value is of a primitive type (int, String, Date, etc.), then it will be automatically added to the result set of a query like - `SELECT * FROM ...`."
 }
 [/block]
 
@@ -231,6 +239,14 @@ The following code snippet is provided from the [CacheQueryExample](https://gith
 }
 [/block]
 Refer to [the non-collocated distributed joins blog post](http://dmagda.blogspot.com/2016/08/big-change-in-apache-ignite-17-welcome.html) for more technical details.
+[block:callout]
+{
+  "type": "success",
+  "title": "Querying Replicated Caches",
+  "body": "If a SQL query is executed over the data stored across replicated caches only, then you may want to set the `SqlQuery.setReplicatedOnly(...)` parameter to `true`. This is a special hint to the SQL engine that might produce a more effective execution plan for the query."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
