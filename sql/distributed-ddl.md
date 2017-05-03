@@ -55,7 +55,7 @@ It is possible to create and drop SQL indexes dynamically on existing tables. Bo
   "title": "DROP INDEX"
 }
 [/block]
-`DROP INDEX [IF EXISTS] indexName `
+`DROP INDEX [IF EXISTS] indexName`
 [block:code]
 {
   "codes": [
