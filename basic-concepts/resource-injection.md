@@ -53,7 +53,7 @@ There are a number of pre-defined Ignite resources that you can inject:
     "3-0": "`JobContextResource`",
     "3-1": "Injects instance of `ComputeJobContext`. Job context holds useful information about a particular job execution. For example, you can get the name of the cache containing the entry for which a job was [Collocated](doc:collocate-compute-and-data).",
     "4-0": "`LoadBalancerResource`",
-    "4-1": "Injects instance of `IgniteLogger` which is used to write messages to a local node's log.",
+    "4-1": "Injects an instance of `ComputeLoadBalancer` that can be used by a task to do the load balancing.",
     "5-0": "`ServiceResource`",
     "5-1": "Injects Ignite service by specified service name.",
     "6-0": "`SpringApplicationContextResource`",
