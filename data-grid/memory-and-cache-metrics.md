@@ -48,7 +48,7 @@ Call `Ignite.memoryMetrics()` method to get the latest metrics snapshot and iter
 {
   "type": "warning",
   "title": "Enabling Metrics Gathering",
-  "body": "Memory metrics collection is not a free operation and might affect performance of an application. This is the reason why the memory metrics gathering is turned off by default. \n\nTo turn the metrics on use one of the following approaches:\n* Set `MemoryPolicyConfiguration.setMetricsEnabled(boolean)` to `true` for every memory region you want to gather the metrics for.\n* Use `MemoryMetricsMXBean.enableMetrics()` method exposed by a special JMX bean described below in the documentation."
+  "body": "Memory metrics collection is not a free operation and might affect the performance of an application. For this reason, memory metrics gathering is turned off by default. \n\nTo turn the metrics on, use one of the following approaches:\n* Set `MemoryPolicyConfiguration.setMetricsEnabled(boolean)` to `true` for every memory region you want to gather the metrics for.\n* Use `MemoryMetricsMXBean.enableMetrics()` method exposed by a special JMX bean described below in the documentation."
 }
 [/block]
 
