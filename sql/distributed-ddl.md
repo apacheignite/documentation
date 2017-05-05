@@ -8,7 +8,7 @@
   "title": "Overview"
 }
 [/block]
-Starting with Apache Ignite 2.0 it is possible to use Data Definition Language (DDL) statements for the sake of SQL indexes creation and removal in runtime. Both native Apache Ignite SQL APIs, as well as JDBC and ODBC drivers, can be used for a SQL schema modifications.
+Apache Ignite supports using Data Definition Language (DDL) statements for creating and removing SQL indexes at runtime. Both native Apache Ignite SQL APIs as well as JDBC and ODBC drivers can be used for SQL schema modifications.
 [block:callout]
 {
   "type": "success",
