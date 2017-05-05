@@ -13,7 +13,7 @@ Apache Ignite supports using Data Definition Language (DDL) statements for creat
 {
   "type": "success",
   "title": "Full-fledged DDL Support",
-  "body": "In the future Apache Ignite releases, you can expect to see support for additional widely used DDL statements."
+  "body": "In the future Apache Ignite releases, you can expect to see support for additional, widely used DDL statements."
 }
 [/block]
 
@@ -26,7 +26,7 @@ Syntax:
 `CREATE [SPATIAL] INDEX [IF NOT EXISTS] indexName ON tableName (indexColumn, ...)`
 `indexColumn := columnName [ASC|DESC]` where `tableName` is a name of the type stored in a distirbuted cache.
 
-Here is how a simple sorted index can be created:​
+Here is an example of how a simple sorted index can be created:​
 [block:code]
 {
   "codes": [
@@ -38,7 +38,7 @@ Here is how a simple sorted index can be created:​
   ]
 }
 [/block]
-To create a composite index use a command like the one below:
+To create a composite index, use a command like the one below:
 [block:code]
 {
   "codes": [
@@ -87,7 +87,7 @@ Syntax:
   "title": "Apache Ignite SQL API"
 }
 [/block]
-DDL commands could be executed via `SqlFieldsQuery` class as it's shown below:
+DDL commands can be executed via the `SqlFieldsQuery` class, as shown below:
 [block:code]
 {
   "codes": [
@@ -104,7 +104,7 @@ DDL commands could be executed via `SqlFieldsQuery` class as it's shown below:
   "title": "JDBC driver"
 }
 [/block]
-The example below demonstrates how to create an index with Apache Ignite JDBC driver.
+The example below demonstrates how to create an index with the Apache Ignite JDBC driver.
 [block:code]
 {
   "codes": [
