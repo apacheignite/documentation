@@ -52,9 +52,9 @@ Call `Ignite.memoryMetrics()` method to get the latest metrics snapshot and iter
 }
 [/block]
 
-Alternatively, the page memory state can be observed with `MemoryMetricsMXBean` interface. You can connect to the bean from any JMX-compliant tool or API.
+Alternatively, the page memory state can be observed using the `MemoryMetricsMXBean` interface. You can connect to the bean from any JMX-compliant tool or API.
 
-The JMX bean exposes the same set of metrics `MemoryMetrics` interface has and, at the same time, offers some new listed below. Some of these bean-specific methods will be added to `MemoryMetrics` interface in the future releases:
+The JMX bean exposes the same set of metrics that `MemoryMetrics` interface has, as well as a few additional ones listed below.
 [block:parameters]
 {
   "data": {
@@ -77,20 +77,20 @@ The JMX bean exposes the same set of metrics `MemoryMetrics` interface has and, 
   "rows": 7
 }
 [/block]
-
+Some of these bean-specific methods will be added to `MemoryMetrics` interface in the future releases.
 [block:api-header]
 {
   "title": "Cache Metrics"
 }
 [/block]
-In addition to the low-level memory related metrics explained above, Apache Ignite allows keeping an eye on distributed caches specific statistics available via `CacheMetrics` interface.
+In addition to the low-level memory related metrics explained above, Apache Ignite allows keeping an eye on the distributed cache specific statistics available via the `CacheMetrics` interface.
 
-The interface has a variety of metrics such as a total number of put and get operations processed by a cache, average put or get time, a total number of evictions, current write-behind cache store buffer size and more. Refer to `CacheMetrics` javadoc to see a complete list of all the metrics available.
+The interface has a variety of metrics, such as - a total number of put and get operations processed by a cache, average put or get time, a total number of evictions, current write-behind cache store buffer size, and more. Refer to `CacheMetrics` javadoc to see a complete list of all the metrics available.
 
-There are several ways how you can the latest metrics snapshot of a specific cache:
-* `IgniteCache.metrics()` - gets metrics snapshot of the whole cluster where the cache is deployed.
-* `IgniteCache.metrics(ClusterGroup grp)` - gets metrics snapshot for Apache Ignite nodes that belong to a passed cluster group.
-* `IgniteCache.localMetrics()` - gets local node's metrics snapshot for the cache.
+There are several ways to get the latest metrics snapshot of a specific cache:
+* `IgniteCache.metrics()` - gets the metrics snapshot of the whole cluster where the cache is deployed.
+* `IgniteCache.metrics(ClusterGroup grp)` - gets the metrics snapshot for Apache Ignite nodes that belong to a passed cluster group.
+* `IgniteCache.localMetrics()` - gets the local node's metrics snapshot for the cache.
 
 Alternatively, you can get an access to the cache metrics via `CacheMetricsMXBean` interface. You can connect to the bean from any JMX-compliant tool or API. If you need to work with the bean from your application use `IgniteCache.mxBean()` or `IgniteCache.localMxBean()` to get a bean reference.
 [block:callout]
