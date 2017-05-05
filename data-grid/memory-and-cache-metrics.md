@@ -77,7 +77,7 @@ The JMX bean exposes the same set of metrics that `MemoryMetrics` interface has,
   "rows": 7
 }
 [/block]
-Some of these bean-specific methods will be added to the `MemoryMetrics` interface in future releases.
+Some of these bean-specific methods will be added to `MemoryMetrics` interface in future releases.
 [block:api-header]
 {
   "title": "Cache Metrics"
