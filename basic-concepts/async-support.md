@@ -12,7 +12,7 @@ A majority of Apache Ignite APIs can be used in both synchronous or asynchronous
 {
   "codes": [
     {
-      "code": "// Synchronous get\nK get(V val);\n\n// Asynchronous get\nIgniteFuture<K> getAsync(V val);",
+      "code": "// Synchronous get\nV get(K key);\n\n// Asynchronous get\nIgniteFuture<V> getAsync(K key);",
       "language": "java",
       "name": "Java"
     }
