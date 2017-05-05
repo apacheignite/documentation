@@ -97,6 +97,6 @@ Alternatively, you can get access to the cache metrics via the `CacheMetricsMXBe
 {
   "type": "warning",
   "title": "Enabling Cache Metrics",
-  "body": "To enable cache metrics gathering, set `CacheConfiguration.setStatisticsEnabled(boolean)` to `true` for every cache you want to collect metrics for."
+  "body": "To enable cache metrics gathering, set `CacheConfiguration.setStatisticsEnabled(boolean)` to `true` for every cache you want to collect the metrics for."
 }
 [/block]
