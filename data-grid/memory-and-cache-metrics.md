@@ -37,7 +37,7 @@ Call `Ignite.memoryMetrics()` method to get the latest metrics snapshot and iter
 {
   "codes": [
     {
-      "code": "// Get the metrics of all the memory regions defined on the node.\nCollection<MemoryMetrics> regionsMetrics = ignite.memoryMetrics();\n\n// Print some of the metrics' probes for all the regions.\nfor (MemoryMetrics metrics : regionsMetrics) {\n\tSystem.out.println(\">>> Memory Region Name: \" + metrics.getName());\n  System.out.println(\">>> Allocation Rate: \" + metrics.getAllocationRate());\n  System.out.println(\">>> Fill Factor: \" + metrics.getPagesFillFactor());\n\n  System.out.println();\n}",
+      "code": "// Get the metrics of all the memory regions defined on the node.\nCollection<MemoryMetrics> regionsMetrics = ignite.memoryMetrics();\n\n// Print some of the metrics' probes for all the regions.\nfor (MemoryMetrics metrics : regionsMetrics) {\n\tSystem.out.println(\">>> Memory Region Name: \" + metrics.getName());\n  System.out.println(\">>> Allocation Rate: \" + metrics.getAllocationRate());\n  System.out.println(\">>> Fill Factor: \" + metrics.getPagesFillFactor());\n}",
       "language": "java"
     }
   ]
