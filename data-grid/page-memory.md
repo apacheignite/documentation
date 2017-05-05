@@ -9,7 +9,7 @@
   "title": "Overview"
 }
 [/block]
-Starting with version 2.0, Apache Ignite has introduced the new off-heap memory architecture with possible on-heap caching as it's shown on the picture below: 
+Starting with version 2.0, Apache Ignite has introduced a new off-heap memory architecture with possible on-heap caching. 
 [block:image]
 {
   "images": [
@@ -27,7 +27,7 @@ Starting with version 2.0, Apache Ignite has introduced the new off-heap memory 
 [/block]
 The new memory architecture has the following benefits:
 
-* Predictable memory consumption. There is a way to say precisely how much memory you are ready to give to an Apache Ignite node process and arrange data sets of specific Ignite caches across memory regions of different characteristics such as total capacity.
+* Predictable memory consumption. - There is a way to say precisely how much memory you are ready to give to an Apache Ignite node process and arrange data sets of specific Ignite caches across memory regions of different characteristics such as total capacity.
 * Automatic memory defragmentation. Apache Ignite uses all the available memory as efficient as possible and executes defragmentation routines in background not affecting the performance of your application. 
 * No stop-the-world (STW) garbage collection (GC) pauses caused by Apache Ignite platform architecture. Application's code is the only one possible source of STW GC pauses.
 * Profoundly improves the performance of and memory utilization by Apache Ignite SQL engine.
