@@ -83,7 +83,7 @@ Some of these bean-specific methods will be added to the `MemoryMetrics` interfa
   "title": "Cache Metrics"
 }
 [/block]
-In addition to the low-level memory related metrics explained above, Apache Ignite allows keeping an eye on the distributed cache specific statistics available via the `CacheMetrics` interface.
+In addition to the low-level memory related metrics explained above, Apache Ignite allows to keep an eye on the distributed cache specific statistics available via the `CacheMetrics` interface.
 
 The `CacheMetrics` interface has a variety of metrics, such as - a total number of put and get operations processed by a cache, average put or get time, a total number of evictions, current write-behind cache store buffer size, and more. Refer to `CacheMetrics` javadoc to see a complete list of all the metrics available.
 
