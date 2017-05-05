@@ -63,7 +63,7 @@ The JMX bean exposes the same set of metrics that `MemoryMetrics` interface has,
     "1-0": "`getMaxSize()`",
     "1-1": "Gets maximum memory region size defined by its memory policy configuration.",
     "2-0": "`getSwapFilePath()`",
-    "2-1": "Gets a path to the memory-mapped files, if any, a memory region will be mapped to.",
+    "2-1": "Gets the path to the memory-mapped files, if any, the memory region will be mapped to.",
     "3-0": "`enableMetrics()`",
     "3-1": "Enables memory metrics collection on an Apache Ignite node for a specific memory region.",
     "4-0": "`disableMetrics()`",
@@ -71,7 +71,7 @@ The JMX bean exposes the same set of metrics that `MemoryMetrics` interface has,
     "5-0": "`rateTimeInterval(int)`",
     "5-1": "Sets a time interval for pages allocation and eviction rates monitoring purposes. For instance, after setting the interval to 60 seconds, subsequent calls to `getAllocationRate()` will return average allocation rate (pages per second) for the last minute.",
     "6-0": "`subIntervals(int)`",
-    "6-1": "Sets a number of sub-intervals the whole `rateTimeInterval(int)` will be split into to calculate pages allocation and eviction rates (5 by default). Setting this parameter to a bigger value will result in the more precise calculation."
+    "6-1": "Sets a number of sub-intervals the whole `rateTimeInterval(int)` will be split into to calculate pages allocation and eviction rates (5 by default). Setting this parameter to a bigger value will result in a more precise calculation."
   },
   "cols": 2,
   "rows": 7
