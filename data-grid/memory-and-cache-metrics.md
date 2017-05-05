@@ -5,7 +5,7 @@
   "title": "Memory Metrics"
 }
 [/block]
-Apache Ignite’s [page memory](doc:page-memory) can be analyzed via several parameters exposed through the `MemoryMetrics` interface and JMX bean. Having access to the memory metrics can help track overall memory utilization, measure its performance, and execute required optimizations if a bottleneck is spotted.
+Apache Ignite’s [page memory](doc:page-memory) can be analyzed via several parameters exposed through the `MemoryMetrics` interface and JMX bean. Having access to memory metrics can help track overall memory utilization, measure its performance, and execute required optimizations if a bottleneck is spotted.
 
 `MemoryMetrics` is the main entry point that provides page memory-related metrics of a specific Apache Ignite node. Since there are can be several memory regions configured on a node, the metrics for every region are collected and obtained separately using this API.
 
