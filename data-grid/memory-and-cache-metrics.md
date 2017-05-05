@@ -16,17 +16,17 @@ Currently, `MemoryMetrics` interface supports the following methods:
     "h-0": "Method Name",
     "h-1": "Description",
     "0-0": "`getName()`",
-    "0-1": "Returns a name of a memory region the metrics belong to.",
+    "0-1": "Returns the name of the memory region the metrics belong to.",
     "1-0": "`getTotalAllocatedPages()`",
-    "1-1": "Gets a total number of allocated pages in the memory region.",
+    "1-1": "Gets the total number of allocated pages in the memory region.",
     "2-0": "`getAllocationRate()`",
     "2-1": "Gets pages allocation rate in this memory region.",
     "3-0": "`getEvictionRate()`",
     "3-1": "Gets pages eviction rate in the given memory region.",
     "4-0": "`getLargeEntriesPagesPercentage()`",
-    "4-1": "Gets a percentage of pages that are fully occupied by large entries that go beyond page size. The large entities are split into fragments in a way so that each fragment can fit into a single page.",
+    "4-1": "Gets the percentage of pages that are fully occupied by large entries that go beyond the page size. Large entities are split into fragments in a way that each fragment can fit into a single page.",
     "5-0": "`getPagesFillFactor()`",
-    "5-1": "Gets a percentage of space that is still free and can be filled in."
+    "5-1": "Gets the percentage of space that is still free and can be filled in."
   },
   "cols": 2,
   "rows": 6
