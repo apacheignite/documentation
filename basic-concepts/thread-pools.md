@@ -106,7 +106,7 @@ To do that, you need to use `IgniteCompute.withExecutor()` that will execute the
   ]
 }
 [/block]
-The parental task's execution might be triggered this way and, in this scenario, it will be executed by the public pool size:
+The parent task's execution might be triggered the following way and, in this scenario, it will be executed by the public pool size:
 [block:code]
 {
   "codes": [
