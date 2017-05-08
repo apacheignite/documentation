@@ -19,7 +19,7 @@ A majority of Apache Ignite APIs can be used in both synchronous or asynchronous
   ]
 }
 [/block]
-The asynchronous operations return an instance of `IgniteFuture` or one of its subclasses. You can wait for a result of an asynchronous operation by either calling a blocking `IgniteFuture.get()` method or register a closure using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods and wait while the closure gets called on the operation completion.
+The asynchronous operations return an instance of `IgniteFuture` or one of its subclasses. You can wait for the result of an asynchronous operation by either calling a blocking `IgniteFuture.get()` method or registering a closure using `IgniteFuture.listen()` or `IgniteFuture.chain()` methods and wait while the closure gets called on the operation completion.
 [block:api-header]
 {
   "title": "Supported Interfaces"
