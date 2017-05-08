@@ -29,10 +29,10 @@ The new memory architecture has the following benefits:
 
 * Predictable memory consumption - There is a way to say precisely how much memory you are ready to give to an Apache Ignite node process and arrange data sets of specific Ignite caches across memory regions of different characteristics such as total capacity.
 * Automatic memory defragmentation -  Apache Ignite uses all the available memory as efficiently as possible and executes defragmentation routines in the background, without affecting the performance of your application. 
-* No stop-the-world (STW) garbage collection (GC) pauses caused by Apache Ignite platform architecture. Application's code is the only one possible source of STW GC pauses.
+* No stop-the-world (STW) garbage collection (GC) pauses caused by Apache Ignite platform architecture. Application's code is the only possible source of STW GC pauses.
 * Immensely improves the performance and memory utilization by Apache Ignite SQL engine.
 * Transparent swapping. The page memory can be mapped to a memory-mapped file offloading swapping related activity to an underlying operating system.
-* An ability to integrate with a file system in order to persist memory pages on disk for durability purpose and create cluster-wide snapshots (backups).
+* Ability to integrate with a file system in order to persist memory pages on disk for durability purpose and create cluster-wide snapshots (backups).
 [block:api-header]
 {
   "type": "basic",
