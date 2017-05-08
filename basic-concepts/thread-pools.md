@@ -123,6 +123,6 @@ The parent task's execution might be triggered the following way and, in this sc
 {
   "type": "warning",
   "title": "Undefined Thread Pool",
-  "body": "If an Ignite Compute task is asked to be executed in a custom pool which is not defined on an Apache Ignite node, then a special warning message will be printed on the node's logs and the task will be picked up by the public pool for execution."
+  "body": "If an Ignite Compute task is requested to be executed in a custom pool which is not defined on an Apache Ignite node, then a special warning message will be printed in the node's logs, and the task will be picked up by the public pool for execution."
 }
 [/block]
