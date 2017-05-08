@@ -83,33 +83,33 @@ Usually, a single data page holds multiple key-value entries in order to use the
   "body": "A key-value entry might not be bound to a specific page all the time. For instance, if during an update the entry expands and its current page can no longer fit it, then the page memory will search for a new data page that has enough room to take the updated entry and will move the entry there."
 }
 [/block]
-## B+Tree and Index Page
+## B+ Tree and Index Page
 
-SQL indexes defined and used in an application are arranged and maintained in the form of a B+ tree data structure. For every unique index that is declared in an SQL schema, Apache Ignite instantiates and manages a dedicated B+Tree instance. 
+SQL indexes defined and used in an application are arranged and maintained in the form of a B+ tree data structure. For every unique index that is declared in an SQL schema, Apache Ignite instantiates and manages a dedicated B+ tree instance. 
 [block:callout]
 {
   "type": "success",
   "title": "Hash Index",
-  "body": "Cache entries' keys are also referenced from B+Tree data structures. They're ordered by hash code value."
+  "body": "Cache entries' keys are also referenced from the B+ tree data structure. They're ordered by hash code value."
 }
 [/block]
 As shown in the picture above, the whole purpose of a B+ tree is to link and order the index pages that are allocated and stored in random physical locations of the page memory. Internally, an index page contains all the information needed to locate the index's value, cache entry's offset in a data page an index refers to, and references to other index pages in order to traverse the tree (index pages are colored in purple in the picture above). 
 
-B+Tree Meta Page is needed to get to the root of a specific B+Tree and to its layers for efficient execution of range queries. For instance, when `myCache.get(keyA)` operation is executed it will trigger the following execution flow on an Apache Ignite node:
-* Apache Ignite will look for a memory region `myCache` belongs to.
-* Inside of that memory region a meta page of a B+Tree that orders keys of `myCache` will be located.
-* Hash code of `keyA` will be calculated and an index page, the key belongs to, will be searched for in the B+Tree.
-* If the corresponding index page is not found then it means the key-value pair doesn't exist in `myCache` and Apache Ignite will return `null` as a result of the `myCache.get(keyA)` operation.
-* If the index page exists then it will contain all the information needed to find a data page of the cache entry `keyA` refers to.
+B+ tree Meta Page is needed to get to the root of a specific B+ tree and to its layers for efficient execution of range queries. For instance, when `myCache.get(keyA)` operation is executed, it will trigger the following execution flow on an Apache Ignite node:
+* Apache Ignite will look for a memory region to which `myCache` belongs to.
+* Inside that memory region, a meta page of a B+ tree that orders keys of `myCache` will be located.
+* Hash code of `keyA` will be calculated and an index page the key belongs to will be searched for in the B+Tree.
+* If the corresponding index page is not found, then it means the key-value pair doesn't exist in `myCache` and Apache Ignite will return `null` as a result of the `myCache.get(keyA)` operation.
+* If the index page exists, then it will contain all the information needed to find the data page of the cache entry `keyA` refers to.
 * The cache entry is taken from the data page and returned to your application.
  
 ## Free Lists Metadata and Structure
 
-The execution flow from the previous section explains how a cache entry is being looked up in the page memory when you want to get it from your application. However, how does the page memory know where to put a new cache entry if an operation like `myCache.put(keyA, valueA)` is called?
+The execution flow from the previous section explains how a cache entry is looked up in the page memory when you want to get it from your application. However, how does the page memory know where to put a new cache entry if an operation like `myCache.put(keyA, valueA)` is called?
 
-In this scenario, the page memory relies on free lists data structures. Basically, a free list is doubly linked list that stores references to memory pages of approximately equal free space left. For instance, there is a free list that stores all the data pages that have up to 75% free space left and a list that keeps track of the index pages with 25% capacity left. Data and index pages are tracked in separate free lists.
+In this scenario, the page memory relies on free lists data structures. Basically, a free list is a doubly linked list that stores references to memory pages of approximately equal free space. For instance, there is a free list that stores all the data pages that have up to 75% free space and a list that keeps track of the index pages with 25% capacity left. Data and index pages are tracked in separate free lists.
 
-Keeping this in mind, the execution flow of `myCache.put(keyA, valueA)` operation on an Apache Ignite node, that is a primary or backup one for the entry, will be more or less the following:
+Keeping this in mind, the execution flow of `myCache.put(keyA, valueA)` operation on an Apache Ignite node, that is a primary or backup node for the entry, will be more or less the following:
 * Apache Ignite will look for a memory region `myCache` belongs to.
 * Inside of that memory region a meta page of a B+Tree that orders keys of `myCache` will be located.
 * Hash code of `keyA` will be calculated and an index page, the key belongs to, will be searched for in the B+Tree.
