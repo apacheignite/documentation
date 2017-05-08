@@ -94,7 +94,7 @@ Now, let's assume the Ignite Compute task below has to be executed by a Thread f
   ]
 }
 [/block]
-To do that, you need to use `IgniteCompute.withExecutor()` executing the task right away or from an implementation of a parental task, as shown below: 
+To do that, you need to use `IgniteCompute.withExecutor()` that will execute the task right away from an implementation of the parent task, as shown below: 
 [block:code]
 {
   "codes": [
