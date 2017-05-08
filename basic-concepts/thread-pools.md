@@ -17,7 +17,7 @@ Apache Ignite creates and maintains a variety of Thread pools that are used for 
   "title": "System Pool"
 }
 [/block]
-The system pool processes all the cache related operations except for SQL and some other types of queries that go to the [queries pool](#section-queries-pool). Also, this pool is responsible for Ignite Compute tasks' cancellation operations processing.
+The system pool processes all the cache related operations except for SQL and some other types of queries that go to the [queries pool](#section-queries-pool). Also, this pool is responsible for processing Ignite Compute tasks' cancellation operations.
 
 The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setSystemThreadPoolSize(...)` to change the pool size.
 [block:api-header]
@@ -25,7 +25,7 @@ The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.s
   "title": "Public Pool"
 }
 [/block]
-The public pool is a work-horse of Apache Ignite compute grid. All computations get and processed by this pool.  
+Public pool is the work-horse of Apache Ignite compute grid. All computations are received and processed by this pool.  
 
 The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setPublicThreadPoolSize(...)` to change the pool size.
 [block:api-header]
