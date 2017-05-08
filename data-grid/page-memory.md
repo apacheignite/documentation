@@ -96,12 +96,12 @@ SQL indexes defined and used in an application are arranged and maintained in th
 As shown in the picture above, the whole purpose of a B+ tree is to link and order the index pages that are allocated and stored in random physical locations of the page memory. Internally, an index page contains all the information needed to locate the index's value, cache entry's offset in a data page an index refers to, and references to other index pages in order to traverse the tree (index pages are colored in purple in the picture above). 
 
 B+ tree Meta Page is needed to get to the root of a specific B+ tree and to its layers for efficient execution of range queries. For instance, when `myCache.get(keyA)` operation is executed, it will trigger the following execution flow on an Apache Ignite node:
-* Apache Ignite will look for a memory region to which `myCache` belongs to.
-* Inside that memory region, a meta page of a B+ tree that orders keys of `myCache` will be located.
-* Hash code of `keyA` will be calculated and an index page the key belongs to will be searched for in the B+ tree.
-* If the corresponding index page is not found, then it means the key-value pair doesn't exist in `myCache` and Apache Ignite will return `null` as a result of the `myCache.get(keyA)` operation.
-* If the index page exists, then it will contain all the information needed to find the data page of the cache entry `keyA` refers to.
-* The cache entry is taken from the data page and returned to your application.
+1. Apache Ignite will look for a memory region to which `myCache` belongs to.
+2. Inside that memory region, a meta page of a B+ tree that orders keys of `myCache` will be located.
+3. Hash code of `keyA` will be calculated and an index page the key belongs to will be searched for in the B+ tree.
+4. If the corresponding index page is not found, then it means the key-value pair doesn't exist in `myCache` and Apache Ignite will return `null` as a result of the `myCache.get(keyA)` operation.
+5. If the index page exists, then it will contain all the information needed to find the data page of the cache entry `keyA` refers to.
+6. The cache entry is taken from the data page and returned to your application.
  
 ## Free Lists Metadata and Structure
 
