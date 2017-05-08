@@ -39,7 +39,7 @@ The new memory architecture has the following benefits:
   "title": "Page Memory"
 }
 [/block]
-Page memory is a manageable off-heap based memory architecture that is split into pages of fixed size. Let's take a look at the picture below and get to know more about this memory architecture.
+Page memory is a manageable off-heap based memory architecture that is split into pages of fixed size. Let's take a look at the picture below and try to understand more about this memory architecture.
 [block:image]
 {
   "images": [
