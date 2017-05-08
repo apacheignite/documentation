@@ -57,7 +57,7 @@ The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.s
   "title": "Data Streamer Pool"
 }
 [/block]
-The data streamer pool processes all the messages and requests coming from `IgniteDataStreamer` and a variety of streaming adapters that use `IgniteDataStreamer` internally. 
+The data streamer pool processes all messages and requests coming from `IgniteDataStreamer` and a variety of streaming adapters that use `IgniteDataStreamer` internally. 
 
 The default pool size is `2 x total number of cores`. Use `IgniteConfiguration.setDataStreamerThreadPoolSize(...)` to change the pool size.
 [block:api-header]
@@ -94,7 +94,7 @@ Now, let's assume the Ignite Compute task below has to be executed by a Thread f
   ]
 }
 [/block]
-To do that, you need to use `IgniteCompute.withExecutor()` executing the task right away or from an implementation of a parental task like it's shown below: 
+To do that, you need to use `IgniteCompute.withExecutor()` executing the task right away or from an implementation of a parental task, as shown below: 
 [block:code]
 {
   "codes": [
@@ -123,6 +123,6 @@ The parental task's execution might be triggered this way and, in this scenario,
 {
   "type": "warning",
   "title": "Undefined Thread Pool",
-  "body": "If an Ignite Compute task is asked to be executed in a custom pool which is not defined on an Apache Ignite node, then a special warning message will be printed out to node's logs and the task will be picked up by the public pool for execution."
+  "body": "If an Ignite Compute task is asked to be executed in a custom pool which is not defined on an Apache Ignite node, then a special warning message will be printed on the node's logs and the task will be picked up by the public pool for execution."
 }
 [/block]
