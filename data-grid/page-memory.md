@@ -85,7 +85,7 @@ Usually, a single data page holds multiple key-value entries in order to use the
 [/block]
 ## B+Tree and Index Page
 
-SQL indexes that might be defined and used in your application are arranged and maintained in a form of B+Tree data structures. For every unique index, that is declared in an SQL schema, Apache Ignite instantiates and manages a dedicated B+Tree instance. 
+SQL indexes defined and used in an application are arranged and maintained in the form of a B+ tree data structure. For every unique index that is declared in an SQL schema, Apache Ignite instantiates and manages a dedicated B+Tree instance. 
 [block:callout]
 {
   "type": "success",
@@ -93,7 +93,7 @@ SQL indexes that might be defined and used in your application are arranged and 
   "body": "Cache entries' keys are also referenced from B+Tree data structures. They're ordered by hash code value."
 }
 [/block]
-As it's shown in the picture above, the whole purpose of B+Tree is to link and order the index pages that are allocated and stored in random physical locations of the page memory. Internally, an index page contains all the information needed to locate index's value, cache entry's offset in a data page an index refers to, references to another index pages in order to traverse the tree (index pages are colored in purple in the picture above). 
+As shown in the picture above, the whole purpose of a B+ tree is to link and order the index pages that are allocated and stored in random physical locations of the page memory. Internally, an index page contains all the information needed to locate the index's value, cache entry's offset in a data page an index refers to, and references to other index pages in order to traverse the tree (index pages are colored in purple in the picture above). 
 
 B+Tree Meta Page is needed to get to the root of a specific B+Tree and to its layers for efficient execution of range queries. For instance, when `myCache.get(keyA)` operation is executed it will trigger the following execution flow on an Apache Ignite node:
 * Apache Ignite will look for a memory region `myCache` belongs to.
