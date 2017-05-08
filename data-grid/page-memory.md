@@ -279,6 +279,6 @@ On-heap caching is useful for scenarios when you do a lot of cache reads on serv
 {
   "type": "success",
   "title": "On-Heap Cache Size",
-  "body": "To manage the on-heap cache size and avoid its constant grow make sure to enable one of available [cache entries based eviction policies](doc:evictions)."
+  "body": "To manage the on-heap cache size and avoid its constant growth, make sure to enable one of available [cache entries based eviction policies](doc:evictions)."
 }
 [/block]
