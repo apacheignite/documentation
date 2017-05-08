@@ -212,7 +212,7 @@ Right after that, an Apache Ignite cache can be mapped to that region. To achiev
   ]
 }
 [/block]
-Once Apache Ignite cluster is started with this configuration, the page memory will allocate 100 MB region that can grow up to 500 MB. That new region will coexist with the default memory region and all the data as well as indexes, omitted in this example, of `SampleCache` will reside in that region. The rest of the caches you might have in your deployment will be bound to the default memory region unless you map them to another region explicitly using the technique shown above.
+Once the Apache Ignite cluster is started with this configuration, the page memory will allocate 100 MB region that can grow up to 500 MB. That new region will coexist with the default memory region and all the data as well as indexes, omitted in this example, of `SampleCache` will reside in that region. The rest of the caches you might have in your deployment will be bound to the default memory region unless you map them to another region explicitly using the technique shown above.
 [block:callout]
 {
   "type": "success",
