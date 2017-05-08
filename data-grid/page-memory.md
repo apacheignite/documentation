@@ -152,7 +152,7 @@ To alter global page memory settings such as page size, use `org.apache.ignite.c
   "rows": 7
 }
 [/block]
-An example below shows how to change page size and concurrency level parameters using `MemoryConfiguration`:
+The following example shows how to change the page size and concurrency level, using `MemoryConfiguration`:
 [block:code]
 {
   "codes": [
