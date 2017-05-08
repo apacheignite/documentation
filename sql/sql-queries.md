@@ -22,7 +22,19 @@ Furthermore, the queries are fully distributed. The SQL engine is capable of not
 [/block]
 Apache Ignite SQL Grid component is tightly coupled with [H2 Database](http://www.h2database.com) which, in short, is a fast in-memory and disk-based database written in Java and available under a number of open source licenses.
 
-An embedded H2 instance is always started as a part of an Apache Ignite node process whenever `ignite-indexing` module is added to the node's classpath. Ignite leverages from H2's SQL query parser and optimizer as well as the execution planner. Lastly, H2 executes a query locally on a particular node (a distributed query is mapped to the node or the query is executed in `LOCAL` mode) and passes a local result to a distributed Ignite SQL engine for further processing. 
+An embedded H2 instance is always started as a part of an Apache Ignite node process whenever `ignite-indexing` module is added to the node's classpath. If the node is started from a terminal using `ignite.sh{bat}` script then copy `{apache_ignite}\libs\optional\ignite-indexing` directory to  `{apache_ignite}\libs\`. If you use Maven then add the dependency below to a `pom.xml` file:
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<dependency>\n    <groupId>org.apache.ignite</groupId>\n    <artifactId>ignite-indexing</artifactId>\n    <version>${ignite.version}</version>\n</dependency>\n",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+Apache Ignite leverages from H2's SQL query parser and optimizer as well as the execution planner. Lastly, H2 executes a query locally on a particular node (a distributed query is mapped to the node or the query is executed in `LOCAL` mode) and passes a local result to a distributed Ignite SQL engine for further processing. 
 
 However, the data, as well as the indexes, are always stored in the Ignite Data Grid. Additionally, Ignite executes queries in a distributed and fault-tolerant manner which is not supported by H2.
 
