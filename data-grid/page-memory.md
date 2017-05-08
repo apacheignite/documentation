@@ -119,7 +119,7 @@ Keeping this in mind, the execution flow of `myCache.put(keyA, valueA)` operatio
 
 ## Configuration Parameters
 
-To alter global page memory settings such as page size use `org.apache.ignite.configuration.MemoryConfiguration` that is passed via `IgniteConfiguration.setMemoryConfiguration(...)` method. Below you can see all the available parameters:
+To alter global page memory settings such as page size, use `org.apache.ignite.configuration.MemoryConfiguration` that is passed via the `IgniteConfiguration.setMemoryConfiguration(...)` method. Below you can see all the available parameters:
 [block:parameters]
 {
   "data": {
