@@ -176,11 +176,11 @@ The following example shows how to change the page size and concurrency level, u
   "title": "Memory Policies"
 }
 [/block]
-By default, the page memory initiates a single expandable memory region that can take up to 80% of all the memory available on a local machine. However, there is a way to define multiple memory regions with various parameters and custom behavior relying on memory policies' API.
+By default, the page memory initiates a single expandable memory region that can take up to 80% of the memory available on a local machine. However, there is a way to define multiple memory regions with various parameters and custom behavior relying on the memory policies' API.
 
-A memory policy is a set of configuration parameters, that are exposed through `org.apache.ignite.configuration.MemoryPolicyConfiguration`, like initial and maximum region size, an eviction policy, a swapping file and more.
+A memory policy is a set of configuration parameters, exposed through `org.apache.ignite.configuration.MemoryPolicyConfiguration`, like initial and maximum region size, an eviction policy, a swapping file and more.
 
-For instance, to configure a 500 MB memory region with enabled data pages eviction we need to define a memory policy like below:
+For instance, to configure a 500 MB memory region with enabled data pages eviction, we need to define a memory policy like below:
 [block:code]
 {
   "codes": [
