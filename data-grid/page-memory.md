@@ -69,7 +69,7 @@ Every memory region has the maximum size it can grow to. The region expands to i
   "body": "If a memory region is not limited explicitly via respective `MemoryPolicyConfiguration`, then it can take up to 80% of the RAM available on your machine."
 }
 [/block]
-A memory chunk is a physical continuous byte array obtained from an underlying operating system. The chunk is divided into pages of fixed size. There are several types of pages that can reside in the chunk. Let's review all of them. 
+A memory chunk is a physical continuous byte array obtained from the underlying operating system. The chunk is divided into pages of fixed size. There are several types of pages that can reside in the chunk. Let's review all of them. 
   
 ## Data Page
 
