@@ -75,12 +75,12 @@ A memory chunk is a physical continuous byte array obtained from the operating s
 
 A data page stores cache entries you put into Apache Ignite caches from an application side (data pages are colored in green in the picture above).
 
-Usually, a single data page holds multiple key-value entries in order to use the memory as efficiently as possible and avoid memory fragmentation. Basically, when a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. If an entry's total size exceeds the page size configured via the`MemoryConfiguration.setPageSize(..)` parameter, then the entry will occupy more than one data page.
+Usually, a single data page holds multiple key-value entries in order to use the memory as efficiently as possible and avoid memory fragmentation. When a new key-value entry is being added to a cache, the page memory will look up a page that can fit the whole entry and puts it there. However, if an entry's total size exceeds the page size configured via the`MemoryConfiguration.setPageSize(..)` parameter, then the entry will occupy more than one data page.
 [block:callout]
 {
   "type": "info",
   "title": "Entry Ownership by Data Page",
-  "body": "A key-value entry might not be bound to a specific page all the times. For instance, if during an update the entry expands and its current page can no longer fit it then the page memory will search for a new data page that has enough room to take the updated entry and will move the entry there."
+  "body": "A key-value entry might not be bound to a specific page all the time. For instance, if during an update the entry expands and its current page can no longer fit it, then the page memory will search for a new data page that has enough room to take the updated entry and will move the entry there."
 }
 [/block]
 ## B+Tree and Index Page
