@@ -11,7 +11,7 @@
   "title": "Overview"
 }
 [/block]
-Apache Ignite creates and maintains a variety of Thread pools that are used for different purposes depending on the API being used. In this documentation, we list some of the well-known internal pools and show how you can create a custom one. Refer to `IgniteConfiguration` javadoc to get a full list of all the pools available in Apache Ignite.
+Apache Ignite creates and maintains a variety of Thread pools that are used for different purposes depending on the API being used. In this documentation, we list some of the well-known internal pools and show how you can create a custom one. Refer to `IgniteConfiguration` javadoc to get a full list of thread pools available in Apache Ignite.
 [block:api-header]
 {
   "title": "System Pool"
