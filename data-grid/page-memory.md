@@ -85,7 +85,7 @@ Usually, a single data page holds multiple key-value entries in order to use the
 [/block]
 ## B+ Tree and Index Page
 
-SQL indexes defined and used in an application are arranged and maintained in the form of a B+ tree data structure. For every unique index that is declared in an SQL schema, Apache Ignite instantiates and manages a dedicated B+ tree instance. 
+SQL indexes defined and used in an application are arranged and maintained in the form of a **B+ tree data structure**. For every unique index that is declared in an SQL schema, Apache Ignite instantiates and manages a dedicated B+ tree instance. 
 [block:callout]
 {
   "type": "success",
