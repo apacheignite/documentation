@@ -98,7 +98,7 @@ As shown in the picture above, the whole purpose of a B+ tree is to link and ord
 B+ tree Meta Page is needed to get to the root of a specific B+ tree and to its layers for efficient execution of range queries. For instance, when `myCache.get(keyA)` operation is executed, it will trigger the following execution flow on an Apache Ignite node:
 * Apache Ignite will look for a memory region to which `myCache` belongs to.
 * Inside that memory region, a meta page of a B+ tree that orders keys of `myCache` will be located.
-* Hash code of `keyA` will be calculated and an index page the key belongs to will be searched for in the B+Tree.
+* Hash code of `keyA` will be calculated and an index page the key belongs to will be searched for in the B+ tree.
 * If the corresponding index page is not found, then it means the key-value pair doesn't exist in `myCache` and Apache Ignite will return `null` as a result of the `myCache.get(keyA)` operation.
 * If the index page exists, then it will contain all the information needed to find the data page of the cache entry `keyA` refers to.
 * The cache entry is taken from the data page and returned to your application.
@@ -110,12 +110,12 @@ The execution flow from the previous section explains how a cache entry is looke
 In this scenario, the page memory relies on free lists data structures. Basically, a free list is a doubly linked list that stores references to memory pages of approximately equal free space. For instance, there is a free list that stores all the data pages that have up to 75% free space and a list that keeps track of the index pages with 25% capacity left. Data and index pages are tracked in separate free lists.
 
 Keeping this in mind, the execution flow of `myCache.put(keyA, valueA)` operation on an Apache Ignite node, that is a primary or backup node for the entry, will be more or less the following:
-* Apache Ignite will look for a memory region `myCache` belongs to.
-* Inside of that memory region a meta page of a B+Tree that orders keys of `myCache` will be located.
-* Hash code of `keyA` will be calculated and an index page, the key belongs to, will be searched for in the B+Tree.
-* If the index page is not found then it will be requested from one of the free lists depending on the index size. A targeted free list will be found by the help of a free list meta page. Once the index page is provided it will be added to the B+Tree hierarchy.
-* If the index page doesn't already contain a data page the cache entry has to be placed into then the data page will be given by one of the free lists depending on the total cache entry size. A reference to the data page will be added from the index page.
-* The cache entry added into the data page.
+* Apache Ignite will look for a memory region to which `myCache` belongs to.
+* Inside that memory region, a meta page of a B+ tree that orders keys of `myCache` will be located.
+* Hash code of `keyA` will be calculated and an index page the key belongs to will be searched for in the B+ tree.
+* If the index page is not found, then it will be requested from one of the free lists depending on the index size. A targeted free list will be found by the help of a free list meta page. Once the index page is provided, it will be added to the B+ tree hierarchy.
+* If the index page doesn't already contain a data page the cache entry has to be placed into, then the data page will be given by one of the free lists depending on the total cache entry size. A reference to the data page will be added from the index page.
+* The cache entry is added into the data page.
 
 ## Configuration Parameters
 
