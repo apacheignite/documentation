@@ -274,7 +274,7 @@ Memory policy allows setting up various eviction modes for data pages that store
 [/block]
 Page memory is an off-heap memory that allocates all the memory regions outside of Java heap and stores cache entries there. However, you can enable on-heap caching for the cache entries by setting `org.apache.ignite.configuration.CacheConfiguration.setOnheapCacheEnabled(...)` to `true`.
 
-On-heap caching is useful for scenarios when you do a lot of cache reads on server nodes side working with cache entries in the [binary form](doc:binary-marshaller) or provoking cache entries deserialization. For instance, this might happen when a distributed computation or deployed service gets some data from caches for further processing according to the implemented logic.
+On-heap caching is useful for scenarios when you do a lot of cache reads on server nodes that work with cache entries in the [binary form](doc:binary-marshaller) or invoke cache entries' deserialization. For instance, this might happen when a distributed computation or deployed service gets some data from caches for further processing.
 [block:callout]
 {
   "type": "success",
