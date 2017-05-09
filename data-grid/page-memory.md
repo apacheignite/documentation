@@ -66,7 +66,7 @@ Every memory region starts with an initial size and has a maximum size it can gr
 {
   "type": "warning",
   "title": "Default Maximum Size",
-  "body": "If the max size of a memory region is not explicitly set, then it can take up to 80% of the RAM available on your machine."
+  "body": "If the max size of a memory region is not explicitly set (via org.apache.ignite.configuration.MemoryPolicyConfiguration.setMaxSize()), then it can take up to 80% of the RAM available on your machine."
 }
 [/block]
 A memory chunk is a physical continuous byte array obtained from the operating system. The chunk is divided into pages of fixed size. There are several types of pages that can reside in the chunk:
