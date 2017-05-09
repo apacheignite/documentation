@@ -196,7 +196,7 @@ For instance, to configure a 500 MB memory region with enabled data pages evicti
   ]
 }
 [/block]
-An Apache Ignite cache can be mapped to this region (see example below). To achieve this, the name of the policy has to be passed as a parameter to `org.apache.ignite.configuration.CacheConfiguration.setMemoryPolicyName(...)` method: 
+An Apache Ignite cache can be mapped to this region (see the following configuration example). To achieve this, the name of the policy has to be passed as a parameter to `org.apache.ignite.configuration.CacheConfiguration.setMemoryPolicyName(...)` method: 
 [block:code]
 {
   "codes": [
