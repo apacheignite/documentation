@@ -2,7 +2,7 @@
 * [Multicast Based Discovery](doc:cluster-config#multicast-based-discovery)
 * [Static IP Based Discovery](doc:cluster-config#static-ip-based-discovery)
 * [Multicast and Static IP Based Discovery](doc:cluster-config#multicast-and-static-ip-based-discovery)
-* [Isolated Ignite Clusters on the Same Set of Machines](doc:cluster-config#isolated-ignite-clusters-on-the-same-set-of-machin)
+* [Isolated Ignite Clusters on Same Set of Machines](doc:cluster-config#isolated-ignite-clusters-on-same-set-of-machin)
 * [Apache jclouds Based Discovery](doc:cluster-config#apache-jclouds-based-discovery)
 * [Amazon S3 Based Discovery](doc:cluster-config#amazon-s3-based-discovery)
 * [Google Cloud Storage Based Discovery](doc:cluster-config#google-cloud-storage-based-discovery)
@@ -98,7 +98,7 @@ You can use both, Multicast and Static IP based discovery together. In this case
 [block:api-header]
 {
   "type": "basic",
-  "title": "Isolated Ignite Clusters on the Same Set of Machines"
+  "title": "Isolated Ignite Clusters on Same Set of Machines"
 }
 [/block]
 There can be a case when you need to start two isolated Ignite clusters on the same set of machines due to testing purposes or by some other reason.
