@@ -27,7 +27,7 @@ Starting with version 2.0, Apache Ignite has introduced a new off-heap memory ar
 [/block]
 The new memory architecture has the following benefits:
 
-* Predictable memory consumption. You can allocate a set amount of memory to an Apache Ignite node process and arrange data sets, of specific Ignite caches, across memory regions of different characteristics such as total capacity.
+* Predictable memory consumption. You can allocate a set amount of memory to an Apache Ignite node process and arrange data sets, of specific Ignite caches, across memory regions of different characteristics such as total capacity, or .
 * Automatic memory defragmentation. Apache Ignite uses all the available memory as efficiently as possible and executes defragmentation routines in the background, without affecting the performance of your application. 
 * No stop-the-world (STW) garbage collection (GC) pauses caused by Apache Ignite platform architecture. Application's code is the only possible source of STW GC pauses.
 * Immensely improves the performance and memory utilization by Apache Ignite SQL engine.
@@ -61,12 +61,12 @@ The whole page memory of an individual Apache Ignite node can consist of one or 
 
 ## Memory Chunk
 
-Every memory region has the maximum size it can grow to. The region expands to its maximum boundary allocating continuous memory chunks.
+Every memory region starts with an initial size and has a maximum size it can grow to. The region expands to its maximum boundary allocating continuous memory chunks. By default, max size of a memory region is set to 80% of the physical memory available on the system.  
 [block:callout]
 {
-  "type": "success",
+  "type": "warning",
   "title": "Default Maximum Size",
-  "body": "If a memory region is not limited explicitly via respective `MemoryPolicyConfiguration`, then it can take up to 80% of the RAM available on your machine."
+  "body": "If the max size of a memory region is not explicitly set, then it can take up to 80% of the RAM available on your machine."
 }
 [/block]
 A memory chunk is a physical continuous byte array obtained from the operating system. The chunk is divided into pages of fixed size. There are several types of pages that can reside in the chunk:
