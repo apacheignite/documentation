@@ -61,7 +61,7 @@ The whole page memory of an individual Apache Ignite node can consist of one or 
 
 ## Memory Chunk
 
-Every memory region starts with an initial size and has a maximum size it can grow to. The region expands to its maximum boundary allocating continuous memory chunks. By default, max size of a memory region is set to 80% of the physical memory available on the system.  
+Every memory region starts with an initial size and has a maximum size it can grow to. The region expands to its maximum boundary allocating continuous memory chunks. By default, the max size of a memory region is set to 80% of the physical memory available on the system.  
 [block:callout]
 {
   "type": "warning",
