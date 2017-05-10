@@ -250,11 +250,11 @@ Failure detection timeout is used to determine how long a cluster node should wa
 [block:callout]
 {
   "type": "warning",
-  "body": "The timeout automatically controls such configuration parameters of `TcpDiscoverySpi` as socket timeout, message acknowledgment timeout and others. If any of these parameters is set explicitly, then the failure timeout setting will be ignored.",
+  "body": "The timeout automatically controls configuration parameters of `TcpDiscoverySpi`, such as socket timeout, message acknowledgment timeout and others. If any of these parameters is set explicitly, then the failure timeout setting will be ignored.",
   "title": ""
 }
 [/block]
-The failure detection timeout is configured with `IgniteConfiguration.setFailureDetectionTimeout(long)` for Apache Ignite server nodes and `IgniteConfiguration.setClientFailureDetectionTimeout(long)` for client nodes respectively. The default value, that is equal to 10 seconds for the server nodes and 30 seconds for the client nodes, is chosen in a way to make it possible for discovery SPI to work reliably on most of on-premise and containerized deployments. However, for stable low-latency networks, the parameter can be set to ~200 milliseconds in order to detect and react to​ failures quicker.       
+The failure detection timeout is configured using `IgniteConfiguration.setFailureDetectionTimeout(long)` for Apache Ignite server nodes and `IgniteConfiguration.setClientFailureDetectionTimeout(long)` for client nodes. The default value, that is equal to 10 seconds for the server nodes and 30 seconds for the client nodes. This allows the discovery SPI to work reliably on most of the on-premise and containerized deployments. However, for stable low-latency networks, the parameter can be set to ~200 milliseconds in order to detect and react to​ failures more quickly.       
 [block:api-header]
 {
   "type": "basic",
