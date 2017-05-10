@@ -3143,7 +3143,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
   "title": "Sample Jetty XML configuration"
 }
 [/block]
-
+Path to this configuration should be set to **ConnectorConfiguration.setJettyPath(String)** as explained above.
 [block:code]
 {
   "codes": [
