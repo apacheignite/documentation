@@ -33,7 +33,7 @@ A remote filter can be set via `ContinuousQuery.setRemoteFilter(CacheEntryEventF
 When a cache gets modified (an entry is inserted, updated or deleted), an event related to the update will be sent the continuous query's local listener so that your application can react accordingly.
 
 Whenever events pass the remote filter, they will be sent to the client to notify the local listener there.
-The local listener is set via `ContinuousQuery.setLocalListener(CacheEntryUpdatedListener<K, V>)` method.
+The local listener is set via the `ContinuousQuery.setLocalListener(CacheEntryUpdatedListener<K, V>)` method.
 [block:code]
 {
   "codes": [
