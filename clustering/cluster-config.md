@@ -246,7 +246,11 @@ If you're using [ZooKeeper](https://zookeeper.apache.org/) to coordinate your di
   "title": "Failure Detection Timeout"
 }
 [/block]
-Failure detection timeout is used to determine how long a cluster node should wait before considering a remote connection with other node failed. This timeout is the easiest way to tune discovery SPI's failure detection feature depending on the network and hardware conditions of your environment.
+Failure detection timeout is used to determine how long a cluster node should wait before considering a remote connection, with another node, failed. 
+
+Every node in the cluster is connected with another node, at the level of discovery SPI. Node A sends heartbeats (and other system messages transferred over the cluster ring - discovery SPI) to node B, and if the latter doesn’t reply in `failureDetectionTimeout`, then node B will be kicked off the cluster.
+
+This timeout is the easiest way to tune discovery SPI's failure detection feature depending on the network and hardware conditions of your environment.
 [block:callout]
 {
   "type": "warning",
