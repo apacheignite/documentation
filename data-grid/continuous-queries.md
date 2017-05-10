@@ -26,7 +26,7 @@ This filter is executed on primary and backup nodes for a given key and evaluate
 
 If the filter returns `true`, then the local listener will be notified. Otherwise, the notification will be skipped. Updates filtering on specific primary and backup nodes, on which they occur, allows to reduce unnecessary network traffic between primary/backup nodes and local listeners executed on the application side.
 
-A remote filter can be set via `ContinuousQuery.setRemoteFilter(CacheEntryEventFilter<K, V>)` method.
+A remote filter can be set via the `ContinuousQuery.setRemoteFilter(CacheEntryEventFilter<K, V>)` method.
 
 ## Local Listener
 
