@@ -8,7 +8,17 @@ Ignite provides an HTTP REST client that gives you the ability to communicate wi
 
 To enable HTTP connectivity, make sure that ignite-rest-http module is in classpath. With binary distribution this means copying `libs\optional\ignite-rest-http` to `libs\ignite-rest-http`.
 
-Explicit configuration is not required, connector starts up automatically and listens on port `8080`.
+Explicit configuration is not required, connector starts up automatically and listens on port `8080`. You can check if it works with `curl`:
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "curl http://localhost:8080/ignite?cmd=version",
+      "language": "shell"
+    }
+  ]
+}
 
 [block:api-header]
 {
