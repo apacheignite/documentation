@@ -1,5 +1,21 @@
 Ignite provides an HTTP REST client that gives you the ability to communicate with the grid over HTTP and HTTPS protocols using REST approach. REST APIs can be used to perform different operations like read/write from/to cache, execute tasks, get various metrics and more.
 
+[block:api-header]
+{
+  "title": "Getting Started"
+}
+[/block]
+
+To enable HTTP connectivity, make sure that ignite-rest-http module is in classpath.
+
+With binary distribution this means copying `libs\optional\ignite-rest-http` to `libs\ignite-rest-http`.
+
+[block:api-header]
+{
+  "title": "API Reference"
+}
+[/block]
+
 * [Returned value](#returned-value)
 * [Log](#log)
 * [Version](#version)
