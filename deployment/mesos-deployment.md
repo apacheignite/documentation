@@ -40,13 +40,6 @@ Currently the recommended way to run the Framework is to run it via Marathon.
 1. Install marathon. See https://docs.mesosphere.com/getting-started/datacenter/install/ marathon section.
 2. Download Apache Ignite and upload `libs\optional\ignite-mesos\ignite-mesos-<ignite-version>-jar-with-dependencies.jar` file to any cloud storage. (for example Amazon S3 storage and etc.).
 3. Copy the following application definition (in JSON format) and save to `marathon.json` file. Update any parameters which would like to change. 
-
-A role name must be a valid directory name, so it cannot:
-  • Be an empty string
-  • Be . or ..
-  • Start with -
-  • Contain any slash, backspace, or whitespace character
-If doesn't set any restrictions on the cluster, then the framework will try to occupy all resources in Mesos cluster. See **Configuration** section below.
 [block:code]
 {
   "codes": [
@@ -57,7 +50,15 @@ If doesn't set any restrictions on the cluster, then the framework will try to o
   ]
 }
 [/block]
-3. Send POST request with the application definition to Marathon by CURL or other tools. 
+A role name must be a valid directory name, so it cannot:
+  • Be an empty string
+  • Be . or ..
+  • Start with -
+  • Contain any slash, backspace, or whitespace character
+
+If doesn't set any restrictions on the cluster, then the framework will try to occupy all resources in Mesos cluster. See **Configuration** section below.
+
+4. Send POST request with the application definition to Marathon by CURL or other tools. 
 [block:code]
 {
   "codes": [
@@ -68,7 +69,7 @@ If doesn't set any restrictions on the cluster, then the framework will try to o
   ]
 }
 [/block]
-4. In order to make sure that Apache Mesos Framework is deployed correctly, do the following - Open Marathon UI  at `http://<marathon-ip>:8080`. Make sure that an application with the name `ignition` exists and its status is `Running`.
+5. In order to make sure that Apache Mesos Framework is deployed correctly, do the following - Open Marathon UI  at `http://<marathon-ip>:8080`. Make sure that an application with the name `ignition` exists and its status is `Running`.
 [block:image]
 {
   "images": [
@@ -85,7 +86,7 @@ If doesn't set any restrictions on the cluster, then the framework will try to o
   ]
 }
 [/block]
-5. Open Mesos console at `http://<master-ip>:5050`. If everything works OK, then tasks with name like `Ignite node N` should have state `RUNNING`. In this example N=4. See example `marathon.json` file - "IGNITE_NODE_COUNT": "4"
+6. Open Mesos console at `http://<master-ip>:5050`. If everything works OK, then tasks with name like `Ignite node N` should have state `RUNNING`. In this example N=4. See example `marathon.json` file - "IGNITE_NODE_COUNT": "4"
 [block:image]
 {
   "images": [
@@ -102,7 +103,7 @@ If doesn't set any restrictions on the cluster, then the framework will try to o
   ]
 }
 [/block]
-6. Mesos allows to retrieve tasks' logs from the browser. To look through Ignite logs, click on `Sandbox` in the Active Tasks table.
+7. Mesos allows to retrieve tasks' logs from the browser. To look through Ignite logs, click on `Sandbox` in the Active Tasks table.
 [block:image]
 {
   "images": [
@@ -119,7 +120,7 @@ If doesn't set any restrictions on the cluster, then the framework will try to o
   ]
 }
 [/block]
-7. Click on `stdout` to get stdout logs and on `stderr` to get stderr logs.
+8. Click on `stdout` to get stdout logs and on `stderr` to get stderr logs.
 [block:image]
 {
   "images": [
@@ -138,7 +139,7 @@ If doesn't set any restrictions on the cluster, then the framework will try to o
 [/block]
 ## **Run the Framework via JAR file**
 1. Download Ignite package and go to `libs\optional\ignite-mesos\` folder.
-2. Run the framework.
+2. Run the framework using the following command
 [block:code]
 {
   "codes": [
@@ -160,7 +161,7 @@ or
   ]
 }
 [/block]
-where `properties.prop` is a property file. If file is not provided then the framework will try to occupy all resources in Mesos cluster. Example property file:
+where `properties.prop` is a property file. If the file is not provided, the framework will try to occupy all resources in the Mesos cluster. Here is an example property file:
 [block:code]
 {
   "codes": [
