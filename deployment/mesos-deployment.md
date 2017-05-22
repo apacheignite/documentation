@@ -35,7 +35,7 @@ Running Ignite Mesos Framework requires Apache Mesos Cluster configured and runn
 [/block]
 ## **Run the Framework via Marathon** 
 
-Currently the recommended way to run the Framework is to run it via Marathon.
+Currently, the recommended way to run the Framework is to run it via Marathon.
 
 1. Install marathon. See https://docs.mesosphere.com/getting-started/datacenter/install/ marathon section.
 2. Download Apache Ignite and upload `libs\optional\ignite-mesos\ignite-mesos-<ignite-version>-jar-with-dependencies.jar` file to any cloud storage. (for example Amazon S3 storage and etc.).
