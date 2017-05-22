@@ -53,7 +53,7 @@ Currently the recommended way to run the Framework is to run it via Marathon.
 A role name must be a valid directory name, so it cannot:
   • Be an empty string
   • Be . or ..
-  • Start with '-'
+  • Start with -
   • Contain any slash, backspace, or whitespace character
 
 If there are no restrictions set on the cluster, the framework will try to occupy all the resources in Mesos cluster. See [Configuration](doc:mesos-deployment#section-configuration) section below.
