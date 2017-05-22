@@ -68,7 +68,7 @@ If doesn't set any restrictions on the cluster, then the framework will try to o
   ]
 }
 [/block]
-4. In order to make sure that Apache Mesos Framework is deployed correctly, do the following. Open Marathon UI  at `http://<marathon-ip>:8080`. Make sure that an application with the name `ignition` exists and its status is `Running`.
+4. In order to make sure that Apache Mesos Framework is deployed correctly, do the following - Open Marathon UI  at `http://<marathon-ip>:8080`. Make sure that an application with the name `ignition` exists and its status is `Running`.
 [block:image]
 {
   "images": [
