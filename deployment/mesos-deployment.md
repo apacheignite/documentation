@@ -18,7 +18,7 @@ For information about Apache Mesos please refer to [http://mesos.apache.org/](ht
 }
 [/block]
 Deploying Apache Ignite cluster typically involves downloading the Apache Ignite distribution, changing configuration settings and starting the nodes. Apache Ignite Mesos Framework consists of  `Scheduler` and `Task`, and allows to greatly simplify the cluster deployment.
-* `Scheduler` registers itself at Mesos Master on scheduler startup. Once the registration is successful, the `Scheduler` will begin processing resource requests from Mesos Master to utilize resources for Apache Ignite nodes. The Scheduler will maintain the Ignite cluster at the desired (and available) resource level (CPU, memory, etc.).
+* `Scheduler` registers itself at Mesos Master on scheduler startup. Once the registration is successful, the `Scheduler` will begin processing resource requests from Mesos Master to utilize resources for Apache Ignite nodes. The scheduler will maintain the Ignite cluster at the desired (and available) resource level (CPU, memory, etc.).
 * `Task` runs Ignite nodes on slaves.
 [block:api-header]
 {
@@ -303,11 +303,11 @@ All configuration is handled through environment variables (this lends itself we
     "14-2": "`N/A`",
     "14-3": "`https://example.com/lib.zip,`\n`https://example.com/lib1.zip`",
     "17-0": "`IGNITE_PACKAGE_PATH`",
-    "17-1": "Path to Apache Ignite archive. This parameter might be useful when access to internet is limited.",
+    "17-1": "Path to Apache Ignite archive. This parameter may be useful when access to internet is limited.",
     "17-2": "`N/A`",
     "17-3": "`/opt/ignite/apache-ignite-fabric-1.5.0.final-bin.zip`",
     "16-0": "`IGNITE_PACKAGE_URL`",
-    "16-1": "URL to Apache Ignite archive. This parameter could be used instead IGNITE_VERSION parameter.",
+    "16-1": "URL to Apache Ignite archive. This parameter could be used instead of the IGNITE_VERSION parameter.",
     "16-2": "`N/A`",
     "16-3": "`http://apache-mirror.rbc.ru/pub/apache//ignite/1.7.0/apache-ignite-1.7.0-src.zip`",
     "18-0": "`IGNITE_HTTP_SERVER_IDLE_TIMEOUT`",
