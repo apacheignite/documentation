@@ -17,8 +17,8 @@ For information about Apache Mesos please refer to [http://mesos.apache.org/](ht
   "title": "Ignite Mesos Framework"
 }
 [/block]
-Deploying Apache Ignite cluster typically involves downloading the Apache Ignite distribution, changing configuration settings and starting the nodes up. Apache Ignite Mesos Framework consists of  `Scheduler` and `Task`, and allows to greatly simplify the cluster deployment.
-* `Scheduler` registers itself at Mesos Master on scheduler startup. Once the registration is successful, the `Scheduler` will begin processing resource requests from Mesos Master to utilize the resources for Apache Ignite nodes. The Scheduler will maintain the Ignite cluster at the desired (and available) resource level (CPU, memory, etc.).
+Deploying Apache Ignite cluster typically involves downloading the Apache Ignite distribution, changing configuration settings and starting the nodes. Apache Ignite Mesos Framework consists of  `Scheduler` and `Task`, and allows to greatly simplify the cluster deployment.
+* `Scheduler` registers itself at Mesos Master on scheduler startup. Once the registration is successful, the `Scheduler` will begin processing resource requests from Mesos Master to utilize resources for Apache Ignite nodes. The Scheduler will maintain the Ignite cluster at the desired (and available) resource level (CPU, memory, etc.).
 * `Task` runs an Ignite Node on slaves.
 [block:api-header]
 {
