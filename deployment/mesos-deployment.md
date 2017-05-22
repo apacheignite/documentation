@@ -44,7 +44,7 @@ Currently, the recommended way to run the framework is to run it via Marathon.
 {
   "codes": [
     {
-      "code": "{\n  \"id\": \"ignition\",\n  \"instances\": 1,\n  \"cpus\": 2,\n  \"mem\": 2048,\n  \"ports\": [0],\n  \"uris\": [\n    \"http://host/ignite-mesos-<ignite-version>-jar-with-dependencies.jar\"\n  ],\n  \"env\": {\n    \"IGNITE_NODE_COUNT\": \"4\",\n    \"MESOS_MASTER_URL\": \"zk://localhost:2181/mesos\",\n    \"IGNITE_RUN_CPU_PER_NODE\": \"2\",\n    \"IGNITE_MEMORY_PER_NODE\": \"2048\",\n    \"IGNITE_VERSION\": \"1.0.5\",\n    \"MESOS_USER\" : \"userAAAAA\",\n    \"MESOS_ROLE\" :  \"role1\"\n    \"MESOS_USER\" : \"userAAAAA\",\n    \"MESOS_ROLE\" :  \"role1\"\n  },\n  \"cmd\": \"java -jar ignite-mesos-<ignite-version>-jar-with-dependencies.jar\"\n}",
+      "code": "{\n  \"id\": \"ignition\",\n  \"instances\": 1,\n  \"cpus\": 2,\n  \"mem\": 2048,\n  \"ports\": [0],\n  \"uris\": [\n    \"http://host/ignite-mesos-<ignite-version>-jar-with-dependencies.jar\"\n  ],\n  \"env\": {\n    \"IGNITE_NODE_COUNT\": \"4\",\n    \"MESOS_MASTER_URL\": \"zk://localhost:2181/mesos\",\n    \"IGNITE_RUN_CPU_PER_NODE\": \"2\",\n    \"IGNITE_MEMORY_PER_NODE\": \"2048\",\n    \"IGNITE_VERSION\": \"1.0.5\",\n    \"MESOS_USER\" : \"userAAAAA\",\n    \"MESOS_ROLE\" :  \"role1\"\n  },\n  \"cmd\": \"java -jar ignite-mesos-<ignite-version>-jar-with-dependencies.jar\"\n}",
       "language": "json"
     }
   ]
