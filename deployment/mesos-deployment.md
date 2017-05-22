@@ -56,7 +56,7 @@ A role name must be a valid directory name, so it cannot:
   • Start with -
   • Contain any slash, backspace, or whitespace character
 
-If there are no restrictions set on the cluster, the framework will try to occupy all the resources in Mesos cluster. See **Configuration** section below.
+If there are no restrictions set on the cluster, the framework will try to occupy all the resources in Mesos cluster. See [Configuration](doc:mesos-deployment#section-configuration) section below.
 
 4. Send POST request with the application definition to Marathon by CURL or other tools. 
 [block:code]
