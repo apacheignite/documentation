@@ -172,7 +172,7 @@ where `properties.prop` is a property file. If the file is not provided, the fra
   ]
 }
 [/block]
-3. In order to make sure that Apache Mesos Framework is deployed correctly, do the following. Open Mesos console at `http://<master-ip>:5050`. If everything works OK, then tasks with name like `Ignite node N` should have state `RUNNING`. In this example N=1. See example `properties.prop` file - "IGNITE_NODE_COUNT": "1"
+3. In order to make sure that Apache Mesos Framework is deployed correctly, do the following - Open Mesos console at `http://<master-ip>:5050`. If everything works OK, then tasks with name like `Ignite node N` should have state `RUNNING`. In this example N=1. See example `properties.prop` file - "IGNITE_NODE_COUNT": "1"
 [block:image]
 {
   "images": [
