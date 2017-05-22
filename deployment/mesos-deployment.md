@@ -39,17 +39,14 @@ Currently the recommended way to run the Framework is to run it via Marathon.
 
 1. Install marathon. See https://docs.mesosphere.com/getting-started/datacenter/install/ marathon section.
 2. Download Apache Ignite and upload `libs\optional\ignite-mesos\ignite-mesos-<ignite-version>-jar-with-dependencies.jar` file to any cloud storage. (for example Amazon S3 storage and etc.).
-3. Copy the following application definition (in JSON format) and save to `marathon.json` file. Update any parameters which would like to change. A role name must be a valid directory name, so it cannot:
-  • Be an empty string
-  • Be . or ..
-  • Start with -
-  • Contain any slash, backspace, or whitespace character
+3. Copy the following application definition (in JSON format) and save to `marathon.json` file. Update any parameters which would like to change. 
+
 A role name must be a valid directory name, so it cannot:
   • Be an empty string
   • Be . or ..
   • Start with -
   • Contain any slash, backspace, or whitespace character
-If doesn't set restriction on cluster then the framework will try to occupy all resources in Mesos cluster. See **Configuration** section below.
+If doesn't set any restrictions on the cluster, then the framework will try to occupy all resources in Mesos cluster. See **Configuration** section below.
 [block:code]
 {
   "codes": [
