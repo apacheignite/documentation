@@ -30,7 +30,7 @@ Running Ignite Mesos Framework requires Apache Mesos Cluster configured and runn
 [block:callout]
 {
   "type": "warning",
-  "body": "Make sure that master and slave nodes listen on correct ip addresses. In the other case there is no guarantee that Mesos Cluster will correctly work."
+  "body": "Make sure that master and slave nodes listen on correct ip addresses. Otherwise, there is no guarantee that Mesos Cluster will correctly work."
 }
 [/block]
 ## **Run the Framework via Marathon** 
