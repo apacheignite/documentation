@@ -39,12 +39,22 @@ Currently the recommended way to run the Framework is to run it via Marathon.
 
 1. Install marathon. See https://docs.mesosphere.com/getting-started/datacenter/install/ marathon section.
 2. Download Apache Ignite and upload `libs\optional\ignite-mesos\ignite-mesos-<ignite-version>-jar-with-dependencies.jar` file to any cloud storage. (for example Amazon S3 storage and etc.).
-3. Copy the following application definition (in JSON format) and save to `marathon.json` file. Update any parameters which would like to change. If doesn't set restriction on cluster then the framework will try to occupy all resources in Mesos cluster. See **Configuration** section below.
+3. Copy the following application definition (in JSON format) and save to `marathon.json` file. Update any parameters which would like to change. A role name must be a valid directory name, so it cannot:
+  • Be an empty string
+  • Be . or ..
+  • Start with -
+  • Contain any slash, backspace, or whitespace character
+A role name must be a valid directory name, so it cannot:
+  • Be an empty string
+  • Be . or ..
+  • Start with -
+  • Contain any slash, backspace, or whitespace character
+If doesn't set restriction on cluster then the framework will try to occupy all resources in Mesos cluster. See **Configuration** section below.
 [block:code]
 {
   "codes": [
     {
-      "code": "{\n  \"id\": \"ignition\",\n  \"instances\": 1,\n  \"cpus\": 2,\n  \"mem\": 2048,\n  \"ports\": [0],\n  \"uris\": [\n    \"http://host/ignite-mesos-<ignite-version>-jar-with-dependencies.jar\"\n  ],\n  \"env\": {\n    \"IGNITE_NODE_COUNT\": \"4\",\n    \"MESOS_MASTER_URL\": \"zk://localhost:2181/mesos\",\n    \"IGNITE_RUN_CPU_PER_NODE\": \"2\",\n    \"IGNITE_MEMORY_PER_NODE\": \"2048\",\n    \"IGNITE_VERSION\": \"1.0.5\"\n  },\n  \"cmd\": \"java -jar ignite-mesos-<ignite-version>-jar-with-dependencies.jar\"\n}",
+      "code": "{\n  \"id\": \"ignition\",\n  \"instances\": 1,\n  \"cpus\": 2,\n  \"mem\": 2048,\n  \"ports\": [0],\n  \"uris\": [\n    \"http://host/ignite-mesos-<ignite-version>-jar-with-dependencies.jar\"\n  ],\n  \"env\": {\n    \"IGNITE_NODE_COUNT\": \"4\",\n    \"MESOS_MASTER_URL\": \"zk://localhost:2181/mesos\",\n    \"IGNITE_RUN_CPU_PER_NODE\": \"2\",\n    \"IGNITE_MEMORY_PER_NODE\": \"2048\",\n    \"IGNITE_VERSION\": \"1.0.5\",\n    \"MESOS_USER\" : \"userAAAAA\",\n    \"MESOS_ROLE\" :  \"role1\"\n    \"MESOS_USER\" : \"userAAAAA\",\n    \"MESOS_ROLE\" :  \"role1\"\n  },\n  \"cmd\": \"java -jar ignite-mesos-<ignite-version>-jar-with-dependencies.jar\"\n}",
       "language": "json"
     }
   ]
