@@ -227,7 +227,7 @@ Since we are using cache in this example, we should make sure that it is configu
   "title": "Ignite Visor Admin Console"
 }
 [/block]
-The easiest way to examine the content of the data grid as well as perform a long list of other management and monitoring operations is to use Ignite [Visor Command Line](doc:command-line-interface) Utility.
+The easiest way to examine the content of the data grid as well as perform a long list of other management and monitoring operations is to use Ignite [Visor Command Line](https://apacheignite-tools.readme.io/docs/command-line-interface) Utility.
 
 To start Visor simply run:
 [block:code]
