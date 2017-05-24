@@ -27,7 +27,7 @@ Starting with version 2.0, Apache Ignite has introduced a new off-heap memory ar
 [/block]
 The new memory architecture has the following benefits:
 
-* Predictable memory consumption. You can allocate a set amount of memory to an Apache Ignite node process and arrange data sets, of specific Ignite caches, across memory regions of different characteristics such as total capacity, or .
+* Predictable memory consumption. You can allocate a set amount of memory to an Apache Ignite node process and arrange data sets, of specific Ignite caches, across memory regions of different characteristics such as total capacity, or an eviction policy.
 * Automatic memory defragmentation. Apache Ignite uses all the available memory as efficiently as possible and executes defragmentation routines in the background, without affecting the performance of your application. 
 * No stop-the-world (STW) garbage collection (GC) pauses caused by Apache Ignite platform architecture. Application's code is the only possible source of STW GC pauses.
 * Immensely improves the performance and memory utilization by Apache Ignite SQL engine.
