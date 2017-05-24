@@ -87,7 +87,12 @@ Random-LRU-2 outperforms LRU by resolving "one-hit wonder" problem - if a data p
 [Page Memory](doc:page-memory) allows storing hot cache entries in Java heap if [on-heap caching](https://apacheignite.readme.io/docs/page-memory#section-on-heap-caching) feature is enabled via `CacheConfiguration.setOnheapCacheEnabled(...)`. Once the on-heap cache is turned on, you can use one of cache entries eviction policies to manage the growing on-heap cache.
 
 Eviction policies control the maximum number of elements that can be stored in a cache's on-heap memory.  Whenever the maximum on-heap cache size is reached, entries are evicted from Java heap. 
-
+[block:callout]
+{
+  "type": "success",
+  "body": "The eviction policies remove the cache entries from Java heap only. The entries stored in the off-heap page memory are left untouched."
+}
+[/block]
 Some eviction policies support batch eviction and eviction by memory size limit. If batch eviction is enabled, then eviction starts when cache size becomes `batchSize` elements greater than the maximum cache size. In this cases `batchSize` entries will be evicted. If eviction by memory size limit is enabled, then eviction starts when the size of cache entries in bytes become greater than the maximum memory size.
 [block:callout]
 {
