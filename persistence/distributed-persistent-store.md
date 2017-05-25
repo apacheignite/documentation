@@ -1,5 +1,8 @@
-* [Overview](doc:#overview)]
-* [Configuration](doc:#configuration)
+* [Overview](#section-overview)
+* [Configuration](#section-configuration)
+* [Write-Ahead Log File](#section-write-ahead-log-file)
+* [Checkpointing](#section-checkpointing) 
+* [Example](#section-example)
 [block:api-header]
 {
   "title": "Overview"
@@ -14,7 +17,7 @@
 
 [block:api-header]
 {
-  "title": "Write-Ahead File"
+  "title": "Write-Ahead Log File"
 }
 [/block]
 
