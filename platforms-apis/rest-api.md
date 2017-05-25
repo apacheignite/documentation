@@ -19,6 +19,7 @@ Explicit configuration is not required, connector starts up automatically and li
     }
   ]
 }
+[/block]
 
 [block:api-header]
 {
@@ -465,7 +466,7 @@ HTTP REST request returns JSON object which has similar structure for each comma
 {
   "codes": [
     {
-      "code": "{\n  \"affinityNodeId\": \"\",\n  \"error\": \"\",\n  \"response\": {\n    \"createTime\": 1415179251551,\n    \"hits\": 0,\n    \"misses\": 0,\n    \"readTime\": 1415179251551,\n    \"reads\": 0,\n    \"writeTime\": 1415179252198,\n    \"writes\": 2\n  },\n  \"successStatus\": 0\n}",
+      "code": "{\n  \"affinityNodeId\": \"\",\n  \"error\": \"\",\n  \"response\": {\n    \"hits\": 0,\n    \"misses\": 0,\n    \"reads\": 0,\n    \"writes\": 2\n  },\n  \"successStatus\": 0\n}",
       "language": "json"
     }
   ]
