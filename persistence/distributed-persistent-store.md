@@ -18,6 +18,7 @@ Apache Ignite Persistent Store has the following advantages over another databas
 * An ability to execute SQL queries over the data and indexes that are both in-memory and on disk.
 * No need to have all the data and indexes in-memory. The Persistent Store allows storing a superset of data on disk and have only frequently used data in-memory.
 * Instantaneous cluster restarts. If the whole cluster goes down there is no need to warm up the memory preloading data from the Persistent Store. The cluster becomes fully operational once all the cluster nodes are interconnected with each other.
+* Data and indexes are stored in a similar format both in-memory and on disk that helps to avoid expensive transformations while the data sets are being moved or copied between the memory layers. 
 * An ability to create full and incremental cluster snapshots by plugging-in 3rd party solutions.
 [block:api-header]
 {
