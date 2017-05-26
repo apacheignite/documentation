@@ -4,6 +4,7 @@
 * [Checkpointing](#section-checkpointing)
 * [Transactional Guarantees)(#section-transactional-guarantees)
 * [SQL Support)(#section-sql-support)
+* [Persistent Store Internals](#section-persistent-store-internals)
 * [Example](#section-example)
 [block:api-header]
 {
@@ -122,7 +123,7 @@ There is no need to have all the data in memory if you need to run SQL queries a
 Moreover, it's optional to preload data from the Persistent Store to the memory after a cluster's restart. Your applicant can run SQL queries as soon as the cluster is up and running.  
 [block:api-header]
 {
-  "title": "Persistent Store Internal Design"
+  "title": "Persistent Store Internals"
 }
 [/block]
 This documentation provides a high-level overview of the Persistent Store needed to start using it in production. If you're curious to get more technical details refer to these documents:
