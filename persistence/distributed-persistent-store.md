@@ -56,7 +56,7 @@ That's it. Once the configuration parameter above is added to the cluster node c
 [/block]
 If [Page Memory](doc:page-memory) doesn't find a page in memory it will go to the Persistent Store to preload it from there. This can be easily achieved because all the pages are stored in separate partition files the pages belong to.
 
-However, when a page is updated in memory the update is not directly written to a respective partition file in Persistent Store because it can affect performance dramatically. It's rather appended to the tail of a write-ahead log (WAL) file that is maintained for all the Apache Ignite caches.
+However, when a page is updated in memory the update is not directly written to a respective partition file in Persistent Store because it can affect performance dramatically. It's rather appended to the tail of an Apache Ignite node's write-ahead log (WAL) file that is maintained for all the deployed caches.
 
 The purpose of the WAL file is to propagate updates to disk in the fastest way possible and provide a recovery mechanism for transactional updates written to the Persistent Store. Note, that every transactional update is uniquely defined cluster wide, which means that a cluster can always be recovered to the latest successfully committed transaction in case of a crash or restart.
 [block:callout]
