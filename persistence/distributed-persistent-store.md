@@ -40,6 +40,14 @@ To enable the distributed Persistent Store, pass an instance of `PersistentStore
   ]
 }
 [/block]
+That's it. Once the configuration parameter above is added to the cluster node configuration, the Persistent Store will be enabled and all the data as well as indexes will be stored both in-memory and on disk cluster wide.
+[block:callout]
+{
+  "type": "success",
+  "title": "Persistent Store Root Directory",
+  "body": "By default all the data as well as write-ahead log files described below will be persisted under Apache Ignite working directory (`${IGNITE_HOME}/work`). Use `PersistentStoreConfiguration.setPersistentStorePath(...)` method to change the default directory."
+}
+[/block]
 
 [block:api-header]
 {
