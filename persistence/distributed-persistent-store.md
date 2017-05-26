@@ -67,6 +67,33 @@ The purpose of the WAL file is to propagate updates to disk in the fastest way p
 }
 [/block]
 Use configuration parameters below to alter WAL file related settings:
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter Name",
+    "h-1": "Description",
+    "h-2": "Default Value",
+    "0-0": "`setWalStorePath(...)`",
+    "0-1": "Sets a path to the directory where WAL is stored . If this path is relative, it will be resolved relatively to Ignite work directory.",
+    "0-2": "`${IGNITE_HOME}/work`",
+    "1-0": "`setWalSegments(...)`",
+    "1-1": "Sets a number of WAL segments to work with. For performance reasons, the whole WAL is split into files of fixed length called segments.",
+    "2-0": "`setWalSegmentSize(...)`",
+    "2-1": "Sets size of a WAL segment.",
+    "2-2": "`64 MB`",
+    "1-2": "`10`",
+    "3-1": "Sets a total number of checkpoints to keep in the WAL history. Refer to the checkpointing section below to learn more about that technique.",
+    "3-0": "`setWalHistorySize(...)`",
+    "3-2": "`20`",
+    "4-0": "`setWalArchivePath(...)`",
+    "4-1": "Sets a path for the WAL archive directory. Every WAL segment will be fully copied to this directory before it can be reused for WAL purposes.",
+    "4-2": "`${IGNITE_HOME}/work`"
+  },
+  "cols": 3,
+  "rows": 5
+}
+[/block]
+
 [block:api-header]
 {
   "title": "Checkpointing"
