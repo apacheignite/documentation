@@ -15,10 +15,10 @@ The Persistent Store satisfies all the Apache Ignite guarantees and properties t
 Apache Ignite [Page Memory](doc:page-memory) is tightly coupled with the Persistent Store and starts keeping data and indexes on disk once the store is enabled in a cluster's configuration. As with a pure in-memory use case, every individual cluster node persists only a subset of data and indexes for which the node is either a primary or backup one.
 
 Apache Ignite Persistent Store has the following advantages over another databases (RDBMS, NoSQL, Hadoop) when the latter are used as a persistent layer for an Apache Ignite cluster:
-* An ability to execute SQL queries over the data this is both in-memory and on disk.
-* No need to have all the data and indexes in-memory. The Persistent Store allows storing a superset of data on disk and have only frequently used subsets in-memory.
+* An ability to execute SQL queries over the data this is both in memory and on disk.
+* No need to have all the data and indexes in memory. The Persistent Store allows storing a superset of data on disk and have only frequently used subsets in memory.
 * Instantaneous cluster restarts. If the whole cluster goes down there is no need to warm up the memory preloading data from the Persistent Store. The cluster becomes fully operational once all the cluster nodes are interconnected with each other.
-* Data and indexes are stored in a similar format both in-memory and on disk that helps to avoid expensive transformations while the data sets are being moved or copied between the memory layers. 
+* Data and indexes are stored in a similar format both in memory and on disk that helps to avoid expensive transformations while the data sets are being moved or copied between the memory layers. 
 * An ability to create full and incremental cluster snapshots by plugging-in 3rd party solutions.
 [block:api-header]
 {
@@ -40,7 +40,7 @@ To enable the distributed Persistent Store, pass an instance of `PersistentStore
   ]
 }
 [/block]
-That's it. Once the configuration parameter above is added to the cluster node configuration, the Persistent Store will be enabled and all the data as well as indexes will be stored both in-memory and on disk cluster wide.
+That's it. Once the configuration parameter above is added to the cluster node configuration, the Persistent Store will be enabled and all the data as well as indexes will be stored both in memory and on disk cluster wide.
 [block:callout]
 {
   "type": "success",
@@ -99,7 +99,25 @@ Use configuration parameters below to alter WAL file related settings:
   "title": "Checkpointing"
 }
 [/block]
+TBD
+[block:api-header]
+{
+  "title": "Transactional Guarantees"
+}
+[/block]
+The Persistent Store is an ACID-compliant distributed store.
 
+Every transactional update that comes to the store is appended to the WAL first. The update is uniquely defined with an ID. All this means that a cluster can always be recovered to the latest successfully committed transaction in case of a crash or restart.
+[block:api-header]
+{
+  "title": "SQL"
+}
+[/block]
+The Persistent Store allows using Apache Ignite as a distributed SQL database. The store is a fully ANSI-99 SQL compliant.
+
+There is no need to have all the data in memory if you need to run SQL queries across the cluster. Apache Ignite is able to execute them over the data that is both in memory and on disk. 
+
+Moreover, it's optional to preload data from the Persistent Store to the memory after a cluster's restart. Your applicant can run SQL queries as soon as the cluster is up and running.  
 [block:api-header]
 {
   "title": "Example"
