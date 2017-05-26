@@ -44,8 +44,8 @@ That's it. Once the configuration parameter above is added to the cluster node c
 [block:callout]
 {
   "type": "success",
-  "title": "Persistent Store Root Directory",
-  "body": "By default all the data as well as write-ahead log files described below will be persisted under Apache Ignite working directory (`${IGNITE_HOME}/work`). Use `PersistentStoreConfiguration.setPersistentStorePath(...)` method to change the default directory."
+  "title": "Persistent Store Root Path",
+  "body": "By default all the data as well as write-ahead log files described below will be persisted under Apache Ignite working directory (`${IGNITE_HOME}/work`). Use `PersistentStoreConfiguration.setPersistentStorePath(...)` method to change the default directory. Also, as it will be shown below, there is a way to set a dedicated directory for the Write-Ahead Log file and its archives using special `PersistentStoreConfiguration` parameters."
 }
 [/block]
 
