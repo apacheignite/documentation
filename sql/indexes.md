@@ -4,8 +4,6 @@
  * [Registering Indexed Types](#section-registering-indexed-types)
  * [Group Indexes](#section-group-indexes)
 * [QueryEntity Based Configuration](#queryentity-based-configuration)
-* [SkipList Based and Snapshotable Indexes](#skiplist-based-and-snapshotable-indexes)
-* [Off-Heap SQL Indexes](#off-heap-sql-indexes)
 * [Indexes Tradeoffs](#indexes-tradeoffs)
 [block:api-header]
 {
@@ -137,49 +135,6 @@ The example below shows how you can define a single field and group indexes as w
       "language": "xml"
     }
   ]
-}
-[/block]
-
-[block:api-header]
-{
-  "type": "basic",
-  "title": "SkipList Based and Snapshotable Indexes"
-}
-[/block]
-Ignite SQL Grid provides two indexing implementations that can be used when indexes are stored in Java heap.
-
-The first implementation is based on a skip list data structure and is enabled by default.
-
-The second implementation is based on a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf). This implementation is known as `snapshotable` in Ignite and can be enabled with `CacheConfiguration.setSnapshotableIndex(...)` method.  
-
-For off-heap mode, discussed below, Ignite provides only one indexing implementation which is a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf).
-[block:api-header]
-{
-  "type": "basic",
-  "title": "Off-Heap SQL Indexes"
-}
-[/block]
-Ignite supports placing indexed data in off-heap memory. This makes sense for very large datasets since keeping data in Java heap can cause high GC activity and unacceptable response times. 
-
-By default, Ignite stores SQL Indexes on heap. Ignite will store query indexes in off-heap memory if `CacheConfiguration.setMemoryMode` is configured to one of the off-heap memory modes - `OFFHEAP_TIERED` or `OFFHEAP_VALUES`, or `CacheConfiguration.setOffHeapMaxMemory` property is set to a value >= 0.
-
-To improve the performance of SQL queries with off-heap mode enabled, you can try to increase the value of `CacheConfiguration.setSqlOnheapRowCacheSize` property that has a default value of '10000'.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "CacheConfiguration<Object, Object> ccfg = new CacheConfiguration<>();\n\n// Set unlimited off-heap memory for cache and enable off-heap indexes.\nccfg.setOffHeapMaxMemory(0); \n\n// Cache entries will be placed on heap and can be evited to off-heap.\nccfg.setMemoryMode(ONHEAP_TIERED);\nccfg.setEvictionPolicy(new RandomEvictionPolicy(100_000));\n\n// Increase size of SQL on-heap row cache for off-heap indexes.\nccfg.setSqlOnheapRowCacheSize(100_000);",
-      "language": "java"
-    }
-  ]
-}
-[/block]
-
-[block:callout]
-{
-  "type": "info",
-  "title": "Indexing Implementation",
-  "body": "For off-heap mode, Ignite provides only one indexing implementation which is a modified version of an [AVL tree with fast cloning](https://ppl.stanford.edu/papers/ppopp207-bronson.pdf)."
 }
 [/block]
 
