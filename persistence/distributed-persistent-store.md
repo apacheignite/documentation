@@ -25,6 +25,21 @@ Apache Ignite Persistent Store has the following advantages over another databas
   "title": "Usage"
 }
 [/block]
+To enable the distributed Persistent Store, pass an instance of `PersistentStoreConfiguration` to a cluster node configuration: 
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  <!-- Enabling Apache Ignite Persistent Store. -->\n  <property name=\"persistentStoreConfiguration\">\n    <bean class=\"org.apache.ignite.configuration.PersistentStoreConfiguration\"/>\n  </property>\n\n  <!-- Additional setting. -->\n \n</bean>",
+      "language": "xml"
+    },
+    {
+      "code": "// Apache Ignite node configuration.\nIgniteConfiguration cfg = new IgniteConfiguration();\n\n// Persistent Store configuration.\nPersistentStoreConfiguration psCfg = new PersistentStoreConfiguration();\n\n// Enabling the Persistent Store.\ncfg.setPersistentStoreConfiguration(psCfg);\n        \n//Additional parameters.",
+      "language": "java"
+    }
+  ]
+}
+[/block]
 
 [block:api-header]
 {
