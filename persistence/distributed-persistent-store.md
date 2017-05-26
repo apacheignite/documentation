@@ -2,8 +2,8 @@
 * [Usage](#section-usage)
 * [Write-Ahead Log File](#section-write-ahead-log-file)
 * [Checkpointing](#section-checkpointing)
-* [Transactional Guarantees)(#section-transactional-guarantees)
-* [SQL Support)(#section-sql-support)
+* [Transactional Guarantees](#section-transactional-guarantees)
+* [SQL Support](#section-sql-support)
 * [Persistent Store Internals](#section-persistent-store-internals)
 * [Example](#section-example)
 [block:api-header]
