@@ -1,7 +1,9 @@
 * [Overview](#section-overview)
 * [Usage](#section-usage)
 * [Write-Ahead Log File](#section-write-ahead-log-file)
-* [Checkpointing](#section-checkpointing) 
+* [Checkpointing](#section-checkpointing)
+* [Transactional Guarantees)(#section-transactional-guarantees)
+* [SQL Support)(#section-sql-support)
 * [Example](#section-example)
 [block:api-header]
 {
@@ -110,7 +112,7 @@ The Persistent Store is an ACID-compliant distributed store.
 Every transactional update that comes to the store is appended to the WAL first. The update is uniquely defined with an ID. All this means that a cluster can always be recovered to the latest successfully committed transaction in case of a crash or restart.
 [block:api-header]
 {
-  "title": "SQL"
+  "title": "SQL Support"
 }
 [/block]
 The Persistent Store allows using Apache Ignite as a distributed SQL database. The store is a fully ANSI-99 SQL compliant.
@@ -118,6 +120,14 @@ The Persistent Store allows using Apache Ignite as a distributed SQL database. T
 There is no need to have all the data in memory if you need to run SQL queries across the cluster. Apache Ignite is able to execute them over the data that is both in memory and on disk. 
 
 Moreover, it's optional to preload data from the Persistent Store to the memory after a cluster's restart. Your applicant can run SQL queries as soon as the cluster is up and running.  
+[block:api-header]
+{
+  "title": "Persistent Store Internal Design"
+}
+[/block]
+This documentation provides a high-level overview of the Persistent Store needed to start using it in production. If you're curious to get more technical details refer to these documents:
+* [Persistent Store Design](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Overview)
+* [Persistent Store Architecture](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Architecture)
 [block:api-header]
 {
   "title": "Example"
