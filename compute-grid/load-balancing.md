@@ -9,7 +9,7 @@
   "title": "Overview"
 }
 [/block]
-Load balancing component balances job distribution among cluster nodes. In Ignite load balancing is achieved via `LoadBalancingSpi` which controls load on all nodes and makes sure that every node in the cluster is equally loaded. In homogeneous environments with homogeneous tasks load balancing is achieved by random or round-robin policies. However, in many other use cases, especially under uneven load, more complex adaptive load-balancing policies may be needed.
+Load balancing component balances job distribution among cluster nodes. In Apache Ignite, load balancing is achieved via `LoadBalancingSpi` which controls load on all nodes and makes sure that every node in the cluster is equally loaded. In homogeneous environments with homogeneous tasks, load balancing is achieved by random or round-robin policies. However, in many other use cases, especially under uneven load, more complex adaptive load-balancing policies may be needed.
 [block:callout]
 {
   "type": "info",
@@ -24,7 +24,7 @@ Load balancing component balances job distribution among cluster nodes. In Ignit
   "title": "Round-Robin Load Balancing"
 }
 [/block]
-`RoundRobinLoadBalancingSpi` iterates through nodes in round-robin fashion and picks the next sequential node. Two modes of operation are supported: per-task and global. Global mode is used be default.
+`RoundRobinLoadBalancingSpi` iterates through nodes in a round-robin fashion and picks the next sequential node. Two modes of operation are supported: per-task and global. Global mode is used by default.
 
 ##Per-Task Mode
 When configured in per-task mode, implementation will pick a random node at the beginning of every task execution and then sequentially iterate through all nodes in topology starting from the picked node. For cases when split size is equal to the number of nodes, this mode guarantees that all nodes will participate in the split.
