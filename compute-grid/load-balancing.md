@@ -83,8 +83,12 @@ Here is an example of how to configure `JobStealingCollisionSpi`:
 {
   "codes": [
     {
-      "code": "<bean id=\"grid.custom.cfg\" class=\"org.apache.ignite.IgniteConfiguration\" singleton=\"true\">\n  ...\n  <property name=\"failoverSpi\">\n     <bean class=\"org.apache.ignite.spi.failover.jobstealing.JobStealingFailoverSpi\"/>\n </property>\n  <property name=\"collisionSpi\">\n    <bean class=\"org.apache.ignite.spi.collision.jobstealing.JobStealingCollisionSpi\">\n      <property name=\"activeJobsThreshold\" value=\"50\"/>\n      <property name=\"waitJobsThreshold\" value=\"0\"/>\n      <property name=\"messageExpireTime\" value=\"1000\"/>\n      <property name=\"maximumStealingAttempts\" value=\"10\"/>\n      <property name=\"stealingEnabled\" value=\"true\"/>\n      <property name=\"stealingAttributes\">\n        <map>\n            <entry key=\"node.segment\" value=\"foobar\"/>\n        </map>\n      </property>\n    </bean>\n  </property>\n  ...\n</bean>",
+      "code": "<bean id=\"grid.custom.cfg\" class=\"org.apache.ignite.IgniteConfiguration\" singleton=\"true\">\n  ...\n  <property name=\"failoverSpi\">\n     <bean class=\"org.apache.ignite.spi.failover.jobstealing.JobStealingFailoverSpi\"/>\n \t</property>\n  <property name=\"collisionSpi\">\n    <bean class=\"org.apache.ignite.spi.collision.jobstealing.JobStealingCollisionSpi\">\n      <property name=\"activeJobsThreshold\" value=\"50\"/>\n      <property name=\"waitJobsThreshold\" value=\"0\"/>\n      <property name=\"messageExpireTime\" value=\"1000\"/>\n      <property name=\"maximumStealingAttempts\" value=\"10\"/>\n      <property name=\"stealingEnabled\" value=\"true\"/>\n      <property name=\"stealingAttributes\">\n        <map>\n            <entry key=\"node.segment\" value=\"foobar\"/>\n        </map>\n      </property>\n    </bean>\n  </property>\n  ...\n</bean>",
       "language": "xml"
+    },
+    {
+      "code": "JobStealingCollisionSpi spi = new JobStealingCollisionSpi();\n\n // Configure number of waiting jobs\n // in the queue for job stealing.\n spi.setWaitJobsThreshold(10);\n\n // Configure message expire time (in milliseconds).\n spi.setMessageExpireTime(500);\n\n // Configure stealing attempts number.\n spi.setMaximumStealingAttempts(10);\n\n // Configure number of active jobs that are allowed to execute\n // in parallel. This number should usually be equal to the number\n // of threads in the pool (default is 100).\n spi.setActiveJobsThreshold(50);\n\n // Enable stealing.\n spi.setStealingEnabled(true);\n\n // Set stealing attribute to steal from/to nodes that have it.\n spi.setStealingAttributes(Collections.singletonMap(\"node.segment\", \"foobar\"));\n \n // Enable `JobStealingFailoverSpi`\n JobStealingFailoverSpi failoverSpi = new JobStealingFailoverSpi();\n\n IgniteConfiguration cfg = new IgniteConfiguration();\n\n // Override default Collision SPI.\n cfg.setCollisionSpi(spi);\n cfg.setFailoverSpi(failoverSpi);",
+      "language": "text"
     }
   ]
 }
@@ -93,6 +97,6 @@ Here is an example of how to configure `JobStealingCollisionSpi`:
 [block:callout]
 {
   "type": "warning",
-  "body": "Note that this SPI must always be used in conjunction with `JobStealingFailoverSpi`. Also note that job metrics update should be enabled (i.e. IgniteConfiguration#getMetricsUpdateFrequency() should be set to a positive value) in order for this SPI to work properly."
+  "body": "Note that this SPI must always be used in conjunction with `JobStealingFailoverSpi`. Also note that job metrics update should be enabled (i.e. IgniteConfiguration.getMetricsUpdateFrequency() should be set to a positive value) in order for this SPI to work properly."
 }
 [/block]
