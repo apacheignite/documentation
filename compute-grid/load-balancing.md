@@ -3,6 +3,7 @@
   * [Per-Task Mode](#section-per-task-mode)
   * [Global Mode](#section-global-mode)
 * [Random and Weighted Load Balancing](#random-and-weighted-load-balancing)
+*[Job Stealing](#job-stealing)
 [block:api-header]
 {
   "type": "basic",
