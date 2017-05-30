@@ -68,3 +68,31 @@ When configured in global mode, a single sequential queue of nodes is maintained
   ]
 }
 [/block]
+
+[block:api-header]
+{
+  "title": "Job Stealing"
+}
+[/block]
+Quite often grids are deployed across many computers some of which may be more powerful than others. Enabling `JobStealingCollisionSpi` helps to avoid jobs being stuck at a slower node, as they will be stolen by a faster node.
+
+`JobStealingCollisionSpi` supports job stealing from over-utilized nodes to under-utilized nodes. This SPI is especially useful if you have some jobs that complete fast, while others are sitting in the waiting queue on slower nodes. In such a case, the waiting jobs will be stolen from the slower node and moved to the fast under-utilized node.
+
+Here is an example of how to configure `JobStealingCollisionSpi`:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "<bean id=\"grid.custom.cfg\" class=\"org.apache.ignite.IgniteConfiguration\" singleton=\"true\">\n  ...\n  <property name=\"failoverSpi\">\n     <bean class=\"org.apache.ignite.spi.failover.jobstealing.JobStealingFailoverSpi\"/>\n </property>\n  <property name=\"collisionSpi\">\n    <bean class=\"org.apache.ignite.spi.collision.jobstealing.JobStealingCollisionSpi\">\n      <property name=\"activeJobsThreshold\" value=\"50\"/>\n      <property name=\"waitJobsThreshold\" value=\"0\"/>\n      <property name=\"messageExpireTime\" value=\"1000\"/>\n      <property name=\"maximumStealingAttempts\" value=\"10\"/>\n      <property name=\"stealingEnabled\" value=\"true\"/>\n      <property name=\"stealingAttributes\">\n        <map>\n            <entry key=\"node.segment\" value=\"foobar\"/>\n        </map>\n      </property>\n    </bean>\n  </property>\n  ...\n</bean>",
+      "language": "xml"
+    }
+  ]
+}
+[/block]
+
+[block:callout]
+{
+  "type": "warning",
+  "body": "Note that this SPI must always be used in conjunction with `JobStealingFailoverSpi`. Also note that job metrics update should be enabled (i.e. IgniteConfiguration#getMetricsUpdateFrequency() should be set to a positive value) in order for this SPI to work properly."
+}
+[/block]
