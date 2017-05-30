@@ -103,6 +103,7 @@ Here is an example of how to configure `JobStealingCollisionSpi`:
 [block:callout]
 {
   "type": "warning",
-  "body": "Note that this SPI must always be used in conjunction with `JobStealingFailoverSpi`. Also note that job metrics update should be enabled (i.e. IgniteConfiguration.getMetricsUpdateFrequency() should be set to a positive value) in order for this SPI to work properly."
+  "body": "Note that this SPI must always be used in conjunction with `JobStealingFailoverSpi`. Also note that job metrics update should be enabled (i.e. IgniteConfiguration.getMetricsUpdateFrequency() should be set to a positive value) in order for this SPI to work properly. \nAll other `JobStealingCollisionSpi` configuration parameters are optional.",
+  "title": "Configuration requirement."
 }
 [/block]
