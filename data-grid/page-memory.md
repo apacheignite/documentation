@@ -219,7 +219,7 @@ If the overall memory usage goes beyond the maximum size parameter then an out o
 {
   "type": "success",
   "title": "Changing Default Memory Policy",
-  "body": "The default memory region is instantiated with the parameters of the default memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some of the parameters, follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to `org.apache.ignite.configuration.MemoryConfiguration.\nsetDefaultMemoryPolicyName(...)` method."
+  "body": "The default memory region is instantiated with parameters of the default memory policy prepared by `org.apache.ignite.configuration.MemoryConfiguration.createDefaultPolicyConfig()` method. If you need to change some of the parameters, follow the steps below:\n* Create a new memory policy with a custom name and parameters.\n* Pass the name of the policy to `org.apache.ignite.configuration.MemoryConfiguration.\nsetDefaultMemoryPolicyName(...)` method."
 }
 [/block]
 Refer to [memory policies example](https://github.com/apache/ignite/blob/master/examples/src/main/java/org/apache/ignite/examples/datagrid/MemoryPoliciesExample.java) to see how to configure and use multiple memory regions in your cluster.
