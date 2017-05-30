@@ -4,7 +4,6 @@
 * [Priority Ordering](#priority-ordering)
   * [Task Priorities](#section-task-priorities)
   * [Configuration](#section-configuration)
-* [Job Stealing](#job-stealing)
 [block:api-header]
 {
   "type": "basic",
