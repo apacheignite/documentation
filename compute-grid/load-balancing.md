@@ -11,6 +11,9 @@
 }
 [/block]
 Load balancing component balances job distribution among cluster nodes. In Apache Ignite, load balancing is achieved via `LoadBalancingSpi` which controls load on all nodes and makes sure that every node in the cluster is equally loaded. In homogeneous environments with homogeneous tasks, load balancing is achieved by random or round-robin policies. However, in many other use cases, especially under uneven load, more complex adaptive load-balancing policies may be needed.
+
+`LoadBalancingSpi` adopts the early load balancing technique.
+
 [block:callout]
 {
   "type": "info",
@@ -78,6 +81,8 @@ When configured in global mode, a single sequential queue of nodes is maintained
 Quite often grids are deployed across many computers some of which may be more powerful than others. Enabling `JobStealingCollisionSpi` helps to avoid jobs being stuck at a slower node, as they will be stolen by a faster node.
 
 `JobStealingCollisionSpi` supports job stealing from over-utilized nodes to under-utilized nodes. This SPI is especially useful if you have some jobs that complete fast, while others are sitting in the waiting queue on slower nodes. In such a case, the waiting jobs will be stolen from the slower node and moved to the fast under-utilized node.
+
+`JobStealingCollisionSpi` adopts the late load balancing technique.
 
 Here is an example of how to configure `JobStealingCollisionSpi`:
 [block:code]
