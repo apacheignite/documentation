@@ -78,24 +78,3 @@ Just like with [FIFO Ordering](#fifo-ordering), the number of parallel jobs is c
   ]
 }
 [/block]
-
-[block:api-header]
-{
-  "title": "Job Stealing"
-}
-[/block]
-Quite often grids are deployed across many computers some of which may be more powerful than others. Enabling `JobStealingCollisionSpi` helps to avoid jobs being stuck at a slower node, as they will be stolen by a faster node.
-
-`JobStealingCollisionSpi` supports job stealing from over-utilized nodes to under-utilized nodes. This SPI is especially useful if you have some jobs that complete fast, while others are sitting in the waiting queue on slower nodes. In such a case, the waiting jobs will be stolen from the slower node and moved to the fast under-utilized node.
-
-Here is an example of how to configure `JobStealingCollisionSpi`:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "<bean class=\"org.apache.ignite.IgniteConfiguration\" singleton=\"true\">\n\t...\n  <property name=\"collisionSpi\">\n     <bean class=\"org.apache.ignite.spi.collision.jobstealing.JobStealingCollisionSpi\">\n         <property name=\"activeJobsThreshold\" value=\"100\"/>\n         <property name=\"waitJobsThreshold\" value=\"0\"/>\n         <property name=\"messageExpireTime\" value=\"1000\"/>\n         <property name=\"maximumStealingAttempts\" value=\"10\"/>\n         <property name=\"stealingEnabled\" value=\"true\"/>\n         <property name=\"stealingAttributes\">\n             <map>\n                 <entry key=\"node.segment\" value=\"foobar\"/>\n             </map>\n         </property>\n     </bean>\n </property>\n  ...\n</bean>",
-      "language": "xml"
-    }
-  ]
-}
-[/block]
