@@ -62,7 +62,7 @@ Below is an example showing how task priority can be set:
 }
 [/block]
 ##Configuration
-Just like with [FIFO Ordering](#fifo-ordering), number of parallel jobs is controlled by `parallelJobsNumber` configuration parameter. 
+Just like with [FIFO Ordering](#fifo-ordering), the number of parallel jobs is controlled by `parallelJobsNumber` configuration parameter. 
 [block:code]
 {
   "codes": [
