@@ -84,9 +84,9 @@ Just like with [FIFO Ordering](#fifo-ordering), the number of parallel jobs is c
   "title": "Job Stealing"
 }
 [/block]
-Quite often grids are deployed across many computers some of which will always be more powerful than others. Enabling `JobStealingCollisionSpi` helps to avoid jobs being stuck at a slower node, as they will be stolen by a faster node.
+Quite often grids are deployed across many computers some of which may be more powerful than others. Enabling `JobStealingCollisionSpi` helps to avoid jobs being stuck at a slower node, as they will be stolen by a faster node.
 
-`JobStealingCollisionSpi` supports job stealing from over-utilized nodes to under-utilized nodes. This SPI is especially useful if you have some jobs that complete fast, while others are sitting in the waiting queue on slower nodes. In such case, the waiting jobs will be stolen from the slower node and moved to the fast under-utilized node.
+`JobStealingCollisionSpi` supports job stealing from over-utilized nodes to under-utilized nodes. This SPI is especially useful if you have some jobs that complete fast, while others are sitting in the waiting queue on slower nodes. In such a case, the waiting jobs will be stolen from the slower node and moved to the fast under-utilized node.
 
 Here is an example of how to configure `JobStealingCollisionSpi`:
 [block:code]
