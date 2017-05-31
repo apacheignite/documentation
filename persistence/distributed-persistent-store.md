@@ -51,7 +51,9 @@ Once this is done, the Persistent Store will be enabled and all the data, as wel
   "body": "By default, all the data is persisted in the Apache Ignite working directory (`${IGNITE_HOME}/work`). Use `PersistentStoreConfiguration.setPersistentStorePath(...)` method to change the default directory."
 }
 [/block]
-Having the Persistent Store enabled, you're no longer need to fit all the data in RAM. The disk will store all the data and indexes you have while a subset will be kept in RAM. This is beneficial when you have limited physical memory resources or wish to store and query historical data in Apache Ignite. Taking this into account, if a page is not found in RAM, then the page memory will request it from the Persistent Store. The subset that is to be stored in the off-heap memory is defined by [eviction policies](https://apacheignite.readme.io/docs/evictions#section-page-based-eviction) you use for memory regions.
+Having the Persistent Store enabled, you're no longer need to fit all the data in RAM. The disk will store all the data and indexes you have while a subset of them will be kept in RAM. This is beneficial when you have limited physical memory resources or wish to store and query historical data in Apache Ignite.
+
+Taking this into account, if a page is not found in RAM, then the page memory will request it from the Persistent Store. The subset that is to be stored in the off-heap memory is defined by [eviction policies](https://apacheignite.readme.io/docs/evictions#section-page-based-eviction) you use for memory regions. Plus, pages of backup partitions will be evicted from RAM first giving more room to pages of partitions a node is primary for.
 [block:api-header]
 {
   "title": "Write-Ahead Log File"
