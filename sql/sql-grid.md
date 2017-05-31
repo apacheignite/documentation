@@ -23,7 +23,7 @@ The In-Memory SQL Grid allows users to interact with the Ignite platform not onl
 * [Distributed Queries](doc:sql-queries) 
 * [Local Queries](doc:local-queries) 
 * [Distributed DML](doc:dml) 
-* [Shema and Indexes](doc:indexes) 
+* [Schema and Indexes](doc:indexes) 
 * [Distributed DDL](doc:distributed-ddl) 
 * [Miscellaneous Features](doc:miscellaneous-features) 
 * [Configuration Parameters](doc:configuration-parameters) 
