@@ -82,7 +82,7 @@ Quite often grids are deployed across many computers some of which may be more p
 
 `JobStealingCollisionSpi` supports job stealing from over-utilized nodes to under-utilized nodes. This SPI is especially useful if you have some jobs that complete fast, while others are sitting in the waiting queue on over-utilized nodes. In such a case, the waiting jobs will be stolen from the slower node and moved to the fast under-utilized node.
 
-`JobStealingCollisionSpi` adopts the late load balancing technique that allows reassigning a job from node A to node B after the job has been scheduled for the execution on node A​.
+`JobStealingCollisionSpi` adopts the late load balancing technique that allows reassigning a job from node A to node B after the job has been scheduled for execution on node A​.
 
 Here is an example of how to configure `JobStealingCollisionSpi`:
 [block:code]
