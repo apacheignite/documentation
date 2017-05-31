@@ -12,7 +12,7 @@
 [/block]
 Load balancing component balances job distribution among cluster nodes. In Apache Ignite, load balancing is achieved via `LoadBalancingSpi` which controls load on all nodes and makes sure that every node in the cluster is equally loaded. In homogeneous environments with homogeneous tasks, load balancing is achieved by random or round-robin policies. However, in many other use cases, especially under uneven load, more complex adaptive load-balancing policies may be needed.
 
-`LoadBalancingSpi` adopts the early load balancing technique.
+`LoadBalancingSpi` adopts the early load balancing technique where a job is scheduled for execution on a specific node before the job is sent to the cluster.
 
 [block:callout]
 {
@@ -78,23 +78,23 @@ When configured in global mode, a single sequential queue of nodes is maintained
   "title": "Job Stealing"
 }
 [/block]
-Quite often grids are deployed across many computers some of which may be more powerful than others. Enabling `JobStealingCollisionSpi` helps to avoid jobs being stuck at a slower node, as they will be stolen by a faster node.
+Quite often grids are deployed across many computers some of which may be more powerful or under-utilized than others.  Enabling `JobStealingCollisionSpi` helps to avoid jobs being stuck at an over-utilized node, as they will be stolen by an under-utilized node.
 
-`JobStealingCollisionSpi` supports job stealing from over-utilized nodes to under-utilized nodes. This SPI is especially useful if you have some jobs that complete fast, while others are sitting in the waiting queue on slower nodes. In such a case, the waiting jobs will be stolen from the slower node and moved to the fast under-utilized node.
+`JobStealingCollisionSpi` supports job stealing from over-utilized nodes to under-utilized nodes. This SPI is especially useful if you have some jobs that complete fast, while others are sitting in the waiting queue on over-utilized nodes. In such a case, the waiting jobs will be stolen from the slower node and moved to the fast under-utilized node.
 
-`JobStealingCollisionSpi` adopts the late load balancing technique.
+`JobStealingCollisionSpi` adopts the late load balancing technique that allows reassigning a job from node A to node B after the job has been scheduled for the execution on node A​.
 
 Here is an example of how to configure `JobStealingCollisionSpi`:
 [block:code]
 {
   "codes": [
     {
-      "code": "<bean id=\"grid.custom.cfg\" class=\"org.apache.ignite.IgniteConfiguration\" singleton=\"true\">\n  ...\n  <property name=\"failoverSpi\">\n     <bean class=\"org.apache.ignite.spi.failover.jobstealing.JobStealingFailoverSpi\"/>\n \t</property>\n  <property name=\"collisionSpi\">\n    <bean class=\"org.apache.ignite.spi.collision.jobstealing.JobStealingCollisionSpi\">\n      <property name=\"activeJobsThreshold\" value=\"50\"/>\n      <property name=\"waitJobsThreshold\" value=\"0\"/>\n      <property name=\"messageExpireTime\" value=\"1000\"/>\n      <property name=\"maximumStealingAttempts\" value=\"10\"/>\n      <property name=\"stealingEnabled\" value=\"true\"/>\n      <property name=\"stealingAttributes\">\n        <map>\n            <entry key=\"node.segment\" value=\"foobar\"/>\n        </map>\n      </property>\n    </bean>\n  </property>\n  ...\n</bean>",
+      "code": "<bean class=\"org.apache.ignite.IgniteConfiguration\" singleton=\"true\">\n  \n  <!-- Enabling the required Failover SPI. -->\n  <property name=\"failoverSpi\">\n     <bean class=\"org.apache.ignite.spi.failover.jobstealing.JobStealingFailoverSpi\"/>\n \t</property>\n  \n  <!-- Enabling the JobStealingCollisionSpi for late load balancing. -->\n  <property name=\"collisionSpi\">\n    <bean class=\"org.apache.ignite.spi.collision.jobstealing.JobStealingCollisionSpi\">\n      <property name=\"activeJobsThreshold\" value=\"50\"/>\n      <property name=\"waitJobsThreshold\" value=\"0\"/>\n      <property name=\"messageExpireTime\" value=\"1000\"/>\n      <property name=\"maximumStealingAttempts\" value=\"10\"/>\n      <property name=\"stealingEnabled\" value=\"true\"/>\n      <property name=\"stealingAttributes\">\n        <map>\n            <entry key=\"node.segment\" value=\"foobar\"/>\n        </map>\n      </property>\n    </bean>\n  </property>\n  ...\n</bean>",
       "language": "xml"
     },
     {
       "code": "JobStealingCollisionSpi spi = new JobStealingCollisionSpi();\n\n // Configure number of waiting jobs\n // in the queue for job stealing.\n spi.setWaitJobsThreshold(10);\n\n // Configure message expire time (in milliseconds).\n spi.setMessageExpireTime(1000);\n\n // Configure stealing attempts number.\n spi.setMaximumStealingAttempts(10);\n\n // Configure number of active jobs that are allowed to execute\n // in parallel. This number should usually be equal to the number\n // of threads in the pool (default is 100).\n spi.setActiveJobsThreshold(50);\n\n // Enable stealing.\n spi.setStealingEnabled(true);\n\n // Set stealing attribute to steal from/to nodes that have it.\n spi.setStealingAttributes(Collections.singletonMap(\"node.segment\", \"foobar\"));\n \n // Enable `JobStealingFailoverSpi`\n JobStealingFailoverSpi failoverSpi = new JobStealingFailoverSpi();\n\n IgniteConfiguration cfg = new IgniteConfiguration();\n\n // Override default Collision SPI.\n cfg.setCollisionSpi(spi);\n \n cfg.setFailoverSpi(failoverSpi);",
-      "language": "text"
+      "language": "java"
     }
   ]
 }
