@@ -17,8 +17,8 @@ The Persistent Store satisfies all the Apache Ignite guarantees and properties t
  
 Apache Ignite [Page Memory](doc:page-memory) is tightly coupled with the Persistent Store and starts keeping data and indexes on disk once the store is enabled in a cluster's configuration. As with a pure in-memory use case, every individual cluster node persists only a subset of data and indexes for which the node is either a primary or backup one.
 
-Apache Ignite Persistent Store has the following advantages over 3rd party stores (RDBMS, NoSQL, Hadoop) that can be used as a persistence layer for an Apache Ignite cluster:
-* An ability to execute SQL queries over the data that is both in memory and on disk.
+Apache Ignite Persistent Store has the following advantages over 3rd party stores (RDBMS, NoSQL, Hadoop) that can be used as an alternative persistence layer for an Apache Ignite cluster:
+* An ability to execute SQL queries over the data that is both in memory and on disk meaning that Apache Ignite can be used as a memory-optimized distributed SQL database.
 * No need to have all the data and indexes in memory. The Persistent Store allows storing a superset of data on disk and have only frequently used subsets in memory.
 * Instantaneous cluster restarts. If the whole cluster goes down there is no need to warm up the memory preloading data from the Persistent Store. The cluster becomes fully operational once all the cluster nodes are interconnected with each other.
 * Data and indexes are stored in a similar format both in memory and on disk that helps to avoid expensive transformations while the data sets are being moved between memory and disk. 
@@ -43,30 +43,30 @@ To enable the distributed Persistent Store, pass an instance of `PersistentStore
   ]
 }
 [/block]
-That's it. Once the configuration parameter above is added to the cluster node configuration, the Persistent Store will be enabled and all the data as well as indexes will be stored both in memory and on disk cluster wide.
+Once this is done, the Persistent Store will be enabled and all the data, as well as indexes, will be stored both in memory and on disk across all the cluster nodes. 
 [block:callout]
 {
   "type": "success",
   "title": "Persistent Store Root Path",
-  "body": "By default all the data as well as write-ahead log files described below will be persisted under Apache Ignite working directory (`${IGNITE_HOME}/work`). Use `PersistentStoreConfiguration.setPersistentStorePath(...)` method to change the default directory. Also, as it will be shown below, there is a way to set a dedicated directory for the Write-Ahead Log file and its archives using special `PersistentStoreConfiguration` parameters."
+  "body": "By default, all the data is persisted in the Apache Ignite working directory (`${IGNITE_HOME}/work`). Use `PersistentStoreConfiguration.setPersistentStorePath(...)` method to change the default directory."
 }
 [/block]
-
+Having the Persistent Store enabled, you're no longer need to fit all the data in RAM. The disk will store all the data and indexes you have while a subset will be kept in RAM. This is beneficial when you have limited physical memory resources or wish to store and query historical data in Apache Ignite. Taking this into account, if a page is not found in RAM, then the page memory will request it from the Persistent Store. The subset that is to be stored in the off-heap memory is defined by [eviction policies](https://apacheignite.readme.io/docs/evictions#section-page-based-eviction) you use for memory regions.
 [block:api-header]
 {
   "title": "Write-Ahead Log File"
 }
 [/block]
-If [Page Memory](doc:page-memory) doesn't find a page in memory it will go to the Persistent Store to preload it from there. This can be easily achieved because all the pages are stored in separate partition files the pages belong to.
+If a page is not found in RAM, then the page memory will request it from the Persistent Store. This can be easily achieved because all the pages are stored in separate partition files the pages belong to.
 
 However, when a page is updated in memory the update is not directly written to a respective partition file in Persistent Store because it can affect performance dramatically. It's rather appended to the tail of an Apache Ignite node's write-ahead log (WAL) file that is maintained for all the deployed caches.
 
-The purpose of the WAL file is to propagate updates to disk in the fastest way possible and provide a recovery mechanism for transactional updates written to the Persistent Store. Note, that every transactional update is uniquely defined cluster wide, which means that a cluster can always be recovered to the latest successfully committed transaction in case of a crash or restart.
+The purpose of the WAL file is to propagate updates to disk in the fastest way possible and provide a recovery mechanism for transactional updates written to the Persistent Store. Note, that every transactional update is uniquely defined cluster-wide, which means that a cluster can always be recovered to the latest successfully committed transaction in case of a crash or restart from the WAL file.
 [block:callout]
 {
   "type": "success",
   "title": "More Details on WAL",
-  "body": "Refer to WAL section on [Persistent Store Internal Design page](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Internal+Design#PersistentStoreInternalDesign-Write-Ahead-Log) to learn more about WAL implementation in Apache Ignite."
+  "body": "Refer to WAL section on [Persistent Store Internal Design page](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Internal+Design#PersistentStoreInternalDesign-Write-Ahead-Log) to learn more about WAL implementation details in Apache Ignite."
 }
 [/block]
 Use configuration parameters below to alter WAL file related settings:
