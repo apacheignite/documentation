@@ -53,17 +53,15 @@ Once this is done, the Persistent Store will be enabled and all the data, as wel
 [/block]
 Having the Persistent Store enabled, you're no longer need to fit all the data in RAM. The disk will store all the data and indexes you have while a subset of them will be kept in RAM. This is beneficial when you have limited physical memory resources or wish to store and query historical data in Apache Ignite.
 
-Taking this into account, if a page is not found in RAM, then the page memory will request it from the Persistent Store. The subset that is to be stored in the off-heap memory is defined by [eviction policies](https://apacheignite.readme.io/docs/evictions#section-page-based-eviction) you use for memory regions. Plus, pages of backup partitions will be evicted from RAM first giving more room to pages of partitions a node is primary for.
+Taking this into account, if a page is not found in RAM, then the page memory will request it from the Persistent Store. The subset of data that is to be stored in the off-heap memory is defined by [eviction policies](https://apacheignite.readme.io/docs/evictions#section-page-based-eviction) you use for memory regions. Plus, pages of backup partitions will be evicted from RAM first giving more space to pages of partitions a node is primary for.
 [block:api-header]
 {
   "title": "Write-Ahead Log File"
 }
 [/block]
-If a page is not found in RAM, then the page memory will request it from the Persistent Store. This can be easily achieved because all the pages are stored in separate partition files the pages belong to.
+The Persistent Store creates and maintains a dedicated file for every partition a node is either primary or backup one. However, when a page is updated in physical memory the update is not directly written to a respective partition file because it can affect performance dramatically. It's rather appended to the tail of an Apache Ignite node's write-ahead log (WAL) file.
 
-However, when a page is updated in memory the update is not directly written to a respective partition file in Persistent Store because it can affect performance dramatically. It's rather appended to the tail of an Apache Ignite node's write-ahead log (WAL) file that is maintained for all the deployed caches.
-
-The purpose of the WAL file is to propagate updates to disk in the fastest way possible and provide a recovery mechanism for transactional updates written to the Persistent Store. Note, that every transactional update is uniquely defined cluster-wide, which means that a cluster can always be recovered to the latest successfully committed transaction in case of a crash or restart from the WAL file.
+The purpose of the WAL file is to propagate updates to disk in the fastest way possible and provide a recovery mechanism for scenarios when a single node or the whole cluster goes down. It worth mentioning that every update is uniquely defined cluster-wide, which means that a cluster can always be recovered to the latest successfully committed transaction in case of a crash or restart relying on the content of the WAL file.
 [block:callout]
 {
   "type": "success",
