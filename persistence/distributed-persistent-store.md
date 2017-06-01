@@ -66,7 +66,7 @@ The purpose of the WAL file is to propagate updates to disk in the fastest way p
 {
   "type": "success",
   "title": "More Details on WAL",
-  "body": "Refer to WAL section on [Persistent Store Internal Design page](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Architecture#PersistentStoreArchitecture-Write-Ahead-Log) to learn more about WAL implementation details in Apache Ignite."
+  "body": "Refer to WAL section on [Persistent Store Architecture page](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Architecture#PersistentStoreArchitecture-Write-Ahead-Log) to learn more about WAL implementation details in Apache Ignite."
 }
 [/block]
 Use configuration parameters below to alter WAL file related settings:
