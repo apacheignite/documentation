@@ -66,7 +66,7 @@ The purpose of the WAL file is to propagate updates to disk in the fastest way p
 {
   "type": "success",
   "title": "More Details on WAL",
-  "body": "Refer to WAL section on [Persistent Store Internal Design page](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Internal+Design#PersistentStoreInternalDesign-Write-Ahead-Log) to learn more about WAL implementation details in Apache Ignite."
+  "body": "Refer to WAL section on [Persistent Store Internal Design page](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Architecture#PersistentStoreArchitecture-Write-Ahead-Log) to learn more about WAL implementation details in Apache Ignite."
 }
 [/block]
 Use configuration parameters below to alter WAL file related settings:
@@ -102,7 +102,47 @@ Use configuration parameters below to alter WAL file related settings:
   "title": "Checkpointing"
 }
 [/block]
-TBD
+The WAL file is an essential part of the Persistent Store which role is:
+* To persist updates on disk int the fastest way possible which is by appending an update record to the end of the file.
+* To recover the cluster to a consistent state in the case of a restart or crash.
+
+However, due to the nature of the WAL file, it would constantly grow and it would take significant time to recover the cluster by going over the WAL from the head to the tail if the page memory and Persistent Store did not support a checkpointing process.
+
+The checkpointing is a process of copying dirty pages from RAM to the partition files on disk. A dirty page is a page that was updated in RAM but was not written to a respective partition file on disk (an update was just appended to the WAL file).
+
+This process helps to utilize disk space frugally by having pages in the most up-to-date state on disk and truncating the size of the WAL file by removing those update records from it that are already stored in the partition files.  
+
+The checkpointing is triggered periodically depending on a frequency set in your Persistent Store configuration. See from the table below how this and other checkpointing related parameters can be adjusted for your needs: 
+     
+[block:parameters]
+{
+  "data": {
+    "h-0": "Parameter Name",
+    "h-1": "Description",
+    "h-2": "Default Value",
+    "0-0": "`setCheckpointingFrequency(...)`",
+    "0-1": "Sets the checkpointing frequency which is a minimal interval when the dirty pages will be written to the Persistent Store. If the rate is high, checkpointing will be triggered more frequently.",
+    "0-2": "`3` minutes",
+    "1-0": "`setCheckpointingPageBufferSize(...)`",
+    "1-1": "Sets amount of memory allocated for the checkpointing temporary buffer. The buffer is used to create temporary copies of pages that are being written to disk and being update in parallel while the checkpointing is in progress.",
+    "1-2": "`256 MB`",
+    "2-0": "`setCheckpointingThreads(...)`",
+    "2-1": "Sets a number of threads to use for the checkpointing purposes.",
+    "2-2": "`1`"
+  },
+  "cols": 3,
+  "rows": 3
+}
+[/block]
+
+[block:callout]
+{
+  "type": "success",
+  "title": "More Details on Checkpointing",
+  "body": "Refer to checkpointing section on [Persistent Store Architecture page](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Architecture#PersistentStoreArchitecture-Checkpointing) to learn more about checkpointing implementation details in Apache Ignite."
+}
+[/block]
+
 [block:api-header]
 {
   "title": "Transactional Guarantees"
@@ -110,7 +150,7 @@ TBD
 [/block]
 The Persistent Store is an ACID-compliant distributed store.
 
-Every transactional update that comes to the store is appended to the WAL first. The update is uniquely defined with an ID. All this means that a cluster can always be recovered to the latest successfully committed transaction in case of a crash or restart.
+Every transactional update that comes to the store is appended to the WAL first. The update is uniquely defined with an ID. All this means that a cluster can always be recovered to the latest successfully committed transaction or an atomic update ​in case of a crash or restart.
 [block:api-header]
 {
   "title": "SQL Support"
