@@ -19,7 +19,7 @@ There is no difference in PRIVATE and ISOLATED deployment modes since `@UserReso
 In this mode, classes get un-deployed when the master node leaves the cluster.
 
 ## SHARED
-This is the default deployment mode. In this mode, classes from different master nodes with the same user version will share the same class loader on worker nodes. Classes will be un-deployed whenever all master nodes leave grid or user version changes. This mode allows classes coming from different master nodes to share the same instances of user resources on remote nodes (see below). This method is specifically useful in production as, in comparison to `ISOLATED` mode, which has a scope of a single class loader on a single master node, `SHARED` mode broadens the deployment scope to all master nodes.
+This is the default deployment mode. In this mode, classes from different master nodes with the same user version will share the same class loader on worker nodes. Classes will be un-deployed whenever all master nodes leave grid or user version changes. This mode allows classes coming from different master nodes to share the same instances of user resources on remote nodes (see below). This method is specifically useful in production as, in comparison to `ISOLATED` mode which has a scope of a single class loader on a single master node, `SHARED` mode broadens the deployment scope to all master nodes.
 
 In this mode, classes get un-deployed when all the master nodes leave the cluster
 
