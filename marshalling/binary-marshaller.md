@@ -96,7 +96,7 @@ Below is an example of using `BinaryObject` API to process data on server nodes 
 {
   "codes": [
     {
-      "code": "// The EntryProcessor is to be executed for this key.\nint key = 101;\n\ncache.<Integer, BinaryObject>withKeepBinary().invoke(\n  key, newCacheEntryProcessor<Integer, BinaryObject, Object>() {\n  \tpublic Object process(MutableEntry<Integer, BinaryObject> entry,\n                          Object... objects) throws EntryProcessorException {\n\t\t    // Create builder from the old value.\n        BinaryObjectBuilder bldr = entry.getValue().toBuilder();\n\n        //Update the field in the builder.\n        bldr.setField(\"name\", \"Ignite\");\n\n        // Set new value to the entry.\n        entry.setValue(bldr.build());\n\n        return null;\n     }\n  });",
+      "code": "// The EntryProcessor is to be executed for this key.\nint key = 101;\n\ncache.<Integer, BinaryObject>withKeepBinary().invoke(\n  key, new CacheEntryProcessor<Integer, BinaryObject, Object>() {\n  \tpublic Object process(MutableEntry<Integer, BinaryObject> entry,\n                          Object... objects) throws EntryProcessorException {\n\t\t    // Create builder from the old value.\n        BinaryObjectBuilder bldr = entry.getValue().toBuilder();\n\n        //Update the field in the builder.\n        bldr.setField(\"name\", \"Ignite\");\n\n        // Set new value to the entry.\n        entry.setValue(bldr.build());\n\n        return null;\n     }\n  });",
       "language": "java",
       "name": "BinaryObject Inside EntryProcessor"
     }
