@@ -31,17 +31,19 @@ Ignite Virtual Memory is a manageable off-heap based memory architecture that is
   "images": [
     {
       "image": [
-        "https://files.readme.io/54c74ce-page-memory-pages.png",
-        "page-memory-pages.png",
-        881,
-        140,
-        "#c9c7be"
+        "https://files.readme.io/b18c7c6-Page-Memory-Diagram-v3.png",
+        "Page-Memory-Diagram-v3.png",
+        1656,
+        1631,
+        "#cfc5c7"
       ]
     }
   ]
 }
 [/block]
 ## Memory Regions
+
+The whole virtual memory of an individual Apache Ignite node can consist of one or many memory regions. A memory region is a logical expandable area that is configured with a [memory policy](doc:page-memory#memory-policies). The regions can vary in size, eviction policies and other parameters explained in the memory policy section below.   
 [block:image]
 {
   "images": [
@@ -58,8 +60,6 @@ Ignite Virtual Memory is a manageable off-heap based memory architecture that is
   ]
 }
 [/block]
-The whole virtual memory of an individual Apache Ignite node can consist of one or many memory regions. A memory region is a logical expandable area that is configured with a [memory policy](doc:page-memory#memory-policies). The regions can vary in size, eviction policies and other parameters explained in the memory policy section below.   
-
 ## Memory Segment
 
 Every memory region starts with an initial size and has a maximum size it can grow to. The region expands to its maximum boundary allocating continuous memory segments. By default, the max size of a memory region is set to 80% of the physical memory available on the system.  
