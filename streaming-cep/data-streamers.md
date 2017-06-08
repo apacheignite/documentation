@@ -40,6 +40,14 @@ To add data to the data streamer, you should call `IgniteDataStreamer.addData(..
 By default, the data streamer will not overwrite existing data, which means that if it will encounter an entry that is already in cache, it will skip it. This is the most efficient and performant mode, as the data streamer does not have to worry about data versioning in the background.
 
 If you anticipate that the data may already be in the streaming cache and you need to overwrite it, you should set `IgniteDataStreamer.allowOverwrite(true)` parameter.
+[block:callout]
+{
+  "type": "info",
+  "title": "Streamer, Cache Store, and AllowOverwrite",
+  "body": "`AllowOverwrite` property, when `false` (default), also causes [Persistent Store](doc:persistent-store) to be skipped, even though `SkipStore` property is also false.\n\nCache store is invoked only when `AllowOverwrite` is `true`."
+}
+[/block]
+
 [block:api-header]
 {
   "type": "basic",
