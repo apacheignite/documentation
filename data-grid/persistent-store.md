@@ -228,7 +228,7 @@ Use `CacheJdbcBlobStoreFactory` factory to pass `CacheJdbcBlobStore` to `CacheCo
 {
   "codes": [
     {
-      "code": "<bean id= \"simpleDataSource\" class=\"org.h2.jdbcx.JdbcDataSource\"/>\n  \n<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n   <property name=\"cacheConfiguration\">\n     <list>\n       <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n         ...\n           <property name=\"cacheStoreFactory\">\n             <bean class=\"org.apache.ignite.cache.store.jdbc.CacheJdbcBlobStoreFactory\">\n               <property name=\"user\" value = \"user\" />\n               <property name=\"dataSourceBean\" value = \"simpleDataSource\" />\n             </bean>\n           </property>\n       </bean>\n      </list>\n    </property>\n  ...\n</bean>",
+      "code": "<bean id= \"simpleDataSource\" class=\"org.h2.jdbcx.JdbcDataSource\">\n        <property name=\"url\" value=\"jdbc:h2:mem:jdbcCacheStore;DB_CLOSE_DELAY=-1\" />\n</bean>\n  \n<bean id=\"ignite.cfg\" class=\"org.apache.ignite.configuration.IgniteConfiguration\">\n  ...\n   <property name=\"cacheConfiguration\">\n     <list>\n       <bean class=\"org.apache.ignite.configuration.CacheConfiguration\">\n         ...\n           <property name=\"cacheStoreFactory\">\n             <bean class=\"org.apache.ignite.cache.store.jdbc.CacheJdbcBlobStoreFactory\">\n               <property name=\"user\" value = \"user\" />\n               <property name=\"dataSourceBean\" value = \"simpleDataSource\" />\n             </bean>\n           </property>\n       </bean>\n      </list>\n    </property>\n  ...\n</bean>",
       "language": "xml",
       "name": "Spring"
     }
