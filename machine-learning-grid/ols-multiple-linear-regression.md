@@ -1,9 +1,10 @@
-Apache Ignite 2.1 release includes implementation of Ordinary least squares multiple linear regression which is one of most basic ML tools. Multiple linear regression can be described as matrix equation like following:
+Apache Ignite 2.1 release includes implementation of Ordinary least squares multiple linear regression which is one of most basic ML tools. Multiple linear regression parameters (b, u) can be described as a solution of the following equation
 
-y=X*b+u.
+y = X*b + u, 
 
-The term 'X' is a (n,m) matrix, the term 'b' is a k-vector called 'regression parameters' and the term 'u' is a k-vector called 'residuals'. The prediction of this model will be the following:
+minimizing sum of squares of u. Here **X** is a (**n**,**m**) matrix, the term **b** is a k-vector called 'regression parameters' and the term **u** is a **k**-vector called 'residuals'. Geometrically solutions of equation above are lines in an (**m+1**)-dimensional vector space.
 
+Matrix **X** should be considered as an input on which the model trains. 
 
 Below follows the description of it's usage.
 
@@ -34,7 +35,18 @@ Let's load it into our regression.
 {
   "codes": [
     {
-      "code": "regression.newSampleData(new DenseLocalOnHeapVector(y), new DenseLocalOnHeapMatrix(x));",
+      "code": "DenseLocalOnHeapMatrix xm = new DenseLocalOnHeapMatrix(m).\n\nregression.newSampleData(new DenseLocalOnHeapVector(y), m);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+By default, OLSMultipleRegression augments input matrix with an additional column inserted from the left filled with 1s. This is done for model to be able to give lines passing not through the origin, but if we want, we can disable this augmenting with
+[block:code]
+{
+  "codes": [
+    {
+      "code": "model.setNoIntercept(true);",
       "language": "java"
     }
   ]
@@ -51,3 +63,15 @@ Now we can estimate regression parameters:
   ]
 }
 [/block]
+and residuals
+[block:code]
+{
+  "codes": [
+    {
+      "code": "double[] residuals = regression.estimateResiduals();",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+**Note**, that the current API of Apache Ignite ML module is the subject of change.
