@@ -103,7 +103,7 @@ Use configuration parameters below to alter WAL file related settings:
 }
 [/block]
 The WAL file is an essential part of the Persistent Store which role is:
-* To persist updates on disk int the fastest way possible which is by appending an updated record to the end of the file.
+* To persist updates on disk int the fastest way possible which is by appending an value record to the end of the file.
 * To recover the cluster to a consistent state in the case of a restart or crash.
 
 However, due to the nature of the WAL file, it would constantly grow and it would take significant time to recover the cluster by going over the WAL from the head to the tail if the page memory and Persistent Store did not support a checkpointing process.
