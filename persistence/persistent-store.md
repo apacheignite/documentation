@@ -285,4 +285,4 @@ Use the `CacheHibernateBlobStoreFactory` factory to pass `CacheHibernateBlobStor
   "title": "Cassandra Cache Store"
 }
 [/block]
-Refer to [Cassandra Cache Store](doc:cassandra-cache-store) documentation to see how use Cassandra as an Apache Ignite persistent store.
+Refer to [Cassandra Cache Store](https://apacheignite-mix.readme.io/docs/ignite-with-apache-cassandra) documentation to see how use Cassandra as an Apache Ignite persistent store.
