@@ -11,7 +11,7 @@
 [/block]
 Service Grid allows for deployments of arbitrary user-defined services on the cluster. You can implement and deploy any service, such as custom counters, ID generators, hierarchical maps, etc.
 
-In the same time, Service Grid can be used as a backbone of a micro-services based solution or application. Learn more about this use case from the following series of articles:
+For instance, Service Grid can be used as a backbone of a micro-services based solution or application. Learn more about this use case from the following series of articles:
 * [Microservices on Top of Apache Ignite - Part I](https://dzone.com/articles/running-microservices-on-top-of-in-memory-data-gri)
 * [Microservices on Top of Apache Ignite - Part II](https://dzone.com/articles/running-microservices-on-top-of-in-memory-data-gri-1)
 * [Microservices on Top of Apache Ignite - Part III](https://dzone.com/articles/microservices-on-top-of-an-in-memory-data-grid-par)
