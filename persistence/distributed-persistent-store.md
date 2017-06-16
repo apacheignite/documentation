@@ -96,7 +96,7 @@ The purpose of the WAL file is to propagate updates to disk in the fastest way p
   "body": "Refer to WAL section on [Persistent Store Architecture page](https://cwiki.apache.org/confluence/display/IGNITE/Persistent+Store+Architecture#PersistentStoreArchitecture-Write-Ahead-Log) to learn more about WAL implementation details in Apache Ignite."
 }
 [/block]
-Use configuration parameters below to alter WAL file related settings:
+Use configuration parameters below to alter WAL file related settings. Refer to `PersistentStoreConfiguration` to get the full list of configuration parameters available:
 [block:parameters]
 {
   "data": {
@@ -139,7 +139,7 @@ The checkpointing is a process of copying dirty pages from RAM to the partition 
 
 This process helps to utilize disk space frugally by having pages in the most up-to-date state on disk and truncating the size of the WAL file by removing those update records from it that are already stored in the partition files.  
 
-The checkpointing is triggered periodically depending on a frequency set in your Persistent Store configuration. See from the table below how this and other checkpointing related parameters can be adjusted depending on your needs: 
+The checkpointing is triggered periodically depending on a frequency set in your Persistent Store configuration. See from the table below how this and other checkpointing related parameters can be adjusted depending on your needs. Refer to `PersistentStoreConfiguration` to get the full list of configuration parameters available: 
      
 [block:parameters]
 {
