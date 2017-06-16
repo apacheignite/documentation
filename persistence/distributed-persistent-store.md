@@ -11,12 +11,26 @@
   "title": "Overview"
 }
 [/block]
-The Ignite Persistent Store is a distributed ACID and SQL-compliant disk store that transparently integrates with Ignite as an optional disk layer storing data on SSD, Flash, 3D XPoint and other types of types of non-volatile storages.
+The Ignite Persistent Store is a distributed ACID and SQL-compliant disk store that transparently integrates with Ignite as an optional disk layer storing data and indexes on SSD, Flash, 3D XPoint and other types of types of non-volatile storages.
 
-Having the store enabled, you no longer need to keep all the data in memory or warm RAM up after a node or cluster restart. 
- 
-Apache [Ignite Virtual Memory](doc:page-memory) is tightly coupled with the Persistent Store treating it as a secondary storage and starts keeping data and indexes on disk once the store is enabled in a cluster's configuration. It worth mentioning, that as with a pure in-memory use case, every individual cluster node persists only a subset of data and indexes for which the node is either a primary or backup one.
+Having the store enabled, you no longer need to keep all the data and indexes in memory or warm it up after a node or cluster restart because Apache [Ignite Virtual Memory](doc:page-memory) is tightly coupled with the Persistent Store and treats it as a secondary storage. This implies that if a subset of data or an index is missing in RAM the virtual memory will take it from disk.
 
+As it's shown in the picture below, the Ignite Persistent Store always stores a superset of data on disk while it's enough to have a subset of the data in RAM if it can not fully fit there. Also, it worth mentioning, that as with a pure in-memory use case, every individual cluster node persists only a subset of data and indexes for which the node is either a primary or backup one.
+[block:image]
+{
+  "images": [
+    {
+      "image": [
+        "https://files.readme.io/435678b-Main-Ignite_Diagram-Memory-And-Disk.png",
+        "Main-Ignite Diagram-Memory-And-Disk.png",
+        2112,
+        1534,
+        "#e8e4e5"
+      ]
+    }
+  ]
+}
+[/block]
 Apache Ignite Persistent Store has the following advantages over 3rd party stores (RDBMS, NoSQL, Hadoop) that can be used as an alternative persistence layer for an Apache Ignite cluster:
 * An ability to execute SQL queries over the data that is both in memory and on disk meaning that Apache Ignite can be used as a memory-optimized distributed SQL database.
 * No need to have all the data and indexes in memory. The Persistent Store allows storing a superset of data on disk and have only frequently used subsets in memory.
@@ -44,6 +58,19 @@ To enable the distributed Persistent Store, pass an instance of `PersistentStore
 }
 [/block]
 Once this is done, the Persistent Store will be enabled and all the data, as well as indexes, will be stored both in memory and on disk across all the cluster nodes. 
+
+However, when Apache Ignite sees that the store is enabled it moves the cluster to an inactive state making sure that applications can not modify the data until it's allowed. This is done to avoid the situations when the cluster is being restarted and applications start modifying data that might be persisted on the nodes that have not been brought up back. So, the general practice here is to wait while all the nodes join the cluster and call `Ignite.active(true)` from any node or application you have moving the cluster to the active state.
+[block:code]
+{
+  "codes": [
+    {
+      "code": "Ignite ignite = ...;\n            \n// Activating the cluster once all the cluster nodes are up and running.\nignite.active(true);",
+      "language": "java"
+    }
+  ]
+}
+[/block]
+
 [block:callout]
 {
   "type": "success",
@@ -51,9 +78,9 @@ Once this is done, the Persistent Store will be enabled and all the data, as wel
   "body": "By default, all the data is persisted in the Apache Ignite working directory (`${IGNITE_HOME}/work`). Use `PersistentStoreConfiguration.setPersistentStorePath(...)` method to change the default directory."
 }
 [/block]
-Having the Persistent Store enabled, you're no longer need to fit all the data in RAM. The disk will store all the data and indexes you have while a subset of them will be kept in RAM. This is beneficial when you have limited physical memory resources or wish to store and query historical data in Apache Ignite.
+As explained above, with the Persistent Store enabled you are no longer need to fit all the data in RAM. The disk will store all the data and indexes you have while a subset of them will be kept in RAM. This is beneficial when you have limited physical memory resources or wish to store and query historical data in Apache Ignite.
 
-Taking this into account, if a page is not found in RAM, then the page memory will request it from the Persistent Store. The subset of data that is to be stored in the off-heap memory is defined by [eviction policies](https://apacheignite.readme.io/docs/evictions#section-page-based-eviction) you use for memory regions. Plus, pages of backup partitions will be evicted from RAM first giving more space to pages of partitions a node is primary for.
+Taking this into account, if a page is not found in RAM, then the virtual memory will request it from the Persistent Store. The subset of data that is to be stored in the off-heap memory is defined by [eviction policies](https://apacheignite.readme.io/docs/evictions#section-page-based-eviction) you use for memory regions. Plus, pages of backup partitions will be evicted from RAM first giving more space to pages of partitions a node is primary for.
 [block:api-header]
 {
   "title": "Write-Ahead Log File"
