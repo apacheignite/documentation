@@ -11,11 +11,11 @@
   "title": "Overview"
 }
 [/block]
-Apache Ignite Persistent Store is a distributed and transactional disk store that seamlessly integrates with overall page memory architecture as an additional persistence layer giving a way to keep data on Flash, SSD, Intel 3D XPoint and other types of non-volatile storages.
+The Ignite Persistent Store is a distributed ACID and SQL-compliant disk store that transparently integrates with Ignite as an optional disk layer storing data on SSD, Flash, 3D XPoint and other types of types of non-volatile storages.
 
-The Persistent Store satisfies all the Apache Ignite guarantees and properties that are supported for a pure in-memory use case. For instance, this is an ACID and ANSI-99 SQL compliant store.  
+Having the store enabled, you no longer need to keep all the data in memory or warm RAM up after a node or cluster restart. 
  
-Apache Ignite [Page Memory](doc:page-memory) is tightly coupled with the Persistent Store and starts keeping data and indexes on disk once the store is enabled in a cluster's configuration. As with a pure in-memory use case, every individual cluster node persists only a subset of data and indexes for which the node is either a primary or backup one.
+Apache [Ignite Virtual Memory](doc:page-memory) is tightly coupled with the Persistent Store treating it as a secondary storage and starts keeping data and indexes on disk once the store is enabled in a cluster's configuration. It worth mentioning, that as with a pure in-memory use case, every individual cluster node persists only a subset of data and indexes for which the node is either a primary or backup one.
 
 Apache Ignite Persistent Store has the following advantages over 3rd party stores (RDBMS, NoSQL, Hadoop) that can be used as an alternative persistence layer for an Apache Ignite cluster:
 * An ability to execute SQL queries over the data that is both in memory and on disk meaning that Apache Ignite can be used as a memory-optimized distributed SQL database.
